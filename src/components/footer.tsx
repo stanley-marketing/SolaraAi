@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Section } from "./section";
 import { SubscribeForm } from "./subscribe-form";
 import { Noise } from "./noise";
@@ -124,12 +125,13 @@ export function Footer() {
 
         {/* Bottom */}
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2.5">
-            <div className="h-7 w-7 rounded-md bg-white flex items-center justify-center">
-              <span className="text-bg-inverse font-heading font-bold text-xs">S</span>
-            </div>
-            <span className="font-heading font-bold text-sm text-white">Solara AI</span>
-          </div>
+          <Image
+            src="/images/logo.svg"
+            alt="Solara AI"
+            width={100}
+            height={22}
+            className="h-[22px] w-auto brightness-0 invert"
+          />
           <p className="text-xs text-white/40">
             &copy; {new Date().getFullYear()} Solara AI. All rights reserved.
           </p>

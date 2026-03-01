@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -43,15 +44,18 @@ export function Navbar() {
     >
       <nav className="mx-auto flex max-w-[var(--content-max)] items-center justify-between px-6 md:px-8 h-[72px]">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 shrink-0">
-          <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-bg-inverse flex items-center justify-center">
-              <span className="text-text-inverse font-heading font-bold text-sm">S</span>
-            </div>
-            <span className="font-heading font-bold text-lg tracking-tight text-text-primary">
-              Solara
-            </span>
-          </div>
+        <Link href="/" className="shrink-0">
+          <Image
+            src="/images/logo.svg"
+            alt="Solara AI"
+            width={120}
+            height={26}
+            className={cn(
+              "h-[26px] w-auto transition-all duration-300",
+              !scrolled && !mobileOpen && "invert"
+            )}
+            priority
+          />
         </Link>
 
         {/* Desktop Nav */}
