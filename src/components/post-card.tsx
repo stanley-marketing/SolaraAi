@@ -15,10 +15,10 @@ export function PostCard({ post, featured = false }: PostCardProps) {
   return (
     <Link href={`/blog/${post.slug}`} className="group block">
       <motion.article
-        className={`relative overflow-hidden rounded-2xl border border-border bg-bg-primary transition-all duration-300 group-hover:border-border-strong ${
+        className={`relative overflow-hidden rounded-2xl surface-card transition-all duration-300 ${
           featured ? "md:grid md:grid-cols-2" : ""
         }`}
-        whileHover={{ y: -2 }}
+        whileHover={{ y: -4 }}
         transition={{ duration: 0.2 }}
       >
         {/* Image */}

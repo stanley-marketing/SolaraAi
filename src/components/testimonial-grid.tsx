@@ -74,8 +74,8 @@ function Stars({ count }: { count: number }) {
       {Array.from({ length: count }).map((_, i) => (
         <svg
           key={i}
-          width="14"
-          height="14"
+          width="16"
+          height="16"
           viewBox="0 0 24 24"
           fill="currentColor"
           className="text-text-primary"
@@ -90,12 +90,16 @@ function Stars({ count }: { count: number }) {
 export function TestimonialGrid() {
   return (
     <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" stagger={0.08}>
-      {testimonials.map((t) => (
+      {testimonials.map((t, index) => (
         <StaggerItem key={t.name}>
-          <div className="group h-full flex flex-col justify-between p-7 rounded-2xl border border-border bg-bg-primary hover:border-border-strong transition-all duration-300">
+          <div
+            className={`group h-full flex flex-col justify-between p-7 md:p-8 surface-card ${
+              index === 0 ? "sm:col-span-2 lg:col-span-2" : ""
+            }`}
+          >
             <div>
               <Stars count={t.stars} />
-              <p className="mt-4 text-[15px] leading-relaxed text-text-primary">
+              <p className="mt-4 text-[15px] md:text-base leading-relaxed text-text-primary">
                 &ldquo;{t.quote}&rdquo;
               </p>
             </div>

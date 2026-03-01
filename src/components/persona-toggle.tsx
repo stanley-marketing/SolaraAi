@@ -77,7 +77,7 @@ export function PersonaToggle() {
   const active = personas.find((p) => p.id === activeId) ?? personas[0];
 
   return (
-    <div>
+    <div className="surface-card p-6 md:p-8">
       {/* Toggle */}
       <div className="inline-flex items-center rounded-full border border-border p-1 mb-12">
         {personas.map((p) => (
@@ -85,6 +85,7 @@ export function PersonaToggle() {
             key={p.id}
             onClick={() => setActiveId(p.id)}
             className="relative px-6 py-2.5 text-sm font-medium rounded-full transition-colors"
+            type="button"
           >
             {p.id === activeId && (
               <motion.div
@@ -123,10 +124,7 @@ export function PersonaToggle() {
           {/* Value Cards */}
           <div className="grid sm:grid-cols-2 gap-6">
             {active.points.map((point, i) => (
-              <div
-                key={point.title}
-                className="group p-6 rounded-2xl border border-border bg-bg-primary hover:border-border-strong transition-all duration-300"
-              >
+              <div key={point.title} className="group surface-card p-7 md:p-8">
                 <div className="flex items-start gap-4">
                   <span className="text-xs font-mono text-text-tertiary mt-1">
                     0{i + 1}

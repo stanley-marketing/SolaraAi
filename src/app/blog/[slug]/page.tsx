@@ -7,7 +7,9 @@ import { Section } from "@/components/section";
 import { PostCard } from "@/components/post-card";
 import { ReadingProgress } from "@/components/reading-progress";
 import { TableOfContents } from "@/components/table-of-contents";
+import { SubscribeForm } from "@/components/subscribe-form";
 import { ShareLinks } from "./share-links";
+import { JsonLd, createArticleSchema, createBreadcrumbSchema } from "@/components/json-ld";
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -32,6 +34,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <>
+      <JsonLd data={createArticleSchema(post)} />
+      <JsonLd
+        data={createBreadcrumbSchema([
+          { name: "Home", url: "https://solaraai.com" },
+          { name: "Blog", url: "https://solaraai.com/blog" },
+          { name: post.title, url: `https://solaraai.com/blog/${post.slug}` },
+        ])}
+      />
       <ReadingProgress />
 
       {/* Header */}
@@ -138,6 +148,23 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 Writing about the intersection of AI and marketing. Passionate about 
                 helping teams work smarter, not harder.
               </p>
+            </div>
+          </div>
+        </Section>
+      </section>
+
+      {/* Newsletter CTA */}
+      <section className="pb-[var(--section-gap)]">
+        <Section narrow>
+          <div className="p-8 rounded-2xl bg-bg-inverse text-center">
+            <h3 className="font-heading font-bold text-xl text-text-inverse mb-2">
+              Get more insights like this
+            </h3>
+            <p className="text-white/50 text-sm mb-6 max-w-sm mx-auto">
+              Weekly AI marketing insights. No spam, unsubscribe anytime.
+            </p>
+            <div className="max-w-sm mx-auto">
+              <SubscribeForm inverted />
             </div>
           </div>
         </Section>

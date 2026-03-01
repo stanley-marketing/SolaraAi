@@ -1,53 +1,26 @@
-"use client";
+import type { Metadata } from "next";
+import { BlogContent } from "./blog-content";
 
-import { Section } from "@/components/section";
-import { Reveal } from "@/components/reveal";
-import { StaggerContainer, StaggerItem } from "@/components/stagger-children";
-import { PostCard } from "@/components/post-card";
-import { BlogSearch } from "./blog-search";
-import { posts } from "@/data/posts";
+export const metadata: Metadata = {
+  title: "Blog — Solara AI | AI Marketing Insights & Resources",
+  description:
+    "Expert insights on AI marketing strategy, content creation, ad optimization, SEO automation, and brand storytelling. Practical guides from the Solara AI team.",
+  openGraph: {
+    title: "Blog — Solara AI | AI Marketing Insights",
+    description:
+      "Expert insights on AI marketing strategy, content creation, and growth.",
+    url: "https://solaraai.com/blog",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Solara AI Blog",
+    description: "AI marketing insights, strategies, and practical guides.",
+  },
+  alternates: {
+    canonical: "https://solaraai.com/blog",
+  },
+};
 
 export default function BlogPage() {
-  const [featured, ...rest] = posts;
-
-  return (
-    <>
-      {/* Header */}
-      <section className="pt-40 pb-16">
-        <Section>
-          <Reveal>
-            <p className="section-label mb-4">The Blog</p>
-            <h1 className="heading text-5xl md:text-6xl font-bold mb-8 max-w-xl">
-              Insights &amp; Resources
-            </h1>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <BlogSearch />
-          </Reveal>
-        </Section>
-      </section>
-
-      {/* Featured Post */}
-      <section className="pb-16">
-        <Section>
-          <Reveal>
-            <PostCard post={featured} featured />
-          </Reveal>
-        </Section>
-      </section>
-
-      {/* Post Grid */}
-      <section className="pb-[var(--section-gap)]">
-        <Section>
-          <StaggerContainer className="grid md:grid-cols-3 gap-6">
-            {rest.map((post) => (
-              <StaggerItem key={post.slug}>
-                <PostCard post={post} />
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </Section>
-      </section>
-    </>
-  );
+  return <BlogContent />;
 }

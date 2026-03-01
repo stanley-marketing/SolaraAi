@@ -1,85 +1,26 @@
-"use client";
+import type { Metadata } from "next";
+import { ContactContent } from "./contact-content";
 
-import { Section } from "@/components/section";
-import { Reveal } from "@/components/reveal";
-import { ContactForm } from "@/components/contact-form";
+export const metadata: Metadata = {
+  title: "Contact — Solara AI | Book a Free Call",
+  description:
+    "Get in touch with Solara AI. Book a free strategy call, ask about pricing, or explore a partnership. We typically respond within 24 hours.",
+  openGraph: {
+    title: "Contact — Solara AI | Let's Talk",
+    description:
+      "Book a free strategy call or send us a message. We'd love to hear about your marketing goals.",
+    url: "https://solaraai.com/contact",
+  },
+  twitter: {
+    card: "summary",
+    title: "Contact Solara AI",
+    description: "Book a free call or send us a message.",
+  },
+  alternates: {
+    canonical: "https://solaraai.com/contact",
+  },
+};
 
 export default function ContactPage() {
-  return (
-    <>
-      <section className="pt-40 pb-[var(--section-gap)]">
-        <Section>
-          <div className="grid md:grid-cols-2 gap-16 md:gap-24">
-            {/* Left: Info */}
-            <Reveal>
-              <div>
-                <p className="section-label mb-4">Get in Touch</p>
-                <h1 className="display text-5xl sm:text-6xl md:text-7xl mb-6">
-                  Let&apos;s talk.
-                </h1>
-                <p className="text-text-secondary text-lg leading-relaxed mb-12 max-w-sm">
-                  Whether you&apos;re ready to start or just exploring — we&apos;d love to hear 
-                  about your marketing goals.
-                </p>
-
-                <div className="space-y-8">
-                  <div>
-                    <h3 className="text-xs font-medium uppercase tracking-widest text-text-tertiary mb-2">
-                      Email
-                    </h3>
-                    <a
-                      href="mailto:hello@solaraai.com"
-                      className="text-text-primary text-base hover:text-text-secondary transition-colors"
-                    >
-                      hello@solaraai.com
-                    </a>
-                  </div>
-                  <div>
-                    <h3 className="text-xs font-medium uppercase tracking-widest text-text-tertiary mb-2">
-                      Book a Call
-                    </h3>
-                    <a
-                      href="https://calendly.com/solaraai"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-text-primary text-base hover:text-text-secondary transition-colors"
-                    >
-                      Schedule on Calendly
-                    </a>
-                  </div>
-                  <div>
-                    <h3 className="text-xs font-medium uppercase tracking-widest text-text-tertiary mb-2">
-                      Social
-                    </h3>
-                    <div className="flex gap-6">
-                      {[
-                        { label: "LinkedIn", href: "https://linkedin.com/company/solaraai" },
-                        { label: "Instagram", href: "https://instagram.com/solaraai" },
-                        { label: "Facebook", href: "https://facebook.com/solaraai" },
-                      ].map((link) => (
-                        <a
-                          key={link.label}
-                          href={link.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-text-primary text-base hover:text-text-secondary transition-colors"
-                        >
-                          {link.label}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Right: Form */}
-            <Reveal delay={0.2}>
-              <ContactForm />
-            </Reveal>
-          </div>
-        </Section>
-      </section>
-    </>
-  );
+  return <ContactContent />;
 }

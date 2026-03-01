@@ -77,14 +77,15 @@ export function FeatureTabs() {
   const active = tabs.find((t) => t.id === activeId) ?? tabs[0];
 
   return (
-    <div>
+    <div className="surface-card p-6 md:p-8">
       {/* Tab Bar */}
-      <div className="flex flex-wrap gap-2 mb-12">
+      <div className="flex flex-wrap gap-3 mb-10">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveId(tab.id)}
-            className="relative px-5 py-2.5 text-sm font-medium rounded-full transition-colors"
+            className="relative px-5 py-2.5 text-sm font-medium rounded-full transition-colors border border-transparent hover:border-border"
+            type="button"
           >
             {tab.id === activeId && (
               <motion.div
@@ -130,7 +131,7 @@ export function FeatureTabs() {
               ))}
             </ul>
           </div>
-          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-bg-secondary">
+          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-bg-secondary border border-border">
             <Image
               src={active.image}
               alt={active.title}
@@ -138,6 +139,7 @@ export function FeatureTabs() {
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
           </div>
         </motion.div>
       </AnimatePresence>

@@ -28,22 +28,47 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Solara AI — AI That Runs Your Marketing",
+  metadataBase: new URL("https://solaraai.com"),
+  title: {
+    default: "Solara AI — AI That Runs Your Marketing on Auto-Pilot",
+    template: "%s | Solara AI",
+  },
   description:
     "A full marketing department in software. AI-powered storytelling, strategy, and research that runs your marketing on auto-pilot.",
   keywords: [
     "AI marketing",
     "marketing automation",
     "AI content creation",
+    "AI ad management",
     "marketing strategy",
+    "SEO automation",
     "Solara AI",
   ],
   openGraph: {
-    title: "Solara AI — AI That Runs Your Marketing",
+    title: "Solara AI — AI That Runs Your Marketing on Auto-Pilot",
     description:
       "A full marketing department in software. AI-powered storytelling, strategy, and research.",
     type: "website",
     url: "https://solaraai.com",
+    siteName: "Solara AI",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Solara AI — AI That Runs Your Marketing on Auto-Pilot",
+    description:
+      "A full marketing department in software. AI-powered storytelling, strategy, and research.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 

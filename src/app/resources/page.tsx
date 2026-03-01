@@ -1,34 +1,26 @@
-"use client";
+import type { Metadata } from "next";
+import { ResourcesContent } from "./resources-content";
 
-import { Section } from "@/components/section";
-import { Reveal } from "@/components/reveal";
-import { ResourcesGrid } from "./resources-grid";
+export const metadata: Metadata = {
+  title: "Resources — Solara AI | AI Marketing Toolkit",
+  description:
+    "A curated collection of the best AI marketing tools — content creation, SEO, advertising, analytics, and social media. Hand-picked and organized by category.",
+  openGraph: {
+    title: "Resources — Solara AI | AI Marketing Toolkit",
+    description:
+      "Curated collection of the best AI marketing tools, organized by category.",
+    url: "https://solaraai.com/resources",
+  },
+  twitter: {
+    card: "summary",
+    title: "AI Marketing Toolkit — Solara AI",
+    description: "Best AI marketing tools, curated by the Solara team.",
+  },
+  alternates: {
+    canonical: "https://solaraai.com/resources",
+  },
+};
 
 export default function ResourcesPage() {
-  return (
-    <>
-      <section className="pt-40 pb-16">
-        <Section>
-          <Reveal>
-            <p className="section-label mb-4">Resources</p>
-            <h1 className="heading text-5xl md:text-6xl font-bold mb-6 max-w-xl">
-              AI Marketing Toolkit
-            </h1>
-            <p className="text-text-secondary text-lg max-w-xl leading-relaxed">
-              A curated collection of the best AI marketing tools. Hand-picked by our
-              team, organized by category.
-            </p>
-          </Reveal>
-        </Section>
-      </section>
-
-      <section className="pb-[var(--section-gap)]">
-        <Section>
-          <Reveal delay={0.15}>
-            <ResourcesGrid />
-          </Reveal>
-        </Section>
-      </section>
-    </>
-  );
+  return <ResourcesContent />;
 }
