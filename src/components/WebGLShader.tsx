@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import * as THREE from "three"
 
 type ShaderUniforms = {
@@ -11,8 +11,16 @@ type ShaderUniforms = {
   distortion: { value: number }
 }
 
+const SKYBOX_BRIGHTNESS_DEFAULT = 100
+
+const getSkyboxColor = (brightness: number) => {
+  const normalized = THREE.MathUtils.clamp(brightness / 100, 0, 1)
+  return new THREE.Color().setScalar(normalized)
+}
+
 export function WebGLShader() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [skyboxBrightness, setSkyboxBrightness] = useState(SKYBOX_BRIGHTNESS_DEFAULT)
   const sceneRef = useRef<{
     scene: THREE.Scene | null
     camera: THREE.PerspectiveCamera | null
@@ -77,19 +85,21 @@ export function WebGLShader() {
     `
 
     const initScene = () => {
+      const skyboxColor = getSkyboxColor(SKYBOX_BRIGHTNESS_DEFAULT)
+
       refs.scene = new THREE.Scene()
-      refs.scene.background = new THREE.Color(0xffffff)
+      refs.scene.background = skyboxColor.clone()
 
       refs.renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true })
       refs.renderer.setPixelRatio(window.devicePixelRatio)
-      refs.renderer.setClearColor(new THREE.Color(0xffffff), 1)
+      refs.renderer.setClearColor(skyboxColor, 1)
 
       refs.camera = new THREE.PerspectiveCamera(52, window.innerWidth / window.innerHeight, 0.1, 200)
       refs.camera.position.set(0, 0, 2)
 
       refs.skybox = new THREE.Mesh(
         new THREE.BoxGeometry(120, 120, 120),
-        new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.BackSide })
+        new THREE.MeshBasicMaterial({ color: skyboxColor, side: THREE.BackSide })
       )
       refs.scene.add(refs.skybox)
 
@@ -188,10 +198,45 @@ export function WebGLShader() {
     }
   }, [])
 
+  useEffect(() => {
+    const { scene, renderer, skybox } = sceneRef.current
+    const skyboxColor = getSkyboxColor(skyboxBrightness)
+
+    if (scene) {
+      scene.background = skyboxColor.clone()
+    }
+
+    if (renderer) {
+      renderer.setClearColor(skyboxColor, 1)
+    }
+
+    if (skybox && skybox.material instanceof THREE.MeshBasicMaterial) {
+      skybox.material.color.copy(skyboxColor)
+      skybox.material.needsUpdate = true
+    }
+  }, [skyboxBrightness])
+
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full block"
-    />
+    <>
+      <canvas
+        ref={canvasRef}
+        className="fixed top-0 left-0 w-full h-full block"
+      />
+      <div className="fixed top-4 left-4 z-20 rounded-md bg-white/80 px-3 py-2 text-xs text-black backdrop-blur">
+        <label className="block font-medium" htmlFor="skybox-brightness">
+          Skybox Brightness: {skyboxBrightness}%
+        </label>
+        <input
+          id="skybox-brightness"
+          type="range"
+          min={0}
+          max={100}
+          step={1}
+          value={skyboxBrightness}
+          onChange={(event) => setSkyboxBrightness(Number(event.target.value))}
+          className="mt-2 w-44 accent-black"
+        />
+      </div>
+    </>
   )
 }
