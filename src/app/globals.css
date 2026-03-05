@@ -16,8 +16,8 @@
   --color-background: #ffffff;
   --color-foreground: #17130e;
 
-  --font-display: "Cormorant Garamond", "Times New Roman", serif;
-  --font-body: "Manrope", "Avenir Next", "Helvetica Neue", sans-serif;
+  --font-display: var(--font-display-playfair), "Times New Roman", serif;
+  --font-body: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
 *,

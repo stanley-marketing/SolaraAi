@@ -1,49 +1,91 @@
 import { WebGLShader } from "@/components/WebGLShader";
 import { RotatingText } from "@/components/RotatingText";
 import { WhyNowSectionA } from "@/components/WhyNowSectionA";
-import { WhyNowSectionB } from "@/components/WhyNowSectionB";
-import { WhyNowSectionC } from "@/components/WhyNowSectionC";
+import { WhatChangesSectionA } from "@/components/WhatChangesSectionA";
+import {
+  CommandDeckSection,
+  EngagementSection,
+  FaqSection,
+  FinalSection,
+  MethodSection,
+  ProofSection,
+  SiteFooter,
+  TopNav,
+} from "@/components/LandingSections";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-white">
-      <section className="relative isolate flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-6 pb-16 pt-24 text-center sm:px-10">
+    <main className="relative min-h-screen bg-white text-ink-900">
+      <TopNav />
+
+      <section
+        id="top"
+        className="relative isolate flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-6 pb-16 pt-24 text-center sm:px-10"
+      >
         <WebGLShader />
         <h1
-          className="relative z-10 max-w-6xl leading-[0.9] tracking-[-0.02em] text-black"
-          style={{ fontSize: "clamp(3rem, 8.8vw, 8.1rem)", fontFamily: "var(--font-display-playfair)" }}
+          className="relative z-10 max-w-6xl leading-[0.9] tracking-[-0.02em] text-ink-900"
+          style={{
+            fontSize: "clamp(3rem, 8.8vw, 8.1rem)",
+            fontFamily: "var(--font-display-playfair)",
+          }}
         >
           The new era of marketing
         </h1>
 
-        <div className="relative z-10 mt-[30px] text-[clamp(1.05rem,2.2vw,1.45rem)] font-medium tracking-[1.5px] text-black/85">
+        <div className="relative z-10 mt-[30px] text-[30px] font-normal tracking-[1.5px] text-ink-900">
           <RotatingText />
         </div>
 
-        <div className="relative z-10 mt-10 flex flex-wrap items-center justify-center gap-3">
+        <div className="relative z-10 mt-13 flex flex-wrap items-center justify-center gap-3">
           <a
-            href="#"
-            className="inline-flex items-center rounded-xl bg-black px-7 py-3.5 font-[family-name:var(--font-body)] text-[1rem] font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:opacity-90"
+            href="#engagement"
+            className="inline-flex items-center rounded-xl bg-black px-7 py-3.5 font-[family-name:var(--font-body)] text-[1rem] font-medium tracking-[1px] text-white transition-all duration-300 hover:-translate-y-0.5 hover:opacity-90"
           >
             Start free trial
           </a>
           <a
-            href="#"
-            className="inline-flex items-center rounded-xl border border-black/35 bg-white/60 px-7 py-3.5 font-[family-name:var(--font-body)] text-[1rem] font-semibold text-black backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/80"
+            href="#proof"
+            className="inline-flex items-center rounded-xl border border-line bg-white/60 px-7 py-3.5 font-[family-name:var(--font-body)] text-[1rem] font-medium tracking-[1px] text-ink-900 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/85"
           >
             View demo
           </a>
         </div>
       </section>
 
-      {/* Section 1: Word-by-word scroll reveal — The Importance */}
-      <WhyNowSectionA />
+      <section className="border-y border-line bg-white py-5">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-3 px-6 sm:px-10">
+          {[
+            "Always-on campaign intelligence",
+            "Executive-level weekly reporting",
+            "Cross-channel creative orchestration",
+            "Performance and brand consistency",
+          ].map((item) => (
+            <span
+              key={item}
+              className="text-[0.66rem] font-semibold uppercase tracking-[0.16em] text-ink-700"
+            >
+              {item}
+            </span>
+          ))}
+        </div>
+      </section>
 
-      {/* Section 2: Chaotic marquee noise — The Problem */}
-      {/* <WhyNowSectionB /> */}
+      <div id="why-now" className="scroll-mt-24">
+        <WhyNowSectionA />
+      </div>
 
-      {/* Section 3: Dark dramatic closer — The Answer */}
-      {/* <WhyNowSectionC /> */}
+      <div id="what-changes" className="scroll-mt-24">
+        <WhatChangesSectionA />
+      </div>
+
+      <MethodSection />
+      <ProofSection />
+      <CommandDeckSection />
+      <EngagementSection />
+      <FaqSection />
+      <FinalSection />
+      <SiteFooter />
     </main>
   );
 }

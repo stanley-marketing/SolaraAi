@@ -86,27 +86,21 @@ export function WhyNowSectionA() {
       className="relative bg-white"
       style={{ height: "280vh" }}
     >
-      <div className="sticky top-0 flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 sm:px-10">
-        {/* Thin decorative top line */}
-        <motion.div
-          style={{ opacity: labelOpacity }}
-          className="absolute left-1/2 top-[12vh] h-12 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-black/[0.06] to-transparent"
-        />
-
+      <div className="sticky top-0 flex min-h-screen items-center justify-center overflow-hidden px-6 sm:px-10 lg:px-16">
         <motion.div
           style={{ opacity: blockOpacity, y: blockY }}
-          className="max-w-3xl text-center"
+          className="mx-auto max-w-3xl text-center"
         >
           {/* Overline */}
           <motion.span
             style={{ opacity: labelOpacity }}
-            className="mb-10 inline-block text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-black/30"
+            className="mb-8 inline-block text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-black/30"
           >
             Why now
           </motion.span>
 
           {/* Word-by-word text */}
-          <p className="text-[clamp(1.5rem,3.8vw,2.8rem)] leading-[1.35] tracking-[-0.015em] text-black font-[family-name:var(--font-body)] font-light">
+          <p className="text-[clamp(1.4rem,3.2vw,2.5rem)] leading-[1.35] tracking-[-0.015em] text-black font-[family-name:var(--font-body)] font-light">
             {fragments.map((frag, i) => (
               <Word
                 key={i}
@@ -117,17 +111,6 @@ export function WhyNowSectionA() {
               />
             ))}
           </p>
-        </motion.div>
-
-        {/* Scroll hint dot */}
-        <motion.div
-          style={{ opacity: labelOpacity }}
-          className="absolute bottom-[8vh] left-1/2 -translate-x-1/2"
-        >
-          <div className="flex flex-col items-center gap-2">
-            <div className="h-8 w-px bg-gradient-to-b from-black/[0.06] to-transparent" />
-            <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-black/10" />
-          </div>
         </motion.div>
       </div>
     </section>

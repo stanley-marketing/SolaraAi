@@ -29,7 +29,7 @@ export function RotatingText() {
   }, [index, scheduleNext]);
 
   return (
-    <span className="flex flex-col items-center">
+    <span className="flex flex-col items-center mt-5">
       <span>Meet the AI Agent that</span>
       <span className="relative mt-1 inline-flex h-[1.4em] items-center justify-center overflow-hidden">
         <AnimatePresence mode="wait">
@@ -42,8 +42,7 @@ export function RotatingText() {
               duration: 0.45,
               ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
             }}
-            className="inline-block whitespace-nowrap italic"
-            style={{ fontFamily: "var(--font-display-playfair)" }}
+            className="inline-block whitespace-nowrap"
           >
             {phrases[index]}
           </motion.span>
