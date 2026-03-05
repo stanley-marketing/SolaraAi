@@ -2,14 +2,15 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 const navItems = [
-  { label: "Why now", href: "#why-now" },
-  { label: "What changes", href: "#what-changes" },
-  { label: "Method", href: "#method" },
-  { label: "Proof", href: "#proof" },
-  { label: "Engagement", href: "#engagement" },
+  { label: "Analytics", href: "/analytics" },
+  { label: "Content", href: "/content" },
+  { label: "Product", href: "/product" },
+  { label: "AI Ads Agent", href: "/ai-ads-agent" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const methodSteps = [
@@ -166,33 +167,33 @@ export function TopNav() {
             : "border border-transparent bg-transparent shadow-none backdrop-blur-0"
         }`}
       >
-        <a
-          href="#top"
+        <Link
+          href="/"
           className="inline-flex items-center"
         >
           <Image src="/Logo.svg" alt="Solara AI" width={126} height={27} className="h-auto w-[126px]" priority />
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-6 lg:flex">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               className="text-[0.74rem] uppercase tracking-[0.18em] text-ink-900/80 transition-colors duration-300 hover:text-ink-900"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
-        <a
-          href="#engagement"
+        <Link
+          href="/contact"
           className={`inline-flex items-center rounded-full px-4 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.17em] text-ink-900 transition-colors duration-300 hover:bg-black hover:text-white ${
             isScrolled ? "border border-line" : "border border-black/20"
           }`}
         >
           Book a call
-        </a>
+        </Link>
       </div>
     </header>
   );

@@ -1,17 +1,6 @@
 import { WebGLShader } from "@/components/WebGLShader";
 import { RotatingText } from "@/components/RotatingText";
-import { WhyNowSectionA } from "@/components/WhyNowSectionA";
-import { WhatChangesSectionA } from "@/components/WhatChangesSectionA";
-import {
-  CommandDeckSection,
-  EngagementSection,
-  FaqSection,
-  FinalSection,
-  MethodSection,
-  ProofSection,
-  SiteFooter,
-  TopNav,
-} from "@/components/LandingSections";
+import { TopNav } from "@/components/LandingSections";
 
 export default function Home() {
   return (
@@ -39,53 +28,19 @@ export default function Home() {
 
         <div className="relative z-10 mt-13 flex flex-wrap items-center justify-center gap-3">
           <a
-            href="#engagement"
+            href="/contact"
             className="inline-flex items-center rounded-xl bg-black px-7 py-3.5 font-[family-name:var(--font-body)] text-[1rem] font-medium tracking-[1px] text-white transition-all duration-300 hover:-translate-y-0.5 hover:opacity-90"
           >
             Start free trial
           </a>
           <a
-            href="#proof"
+            href="/product"
             className="inline-flex items-center rounded-xl border border-line bg-white/60 px-7 py-3.5 font-[family-name:var(--font-body)] text-[1rem] font-medium tracking-[1px] text-ink-900 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/85"
           >
             View demo
           </a>
         </div>
       </section>
-
-      <section className="border-y border-line bg-white py-5">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-3 px-6 sm:px-10">
-          {[
-            "Always-on campaign intelligence",
-            "Executive-level weekly reporting",
-            "Cross-channel creative orchestration",
-            "Performance and brand consistency",
-          ].map((item) => (
-            <span
-              key={item}
-              className="text-[0.66rem] font-semibold uppercase tracking-[0.16em] text-ink-700"
-            >
-              {item}
-            </span>
-          ))}
-        </div>
-      </section>
-
-      <div id="why-now" className="scroll-mt-24">
-        <WhyNowSectionA />
-      </div>
-
-      <div id="what-changes" className="scroll-mt-24">
-        <WhatChangesSectionA />
-      </div>
-
-      <MethodSection />
-      <ProofSection />
-      <CommandDeckSection />
-      <EngagementSection />
-      <FaqSection />
-      <FinalSection />
-      <SiteFooter />
     </main>
   );
 }
