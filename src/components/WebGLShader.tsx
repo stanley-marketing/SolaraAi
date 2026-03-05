@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import * as THREE from "three"
 
 type ShaderUniforms = {
@@ -11,16 +11,10 @@ type ShaderUniforms = {
   distortion: { value: number }
 }
 
-const SKYBOX_BRIGHTNESS_DEFAULT = 100
-
-const getSkyboxColor = (brightness: number) => {
-  const normalized = THREE.MathUtils.clamp(brightness / 100, 0, 1)
-  return new THREE.Color().setScalar(normalized)
-}
+const SKYBOX_COLOR_HEX = 0xffffff
 
 export function WebGLShader() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const [skyboxBrightness, setSkyboxBrightness] = useState(SKYBOX_BRIGHTNESS_DEFAULT)
   const sceneRef = useRef<{
     scene: THREE.Scene | null
     camera: THREE.PerspectiveCamera | null
@@ -79,19 +73,21 @@ export function WebGLShader() {
 
         vec3 color = clamp(vec3(r, g, b), 0.0, 1.0);
         color = mix(vec3(1.0), color, 0.34);
+        float intensity = max(max(color.r, color.g), color.b);
+        float alpha = smoothstep(0.18, 0.95, intensity) * 0.4;
         
-        gl_FragColor = vec4(color, 0.4);
+        gl_FragColor = vec4(color, alpha);
       }
     `
 
     const initScene = () => {
-      const skyboxColor = getSkyboxColor(SKYBOX_BRIGHTNESS_DEFAULT)
+      const skyboxColor = new THREE.Color(SKYBOX_COLOR_HEX)
 
       refs.scene = new THREE.Scene()
       refs.scene.background = skyboxColor.clone()
 
       refs.renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true })
-      refs.renderer.setPixelRatio(window.devicePixelRatio)
+      refs.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
       refs.renderer.setClearColor(skyboxColor, 1)
 
       refs.camera = new THREE.PerspectiveCamera(52, window.innerWidth / window.innerHeight, 0.1, 200)
@@ -110,7 +106,7 @@ export function WebGLShader() {
       refs.scene.add(refs.softLight, refs.fillLight)
 
       refs.uniforms = {
-        resolution: { value: [window.innerWidth, window.innerHeight] as [number, number] },
+        resolution: { value: [1, 1] as [number, number] },
         time: { value: 0.0 },
         xScale: { value: 1.0 },
         yScale: { value: 0.5 },
@@ -157,8 +153,15 @@ export function WebGLShader() {
       if (!refs.renderer || !refs.uniforms || !refs.camera) return
       const width = window.innerWidth
       const height = window.innerHeight
+      const pixelRatio = Math.min(window.devicePixelRatio, 2)
+
+      refs.renderer.setPixelRatio(pixelRatio)
       refs.renderer.setSize(width, height, false)
-      refs.uniforms.resolution.value = [width, height]
+
+      const drawingBuffer = new THREE.Vector2()
+      refs.renderer.getDrawingBufferSize(drawingBuffer)
+      refs.uniforms.resolution.value = [drawingBuffer.x, drawingBuffer.y]
+
       refs.camera.aspect = width / Math.max(height, 1)
       refs.camera.updateProjectionMatrix()
     }
@@ -198,45 +201,10 @@ export function WebGLShader() {
     }
   }, [])
 
-  useEffect(() => {
-    const { scene, renderer, skybox } = sceneRef.current
-    const skyboxColor = getSkyboxColor(skyboxBrightness)
-
-    if (scene) {
-      scene.background = skyboxColor.clone()
-    }
-
-    if (renderer) {
-      renderer.setClearColor(skyboxColor, 1)
-    }
-
-    if (skybox && skybox.material instanceof THREE.MeshBasicMaterial) {
-      skybox.material.color.copy(skyboxColor)
-      skybox.material.needsUpdate = true
-    }
-  }, [skyboxBrightness])
-
   return (
-    <>
-      <canvas
-        ref={canvasRef}
-        className="fixed top-0 left-0 w-full h-full block"
-      />
-      <div className="fixed top-4 left-4 z-20 rounded-md bg-white/80 px-3 py-2 text-xs text-black backdrop-blur">
-        <label className="block font-medium" htmlFor="skybox-brightness">
-          Skybox Brightness: {skyboxBrightness}%
-        </label>
-        <input
-          id="skybox-brightness"
-          type="range"
-          min={0}
-          max={100}
-          step={1}
-          value={skyboxBrightness}
-          onChange={(event) => setSkyboxBrightness(Number(event.target.value))}
-          className="mt-2 w-44 accent-black"
-        />
-      </div>
-    </>
+    <canvas
+      ref={canvasRef}
+      className="fixed top-0 left-0 w-full h-full block"
+    />
   )
 }
