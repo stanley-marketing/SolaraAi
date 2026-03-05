@@ -9,6 +9,11 @@
   --color-ink-900: #17130e;
   --color-black: #0d0b08;
 
+  --color-mono-50: #f8f8f9;
+  --color-mono-100: #f2f2f4;
+  --color-mono-200: #e8e8eb;
+  --color-mono-300: #d8d8dd;
+
   --color-gold: #d8ad67;
   --color-amber: #c99055;
   --color-rose: #c7988c;
@@ -18,6 +23,162 @@
 
   --font-display: var(--font-display-playfair), "Times New Roman", serif;
   --font-body: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+
+  --shadow-nav: 0 12px 35px -28px rgba(23, 19, 14, 0.45);
+  --radius-pill: 999px;
+  --radius-card: 0.75rem;
+
+  --text-nav: 0.74rem;
+  --text-nav--line-height: 1;
+  --text-kicker: 0.78rem;
+  --text-kicker--line-height: 1;
+  --text-btn: 1rem;
+  --text-btn--line-height: 1.1;
+  --text-pill: 0.72rem;
+  --text-pill--line-height: 1;
+
+  --tracking-nav: 0.18em;
+  --tracking-kicker: 0.22em;
+  --tracking-btn: 0.06em;
+  --tracking-pill: 0.16em;
+}
+
+@layer components {
+  .ds-page {
+    @apply relative min-h-screen bg-white text-ink-900;
+  }
+
+  .ds-hero {
+    @apply relative isolate flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-6 pb-16 pt-24 text-center sm:px-10;
+  }
+
+  .ds-hero-title {
+    font-family: var(--font-display-playfair);
+    font-size: clamp(3rem, 8.8vw, 8.1rem);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+  }
+
+  .ds-hero-rotating {
+    @apply mt-[30px] text-[30px] font-normal text-ink-900;
+    letter-spacing: 1.5px;
+  }
+
+  .ds-hero-actions {
+    @apply mt-13 flex flex-wrap items-center justify-center gap-3;
+  }
+
+  .ds-btn-primary {
+    @apply inline-flex items-center rounded-xl bg-black px-7 py-3.5 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:opacity-90;
+    font-family: var(--font-body);
+    font-size: var(--text-btn);
+    letter-spacing: var(--tracking-btn);
+  }
+
+  .ds-btn-secondary {
+    @apply inline-flex items-center rounded-xl border border-line bg-white/60 px-7 py-3.5 text-ink-900 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/85;
+    font-family: var(--font-body);
+    font-size: var(--text-btn);
+    letter-spacing: var(--tracking-btn);
+  }
+
+  .ds-nav-header {
+    @apply pointer-events-none fixed inset-x-0 top-4 z-50 px-4 sm:px-6;
+  }
+
+  .ds-nav-shell {
+    @apply pointer-events-auto mx-auto flex w-full max-w-7xl items-center justify-between rounded-full px-4 py-2.5 sm:px-6;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid transparent;
+    background: transparent;
+    box-shadow: none;
+    white-space: nowrap;
+    gap: 1.5rem;
+    transition: width 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+      border-color 0.5s ease,
+      box-shadow 0.5s ease;
+  }
+
+  .ds-nav-shell[data-scrolled="true"] {
+    border-color: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12), 0 0 40px rgba(0, 0, 0, 0.06);
+    width: 75%;
+  }
+
+  /* --- Liquid Glass Layers (inside ds-nav-shell) --- */
+  .ds-nav-glass-layers {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 0;
+  }
+
+  .ds-nav-glass-layers[data-scrolled="true"] {
+    opacity: 1;
+  }
+
+  .liquid-glass-distortion {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    backdrop-filter: blur(16px) saturate(1.6);
+    -webkit-backdrop-filter: blur(16px) saturate(1.6);
+    filter: url(#glass-distortion);
+    isolation: isolate;
+    z-index: 1;
+  }
+
+  .liquid-glass-tint {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: rgba(255, 255, 255, 0.22);
+    z-index: 2;
+  }
+
+  .liquid-glass-highlight {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 1.5px 1.5px 1px 0 rgba(255, 255, 255, 0.5),
+      inset -1px -1px 1px 0.5px rgba(255, 255, 255, 0.4);
+    z-index: 3;
+  }
+
+  .ds-nav-links {
+    @apply hidden items-center gap-6 lg:flex;
+  }
+
+  .ds-nav-link {
+    @apply uppercase text-ink-900/80 transition-colors duration-300 hover:text-ink-900;
+    font-size: var(--text-nav);
+    letter-spacing: var(--tracking-nav);
+  }
+
+  .ds-book-call {
+    @apply inline-flex items-center rounded-full border border-black/20 px-4 py-1.5 font-semibold uppercase text-ink-900 transition-colors duration-300 hover:bg-black hover:text-white;
+    font-size: 0.7rem;
+    letter-spacing: 0.17em;
+  }
+
+  .ds-book-call[data-scrolled="true"] {
+    border-color: var(--color-line);
+  }
+
+  .ds-placeholder {
+    @apply flex min-h-screen items-center justify-center px-6 pt-24 text-center;
+  }
+
+  .ds-placeholder-label {
+    @apply font-semibold uppercase text-ink-700;
+    font-size: var(--text-kicker);
+    letter-spacing: var(--tracking-kicker);
+  }
 }
 
 *,

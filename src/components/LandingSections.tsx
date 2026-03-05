@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { LiquidGlassFilter } from "@/components/ui/liquid-glass";
 
 const navItems = [
   { label: "Analytics", href: "/analytics" },
@@ -159,43 +160,54 @@ export function TopNav() {
   }, []);
 
   return (
-    <header className="pointer-events-none fixed inset-x-0 top-4 z-50 px-4 sm:px-6">
-      <div
-        className={`pointer-events-auto mx-auto flex w-full max-w-7xl items-center justify-between rounded-full px-4 py-2.5 transition-all duration-300 sm:px-6 ${
-          isScrolled
-            ? "border border-line bg-white/82 shadow-[0_12px_35px_-28px_rgba(23,19,14,0.45)] backdrop-blur-xl"
-            : "border border-transparent bg-transparent shadow-none backdrop-blur-0"
-        }`}
-      >
-        <Link
-          href="/"
-          className="inline-flex items-center"
-        >
-          <Image src="/Logo.svg" alt="Solara AI" width={126} height={27} className="h-auto w-[126px]" priority />
-        </Link>
+    <>
+      <LiquidGlassFilter />
+      <header className="ds-nav-header">
+        <div data-scrolled={isScrolled ? "true" : "false"} className="ds-nav-shell">
+          {/* Glass effect layers — visible only when scrolled */}
+          <div
+            className="ds-nav-glass-layers"
+            data-scrolled={isScrolled ? "true" : "false"}
+            aria-hidden="true"
+          >
+            <div className="liquid-glass-distortion" />
+            <div className="liquid-glass-tint" />
+            <div className="liquid-glass-highlight" />
+          </div>
 
-        <nav className="hidden items-center gap-6 lg:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-[0.74rem] uppercase tracking-[0.18em] text-ink-900/80 transition-colors duration-300 hover:text-ink-900"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+          <Link href="/" className="inline-flex items-center relative z-10">
+            <Image
+              src="/Logo.svg"
+              alt="Solara AI"
+              width={126}
+              height={27}
+              className="h-auto w-[126px]"
+              priority
+            />
+          </Link>
 
-        <Link
-          href="/contact"
-          className={`inline-flex items-center rounded-full px-4 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.17em] text-ink-900 transition-colors duration-300 hover:bg-black hover:text-white ${
-            isScrolled ? "border border-line" : "border border-black/20"
-          }`}
-        >
-          Book a call
-        </Link>
-      </div>
-    </header>
+          <nav className="ds-nav-links relative z-10">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="ds-nav-link"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          <Link
+            href="/contact"
+            data-scrolled={isScrolled ? "true" : "false"}
+            className="ds-book-call relative z-10"
+          >
+            Book a call
+          </Link>
+        </div>
+      </header>
+    </>
   );
 }
 
