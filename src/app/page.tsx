@@ -1,6 +1,7 @@
 import { WebGLShader } from "@/components/WebGLShader";
 import { RotatingText } from "@/components/RotatingText";
 import { TopNav } from "@/components/LandingSections";
+import { SectionIndex } from "@/components/SectionIndex";
 
 export default function Home() {
   return (
@@ -41,6 +42,8 @@ export default function Home() {
           </a>
         </div>
       </section>
+
+      <SectionIndex />
     </main>
   );
 }

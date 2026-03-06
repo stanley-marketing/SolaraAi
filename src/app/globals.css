@@ -2,19 +2,19 @@
 
 @theme inline {
   --color-white: #ffffff;
-  --color-shell: #fbfaf7;
-  --color-fog: #f4efe7;
-  --color-line: #e7dfd2;
-  --color-ink-700: #666055;
-  --color-ink-900: #17130e;
-  --color-black: #0d0b08;
+  --color-shell: #fafafa;
+  --color-fog: #f1f1f1;
+  --color-line: #e3e3e3;
+  --color-ink-700: #626262;
+  --color-ink-900: #111111;
+  --color-black: #000000;
 
-  --color-gold: #d8ad67;
-  --color-amber: #c99055;
-  --color-rose: #c7988c;
+  --color-gold: #8a8a8a;
+  --color-amber: #c2c2c2;
+  --color-rose: #a4a4a4;
 
   --color-background: #ffffff;
-  --color-foreground: #17130e;
+  --color-foreground: #111111;
 
   --font-display: var(--font-display-playfair), "Times New Roman", serif;
   --font-body: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
@@ -42,7 +42,7 @@ body {
 }
 
 ::selection {
-  background: #efdab4;
+  background: #e8e8e8;
   color: var(--color-black);
 }
 
