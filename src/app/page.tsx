@@ -43,7 +43,9 @@ export default function Home() {
         </div>
       </section>
 
-      <SectionIndex />
+      <div className="fixed left-0 top-1/2 -translate-y-1/2 z-40">
+        <SectionIndex />
+      </div>
     </main>
   );
 }

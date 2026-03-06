@@ -52,14 +52,16 @@ export function TopNav() {
           ))}
         </nav>
 
-        <Link
-          href="/contact"
+        <a
+          href="https://calendly.com/ilay-mor-solaraai/30min?utm_source=website&utm_medium=nav_cta&utm_campaign=book-a-call&month=2026-03"
+          target="_blank"
+          rel="noopener noreferrer"
           className={`inline-flex items-center rounded-full px-4 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.17em] text-ink-900 transition-colors duration-300 hover:bg-black hover:text-white ${
             isScrolled ? "border border-line" : "border border-black/20"
           }`}
         >
           Book a call
-        </Link>
+        </a>
       </div>
     </header>
   );
