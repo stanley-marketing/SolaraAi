@@ -110,32 +110,6 @@ body {
   }
 }
 
-.aurora-fallback {
-  background:
-    radial-gradient(58% 28% at 50% 58%, rgba(255, 236, 192, 0.78) 0%, rgba(255, 236, 192, 0.34) 42%, transparent 76%),
-    radial-gradient(42% 18% at 50% 62%, rgba(255, 255, 255, 0.72) 0%, transparent 80%),
-    radial-gradient(30% 40% at 18% 52%, rgba(116, 190, 255, 0.58) 0%, transparent 76%),
-    radial-gradient(30% 40% at 82% 52%, rgba(206, 154, 255, 0.52) 0%, transparent 76%),
-    radial-gradient(34% 32% at 35% 60%, rgba(255, 176, 126, 0.42) 0%, transparent 76%),
-    radial-gradient(34% 30% at 67% 60%, rgba(255, 128, 184, 0.38) 0%, transparent 78%);
-  animation:
-    aurora-rainbow-drift 20s ease-in-out infinite alternate,
-    aurora-rainbow-hue 12s ease-in-out infinite;
-}
-
-.aurora-columns {
-  background:
-    radial-gradient(18% 68% at 14% 48%, rgba(116, 185, 255, 0.58) 0%, transparent 80%),
-    radial-gradient(18% 70% at 30% 46%, rgba(255, 200, 146, 0.38) 0%, transparent 80%),
-    radial-gradient(18% 78% at 50% 44%, rgba(255, 255, 255, 0.5) 0%, transparent 82%),
-    radial-gradient(18% 72% at 70% 46%, rgba(198, 156, 255, 0.46) 0%, transparent 80%),
-    radial-gradient(18% 68% at 86% 48%, rgba(102, 178, 255, 0.54) 0%, transparent 80%);
-  animation:
-    aurora-rainbow-drift 22s ease-in-out infinite alternate,
-    aurora-columns-breathe 10s ease-in-out infinite;
-  mask-image: radial-gradient(92% 78% at 50% 50%, rgba(0, 0, 0, 0.94) 24%, transparent 100%);
-}
-
 .grain-overlay::before {
   content: "";
   position: absolute;

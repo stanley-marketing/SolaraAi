@@ -18,10 +18,7 @@ export function TopNav() {
     const onScroll = () => setIsScrolled(window.scrollY > 16);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-    };
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
@@ -33,10 +30,7 @@ export function TopNav() {
             : "border border-transparent bg-transparent shadow-none backdrop-blur-0"
         }`}
       >
-        <Link
-          href="/"
-          className="inline-flex items-center"
-        >
+        <Link href="/" className="inline-flex items-center">
           <Image src="/Logo.svg" alt="Solara AI" width={126} height={27} className="h-auto w-[126px]" priority />
         </Link>
 

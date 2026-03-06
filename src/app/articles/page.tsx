@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { TopNav } from "@/components/LandingSections";
 
 const AUTHOR = {
@@ -14,7 +15,7 @@ const articles = [
     readTime: "9 min read",
     date: "Jan 2026",
     tag: "Comparison",
-    href: "https://solaraai.com/blog/top-ugc-video-editing-apps-for-content-creators",
+    href: "/articles/top-ugc-video-editing-apps",
     thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691f218f40e04cbc0fbb2540_Frame%202131330149.webp",
   },
   {
@@ -54,7 +55,7 @@ const articles = [
     readTime: "9 min read",
     date: "Nov 2025",
     tag: "Comparison",
-    href: "https://solaraai.com/blog/best-ai-marketing-tools",
+    href: "/articles/best-ai-marketing-tools",
     thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691b7ae2e5cf906b3c6e7571_Frame%202131330147.webp",
   },
   {
@@ -84,7 +85,7 @@ const articles = [
     readTime: "10 min read",
     date: "Sep 2025",
     tag: "Trends",
-    href: "https://solaraai.com/blog/ai-marketing-automation-trends",
+    href: "/articles/ai-marketing-automation-trends",
     thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/6913a90358981f4d43ad38ff_Frame%202131330142.png",
   },
   {
@@ -104,7 +105,7 @@ const articles = [
     readTime: "9 min read",
     date: "Aug 2025",
     tag: "Comparison",
-    href: "https://solaraai.com/blog/best-ai-ad-generators",
+    href: "/articles/best-ai-ad-generators",
     thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/6900a9e906c8dbf86e98a7c7_Frame%202131330140.webp",
   },
   {
@@ -187,10 +188,8 @@ export default function ArticlesPage() {
       {/* Featured */}
       <section className="px-6 py-10 sm:px-10">
         <div className="mx-auto max-w-7xl">
-          <a
+          <Link
             href={featured.href}
-            target="_blank"
-            rel="noopener noreferrer"
             className="group grid grid-cols-1 overflow-hidden rounded-2xl border border-line transition-shadow duration-300 hover:shadow-[0_12px_48px_-16px_rgba(17,17,17,0.14)] lg:grid-cols-2"
           >
             {/* Thumbnail */}
@@ -242,7 +241,7 @@ export default function ArticlesPage() {
                 </span>
               </div>
             </div>
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -251,11 +250,9 @@ export default function ArticlesPage() {
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-px gap-y-8 bg-line [&>*]:bg-white border border-line">
             {rest.map((article) => (
-              <a
+              <Link
                 key={article.id}
                 href={article.href}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="group flex flex-col bg-white transition-colors duration-150 hover:bg-shell"
               >
                 {/* Thumbnail */}
@@ -297,7 +294,7 @@ export default function ArticlesPage() {
                     <span className="text-[0.6rem] text-ink-700/35">{article.date}</span>
                   </div>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
