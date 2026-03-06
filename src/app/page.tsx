@@ -8,6 +8,7 @@ export default function Home() {
     <main className="relative min-h-screen bg-white text-ink-900">
       <TopNav />
 
+      {/* Hero */}
       <section
         id="top"
         className="relative isolate flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-6 pb-16 pt-24 text-center sm:px-10"
@@ -43,8 +44,24 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="fixed left-0 top-1/2 -translate-y-1/2 z-40">
-        <SectionIndex />
+      {/* Content sections — SectionIndex becomes sticky here */}
+      <div className="relative flex">
+        {/* Sticky sidebar */}
+        <div className="hidden lg:block w-72 shrink-0">
+          <div className="sticky top-24 px-8 pt-12">
+            <SectionIndex />
+          </div>
+        </div>
+
+        {/* Sections */}
+        <div className="flex-1">
+          <section id="section-01" className="min-h-screen" />
+          <section id="section-02" className="min-h-screen" />
+          <section id="section-03" className="min-h-screen" />
+          <section id="section-04" className="min-h-screen" />
+          <section id="section-05" className="min-h-screen" />
+          <section id="section-06" className="min-h-screen" />
+        </div>
       </div>
     </main>
   );
