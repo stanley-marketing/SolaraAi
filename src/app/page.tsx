@@ -38,7 +38,7 @@ export default function Home() {
             href="/product"
             className="inline-flex items-center rounded-xl border border-line bg-white/60 px-7 py-3.5 font-[family-name:var(--font-body)] text-[1rem] font-medium tracking-[1px] text-ink-900 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/85"
           >
-            View demo
+            Talk To Our Experts
           </a>
         </div>
       </section>
