@@ -75,50 +75,42 @@ function RenderSection({ section }: { section: ArticleSection }) {
 
     case "tool":
       return (
-        <div className="rounded-xl border border-line bg-white transition-shadow duration-200 hover:shadow-[0_4px_24px_-8px_rgba(17,17,17,0.1)]">
+        <div>
+          <h2
+            id={slugify(section.name)}
+            data-heading
+            className="mt-2 scroll-mt-28 text-ink-900"
+            style={{
+              fontFamily: "var(--font-display-playfair)",
+              fontSize: "clamp(1.3rem, 2vw, 1.7rem)",
+            }}
+          >
+            {section.number}. {section.name}
+          </h2>
           {section.image && (
-            <div className="border-b border-line">
-              <Image
-                src={section.image}
-                alt={section.name}
-                width={900}
-                height={480}
-                className="h-auto w-full object-cover rounded-tl-xl rounded-tr-xl rounded-bl-none rounded-br-none"
-                unoptimized
-              />
-            </div>
+            <Image
+              src={section.image}
+              alt={section.name}
+              width={900}
+              height={480}
+              className="mt-4 h-auto w-full rounded-xl object-cover"
+              unoptimized
+            />
           )}
-          <div className="p-6">
-          <div className="mb-4 flex items-center gap-3">
-            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-ink-900 text-[0.6rem] font-bold text-white">
-              {String(section.number).padStart(2, "0")}
-            </span>
-            <span
-              className="text-ink-900"
-              style={{ fontFamily: "var(--font-display-playfair)", fontSize: "1.15rem" }}
-            >
-              {section.name}
-            </span>
-          </div>
-          <p className="text-[0.85rem] leading-relaxed text-ink-700/70">
+          <p className="mt-3 text-[0.95rem] leading-[1.85] text-ink-700/80">
             {section.description}
           </p>
-          <ul className="mt-4 space-y-2">
+          <ul className="mt-3 space-y-2.5 pl-1">
             {section.features.map((f, i) => (
-              <li key={i} className="flex items-start gap-2.5 text-[0.8rem] text-ink-700/65">
-                <svg className="mt-0.5 h-3 w-3 shrink-0 text-ink-900/40" viewBox="0 0 12 12" fill="none">
-                  <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+              <li key={i} className="flex items-start gap-3 text-[0.9rem] leading-relaxed text-ink-700/75">
+                <span className="mt-[0.4em] h-1 w-1 shrink-0 rounded-full bg-ink-900/30" />
                 {f}
               </li>
             ))}
           </ul>
-          <div className="mt-4 border-t border-line pt-4">
-            <span className="text-[0.72rem] uppercase tracking-[0.14em] text-ink-700/45">
-              Pricing: {section.pricing}
-            </span>
-          </div>
-          </div>
+          <p className="mt-3 text-[0.8rem] text-ink-700/45 uppercase tracking-[0.14em]">
+            Pricing: {section.pricing}
+          </p>
         </div>
       );
 

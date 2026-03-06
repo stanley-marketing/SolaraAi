@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { TopNav } from "@/components/LandingSections";
 import { getArticle, getAllSlugs } from "@/lib/articles";
 import { ArticleContent } from "./ArticleContent";
+import { RelatedArticles } from "./RelatedArticles";
 
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -37,6 +38,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
       {/* Header + TOC + Content — all in one two-column layout */}
       <ArticleContent article={article} />
+
+      <RelatedArticles currentSlug={slug} />
 
       {/* CTA */}
       <section className="border-t border-line bg-shell px-6 py-20 text-center sm:px-10">
