@@ -35,6 +35,7 @@ function RenderSection({ section }: { section: ArticleSection }) {
       return (
         <h2
           id={slugify(section.text)}
+          data-heading
           className="mt-2 scroll-mt-28 text-ink-900"
           style={{
             fontFamily: "var(--font-display-playfair)",
@@ -121,8 +122,14 @@ function RenderSection({ section }: { section: ArticleSection }) {
 
 export function ArticleContent({ article }: { article: Article }) {
   const headings = article.content
-    .filter((s) => s.type === "heading")
-    .map((s) => ({ text: (s as { type: "heading"; text: string }).text, id: slugify((s as { type: "heading"; text: string }).text) }));
+    .filter((s) => s.type === "heading" || s.type === "tool")
+    .map((s) => {
+      if (s.type === "tool") {
+        const label = `${s.number}. ${s.name}`;
+        return { text: label, id: slugify(s.name) };
+      }
+      return { text: s.text, id: slugify(s.text) };
+    });
 
   const [activeId, setActiveId] = useState<string>(headings[0]?.id ?? "");
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -140,9 +147,8 @@ export function ArticleContent({ article }: { article: Article }) {
       { rootMargin: "-80px 0px -60% 0px", threshold: 0 }
     );
 
-    headings.forEach(({ id }) => {
-      const el = document.getElementById(id);
-      if (el) observerRef.current?.observe(el);
+    document.querySelectorAll("[data-heading]").forEach((el) => {
+      observerRef.current?.observe(el);
     });
 
     return () => observerRef.current?.disconnect();
