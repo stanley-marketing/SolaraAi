@@ -3,10 +3,15 @@
 import { useEffect, useState } from "react";
 
 export function MobileCtaBar() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 16);
+    const onScroll = () => {
+      const scrolled = window.scrollY > 16;
+      const nearBottom =
+        window.innerHeight + window.scrollY >= document.body.scrollHeight - 80;
+      setVisible(scrolled && !nearBottom);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -16,9 +21,9 @@ export function MobileCtaBar() {
     <div
       className="md:hidden fixed bottom-0 inset-x-0 z-40 px-4 pb-5 pt-3 flex gap-2.5 transition-all duration-300"
       style={{
-        opacity: isScrolled ? 1 : 0,
-        pointerEvents: isScrolled ? "auto" : "none",
-        transform: isScrolled ? "translateY(0)" : "translateY(12px)",
+        opacity: visible ? 1 : 0,
+        pointerEvents: visible ? "auto" : "none",
+        transform: visible ? "translateY(0)" : "translateY(12px)",
       }}
     >
       <a
