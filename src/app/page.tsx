@@ -2,6 +2,7 @@ import { WebGLShader } from "@/components/WebGLShader";
 import { RotatingText } from "@/components/RotatingText";
 import { TopNav } from "@/components/LandingSections";
 import { SectionIndex } from "@/components/SectionIndex";
+import { MobileCtaBar } from "@/components/MobileCtaBar";
 
 export default function Home() {
   return (
@@ -45,6 +46,8 @@ export default function Home() {
       </section>
 
       {/* Content sections — SectionIndex becomes sticky here */}
+      <MobileCtaBar />
+
       <div className="relative flex">
         {/* Sticky sidebar */}
         <div className="hidden lg:block w-72 shrink-0">
