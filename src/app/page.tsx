@@ -24,7 +24,7 @@ export default function Home() {
           The new era of marketing
         </h1>
 
-        <div className="relative z-10 mt-[30px] text-[30px] font-normal tracking-[1.5px] text-ink-900">
+        <div className="relative z-10 mt-[1.875rem] font-normal tracking-[1.5px] text-ink-900" style={{ fontSize: "clamp(1.45rem, 4vw, 1.875rem)" }}>
           <RotatingText />
         </div>
 
