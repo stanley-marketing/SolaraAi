@@ -19,7 +19,7 @@ export default function Home() {
           className="relative z-10 max-w-6xl leading-[0.9] tracking-[-0.02em] text-ink-900"
           style={{
             fontSize: "clamp(3rem, 8.8vw, 8.1rem)",
-            fontFamily: "var(--font-display-playfair)",
+            fontFamily: "var(--font-soehne)",
           }}
         >
           The new era of marketing
@@ -71,7 +71,7 @@ export default function Home() {
         <h2
           className="mx-auto max-w-xl leading-tight tracking-[-0.015em]"
           style={{
-            fontFamily: "var(--font-display-playfair)",
+            fontFamily: "var(--font-soehne)",
             fontSize: "clamp(1.8rem, 3.5vw, 3rem)",
           }}
         >

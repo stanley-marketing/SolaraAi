@@ -172,7 +172,7 @@ export default function ArticlesPage() {
               className="leading-[0.92] tracking-[-0.02em]"
               style={{
                 fontSize: "clamp(2.4rem, 5vw, 4.2rem)",
-                fontFamily: "var(--font-display-playfair)",
+                fontFamily: "var(--font-soehne)",
               }}
             >
               The Knowledge Hub
@@ -221,7 +221,7 @@ export default function ArticlesPage() {
                 <h2
                   className="mt-4 leading-tight tracking-[-0.015em] text-ink-900"
                   style={{
-                    fontFamily: "var(--font-display-playfair)",
+                    fontFamily: "var(--font-soehne)",
                     fontSize: "clamp(1.4rem, 2.5vw, 2rem)",
                   }}
                 >
@@ -278,7 +278,7 @@ export default function ArticlesPage() {
                   <h3
                     className="mt-3 flex-1 leading-snug tracking-[-0.01em] text-ink-900"
                     style={{
-                      fontFamily: "var(--font-display-playfair)",
+                      fontFamily: "var(--font-soehne)",
                       fontSize: "clamp(0.95rem, 1.3vw, 1.1rem)",
                     }}
                   >

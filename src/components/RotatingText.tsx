@@ -29,7 +29,7 @@ export function RotatingText() {
   }, [index, scheduleNext]);
 
   return (
-    <span className="flex flex-col items-center mt-5">
+    <span className="flex flex-col items-center mt-5 tracking-[0.5px]">
       <span>Meet the AI Agent that</span>
       <span className="relative mt-1 inline-flex h-[1.4em] items-center justify-center overflow-hidden">
         <AnimatePresence mode="wait">

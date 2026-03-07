@@ -46,7 +46,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         <h2
           className="mx-auto max-w-xl leading-tight tracking-[-0.015em]"
           style={{
-            fontFamily: "var(--font-display-playfair)",
+            fontFamily: "var(--font-soehne)",
             fontSize: "clamp(1.8rem, 3.5vw, 3rem)",
           }}
         >

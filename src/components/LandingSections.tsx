@@ -53,7 +53,7 @@ export function TopNav() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-[0.74rem] uppercase tracking-[0.18em] text-ink-900/80 transition-colors duration-300 hover:text-ink-900"
+                className="text-[12px] uppercase tracking-[0.18em] text-ink-900/80 transition-colors duration-300 hover:text-ink-900"
               >
                 {item.label}
               </Link>

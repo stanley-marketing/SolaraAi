@@ -153,7 +153,7 @@ export default function PricingPage() {
           className="mx-auto max-w-3xl leading-[0.92] tracking-[-0.02em]"
           style={{
             fontSize: "clamp(2.8rem, 6vw, 5.4rem)",
-            fontFamily: "var(--font-display-playfair)",
+            fontFamily: "var(--font-soehne)",
           }}
         >
           One system.<br />
@@ -245,7 +245,7 @@ export default function PricingPage() {
                       <span
                         className="leading-none"
                         style={{
-                          fontFamily: "var(--font-display-playfair)",
+                          fontFamily: "var(--font-soehne)",
                           fontSize: "clamp(2.4rem, 4vw, 3.2rem)",
                         }}
                       >
@@ -263,7 +263,7 @@ export default function PricingPage() {
                     <span
                       className="leading-none"
                       style={{
-                        fontFamily: "var(--font-display-playfair)",
+                        fontFamily: "var(--font-soehne)",
                         fontSize: "clamp(1.8rem, 3vw, 2.4rem)",
                       }}
                     >
@@ -337,7 +337,7 @@ export default function PricingPage() {
               <div
                 className="leading-none text-ink-900"
                 style={{
-                  fontFamily: "var(--font-display-playfair)",
+                  fontFamily: "var(--font-soehne)",
                   fontSize: "clamp(1.8rem, 3vw, 2.6rem)",
                 }}
               >
@@ -357,7 +357,7 @@ export default function PricingPage() {
         <h2
           className="mb-10 leading-tight tracking-[-0.015em]"
           style={{
-            fontFamily: "var(--font-display-playfair)",
+            fontFamily: "var(--font-soehne)",
             fontSize: "clamp(1.8rem, 3vw, 2.4rem)",
           }}
         >
@@ -404,7 +404,7 @@ export default function PricingPage() {
         <h2
           className="mx-auto max-w-xl leading-tight tracking-[-0.015em]"
           style={{
-            fontFamily: "var(--font-display-playfair)",
+            fontFamily: "var(--font-soehne)",
             fontSize: "clamp(1.8rem, 3.5vw, 3rem)",
           }}
         >
