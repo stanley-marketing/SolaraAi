@@ -16,8 +16,8 @@
   --color-background: #ffffff;
   --color-foreground: #111111;
 
-  --font-display: var(--font-soehne), "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  --font-body: var(--font-soehne), "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  --font-display: var(--font-geist-sans), "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  --font-body: var(--font-geist-sans), "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
 *,

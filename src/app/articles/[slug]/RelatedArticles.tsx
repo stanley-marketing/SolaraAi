@@ -64,7 +64,7 @@ function ArticleCard({ article }: { article: Article }) {
         <h3
           className="mt-3 flex-1 leading-snug tracking-[-0.01em] text-ink-900"
           style={{
-            fontFamily: "var(--font-soehne)",
+            fontFamily: "var(--font-display)",
             fontSize: "clamp(0.95rem, 1.3vw, 1.1rem)",
           }}
         >

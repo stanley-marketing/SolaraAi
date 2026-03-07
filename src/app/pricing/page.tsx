@@ -145,7 +145,7 @@ export default function PricingPage() {
       {/* Hero */}
       <section className="px-6 pb-0 pt-40 text-center sm:px-10">
         <p
-          className="mx-auto mb-5 text-[0.68rem] uppercase tracking-[0.26em] text-ink-700/60"
+          className="mx-auto mb-5 text-[0.8rem] uppercase tracking-[0.26em] text-ink-700/60"
         >
           Pricing
         </p>
@@ -153,13 +153,13 @@ export default function PricingPage() {
           className="mx-auto max-w-3xl leading-[0.92] tracking-[-0.02em]"
           style={{
             fontSize: "clamp(2.8rem, 6vw, 5.4rem)",
-            fontFamily: "var(--font-soehne)",
+            fontFamily: "var(--font-display)",
           }}
         >
           One system.<br />
           Every lever.
         </h1>
-        <p className="mx-auto mt-6 max-w-md text-[0.95rem] leading-relaxed text-ink-700/70">
+        <p className="mx-auto mt-6 max-w-md text-[1.07rem] leading-relaxed text-ink-700/70">
           Pick the plan that matches your velocity. Upgrade or cancel anytime.
         </p>
 
@@ -169,7 +169,7 @@ export default function PricingPage() {
             <button
               key={period}
               onClick={() => setBilling(period)}
-              className={`rounded-full px-4 py-1.5 text-[0.68rem] uppercase tracking-[0.16em] transition-all duration-200 ${
+              className={`rounded-full px-4 py-1.5 text-[0.8rem] uppercase tracking-[0.16em] transition-all duration-200 ${
                 billing === period
                   ? "bg-ink-900 text-white shadow-sm"
                   : "text-ink-700/60 hover:text-ink-900"
@@ -209,21 +209,21 @@ export default function PricingPage() {
                 )}
 
                 {isFeatured && (
-                  <div className="mb-4 inline-flex w-fit rounded-full border border-white/20 px-2.5 py-0.5 text-[0.6rem] uppercase tracking-[0.2em] text-white/70">
+                  <div className="mb-4 inline-flex w-fit rounded-full border border-white/20 px-2.5 py-0.5 text-[0.72rem] uppercase tracking-[0.2em] text-white/70">
                     Most popular
                   </div>
                 )}
 
                 <div className="mb-1 flex items-center justify-between">
                   <span
-                    className={`text-[0.7rem] uppercase tracking-[0.2em] ${
+                    className={`text-[0.82rem] uppercase tracking-[0.2em] ${
                       isFeatured ? "text-white/50" : "text-ink-700/50"
                     }`}
                   >
                     {plan.name}
                   </span>
                   <span
-                    className={`text-[0.6rem] uppercase tracking-[0.16em] ${
+                    className={`text-[0.72rem] uppercase tracking-[0.16em] ${
                       isFeatured ? "text-white/40" : "text-ink-700/40"
                     }`}
                   >
@@ -232,7 +232,7 @@ export default function PricingPage() {
                 </div>
 
                 <p
-                  className={`mt-1 text-[0.82rem] leading-snug ${
+                  className={`mt-1 text-[0.94rem] leading-snug ${
                     isFeatured ? "text-white/60" : "text-ink-700/60"
                   }`}
                 >
@@ -245,14 +245,14 @@ export default function PricingPage() {
                       <span
                         className="leading-none"
                         style={{
-                          fontFamily: "var(--font-soehne)",
-                          fontSize: "clamp(2.4rem, 4vw, 3.2rem)",
+                          fontFamily: "var(--font-display)",
+                          fontSize: "clamp(2.525rem, 4vw, 3.325rem)",
                         }}
                       >
                         ${price}
                       </span>
                       <span
-                        className={`mb-1.5 text-[0.72rem] ${
+                        className={`mb-1.5 text-[0.84rem] ${
                           isFeatured ? "text-white/40" : "text-ink-700/40"
                         }`}
                       >
@@ -263,8 +263,8 @@ export default function PricingPage() {
                     <span
                       className="leading-none"
                       style={{
-                        fontFamily: "var(--font-soehne)",
-                        fontSize: "clamp(1.8rem, 3vw, 2.4rem)",
+                        fontFamily: "var(--font-display)",
+                        fontSize: "clamp(1.925rem, 3vw, 2.525rem)",
                       }}
                     >
                       Custom
@@ -276,7 +276,7 @@ export default function PricingPage() {
                   href={plan.ctaHref}
                   target={plan.ctaHref.startsWith("http") ? "_blank" : undefined}
                   rel={plan.ctaHref.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className={`mt-7 inline-flex w-full items-center justify-center rounded-xl py-3 text-[0.72rem] font-semibold uppercase tracking-[0.18em] transition-all duration-200 hover:-translate-y-0.5 ${
+                  className={`mt-7 inline-flex w-full items-center justify-center rounded-xl py-3 text-[0.84rem] font-semibold uppercase tracking-[0.18em] transition-all duration-200 hover:-translate-y-0.5 ${
                     isFeatured
                       ? "bg-white text-ink-900 hover:bg-fog"
                       : "border border-ink-900 bg-transparent text-ink-900 hover:bg-ink-900 hover:text-white"
@@ -295,7 +295,7 @@ export default function PricingPage() {
                   {plan.features.map((f) => (
                     <li
                       key={f}
-                      className={`flex items-start gap-2.5 text-[0.78rem] leading-snug ${
+                      className={`flex items-start gap-2.5 text-[0.9rem] leading-snug ${
                         isFeatured ? "text-white/70" : "text-ink-700/80"
                       }`}
                     >
@@ -337,13 +337,13 @@ export default function PricingPage() {
               <div
                 className="leading-none text-ink-900"
                 style={{
-                  fontFamily: "var(--font-soehne)",
-                  fontSize: "clamp(1.8rem, 3vw, 2.6rem)",
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(1.925rem, 3vw, 2.725rem)",
                 }}
               >
                 {stat}
               </div>
-              <p className="mt-2 text-[0.72rem] leading-snug text-ink-700/55">{label}</p>
+              <p className="mt-2 text-[0.84rem] leading-snug text-ink-700/55">{label}</p>
             </div>
           ))}
         </div>
@@ -351,14 +351,14 @@ export default function PricingPage() {
 
       {/* FAQ */}
       <section className="mx-auto mt-24 max-w-2xl px-6 pb-32 sm:px-10">
-        <p className="mb-3 text-[0.65rem] uppercase tracking-[0.26em] text-ink-700/50">
+        <p className="mb-3 text-[0.77rem] uppercase tracking-[0.26em] text-ink-700/50">
           FAQ
         </p>
         <h2
           className="mb-10 leading-tight tracking-[-0.015em]"
           style={{
-            fontFamily: "var(--font-soehne)",
-            fontSize: "clamp(1.8rem, 3vw, 2.4rem)",
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(1.925rem, 3vw, 2.525rem)",
           }}
         >
           Common questions
@@ -371,7 +371,7 @@ export default function PricingPage() {
                 onClick={() => setOpenFaq(openFaq === i ? null : i)}
                 className="flex w-full items-start justify-between gap-4 text-left"
               >
-                <span className="text-[0.88rem] font-medium leading-snug text-ink-900">
+                <span className="text-[1rem] font-medium leading-snug text-ink-900">
                   {faq.q}
                 </span>
                 <svg
@@ -390,7 +390,7 @@ export default function PricingPage() {
                 </svg>
               </button>
               {openFaq === i && (
-                <p className="mt-3 text-[0.82rem] leading-relaxed text-ink-700/65">
+                <p className="mt-3 text-[0.94rem] leading-relaxed text-ink-700/65">
                   {faq.a}
                 </p>
               )}
@@ -404,13 +404,13 @@ export default function PricingPage() {
         <h2
           className="mx-auto max-w-xl leading-tight tracking-[-0.015em]"
           style={{
-            fontFamily: "var(--font-soehne)",
-            fontSize: "clamp(1.8rem, 3.5vw, 3rem)",
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(1.925rem, 3.5vw, 3.125rem)",
           }}
         >
           Turn your marketing engine on.
         </h2>
-        <p className="mx-auto mt-4 max-w-sm text-[0.88rem] text-ink-700/60">
+        <p className="mx-auto mt-4 max-w-sm text-[1rem] text-ink-700/60">
           Start free. No credit card required.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -418,7 +418,7 @@ export default function PricingPage() {
             href="https://app.solaraai.com/auth/signup"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center rounded-xl bg-ink-900 px-7 py-3.5 text-[0.82rem] font-semibold uppercase tracking-[0.16em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90"
+            className="inline-flex items-center rounded-xl bg-ink-900 px-7 py-3.5 text-[0.94rem] font-semibold uppercase tracking-[0.16em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90"
           >
             Start free trial
           </a>
@@ -426,7 +426,7 @@ export default function PricingPage() {
             href="https://calendly.com/ilay-mor-solaraai/30min"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center rounded-xl border border-line bg-white px-7 py-3.5 text-[0.82rem] font-medium tracking-[0.08em] text-ink-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink-900/30"
+            className="inline-flex items-center rounded-xl border border-line bg-white px-7 py-3.5 text-[0.94rem] font-medium tracking-[0.08em] text-ink-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink-900/30"
           >
             Book a call
           </a>

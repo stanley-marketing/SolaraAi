@@ -38,7 +38,7 @@ function RenderSection({ section }: { section: ArticleSection }) {
           data-heading
           className="mt-2 scroll-mt-28 text-ink-900"
           style={{
-            fontFamily: "var(--font-soehne)",
+            fontFamily: "var(--font-display)",
             fontSize: "clamp(1.3rem, 2vw, 1.7rem)",
           }}
         >
@@ -82,7 +82,7 @@ function RenderSection({ section }: { section: ArticleSection }) {
             data-heading
             className="mt-2 scroll-mt-28 text-ink-900"
             style={{
-              fontFamily: "var(--font-soehne)",
+              fontFamily: "var(--font-display)",
               fontSize: "clamp(1.3rem, 2vw, 1.7rem)",
             }}
           >
@@ -224,7 +224,7 @@ export function ArticleContent({ article }: { article: Article }) {
             <h1
               className="leading-tight tracking-[-0.02em] text-ink-900"
               style={{
-                fontFamily: "var(--font-soehne)",
+                fontFamily: "var(--font-display)",
                 fontSize: "clamp(1.8rem, 4vw, 3rem)",
               }}
             >

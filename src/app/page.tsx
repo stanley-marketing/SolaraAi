@@ -19,7 +19,7 @@ export default function Home() {
           className="relative z-10 max-w-6xl leading-[0.9] tracking-[-0.02em] text-ink-900"
           style={{
             fontSize: "clamp(3rem, 8.8vw, 8.1rem)",
-            fontFamily: "var(--font-soehne)",
+            fontFamily: "var(--font-display)",
           }}
         >
           The new era of marketing
@@ -32,13 +32,13 @@ export default function Home() {
         <div className="relative z-10 mt-13 flex flex-wrap items-center justify-center gap-3">
           <a
             href="/contact"
-            className="inline-flex items-center rounded-xl bg-black px-7 py-3.5 font-[family-name:var(--font-body)] text-[1rem] font-medium tracking-[1px] text-white transition-all duration-300 hover:-translate-y-0.5 hover:opacity-90"
+            className="inline-flex items-center rounded-xl bg-black px-6 py-3 font-[family-name:var(--font-body)] text-[0.88rem] font-medium tracking-[1px] text-white transition-all duration-300 hover:-translate-y-0.5 hover:opacity-90"
           >
             Start free trial
           </a>
           <a
             href="/product"
-            className="inline-flex items-center rounded-xl border border-line bg-white/60 px-7 py-3.5 font-[family-name:var(--font-body)] text-[1rem] font-medium tracking-[1px] text-ink-900 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/85"
+            className="inline-flex items-center rounded-xl border border-line bg-white/60 px-6 py-3 font-[family-name:var(--font-body)] text-[0.88rem] font-medium tracking-[1px] text-ink-900 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/85"
           >
             Talk To Our Experts
           </a>
@@ -71,7 +71,7 @@ export default function Home() {
         <h2
           className="mx-auto max-w-xl leading-tight tracking-[-0.015em]"
           style={{
-            fontFamily: "var(--font-soehne)",
+            fontFamily: "var(--font-display)",
             fontSize: "clamp(1.8rem, 3.5vw, 3rem)",
           }}
         >
