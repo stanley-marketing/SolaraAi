@@ -66,6 +66,39 @@ export default function Home() {
           <section id="section-06" className="min-h-screen" />
         </div>
       </div>
+      {/* CTA Footer */}
+      <section className="border-t border-line bg-shell px-6 py-20 text-center sm:px-10">
+        <h2
+          className="mx-auto max-w-xl leading-tight tracking-[-0.015em]"
+          style={{
+            fontFamily: "var(--font-display-playfair)",
+            fontSize: "clamp(1.8rem, 3.5vw, 3rem)",
+          }}
+        >
+          Turn your marketing engine on.
+        </h2>
+        <p className="mx-auto mt-4 max-w-sm text-[0.88rem] text-ink-700/60">
+          Start free. No credit card required.
+        </p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <a
+            href="https://app.solaraai.com/auth/signup"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center rounded-xl bg-ink-900 px-7 py-3.5 text-[0.82rem] font-semibold uppercase tracking-[0.16em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90"
+          >
+            Start free trial
+          </a>
+          <a
+            href="https://calendly.com/ilay-mor-solaraai/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center rounded-xl border border-line bg-white px-7 py-3.5 text-[0.82rem] font-medium tracking-[0.08em] text-ink-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink-900/30"
+          >
+            Book a call
+          </a>
+        </div>
+      </section>
     </main>
   );
 }
