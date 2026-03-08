@@ -1,4 +1,4 @@
-import { WebGLShader } from "@/components/WebGLShader";
+import { AuroraBackground } from "@/components/ui/aurora-background";
 import { RotatingText } from "@/components/RotatingText";
 import { TopNav } from "@/components/LandingSections";
 import { SectionIndex } from "@/components/SectionIndex";
@@ -10,11 +10,10 @@ export default function Home() {
       <TopNav />
 
       {/* Hero */}
-      <section
-        id="top"
-        className="relative isolate flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-6 pb-16 pt-24 text-center sm:px-10"
+      <AuroraBackground
+        className="min-h-screen w-full px-6 pb-16 pt-24 text-center sm:px-10"
+        showRadialGradient={true}
       >
-        <WebGLShader />
         <h1
           className="relative z-10 max-w-6xl leading-[0.9] tracking-[-0.02em] text-ink-900"
           style={{
@@ -43,7 +42,7 @@ export default function Home() {
             Talk To Our Experts
           </a>
         </div>
-      </section>
+      </AuroraBackground>
 
       {/* Content sections — SectionIndex becomes sticky here */}
       <MobileCtaBar />
