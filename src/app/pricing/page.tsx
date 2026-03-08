@@ -191,13 +191,21 @@ export default function PricingPage() {
             return (
               <div
                 key={plan.id}
-                className={`relative flex flex-col rounded-2xl border p-7 transition-all duration-300 ${
+                className={`relative ${isFeatured ? "rounded-2xl p-[2px]" : ""}`}
+                style={
                   isFeatured
-                    ? "border-ink-900 bg-ink-900 text-white shadow-[0_28px_60px_-20px_rgba(17,17,17,0.45)]"
-                    : "border-line bg-white hover:border-ink-900/30 hover:shadow-[0_12px_40px_-16px_rgba(17,17,17,0.1)]"
-                }`}
+                    ? { background: "linear-gradient(135deg, #f97316, #eab308, #22c55e, #06b6d4, #8b5cf6, #ec4899, #f97316)" }
+                    : undefined
+                }
               >
-                {/* Grain overlay for featured */}
+
+                <div
+                  className={`relative flex h-full flex-col ${isFeatured ? "rounded-[14px]" : "rounded-2xl border"} p-7 transition-all duration-300 ${
+                    isFeatured
+                      ? "bg-[#040404] text-white shadow-[0_28px_60px_-20px_rgba(17,17,17,0.45)]"
+                      : "border-line bg-white hover:border-ink-900/30 hover:shadow-[0_12px_40px_-16px_rgba(17,17,17,0.1)]"
+                  }`}
+                >
                 {isFeatured && (
                   <div
                     className="pointer-events-none absolute inset-0 rounded-2xl opacity-[0.045]"
@@ -207,13 +215,11 @@ export default function PricingPage() {
                     }}
                   />
                 )}
-
                 {isFeatured && (
-                  <div className="mb-4 inline-flex w-fit rounded-full border border-white/20 px-2.5 py-0.5 text-[0.72rem] uppercase tracking-[0.2em] text-white/70">
-                    Most popular
-                  </div>
+                  <span className="absolute top-5 right-5 rounded-full bg-white/10 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-white/70">
+                    Popular
+                  </span>
                 )}
-
                 <div className="mb-1 flex items-center justify-between">
                   <span
                     className={`text-[0.82rem] uppercase tracking-[0.2em] ${
@@ -222,13 +228,7 @@ export default function PricingPage() {
                   >
                     {plan.name}
                   </span>
-                  <span
-                    className={`text-[0.72rem] uppercase tracking-[0.16em] ${
-                      isFeatured ? "text-white/40" : "text-ink-700/40"
-                    }`}
-                  >
-                    {plan.credits} credits
-                  </span>
+
                 </div>
 
                 <p
@@ -238,6 +238,13 @@ export default function PricingPage() {
                 >
                   {plan.tagline}
                 </p>
+                <span
+                  className={`mt-2 inline-block text-[0.72rem] uppercase tracking-[0.16em] ${
+                    isFeatured ? "text-white/40" : "text-ink-700/40"
+                  }`}
+                >
+                  {plan.credits} credits
+                </span>
 
                 <div className="mt-6 flex items-end gap-1">
                   {price !== null ? (
@@ -271,6 +278,8 @@ export default function PricingPage() {
                     </span>
                   )}
                 </div>
+
+
 
                 <a
                   href={plan.ctaHref}
@@ -318,6 +327,7 @@ export default function PricingPage() {
                     </li>
                   ))}
                 </ul>
+              </div>
               </div>
             );
           })}
@@ -418,7 +428,7 @@ export default function PricingPage() {
             href="https://app.solaraai.com/auth/signup"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center rounded-xl bg-ink-900 px-7 py-3.5 text-[0.94rem] font-semibold uppercase tracking-[0.16em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90"
+            className="inline-flex items-center rounded-xl bg-ink-900 px-6 py-3 font-[family-name:var(--font-body)] text-[16px] font-medium tracking-[1px] text-white transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90"
           >
             Start free trial
           </a>
@@ -426,7 +436,7 @@ export default function PricingPage() {
             href="https://calendly.com/ilay-mor-solaraai/30min"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center rounded-xl border border-line bg-white px-7 py-3.5 text-[0.94rem] font-medium tracking-[0.08em] text-ink-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink-900/30"
+            className="inline-flex items-center rounded-xl border border-line bg-white px-6 py-3 font-[family-name:var(--font-body)] text-[16px] font-medium tracking-[1px] text-ink-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink-900/30"
           >
             Book a call
           </a>
