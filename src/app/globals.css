@@ -142,11 +142,20 @@ body {
 
 @keyframes ticker {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  100% { transform: translateX(-25%); }
 }
 
 .animate-ticker {
   animation: ticker 25s linear infinite;
+}
+
+.animate-orbit {
+  animation: orbit var(--duration, 20s) linear infinite;
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(var(--radius, 160px)) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(var(--radius, 160px)) rotate(-360deg); }
 }
 
 @media (prefers-reduced-motion: reduce) {

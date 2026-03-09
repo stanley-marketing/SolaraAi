@@ -14,7 +14,7 @@ const items = [
 ];
 
 export function Ticker() {
-  const doubled = [...items, ...items];
+  const repeated = [...items, ...items, ...items, ...items];
 
   return (
     <div className="relative z-10 mt-14 w-full overflow-hidden py-3">
@@ -22,7 +22,7 @@ export function Ticker() {
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-white/90 to-transparent" />
 
       <div className="flex animate-ticker items-center gap-12 sm:gap-16">
-        {doubled.map((item, index) => (
+        {repeated.map((item, index) => (
           <div
             key={`${item.name}-${index}`}
             className="flex shrink-0 items-center justify-center"
