@@ -6,33 +6,39 @@ import { BlurFade } from "@/components/ui/blur-fade";
 const services = [
   {
     name: "AI Ads Manager",
+    tab: "Ads",
     desc: "Runs and optimizes ad campaigns across Google, Meta, TikTok, and more — automatically.",
-    img: "/screenshots/ads.png",
+    img: "/screenshots/ads.webp",
   },
   {
     name: "AI Creative Manager",
+    tab: "Creative",
     desc: "Designs and produces graphics, videos, and branded content on demand.",
-    img: "/screenshots/creative.png",
+    img: "/screenshots/creative.webp",
   },
   {
     name: "AI SEO & AI Search",
+    tab: "SEO & Search",
     desc: "Optimizes your site, content, and search presence for organic growth.",
-    img: "/screenshots/seo.png",
+    img: "/screenshots/seo.webp",
   },
   {
     name: "AI CMS Manager",
+    tab: "CMS",
     desc: "Manages your website content, pages, and publishing schedule.",
-    img: "/screenshots/cms.png",
+    img: "/screenshots/cms.webp",
   },
   {
     name: "AI Social Media Manager",
+    tab: "Social Media",
     desc: "Plans, creates, and posts content across all your platforms.",
-    img: "/screenshots/social.png",
+    img: "/screenshots/social.webp",
   },
   {
     name: "AI Leads Manager",
+    tab: "Leads",
     desc: "Captures, qualifies, and nurtures leads from every channel.",
-    img: "/screenshots/leads.png",
+    img: "/screenshots/leads.webp",
   },
 ];
 
@@ -61,35 +67,35 @@ export function ServicesSection() {
         </BlurFade>
 
         <BlurFade delay={0.3}>
-          <div className="mt-16 grid items-start gap-10 md:grid-cols-[280px_1fr]">
-            {/* Tab list */}
-            <div className="flex flex-col gap-1">
-              {services.map((s, i) => (
-                <button
-                  key={s.name}
-                  onClick={() => setActive(i)}
-                  className={`rounded-xl px-4 py-3.5 text-left transition-all ${
-                    active === i
-                      ? "bg-gray-900 text-white shadow-md"
-                      : "bg-transparent text-gray-600 hover:bg-gray-50"
-                  }`}
-                >
-                  <span className="text-sm font-semibold">{s.name}</span>
-                  {active === i && (
-                    <p className="mt-1 text-xs leading-relaxed text-gray-300">
-                      {s.desc}
-                    </p>
-                  )}
-                </button>
-              ))}
-            </div>
+          {/* Horizontal tab bar */}
+          <div className="mt-14 flex flex-wrap items-center justify-center gap-2">
+            {services.map((s, i) => (
+              <button
+                key={s.name}
+                onClick={() => setActive(i)}
+                className={`rounded-full border px-4 py-2 text-sm font-medium transition-all ${
+                  active === i
+                    ? "border-gray-900 bg-gray-900 text-white"
+                    : "border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50"
+                }`}
+              >
+                {s.tab}
+              </button>
+            ))}
+          </div>
 
-            {/* Large preview */}
-            <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+          {/* Description */}
+          <p className="mx-auto mt-4 text-center text-sm text-gray-500">
+            {services[active].desc}
+          </p>
+
+          {/* Screenshot */}
+          <div className="mt-8 rounded-2xl bg-white p-2" style={{ border: "1px solid #eaecf0" }}>
+            <div className="aspect-[16/9] overflow-hidden rounded-xl bg-white">
               <img
                 src={services[active].img}
                 alt={services[active].name}
-                className="w-full object-cover object-top"
+                className="h-full w-full object-cover object-top"
               />
             </div>
           </div>
