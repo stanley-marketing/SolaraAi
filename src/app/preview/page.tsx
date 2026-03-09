@@ -58,7 +58,7 @@ interface ParticleData {
   color: string;
 }
 
-const PARTICLES: ParticleData[] = Array.from({ length: 35 }, (_, i): ParticleData => {
+const PARTICLES: ParticleData[] = Array.from({ length: 200 }, (_, i): ParticleData => {
   const duration = 16 + ((i * 7 + i % 4) % 15);
   return {
     id: i,
@@ -66,7 +66,7 @@ const PARTICLES: ParticleData[] = Array.from({ length: 35 }, (_, i): ParticleDat
     size: 1 + (i % 3),
     opacity: 0.08 + (i % 5) * 0.055,
     duration,
-    delay: -Math.round((i / 35) * duration * 100) / 100,
+    delay: -Math.round((i / 200) * duration * 100) / 100,
     color: i % 3 === 0 ? "rgba(168,85,247,0.85)" : "rgba(255,255,255,0.85)",
   };
 });
@@ -113,8 +113,8 @@ const KEYFRAMES = `
     to   { transform: translateY(-110vh); }
   }
   @keyframes oi-glow-pulse {
-    0%,100% { opacity: 0.13; }
-    50%     { opacity: 0.28; }
+    0%,100% { opacity: 0.25; }
+    50%     { opacity: 0.45; }
   }
 `;
 
@@ -435,8 +435,8 @@ function OptionI() {
           top: "38%",
           left: "50%",
           transform: "translate(-50%, -60%)",
-          width: "740px",
-          height: "400px",
+          width: "900px",
+          height: "500px",
           background:
             "radial-gradient(ellipse at center, rgba(168,85,247,0.22) 0%, rgba(236,72,153,0.12) 50%, transparent 75%)",
           filter: "blur(80px)",
