@@ -1,9 +1,9 @@
 import { AuroraBackground } from "@/components/ui/aurora-background";
-import { RotatingText } from "@/components/RotatingText";
+
+import { Ticker } from "@/components/Ticker";
 import { TopNav } from "@/components/LandingSections";
 import { SectionIndex } from "@/components/SectionIndex";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
-
 export default function Home() {
   return (
     <main className="relative min-h-screen bg-white text-ink-900">
@@ -15,33 +15,41 @@ export default function Home() {
         showRadialGradient={true}
       >
         <h1
-          className="relative z-10 max-w-6xl leading-[0.9] tracking-[-0.02em] text-ink-900"
+          className="relative z-10 max-w-5xl leading-[1.05] tracking-[-0.02em] text-ink-900"
           style={{
-            fontSize: "clamp(3rem, 8.8vw, 8.1rem)",
+            fontSize: "clamp(2.5rem, 6.5vw, 5rem)",
             fontFamily: "var(--font-display)", fontWeight: 300,
           }}
         >
-          The new era of marketing
+          Looking for real marketing and real growth?
+          <br className="hidden sm:block" />
+          You&apos;re in the right place.
         </h1>
 
-        <div className="relative z-10 mt-[1.875rem] font-normal tracking-[1.5px] text-ink-900" style={{ fontSize: "clamp(1.45rem, 4vw, 1.875rem)" }}>
-          <RotatingText />
-        </div>
+        <p
+          className="relative z-10 mx-auto mt-8 max-w-2xl text-ink-700/70"
+          style={{ fontSize: "clamp(1rem, 2vw, 1.25rem)", lineHeight: 1.6 }}
+        >
+          We are leading the new era of AI marketing. More marketing. More growth.
+          Less cost. That&apos;s not a pitch. That&apos;s the model.
+        </p>
 
-        <div className="relative z-10 mt-13 flex flex-wrap items-center justify-center gap-3">
+        <div className="relative z-10 mt-10 flex flex-wrap items-center justify-center gap-3">
           <a
             href="/contact"
             className="inline-flex items-center rounded-xl bg-black px-6 py-3 font-[family-name:var(--font-body)] text-[16px] font-medium tracking-[1px] text-white transition-all duration-300 hover:-translate-y-0.5 hover:opacity-90"
           >
-            Start free trial
+            Sign Up
           </a>
           <a
             href="/product"
             className="inline-flex items-center rounded-xl border border-line bg-white/60 px-6 py-3 font-[family-name:var(--font-body)] text-[16px] font-medium tracking-[1px] text-ink-900 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/85"
           >
-            Talk To Our Experts
+            Contact Sales
           </a>
         </div>
+
+        <Ticker />
       </AuroraBackground>
 
       {/* Content sections — SectionIndex becomes sticky here */}
@@ -74,29 +82,37 @@ export default function Home() {
             fontSize: "clamp(1.8rem, 3.5vw, 3rem)",
           }}
         >
-          Turn your marketing engine on.
+          More marketing. More growth. Less cost.
         </h2>
-        <p className="mx-auto mt-4 max-w-sm text-[0.88rem] text-ink-700/60">
-          Start free. No credit card required.
+        <p className="mx-auto mt-4 max-w-lg text-[0.95rem] leading-relaxed text-ink-700/60">
+          The largest companies in the world are doubling down on marketing right
+          now. They have entire departments for it. You don&apos;t need a department
+          anymore. You need Solara.
+        </p>
+        <p className="mx-auto mt-2 max-w-sm text-[0.85rem] text-ink-700/40">
+          One flat investment. Fully managed. Built to grow with you.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <a
             href="https://app.solaraai.com/auth/signup"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center rounded-xl bg-ink-900 px-7 py-3.5 text-[0.82rem] font-semibold uppercase tracking-[0.16em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90"
+            className="inline-flex items-center rounded-xl bg-ink-900 px-7 py-3.5 text-[16px] font-[family-name:var(--font-body)] font-medium tracking-[1px] text-white transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90"
           >
-            Start free trial
+            Let&apos;s Start Growing
           </a>
           <a
             href="https://calendly.com/ilay-mor-solaraai/30min"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center rounded-xl border border-line bg-white px-7 py-3.5 text-[0.82rem] font-medium tracking-[0.08em] text-ink-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink-900/30"
+            className="inline-flex items-center rounded-xl border border-line bg-white px-7 py-3.5 text-[16px] font-[family-name:var(--font-body)] font-medium tracking-[1px] text-ink-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink-900/30"
           >
-            Book a call
+            Talk To Us First
           </a>
         </div>
+        <p className="mt-6 text-[0.8rem] text-ink-700/35">
+          No long-term lock-ins. No confusing contracts. Just growth.
+        </p>
       </section>
     </main>
   );

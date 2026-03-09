@@ -20,6 +20,7 @@
   --font-body: var(--font-geist-sans), "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 
   --animate-aurora: aurora 60s linear infinite;
+  --animate-ticker: ticker 30s linear infinite;
 }
 
 *,
@@ -137,6 +138,15 @@ body {
 
 .marquee-right {
   animation: marquee-scroll linear infinite reverse;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-ticker {
+  animation: ticker 25s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
