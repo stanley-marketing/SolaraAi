@@ -107,7 +107,7 @@ export default function BuiltForYouSection() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.35 }}
-            className="relative mt-12 overflow-hidden rounded-2xl p-10 sm:p-14"
+            className="relative mt-12 grid grid-cols-1 overflow-hidden rounded-2xl md:grid-cols-2"
             style={{ border: "1px solid #eaecf0" }}
           >
             {/* Gradient glow */}
@@ -119,34 +119,37 @@ export default function BuiltForYouSection() {
               }}
             />
 
-            <p className="text-xs font-semibold tracking-widest text-gray-500 uppercase">
-              {p.situation}
-            </p>
+            {/* Left — the problem */}
+            <div className="relative p-10 sm:p-12">
+              <p className="text-[11px] font-semibold tracking-widest text-gray-400 uppercase">
+                Your situation
+              </p>
+              <p className="mt-4 text-lg leading-relaxed text-gray-700 sm:text-xl sm:leading-relaxed">
+                {p.pain}
+              </p>
+            </div>
 
-            <p className="mt-6 text-xl leading-relaxed text-gray-700 sm:text-2xl">
-              {p.pain}
-            </p>
+            {/* Right — the solution */}
+            <div className="relative border-t border-gray-100 bg-gray-50/50 p-10 sm:p-12 md:border-l md:border-t-0">
+              <p className="text-[11px] font-semibold tracking-widest text-gray-400 uppercase">
+                With Solara
+              </p>
+              <p className="mt-4 text-lg font-medium leading-relaxed text-gray-900 sm:text-xl sm:leading-relaxed">
+                {p.outcome}
+              </p>
 
-            <div className="my-8 h-px w-16 bg-gray-200" />
-
-            <p className="max-w-2xl text-xl font-medium leading-relaxed text-gray-900">
-              {p.outcome}
-            </p>
-
-            <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
-              {/* Proof metric */}
-              <div className="flex items-baseline gap-3">
-                <span className="text-4xl font-bold tracking-tight text-gray-900">
-                  {p.proof.metric}
-                </span>
+              <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-baseline gap-2">
+                  <span className="text-3xl font-bold tracking-tight text-gray-900">
+                    {p.proof.metric}
+                  </span>
                 <span className="text-sm text-gray-400">{p.proof.label}</span>
+                </div>
+                <button className="group flex items-center gap-2 text-sm font-medium text-gray-900 transition-colors hover:text-purple-600">
+                  {p.cta}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </button>
               </div>
-
-              {/* CTA */}
-              <button className="group flex items-center gap-2 text-sm font-medium text-gray-900 transition-colors hover:text-purple-600">
-                {p.cta}
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </button>
             </div>
           </motion.div>
         </AnimatePresence>
