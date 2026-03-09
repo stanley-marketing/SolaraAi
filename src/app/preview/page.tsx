@@ -1,10 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import PhotonBeam from "@/components/ui/photon-beam";
+import dynamic from "next/dynamic";
 import Image from "next/image";
+
+/* Lazy-load PhotonBeam — code-split Three.js out of main bundle */
+const PhotonBeam = dynamic(() => import("@/components/ui/photon-beam"), {
+  ssr: false,
+  loading: () => <div className="h-full w-full bg-[#08080f]" />,
+});
 
 /* ─── Shared data ─── */
 const STATS = [
@@ -26,51 +32,83 @@ const AGENTS = [
 /* Per-stat beam configuration */
 const BEAM_CONFIGS = [
   {
-    // 90% AI — brand rainbow signals, dense
+    // 90% AI — dense rainbow flood, wide fan, heavy bloom
     colorLine: "#1a1040",
     colorSignal: "#7c5cfc",
     colorSignal2: "#ec4899",
     colorSignal3: "#f59e0b",
     useColor2: true,
     useColor3: true,
-    signalCount: 120,
+    lineCount: 80,
+    spreadHeight: 45,
+    signalCount: 140,
     speedGlobal: 0.4,
+    trailLength: 5,
+    bloomStrength: 3.2,
+    bloomRadius: 0.5,
+    waveHeight: 1.5,
+    waveSpeed: 1,
+    curvePower: 2,
     caption: "Tasks flowing through your AI marketing engine",
   },
   {
-    // 6 Agents — cool agent colors
+    // 6 Agents — fewer lines, wide spread, distinct streams
     colorLine: "#0a1a35",
     colorSignal: "#3b82f6",
     colorSignal2: "#06b6d4",
     colorSignal3: "#10b981",
     useColor2: true,
     useColor3: true,
-    signalCount: 80,
-    speedGlobal: 0.35,
+    lineCount: 30,
+    spreadHeight: 55,
+    signalCount: 60,
+    speedGlobal: 0.3,
+    trailLength: 3,
+    bloomStrength: 2,
+    bloomRadius: 0.3,
+    waveHeight: 0.5,
+    waveSpeed: 0.5,
+    curvePower: 3,
     caption: "Six specialized agents, each mastering their domain",
   },
   {
-    // 24/7 — fast, always-on cyan
+    // 24/7 — fast, tight, long trails, energetic
     colorLine: "#0a2030",
     colorSignal: "#06b6d4",
     colorSignal2: "#3b82f6",
     colorSignal3: "#22d3ee",
     useColor2: true,
     useColor3: true,
-    signalCount: 100,
-    speedGlobal: 0.6,
+    lineCount: 60,
+    spreadHeight: 25,
+    signalCount: 120,
+    speedGlobal: 0.7,
+    trailLength: 7,
+    bloomStrength: 2.8,
+    bloomRadius: 0.4,
+    waveHeight: 2,
+    waveSpeed: 2,
+    curvePower: 1.5,
     caption: "Round-the-clock optimization, even while you sleep",
   },
   {
-    // 10% Human — calm, purple/violet
+    // 10% Human — sparse, calm, narrow, subtle glow
     colorLine: "#150a30",
     colorSignal: "#a855f7",
     colorSignal2: "#7c5cfc",
     colorSignal3: "#c084fc",
     useColor2: true,
     useColor3: true,
-    signalCount: 35,
-    speedGlobal: 0.2,
+    lineCount: 18,
+    spreadHeight: 12,
+    signalCount: 20,
+    speedGlobal: 0.18,
+    trailLength: 2,
+    bloomStrength: 1.5,
+    bloomRadius: 0.3,
+    waveHeight: 0.3,
+    waveSpeed: 0.3,
+    curvePower: 4,
     caption: "Your strategic decisions guiding the AI",
   },
 ];
@@ -138,10 +176,50 @@ function StatTabs({
 }
 
 /* ─── Preview page ─── */
+/* ─── Mobile fallback gradients (per-stat themed) ─── */
+const MOBILE_GRADIENTS = [
+  "radial-gradient(ellipse at 25% 40%, #7c5cfc18 0%, transparent 50%), radial-gradient(ellipse at 75% 60%, #ec489918 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #f59e0b10 0%, transparent 60%), #08080f",
+  "radial-gradient(ellipse at 20% 35%, #3b82f618 0%, transparent 50%), radial-gradient(ellipse at 80% 65%, #06b6d418 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #10b98110 0%, transparent 60%), #08080f",
+  "radial-gradient(ellipse at 30% 45%, #06b6d418 0%, transparent 50%), radial-gradient(ellipse at 70% 55%, #3b82f618 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #22d3ee10 0%, transparent 60%), #08080f",
+  "radial-gradient(ellipse at 25% 40%, #a855f718 0%, transparent 50%), radial-gradient(ellipse at 75% 60%, #7c5cfc18 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #c084fc10 0%, transparent 60%), #08080f",
+];
+
+/* ─── Preview page ─── */
 export default function PreviewPage() {
   const [active, setActive] = useState(0);
   const cfg = BEAM_CONFIGS[active];
 
+  /* Viewport detection — only mount WebGL when visible */
+  const beamRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const el = beamRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  /* Mobile detection — skip WebGL on small screens */
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  /* Auto-rotate stats */
   useEffect(() => {
     const t = setInterval(() => setActive((p) => (p + 1) % 4), 8000);
     return () => clearInterval(t);
@@ -155,34 +233,52 @@ export default function PreviewPage() {
 
         {/* Photon Beam — branded for Solara AI */}
         <div
+          ref={beamRef}
           className="relative mx-auto mt-10 overflow-hidden rounded-2xl"
-          style={{ height: 420 }}
+          style={{ height: isMobile ? 280 : 420 }}
         >
           {/* Beam (re-mounts on tab change for new colors) */}
-          <motion.div
-            key={active}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="absolute inset-0"
-          >
-            <PhotonBeam
-              colorBg="#08080f"
-              colorLine={cfg.colorLine}
-              colorSignal={cfg.colorSignal}
-              useColor2={cfg.useColor2}
-              colorSignal2={cfg.colorSignal2}
-              useColor3={cfg.useColor3}
-              colorSignal3={cfg.colorSignal3}
-              lineCount={60}
-              spreadHeight={35}
-              signalCount={cfg.signalCount}
-              speedGlobal={cfg.speedGlobal}
-              trailLength={4}
-              bloomStrength={2.5}
-              bloomRadius={0.4}
+          {/* Desktop: WebGL beam | Mobile: themed gradient */}
+          {isMobile ? (
+            <motion.div
+              key={active}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              className="absolute inset-0"
+              style={{ background: MOBILE_GRADIENTS[active] }}
             />
-          </motion.div>
+          ) : isVisible ? (
+            <motion.div
+              key={active}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              className="absolute inset-0"
+            >
+              <PhotonBeam
+                colorBg="#08080f"
+                colorLine={cfg.colorLine}
+                colorSignal={cfg.colorSignal}
+                useColor2={cfg.useColor2}
+                colorSignal2={cfg.colorSignal2}
+                useColor3={cfg.useColor3}
+                colorSignal3={cfg.colorSignal3}
+                lineCount={cfg.lineCount}
+                spreadHeight={cfg.spreadHeight}
+                signalCount={cfg.signalCount}
+                speedGlobal={cfg.speedGlobal}
+                trailLength={cfg.trailLength}
+                bloomStrength={cfg.bloomStrength}
+                bloomRadius={cfg.bloomRadius}
+                waveHeight={cfg.waveHeight}
+                waveSpeed={cfg.waveSpeed}
+                curvePower={cfg.curvePower}
+              />
+            </motion.div>
+          ) : (
+            <div className="absolute inset-0 bg-[#08080f]" />
+          )}
 
           {/* Agent labels — left side (fan-out) */}
           <div className="pointer-events-none absolute left-6 top-1/2 z-10 flex -translate-y-1/2 flex-col gap-4">
@@ -212,12 +308,11 @@ export default function PreviewPage() {
           <div className="pointer-events-none absolute right-8 top-1/2 z-10 -translate-y-1/2">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm">
               <Image
-                src="/solara-icon.svg"
+                src="/solara-icon-white.svg"
                 alt="Solara"
-                width={20}
-                height={20}
-                className="opacity-60"
-                style={{ filter: "invert(1)" }}
+                width={22}
+                height={22}
+                className="opacity-70"
               />
             </div>
           </div>
