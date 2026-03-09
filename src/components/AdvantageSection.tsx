@@ -158,6 +158,7 @@ function StatTabs({
 /* ─── Main section ─── */
 export function AdvantageSection() {
   const [active, setActive] = useState(0);
+  const [resetKey, setResetKey] = useState(0);
   const cfg = BEAM_CONFIGS[active];
 
   /* Viewport detection — only mount WebGL when visible */
@@ -182,10 +183,11 @@ export function AdvantageSection() {
 
 
   /* Auto-rotate stats */
+  /* Auto-rotate stats — resets when user clicks a tab */
   useEffect(() => {
     const t = setInterval(() => setActive((p) => (p + 1) % 4), 30000);
     return () => clearInterval(t);
-  }, []);
+  }, [resetKey]);
 
   return (
     <section className="px-6 py-24">
@@ -206,7 +208,7 @@ export function AdvantageSection() {
         </p>
 
         {/* Stat tabs */}
-        <StatTabs active={active} onSelect={setActive} />
+        <StatTabs active={active} onSelect={(i) => { setActive(i); setResetKey((k) => k + 1); }} />
 
         {/* Photon Beam — branded for Solara AI */}
         <div
