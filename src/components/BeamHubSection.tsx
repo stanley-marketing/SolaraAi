@@ -36,9 +36,6 @@ export function BeamHubSection() {
 
   return (
     <section className="border-t border-gray-100 px-6 py-28 sm:px-10">
-      <p className="mb-4 text-center text-xs font-bold uppercase tracking-widest text-purple-500">
-        ⬇ Option 1B — Animated Beam Hub
-      </p>
       <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-[1fr_1fr]">
         {/* Visual: Beam hub */}
         <BlurFade delay={0}>
