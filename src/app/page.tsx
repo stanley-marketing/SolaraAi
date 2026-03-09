@@ -8,6 +8,7 @@ import { BeamHubSection } from "@/components/BeamHubSection";
 import { ServicesSection } from "@/components/ServicesSection";
 import { AdvantageSection } from "@/components/AdvantageSection";
 import BuiltForYouSection from "@/components/BuiltForYouSection";
+import { BeliefSection } from "@/components/BeliefSection";
 export default function Home() {
   return (
     <main className="relative min-h-screen bg-white text-ink-900">
@@ -88,7 +89,7 @@ export default function Home() {
           <ServicesSection />
           <AdvantageSection />
           <BuiltForYouSection />
-          <section id="section-06" className="min-h-screen" />
+          <BeliefSection />
 
       {/* CTA Footer */}
       <section className="border-t border-line bg-shell px-6 py-20 text-center sm:px-10">
