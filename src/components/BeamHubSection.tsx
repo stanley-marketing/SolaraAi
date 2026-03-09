@@ -48,26 +48,35 @@ export function BeamHubSection() {
           >
             <div className="flex h-full w-full flex-row items-stretch justify-between gap-10">
               {/* Left column */}
-              <div className="flex flex-col items-center justify-center gap-6">
-                <Circle nodeRef={adsRef}>
-                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M3 3v18h18" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M7 16l4-8 4 4 5-9" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </Circle>
-                <Circle nodeRef={seoRef}>
-                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <circle cx="11" cy="11" r="8" />
-                    <path d="M21 21l-4.35-4.35" strokeLinecap="round" />
-                  </svg>
-                </Circle>
-                <Circle nodeRef={creativeRef}>
-                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                    <path d="M2 17l10 5 10-5" />
-                    <path d="M2 12l10 5 10-5" />
-                  </svg>
-                </Circle>
+              <div className="flex flex-col items-center justify-center gap-8">
+                <div className="flex flex-col items-center gap-1.5">
+                  <Circle nodeRef={adsRef}>
+                    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M3 3v18h18" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M7 16l4-8 4 4 5-9" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </Circle>
+                  <span className="text-[11px] font-medium text-gray-500">Ads</span>
+                </div>
+                <div className="flex flex-col items-center gap-1.5">
+                  <Circle nodeRef={seoRef}>
+                    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="11" cy="11" r="8" />
+                      <path d="M21 21l-4.35-4.35" strokeLinecap="round" />
+                    </svg>
+                  </Circle>
+                  <span className="text-[11px] font-medium text-gray-500">SEO</span>
+                </div>
+                <div className="flex flex-col items-center gap-1.5">
+                  <Circle nodeRef={creativeRef}>
+                    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                      <path d="M2 17l10 5 10-5" />
+                      <path d="M2 12l10 5 10-5" />
+                    </svg>
+                  </Circle>
+                  <span className="text-[11px] font-medium text-gray-500">Creative</span>
+                </div>
               </div>
 
               {/* Center: Solara logo */}
@@ -85,25 +94,36 @@ export function BeamHubSection() {
               </div>
 
               {/* Right column */}
-              <div className="flex flex-col items-center justify-center gap-6">
-                <Circle nodeRef={cmsRef}>
-                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M12 2a10 10 0 100 20 10 10 0 000-20z" />
-                    <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10A15.3 15.3 0 0112 2z" />
-                  </svg>
-                </Circle>
-                <Circle nodeRef={socialRef}>
-                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </Circle>
-                <Circle nodeRef={leadsRef}>
-                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" strokeLinecap="round" strokeLinejoin="round" />
-                    <circle cx="9" cy="7" r="4" />
-                    <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </Circle>
+              <div className="flex flex-col items-center justify-center gap-8">
+                <div className="flex flex-col items-center gap-1.5">
+                  <Circle nodeRef={cmsRef}>
+                    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="12" cy="12" r="10" />
+                      <line x1="2" y1="12" x2="22" y2="12" />
+                      <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10A15.3 15.3 0 0112 2z" />
+                    </svg>
+                  </Circle>
+                  <span className="text-[11px] font-medium text-gray-500">CMS</span>
+                </div>
+                <div className="flex flex-col items-center gap-1.5">
+                  <Circle nodeRef={socialRef}>
+                    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </Circle>
+                  <span className="text-[11px] font-medium text-gray-500">Social</span>
+                </div>
+                <div className="flex flex-col items-center gap-1.5">
+                  <Circle nodeRef={leadsRef}>
+                    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" strokeLinecap="round" strokeLinejoin="round" />
+                      <circle cx="9" cy="7" r="4" />
+                      <path d="M23 21v-2a4 4 0 00-3-3.87" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M16 3.13a4 4 0 010 7.75" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </Circle>
+                  <span className="text-[11px] font-medium text-gray-500">Leads</span>
+                </div>
               </div>
             </div>
 
@@ -112,10 +132,10 @@ export function BeamHubSection() {
             <AnimatedBeam containerRef={containerRef} fromRef={seoRef} toRef={centerRef} gradientStartColor="#c084fc" gradientStopColor="#f472b6" />
             <AnimatedBeam containerRef={containerRef} fromRef={creativeRef} toRef={centerRef} curvature={75} gradientStartColor="#c084fc" gradientStopColor="#f472b6" />
 
-            {/* Beams: center → right */}
-            <AnimatedBeam containerRef={containerRef} fromRef={centerRef} toRef={cmsRef} curvature={75} gradientStartColor="#c084fc" gradientStopColor="#f472b6" reverse />
-            <AnimatedBeam containerRef={containerRef} fromRef={centerRef} toRef={socialRef} gradientStartColor="#c084fc" gradientStopColor="#f472b6" reverse />
-            <AnimatedBeam containerRef={containerRef} fromRef={centerRef} toRef={leadsRef} curvature={-75} gradientStartColor="#c084fc" gradientStopColor="#f472b6" reverse />
+            {/* Beams: right → center (reverse gradient to animate outward) */}
+            <AnimatedBeam containerRef={containerRef} fromRef={cmsRef} toRef={centerRef} curvature={-75} gradientStartColor="#c084fc" gradientStopColor="#f472b6" reverse />
+            <AnimatedBeam containerRef={containerRef} fromRef={socialRef} toRef={centerRef} gradientStartColor="#c084fc" gradientStopColor="#f472b6" reverse />
+            <AnimatedBeam containerRef={containerRef} fromRef={leadsRef} toRef={centerRef} curvature={75} gradientStartColor="#c084fc" gradientStopColor="#f472b6" reverse />
           </div>
         </BlurFade>
 
