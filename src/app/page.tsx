@@ -6,6 +6,7 @@ import { TopNav } from "@/components/LandingSections";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { BeamHubSection } from "@/components/BeamHubSection";
 import { ServicesSection } from "@/components/ServicesSection";
+import { AdvantageSection } from "@/components/AdvantageSection";
 export default function Home() {
   return (
     <main className="relative min-h-screen bg-white text-ink-900">
@@ -84,7 +85,7 @@ export default function Home() {
 
           {/* Remaining placeholder sections */}
           <ServicesSection />
-          <section id="section-04" className="min-h-screen" />
+          <AdvantageSection />
           <section id="section-05" className="min-h-screen" />
           <section id="section-06" className="min-h-screen" />
 
