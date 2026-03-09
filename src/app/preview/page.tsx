@@ -1,320 +1,311 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import {
   motion,
   useInView,
   useMotionValue,
   useTransform,
   animate,
-  useSpring,
 } from "framer-motion";
 
 /* ─── Animated Counter ─── */
 function Counter({
   target,
-  className,
-  prefix = "",
-  suffix = "",
+  className = "",
 }: {
   target: number;
   className?: string;
-  prefix?: string;
-  suffix?: string;
 }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true });
-  const count = useMotionValue(0);
-  const rounded = useTransform(count, (v) => Math.round(v));
-  const [display, setDisplay] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const motionVal = useMotionValue(0);
+  const rounded = useTransform(motionVal, (v) => Math.round(v));
+  const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
-    if (inView) {
-      const ctrl = animate(count, target, { duration: 2, ease: "easeOut" });
-      const unsub = rounded.on("change", (v) => setDisplay(v));
-      return () => {
-        ctrl.stop();
-        unsub();
-      };
-    }
-  }, [inView, target, count, rounded]);
+    if (isInView) animate(motionVal, target, { duration: 1.5 });
+  }, [isInView, motionVal, target]);
 
-  return (
-    <span ref={ref} className={className}>
-      {prefix}{display}{suffix}
-    </span>
-  );
+  useEffect(() => {
+    const unsub = rounded.on("change", (v) => {
+      if (ref.current) ref.current.textContent = String(v);
+    });
+    return unsub;
+  }, [rounded]);
+
+  return <span ref={ref} className={className}>0</span>;
 }
 
-/* ─── Circular Progress Ring ─── */
-function ProgressRing({
-  value,
-  size = 200,
-  strokeWidth = 12,
-  label,
-  sublabel,
-}: {
-  value: number;
-  size?: number;
-  strokeWidth?: number;
-  label?: string;
-  sublabel?: string;
-}) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true });
-  const radius = (size - strokeWidth) / 2;
-  const circumference = 2 * Math.PI * radius;
-  const progress = useSpring(0, { stiffness: 40, damping: 15 });
-  const strokeDashoffset = useTransform(
-    progress,
-    (v) => circumference - (v / 100) * circumference
-  );
+/* ─── Progress Ring ─── */
+function ProgressRing({ value }: { value: number }) {
+  const ref = useRef<SVGCircleElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: true });
+  const r = 90;
+  const circ = 2 * Math.PI * r;
 
   useEffect(() => {
-    if (inView) progress.set(value);
-  }, [inView, value, progress]);
+    if (isInView && ref.current) {
+      ref.current.style.transition = "stroke-dashoffset 1.5s ease-out";
+      ref.current.style.strokeDashoffset = String(
+        circ - (value / 100) * circ
+      );
+    }
+  }, [isInView, circ, value]);
 
   return (
-    <div ref={ref} className="relative flex flex-col items-center" style={{ width: size, height: size }}>
-      <svg width={size} height={size} className="-rotate-90">
+    <div ref={containerRef} className="relative flex h-56 w-56 flex-shrink-0 items-center justify-center">
+      <svg viewBox="0 0 200 200" className="h-full w-full -rotate-90">
+        <circle cx="100" cy="100" r={r} fill="none" stroke="#f3f4f6" strokeWidth="8" />
         <circle
-          cx={size / 2}
-          cy={size / 2}
-          r={radius}
-          fill="none"
-          stroke="#f3f4f6"
-          strokeWidth={strokeWidth}
-        />
-        <motion.circle
-          cx={size / 2}
-          cy={size / 2}
-          r={radius}
-          fill="none"
-          stroke="url(#ring-gradient)"
-          strokeWidth={strokeWidth}
-          strokeLinecap="round"
-          strokeDasharray={circumference}
-          style={{ strokeDashoffset }}
+          ref={ref}
+          cx="100" cy="100" r={r} fill="none"
+          stroke="url(#grad)" strokeWidth="8" strokeLinecap="round"
+          strokeDasharray={circ} strokeDashoffset={circ}
         />
         <defs>
-          <linearGradient id="ring-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#a855f7" />
             <stop offset="50%" stopColor="#ec4899" />
             <stop offset="100%" stopColor="#f97316" />
           </linearGradient>
         </defs>
       </svg>
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
+      <div className="absolute flex flex-col items-center">
         <div className="flex items-baseline">
           <Counter target={value} className="text-5xl font-bold tracking-tighter text-gray-900" />
           <span className="text-2xl font-bold text-gray-300">%</span>
         </div>
-        {label && <p className="mt-1 text-sm font-medium text-gray-500">{label}</p>}
+        <span className="text-xs font-medium uppercase tracking-widest text-gray-400">AI-powered</span>
       </div>
     </div>
   );
 }
 
-/* ─── Animated Bar ─── */
-function AnimatedBar({ width, delay = 0 }: { width: string; delay?: number }) {
+/* ─── Ford Quote Block (reusable, small) ─── */
+function FordQuote() {
   return (
-    <div className="h-2 overflow-hidden rounded-full bg-gray-100">
-      <motion.div
-        initial={{ width: 0 }}
-        whileInView={{ width }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.2, delay, ease: "easeOut" }}
-        className="h-full rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400"
-      />
-    </div>
+    <motion.blockquote
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="flex items-start gap-3 rounded-xl bg-gray-50 px-5 py-4"
+      style={{ border: "1px solid #eaecf0" }}
+    >
+      <span className="mt-0.5 text-lg text-gray-300">&ldquo;</span>
+      <div>
+        <p className="text-sm leading-relaxed text-gray-500">
+          If you always do what you&apos;ve always done, you&apos;ll always get what you&apos;ve always got.
+        </p>
+        <footer className="mt-1 text-xs text-gray-400">— Henry Ford</footer>
+      </div>
+    </motion.blockquote>
   );
 }
-
-/* ─── Section Label ─── */
-function OptionLabel({ label }: { label: string }) {
-  return (
-    <h2 className="mb-4 text-sm font-bold uppercase tracking-widest text-purple-600">
-      {label}
-    </h2>
-  );
-}
-
-const HEADLINE = (
-  <h2
-    className="text-center text-3xl tracking-tight text-gray-900 sm:text-4xl md:text-[44px] md:leading-[1.15]"
-    style={{ fontFamily: "var(--font-display)" }}
-  >
-    90% of what made great marketing expensive
-    <br className="hidden sm:block" /> was never skill.{" "}
-    <span className="text-gray-400">It was time.</span>
-  </h2>
-);
 
 export default function PreviewPage() {
-  const [hoveredOld, setHoveredOld] = useState<number | null>(null);
-  const [activeTab, setActiveTab] = useState(0);
-
   return (
     <div className="min-h-screen bg-white">
-      <div className="mx-auto max-w-6xl px-6 py-20">
+      <div className="mx-auto max-w-5xl px-6 py-20">
         <h1 className="mb-4 text-center text-4xl font-bold text-gray-900">
           Section 4 — The Math Changed
         </h1>
-        <p className="mb-24 text-center text-lg text-gray-500">
+        <p className="mb-20 text-center text-lg text-gray-500">
           5 options. Scroll to compare.
         </p>
 
-        {/* ====== OPTION A — Stripe Stats Row ====== */}
-        <div className="mb-48">
-          <OptionLabel label="Option A — Stripe Stats Row" />
-          <section className="py-24">
-            <div className="mx-auto max-w-5xl">
-              {HEADLINE}
-
-              <div className="mt-20 grid grid-cols-4 gap-8 border-t border-gray-100 pt-16">
-                {[
-                  { value: 90, suffix: "%", label: "AI-powered", sub: "Execution, speed, and scale" },
-                  { value: 6, suffix: "", label: "AI managers", sub: "Working 24/7 for you" },
-                  { value: 24, suffix: "/7", label: "Always on", sub: "No delays, no bottlenecks" },
-                  { value: 10, suffix: "%", label: "Human expertise", sub: "Strategy, direction, judgment" },
-                ].map((stat, i) => (
-                  <motion.div
-                    key={stat.label}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.15 }}
-                    className="text-center"
-                  >
-                    <div className="flex items-baseline justify-center">
-                      <Counter
-                        target={stat.value}
-                        suffix={stat.suffix}
-                        className="text-5xl font-bold tracking-tighter text-gray-900"
-                      />
-                    </div>
-                    <p className="mt-3 text-sm font-semibold text-gray-900">{stat.label}</p>
-                    <p className="mt-1 text-sm text-gray-500">{stat.sub}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        </div>
-
-        {/* ====== OPTION B — Bento Grid ====== */}
-        <div className="mb-48">
-          <OptionLabel label="Option B — Bento Grid" />
-          <section className="py-24">
-            <div className="mx-auto max-w-5xl">
-              {HEADLINE}
-
-              <div className="mt-16 grid grid-cols-3 grid-rows-2 gap-4">
-                {/* Big card: 90% ring */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="col-span-2 row-span-2 flex flex-col items-center justify-center rounded-2xl bg-gray-50 p-10"
-                  style={{ border: "1px solid #eaecf0" }}
-                >
-                  <ProgressRing value={90} size={220} label="AI-powered" />
-                  <div className="mt-8 flex flex-wrap justify-center gap-3">
-                    {["Ads", "SEO", "Content", "Social", "CMS", "Leads"].map((t) => (
-                      <span
-                        key={t}
-                        className="rounded-full bg-white px-3 py-1 text-xs font-medium text-gray-600"
-                        style={{ border: "1px solid #eaecf0" }}
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
-
-                {/* Speed card */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 }}
-                  className="flex flex-col justify-center rounded-2xl bg-gray-900 p-6 text-white"
-                >
-                  <svg viewBox="0 0 24 24" className="mb-3 h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M13 10V3L4 14h7v7l9-11h-7z" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  <p className="text-2xl font-bold">24/7</p>
-                  <p className="mt-1 text-sm text-gray-400">No delays, no bottlenecks, no timezone limits</p>
-                </motion.div>
-
-                {/* Human card */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
-                  className="flex flex-col justify-center rounded-2xl bg-gray-50 p-6"
-                  style={{ border: "1px solid #eaecf0" }}
-                >
-                  <div className="flex items-baseline gap-1">
-                    <Counter target={10} className="text-3xl font-bold tracking-tighter text-gray-900" />
-                    <span className="text-lg font-bold text-gray-300">%</span>
-                  </div>
-                  <p className="mt-1 text-xs font-medium uppercase tracking-widest text-gray-400">Human expertise</p>
-                  <p className="mt-3 text-sm text-gray-500">Strategy, direction, and growth ownership</p>
-                </motion.div>
-              </div>
-            </div>
-          </section>
-        </div>
-
-        {/* ====== OPTION C — Cost Comparison ====== */}
-        <div className="mb-48">
-          <OptionLabel label="Option C — Cost Comparison" />
-          <section className="py-24">
+        {/* ===== OPTION A — Stripe Stats Row ===== */}
+        <div className="mb-40">
+          <h2 className="mb-2 text-sm font-bold uppercase tracking-widest text-purple-600">
+            Option A — Stats Row (Stripe-inspired)
+          </h2>
+          <section className="px-6 py-24">
             <div className="mx-auto max-w-4xl">
-              {HEADLINE}
+              <h2
+                className="text-center text-3xl tracking-tight text-gray-900 sm:text-4xl md:text-[44px] md:leading-[1.15]"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                90% of what made great marketing expensive
+                <br className="hidden sm:block" /> was never skill.{" "}
+                <span className="text-gray-400">It was time.</span>
+              </h2>
+
               <p className="mx-auto mt-6 max-w-xl text-center text-lg text-gray-500">
-                See what changes when AI handles the heavy lifting.
+                AI handles the heavy lifting. Humans steer the ship.
               </p>
 
-              <div className="mt-16 grid grid-cols-2 gap-6">
-                {/* Old way */}
+              <div className="mt-16 border-t border-gray-200 pt-14">
+                <div className="grid grid-cols-4 divide-x divide-gray-300 text-center">
+                  {[
+                    { val: 90, suffix: "%", label: "Handled by AI", sub: "execution, speed, and scale" },
+                    { val: 6, suffix: "", label: "AI agents", sub: "working for you around the clock" },
+                    { val: 24, suffix: "/7", label: "Always running", sub: "no delays, no bottlenecks" },
+                    { val: 10, suffix: "%", label: "Human expertise", sub: "strategy, direction, growth" },
+                  ].map((s, i) => (
+                    <motion.div
+                      key={s.label}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                    >
+                      <div className="flex items-baseline justify-center">
+                        <Counter target={s.val} className="text-5xl font-light tracking-tight text-gray-900 sm:text-6xl" />
+                        <span className="text-3xl font-light text-gray-400 sm:text-4xl">{s.suffix}</span>
+                      </div>
+                      <p className="mt-3 text-sm font-semibold text-gray-900">{s.label}</p>
+                    </motion.div>
+                ))}
+                </div>
+              </div>
+
+              <div className="mx-auto mt-16 max-w-md">
+                <FordQuote />
+              </div>
+            </div>
+          </section>
+        </div>
+
+        {/* ===== OPTION B — Progress Ring + Icon Cards ===== */}
+        <div className="mb-40">
+          <h2 className="mb-2 text-sm font-bold uppercase tracking-widest text-purple-600">
+            Option B — Progress Ring + Icon Cards
+          </h2>
+          <section className="px-6 py-24">
+            <div className="mx-auto max-w-4xl">
+              <h2
+                className="text-center text-3xl tracking-tight text-gray-900 sm:text-4xl md:text-[44px] md:leading-[1.15]"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                90% of what made great marketing expensive
+                <br className="hidden sm:block" /> was never skill.{" "}
+                <span className="text-gray-400">It was time.</span>
+              </h2>
+
+              <div className="mt-20 flex items-center justify-center gap-20">
+                <ProgressRing value={90} />
+
+                <div className="max-w-sm space-y-5">
+                  {[
+                    { label: "Execution", desc: "Campaigns launched automatically", icon: (
+                      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <path d="M13 10V3L4 14h7v7l9-11h-7z" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    )},
+                    { label: "Speed", desc: "24/7, no delays, no bottlenecks", icon: (
+                      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 6v6l4 2" strokeLinecap="round" />
+                      </svg>
+                    )},
+                    { label: "Automation", desc: "Every channel, every platform", icon: (
+                      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M2 17l10 5 10-5" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M2 12l10 5 10-5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    )},
+                    { label: "Scale", desc: "Unlimited capacity on demand", icon: (
+                      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <path d="M3 3v18h18" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M7 16l4-8 4 4 5-9" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    )},
+                  ].map((item, i) => (
+                    <motion.div
+                      key={item.label}
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.3 + i * 0.15 }}
+                      className="flex items-start gap-4"
+                    >
+                      <div className="mt-0.5 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-gray-50 text-gray-500" style={{ border: "1px solid #eaecf0" }}>
+                        {item.icon}
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-gray-900">{item.label}</p>
+                        <p className="text-sm text-gray-500">{item.desc}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+
+                  <div className="border-t border-gray-100 pt-5">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-gray-900 text-white">
+                        <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.5">
+                          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" strokeLinecap="round" strokeLinejoin="round" />
+                          <circle cx="12" cy="7" r="4" />
+                        </svg>
+                      </div>
+                      <p className="text-sm text-gray-500">
+                        The remaining <span className="font-semibold text-gray-900">10%</span> —
+                        strategy, direction, and growth ownership.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mx-auto mt-16 max-w-md">
+                <FordQuote />
+              </div>
+            </div>
+          </section>
+        </div>
+
+        {/* ===== OPTION C — Before/After + Quote ===== */}
+        <div className="mb-40">
+          <h2 className="mb-2 text-sm font-bold uppercase tracking-widest text-purple-600">
+            Option C — Before/After Cards
+          </h2>
+          <section className="px-6 py-24">
+            <div className="mx-auto max-w-4xl">
+              <h2
+                className="text-center text-3xl tracking-tight text-gray-900 sm:text-4xl md:text-[44px] md:leading-[1.15]"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                90% of what made great marketing expensive
+                <br className="hidden sm:block" /> was never skill.{" "}
+                <span className="text-gray-400">It was time.</span>
+              </h2>
+
+              <div className="mx-auto mt-10 max-w-md">
+                <FordQuote />
+              </div>
+
+              <div className="mt-14 grid gap-6 md:grid-cols-2">
+                {/* Before */}
                 <div className="rounded-2xl bg-gray-50 p-8" style={{ border: "1px solid #eaecf0" }}>
-                  <p className="text-xs font-medium uppercase tracking-widest text-gray-400">The old way</p>
+                  <p className="text-xs font-medium uppercase tracking-widest text-gray-400">What you&apos;ve always done</p>
                   <div className="mt-6 space-y-4">
                     {[
-                      { label: "Marketing agency", cost: "$8,000/mo" },
-                      { label: "2 freelancers", cost: "$4,000/mo" },
-                      { label: "Ad management tool", cost: "$500/mo" },
-                      { label: "SEO tool", cost: "$300/mo" },
-                      { label: "Social scheduler", cost: "$200/mo" },
-                      { label: "CMS platform", cost: "$100/mo" },
-                    ].map((item, i) => (
-                      <div key={item.label} className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <span className="text-red-400">
-                            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
-                              <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" />
-                            </svg>
-                          </span>
-                          <span className="text-sm text-gray-500 line-through decoration-gray-300">{item.label}</span>
+                      "Marketing agency — $5,000/mo",
+                      "Freelance designer — $2,500/mo",
+                      "SEO consultant — $3,000/mo",
+                      "Social media manager — $3,500/mo",
+                      "Ad specialist — $2,000/mo",
+                    ].map((item) => (
+                      <div key={item} className="flex items-center gap-3">
+                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-red-50">
+                          <span className="text-xs text-red-400">✕</span>
                         </div>
-                        <span className="text-sm font-medium text-gray-400 line-through decoration-gray-300">{item.cost}</span>
+                        <span className="text-sm text-gray-400 line-through">{item}</span>
                       </div>
                     ))}
                   </div>
                   <div className="mt-6 border-t border-gray-200 pt-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-semibold text-gray-500">Total</span>
-                      <span className="text-lg font-bold text-gray-400 line-through decoration-gray-300">$13,100/mo</span>
+                    <div className="flex items-baseline justify-between">
+                      <span className="text-sm text-gray-400">Total</span>
+                      <span className="text-xl font-bold text-gray-300 line-through">$16,000/mo</span>
                     </div>
                   </div>
                 </div>
 
-                {/* New way */}
-                <div className="rounded-2xl bg-gray-900 p-8 text-white">
-                  <p className="text-xs font-medium uppercase tracking-widest text-gray-400">With Solara</p>
+                {/* After */}
+                <div className="rounded-2xl bg-gray-950 p-8">
+                  <p className="text-xs font-medium uppercase tracking-widest text-gray-500">What you get with Solara</p>
                   <div className="mt-6 space-y-4">
                     {[
                       "AI Ads Manager",
@@ -325,22 +316,17 @@ export default function PreviewPage() {
                       "AI Leads Manager",
                     ].map((item) => (
                       <div key={item} className="flex items-center gap-3">
-                        <span className="text-emerald-400">
-                          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
-                          </svg>
-                        </span>
+                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-green-500/10">
+                          <span className="text-xs text-green-400">✓</span>
+                        </div>
                         <span className="text-sm text-gray-300">{item}</span>
                       </div>
                     ))}
                   </div>
-                  <div className="mt-6 border-t border-gray-700 pt-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-semibold text-gray-400">Starting at</span>
-                      <div className="flex items-baseline gap-1">
-                        <span className="text-3xl font-bold text-white">$299</span>
-                        <span className="text-sm text-gray-400">/mo</span>
-                      </div>
+                  <div className="mt-6 border-t border-gray-800 pt-4">
+                    <div className="flex items-baseline justify-between">
+                      <span className="text-sm text-gray-500">Starting at</span>
+                      <span className="text-xl font-bold text-white">$299/mo</span>
                     </div>
                   </div>
                 </div>
@@ -349,61 +335,124 @@ export default function PreviewPage() {
           </section>
         </div>
 
-        {/* ====== OPTION D — Animated Bars + Human Card ====== */}
-        <div className="mb-48">
-          <OptionLabel label="Option D — Animated Capability Bars" />
-          <section className="py-24">
+        {/* ===== OPTION D — Animated Bars + Quote ===== */}
+        <div className="mb-40">
+          <h2 className="mb-2 text-sm font-bold uppercase tracking-widest text-purple-600">
+            Option D — Animated Capability Bars
+          </h2>
+          <section className="px-6 py-24">
             <div className="mx-auto max-w-4xl">
-              {HEADLINE}
+              <h2
+                className="text-center text-3xl tracking-tight text-gray-900 sm:text-4xl md:text-[44px] md:leading-[1.15]"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                90% of what made great marketing expensive
+                <br className="hidden sm:block" /> was never skill.{" "}
+                <span className="text-gray-400">It was time.</span>
+              </h2>
 
-              <div className="mt-16 grid grid-cols-[1fr_220px] items-start gap-12">
+              <div className="mt-14 grid grid-cols-[1fr_auto] items-start gap-16">
                 {/* AI bars */}
                 <div>
-                  <div className="mb-8 flex items-baseline gap-2">
+                  <div className="mb-6 flex items-baseline gap-2">
                     <Counter target={90} className="text-5xl font-bold tracking-tighter text-gray-900" />
                     <span className="text-xl font-bold text-gray-300">%</span>
                     <span className="ml-2 text-sm font-medium text-gray-400">AI-powered</span>
                   </div>
-                  <div className="space-y-5">
+                  <div className="space-y-4">
                     {[
-                      { name: "Ad Campaigns", width: "95%", icon: "📊" },
-                      { name: "Content Creation", width: "92%", icon: "✏️" },
-                      { name: "SEO Optimization", width: "88%", icon: "🔍" },
-                      { name: "Social Media", width: "90%", icon: "💬" },
-                      { name: "Lead Capture", width: "85%", icon: "👥" },
-                      { name: "Analytics & Reports", width: "94%", icon: "📈" },
+                      { name: "Ad Campaigns", width: "95%", icon: (
+                        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.5">
+                          <path d="M3 3v18h18" strokeLinecap="round" strokeLinejoin="round" />
+                          <path d="M7 16l4-8 4 4 5-9" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      )},
+                      { name: "Content Creation", width: "92%", icon: (
+                        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.5">
+                          <path d="M12 20h9" strokeLinecap="round" />
+                          <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
+                        </svg>
+                      )},
+                      { name: "SEO Optimization", width: "88%", icon: (
+                        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.5">
+                          <circle cx="11" cy="11" r="8" />
+                          <path d="M21 21l-4.35-4.35" strokeLinecap="round" />
+                        </svg>
+                      )},
+                      { name: "Social Media", width: "90%", icon: (
+                        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.5">
+                          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      )},
+                      { name: "Lead Capture", width: "85%", icon: (
+                        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.5">
+                          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" strokeLinecap="round" strokeLinejoin="round" />
+                          <circle cx="9" cy="7" r="4" />
+                          <path d="M23 21v-2a4 4 0 00-3-3.87" strokeLinecap="round" />
+                        </svg>
+                      )},
+                      { name: "Analytics", width: "94%", icon: (
+                        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.5">
+                          <path d="M18 20V10" strokeLinecap="round" />
+                          <path d="M12 20V4" strokeLinecap="round" />
+                          <path d="M6 20v-6" strokeLinecap="round" />
+                        </svg>
+                      )},
                     ].map((bar, i) => (
                       <div key={bar.name}>
                         <div className="mb-1.5 flex items-center justify-between">
-                          <div className="flex items-center gap-2 text-gray-700">
-                            <span className="text-base">{bar.icon}</span>
-                            <span className="text-sm font-medium">{bar.name}</span>
+                          <div className="flex items-center gap-2">
+                            <span className="text-gray-400">{bar.icon}</span>
+                            <span className="text-sm font-medium text-gray-700">{bar.name}</span>
                           </div>
                           <span className="text-xs text-gray-400">{bar.width}</span>
                         </div>
-                        <AnimatedBar width={bar.width} delay={0.1 + i * 0.1} />
+                        <div className="h-2 overflow-hidden rounded-full bg-gray-100">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            whileInView={{ width: bar.width }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1, delay: 0.2 + i * 0.1, ease: "easeOut" }}
+                            className="h-full rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400"
+                          />
+                        </div>
                       </div>
                     ))}
                   </div>
+
+                  <div className="mt-8">
+                    <FordQuote />
+                  </div>
                 </div>
 
-                {/* Human card */}
-                <div className="rounded-2xl bg-gray-50 p-6" style={{ border: "1px solid #eaecf0" }}>
+                {/* Human side */}
+                <div className="w-48 rounded-2xl bg-gray-50 p-5" style={{ border: "1px solid #eaecf0" }}>
                   <div className="flex items-baseline gap-1">
-                    <Counter target={10} className="text-4xl font-bold tracking-tighter text-gray-900" />
-                    <span className="text-xl font-bold text-gray-300">%</span>
+                    <Counter target={10} className="text-3xl font-bold tracking-tighter text-gray-900" />
+                    <span className="text-lg font-bold text-gray-300">%</span>
                   </div>
-                  <p className="mt-1 text-xs font-medium uppercase tracking-widest text-gray-400">
-                    Human expertise
-                  </p>
-                  <div className="mt-6 space-y-4">
+                  <p className="mt-1 text-xs font-medium uppercase tracking-widest text-gray-400">Human</p>
+                  <div className="mt-5 space-y-3">
                     {[
-                      { name: "Strategy", icon: "🎯" },
-                      { name: "Direction", icon: "🧭" },
-                      { name: "Growth ownership", icon: "🚀" },
+                      { name: "Strategy", icon: (
+                        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.5">
+                          <circle cx="12" cy="12" r="10" />
+                          <path d="M12 8l4 4-4 4-4-4 4-4z" />
+                        </svg>
+                      )},
+                      { name: "Direction", icon: (
+                        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.5">
+                          <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      )},
+                      { name: "Growth", icon: (
+                        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.5">
+                          <path d="M22 12h-4l-3 9L9 3l-3 9H2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      )},
                     ].map((t) => (
                       <div key={t.name} className="flex items-center gap-2.5">
-                        <span>{t.icon}</span>
+                        <span className="text-gray-400">{t.icon}</span>
                         <span className="text-sm font-medium text-gray-700">{t.name}</span>
                       </div>
                     ))}
@@ -414,103 +463,80 @@ export default function PreviewPage() {
           </section>
         </div>
 
-        {/* ====== OPTION E — Ring + Stat Cards Combo ====== */}
-        <div className="mb-48">
-          <OptionLabel label="Option E — Ring + Stat Cards" />
-          <section className="py-24">
-            <div className="mx-auto max-w-5xl">
-              {HEADLINE}
+        {/* ===== OPTION E — Dark Cinematic ===== */}
+        <div className="mb-40">
+          <h2 className="mb-2 text-sm font-bold uppercase tracking-widest text-purple-600">
+            Option E — Dark Cinematic
+          </h2>
+          <section className="rounded-3xl bg-gray-950 px-6 py-24">
+            <div className="mx-auto max-w-4xl text-center">
+              <motion.h2
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="text-3xl tracking-tight text-white sm:text-4xl md:text-[44px] md:leading-[1.15]"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                90% of what made great marketing expensive
+                <br className="hidden sm:block" /> was never skill.{" "}
+                <span className="text-gray-500">It was time.</span>
+              </motion.h2>
 
-              <div className="mt-20 flex items-center justify-center gap-16">
-                {/* Ring */}
-                <ProgressRing value={90} size={240} strokeWidth={14} label="AI-powered" />
-
-                {/* Divider */}
-                <div className="h-64 w-px bg-gray-100" />
-
-                {/* Stat cards */}
-                <div className="grid grid-cols-2 gap-4">
-                  {[
-                    {
-                      icon: (
-                        <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.5">
-                          <path d="M13 10V3L4 14h7v7l9-11h-7z" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      ),
-                      title: "Execution",
-                      desc: "Campaigns launch automatically",
-                    },
-                    {
-                      icon: (
-                        <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.5">
-                          <circle cx="12" cy="12" r="10" />
-                          <path d="M12 6v6l4 2" strokeLinecap="round" />
-                        </svg>
-                      ),
-                      title: "Speed",
-                      desc: "24/7, no bottlenecks",
-                    },
-                    {
-                      icon: (
-                        <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.5">
-                          <path d="M12 2L2 7l10 5 10-5-10-5z" strokeLinecap="round" strokeLinejoin="round" />
-                          <path d="M2 17l10 5 10-5" strokeLinecap="round" strokeLinejoin="round" />
-                          <path d="M2 12l10 5 10-5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      ),
-                      title: "Automation",
-                      desc: "Every channel covered",
-                    },
-                    {
-                      icon: (
-                        <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.5">
-                          <path d="M3 3v18h18" strokeLinecap="round" strokeLinejoin="round" />
-                          <path d="M7 16l4-8 4 4 5-9" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      ),
-                      title: "Scale",
-                      desc: "Unlimited capacity",
-                    },
-                  ].map((card, i) => (
-                    <motion.div
-                      key={card.title}
-                      initial={{ opacity: 0, y: 16 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.3 + i * 0.1 }}
-                      className="rounded-xl bg-gray-50 p-5"
-                      style={{ border: "1px solid #eaecf0" }}
-                    >
-                      <div className="mb-2 text-gray-400">{card.icon}</div>
-                      <p className="text-sm font-semibold text-gray-900">{card.title}</p>
-                      <p className="mt-0.5 text-xs text-gray-500">{card.desc}</p>
-                    </motion.div>
-                  ))}
-
-                  {/* Human row spanning 2 cols */}
+              <div className="mx-auto mt-16 grid max-w-3xl grid-cols-3 gap-8">
+                {[
+                  { val: 90, suffix: "%", label: "AI execution", desc: "Speed, automation, scale", icon: (
+                    <svg viewBox="0 0 24 24" className="mx-auto mb-3 h-7 w-7 text-purple-400" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <path d="M13 10V3L4 14h7v7l9-11h-7z" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  )},
+                  { val: 6, suffix: "", label: "AI agents", desc: "Running 24/7 for you", icon: (
+                    <svg viewBox="0 0 24 24" className="mx-auto mb-3 h-7 w-7 text-pink-400" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <path d="M12 2L2 7l10 5 10-5-10-5z" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M2 17l10 5 10-5" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M2 12l10 5 10-5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  )},
+                  { val: 10, suffix: "%", label: "Human expertise", desc: "Strategy & direction", icon: (
+                    <svg viewBox="0 0 24 24" className="mx-auto mb-3 h-7 w-7 text-orange-400" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" strokeLinecap="round" strokeLinejoin="round" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
+                  )},
+                ].map((s) => (
                   <motion.div
-                    initial={{ opacity: 0, y: 16 }}
+                    key={s.label}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.7 }}
-                    className="col-span-2 flex items-center gap-4 rounded-xl bg-gray-900 p-5 text-white"
+                    className="text-center"
                   >
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-white/10">
-                      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.5">
-                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" strokeLinecap="round" strokeLinejoin="round" />
-                        <circle cx="12" cy="7" r="4" />
-                      </svg>
+                    {s.icon}
+                    <div className="flex items-baseline justify-center">
+                      <Counter target={s.val} className="text-4xl font-bold tracking-tight text-white" />
+                      <span className="text-xl font-bold text-gray-600">{s.suffix}</span>
                     </div>
-                    <div>
-                      <p className="text-sm font-semibold">10% — Human expertise</p>
-                      <p className="text-xs text-gray-400">Strategy, direction, and growth ownership</p>
-                    </div>
+                    <p className="mt-1 text-sm font-medium text-gray-400">{s.label}</p>
+                    <p className="text-xs text-gray-600">{s.desc}</p>
                   </motion.div>
-                </div>
+                ))}
               </div>
+
+              <motion.blockquote
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="mx-auto mt-16 max-w-lg rounded-xl border border-gray-800 bg-gray-900/50 px-5 py-4"
+              >
+                <p className="text-sm leading-relaxed text-gray-400">
+                  &ldquo;If you always do what you&apos;ve always done, you&apos;ll always get what you&apos;ve always got.&rdquo;
+                </p>
+                <footer className="mt-1 text-xs text-gray-600">— Henry Ford</footer>
+              </motion.blockquote>
             </div>
           </section>
         </div>
+
       </div>
     </div>
   );
