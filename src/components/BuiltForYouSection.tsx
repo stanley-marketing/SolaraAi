@@ -120,7 +120,7 @@ export default function BuiltForYouSection() {
             />
 
             {/* Left — the problem */}
-            <div className="relative p-10 sm:p-12">
+            <div className="relative p-10 sm:p-14">
               <p className="text-[11px] font-semibold tracking-widest text-gray-400 uppercase">
                 Your situation
               </p>
@@ -130,7 +130,7 @@ export default function BuiltForYouSection() {
             </div>
 
             {/* Right — the solution */}
-            <div className="relative border-t border-gray-100 bg-gray-50/50 p-10 sm:p-12 md:border-l md:border-t-0">
+            <div className="relative border-t border-gray-100 bg-gray-50/50 p-10 sm:p-14 md:border-l md:border-t-0">
               <p className="text-[11px] font-semibold tracking-widest text-gray-400 uppercase">
                 With Solara
               </p>
