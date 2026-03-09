@@ -113,13 +113,6 @@ const BEAM_CONFIGS = [
   },
 ];
 
-/* ─── Mobile fallback gradients (per-stat themed) ─── */
-const MOBILE_GRADIENTS = [
-  "radial-gradient(ellipse at 25% 40%, #7c5cfc18 0%, transparent 50%), radial-gradient(ellipse at 75% 60%, #ec489918 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #f59e0b10 0%, transparent 60%), #fafafa",
-  "radial-gradient(ellipse at 20% 35%, #3b82f618 0%, transparent 50%), radial-gradient(ellipse at 80% 65%, #06b6d418 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #10b98110 0%, transparent 60%), #fafafa",
-  "radial-gradient(ellipse at 30% 45%, #06b6d418 0%, transparent 50%), radial-gradient(ellipse at 70% 55%, #3b82f618 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #22d3ee10 0%, transparent 60%), #fafafa",
-  "radial-gradient(ellipse at 25% 40%, #a855f718 0%, transparent 50%), radial-gradient(ellipse at 75% 60%, #7c5cfc18 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #c084fc10 0%, transparent 60%), #fafafa",
-];
 
 /* ─── Stat tabs ─── */
 function StatTabs({
@@ -187,15 +180,6 @@ export function AdvantageSection() {
     return () => observer.disconnect();
   }, []);
 
-  /* Mobile detection — skip WebGL on small screens */
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
 
   /* Auto-rotate stats */
   useEffect(() => {
@@ -228,19 +212,9 @@ export function AdvantageSection() {
         <div
           ref={beamRef}
           className="relative mx-auto mt-10 overflow-hidden rounded-2xl border border-gray-100"
-          style={{ height: isMobile ? 280 : 420 }}
+          style={{ height: 420 }}
         >
-          {/* Desktop: WebGL beam | Mobile: themed gradient */}
-          {isMobile ? (
-            <motion.div
-              key={active}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8 }}
-              className="absolute inset-0"
-              style={{ background: MOBILE_GRADIENTS[active] }}
-            />
-          ) : isVisible ? (
+          {isVisible ? (
             <motion.div
               key={active}
               initial={{ opacity: 0 }}
