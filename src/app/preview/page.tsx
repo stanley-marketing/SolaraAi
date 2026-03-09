@@ -1,119 +1,62 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import dynamic from "next/dynamic";
-import Image from "next/image";
+import { Rocket, TrendingUp, Zap, ArrowRight, Layers, Shield } from "lucide-react";
 
-/* Lazy-load PhotonBeam — code-split Three.js out of main bundle */
-const PhotonBeam = dynamic(() => import("@/components/ui/photon-beam"), {
-  ssr: false,
-  loading: () => <div className="h-full w-full bg-[#08080f]" />,
-});
+/* ─── Consolidated Personas (Research: 5 → 3) ─── */
 
-/* ─── Shared data ─── */
-const STATS = [
-  { val: 90, suffix: "%", label: "Handled by AI", desc: "Scheduling, optimization, reporting — automated.", color: "#7c5cfc" },
-  { val: 6, suffix: "", label: "AI agents", desc: "Each specialized. Ads, SEO, social, creative, CMS, leads.", color: "#3b82f6" },
-  { val: 24, suffix: "/7", label: "Always running", desc: "Campaigns adjust in real time. Never stops.", color: "#06b6d4" },
-  { val: 10, suffix: "%", label: "Human expertise", desc: "Strategy, creativity, judgment — things AI can't replace.", color: "#a855f7" },
-];
+interface Persona {
+  icon: ReactNode;
+  situation: string;
+  title: string;
+  pain: string;
+  outcome: string;
+  proof: { metric: string; label: string };
+  cta: string;
+}
 
-const AGENTS = [
-  { name: "Ads", icon: "📊", color: "#7c5cfc" },
-  { name: "SEO", icon: "🔍", color: "#3b82f6" },
-  { name: "Social", icon: "💬", color: "#06b6d4" },
-  { name: "Creative", icon: "🎨", color: "#ec4899" },
-  { name: "CMS", icon: "📝", color: "#f59e0b" },
-  { name: "Leads", icon: "👥", color: "#10b981" },
-];
-
-/* Per-stat beam configuration */
-const BEAM_CONFIGS = [
+const PERSONAS: Persona[] = [
   {
-    // 90% AI — dense rainbow flood, wide fan, heavy bloom
-    colorLine: "#1a1040",
-    colorSignal: "#7c5cfc",
-    colorSignal2: "#ec4899",
-    colorSignal3: "#f59e0b",
-    useColor2: true,
-    useColor3: true,
-    lineCount: 80,
-    spreadHeight: 45,
-    signalCount: 140,
-    speedGlobal: 0.4,
-    trailLength: 5,
-    bloomStrength: 3.2,
-    bloomRadius: 0.5,
-    waveHeight: 1.5,
-    waveSpeed: 1,
-    curvePower: 2,
-    caption: "Tasks flowing through your AI marketing engine",
+    icon: <Rocket className="h-5 w-5" />,
+    situation: "The founder doing it all",
+    title: "Solo Founders & Small Teams",
+    pain: "You're the CEO, the marketer, the support team, and the one figuring out Google Ads at midnight.",
+    outcome:
+      "Solara runs your entire marketing — ads, SEO, social, content — so you can get back to building what matters.",
+    proof: { metric: "25+", label: "hours saved per week" },
+    cta: "See how founders use Solara",
   },
   {
-    // 6 Agents — fewer lines, wide spread, distinct streams
-    colorLine: "#0a1a35",
-    colorSignal: "#3b82f6",
-    colorSignal2: "#06b6d4",
-    colorSignal3: "#10b981",
-    useColor2: true,
-    useColor3: true,
-    lineCount: 30,
-    spreadHeight: 55,
-    signalCount: 60,
-    speedGlobal: 0.3,
-    trailLength: 3,
-    bloomStrength: 2,
-    bloomRadius: 0.3,
-    waveHeight: 0.5,
-    waveSpeed: 0.5,
-    curvePower: 3,
-    caption: "Six specialized agents, each mastering their domain",
+    icon: <TrendingUp className="h-5 w-5" />,
+    situation: "The brand that outgrew DIY",
+    title: "Growing Brands",
+    pain: "You hired one marketer. You need six. The agency burned through your budget with nothing to show.",
+    outcome:
+      "6 AI agents give you the output of a full marketing department — without the headcount, the overhead, or the excuses.",
+    proof: { metric: "120+", label: "content pieces per month" },
+    cta: "See how growing brands use Solara",
   },
   {
-    // 24/7 — fast, tight, long trails, energetic
-    colorLine: "#0a2030",
-    colorSignal: "#06b6d4",
-    colorSignal2: "#3b82f6",
-    colorSignal3: "#22d3ee",
-    useColor2: true,
-    useColor3: true,
-    lineCount: 60,
-    spreadHeight: 25,
-    signalCount: 120,
-    speedGlobal: 0.7,
-    trailLength: 7,
-    bloomStrength: 2.8,
-    bloomRadius: 0.4,
-    waveHeight: 2,
-    waveSpeed: 2,
-    curvePower: 1.5,
-    caption: "Round-the-clock optimization, even while you sleep",
-  },
-  {
-    // 10% Human — sparse, calm, narrow, subtle glow
-    colorLine: "#150a30",
-    colorSignal: "#a855f7",
-    colorSignal2: "#7c5cfc",
-    colorSignal3: "#c084fc",
-    useColor2: true,
-    useColor3: true,
-    lineCount: 18,
-    spreadHeight: 12,
-    signalCount: 20,
-    speedGlobal: 0.18,
-    trailLength: 2,
-    bloomStrength: 1.5,
-    bloomRadius: 0.3,
-    waveHeight: 0.3,
-    waveSpeed: 0.3,
-    curvePower: 4,
-    caption: "Your strategic decisions guiding the AI",
+    icon: <Zap className="h-5 w-5" />,
+    situation: "The business ready to 10x",
+    title: "Scaling Businesses",
+    pain: "Your product is ready. Your pipeline isn't. Marketing became the bottleneck, not the accelerator.",
+    outcome:
+      "Scale from 10 campaigns to 100 without adding a single seat. Solara grows as fast as your ambition.",
+    proof: { metric: "10x", label: "output, fraction of the cost" },
+    cta: "See how scaling businesses use Solara",
   },
 ];
 
-/* ─── Heading ─── */
+/* ─── Shared heading ─── */
+
+const HEADING = "You built something real.";
+const HEADING_ACCENT = "Now it's time the right people find it.";
+const SUBTITLE =
+  "Solara AI was made for businesses like yours — ambitious, lean, and ready to grow.";
+
 function SectionHeading() {
   return (
     <>
@@ -121,220 +64,402 @@ function SectionHeading() {
         className="text-center text-3xl tracking-tight text-gray-900 sm:text-4xl md:text-[44px] md:leading-[1.15]"
         style={{ fontFamily: "var(--font-display)" }}
       >
-        90% of what made great marketing expensive
-        <br className="hidden sm:block" /> was never skill.{" "}
+        {HEADING}
+        <br className="hidden sm:block" />{" "}
         <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 bg-clip-text text-transparent">
-          It was time.
+          {HEADING_ACCENT}
         </span>
       </h2>
       <p className="mx-auto mt-6 max-w-xl text-center text-lg text-gray-500">
-        AI handles the heavy lifting. Humans steer the ship.
+        {SUBTITLE}
       </p>
     </>
   );
 }
 
-/* ─── Stat tabs ─── */
-function StatTabs({
-  active,
-  onSelect,
-}: {
-  active: number;
-  onSelect: (i: number) => void;
-}) {
+/* ─── Divider between options ─── */
+
+function OptionDivider({ label }: { label: string }) {
   return (
-    <div className="mt-16 grid grid-cols-4">
-      {STATS.map((s, i) => (
-        <button
-          key={s.label}
-          onClick={() => onSelect(i)}
-          className={cn(
-            "cursor-pointer border-t-2 px-4 pt-6 pb-4 text-center transition-all duration-500",
-            active === i
-              ? "opacity-100"
-              : "border-transparent opacity-35 hover:opacity-60"
-          )}
-          style={active === i ? { borderColor: s.color } : undefined}
-        >
-          <div className="flex items-baseline justify-center">
-            <span
-              className="text-5xl font-light tracking-tight transition-colors duration-500 sm:text-6xl"
-              style={{ color: active === i ? s.color : "#111827" }}
-            >
-              {s.val}
-            </span>
-            <span className="text-3xl font-light text-gray-400 sm:text-4xl">
-              {s.suffix}
-            </span>
-          </div>
-          <p className="mt-2 text-sm font-semibold text-gray-900">{s.label}</p>
-          <p className="mt-1 text-xs text-gray-500">{s.desc}</p>
-        </button>
-      ))}
+    <div className="mx-auto max-w-5xl border-t border-dashed border-gray-200 px-6 py-12">
+      <p className="text-center text-sm font-semibold tracking-widest text-gray-300 uppercase">
+        {label}
+      </p>
     </div>
   );
 }
 
-/* ─── Preview page ─── */
-/* ─── Mobile fallback gradients (per-stat themed) ─── */
-const MOBILE_GRADIENTS = [
-  "radial-gradient(ellipse at 25% 40%, #7c5cfc18 0%, transparent 50%), radial-gradient(ellipse at 75% 60%, #ec489918 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #f59e0b10 0%, transparent 60%), #fafafa",
-  "radial-gradient(ellipse at 20% 35%, #3b82f618 0%, transparent 50%), radial-gradient(ellipse at 80% 65%, #06b6d418 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #10b98110 0%, transparent 60%), #fafafa",
-  "radial-gradient(ellipse at 30% 45%, #06b6d418 0%, transparent 50%), radial-gradient(ellipse at 70% 55%, #3b82f618 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #22d3ee10 0%, transparent 60%), #fafafa",
-  "radial-gradient(ellipse at 25% 40%, #a855f718 0%, transparent 50%), radial-gradient(ellipse at 75% 60%, #7c5cfc18 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #c084fc10 0%, transparent 60%), #fafafa",
-];
+/* ═══════════════════════════════════════════════════════════
+   OPTION H — Situation Switcher (Interactive Tabs)
+   Monday.com-style — 3 tabs, content adapts per selection
+   ═══════════════════════════════════════════════════════════ */
 
-/* ─── Preview page ─── */
-export default function PreviewPage() {
+function OptionH() {
   const [active, setActive] = useState(0);
-  const cfg = BEAM_CONFIGS[active];
-
-  /* Viewport detection — only mount WebGL when visible */
-  const beamRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const el = beamRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  /* Mobile detection — skip WebGL on small screens */
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
-
-  /* Auto-rotate stats */
-  useEffect(() => {
-    const t = setInterval(() => setActive((p) => (p + 1) % 4), 30000);
-    return () => clearInterval(t);
-  }, []);
+  const p = PERSONAS[active];
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="mx-auto max-w-5xl px-6 py-20">
+    <section className="px-6 py-24">
+      <div className="mx-auto max-w-4xl">
         <SectionHeading />
-        <StatTabs active={active} onSelect={setActive} />
 
-        {/* Photon Beam — branded for Solara AI */}
-        <div
-          ref={beamRef}
-          className="relative mx-auto mt-10 overflow-hidden rounded-2xl border border-gray-100"
-          style={{ height: isMobile ? 280 : 420 }}
-        >
-          {/* Beam (re-mounts on tab change for new colors) */}
-          {/* Desktop: WebGL beam | Mobile: themed gradient */}
-          {isMobile ? (
-            <motion.div
-              key={active}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8 }}
-              className="absolute inset-0"
-              style={{ background: MOBILE_GRADIENTS[active] }}
-            />
-          ) : isVisible ? (
-            <motion.div
-              key={active}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8 }}
-              className="absolute inset-0"
-              style={{ filter: "invert(1) hue-rotate(180deg)" }}
+        {/* Tab bar */}
+        <div className="relative mt-16 flex justify-center gap-2">
+          {PERSONAS.map((persona, i) => (
+            <button
+              key={persona.title}
+              onClick={() => setActive(i)}
+              className={cn(
+                "relative rounded-full px-6 py-3 text-sm font-medium transition-all duration-300",
+                active === i
+                  ? "bg-gray-900 text-white shadow-lg"
+                  : "bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700"
+              )}
             >
-              <PhotonBeam
-                colorBg="#000000"
-                colorLine={cfg.colorLine}
-                colorSignal={cfg.colorSignal}
-                useColor2={cfg.useColor2}
-                colorSignal2={cfg.colorSignal2}
-                useColor3={cfg.useColor3}
-                colorSignal3={cfg.colorSignal3}
-                lineCount={cfg.lineCount}
-                spreadHeight={cfg.spreadHeight}
-                signalCount={cfg.signalCount}
-                speedGlobal={cfg.speedGlobal}
-                trailLength={cfg.trailLength}
-                bloomStrength={cfg.bloomStrength}
-                bloomRadius={cfg.bloomRadius}
-                waveHeight={cfg.waveHeight}
-                waveSpeed={cfg.waveSpeed}
-                curvePower={cfg.curvePower}
-              />
-            </motion.div>
-          ) : (
-            <div className="absolute inset-0 bg-white" />
-          )}
+              <span className="relative z-10 flex items-center gap-2">
+                {persona.icon}
+                <span className="hidden sm:inline">{persona.title}</span>
+                <span className="sm:hidden">{persona.title.split(" ")[0]}</span>
+              </span>
+            </button>
+          ))}
+        </div>
 
-          {/* Agent labels — left side (fan-out) */}
-          <div className="pointer-events-none absolute left-6 top-1/2 z-10 flex -translate-y-1/2 flex-col gap-4">
-            {AGENTS.map((agent, i) => (
-              <motion.div
-                key={agent.name}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: active === 1 ? 0.9 : 0.5 }}
-                transition={{ delay: i * 0.08, duration: 0.4 }}
-                className="flex items-center gap-2"
-              >
-                <div
-                  className="h-2 w-2 rounded-full"
-                  style={{
-                    backgroundColor: agent.color,
-                    boxShadow: `0 0 4px ${agent.color}60`,
-                  }}
-                />
-                <span className="text-xs font-medium text-gray-500">
-                  {agent.name}
+        {/* Content panel */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.35 }}
+            className="mt-12 rounded-2xl bg-gray-50/60 p-10 sm:p-14"
+            style={{ border: "1px solid #eaecf0" }}
+          >
+            <p className="text-sm font-medium tracking-wide text-gray-400 uppercase">
+              {p.situation}
+            </p>
+
+            <p className="mt-6 text-2xl leading-relaxed text-gray-400 italic sm:text-3xl">
+              &ldquo;{p.pain}&rdquo;
+            </p>
+
+            <div className="my-8 h-px w-16 bg-gray-200" />
+
+            <p className="max-w-2xl text-lg leading-relaxed text-gray-700">
+              {p.outcome}
+            </p>
+
+            <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
+              {/* Proof metric */}
+              <div className="flex items-baseline gap-3">
+                <span className="text-4xl font-bold tracking-tight text-gray-900">
+                  {p.proof.metric}
                 </span>
-              </motion.div>
-            ))}
-          </div>
+                <span className="text-sm text-gray-400">{p.proof.label}</span>
+              </div>
 
-          {/* Solara icon — right side (convergence) */}
-          <div className="pointer-events-none absolute right-8 top-1/2 z-10 -translate-y-1/2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100">
-              <Image
-                src="/solara-icon.svg"
-                alt="Solara"
-                width={22}
-                height={22}
-                className="opacity-70"
-              />
+              {/* CTA */}
+              <button className="group flex items-center gap-2 text-sm font-medium text-gray-900 transition-colors hover:text-purple-600">
+                {p.cta}
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </button>
             </div>
-          </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </section>
+  );
+}
 
-          {/* Caption — bottom gradient overlay */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-white via-white/80 to-transparent px-6 pt-12 pb-5">
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={active}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 0.6 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.4 }}
-                className="text-center text-sm text-gray-400"
-              >
-                {cfg.caption}
-              </motion.p>
-            </AnimatePresence>
-          </div>
+/* ═══════════════════════════════════════════════════════════
+   OPTION I — Pain → Outcome Cards (Typography-Driven)
+   Stripe/HubSpot-style — 3 cards, specific pain + result
+   ═══════════════════════════════════════════════════════════ */
+
+function OptionI() {
+  return (
+    <section className="px-6 py-24">
+      <div className="mx-auto max-w-5xl">
+        <SectionHeading />
+
+        <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
+          {PERSONAS.map((p, i) => (
+            <motion.div
+              key={p.title}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="group flex flex-col rounded-2xl bg-white p-8 transition-shadow hover:shadow-lg"
+              style={{ border: "1px solid #eaecf0" }}
+            >
+              {/* Icon + Situation */}
+              <div className="flex items-center gap-3">
+                <div
+                  className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100 text-gray-600"
+                >
+                  {p.icon}
+                </div>
+                <p className="text-sm font-medium text-gray-400">
+                  {p.situation}
+                </p>
+              </div>
+
+              {/* Title */}
+              <h3 className="mt-5 text-xl font-semibold text-gray-900">
+                {p.title}
+              </h3>
+
+              {/* Pain */}
+              <p className="mt-4 flex-1 text-base leading-relaxed text-gray-400 italic">
+                &ldquo;{p.pain}&rdquo;
+              </p>
+
+              {/* Divider */}
+              <div className="my-6 h-px bg-gray-100" />
+
+              {/* Outcome */}
+              <p className="text-base leading-relaxed text-gray-600">
+                {p.outcome}
+              </p>
+
+              {/* Proof + CTA */}
+              <div className="mt-8 flex items-end justify-between">
+                <div>
+                  <span className="text-3xl font-bold tracking-tight text-gray-900">
+                    {p.proof.metric}
+                  </span>
+                  <p className="mt-1 text-xs text-gray-400">{p.proof.label}</p>
+                </div>
+                <button className="group/cta flex items-center gap-1.5 text-sm font-medium text-gray-500 transition-colors hover:text-gray-900">
+                  Learn more
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/cta:translate-x-1" />
+                </button>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   OPTION J — Proof-First Editorial (Stacked Rows)
+   Large metrics lead, text follows — alternating layout
+   ═══════════════════════════════════════════════════════════ */
+
+function OptionJ() {
+  return (
+    <section className="px-6 py-24">
+      <div className="mx-auto max-w-5xl">
+        <SectionHeading />
+
+        <div className="mt-20 space-y-20">
+          {PERSONAS.map((p, i) => {
+            const isEven = i % 2 === 0;
+            return (
+              <motion.div
+                key={p.title}
+                initial={{ opacity: 0, y: 32 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5 }}
+                className={cn(
+                  "flex flex-col gap-10 md:flex-row md:items-center md:gap-20",
+                  !isEven && "md:flex-row-reverse"
+                )}
+              >
+                {/* Metric side */}
+                <div className="flex flex-col items-center md:w-1/3">
+                  <span
+                    className="bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 bg-clip-text text-7xl font-bold tracking-tighter text-transparent sm:text-8xl"
+                  >
+                    {p.proof.metric}
+                  </span>
+                  <p className="mt-2 text-center text-sm text-gray-400">
+                    {p.proof.label}
+                  </p>
+                </div>
+
+                {/* Content side */}
+                <div className="flex-1">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100 text-gray-600">
+                      {p.icon}
+                    </div>
+                    <p className="text-sm font-medium tracking-wide text-gray-400 uppercase">
+                      {p.situation}
+                    </p>
+                  </div>
+
+                  <h3 className="mt-4 text-2xl font-semibold text-gray-900">
+                    {p.title}
+                  </h3>
+
+                  <p className="mt-4 text-lg leading-relaxed text-gray-400 italic">
+                    &ldquo;{p.pain}&rdquo;
+                  </p>
+
+                  <p className="mt-4 max-w-lg text-base leading-relaxed text-gray-600">
+                    {p.outcome}
+                  </p>
+
+                  <button className="group mt-6 flex items-center gap-2 text-sm font-medium text-gray-900 transition-colors hover:text-purple-600">
+                    {p.cta}
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </button>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   OPTION K — Proof Grid (2×2, Creatify-style)
+   Metric-driven cards for self-identification
+   ═══════════════════════════════════════════════════════════ */
+
+const ADVANTAGES: {
+  icon: ReactNode;
+  metric: string;
+  label: string;
+  title: string;
+  description: string;
+}[] = [
+  {
+    icon: <Rocket className="h-5 w-5" />,
+    metric: "25+",
+    label: "HOURS BACK EVERY WEEK",
+    title: "Built for founders doing it all",
+    description:
+      "You're the CEO, marketer, and support team. Solara takes marketing off your plate entirely \u2014 so you can get back to building.",
+  },
+  {
+    icon: <TrendingUp className="h-5 w-5" />,
+    metric: "120+",
+    label: "CONTENT PIECES / MONTH",
+    title: "Built for brands that outgrew DIY",
+    description:
+      "You hired one marketer but need six. Solara delivers a full department's output \u2014 without the headcount or the overhead.",
+  },
+  {
+    icon: <Shield className="h-5 w-5" />,
+    metric: "100%",
+    label: "HUMAN-REVIEWED",
+    title: "Built for brands burned by agencies",
+    description:
+      "No more junior coordinators or recycled strategies. Every deliverable is reviewed by a senior strategist who actually knows your brand.",
+  },
+  {
+    icon: <Zap className="h-5 w-5" />,
+    metric: "10x",
+    label: "OUTPUT MULTIPLIER",
+    title: "Built for businesses ready to scale",
+    description:
+      "Your product is ready. Scale from 10 campaigns to 100 overnight \u2014 without growing your payroll.",
+  },
+];
+
+function OptionK() {
+  return (
+    <section className="px-6 py-24">
+      <div className="mx-auto max-w-5xl">
+        {/* Label */}
+        <p className="text-center text-xs font-medium tracking-[0.2em] text-gray-400 uppercase">
+          Built for you
+        </p>
+
+        {/* Headline */}
+        <h2
+          className="mt-5 text-center text-3xl tracking-tight text-gray-900 sm:text-4xl md:text-[44px] md:leading-[1.15]"
+        >
+          <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 bg-clip-text text-transparent">
+            You built something real.
+          </span>{" "}
+          Now it&apos;s time the right people find it.
+        </h2>
+
+        {/* Subtitle */}
+        <p className="mx-auto mt-6 max-w-2xl text-center text-lg text-gray-500">
+          Whether you&apos;re a solo founder or a scaling brand, Solara fits your
+          world &mdash; not the other way around.
+        </p>
+
+        {/* 2×2 Grid */}
+        <div className="mx-auto mt-16 grid grid-cols-1 gap-5 md:grid-cols-2" style={{ maxWidth: 1264 }}>
+          {ADVANTAGES.map((a, i) => (
+            <motion.div
+              key={a.title}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              className="rounded-2xl bg-white p-8 sm:p-10"
+              style={{ border: "1px solid #eaecf0", height: 301, maxWidth: 620 }}
+            >
+              {/* Icon */}
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100 text-gray-600">
+                {a.icon}
+              </div>
+
+              {/* Metric + Label */}
+              <p className="mt-5 text-4xl font-bold tracking-tight text-gray-900">
+                {a.metric}
+              </p>
+              <p className="mt-1 text-xs font-medium tracking-widest text-gray-400 uppercase">
+                {a.label}
+              </p>
+
+              {/* Title */}
+              <h3 className="mt-5 text-lg font-semibold text-gray-900">
+                {a.title}
+              </h3>
+
+              {/* Description */}
+              <p className="mt-2 text-[15px] leading-relaxed text-gray-500">
+                {a.description}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PREVIEW PAGE
+   ═══════════════════════════════════════════════════════════ */
+
+export default function PreviewPage() {
+  return (
+    <div className="min-h-screen bg-white">
+      <div className="mx-auto max-w-5xl px-6 pt-16">
+        <h1 className="text-center text-4xl font-bold text-gray-900">
+          Section 5 — Built For You
+        </h1>
+        <p className="mt-2 text-center text-lg text-gray-400">
+          4 options — scroll to compare
+        </p>
+      </div>
+
+      <OptionDivider label="Option H — Situation Switcher (Interactive Tabs)" />
+      <OptionH />
+
+      <OptionDivider label="Option I — Pain → Outcome Cards (Typography)" />
+      <OptionI />
+
+      <OptionDivider label="Option J — Proof-First Editorial (Stacked)" />
+      <OptionJ />
+
+      <OptionDivider label="Option K — Proof Grid (2×2 Metric Cards)" />
+      <OptionK />
     </div>
   );
 }

@@ -7,6 +7,7 @@ import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { BeamHubSection } from "@/components/BeamHubSection";
 import { ServicesSection } from "@/components/ServicesSection";
 import { AdvantageSection } from "@/components/AdvantageSection";
+import BuiltForYouSection from "@/components/BuiltForYouSection";
 export default function Home() {
   return (
     <main className="relative min-h-screen bg-white text-ink-900">
@@ -86,7 +87,7 @@ export default function Home() {
           {/* Remaining placeholder sections */}
           <ServicesSection />
           <AdvantageSection />
-          <section id="section-05" className="min-h-screen" />
+          <BuiltForYouSection />
           <section id="section-06" className="min-h-screen" />
 
       {/* CTA Footer */}
