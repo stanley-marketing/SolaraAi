@@ -115,7 +115,7 @@ export default function Home() {
             href="https://app.solaraai.com/auth/signup"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center rounded-xl bg-ink-900 px-7 py-3.5 text-[16px] font-[family-name:var(--font-body)] font-medium tracking-[1px] text-white transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90"
+            className="inline-flex items-center rounded-[999px] bg-black px-6 py-3 text-[16px] font-[family-name:var(--font-body)] font-medium tracking-[1px] text-white transition-colors duration-200 hover:bg-gray-700"
           >
             Let&apos;s Start Growing
           </a>
@@ -123,7 +123,7 @@ export default function Home() {
             href="https://calendly.com/ilay-mor-solaraai/30min"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center rounded-xl border border-line bg-white px-7 py-3.5 text-[16px] font-[family-name:var(--font-body)] font-medium tracking-[1px] text-ink-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink-900/30"
+            className="inline-flex items-center rounded-[999px] border border-line bg-white/60 px-6 py-3 text-[16px] font-[family-name:var(--font-body)] font-medium tracking-[1px] text-ink-900 backdrop-blur-sm transition-colors duration-200 hover:bg-gray-100"
           >
             Talk To Us First
           </a>
