@@ -36,7 +36,31 @@ export function BeamHubSection() {
 
   return (
     <section className="border-t border-gray-100 px-6 py-28 sm:px-10">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-[1fr_1fr]">
+
+      <div className="mx-auto max-w-3xl text-center">
+        <BlurFade delay={0.15}>
+          <h2
+            className="mt-6 text-3xl leading-snug tracking-tight text-gray-900 sm:text-4xl md:text-[44px] md:leading-[1.15]"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            Right now someone needs exactly what you offer.
+            <br className="hidden sm:block" />
+            {" "}They just can&apos;t find you.
+          </h2>
+        </BlurFade>
+
+        <BlurFade delay={0.3}>
+          <p className="mx-auto mt-6 max-w-xl text-xl font-medium text-gray-900">
+            That used to cost a fortune.{" "}
+            <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 bg-clip-text text-transparent">
+              Now it doesn&apos;t.
+            </span>
+          </p>
+        </BlurFade>
+      </div>
+
+      {/* Part 2: Beam hub visual + solution text */}
+      <div className="mx-auto mt-20 grid max-w-6xl items-center gap-12 md:grid-cols-[1fr_1fr]">
         {/* Visual: Beam hub */}
         <BlurFade delay={0}>
           <div
@@ -138,11 +162,6 @@ export function BeamHubSection() {
 
         {/* Text */}
         <div>
-          <BlurFade delay={0.1}>
-            <span className="inline-block rounded-full border border-gray-200 bg-gray-50 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-gray-500">
-              The New Way
-            </span>
-          </BlurFade>
           <BlurFade delay={0.2}>
             <h2
               className="mt-6 text-3xl leading-snug tracking-tight text-gray-900 sm:text-4xl md:text-[44px] md:leading-[1.15]"

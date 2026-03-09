@@ -4,8 +4,8 @@ import { Ticker } from "@/components/Ticker";
 import { TopNav } from "@/components/LandingSections";
 
 import { MobileCtaBar } from "@/components/MobileCtaBar";
-import { BlurFade } from "@/components/ui/blur-fade";
 import { BeamHubSection } from "@/components/BeamHubSection";
+import { ServicesSection } from "@/components/ServicesSection";
 export default function Home() {
   return (
     <main className="relative min-h-screen bg-white text-ink-900">
@@ -78,72 +78,16 @@ export default function Home() {
       </AuroraBackground>
 
 
-      <div>
-          <section id="section-01" className="px-6 py-28 sm:px-10">
-            <div className="mx-auto max-w-3xl">
-              <BlurFade delay={0}>
-                <span className="inline-block rounded-full border border-gray-200 bg-gray-50 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-gray-500">
-                  Let&apos;s Be Honest
-                </span>
-              </BlurFade>
-
-              <BlurFade delay={0.15}>
-                <h2
-                  className="mt-8 text-3xl leading-snug tracking-tight text-gray-900 sm:text-4xl md:text-[44px] md:leading-[1.15]"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  Right now someone needs exactly what you offer.
-                  <br className="hidden sm:block" />
-                  {" "}They just can&apos;t find you.
-                </h2>
-              </BlurFade>
-
-              <div className="mt-10 space-y-6 text-lg leading-relaxed text-gray-500">
-                <BlurFade delay={0.3}>
-                  <p>
-                    Tools break. Agencies bill. Freelancers move on. And growth —
-                    real growth — never came from one channel, one campaign, or one
-                    tactic.
-                  </p>
-                </BlurFade>
-
-                <BlurFade delay={0.45}>
-                  <p>
-                    It came from everything working as one.{" "}
-                    <span className="font-medium text-gray-900">Ads</span>.{" "}
-                    <span className="font-medium text-gray-900">SEO</span>.{" "}
-                    <span className="font-medium text-gray-900">Content</span>.{" "}
-                    <span className="font-medium text-gray-900">Reputation</span>.{" "}
-                    <span className="font-medium text-gray-900">Leads</span>.
-                    <br />
-                    Each force pushing the next, consistently. All of them pointing
-                    at the same target.
-                  </p>
-                </BlurFade>
-
-                <BlurFade delay={0.6}>
-                  <p className="text-xl font-medium text-gray-900">
-                    That used to cost a fortune.{" "}
-                    <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 bg-clip-text text-transparent">
-                      Now it doesn&apos;t.
-                    </span>
-                  </p>
-                </BlurFade>
-              </div>
-            </div>
-          </section>
-
-
 
           {/* Section 2 — The New Way */}
           <BeamHubSection />
 
           {/* Remaining placeholder sections */}
-          <section id="section-03" className="min-h-screen" />
+          <ServicesSection />
           <section id="section-04" className="min-h-screen" />
           <section id="section-05" className="min-h-screen" />
           <section id="section-06" className="min-h-screen" />
-      </div>
+
       {/* CTA Footer */}
       <section className="border-t border-line bg-shell px-6 py-20 text-center sm:px-10">
         <h2
