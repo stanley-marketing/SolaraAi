@@ -73,10 +73,10 @@ export function ServicesSection() {
               <button
                 key={s.name}
                 onClick={() => setActive(i)}
-                className={`rounded-full border px-4 py-2 text-sm font-medium transition-all ${
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
                   active === i
-                    ? "border-gray-900 bg-gray-900 text-white"
-                    : "border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50"
+                    ? "bg-black text-white shadow-lg"
+                    : "bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700"
                 }`}
               >
                 {s.tab}

@@ -172,262 +172,269 @@ function OptionH() {
   );
 }
 
+/* ─── Shared tab bar (reused by all card variants) ─── */
+
+function TabBar({
+  active,
+  setActive,
+}: {
+  active: number;
+  setActive: (i: number) => void;
+}) {
+  return (
+    <div className="relative mt-16 flex justify-center gap-2">
+      {PERSONAS.map((persona, i) => (
+        <button
+          key={persona.title}
+          onClick={() => setActive(i)}
+          className={cn(
+            "relative rounded-full px-5 py-2 text-sm font-medium transition-all duration-300",
+            active === i
+              ? "bg-black text-white shadow-lg"
+              : "bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700"
+          )}
+        >
+          <span className="relative z-10 flex items-center gap-2">
+            {persona.icon}
+            <span className="hidden sm:inline">{persona.title}</span>
+            <span className="sm:hidden">{persona.title.split(" ")[0]}</span>
+          </span>
+        </button>
+      ))}
+    </div>
+  );
+}
+
+/* ─── Shared proof + CTA row ─── */
+
+function ProofRow({ p }: { p: Persona }) {
+  return (
+    <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex items-baseline gap-3">
+        <span className="text-4xl font-bold tracking-tight text-gray-900">
+          {p.proof.metric}
+        </span>
+        <span className="text-sm text-gray-400">{p.proof.label}</span>
+      </div>
+      <button className="group flex items-center gap-2 text-sm font-medium text-gray-900 transition-colors hover:text-purple-600">
+        {p.cta}
+        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+      </button>
+    </div>
+  );
+}
+
 /* ═══════════════════════════════════════════════════════════
-   OPTION I — Pain → Outcome Cards (Typography-Driven)
-   Stripe/HubSpot-style — 3 cards, specific pain + result
+   OPTION L — Soft Gradient Card
+   Radial gradient glow in corner for visual warmth
    ═══════════════════════════════════════════════════════════ */
 
-function OptionI() {
+function OptionL() {
+  const [active, setActive] = useState(0);
+  const p = PERSONAS[active];
+
   return (
     <section className="px-6 py-24">
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-4xl">
         <SectionHeading />
+        <TabBar active={active} setActive={setActive} />
 
-        <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
-          {PERSONAS.map((p, i) => (
-            <motion.div
-              key={p.title}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group flex flex-col rounded-2xl bg-white p-8 transition-shadow hover:shadow-lg"
-              style={{ border: "1px solid #eaecf0" }}
-            >
-              {/* Icon + Situation */}
-              <div className="flex items-center gap-3">
-                <div
-                  className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100 text-gray-600"
-                >
-                  {p.icon}
-                </div>
-                <p className="text-sm font-medium text-gray-400">
-                  {p.situation}
-                </p>
-              </div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.35 }}
+            className="relative mt-12 overflow-hidden rounded-2xl p-10 sm:p-14"
+            style={{ border: "1px solid #eaecf0" }}
+          >
+            {/* Gradient glow */}
+            <div
+              className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full opacity-30 blur-3xl"
+              style={{
+                background:
+                  "radial-gradient(circle, rgba(168,85,247,0.35) 0%, rgba(236,72,153,0.2) 40%, transparent 70%)",
+              }}
+            />
 
-              {/* Title */}
-              <h3 className="mt-5 text-xl font-semibold text-gray-900">
-                {p.title}
-              </h3>
-
-              {/* Pain */}
-              <p className="mt-4 flex-1 text-base leading-relaxed text-gray-400 italic">
-                &ldquo;{p.pain}&rdquo;
-              </p>
-
-              {/* Divider */}
-              <div className="my-6 h-px bg-gray-100" />
-
-              {/* Outcome */}
-              <p className="text-base leading-relaxed text-gray-600">
-                {p.outcome}
-              </p>
-
-              {/* Proof + CTA */}
-              <div className="mt-8 flex items-end justify-between">
-                <div>
-                  <span className="text-3xl font-bold tracking-tight text-gray-900">
-                    {p.proof.metric}
-                  </span>
-                  <p className="mt-1 text-xs text-gray-400">{p.proof.label}</p>
-                </div>
-                <button className="group/cta flex items-center gap-1.5 text-sm font-medium text-gray-500 transition-colors hover:text-gray-900">
-                  Learn more
-                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/cta:translate-x-1" />
-                </button>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+            <p className="relative text-xs font-semibold tracking-widest text-gray-500 uppercase">
+              {p.situation}
+            </p>
+            <p className="relative mt-6 text-2xl leading-snug text-gray-600 italic sm:text-3xl">
+              &ldquo;{p.pain}&rdquo;
+            </p>
+            <div className="my-8 h-px w-16 bg-gray-200" />
+            <p className="relative max-w-2xl text-xl font-medium leading-relaxed text-gray-900">
+              {p.outcome}
+            </p>
+            <ProofRow p={p} />
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );
 }
 
 /* ═══════════════════════════════════════════════════════════
-   OPTION J — Proof-First Editorial (Stacked Rows)
-   Large metrics lead, text follows — alternating layout
+   OPTION M — Large Watermark Icon
+   Oversized persona icon as subtle background element
    ═══════════════════════════════════════════════════════════ */
 
-function OptionJ() {
-  return (
-    <section className="px-6 py-24">
-      <div className="mx-auto max-w-5xl">
-        <SectionHeading />
-
-        <div className="mt-20 space-y-20">
-          {PERSONAS.map((p, i) => {
-            const isEven = i % 2 === 0;
-            return (
-              <motion.div
-                key={p.title}
-                initial={{ opacity: 0, y: 32 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5 }}
-                className={cn(
-                  "flex flex-col gap-10 md:flex-row md:items-center md:gap-20",
-                  !isEven && "md:flex-row-reverse"
-                )}
-              >
-                {/* Metric side */}
-                <div className="flex flex-col items-center md:w-1/3">
-                  <span
-                    className="bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 bg-clip-text text-7xl font-bold tracking-tighter text-transparent sm:text-8xl"
-                  >
-                    {p.proof.metric}
-                  </span>
-                  <p className="mt-2 text-center text-sm text-gray-400">
-                    {p.proof.label}
-                  </p>
-                </div>
-
-                {/* Content side */}
-                <div className="flex-1">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100 text-gray-600">
-                      {p.icon}
-                    </div>
-                    <p className="text-sm font-medium tracking-wide text-gray-400 uppercase">
-                      {p.situation}
-                    </p>
-                  </div>
-
-                  <h3 className="mt-4 text-2xl font-semibold text-gray-900">
-                    {p.title}
-                  </h3>
-
-                  <p className="mt-4 text-lg leading-relaxed text-gray-400 italic">
-                    &ldquo;{p.pain}&rdquo;
-                  </p>
-
-                  <p className="mt-4 max-w-lg text-base leading-relaxed text-gray-600">
-                    {p.outcome}
-                  </p>
-
-                  <button className="group mt-6 flex items-center gap-2 text-sm font-medium text-gray-900 transition-colors hover:text-purple-600">
-                    {p.cta}
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </button>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════
-   OPTION K — Proof Grid (2×2, Creatify-style)
-   Metric-driven cards for self-identification
-   ═══════════════════════════════════════════════════════════ */
-
-const ADVANTAGES: {
-  icon: ReactNode;
-  metric: string;
-  label: string;
-  title: string;
-  description: string;
-}[] = [
-  {
-    icon: <Rocket className="h-5 w-5" />,
-    metric: "25+",
-    label: "HOURS BACK EVERY WEEK",
-    title: "Built for founders doing it all",
-    description:
-      "You're the CEO, marketer, and support team. Solara takes marketing off your plate entirely \u2014 so you can get back to building.",
-  },
-  {
-    icon: <TrendingUp className="h-5 w-5" />,
-    metric: "120+",
-    label: "CONTENT PIECES / MONTH",
-    title: "Built for brands that outgrew DIY",
-    description:
-      "You hired one marketer but need six. Solara delivers a full department's output \u2014 without the headcount or the overhead.",
-  },
-  {
-    icon: <Shield className="h-5 w-5" />,
-    metric: "100%",
-    label: "HUMAN-REVIEWED",
-    title: "Built for brands burned by agencies",
-    description:
-      "No more junior coordinators or recycled strategies. Every deliverable is reviewed by a senior strategist who actually knows your brand.",
-  },
-  {
-    icon: <Zap className="h-5 w-5" />,
-    metric: "10x",
-    label: "OUTPUT MULTIPLIER",
-    title: "Built for businesses ready to scale",
-    description:
-      "Your product is ready. Scale from 10 campaigns to 100 overnight \u2014 without growing your payroll.",
-  },
+const PERSONA_LARGE_ICONS = [
+  <Rocket className="h-full w-full" />,
+  <TrendingUp className="h-full w-full" />,
+  <Zap className="h-full w-full" />,
 ];
 
-function OptionK() {
+function OptionM() {
+  const [active, setActive] = useState(0);
+  const p = PERSONAS[active];
+
   return (
     <section className="px-6 py-24">
-      <div className="mx-auto max-w-5xl">
-        {/* Label */}
-        <p className="text-center text-xs font-medium tracking-[0.2em] text-gray-400 uppercase">
-          Built for you
-        </p>
+      <div className="mx-auto max-w-4xl">
+        <SectionHeading />
+        <TabBar active={active} setActive={setActive} />
 
-        {/* Headline */}
-        <h2
-          className="mt-5 text-center text-3xl tracking-tight text-gray-900 sm:text-4xl md:text-[44px] md:leading-[1.15]"
-        >
-          <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 bg-clip-text text-transparent">
-            You built something real.
-          </span>{" "}
-          Now it&apos;s time the right people find it.
-        </h2>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.35 }}
+            className="relative mt-12 overflow-hidden rounded-2xl bg-gray-50/60 p-10 sm:p-14"
+            style={{ border: "1px solid #eaecf0" }}
+          >
+            {/* Large watermark icon */}
+            <div className="pointer-events-none absolute -bottom-8 right-8 h-48 w-48 text-gray-100 sm:h-56 sm:w-56">
+              {PERSONA_LARGE_ICONS[active]}
+            </div>
 
-        {/* Subtitle */}
-        <p className="mx-auto mt-6 max-w-2xl text-center text-lg text-gray-500">
-          Whether you&apos;re a solo founder or a scaling brand, Solara fits your
-          world &mdash; not the other way around.
-        </p>
+            <p className="relative text-xs font-semibold tracking-widest text-gray-500 uppercase">
+              {p.situation}
+            </p>
+            <p className="relative mt-6 text-2xl leading-snug text-gray-600 italic sm:text-3xl">
+              &ldquo;{p.pain}&rdquo;
+            </p>
+            <div className="my-8 h-px w-16 bg-gray-200" />
+            <p className="relative max-w-2xl text-xl font-medium leading-relaxed text-gray-900">
+              {p.outcome}
+            </p>
+            <ProofRow p={p} />
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </section>
+  );
+}
 
-        {/* 2×2 Grid */}
-        <div className="mx-auto mt-16 grid grid-cols-1 gap-5 md:grid-cols-2" style={{ maxWidth: 1264 }}>
-          {ADVANTAGES.map((a, i) => (
-            <motion.div
-              key={a.title}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="rounded-2xl bg-white p-8 sm:p-10"
-              style={{ border: "1px solid #eaecf0", height: 301, maxWidth: 620 }}
-            >
-              {/* Icon */}
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100 text-gray-600">
-                {a.icon}
+/* ═══════════════════════════════════════════════════════════
+   OPTION N — Two-Column Split
+   Text left, proof metric + CTA right
+   ═══════════════════════════════════════════════════════════ */
+
+function OptionN() {
+  const [active, setActive] = useState(0);
+  const p = PERSONAS[active];
+
+  return (
+    <section className="px-6 py-24">
+      <div className="mx-auto max-w-4xl">
+        <SectionHeading />
+        <TabBar active={active} setActive={setActive} />
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.35 }}
+            className="mt-12 grid grid-cols-1 gap-10 rounded-2xl bg-gray-50/60 p-10 sm:p-14 md:grid-cols-[1fr_240px]"
+            style={{ border: "1px solid #eaecf0" }}
+          >
+            {/* Left — text */}
+            <div>
+              <p className="text-xs font-semibold tracking-widest text-gray-500 uppercase">
+                {p.situation}
+              </p>
+              <p className="mt-6 text-2xl leading-snug text-gray-600 italic sm:text-3xl">
+                &ldquo;{p.pain}&rdquo;
+              </p>
+              <div className="my-8 h-px w-16 bg-gray-200" />
+              <p className="max-w-xl text-xl font-medium leading-relaxed text-gray-900">
+                {p.outcome}
+              </p>
+            </div>
+
+            {/* Right — proof + CTA */}
+            <div className="flex flex-col items-start justify-center gap-6 md:items-end md:text-right">
+              <div>
+                <span className="text-6xl font-bold tracking-tight text-gray-900">
+                  {p.proof.metric}
+                </span>
+                <p className="mt-1 text-sm text-gray-400">{p.proof.label}</p>
               </div>
+              <button className="group flex items-center gap-2 text-sm font-medium text-gray-900 transition-colors hover:text-purple-600">
+                {p.cta}
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </button>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </section>
+  );
+}
 
-              {/* Metric + Label */}
-              <p className="mt-5 text-4xl font-bold tracking-tight text-gray-900">
-                {a.metric}
-              </p>
-              <p className="mt-1 text-xs font-medium tracking-widest text-gray-400 uppercase">
-                {a.label}
-              </p>
+/* ═══════════════════════════════════════════════════════════
+   OPTION O — Left Accent Bar
+   Gradient left border for visual punch
+   ═══════════════════════════════════════════════════════════ */
 
-              {/* Title */}
-              <h3 className="mt-5 text-lg font-semibold text-gray-900">
-                {a.title}
-              </h3>
+function OptionO() {
+  const [active, setActive] = useState(0);
+  const p = PERSONAS[active];
 
-              {/* Description */}
-              <p className="mt-2 text-[15px] leading-relaxed text-gray-500">
-                {a.description}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+  return (
+    <section className="px-6 py-24">
+      <div className="mx-auto max-w-4xl">
+        <SectionHeading />
+        <TabBar active={active} setActive={setActive} />
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.35 }}
+            className="relative mt-12 overflow-hidden rounded-2xl bg-white p-10 sm:p-14"
+            style={{ border: "1px solid #eaecf0" }}
+          >
+            {/* Gradient left accent bar */}
+            <div
+              className="absolute left-0 top-0 h-full w-1 rounded-l-2xl"
+              style={{
+                background: "linear-gradient(to bottom, #a855f7, #ec4899, #f97316)",
+              }}
+            />
+
+            <p className="text-xs font-semibold tracking-widest text-gray-500 uppercase">
+              {p.situation}
+            </p>
+            <p className="mt-6 text-2xl leading-snug text-gray-600 italic sm:text-3xl">
+              &ldquo;{p.pain}&rdquo;
+            </p>
+            <div className="my-8 h-px w-16 bg-gray-200" />
+            <p className="max-w-2xl text-xl font-medium leading-relaxed text-gray-900">
+              {p.outcome}
+            </p>
+            <ProofRow p={p} />
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );
@@ -442,24 +449,24 @@ export default function PreviewPage() {
     <div className="min-h-screen bg-white">
       <div className="mx-auto max-w-5xl px-6 pt-16">
         <h1 className="text-center text-4xl font-bold text-gray-900">
-          Section 5 — Built For You
+          Section 5 — Card Style Variations
         </h1>
         <p className="mt-2 text-center text-lg text-gray-400">
-          4 options — scroll to compare
+          4 card treatments — scroll to compare
         </p>
       </div>
 
-      <OptionDivider label="Option H — Situation Switcher (Interactive Tabs)" />
-      <OptionH />
+      <OptionDivider label="Option L — Soft Gradient Glow" />
+      <OptionL />
 
-      <OptionDivider label="Option I — Pain → Outcome Cards (Typography)" />
-      <OptionI />
+      <OptionDivider label="Option M — Large Watermark Icon" />
+      <OptionM />
 
-      <OptionDivider label="Option J — Proof-First Editorial (Stacked)" />
-      <OptionJ />
+      <OptionDivider label="Option N — Two-Column Split" />
+      <OptionN />
 
-      <OptionDivider label="Option K — Proof Grid (2×2 Metric Cards)" />
-      <OptionK />
+      <OptionDivider label="Option O — Left Accent Bar" />
+      <OptionO />
     </div>
   );
 }

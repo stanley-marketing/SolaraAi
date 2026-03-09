@@ -22,7 +22,7 @@ const PERSONAS: Persona[] = [
     icon: <Rocket className="h-5 w-5" />,
     situation: "The founder doing it all",
     title: "Solo Founders & Small Teams",
-    pain: "You\u2019re the CEO, the marketer, the support team, and the one figuring out Google Ads at midnight.",
+    pain: "You\u2019re wearing every hat \u2014 CEO, marketer, support team. Marketing keeps falling to the bottom of the list.",
     outcome:
       "Solara runs your entire marketing \u2014 ads, SEO, social, content \u2014 so you can get back to building what matters.",
     proof: { metric: "25+", label: "hours saved per week" },
@@ -32,7 +32,7 @@ const PERSONAS: Persona[] = [
     icon: <TrendingUp className="h-5 w-5" />,
     situation: "The brand that outgrew DIY",
     title: "Growing Brands",
-    pain: "You hired one marketer. You need six. The agency burned through your budget with nothing to show.",
+    pain: "You hired one marketer but need six. The last agency burned through your budget with nothing to show for it.",
     outcome:
       "6 AI agents give you the output of a full marketing department \u2014 without the headcount, the overhead, or the excuses.",
     proof: { metric: "120+", label: "content pieces per month" },
@@ -70,10 +70,8 @@ export default function BuiltForYouSection() {
           style={{ fontFamily: "var(--font-display)" }}
         >
           {HEADING}
-          <br className="hidden sm:block" />{" "}
-          <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 bg-clip-text text-transparent">
-            {HEADING_ACCENT}
-          </span>
+          <br className="hidden sm:block" />
+          {HEADING_ACCENT}
         </h2>
         <p className="mx-auto mt-6 max-w-xl text-center text-lg text-gray-500">
           {SUBTITLE}
@@ -86,9 +84,9 @@ export default function BuiltForYouSection() {
               key={persona.title}
               onClick={() => setActive(i)}
               className={cn(
-                "relative rounded-full px-6 py-3 text-sm font-medium transition-all duration-300",
+                "relative rounded-full px-5 py-2 text-sm font-medium transition-all duration-300",
                 active === i
-                  ? "bg-gray-900 text-white shadow-lg"
+                  ? "bg-black text-white shadow-lg"
                   : "bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700"
               )}
             >
@@ -109,20 +107,29 @@ export default function BuiltForYouSection() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.35 }}
-            className="mt-12 rounded-2xl bg-gray-50/60 p-10 sm:p-14"
+            className="relative mt-12 overflow-hidden rounded-2xl p-10 sm:p-14"
             style={{ border: "1px solid #eaecf0" }}
           >
-            <p className="text-sm font-medium tracking-wide text-gray-400 uppercase">
+            {/* Gradient glow */}
+            <div
+              className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full opacity-30 blur-3xl"
+              style={{
+                background:
+                  "radial-gradient(circle, rgba(168,85,247,0.35) 0%, rgba(236,72,153,0.2) 40%, transparent 70%)",
+              }}
+            />
+
+            <p className="text-xs font-semibold tracking-widest text-gray-500 uppercase">
               {p.situation}
             </p>
 
-            <p className="mt-6 text-2xl leading-relaxed text-gray-400 italic sm:text-3xl">
-              &ldquo;{p.pain}&rdquo;
+            <p className="mt-6 text-xl leading-relaxed text-gray-700 sm:text-2xl">
+              {p.pain}
             </p>
 
             <div className="my-8 h-px w-16 bg-gray-200" />
 
-            <p className="max-w-2xl text-lg leading-relaxed text-gray-700">
+            <p className="max-w-2xl text-xl font-medium leading-relaxed text-gray-900">
               {p.outcome}
             </p>
 
