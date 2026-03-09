@@ -178,10 +178,10 @@ function StatTabs({
 /* ─── Preview page ─── */
 /* ─── Mobile fallback gradients (per-stat themed) ─── */
 const MOBILE_GRADIENTS = [
-  "radial-gradient(ellipse at 25% 40%, #7c5cfc18 0%, transparent 50%), radial-gradient(ellipse at 75% 60%, #ec489918 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #f59e0b10 0%, transparent 60%), #08080f",
-  "radial-gradient(ellipse at 20% 35%, #3b82f618 0%, transparent 50%), radial-gradient(ellipse at 80% 65%, #06b6d418 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #10b98110 0%, transparent 60%), #08080f",
-  "radial-gradient(ellipse at 30% 45%, #06b6d418 0%, transparent 50%), radial-gradient(ellipse at 70% 55%, #3b82f618 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #22d3ee10 0%, transparent 60%), #08080f",
-  "radial-gradient(ellipse at 25% 40%, #a855f718 0%, transparent 50%), radial-gradient(ellipse at 75% 60%, #7c5cfc18 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #c084fc10 0%, transparent 60%), #08080f",
+  "radial-gradient(ellipse at 25% 40%, #7c5cfc18 0%, transparent 50%), radial-gradient(ellipse at 75% 60%, #ec489918 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #f59e0b10 0%, transparent 60%), #fafafa",
+  "radial-gradient(ellipse at 20% 35%, #3b82f618 0%, transparent 50%), radial-gradient(ellipse at 80% 65%, #06b6d418 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #10b98110 0%, transparent 60%), #fafafa",
+  "radial-gradient(ellipse at 30% 45%, #06b6d418 0%, transparent 50%), radial-gradient(ellipse at 70% 55%, #3b82f618 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #22d3ee10 0%, transparent 60%), #fafafa",
+  "radial-gradient(ellipse at 25% 40%, #a855f718 0%, transparent 50%), radial-gradient(ellipse at 75% 60%, #7c5cfc18 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, #c084fc10 0%, transparent 60%), #fafafa",
 ];
 
 /* ─── Preview page ─── */
@@ -221,7 +221,7 @@ export default function PreviewPage() {
 
   /* Auto-rotate stats */
   useEffect(() => {
-    const t = setInterval(() => setActive((p) => (p + 1) % 4), 8000);
+    const t = setInterval(() => setActive((p) => (p + 1) % 4), 30000);
     return () => clearInterval(t);
   }, []);
 
@@ -234,7 +234,7 @@ export default function PreviewPage() {
         {/* Photon Beam — branded for Solara AI */}
         <div
           ref={beamRef}
-          className="relative mx-auto mt-10 overflow-hidden rounded-2xl"
+          className="relative mx-auto mt-10 overflow-hidden rounded-2xl border border-gray-100"
           style={{ height: isMobile ? 280 : 420 }}
         >
           {/* Beam (re-mounts on tab change for new colors) */}
@@ -255,9 +255,10 @@ export default function PreviewPage() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8 }}
               className="absolute inset-0"
+              style={{ filter: "invert(1) hue-rotate(180deg)" }}
             >
               <PhotonBeam
-                colorBg="#08080f"
+                colorBg="#000000"
                 colorLine={cfg.colorLine}
                 colorSignal={cfg.colorSignal}
                 useColor2={cfg.useColor2}
@@ -277,7 +278,7 @@ export default function PreviewPage() {
               />
             </motion.div>
           ) : (
-            <div className="absolute inset-0 bg-[#08080f]" />
+            <div className="absolute inset-0 bg-white" />
           )}
 
           {/* Agent labels — left side (fan-out) */}
@@ -294,10 +295,10 @@ export default function PreviewPage() {
                   className="h-2 w-2 rounded-full"
                   style={{
                     backgroundColor: agent.color,
-                    boxShadow: `0 0 6px ${agent.color}80`,
+                    boxShadow: `0 0 4px ${agent.color}60`,
                   }}
                 />
-                <span className="text-xs font-medium text-white/60">
+                <span className="text-xs font-medium text-gray-500">
                   {agent.name}
                 </span>
               </motion.div>
@@ -306,9 +307,9 @@ export default function PreviewPage() {
 
           {/* Solara icon — right side (convergence) */}
           <div className="pointer-events-none absolute right-8 top-1/2 z-10 -translate-y-1/2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100">
               <Image
-                src="/solara-icon-white.svg"
+                src="/solara-icon.svg"
                 alt="Solara"
                 width={22}
                 height={22}
@@ -318,7 +319,7 @@ export default function PreviewPage() {
           </div>
 
           {/* Caption — bottom gradient overlay */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-[#08080f] via-[#08080f]/80 to-transparent px-6 pt-12 pb-5">
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-white via-white/80 to-transparent px-6 pt-12 pb-5">
             <AnimatePresence mode="wait">
               <motion.p
                 key={active}
@@ -326,7 +327,7 @@ export default function PreviewPage() {
                 animate={{ opacity: 0.6 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.4 }}
-                className="text-center text-sm text-white/50"
+                className="text-center text-sm text-gray-400"
               >
                 {cfg.caption}
               </motion.p>
