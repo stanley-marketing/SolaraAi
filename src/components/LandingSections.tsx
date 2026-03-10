@@ -6,9 +6,10 @@ import Link from "next/link";
 
 const navItems = [
   { label: "Home", href: "/" },
-  { label: "Case Study", href: "/case-study" },
   { label: "Pricing", href: "/pricing" },
-  { label: "Articles", href: "/articles" },
+  { label: "About", href: "/about" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function TopNav() {

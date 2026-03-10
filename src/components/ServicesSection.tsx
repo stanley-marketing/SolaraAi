@@ -23,8 +23,8 @@ const services = [
     img: "/screenshots/seo.webp",
   },
   {
-    name: "AI CMS Manager",
-    tab: "CMS",
+    name: "AI Website Manager",
+    tab: "Website",
     desc: "Manages your website content, pages, and publishing schedule.",
     img: "/screenshots/cms.webp",
   },
@@ -46,7 +46,7 @@ export function ServicesSection() {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="border-t border-gray-100 px-6 py-24 sm:px-10">
+    <section className="border-t border-gray-100 px-6 py-24 sm:px-10" style={{ background: "#fafafa" }}>
       <div className="mx-auto max-w-6xl">
         <BlurFade delay={0}>
           <h2

@@ -15,7 +15,7 @@ const articles = [
     readTime: "9 min read",
     date: "Jan 2026",
     tag: "Comparison",
-    href: "/articles/top-ugc-video-editing-apps",
+    href: "/blog/top-ugc-video-editing-apps",
     thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691f218f40e04cbc0fbb2540_Frame%202131330149.webp",
   },
   {
@@ -25,7 +25,7 @@ const articles = [
     readTime: "9 min read",
     date: "Dec 2025",
     tag: "Comparison",
-    href: "/articles/synthesia-io-alternatives",
+    href: "/blog/synthesia-io-alternatives",
     thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691e1634576c6ab2ae11e221_Frame%202131330148.webp",
   },
   {
@@ -35,7 +35,7 @@ const articles = [
     readTime: "7 min read",
     date: "Dec 2025",
     tag: "Guide",
-    href: "/articles/how-to-add-ctas-to-ai-generated-ugc-videos",
+    href: "/blog/how-to-add-ctas-to-ai-generated-ugc-videos",
     thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691e1383b5c545966f6f2901_How%20to%20Add%20CTAs%20to%20AI-Generated%20UGC%20Videos.webp",
   },
   {
@@ -45,7 +45,7 @@ const articles = [
     readTime: "10 min read",
     date: "Nov 2025",
     tag: "Comparison",
-    href: "/articles/best-influencer-marketing-tools",
+    href: "/blog/best-influencer-marketing-tools",
     thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691e0e926c7b03dfb10d2fb6_Frame%202131330150.webp",
   },
   {
@@ -55,7 +55,7 @@ const articles = [
     readTime: "9 min read",
     date: "Nov 2025",
     tag: "Comparison",
-    href: "/articles/best-ai-marketing-tools",
+    href: "/blog/best-ai-marketing-tools",
     thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691b7ae2e5cf906b3c6e7571_Frame%202131330147.webp",
   },
   {
@@ -65,7 +65,7 @@ const articles = [
     readTime: "8 min read",
     date: "Oct 2025",
     tag: "Guide",
-    href: "/articles/how-to-become-a-ugc-creator",
+    href: "/blog/how-to-become-a-ugc-creator",
     thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/6913ae55826650a54ae6f03e_Frame%202131330144.webp",
   },
   {
@@ -75,7 +75,7 @@ const articles = [
     readTime: "9 min read",
     date: "Oct 2025",
     tag: "Comparison",
-    href: "/articles/higgsfield-ai-alternatives",
+    href: "/blog/higgsfield-ai-alternatives",
     thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/6913ab47b4444dc208657f9d_Frame%202131330143.webp",
   },
   {
@@ -85,7 +85,7 @@ const articles = [
     readTime: "10 min read",
     date: "Sep 2025",
     tag: "Trends",
-    href: "/articles/ai-marketing-automation-trends",
+    href: "/blog/ai-marketing-automation-trends",
     thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/6913a90358981f4d43ad38ff_Frame%202131330142.png",
   },
   {
@@ -95,7 +95,7 @@ const articles = [
     readTime: "9 min read",
     date: "Sep 2025",
     tag: "Strategy",
-    href: "/articles/ecommerce-advertising-strategies",
+    href: "/blog/ecommerce-advertising-strategies",
     thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/690a2a93b4380403a8542603_Frame%202131330141.webp",
   },
   {
@@ -105,7 +105,7 @@ const articles = [
     readTime: "9 min read",
     date: "Aug 2025",
     tag: "Comparison",
-    href: "/articles/best-ai-ad-generators",
+    href: "/blog/best-ai-ad-generators",
     thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/6900a9e906c8dbf86e98a7c7_Frame%202131330140.webp",
   },
   {
@@ -115,7 +115,7 @@ const articles = [
     readTime: "9 min read",
     date: "Aug 2025",
     tag: "Strategy",
-    href: "/articles/creative-product-advertisement",
+    href: "/blog/creative-product-advertisement",
     thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68ff570d0941b30df9bf03e4_Frame%202131330135.webp",
   },
   {
@@ -125,7 +125,7 @@ const articles = [
     readTime: "10 min read",
     date: "Jul 2025",
     tag: "Comparison",
-    href: "/articles/ocoya-alternatives",
+    href: "/blog/ocoya-alternatives",
     thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68ff54b37e98595191251e1f_Frame%202131330137.webp",
   },
 ];

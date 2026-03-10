@@ -255,7 +255,7 @@ export function ArticleContent({ article }: { article: Article }) {
           {/* Back link */}
           <div className="border-t border-line py-10">
             <Link
-              href="/articles"
+              href="/blog"
               className="inline-flex items-center gap-2 text-[0.72rem] uppercase tracking-[0.16em] text-ink-700/50 transition-colors hover:text-ink-900"
             >
               <svg className="h-3 w-3" viewBox="0 0 12 12" fill="none">

@@ -7,7 +7,7 @@ import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { BeamHubSection } from "@/components/BeamHubSection";
 import { ServicesSection } from "@/components/ServicesSection";
 import { AdvantageSection } from "@/components/AdvantageSection";
-import BuiltForYouSection from "@/components/BuiltForYouSection";
+import { PricingSection } from "@/components/PricingSection";
 import { BeliefSection } from "@/components/BeliefSection";
 import { CtaSection } from "@/components/CtaSection";
 export default function Home() {
@@ -89,7 +89,7 @@ export default function Home() {
           {/* Remaining placeholder sections */}
           <ServicesSection />
           <AdvantageSection />
-          <BuiltForYouSection />
+          <PricingSection />
           <BeliefSection />
 
           <CtaSection />
