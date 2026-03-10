@@ -9,6 +9,7 @@ import { ServicesSection } from "@/components/ServicesSection";
 import { AdvantageSection } from "@/components/AdvantageSection";
 import BuiltForYouSection from "@/components/BuiltForYouSection";
 import { BeliefSection } from "@/components/BeliefSection";
+import { CtaSection } from "@/components/CtaSection";
 export default function Home() {
   return (
     <main className="relative min-h-screen bg-white text-ink-900">
@@ -91,47 +92,7 @@ export default function Home() {
           <BuiltForYouSection />
           <BeliefSection />
 
-      {/* CTA Footer */}
-      <section className="border-t border-line bg-shell px-6 py-20 text-center sm:px-10">
-        <h2
-          className="mx-auto max-w-xl leading-tight tracking-[-0.015em]"
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(1.8rem, 3.5vw, 3rem)",
-          }}
-        >
-          More marketing. More growth. Less cost.
-        </h2>
-        <p className="mx-auto mt-4 max-w-lg text-[0.95rem] leading-relaxed text-ink-700/60">
-          The largest companies in the world are doubling down on marketing right
-          now. They have entire departments for it. You don&apos;t need a department
-          anymore. You need Solara.
-        </p>
-        <p className="mx-auto mt-2 max-w-sm text-[0.85rem] text-ink-700/40">
-          One flat investment. Fully managed. Built to grow with you.
-        </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <a
-            href="https://app.solaraai.com/auth/signup"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center rounded-[999px] bg-black px-6 py-3 text-[16px] font-[family-name:var(--font-body)] font-medium tracking-[1px] text-white transition-colors duration-200 hover:bg-gray-700"
-          >
-            Let&apos;s Start Growing
-          </a>
-          <a
-            href="https://calendly.com/ilay-mor-solaraai/30min"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center rounded-[999px] border border-line bg-white/60 px-6 py-3 text-[16px] font-[family-name:var(--font-body)] font-medium tracking-[1px] text-ink-900 backdrop-blur-sm transition-colors duration-200 hover:bg-gray-100"
-          >
-            Talk To Us First
-          </a>
-        </div>
-        <p className="mt-6 text-[0.8rem] text-ink-700/35">
-          No long-term lock-ins. No confusing contracts. Just growth.
-        </p>
-      </section>
+          <CtaSection />
     </main>
   );
 }
