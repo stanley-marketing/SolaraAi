@@ -75,7 +75,7 @@ export function ServicesSection() {
                 onClick={() => setActive(i)}
                 className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
                   active === i
-                    ? "bg-black text-white shadow-lg"
+                    ? "bg-black text-white"
                     : "bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700"
                 }`}
               >
