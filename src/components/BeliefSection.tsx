@@ -28,8 +28,8 @@ const PARTICLES: ParticleData[] = Array.from({ length: 200 }, (_, i): ParticleDa
   return {
     id: i,
     left: Math.round((i * 61.8) % 100 * 100) / 100,
-    size: 1 + (i % 3),
-    opacity: 0.08 + (i % 5) * 0.055,
+    size: 1.5 + (i % 3) * 1.2,
+    opacity: 0.15 + (i % 5) * 0.09,
     duration,
     delay: -Math.round((i / 200) * duration * 100) / 100,
     color: i % 3 === 0 ? "rgba(168,85,247,0.85)" : "rgba(255,255,255,0.85)",
@@ -173,7 +173,7 @@ export function BeliefSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
           className="mx-auto mt-16 max-w-2xl text-xl leading-relaxed"
-          style={{ color: "#737373" }}
+          style={{ color: "hwb(0deg 72.97% 27.03%)" }}
         >
           We looked at how far marketing hadn&apos;t come for small businesses and decided to fix it. No AI buzzwords. No overwhelming stacks. No agency markup on work AI does better. The best of cutting-edge technology and human expertise &mdash; built into one system &mdash; finally within reach.
         </motion.p>
