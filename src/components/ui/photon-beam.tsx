@@ -383,6 +383,6 @@ export default function PhotonBeam(props: PhotonBeamProps = {}) {
   }, [])
 
   return (
-    <div ref={containerRef} className="h-full min-h-[200px] w-full bg-black" />
+    <div ref={containerRef} className="h-full min-h-[200px] w-full" style={{ background: props.colorBg ?? "#080808" }} />
   )
 }

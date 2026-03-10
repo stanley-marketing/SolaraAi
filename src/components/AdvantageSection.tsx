@@ -15,7 +15,7 @@ const PhotonBeam = dynamic(() => import("@/components/ui/photon-beam"), {
 /* ─── Shared data ─── */
 const STATS = [
   { val: 90, suffix: "%", label: "Handled by AI", desc: "Scheduling, optimization, reporting — automated.", color: "#7c5cfc" },
-  { val: 6, suffix: "", label: "AI agents", desc: "Each specialized. Ads, SEO, social, creative, CMS, leads.", color: "#3b82f6" },
+  { val: 6, suffix: "", label: "AI agents", desc: "Each specialized. Ads, SEO, social, creative, website, leads.", color: "#3b82f6" },
   { val: 24, suffix: "/7", label: "Always running", desc: "Campaigns adjust in real time. Never stops.", color: "#06b6d4" },
   { val: 10, suffix: "%", label: "Human expertise", desc: "Strategy, creativity, judgment — things AI can't replace.", color: "#a855f7" },
 ];
@@ -25,7 +25,7 @@ const AGENTS = [
   { name: "SEO", icon: "🔍", color: "#3b82f6" },
   { name: "Social", icon: "💬", color: "#06b6d4" },
   { name: "Creative", icon: "🎨", color: "#ec4899" },
-  { name: "CMS", icon: "📝", color: "#f59e0b" },
+  { name: "Website", icon: "📝", color: "#f59e0b" },
   { name: "Leads", icon: "👥", color: "#10b981" },
 ];
 
@@ -214,7 +214,7 @@ export function AdvantageSection() {
         <div
           ref={beamRef}
           className="relative mx-auto mt-10 overflow-hidden rounded-2xl border border-gray-100"
-          style={{ height: 420 }}
+          style={{ height: 420, background: "#ffffff" }}
         >
           {isVisible ? (
             <motion.div
@@ -274,7 +274,7 @@ export function AdvantageSection() {
           </div>
 
           {/* Solara icon — right side (convergence) */}
-          <div className="pointer-events-none absolute right-8 top-1/2 z-10 -translate-y-1/2">
+          <div className="pointer-events-none absolute top-1/2 z-10 -translate-y-1/2" style={{ right: "5%" }}>
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100">
               <Image
                 src="/solara-icon.svg"
