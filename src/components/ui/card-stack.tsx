@@ -28,7 +28,7 @@ export function CardStack({
         next.unshift(next.pop()!);
         return next;
       });
-    }, 5000);
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 

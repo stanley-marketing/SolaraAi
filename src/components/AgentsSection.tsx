@@ -552,8 +552,8 @@ export function AgentsSection() {
                 fontWeight: 700,
                 letterSpacing: "0.14em",
                 textTransform: "uppercase" as const,
-                color: "#a855f7",
-                border: "1.5px solid #a855f7",
+                color: "#6b7280",
+                border: "1.5px solid #d1d5db",
                 borderRadius: 999,
                 padding: "6px 20px",
                 marginBottom: 20,
@@ -613,17 +613,33 @@ export function AgentsSection() {
                       />
                     </div>
                     <div style={{ padding: "20px 24px 24px" }}>
-                      <div
-                        style={{
-                          fontFamily: "var(--font-display)",
-                          fontWeight: 600,
-                          fontSize: "0.9375rem",
-                          color: "#0f0f0f",
-                          marginBottom: 6,
-                          letterSpacing: "-0.01em",
-                        }}
-                      >
-                        {agent.name}
+                      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
+                        <span
+                          style={{
+                            fontFamily: "var(--font-display)",
+                            fontWeight: 600,
+                            fontSize: "0.9375rem",
+                            color: "#0f0f0f",
+                            letterSpacing: "-0.01em",
+                          }}
+                        >
+                          {agent.name}
+                        </span>
+                        <span
+                          style={{
+                            fontSize: "0.625rem",
+                            fontWeight: 600,
+                            letterSpacing: "0.08em",
+                            textTransform: "uppercase" as const,
+                            color: "#6b7280",
+                            border: "1px solid #d1d5db",
+                            borderRadius: 999,
+                            padding: "2px 8px",
+                            whiteSpace: "nowrap",
+                          }}
+                        >
+                          Soon
+                        </span>
                       </div>
                       <div
                         style={{

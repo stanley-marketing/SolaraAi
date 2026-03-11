@@ -16,7 +16,7 @@ function Circle({
   return (
     <div
       ref={nodeRef}
-      className={`z-10 flex h-12 w-12 items-center justify-center rounded-full border-2 border-gray-100 bg-white p-2.5 shadow-sm ${className}`}
+      className={`relative z-10 flex h-12 w-12 items-center justify-center rounded-full border-2 border-gray-100 bg-white p-2.5 shadow-sm ${className}`}
     >
       {children}
     </div>
@@ -65,9 +65,9 @@ export function BeamHubSection() {
         <BlurFade delay={0}>
           <div
             ref={containerRef}
-            className="relative mx-auto flex h-[400px] w-full items-center justify-center p-6"
+            className="relative mx-auto flex h-[400px] w-full items-center justify-center overflow-hidden p-6"
           >
-            <div className="flex h-full w-full flex-row items-stretch justify-between gap-10">
+            <div className="relative z-10 flex h-full w-full origin-left scale-[0.55] flex-row items-stretch justify-between gap-10 sm:origin-center sm:scale-100">
               {/* Left column */}
               <div className="flex flex-col items-center justify-center gap-8">
                 <div className="flex flex-col items-center gap-1.5">

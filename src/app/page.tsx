@@ -1,4 +1,5 @@
 import { AuroraBackground } from "@/components/ui/aurora-background";
+import { ArrowRight } from "lucide-react";
 
 import { TopNav } from "@/components/LandingSections";
 
@@ -19,9 +20,32 @@ export default function Home() {
 
       {/* Hero */}
       <AuroraBackground
-        className="w-full min-h-[100dvh] px-6 pb-16 pt-44 text-center sm:px-10"
+        className="w-full min-h-[auto] sm:min-h-[93dvh] flex flex-col items-center justify-center px-6 pt-20 pb-10 text-center sm:px-10"
         showRadialGradient={true}
       >
+        {/* Pre-seed pill */}
+        <div className="relative z-10" style={{ marginBottom: 20 }}>
+          <div className="shimmer-pill"
+            style={{
+              position: "relative",
+              overflow: "hidden",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
+              fontSize: "14px",
+              fontWeight: 500,
+              color: "#374151",
+              borderRadius: 999,
+              padding: "7px 16px",
+              background: "rgba(255,255,255,0.65)",
+              border: "1px solid #e5e7eb",
+            }}
+          >
+            Backed by $1M in pre-seed funding
+            <ArrowRight size={13} color="#9ca3af" />
+          </div>
+        </div>
+
         <h1
           className="relative z-10 max-w-[1200px] leading-[1.05] tracking-[-0.02em] text-ink-900"
           style={{
