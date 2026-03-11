@@ -103,10 +103,6 @@ export function BeliefSection() {
 
         {/* Label */}
         <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.1 }}
           className="text-xs font-semibold uppercase tracking-[0.28em]"
           style={{ color: "#525252" }}
         >
@@ -117,9 +113,6 @@ export function BeliefSection() {
         <motion.h2
           className="mt-8 text-8xl font-bold leading-none tracking-tight md:text-9xl"
           style={{ color: "#ffffff" }}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
           variants={{
             hidden: {},
             visible: {
@@ -146,11 +139,7 @@ export function BeliefSection() {
         </motion.h2>
 
         {/* Brand accent line */}
-        <motion.div
-          initial={{ scaleX: 0, opacity: 0 }}
-          whileInView={{ scaleX: 1, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.85, ease: [0.16, 1, 0.3, 1] }}
+        <div
           className="mx-auto mt-10"
           style={{ transformOrigin: "center" }}
         >
@@ -164,14 +153,10 @@ export function BeliefSection() {
               borderRadius: "2px",
             }}
           />
-        </motion.div>
+        </div>
 
         {/* Body */}
         <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
           className="mx-auto mt-16 max-w-2xl text-xl leading-relaxed"
           style={{ color: "hwb(0deg 72.97% 27.03%)" }}
         >

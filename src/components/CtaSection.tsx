@@ -155,10 +155,6 @@ export function CtaSection() {
         {/* Content */}
         <div className="relative z-10 mx-auto w-full max-w-4xl text-center">
           <motion.h2
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.85, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="text-5xl font-bold leading-tight tracking-tight md:text-6xl"
             style={{ color: "#0a0a0a" }}
           >
@@ -166,10 +162,6 @@ export function CtaSection() {
           </motion.h2>
 
           <motion.p
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
             className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed"
             style={{ color: "#6b7280" }}
           >
@@ -177,10 +169,6 @@ export function CtaSection() {
           </motion.p>
 
           <motion.p
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.52, ease: [0.16, 1, 0.3, 1] }}
             className="mx-auto mt-4 max-w-2xl text-xl font-semibold leading-relaxed"
             style={{ color: "#1a1a1a" }}
           >
@@ -191,21 +179,13 @@ export function CtaSection() {
           </motion.p>
 
           <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.68 }}
             className="mt-5 text-sm font-medium uppercase tracking-[0.22em]"
             style={{ color: "#6b7280" }}
           >
             {SUBLINE}
           </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.82, ease: [0.16, 1, 0.3, 1] }}
+          <div
             className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
           >
             <a
@@ -236,13 +216,9 @@ export function CtaSection() {
             >
               {CTA_SECONDARY_TEXT}
             </a>
-          </motion.div>
+          </div>
 
           <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 1.05 }}
             className="mt-8 text-sm"
             style={{ color: "#9ca3af" }}
           >

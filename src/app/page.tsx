@@ -1,6 +1,5 @@
 import { AuroraBackground } from "@/components/ui/aurora-background";
 
-import { Ticker } from "@/components/Ticker";
 import { TopNav } from "@/components/LandingSections";
 
 import { MobileCtaBar } from "@/components/MobileCtaBar";
@@ -80,8 +79,6 @@ export default function Home() {
             <span className="font-semibold text-gray-900">2,000+</span> businesses already growing
           </p>
         </div>
-
-        <Ticker />
       </AuroraBackground>
 
 

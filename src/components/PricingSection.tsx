@@ -173,10 +173,6 @@ function SectionHeader({
   return (
     <div className="text-center mb-12">
       <motion.h2
-        initial={{ opacity: 0, y: 22 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.75, ease: EASE }}
         className="tracking-[-0.028em] leading-tight"
         style={{
           fontFamily: "var(--font-display)",
@@ -187,24 +183,16 @@ function SectionHeader({
         {HEADLINE}
       </motion.h2>
       <motion.p
-        initial={{ opacity: 0, y: 14 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.65, delay: 0.14 }}
         className="mt-4 text-[1.02rem] leading-relaxed mx-auto max-w-[420px]"
         style={{ color: "#6b6b6b" }}
       >
         {SUBTITLE}
       </motion.p>
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.24 }}
+      <div
         className="mt-8"
       >
         <BillingToggle billing={billing} setBilling={setBilling} />
-      </motion.div>
+      </div>
     </div>
   );
 }
@@ -359,12 +347,8 @@ export function PricingSection() {
         <SectionHeader billing={billing} setBilling={setBilling} />
 
         {/* ── Desktop Table ── */}
-        <motion.div
+        <div
           className="hidden md:block"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.72, delay: 0.12 }}
         >
           <div
             className="overflow-hidden rounded-2xl border"
@@ -555,7 +539,7 @@ export function PricingSection() {
               ))}
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* ── Mobile: stacked cards ── */}
         <div className="md:hidden grid grid-cols-1 gap-4">
@@ -563,12 +547,8 @@ export function PricingSection() {
             const price = plan.price[billing];
             if (plan.featured) {
               return (
-                <motion.div
+                <div
                   key={plan.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: idx * 0.08 }}
                   className="relative"
                   style={{
                     background: RAINBOW,
@@ -577,16 +557,12 @@ export function PricingSection() {
                   }}
                 >
                   <PremiumCardInner plan={plan} billing={billing} />
-                </motion.div>
+                </div>
               );
             }
             return (
-              <motion.div
+              <div
                 key={plan.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.08 }}
                 className="rounded-2xl border p-6 flex flex-col"
                 style={{ borderColor: "#e3e3e3", background: "#fafafa" }}
               >
@@ -648,7 +624,7 @@ export function PricingSection() {
                 >
                   {plan.cta}
                 </a>
-              </motion.div>
+              </div>
             );
           })}
         </div>
