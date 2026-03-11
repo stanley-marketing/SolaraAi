@@ -106,7 +106,7 @@ const PROACTIVE_AGENT: AgentItem = {
 };
 
 const COMING_NEXT = [
-  { name: "CMS Agent", desc: "Your website managed, updated, and optimized without touching code." },
+  { name: "Website Agent", desc: "Your website managed, updated, and optimized without touching code." },
   { name: "SEO Agent", desc: "Organic visibility that compounds. Content that ranks. The long game, handled." },
   { name: "AI Search Agent (GEO/AEO)", desc: "Show up in the new era of AI search, not just traditional search." },
   { name: "Email Agent", desc: "Sequences, segmentation, timing, personalization \u2014 automated and learning." },

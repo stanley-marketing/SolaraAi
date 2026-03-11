@@ -124,7 +124,7 @@ export function BeamHubSection() {
                       <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10A15.3 15.3 0 0112 2z" />
                     </svg>
                   </Circle>
-                  <span className="text-[11px] font-medium text-gray-500">CMS</span>
+                  <span className="text-[11px] font-medium text-gray-500">Website</span>
                 </div>
                 <div className="flex flex-col items-center gap-1.5">
                   <Circle nodeRef={socialRef}>

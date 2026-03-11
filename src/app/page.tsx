@@ -19,17 +19,17 @@ export default function Home() {
 
       {/* Hero */}
       <AuroraBackground
-        className="w-full px-6 pb-16 pt-44 text-center sm:px-10"
+        className="w-full min-h-[100dvh] px-6 pb-16 pt-44 text-center sm:px-10"
         showRadialGradient={true}
       >
         <h1
-          className="relative z-10 max-w-5xl leading-[1.05] tracking-[-0.02em] text-ink-900"
+          className="relative z-10 max-w-[1200px] leading-[1.05] tracking-[-0.02em] text-ink-900"
           style={{
             fontSize: "clamp(2.5rem, 6.5vw, 5rem)",
             fontFamily: "var(--font-display)", fontWeight: 300,
           }}
         >
-          Looking for real marketing and real growth?
+          Looking for marketing and growth?
           <br className="hidden sm:block" />
           You&apos;re in the right place.
         </h1>
