@@ -6,6 +6,7 @@ import { TopNav } from "@/components/LandingSections";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { BeamHubSection } from "@/components/BeamHubSection";
 import { ServicesSection } from "@/components/ServicesSection";
+import { AgentsSection } from "@/components/AgentsSection";
 import { AdvantageSection } from "@/components/AdvantageSection";
 import { PricingSection } from "@/components/PricingSection";
 
@@ -89,12 +90,11 @@ export default function Home() {
           <BeamHubSection />
 
           {/* Remaining placeholder sections */}
-          {/* <ServicesSection /> */}
+          <AgentsSection />
           <AdvantageSection />
           <PricingSection />
 
 
-          <CtaSection />
       </main>
       <Footer />
     </>
