@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { Linkedin, Twitter, Youtube, ArrowRight, Mail, Check, ChevronDown } from "lucide-react";
 
 /* ─────────────────────────────────────────────────────────────
    CONSTANTS
@@ -1511,6 +1513,3287 @@ function OptionE() {
   );
 }
 
+/* ─────────────────────────────────────────────────────────────
+   FOOTER SHARED DATA
+   ───────────────────────────────────────────────────────────── */
+
+const FOOTER_BRAND = "SOLARA AI";
+const FOOTER_TAGLINE = "AI-powered marketing that runs 24/7.";
+const FOOTER_COPYRIGHT = "\u00a9 2024\u20132026 Solara AI, Inc.";
+
+const F_PRODUCT: { label: string; href: string }[] = [
+  { label: "Ads", href: "/ads" },
+  { label: "SEO", href: "/seo" },
+  { label: "Content", href: "/content" },
+  { label: "Social Media", href: "/social" },
+  { label: "Website", href: "/website" },
+  { label: "Integrations", href: "/integrations" },
+  { label: "Pricing", href: "/pricing" },
+];
+const F_RESOURCES: { label: string; href: string }[] = [
+  { label: "Blog", href: "/blog" },
+  { label: "Case Studies", href: "/case-studies" },
+  { label: "Changelog", href: "/changelog" },
+];
+const F_COMPARE: { label: string; href: string }[] = [
+  { label: "vs Jasper", href: "/vs/jasper-ai" },
+  { label: "vs AdCreative", href: "/vs/adcreative-ai" },
+  { label: "vs Ocoya", href: "/vs/ocoya" },
+  { label: "vs HubSpot", href: "/vs/hubspot-marketing" },
+];
+const F_COMPANY: { label: string; href: string }[] = [
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+  { label: "Privacy", href: "/legal/privacy" },
+  { label: "Terms", href: "/legal/terms" },
+];
+const F_SOCIALS = [
+  { Icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+  { Icon: Twitter, href: "https://twitter.com", label: "X" },
+  { Icon: Youtube, href: "https://youtube.com", label: "YouTube" },
+];
+const F_LEGAL = [
+  { label: "Privacy Policy", href: "/legal/privacy" },
+  { label: "Terms of Service", href: "/legal/terms" },
+];
+
+/* ─────────────────────────────────────────────────────────────
+   FOOTER OPTION A — Clean Light
+   White/very light bg · 5-column grid · thin border bottom
+   Atomic-inspired precision layout
+   ───────────────────────────────────────────────────────────── */
+
+function FooterA() {
+  return (
+    <footer style={{ background: "#FAFAFA", borderTop: "1px solid #eaecf0" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "56px 40px 0" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "210px 1fr 1fr 1fr 1fr",
+            columnGap: 44,
+            rowGap: 40,
+          }}
+        >
+          {/* Brand */}
+          <div>
+            <div
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "0.93rem",
+                fontWeight: 800,
+                letterSpacing: "0.14em",
+                color: "#0f0f0f",
+                marginBottom: 12,
+              }}
+            >
+              {FOOTER_BRAND}
+            </div>
+            <p
+              style={{
+                fontSize: "0.84rem",
+                lineHeight: 1.65,
+                color: "#6b7280",
+                marginBottom: 28,
+                maxWidth: 170,
+                fontFamily: "system-ui, -apple-system, sans-serif",
+              }}
+            >
+              {FOOTER_TAGLINE}
+            </p>
+            <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
+              {F_SOCIALS.map(({ Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  style={{ color: "#c4c9d4", display: "flex", transition: "color 0.2s" }}
+                  onMouseEnter={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color = "#374151")
+                  }
+                  onMouseLeave={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color = "#c4c9d4")
+                  }
+                >
+                  <Icon size={17} />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Link columns */}
+          {([
+            { heading: "Product", links: F_PRODUCT },
+            { heading: "Resources", links: F_RESOURCES },
+            { heading: "Compare", links: F_COMPARE },
+            { heading: "Company", links: F_COMPANY },
+          ] as { heading: string; links: { label: string; href: string }[] }[]).map(
+            ({ heading, links }) => (
+              <div key={heading}>
+                <div
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "0.67rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.16em",
+                    textTransform: "uppercase",
+                    color: "#111",
+                    marginBottom: 16,
+                  }}
+                >
+                  {heading}
+                </div>
+                <ul
+                  style={{
+                    listStyle: "none",
+                    margin: 0,
+                    padding: 0,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 9,
+                    fontFamily: "system-ui, -apple-system, sans-serif",
+                  }}
+                >
+                  {links.map((l) => (
+                    <li key={l.href}>
+                      <Link
+                        href={l.href}
+                        style={{
+                          fontSize: "0.855rem",
+                          color: "#6b7280",
+                          textDecoration: "none",
+                        }}
+                        onMouseEnter={(e) =>
+                          ((e.currentTarget as HTMLElement).style.color = "#111")
+                        }
+                        onMouseLeave={(e) =>
+                          ((e.currentTarget as HTMLElement).style.color = "#6b7280")
+                        }
+                      >
+                        {l.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ),
+          )}
+        </div>
+
+        {/* Bottom bar */}
+        <div
+          style={{
+            borderTop: "1px solid #eaecf0",
+            marginTop: 48,
+            padding: "20px 0",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            fontFamily: "system-ui, -apple-system, sans-serif",
+          }}
+        >
+          <span style={{ fontSize: "0.78rem", color: "#9ca3af" }}>
+            {FOOTER_COPYRIGHT}
+          </span>
+          <div style={{ display: "flex", gap: 20, alignItems: "center" }}>
+            {F_LEGAL.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                style={{ fontSize: "0.78rem", color: "#9ca3af", textDecoration: "none" }}
+                onMouseEnter={(e) =>
+                  ((e.currentTarget as HTMLElement).style.color = "#374151")
+                }
+                onMouseLeave={(e) =>
+                  ((e.currentTarget as HTMLElement).style.color = "#9ca3af")
+                }
+              >
+                {l.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   FOOTER OPTION B — Minimal Dark
+   #0a0a0a bg · subtle gray circle social icons · Linear-inspired
+   White/60% links · white/30% secondary text
+   ───────────────────────────────────────────────────────────── */
+
+function FooterB() {
+  return (
+    <footer
+      style={{
+        background: "#0a0a0a",
+        borderTop: "1px solid #1a1a1a",
+        fontFamily: "system-ui, -apple-system, sans-serif",
+      }}
+    >
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "56px 40px 0" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "220px 1fr 1fr 1fr",
+            columnGap: 48,
+          }}
+        >
+          {/* Brand */}
+          <div>
+            <div
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "0.93rem",
+                fontWeight: 800,
+                letterSpacing: "0.14em",
+                color: "#ffffff",
+                marginBottom: 10,
+              }}
+            >
+              {FOOTER_BRAND}
+            </div>
+            <p
+              style={{
+                fontSize: "0.82rem",
+                lineHeight: 1.6,
+                color: "rgba(255,255,255,0.32)",
+                marginBottom: 32,
+                maxWidth: 180,
+              }}
+            >
+              {FOOTER_TAGLINE}
+            </p>
+            <div style={{ display: "flex", gap: 10 }}>
+              {F_SOCIALS.map(({ Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  style={{
+                    width: 32,
+                    height: 32,
+                    borderRadius: "50%",
+                    border: "1px solid rgba(255,255,255,0.1)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "rgba(255,255,255,0.35)",
+                    transition: "all 0.2s",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.borderColor =
+                      "rgba(255,255,255,0.28)";
+                    (e.currentTarget as HTMLElement).style.color =
+                      "rgba(255,255,255,0.75)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.borderColor =
+                      "rgba(255,255,255,0.1)";
+                    (e.currentTarget as HTMLElement).style.color =
+                      "rgba(255,255,255,0.35)";
+                  }}
+                >
+                  <Icon size={14} />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Link columns */}
+          {([
+            { heading: "Product", links: F_PRODUCT },
+            {
+              heading: "Resources & Compare",
+              links: [...F_RESOURCES, ...F_COMPARE],
+            },
+            { heading: "Company", links: F_COMPANY },
+          ] as { heading: string; links: { label: string; href: string }[] }[]).map(
+            ({ heading, links }) => (
+              <div key={heading}>
+                <div
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "0.65rem",
+                    fontWeight: 600,
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                    color: "rgba(255,255,255,0.25)",
+                    marginBottom: 18,
+                  }}
+                >
+                  {heading}
+                </div>
+                <ul
+                  style={{
+                    listStyle: "none",
+                    margin: 0,
+                    padding: 0,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 11,
+                  }}
+                >
+                  {links.map((l) => (
+                    <li key={l.href}>
+                      <Link
+                        href={l.href}
+                        style={{
+                          fontSize: "0.845rem",
+                          color: "rgba(255,255,255,0.52)",
+                          textDecoration: "none",
+                        }}
+                        onMouseEnter={(e) =>
+                          ((e.currentTarget as HTMLElement).style.color =
+                            "rgba(255,255,255,0.9)")
+                        }
+                        onMouseLeave={(e) =>
+                          ((e.currentTarget as HTMLElement).style.color =
+                            "rgba(255,255,255,0.52)")
+                        }
+                      >
+                        {l.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ),
+          )}
+        </div>
+
+        {/* Bottom */}
+        <div
+          style={{
+            borderTop: "1px solid #1a1a1a",
+            marginTop: 48,
+            padding: "20px 0",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <span style={{ fontSize: "0.77rem", color: "rgba(255,255,255,0.22)" }}>
+            {FOOTER_COPYRIGHT}
+          </span>
+          <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
+            {F_LEGAL.map((l, i) => (
+              <span
+                key={l.href}
+                style={{ display: "flex", alignItems: "center", gap: 4 }}
+              >
+                {i > 0 && (
+                  <span
+                    style={{
+                      color: "rgba(255,255,255,0.15)",
+                      fontSize: "0.7rem",
+                    }}
+                  >
+                    &middot;
+                  </span>
+                )}
+                <Link
+                  href={l.href}
+                  style={{
+                    fontSize: "0.77rem",
+                    color: "rgba(255,255,255,0.22)",
+                    textDecoration: "none",
+                  }}
+                  onMouseEnter={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color =
+                      "rgba(255,255,255,0.55)")
+                  }
+                  onMouseLeave={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color =
+                      "rgba(255,255,255,0.22)")
+                  }
+                >
+                  {l.label}
+                </Link>
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   FOOTER OPTION C — Two-Row
+   Light bg · Row 1: Brand + Product columns · Row 2: Resources + Compare + Social + Legal
+   Subtle divider between rows
+   ───────────────────────────────────────────────────────────── */
+
+function FooterC() {
+  return (
+    <footer
+      style={{
+        background: "#F8F9FA",
+        borderTop: "1px solid #e9ecef",
+        fontFamily: "system-ui, -apple-system, sans-serif",
+      }}
+    >
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "56px 40px 0" }}>
+        {/* Row 1 */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "220px 1fr 1fr 1fr",
+            columnGap: 48,
+            paddingBottom: 40,
+          }}
+        >
+          <div>
+            <div
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "0.93rem",
+                fontWeight: 800,
+                letterSpacing: "0.14em",
+                color: "#0f0f0f",
+                marginBottom: 12,
+              }}
+            >
+              {FOOTER_BRAND}
+            </div>
+            <p
+              style={{
+                fontSize: "0.84rem",
+                lineHeight: 1.65,
+                color: "#6b7280",
+                maxWidth: 195,
+              }}
+            >
+              {FOOTER_TAGLINE}
+            </p>
+          </div>
+          {([
+            { heading: "Product", links: F_PRODUCT.slice(0, 4) },
+            { heading: "", links: F_PRODUCT.slice(4) },
+            { heading: "Company", links: F_COMPANY },
+          ] as { heading: string; links: { label: string; href: string }[] }[]).map(
+            ({ heading, links }, i) => (
+              <div key={i}>
+                <div
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "0.67rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.16em",
+                    textTransform: "uppercase",
+                    color: heading ? "#111" : "transparent",
+                    marginBottom: 16,
+                    userSelect: "none",
+                  }}
+                >
+                  {heading || "\u00a0"}
+                </div>
+                <ul
+                  style={{
+                    listStyle: "none",
+                    margin: 0,
+                    padding: 0,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 9,
+                  }}
+                >
+                  {links.map((l) => (
+                    <li key={l.href}>
+                      <Link
+                        href={l.href}
+                        style={{
+                          fontSize: "0.855rem",
+                          color: "#6b7280",
+                          textDecoration: "none",
+                        }}
+                        onMouseEnter={(e) =>
+                          ((e.currentTarget as HTMLElement).style.color = "#111")
+                        }
+                        onMouseLeave={(e) =>
+                          ((e.currentTarget as HTMLElement).style.color = "#6b7280")
+                        }
+                      >
+                        {l.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ),
+          )}
+        </div>
+
+        {/* Row divider */}
+        <div style={{ height: 1, background: "#e9ecef" }} />
+
+        {/* Row 2 */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr 1fr 1fr",
+            columnGap: 48,
+            paddingTop: 36,
+            alignItems: "start",
+          }}
+        >
+          {/* Resources */}
+          <div>
+            <div
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "0.67rem",
+                fontWeight: 700,
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: "#111",
+                marginBottom: 16,
+              }}
+            >
+              Resources
+            </div>
+            <ul
+              style={{
+                listStyle: "none",
+                margin: 0,
+                padding: 0,
+                display: "flex",
+                flexDirection: "column",
+                gap: 9,
+              }}
+            >
+              {F_RESOURCES.map((l) => (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    style={{
+                      fontSize: "0.855rem",
+                      color: "#6b7280",
+                      textDecoration: "none",
+                    }}
+                    onMouseEnter={(e) =>
+                      ((e.currentTarget as HTMLElement).style.color = "#111")
+                    }
+                    onMouseLeave={(e) =>
+                      ((e.currentTarget as HTMLElement).style.color = "#6b7280")
+                    }
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Compare */}
+          <div>
+            <div
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "0.67rem",
+                fontWeight: 700,
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: "#111",
+                marginBottom: 16,
+              }}
+            >
+              Compare
+            </div>
+            <ul
+              style={{
+                listStyle: "none",
+                margin: 0,
+                padding: 0,
+                display: "flex",
+                flexDirection: "column",
+                gap: 9,
+              }}
+            >
+              {F_COMPARE.map((l) => (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    style={{
+                      fontSize: "0.855rem",
+                      color: "#6b7280",
+                      textDecoration: "none",
+                    }}
+                    onMouseEnter={(e) =>
+                      ((e.currentTarget as HTMLElement).style.color = "#111")
+                    }
+                    onMouseLeave={(e) =>
+                      ((e.currentTarget as HTMLElement).style.color = "#6b7280")
+                    }
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Follow */}
+          <div>
+            <div
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "0.67rem",
+                fontWeight: 700,
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: "#111",
+                marginBottom: 16,
+              }}
+            >
+              Follow
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              {F_SOCIALS.map(({ Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 10,
+                    color: "#6b7280",
+                    textDecoration: "none",
+                    fontSize: "0.855rem",
+                    transition: "color 0.2s",
+                  }}
+                  onMouseEnter={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color = "#111")
+                  }
+                  onMouseLeave={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color = "#6b7280")
+                  }
+                >
+                  <Icon size={15} />
+                  {label}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Legal */}
+          <div style={{ textAlign: "right" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "0.67rem",
+                fontWeight: 700,
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: "transparent",
+                marginBottom: 16,
+                userSelect: "none",
+              }}
+            >
+              &nbsp;
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 9, alignItems: "flex-end" }}>
+              {F_LEGAL.map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  style={{
+                    fontSize: "0.855rem",
+                    color: "#9ca3af",
+                    textDecoration: "none",
+                  }}
+                  onMouseEnter={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color = "#374151")
+                  }
+                  onMouseLeave={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color = "#9ca3af")
+                  }
+                >
+                  {l.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom */}
+        <div
+          style={{
+            borderTop: "1px solid #e9ecef",
+            marginTop: 36,
+            padding: "16px 0",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <span style={{ fontSize: "0.78rem", color: "#9ca3af" }}>
+            {FOOTER_COPYRIGHT}
+          </span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   FOOTER OPTION D — Centered
+   White bg · logo centered · 4-column grid centered · social centered
+   Symmetrical and clean
+   ───────────────────────────────────────────────────────────── */
+
+function FooterD() {
+  return (
+    <footer
+      style={{
+        background: "#ffffff",
+        borderTop: "1px solid #eaecf0",
+        fontFamily: "system-ui, -apple-system, sans-serif",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: 1100,
+          margin: "0 auto",
+          padding: "64px 40px 0",
+          textAlign: "center",
+        }}
+      >
+        {/* Brand centered */}
+        <div
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "1.05rem",
+            fontWeight: 800,
+            letterSpacing: "0.14em",
+            color: "#0f0f0f",
+            marginBottom: 12,
+          }}
+        >
+          {FOOTER_BRAND}
+        </div>
+        <p
+          style={{
+            fontSize: "0.88rem",
+            color: "#9ca3af",
+            maxWidth: 280,
+            margin: "0 auto 48px",
+          }}
+        >
+          {FOOTER_TAGLINE}
+        </p>
+
+        {/* 4 columns centered */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gap: 40,
+            textAlign: "left",
+            maxWidth: 900,
+            margin: "0 auto",
+          }}
+        >
+          {([
+            { heading: "Product", links: F_PRODUCT },
+            { heading: "Resources", links: F_RESOURCES },
+            { heading: "Compare", links: F_COMPARE },
+            { heading: "Company", links: F_COMPANY },
+          ] as { heading: string; links: { label: string; href: string }[] }[]).map(
+            ({ heading, links }) => (
+              <div key={heading}>
+                <div
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "0.67rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.16em",
+                    textTransform: "uppercase",
+                    color: "#111",
+                    marginBottom: 16,
+                    textAlign: "center",
+                  }}
+                >
+                  {heading}
+                </div>
+                <ul
+                  style={{
+                    listStyle: "none",
+                    margin: 0,
+                    padding: 0,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 9,
+                    alignItems: "center",
+                  }}
+                >
+                  {links.map((l) => (
+                    <li key={l.href}>
+                      <Link
+                        href={l.href}
+                        style={{
+                          fontSize: "0.845rem",
+                          color: "#6b7280",
+                          textDecoration: "none",
+                        }}
+                        onMouseEnter={(e) =>
+                          ((e.currentTarget as HTMLElement).style.color = "#111")
+                        }
+                        onMouseLeave={(e) =>
+                          ((e.currentTarget as HTMLElement).style.color = "#6b7280")
+                        }
+                      >
+                        {l.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ),
+          )}
+        </div>
+
+        {/* Social icons centered */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: 16,
+            marginTop: 48,
+          }}
+        >
+          {F_SOCIALS.map(({ Icon, href, label }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              style={{
+                width: 38,
+                height: 38,
+                borderRadius: "50%",
+                border: "1px solid #eaecf0",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#9ca3af",
+                transition: "all 0.2s",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.borderColor = "#d1d5db";
+                (e.currentTarget as HTMLElement).style.color = "#374151";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.borderColor = "#eaecf0";
+                (e.currentTarget as HTMLElement).style.color = "#9ca3af";
+              }}
+            >
+              <Icon size={16} />
+            </a>
+          ))}
+        </div>
+
+        {/* Bottom */}
+        <div
+          style={{
+            borderTop: "1px solid #eaecf0",
+            marginTop: 40,
+            padding: "18px 0",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 8,
+          }}
+        >
+          <span style={{ fontSize: "0.78rem", color: "#9ca3af" }}>
+            {FOOTER_COPYRIGHT}
+          </span>
+          <div style={{ display: "flex", gap: 16 }}>
+            {F_LEGAL.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                style={{
+                  fontSize: "0.78rem",
+                  color: "#c4c9d4",
+                  textDecoration: "none",
+                }}
+                onMouseEnter={(e) =>
+                  ((e.currentTarget as HTMLElement).style.color = "#6b7280")
+                }
+                onMouseLeave={(e) =>
+                  ((e.currentTarget as HTMLElement).style.color = "#c4c9d4")
+                }
+              >
+                {l.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   FOOTER OPTION E — Dark with Gradient Accent
+   #040406 bg · rainbow gradient line at top · animated gradient
+   4 columns · hover effects on social icons
+   ───────────────────────────────────────────────────────────── */
+
+function FooterE() {
+  return (
+    <footer
+      style={{
+        background: "#040406",
+        fontFamily: "system-ui, -apple-system, sans-serif",
+      }}
+    >
+      {/* Rainbow accent line */}
+      <div
+        style={{
+          height: 2,
+          background: RAINBOW,
+          backgroundSize: "300% 300%",
+          animation: "pricing-gradient-shift 8s linear infinite",
+        }}
+      />
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "56px 40px 0" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "220px 1fr 1fr 1fr 1fr",
+            columnGap: 40,
+          }}
+        >
+          {/* Brand */}
+          <div>
+            <div
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "0.93rem",
+                fontWeight: 800,
+                letterSpacing: "0.14em",
+                color: "#ffffff",
+                marginBottom: 12,
+              }}
+            >
+              {FOOTER_BRAND}
+            </div>
+            <p
+              style={{
+                fontSize: "0.82rem",
+                lineHeight: 1.65,
+                color: "rgba(255,255,255,0.38)",
+                marginBottom: 28,
+                maxWidth: 175,
+              }}
+            >
+              {FOOTER_TAGLINE}
+            </p>
+            <div style={{ display: "flex", gap: 10 }}>
+              {F_SOCIALS.map(({ Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  style={{
+                    width: 34,
+                    height: 34,
+                    borderRadius: 8,
+                    border: "1px solid rgba(255,255,255,0.1)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "rgba(255,255,255,0.4)",
+                    transition: "all 0.2s",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.borderColor =
+                      "rgba(168,85,247,0.6)";
+                    (e.currentTarget as HTMLElement).style.color =
+                      "rgba(168,85,247,1)";
+                    (e.currentTarget as HTMLElement).style.boxShadow =
+                      "0 0 12px rgba(168,85,247,0.3)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.borderColor =
+                      "rgba(255,255,255,0.1)";
+                    (e.currentTarget as HTMLElement).style.color =
+                      "rgba(255,255,255,0.4)";
+                    (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                  }}
+                >
+                  <Icon size={15} />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Link columns */}
+          {([
+            { heading: "Product", links: F_PRODUCT },
+            { heading: "Resources", links: F_RESOURCES },
+            { heading: "Compare", links: F_COMPARE },
+            { heading: "Company", links: F_COMPANY },
+          ] as { heading: string; links: { label: string; href: string }[] }[]).map(
+            ({ heading, links }) => (
+              <div key={heading}>
+                <div
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "0.65rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                    color: "rgba(255,255,255,0.28)",
+                    marginBottom: 18,
+                  }}
+                >
+                  {heading}
+                </div>
+                <ul
+                  style={{
+                    listStyle: "none",
+                    margin: 0,
+                    padding: 0,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 11,
+                  }}
+                >
+                  {links.map((l) => (
+                    <li key={l.href}>
+                      <Link
+                        href={l.href}
+                        style={{
+                          fontSize: "0.845rem",
+                          color: "rgba(255,255,255,0.5)",
+                          textDecoration: "none",
+                        }}
+                        onMouseEnter={(e) =>
+                          ((e.currentTarget as HTMLElement).style.color =
+                            "rgba(255,255,255,0.9)")
+                        }
+                        onMouseLeave={(e) =>
+                          ((e.currentTarget as HTMLElement).style.color =
+                            "rgba(255,255,255,0.5)")
+                        }
+                      >
+                        {l.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ),
+          )}
+        </div>
+
+        {/* Bottom */}
+        <div
+          style={{
+            borderTop: "1px solid rgba(255,255,255,0.07)",
+            marginTop: 48,
+            padding: "20px 0",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <span style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.2)" }}>
+            {FOOTER_COPYRIGHT}
+          </span>
+          <div style={{ display: "flex", gap: 20 }}>
+            {F_LEGAL.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                style={{
+                  fontSize: "0.78rem",
+                  color: "rgba(255,255,255,0.2)",
+                  textDecoration: "none",
+                }}
+                onMouseEnter={(e) =>
+                  ((e.currentTarget as HTMLElement).style.color =
+                    "rgba(255,255,255,0.55)")
+                }
+                onMouseLeave={(e) =>
+                  ((e.currentTarget as HTMLElement).style.color =
+                    "rgba(255,255,255,0.2)")
+                }
+              >
+                {l.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   FOOTER OPTION F — Compact Single-Row
+   #FAFAFA bg · one horizontal row · ultra-minimal
+   Logo | links with dot separators | social + copyright
+   ───────────────────────────────────────────────────────────── */
+
+const F_QUICK_LINKS: { label: string; href: string }[] = [
+  { label: "Product", href: "/ads" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Blog", href: "/blog" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+];
+
+function FooterF() {
+  return (
+    <footer
+      style={{
+        background: "#FAFAFA",
+        borderTop: "1px solid #eaecf0",
+        fontFamily: "system-ui, -apple-system, sans-serif",
+      }}
+    >
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "22px 40px" }}>
+        {/* Single row */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 24,
+            flexWrap: "wrap",
+          }}
+        >
+          {/* Brand */}
+          <div
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "0.88rem",
+              fontWeight: 800,
+              letterSpacing: "0.14em",
+              color: "#0f0f0f",
+            }}
+          >
+            {FOOTER_BRAND}
+          </div>
+
+          {/* Quick links with dot separators */}
+          <div style={{ display: "flex", alignItems: "center" }}>
+            {F_QUICK_LINKS.map((l, i) => (
+              <span
+                key={l.href}
+                style={{ display: "flex", alignItems: "center" }}
+              >
+                {i > 0 && (
+                  <span
+                    style={{
+                      color: "#d1d5db",
+                      margin: "0 12px",
+                      fontSize: "0.75rem",
+                      userSelect: "none",
+                    }}
+                  >
+                    &middot;
+                  </span>
+                )}
+                <Link
+                  href={l.href}
+                  style={{
+                    fontSize: "0.845rem",
+                    color: "#6b7280",
+                    textDecoration: "none",
+                  }}
+                  onMouseEnter={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color = "#111")
+                  }
+                  onMouseLeave={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color = "#6b7280")
+                  }
+                >
+                  {l.label}
+                </Link>
+              </span>
+            ))}
+          </div>
+
+          {/* Social + copyright */}
+          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+            <div style={{ display: "flex", gap: 14 }}>
+              {F_SOCIALS.map(({ Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  style={{ color: "#c4c9d4", display: "flex", transition: "color 0.2s" }}
+                  onMouseEnter={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color = "#6b7280")
+                  }
+                  onMouseLeave={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color = "#c4c9d4")
+                  }
+                >
+                  <Icon size={16} />
+                </a>
+              ))}
+            </div>
+            <span
+              style={{
+                fontSize: "0.75rem",
+                color: "#c4c9d4",
+                borderLeft: "1px solid #e9ecef",
+                paddingLeft: 16,
+              }}
+            >
+              {FOOTER_COPYRIGHT}
+            </span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   FOOTER OPTION G — Newsletter CTA + Links
+   White bg · email signup left · 4 link columns right
+   Dark subscribe button · social icons below form
+   ───────────────────────────────────────────────────────────── */
+
+function FooterG() {
+  return (
+    <footer
+      style={{
+        background: "#ffffff",
+        borderTop: "1px solid #eaecf0",
+        fontFamily: "system-ui, -apple-system, sans-serif",
+      }}
+    >
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "56px 40px 0" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "300px 1fr",
+            columnGap: 80,
+          }}
+        >
+          {/* Newsletter side */}
+          <div>
+            <div
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "0.93rem",
+                fontWeight: 800,
+                letterSpacing: "0.14em",
+                color: "#0f0f0f",
+                marginBottom: 12,
+              }}
+            >
+              {FOOTER_BRAND}
+            </div>
+            <p
+              style={{
+                fontSize: "0.84rem",
+                color: "#6b7280",
+                lineHeight: 1.65,
+                marginBottom: 28,
+              }}
+            >
+              {FOOTER_TAGLINE}
+            </p>
+            <p
+              style={{
+                fontSize: "0.72rem",
+                fontWeight: 700,
+                color: "#374151",
+                marginBottom: 12,
+                textTransform: "uppercase",
+                letterSpacing: "0.1em",
+                fontFamily: "var(--font-display)",
+              }}
+            >
+              Stay in the loop
+            </p>
+            <div
+              style={{
+                display: "flex",
+                border: "1px solid #eaecf0",
+                borderRadius: 8,
+                overflow: "hidden",
+                background: "#fff",
+              }}
+            >
+              <input
+                type="email"
+                placeholder="Your work email"
+                style={{
+                  flex: 1,
+                  padding: "10px 14px",
+                  fontSize: "0.84rem",
+                  border: "none",
+                  outline: "none",
+                  color: "#374151",
+                  background: "transparent",
+                  fontFamily: "system-ui, -apple-system, sans-serif",
+                }}
+              />
+              <button
+                type="button"
+                style={{
+                  padding: "10px 18px",
+                  background: "#111111",
+                  color: "#ffffff",
+                  fontSize: "0.8rem",
+                  fontWeight: 600,
+                  border: "none",
+                  cursor: "pointer",
+                  letterSpacing: "0.04em",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 6,
+                  transition: "background 0.2s",
+                  fontFamily: "system-ui, -apple-system, sans-serif",
+                }}
+                onMouseEnter={(e) =>
+                  ((e.currentTarget as HTMLElement).style.background = "#2d2d2d")
+                }
+                onMouseLeave={(e) =>
+                  ((e.currentTarget as HTMLElement).style.background = "#111111")
+                }
+              >
+                Subscribe
+                <ArrowRight size={13} />
+              </button>
+            </div>
+            <p
+              style={{
+                fontSize: "0.73rem",
+                color: "#9ca3af",
+                marginTop: 10,
+              }}
+            >
+              No spam. Unsubscribe anytime.
+            </p>
+            <div style={{ display: "flex", gap: 14, marginTop: 28 }}>
+              {F_SOCIALS.map(({ Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  style={{ color: "#c4c9d4", display: "flex", transition: "color 0.2s" }}
+                  onMouseEnter={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color = "#374151")
+                  }
+                  onMouseLeave={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color = "#c4c9d4")
+                  }
+                >
+                  <Icon size={17} />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Links side */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr 1fr 1fr",
+              gap: 40,
+            }}
+          >
+            {([
+              { heading: "Product", links: F_PRODUCT },
+              { heading: "Resources", links: F_RESOURCES },
+              { heading: "Compare", links: F_COMPARE },
+              { heading: "Company", links: F_COMPANY },
+            ] as { heading: string; links: { label: string; href: string }[] }[]).map(
+              ({ heading, links }) => (
+                <div key={heading}>
+                  <div
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "0.67rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.16em",
+                      textTransform: "uppercase",
+                      color: "#111",
+                      marginBottom: 16,
+                    }}
+                  >
+                    {heading}
+                  </div>
+                  <ul
+                    style={{
+                      listStyle: "none",
+                      margin: 0,
+                      padding: 0,
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 9,
+                    }}
+                  >
+                    {links.map((l) => (
+                      <li key={l.href}>
+                        <Link
+                          href={l.href}
+                          style={{
+                            fontSize: "0.845rem",
+                            color: "#6b7280",
+                            textDecoration: "none",
+                          }}
+                          onMouseEnter={(e) =>
+                            ((e.currentTarget as HTMLElement).style.color = "#111")
+                          }
+                          onMouseLeave={(e) =>
+                            ((e.currentTarget as HTMLElement).style.color = "#6b7280")
+                          }
+                        >
+                          {l.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ),
+            )}
+          </div>
+        </div>
+
+        {/* Bottom */}
+        <div
+          style={{
+            borderTop: "1px solid #eaecf0",
+            marginTop: 48,
+            padding: "18px 0",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <span style={{ fontSize: "0.78rem", color: "#9ca3af" }}>
+            {FOOTER_COPYRIGHT}
+          </span>
+          <div style={{ display: "flex", gap: 20 }}>
+            {F_LEGAL.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                style={{
+                  fontSize: "0.78rem",
+                  color: "#9ca3af",
+                  textDecoration: "none",
+                }}
+                onMouseEnter={(e) =>
+                  ((e.currentTarget as HTMLElement).style.color = "#374151")
+                }
+                onMouseLeave={(e) =>
+                  ((e.currentTarget as HTMLElement).style.color = "#9ca3af")
+                }
+              >
+                {l.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   FOOTER OPTION H — Striped Columns
+   #FAFAFA bg · dotted left borders between columns · Stripe-inspired
+   Brand in first column · structured delineation
+   ───────────────────────────────────────────────────────────── */
+
+function FooterH() {
+  return (
+    <footer
+      style={{
+        background: "#FAFAFA",
+        borderTop: "1px solid #eaecf0",
+        fontFamily: "system-ui, -apple-system, sans-serif",
+      }}
+    >
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "56px 40px 0" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "200px 1fr 1fr 1fr 1fr",
+          }}
+        >
+          {/* Brand column — no left border */}
+          <div style={{ paddingRight: 40 }}>
+            <div
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "0.93rem",
+                fontWeight: 800,
+                letterSpacing: "0.14em",
+                color: "#0f0f0f",
+                marginBottom: 12,
+              }}
+            >
+              {FOOTER_BRAND}
+            </div>
+            <p
+              style={{
+                fontSize: "0.82rem",
+                lineHeight: 1.65,
+                color: "#9ca3af",
+                maxWidth: 155,
+                marginBottom: 28,
+              }}
+            >
+              {FOOTER_TAGLINE}
+            </p>
+            <div style={{ display: "flex", gap: 12 }}>
+              {F_SOCIALS.map(({ Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  style={{ color: "#c4c9d4", display: "flex", transition: "color 0.2s" }}
+                  onMouseEnter={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color = "#374151")
+                  }
+                  onMouseLeave={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color = "#c4c9d4")
+                  }
+                >
+                  <Icon size={16} />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Link columns — dotted left borders */}
+          {([
+            { heading: "Product", links: F_PRODUCT },
+            { heading: "Resources", links: F_RESOURCES },
+            { heading: "Compare", links: F_COMPARE },
+            { heading: "Company", links: F_COMPANY },
+          ] as { heading: string; links: { label: string; href: string }[] }[]).map(
+            ({ heading, links }) => (
+              <div
+                key={heading}
+                style={{
+                  borderLeft: "1px dashed #e0e0e0",
+                  paddingLeft: 32,
+                }}
+              >
+                <div
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "0.67rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.16em",
+                    textTransform: "uppercase",
+                    color: "#111",
+                    marginBottom: 16,
+                  }}
+                >
+                  {heading}
+                </div>
+                <ul
+                  style={{
+                    listStyle: "none",
+                    margin: 0,
+                    padding: 0,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 9,
+                  }}
+                >
+                  {links.map((l) => (
+                    <li key={l.href}>
+                      <Link
+                        href={l.href}
+                        style={{
+                          fontSize: "0.845rem",
+                          color: "#6b7280",
+                          textDecoration: "none",
+                        }}
+                        onMouseEnter={(e) =>
+                          ((e.currentTarget as HTMLElement).style.color = "#111")
+                        }
+                        onMouseLeave={(e) =>
+                          ((e.currentTarget as HTMLElement).style.color = "#6b7280")
+                        }
+                      >
+                        {l.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ),
+          )}
+        </div>
+
+        {/* Bottom */}
+        <div
+          style={{
+            borderTop: "1px solid #eaecf0",
+            marginTop: 48,
+            padding: "18px 0",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <span style={{ fontSize: "0.78rem", color: "#9ca3af" }}>
+            {FOOTER_COPYRIGHT}
+          </span>
+          <div style={{ display: "flex", gap: 20 }}>
+            {F_LEGAL.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                style={{
+                  fontSize: "0.78rem",
+                  color: "#9ca3af",
+                  textDecoration: "none",
+                }}
+                onMouseEnter={(e) =>
+                  ((e.currentTarget as HTMLElement).style.color = "#374151")
+                }
+                onMouseLeave={(e) =>
+                  ((e.currentTarget as HTMLElement).style.color = "#9ca3af")
+                }
+              >
+                {l.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   FOOTER OPTION I — Big Brand Statement
+   Dark bg #0D0D0D · large display headline · 4 columns · social bottom-left
+   Dramatic, editorial, high-impact
+   ───────────────────────────────────────────────────────────── */
+
+function FooterI() {
+  return (
+    <footer
+      style={{
+        background: "#0D0D0D",
+        fontFamily: "system-ui, -apple-system, sans-serif",
+      }}
+    >
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "72px 40px 0" }}>
+        {/* Large statement */}
+        <div style={{ marginBottom: 60, maxWidth: 760 }}>
+          <div
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(2.2rem, 5vw, 3.5rem)",
+              fontWeight: 700,
+              color: "#ffffff",
+              lineHeight: 1.12,
+              letterSpacing: "-0.02em",
+              marginBottom: 20,
+            }}
+          >
+            Your marketing department,{" "}
+            <span style={{ color: "rgba(255,255,255,0.35)" }}>reimagined.</span>
+          </div>
+          <p
+            style={{
+              fontSize: "1rem",
+              color: "rgba(255,255,255,0.38)",
+              maxWidth: 460,
+              lineHeight: 1.65,
+            }}
+          >
+            {FOOTER_TAGLINE}
+          </p>
+        </div>
+
+        {/* 4 columns */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gap: 40,
+          }}
+        >
+          {([
+            { heading: "Product", links: F_PRODUCT },
+            { heading: "Resources", links: F_RESOURCES },
+            { heading: "Compare", links: F_COMPARE },
+            { heading: "Company", links: F_COMPANY },
+          ] as { heading: string; links: { label: string; href: string }[] }[]).map(
+            ({ heading, links }) => (
+              <div key={heading}>
+                <div
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "0.65rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                    color: "rgba(255,255,255,0.3)",
+                    marginBottom: 18,
+                  }}
+                >
+                  {heading}
+                </div>
+                <ul
+                  style={{
+                    listStyle: "none",
+                    margin: 0,
+                    padding: 0,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 11,
+                  }}
+                >
+                  {links.map((l) => (
+                    <li key={l.href}>
+                      <Link
+                        href={l.href}
+                        style={{
+                          fontSize: "0.845rem",
+                          color: "rgba(255,255,255,0.48)",
+                          textDecoration: "none",
+                        }}
+                        onMouseEnter={(e) =>
+                          ((e.currentTarget as HTMLElement).style.color =
+                            "rgba(255,255,255,0.88)")
+                        }
+                        onMouseLeave={(e) =>
+                          ((e.currentTarget as HTMLElement).style.color =
+                            "rgba(255,255,255,0.48)")
+                        }
+                      >
+                        {l.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ),
+          )}
+        </div>
+
+        {/* Bottom */}
+        <div
+          style={{
+            borderTop: "1px solid rgba(255,255,255,0.07)",
+            marginTop: 56,
+            padding: "20px 0",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
+            <span
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "0.78rem",
+                fontWeight: 700,
+                letterSpacing: "0.14em",
+                color: "rgba(255,255,255,0.3)",
+              }}
+            >
+              {FOOTER_BRAND}
+            </span>
+            <div style={{ display: "flex", gap: 12 }}>
+              {F_SOCIALS.map(({ Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  style={{
+                    color: "rgba(255,255,255,0.28)",
+                    display: "flex",
+                    transition: "color 0.2s",
+                  }}
+                  onMouseEnter={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color =
+                      "rgba(255,255,255,0.7)")
+                  }
+                  onMouseLeave={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color =
+                      "rgba(255,255,255,0.28)")
+                  }
+                >
+                  <Icon size={15} />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+            <span
+              style={{
+                fontSize: "0.77rem",
+                color: "rgba(255,255,255,0.2)",
+                marginRight: 16,
+              }}
+            >
+              {FOOTER_COPYRIGHT}
+            </span>
+            {F_LEGAL.map((l, i) => (
+              <span
+                key={l.href}
+                style={{ display: "flex", alignItems: "center", gap: 4 }}
+              >
+                {i > 0 && (
+                  <span
+                    style={{
+                      color: "rgba(255,255,255,0.15)",
+                      fontSize: "0.65rem",
+                    }}
+                  >
+                    &middot;
+                  </span>
+                )}
+                <Link
+                  href={l.href}
+                  style={{
+                    fontSize: "0.77rem",
+                    color: "rgba(255,255,255,0.2)",
+                    textDecoration: "none",
+                  }}
+                  onMouseEnter={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color =
+                      "rgba(255,255,255,0.55)")
+                  }
+                  onMouseLeave={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color =
+                      "rgba(255,255,255,0.2)")
+                  }
+                >
+                  {l.label}
+                </Link>
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   FOOTER OPTION J — Split Footer
+   Top dark #111111: logo + tagline + CTA button
+   Bottom light #FAFAFA: 4 columns + copyright
+   Two distinct zones · strong visual contrast
+   ───────────────────────────────────────────────────────────── */
+
+function FooterJ() {
+  return (
+    <footer style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}>
+      {/* Top dark zone */}
+      <div style={{ background: "#111111", padding: "52px 40px 48px" }}>
+        <div
+          style={{
+            maxWidth: 1200,
+            margin: "0 auto",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: 40,
+          }}
+        >
+          <div>
+            <div
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "1.05rem",
+                fontWeight: 800,
+                letterSpacing: "0.14em",
+                color: "#ffffff",
+                marginBottom: 10,
+              }}
+            >
+              {FOOTER_BRAND}
+            </div>
+            <p
+              style={{
+                fontSize: "0.9rem",
+                color: "rgba(255,255,255,0.42)",
+                maxWidth: 320,
+                lineHeight: 1.6,
+              }}
+            >
+              {FOOTER_TAGLINE}
+            </p>
+          </div>
+
+          <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+            <div style={{ display: "flex", gap: 14 }}>
+              {F_SOCIALS.map(({ Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  style={{
+                    color: "rgba(255,255,255,0.35)",
+                    display: "flex",
+                    transition: "color 0.2s",
+                  }}
+                  onMouseEnter={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color =
+                      "rgba(255,255,255,0.8)")
+                  }
+                  onMouseLeave={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color =
+                      "rgba(255,255,255,0.35)")
+                  }
+                >
+                  <Icon size={17} />
+                </a>
+              ))}
+            </div>
+            <a
+              href="https://app.solaraai.com/auth/signup"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                padding: "10px 24px",
+                background: "#ffffff",
+                color: "#111111",
+                fontSize: "0.84rem",
+                fontWeight: 700,
+                borderRadius: 8,
+                textDecoration: "none",
+                letterSpacing: "0.02em",
+                transition: "all 0.2s",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 6,
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.background = "#f0f0f0";
+                (e.currentTarget as HTMLElement).style.transform =
+                  "translateY(-1px)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.background = "#ffffff";
+                (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+              }}
+            >
+              Start for free
+              <ArrowRight size={13} />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom light zone */}
+      <div
+        style={{
+          background: "#FAFAFA",
+          borderTop: "1px solid #eaecf0",
+          padding: "48px 40px 0",
+        }}
+      >
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gap: 40,
+            }}
+          >
+            {([
+              { heading: "Product", links: F_PRODUCT },
+              { heading: "Resources", links: F_RESOURCES },
+              { heading: "Compare", links: F_COMPARE },
+              { heading: "Company", links: F_COMPANY },
+            ] as { heading: string; links: { label: string; href: string }[] }[]).map(
+              ({ heading, links }) => (
+                <div key={heading}>
+                  <div
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "0.67rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.16em",
+                      textTransform: "uppercase",
+                      color: "#111",
+                      marginBottom: 16,
+                    }}
+                  >
+                    {heading}
+                  </div>
+                  <ul
+                    style={{
+                      listStyle: "none",
+                      margin: 0,
+                      padding: 0,
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 9,
+                    }}
+                  >
+                    {links.map((l) => (
+                      <li key={l.href}>
+                        <Link
+                          href={l.href}
+                          style={{
+                            fontSize: "0.845rem",
+                            color: "#6b7280",
+                            textDecoration: "none",
+                          }}
+                          onMouseEnter={(e) =>
+                            ((e.currentTarget as HTMLElement).style.color = "#111")
+                          }
+                          onMouseLeave={(e) =>
+                            ((e.currentTarget as HTMLElement).style.color = "#6b7280")
+                          }
+                        >
+                          {l.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ),
+            )}
+          </div>
+
+          {/* Bottom bar */}
+          <div
+            style={{
+              borderTop: "1px solid #eaecf0",
+              marginTop: 40,
+              padding: "18px 0",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <span style={{ fontSize: "0.78rem", color: "#9ca3af" }}>
+              {FOOTER_COPYRIGHT}
+            </span>
+            <div style={{ display: "flex", gap: 20 }}>
+              {F_LEGAL.map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  style={{
+                    fontSize: "0.78rem",
+                    color: "#9ca3af",
+                    textDecoration: "none",
+                  }}
+                  onMouseEnter={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color = "#374151")
+                  }
+                  onMouseLeave={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color = "#9ca3af")
+                  }
+                >
+                  {l.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   AGENTS SECTION — SHARED DATA + CONSTANTS
+   ═══════════════════════════════════════════════════════════ */
+
+interface AgentItem {
+  id: string;
+  headline: string;
+  sub: string | null;
+  intro: string;
+  bullets: string[];
+  closer: string;
+}
+
+const AGENTS_LIST: AgentItem[] = [
+  {
+    id: "ads",
+    headline: "Ads Agent",
+    sub: "Google. Meta. TikTok.",
+    intro:
+      "You don't need to guess where budget should go \u2014 or lose sleep wondering if the platform is eating your money.",
+    bullets: [
+      "Allocates budget where performance proves it belongs",
+      "Tests and iterates creatives without chaos",
+      "Kills underperformers and scales winners",
+      "Runs QA checks so campaigns don't drift silently",
+    ],
+    closer: "You approve the direction and guardrails. It executes the loop.",
+  },
+  {
+    id: "social",
+    headline: "Social Agent",
+    sub: null,
+    intro: "Not another prompt box that spits out off-brand captions.",
+    bullets: [
+      "Researches what your audience is actually talking about (real trends, real conversations)",
+      "Builds briefs and posts in the exact format each platform rewards",
+      "Keeps your brand voice consistent everywhere",
+      "Publishes on schedule, every time",
+    ],
+    closer: 'You don\u2019t \u201ctry to be active.\u201d You just are.',
+  },
+  {
+    id: "creative",
+    headline: "Creative Agent",
+    sub: null,
+    intro: "Every brand needs output \u2014 but output without quality is just noise.",
+    bullets: [
+      "Creates ads, posts, carousels, reels, and landing assets",
+      "Enforces your visual identity and tone",
+      "Checks quality before anything goes live",
+      "Keeps the brand looking sharp across every surface",
+    ],
+    closer: "Everything ships like your best day \u2014 consistently.",
+  },
+  {
+    id: "analytics",
+    headline: "Analytics Agent",
+    sub: null,
+    intro: "No more dashboards you stare at and don't trust.",
+    bullets: [
+      "Tells you what's working and why (plain language)",
+      "Flags what's quietly bleeding",
+      "Explains which channel is actually driving growth",
+      "Recommends the next moves with clear reasoning",
+    ],
+    closer: "One brain, one story, one direction \u2014 across all channels.",
+  },
+];
+
+const PROACTIVE_AGENT: AgentItem = {
+  id: "proactive",
+  headline: "Proactive by design",
+  sub: null,
+  intro:
+    "Solara doesn\u2019t wait for instructions. It monitors performance signals, catches problems early, and recommends actions \u2014 with guardrails like:",
+  bullets: [
+    "Budget caps",
+    "Approval thresholds",
+    "Brand rules",
+    '\u201cDo not touch\u201d zones',
+  ],
+  closer: "So it feels powerful \u2014 not risky.",
+};
+
+const AGENTS_E_CSS = `
+  @keyframes agentsBeamH {
+    from { transform: translateX(-120%); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    to   { transform: translateX(220%); opacity: 0; }
+  }
+  @keyframes agentsProactivePulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(15,15,15,0.06); }
+    50%       { box-shadow: 0 0 0 10px rgba(15,15,15,0); }
+  }
+  .agents-e-card { position: relative; overflow: hidden; }
+  .agents-e-beam {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #0f0f0f 50%, transparent 100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .agents-e-card:hover .agents-e-beam {
+    animation: agentsBeamH 0.9s ease-in-out forwards;
+  }
+  .agents-e-proactive {
+    animation: agentsProactivePulse 3s ease-in-out infinite;
+  }
+`;
+
+const AGENTS_RESPONSIVE_CSS = `
+@media (max-width: 768px) {
+  .ag-2col { grid-template-columns: 1fr !important; }
+  .ag-3col { grid-template-columns: 1fr !important; }
+  .ag-12col { grid-template-columns: 1fr !important; }
+  .ag-bento-card { grid-column: span 1 !important; }
+  .ag-pad-lg { padding: 28px 20px !important; }
+  .ag-sticky { position: relative !important; top: auto !important; }
+  .ag-hide-sm { display: none !important; }
+  .ag-scroll-zone { height: auto !important; min-height: 100px !important; }
+  .ag-acc-body { padding: 8px 20px 28px 20px !important; grid-template-columns: 1fr !important; }
+}
+`;
+
+/* ─────────────────────────────────────────────────────────────
+   AGENTS A — Tabbed Agent Panels
+   ───────────────────────────────────────────────────────────── */
+
+function AgentsA() {
+  const [activeTab, setActiveTab] = useState(0);
+  const agent = AGENTS_LIST[activeTab] ?? AGENTS_LIST[0];
+  return (
+    <section style={{ background: "#fafafa", padding: "96px 24px" }}>
+      <style>{AGENTS_RESPONSIVE_CSS}</style>
+      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+        <p
+          style={{
+            fontSize: "0.7rem",
+            fontWeight: 700,
+            letterSpacing: "0.22em",
+            textTransform: "uppercase",
+            color: "#9ca3af",
+            marginBottom: 18,
+          }}
+        >
+          The Agents
+        </p>
+        <h2
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
+            fontWeight: 600,
+            color: "#0f0f0f",
+            marginBottom: 48,
+            letterSpacing: "-0.025em",
+            lineHeight: 1.15,
+          }}
+        >
+          Your autonomous marketing team.
+        </h2>
+
+        {/* Tab bar */}
+        <div style={{ display: "flex", gap: 8, marginBottom: 32, flexWrap: "wrap" }}>
+          {AGENTS_LIST.map((a, i) => (
+            <button
+              key={a.id}
+              onClick={() => setActiveTab(i)}
+              style={{
+                padding: "9px 22px",
+                borderRadius: 8,
+                background: activeTab === i ? "#0f0f0f" : "#f3f4f6",
+                color: activeTab === i ? "#ffffff" : "#6b7280",
+                border: "none",
+                cursor: "pointer",
+                fontFamily: "var(--font-display)",
+                fontSize: "0.875rem",
+                fontWeight: 600,
+                transition: "background 0.18s, color 0.18s",
+                letterSpacing: "-0.01em",
+              }}
+            >
+              {a.headline}
+            </button>
+          ))}
+        </div>
+
+        {/* Content panel */}
+        <motion.div className="ag-2col ag-pad-lg"
+          key={activeTab}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.28, ease: EASE }}
+          style={{
+            background: "#ffffff",
+            border: "1px solid #eaecf0",
+            borderRadius: 16,
+            padding: "48px 52px",
+            marginBottom: 20,
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 56,
+          }}
+        >
+          <div>
+            <h3
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "1.625rem",
+                fontWeight: 600,
+                color: "#0f0f0f",
+                letterSpacing: "-0.02em",
+                marginBottom: agent.sub ? 8 : 20,
+              }}
+            >
+              {agent.headline}
+            </h3>
+            {agent.sub && (
+              <p
+                style={{
+                  fontSize: "0.75rem",
+                  color: "#9ca3af",
+                  marginBottom: 20,
+                  fontWeight: 700,
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                }}
+              >
+                {agent.sub}
+              </p>
+            )}
+            <p style={{ fontSize: "1.0625rem", lineHeight: 1.72, color: "#374151" }}>
+              {agent.intro}
+            </p>
+          </div>
+          <div>
+            <ul
+              style={{
+                listStyle: "none",
+                padding: 0,
+                margin: "0 0 28px 0",
+                display: "flex",
+                flexDirection: "column",
+                gap: 14,
+              }}
+            >
+              {agent.bullets.map((bullet) => (
+                <li key={bullet} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+                  <Check size={13} style={{ color: "#0f0f0f", marginTop: 4, flexShrink: 0 }} />
+                  <span style={{ fontSize: "0.9375rem", color: "#374151", lineHeight: 1.65 }}>{bullet}</span>
+                </li>
+              ))}
+            </ul>
+            <p style={{ fontSize: "0.9375rem", color: "#6b7280", fontStyle: "italic", lineHeight: 1.65 }}>
+              {agent.closer}
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Proactive \u2014 always visible */}
+        <div className="ag-2col ag-pad-lg"
+          style={{
+            background: "#ffffff",
+            border: "1px solid #eaecf0",
+            borderRadius: 16,
+            padding: "40px 52px",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 56,
+          }}
+        >
+          <div>
+            <h3
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "1.375rem",
+                fontWeight: 600,
+                color: "#0f0f0f",
+                letterSpacing: "-0.02em",
+                marginBottom: 16,
+              }}
+            >
+              {PROACTIVE_AGENT.headline}
+            </h3>
+            <p style={{ fontSize: "1rem", lineHeight: 1.72, color: "#374151" }}>
+              {PROACTIVE_AGENT.intro}
+            </p>
+          </div>
+          <div>
+            <ul
+              style={{
+                listStyle: "none",
+                padding: 0,
+                margin: "0 0 24px 0",
+                display: "flex",
+                flexDirection: "column",
+                gap: 12,
+              }}
+            >
+              {PROACTIVE_AGENT.bullets.map((b) => (
+                <li key={b} style={{ display: "flex", gap: 12, alignItems: "center" }}>
+                  <Check size={13} style={{ color: "#0f0f0f", flexShrink: 0 }} />
+                  <span style={{ fontSize: "0.9375rem", color: "#374151" }}>{b}</span>
+                </li>
+              ))}
+            </ul>
+            <p style={{ fontSize: "0.9375rem", color: "#6b7280", fontStyle: "italic" }}>
+              {PROACTIVE_AGENT.closer}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   AGENTS B — Bento Grid
+   ───────────────────────────────────────────────────────────── */
+
+function AgentsB() {
+  const BENTO_CONFIG: { agent: AgentItem; span: number }[] = [
+    { agent: AGENTS_LIST[0]!, span: 7 },
+    { agent: AGENTS_LIST[1]!, span: 5 },
+    { agent: AGENTS_LIST[2]!, span: 5 },
+    { agent: AGENTS_LIST[3]!, span: 7 },
+  ];
+  return (
+    <section style={{ background: "#ffffff", padding: "96px 24px" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+        <p
+          style={{
+            fontSize: "0.7rem",
+            fontWeight: 700,
+            letterSpacing: "0.22em",
+            textTransform: "uppercase",
+            color: "#9ca3af",
+            marginBottom: 18,
+          }}
+        >
+          The Agents
+        </p>
+        <h2
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
+            fontWeight: 600,
+            color: "#0f0f0f",
+            marginBottom: 52,
+            letterSpacing: "-0.025em",
+            lineHeight: 1.15,
+          }}
+        >
+          Four specialists. One system.
+        </h2>
+
+        <div className="ag-12col" style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: 16 }}>
+          {BENTO_CONFIG.map(({ agent, span }, i) => (
+            <motion.div className="ag-bento-card"
+              key={agent.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.08, ease: EASE }}
+              viewport={{ once: true, margin: "-40px" }}
+              whileHover={{ boxShadow: "0 12px 40px rgba(0,0,0,0.08)", y: -3, borderColor: "#d1d5db" }}
+              style={{
+                gridColumn: `span ${span}`,
+                border: "1px solid #eaecf0",
+                borderRadius: 16,
+                padding: "40px",
+                background: "#fafafa",
+                display: "flex",
+                flexDirection: "column",
+                gap: 20,
+              }}
+            >
+              <div>
+                <h3
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "1.25rem",
+                    fontWeight: 600,
+                    color: "#0f0f0f",
+                    letterSpacing: "-0.02em",
+                    marginBottom: agent.sub ? 4 : 0,
+                  }}
+                >
+                  {agent.headline}
+                </h3>
+                {agent.sub && (
+                  <p
+                    style={{
+                      fontSize: "0.72rem",
+                      color: "#9ca3af",
+                      fontWeight: 700,
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    {agent.sub}
+                  </p>
+                )}
+              </div>
+              <p style={{ fontSize: "0.9375rem", lineHeight: 1.68, color: "#374151" }}>
+                {agent.intro}
+              </p>
+              <ul
+                style={{
+                  listStyle: "none",
+                  padding: 0,
+                  margin: 0,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 10,
+                  flex: 1,
+                }}
+              >
+                {agent.bullets.map((b) => (
+                  <li key={b} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+                    <Check size={12} style={{ color: "#6b7280", marginTop: 3, flexShrink: 0 }} />
+                    <span style={{ fontSize: "0.875rem", color: "#4b5563", lineHeight: 1.6 }}>{b}</span>
+                  </li>
+                ))}
+              </ul>
+              <p
+                style={{
+                  fontSize: "0.875rem",
+                  color: "#6b7280",
+                  fontStyle: "italic",
+                  lineHeight: 1.55,
+                  borderTop: "1px solid #f3f4f6",
+                  paddingTop: 16,
+                }}
+              >
+                {agent.closer}
+              </p>
+            </motion.div>
+          ))}
+
+          {/* Proactive \u2014 full width accent card */}
+          <motion.div className="ag-3col ag-bento-card ag-pad-lg"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.32, ease: EASE }}
+            viewport={{ once: true, margin: "-40px" }}
+            style={{
+              gridColumn: "span 12",
+              border: "1px solid #eaecf0",
+              borderRadius: 16,
+              padding: "44px 52px",
+              background: "#0f0f0f",
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr 1fr",
+              gap: 48,
+              alignItems: "start",
+            }}
+          >
+            <div>
+              <h3
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "1.5rem",
+                  fontWeight: 600,
+                  color: "#f9fafb",
+                  letterSpacing: "-0.02em",
+                  marginBottom: 16,
+                }}
+              >
+                {PROACTIVE_AGENT.headline}
+              </h3>
+              <p style={{ fontSize: "0.9375rem", lineHeight: 1.7, color: "rgba(249,250,251,0.7)" }}>
+                {PROACTIVE_AGENT.intro}
+              </p>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12, paddingTop: 4 }}>
+              {PROACTIVE_AGENT.bullets.map((b) => (
+                <div key={b} style={{ display: "flex", gap: 10, alignItems: "center" }}>
+                  <Check size={12} style={{ color: "rgba(249,250,251,0.5)", flexShrink: 0 }} />
+                  <span style={{ fontSize: "0.9375rem", color: "rgba(249,250,251,0.8)" }}>{b}</span>
+                </div>
+              ))}
+            </div>
+            <div style={{ display: "flex", alignItems: "flex-end" }}>
+              <p
+                style={{
+                  fontSize: "1.0625rem",
+                  color: "rgba(249,250,251,0.9)",
+                  fontStyle: "italic",
+                  lineHeight: 1.6,
+                }}
+              >
+                {PROACTIVE_AGENT.closer}
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   AGENTS C — Sticky Scroll Reveal
+   ───────────────────────────────────────────────────────────── */
+
+function AgentsC() {
+  const [activeC, setActiveC] = useState(0);
+  const agent = AGENTS_LIST[activeC] ?? AGENTS_LIST[0];
+  return (
+    <section style={{ background: "#fafafa" }}>
+      {/* Top heading */}
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "96px 24px 56px" }}>
+        <p
+          style={{
+            fontSize: "0.7rem",
+            fontWeight: 700,
+            letterSpacing: "0.22em",
+            textTransform: "uppercase",
+            color: "#9ca3af",
+            marginBottom: 18,
+          }}
+        >
+          The Agents
+        </p>
+        <h2
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
+            fontWeight: 600,
+            color: "#0f0f0f",
+            letterSpacing: "-0.025em",
+            lineHeight: 1.15,
+          }}
+        >
+          Scroll through the stack.
+        </h2>
+      </div>
+
+      {/* Two-column sticky layout */}
+      <div className="ag-2col"
+        style={{
+          maxWidth: 1200,
+          margin: "0 auto",
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 40,
+          alignItems: "start",
+          paddingBottom: 96,
+          paddingLeft: 24,
+          paddingRight: 24,
+        }}
+      >
+        {/* LEFT \u2014 sticky content */}
+        <div className="ag-sticky" style={{ position: "sticky", top: 100 }}>
+          <motion.div
+            key={activeC}
+            initial={{ opacity: 0, x: -16 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.35, ease: EASE }}
+            style={{
+              background: "#ffffff",
+              border: "1px solid #eaecf0",
+              borderRadius: 16,
+              padding: "44px 48px",
+            }}
+          >
+            {/* Progress dots */}
+            <div style={{ display: "flex", gap: 6, marginBottom: 32 }}>
+              {AGENTS_LIST.map((_, di) => (
+                <div
+                  key={di}
+                  style={{
+                    width: di === activeC ? 20 : 6,
+                    height: 6,
+                    borderRadius: 3,
+                    background: di === activeC ? "#0f0f0f" : "#e5e7eb",
+                    transition: "width 0.3s, background 0.3s",
+                  }}
+                />
+              ))}
+            </div>
+            <h3
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "1.75rem",
+                fontWeight: 600,
+                color: "#0f0f0f",
+                letterSpacing: "-0.02em",
+                marginBottom: agent.sub ? 6 : 18,
+              }}
+            >
+              {agent.headline}
+            </h3>
+            {agent.sub && (
+              <p
+                style={{
+                  fontSize: "0.72rem",
+                  color: "#9ca3af",
+                  fontWeight: 700,
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  marginBottom: 18,
+                }}
+              >
+                {agent.sub}
+              </p>
+            )}
+            <p
+              style={{
+                fontSize: "1.0625rem",
+                lineHeight: 1.72,
+                color: "#374151",
+                marginBottom: 28,
+              }}
+            >
+              {agent.intro}
+            </p>
+            <ul
+              style={{
+                listStyle: "none",
+                padding: 0,
+                margin: "0 0 28px 0",
+                display: "flex",
+                flexDirection: "column",
+                gap: 13,
+              }}
+            >
+              {agent.bullets.map((b) => (
+                <li key={b} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+                  <Check size={13} style={{ color: "#0f0f0f", marginTop: 3, flexShrink: 0 }} />
+                  <span style={{ fontSize: "0.9375rem", color: "#374151", lineHeight: 1.65 }}>{b}</span>
+                </li>
+              ))}
+            </ul>
+            <p
+              style={{
+                fontSize: "0.9375rem",
+                color: "#6b7280",
+                fontStyle: "italic",
+                lineHeight: 1.6,
+                borderTop: "1px solid #f3f4f6",
+                paddingTop: 20,
+              }}
+            >
+              {agent.closer}
+            </p>
+          </motion.div>
+        </div>
+
+        {/* RIGHT \u2014 scrollable trigger zones */}
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          {AGENTS_LIST.map((a, ti) => (
+            <motion.div className="ag-scroll-zone"
+              key={a.id}
+              onViewportEnter={() => setActiveC(ti)}
+              viewport={{ amount: 0.5 }}
+              onClick={() => setActiveC(ti)}
+              style={{
+                height: "60vh",
+                minHeight: 360,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: 16,
+                  opacity: activeC === ti ? 1 : 0.35,
+                  transition: "opacity 0.3s",
+                }}
+              >
+                <div
+                  style={{
+                    width: 56,
+                    height: 56,
+                    borderRadius: "50%",
+                    background: activeC === ti ? "#0f0f0f" : "#f3f4f6",
+                    border: "1px solid",
+                    borderColor: activeC === ti ? "#0f0f0f" : "#eaecf0",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    transition: "background 0.3s, border-color 0.3s",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "0.875rem",
+                      fontWeight: 700,
+                      color: activeC === ti ? "#fff" : "#6b7280",
+                      transition: "color 0.3s",
+                    }}
+                  >
+                    0{ti + 1}
+                  </span>
+                </div>
+                <p
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "1rem",
+                    fontWeight: 600,
+                    color: "#0f0f0f",
+                    letterSpacing: "-0.01em",
+                  }}
+                >
+                  {a.headline}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Proactive \u2014 full-width, below scroll */}
+      <div style={{ background: "#ffffff", borderTop: "1px solid #eaecf0" }}>
+        <div className="ag-2col"
+          style={{
+            maxWidth: 1200,
+            margin: "0 auto",
+            padding: "72px 24px",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 64,
+          }}
+        >
+          <div>
+            <h3
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "1.75rem",
+                fontWeight: 600,
+                color: "#0f0f0f",
+                letterSpacing: "-0.02em",
+                marginBottom: 18,
+              }}
+            >
+              {PROACTIVE_AGENT.headline}
+            </h3>
+            <p style={{ fontSize: "1.0625rem", lineHeight: 1.72, color: "#374151" }}>
+              {PROACTIVE_AGENT.intro}
+            </p>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+            <ul
+              style={{
+                listStyle: "none",
+                padding: 0,
+                margin: "0 0 28px 0",
+                display: "flex",
+                flexDirection: "column",
+                gap: 14,
+              }}
+            >
+              {PROACTIVE_AGENT.bullets.map((b) => (
+                <li key={b} style={{ display: "flex", gap: 12, alignItems: "center" }}>
+                  <Check size={13} style={{ color: "#0f0f0f", flexShrink: 0 }} />
+                  <span style={{ fontSize: "0.9375rem", color: "#374151" }}>{b}</span>
+                </li>
+              ))}
+            </ul>
+            <p style={{ fontSize: "1.0625rem", color: "#6b7280", fontStyle: "italic", lineHeight: 1.6 }}>
+              {PROACTIVE_AGENT.closer}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   AGENTS D — Vertical Accordion
+   ───────────────────────────────────────────────────────────── */
+
+function AgentsD() {
+  const [expanded, setExpanded] = useState<number>(0);
+  const allItems: AgentItem[] = [...AGENTS_LIST, PROACTIVE_AGENT];
+  return (
+    <section style={{ background: "#ffffff", padding: "96px 24px" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+        <p
+          style={{
+            fontSize: "0.7rem",
+            fontWeight: 700,
+            letterSpacing: "0.22em",
+            textTransform: "uppercase",
+            color: "#9ca3af",
+            marginBottom: 18,
+          }}
+        >
+          The Agents
+        </p>
+        <h2
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
+            fontWeight: 600,
+            color: "#0f0f0f",
+            marginBottom: 52,
+            letterSpacing: "-0.025em",
+            lineHeight: 1.15,
+          }}
+        >
+          Everything in its place.
+        </h2>
+        <div style={{ border: "1px solid #eaecf0", borderRadius: 16, overflow: "hidden" }}>
+          {allItems.map((item, ai) => {
+            const isOpen = expanded === ai;
+            const isLast = ai === allItems.length - 1;
+            return (
+              <div
+                key={item.id}
+                style={{ borderBottom: isLast ? "none" : "1px solid #eaecf0" }}
+              >
+                {/* Header row */}
+                <button
+                  onClick={() => setExpanded(isOpen ? -1 : ai)}
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 20,
+                    padding: "22px 32px",
+                    background: isOpen ? "#fafafa" : "transparent",
+                    border: "none",
+                    cursor: "pointer",
+                    textAlign: "left",
+                    transition: "background 0.15s",
+                  }}
+                >
+                  {/* Accent bar */}
+                  <div
+                    style={{
+                      width: 3,
+                      height: 20,
+                      borderRadius: 2,
+                      background: isOpen ? "#0f0f0f" : "#e5e7eb",
+                      transition: "background 0.2s",
+                      flexShrink: 0,
+                    }}
+                  />
+                  <span
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "1.0625rem",
+                      fontWeight: 600,
+                      color: isOpen ? "#0f0f0f" : "#374151",
+                      letterSpacing: "-0.015em",
+                      flex: 1,
+                      transition: "color 0.2s",
+                    }}
+                  >
+                    {item.headline}
+                  </span>
+                  {item.sub && (
+                    <span
+                      style={{
+                        fontSize: "0.72rem",
+                        color: "#9ca3af",
+                        fontWeight: 700,
+                        letterSpacing: "0.1em",
+                        textTransform: "uppercase",
+                        marginRight: 12,
+                      }}
+                    >
+                      {item.sub}
+                    </span>
+                  )}
+                  {!isOpen && (
+                    <span className="ag-hide-sm"
+                      style={{
+                        fontSize: "0.8125rem",
+                        color: "#9ca3af",
+                        marginRight: 16,
+                        maxWidth: 300,
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {item.intro.substring(0, 55)}\u2026
+                    </span>
+                  )}
+                  <motion.div
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.2 }}
+                    style={{ flexShrink: 0 }}
+                  >
+                    <ChevronDown size={18} style={{ color: isOpen ? "#0f0f0f" : "#9ca3af" }} />
+                  </motion.div>
+                </button>
+
+                {/* Expandable body \u2014 CSS grid trick for smooth height animation */}
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateRows: isOpen ? "1fr" : "0fr",
+                    transition: "grid-template-rows 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+                  }}
+                >
+                  <div style={{ overflow: "hidden", minHeight: 0 }}>
+                    <div className="ag-2col ag-acc-body"
+                      style={{
+                        padding: "8px 32px 32px 55px",
+                        display: "grid",
+                        gridTemplateColumns: "1fr 1fr",
+                        gap: 48,
+                      }}
+                    >
+                      <p style={{ fontSize: "1rem", lineHeight: 1.72, color: "#374151" }}>
+                        {item.intro}
+                      </p>
+                      <div>
+                        <ul
+                          style={{
+                            listStyle: "none",
+                            padding: 0,
+                            margin: "0 0 20px 0",
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: 12,
+                          }}
+                        >
+                          {item.bullets.map((b) => (
+                            <li key={b} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+                              <Check size={12} style={{ color: "#0f0f0f", marginTop: 3, flexShrink: 0 }} />
+                              <span style={{ fontSize: "0.9rem", color: "#374151", lineHeight: 1.65 }}>{b}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <p style={{ fontSize: "0.9rem", color: "#6b7280", fontStyle: "italic", lineHeight: 1.6 }}>
+                          {item.closer}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   AGENTS E — Animated Feature Cards (most creative)
+   ───────────────────────────────────────────────────────────── */
+
+function AgentsE() {
+  return (
+    <section style={{ background: "#fafafa", padding: "96px 24px" }}>
+      <style>{AGENTS_E_CSS}</style>
+      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+        <p
+          style={{
+            fontSize: "0.7rem",
+            fontWeight: 700,
+            letterSpacing: "0.22em",
+            textTransform: "uppercase",
+            color: "#9ca3af",
+            marginBottom: 18,
+          }}
+        >
+          The Agents
+        </p>
+        <h2
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
+            fontWeight: 600,
+            color: "#0f0f0f",
+            marginBottom: 52,
+            letterSpacing: "-0.025em",
+            lineHeight: 1.15,
+          }}
+        >
+          Specialists that never clock out.
+        </h2>
+
+        {/* 2\u00d72 card grid */}
+        <div className="ag-2col"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap: 20,
+            marginBottom: 20,
+          }}
+        >
+          {AGENTS_LIST.map((agent, ei) => (
+            <motion.div
+              key={agent.id}
+              className="agents-e-card"
+              initial={{ opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: ei * 0.1, ease: EASE }}
+              viewport={{ once: true, margin: "-60px" }}
+              style={{
+                background: "#ffffff",
+                border: "1px solid #eaecf0",
+                borderRadius: 16,
+                padding: "40px",
+                overflow: "hidden",
+                display: "flex",
+                flexDirection: "column",
+                gap: 20,
+              }}
+            >
+              <div className="agents-e-beam" />
+              <span
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "0.65rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  color: "#d1d5db",
+                }}
+              >
+                0{ei + 1} / 04
+              </span>
+              <div>
+                <h3
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "1.5rem",
+                    fontWeight: 600,
+                    color: "#0f0f0f",
+                    letterSpacing: "-0.02em",
+                    marginBottom: agent.sub ? 6 : 0,
+                  }}
+                >
+                  {agent.headline}
+                </h3>
+                {agent.sub && (
+                  <p
+                    style={{
+                      fontSize: "0.72rem",
+                      color: "#9ca3af",
+                      fontWeight: 700,
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    {agent.sub}
+                  </p>
+                )}
+              </div>
+              <p style={{ fontSize: "0.9375rem", lineHeight: 1.7, color: "#374151" }}>
+                {agent.intro}
+              </p>
+              <ul
+                style={{
+                  listStyle: "none",
+                  padding: 0,
+                  margin: 0,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 11,
+                  flex: 1,
+                }}
+              >
+                {agent.bullets.map((b) => (
+                  <li key={b} style={{ display: "flex", gap: 11, alignItems: "flex-start" }}>
+                    <Check size={12} style={{ color: "#0f0f0f", marginTop: 3, flexShrink: 0 }} />
+                    <span style={{ fontSize: "0.875rem", color: "#4b5563", lineHeight: 1.65 }}>{b}</span>
+                  </li>
+                ))}
+              </ul>
+              <p
+                style={{
+                  fontSize: "0.875rem",
+                  color: "#6b7280",
+                  fontStyle: "italic",
+                  lineHeight: 1.55,
+                  paddingTop: 16,
+                  borderTop: "1px solid #f3f4f6",
+                }}
+              >
+                {agent.closer}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Proactive \u2014 centered callout with pulsing border */}
+        <motion.div
+          className="agents-e-proactive ag-pad-lg"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, delay: 0.4, ease: EASE }}
+          viewport={{ once: true, margin: "-40px" }}
+          style={{
+            background: "#ffffff",
+            border: "1px solid #e5e7eb",
+            borderRadius: 16,
+            padding: "56px 72px",
+            textAlign: "center",
+          }}
+        >
+          <h3
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "1.875rem",
+              fontWeight: 600,
+              color: "#0f0f0f",
+              letterSpacing: "-0.025em",
+              marginBottom: 18,
+            }}
+          >
+            {PROACTIVE_AGENT.headline}
+          </h3>
+          <p
+            style={{
+              fontSize: "1.0625rem",
+              lineHeight: 1.72,
+              color: "#374151",
+              maxWidth: 640,
+              margin: "0 auto 32px",
+            }}
+          >
+            {PROACTIVE_AGENT.intro}
+          </p>
+          <div
+            style={{
+              display: "flex",
+              gap: 32,
+              justifyContent: "center",
+              flexWrap: "wrap",
+              marginBottom: 36,
+            }}
+          >
+            {PROACTIVE_AGENT.bullets.map((b) => (
+              <div key={b} style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                <Check size={13} style={{ color: "#0f0f0f", flexShrink: 0 }} />
+                <span style={{ fontSize: "0.9375rem", color: "#374151" }}>{b}</span>
+              </div>
+            ))}
+          </div>
+          <p
+            style={{
+              fontSize: "1.125rem",
+              color: "#0f0f0f",
+              fontStyle: "italic",
+              fontWeight: 500,
+            }}
+          >
+            {PROACTIVE_AGENT.closer}
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 /* ═══════════════════════════════════════════════════════════
    PREVIEW PAGE
    ═══════════════════════════════════════════════════════════ */
@@ -1550,6 +4833,85 @@ export default function PreviewPage() {
 
       <OptionDivider label="Option E — Dark Pricing (Dark bg · Dot grid · Glow blob · White text)" />
       <OptionE />
+
+      {/* Footer Section */}
+      <div className="mt-24 mb-8 text-center">
+        <h2
+          style={{
+            fontSize: "2rem",
+            fontFamily: "var(--font-display)",
+            fontWeight: 500,
+            color: "#e5e5e5",
+          }}
+        >
+          Footer Options
+        </h2>
+        <p style={{ color: "#888", marginTop: 8 }}>
+          10 design directions for the site footer
+        </p>
+      </div>
+
+      <OptionDivider label="Footer A \u2014 Clean Light (White bg \u00b7 5-column grid \u00b7 Atomic-inspired)" />
+      <FooterA />
+
+      <OptionDivider label="Footer B \u2014 Minimal Dark (\u00230a0a0a bg \u00b7 Circle social icons \u00b7 Linear-inspired)" />
+      <FooterB />
+
+      <OptionDivider label="Footer C \u2014 Two-Row (Light bg \u00b7 Brand+Product top \u00b7 Resources+Compare+Social bottom)" />
+      <FooterC />
+
+      <OptionDivider label="Footer D \u2014 Centered (White bg \u00b7 Everything centered \u00b7 Symmetrical grid)" />
+      <FooterD />
+
+      <OptionDivider label="Footer E \u2014 Dark Gradient Accent (\u00230404006 bg \u00b7 Rainbow top line \u00b7 Glow hover on social)" />
+      <FooterE />
+
+      <OptionDivider label="Footer F \u2014 Compact Single-Row (Light bg \u00b7 One horizontal row \u00b7 Ultra-minimal)" />
+      <FooterF />
+
+      <OptionDivider label="Footer G \u2014 Newsletter CTA (White bg \u00b7 Email input left \u00b7 4 link columns right)" />
+      <FooterG />
+
+      <OptionDivider label="Footer H \u2014 Striped Columns (Light bg \u00b7 Dotted vertical borders \u00b7 Stripe-inspired)" />
+      <FooterH />
+
+      <OptionDivider label="Footer I \u2014 Big Brand Statement (Dark bg \u00b7 Large display headline \u00b7 Dramatic)" />
+      <FooterI />
+
+      <OptionDivider label="Footer J \u2014 Split Footer (Dark top zone \u00b7 Light bottom zone \u00b7 Two-part layout)" />
+      <FooterJ />
+
+      {/* Agents Section */}
+      <div className="mt-24 mb-8 text-center">
+        <h2
+          style={{
+            fontSize: "2rem",
+            fontFamily: "var(--font-display)",
+            fontWeight: 500,
+            color: "#e5e5e5",
+          }}
+        >
+          Agents Section Options
+        </h2>
+        <p style={{ color: "#888", marginTop: 8 }}>
+          5 design directions for Section 3 — The Agents
+        </p>
+      </div>
+
+      <OptionDivider label="Agents A \u2014 Tabbed Agent Panels (Tab bar \u00b7 Content panel \u00b7 Proactive block always visible)" />
+      <AgentsA />
+
+      <OptionDivider label="Agents B \u2014 Bento Grid (Asymmetric 12-col \u00b7 Hover glow \u00b7 Dark proactive card)" />
+      <AgentsB />
+
+      <OptionDivider label="Agents C \u2014 Sticky Scroll Reveal (Left sticky panel \u00b7 Right scroll triggers \u00b7 Live content update)" />
+      <AgentsC />
+
+      <OptionDivider label="Agents D \u2014 Vertical Accordion (Stacked rows \u00b7 First open \u00b7 CSS grid height animation)" />
+      <AgentsD />
+
+      <OptionDivider label="Agents E \u2014 Animated Feature Cards (Stagger whileInView \u00b7 Border beam hover \u00b7 Pulsing proactive callout)" />
+      <AgentsE />
     </div>
   );
 }

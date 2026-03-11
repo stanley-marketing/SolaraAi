@@ -41,10 +41,10 @@ const PARTICLES: ParticleData[] = Array.from({ length: 45 }, (_, i): ParticleDat
     delay: -Math.round((i / 45) * dur * 100) / 100,
     color:
       i % 3 === 0
-        ? "rgba(168,85,247,0.85)"
+        ? "rgba(168,85,247,0.18)"
         : i % 3 === 1
-          ? "rgba(236,72,153,0.7)"
-          : "rgba(255,255,255,0.55)",
+          ? "rgba(200,180,220,0.14)"
+          : "rgba(0,0,0,0.06)",
   };
 });
 
@@ -86,7 +86,7 @@ export function CtaSection() {
       <style>{KEYFRAMES}</style>
       <section
         className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 py-28"
-        style={{ background: "#0a0a0a" }}
+        style={{ background: "#fafafa" }}
       >
         {/* Aurora blob 1 — purple, drifts upper-center */}
         <div
@@ -97,7 +97,7 @@ export function CtaSection() {
             width: "620px",
             height: "520px",
             background:
-              "radial-gradient(ellipse, rgba(168,85,247,0.26) 0%, rgba(236,72,153,0.14) 50%, transparent 72%)",
+              "radial-gradient(ellipse, rgba(168,85,247,0.06) 0%, rgba(236,72,153,0.03) 50%, transparent 72%)",
             filter: "blur(105px)",
             animation: "cta-blob1 21s ease-in-out infinite",
           }}
@@ -112,7 +112,7 @@ export function CtaSection() {
             width: "520px",
             height: "430px",
             background:
-              "radial-gradient(ellipse, rgba(251,146,60,0.2) 0%, rgba(236,72,153,0.12) 50%, transparent 72%)",
+              "radial-gradient(ellipse, rgba(251,146,60,0.05) 0%, rgba(236,72,153,0.025) 50%, transparent 72%)",
             filter: "blur(115px)",
             animation: "cta-blob2 19s ease-in-out infinite",
           }}
@@ -128,7 +128,7 @@ export function CtaSection() {
             width: "820px",
             height: "380px",
             background:
-              "radial-gradient(ellipse at center, rgba(168,85,247,0.12) 0%, rgba(236,72,153,0.07) 55%, transparent 78%)",
+              "radial-gradient(ellipse at center, rgba(168,85,247,0.04) 0%, rgba(236,72,153,0.02) 55%, transparent 78%)",
             filter: "blur(65px)",
             animation: "cta-glow-breathe 6s ease-in-out infinite",
           }}
@@ -160,7 +160,7 @@ export function CtaSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.85, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="text-5xl font-bold leading-tight tracking-tight md:text-6xl"
-            style={{ color: "#ffffff" }}
+            style={{ color: "#0a0a0a" }}
           >
             {HEADLINE}
           </motion.h2>
@@ -171,7 +171,7 @@ export function CtaSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
             className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed"
-            style={{ color: "#737373" }}
+            style={{ color: "#6b7280" }}
           >
             {BODY_1}
           </motion.p>
@@ -182,7 +182,7 @@ export function CtaSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.52, ease: [0.16, 1, 0.3, 1] }}
             className="mx-auto mt-4 max-w-2xl text-xl font-semibold leading-relaxed"
-            style={{ color: "#e5e5e5" }}
+            style={{ color: "#1a1a1a" }}
           >
             You don&apos;t need a department anymore.{" "}
             <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 bg-clip-text text-transparent">
@@ -196,7 +196,7 @@ export function CtaSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.68 }}
             className="mt-5 text-sm font-medium uppercase tracking-[0.22em]"
-            style={{ color: "#525252" }}
+            style={{ color: "#6b7280" }}
           >
             {SUBLINE}
           </motion.p>
@@ -214,8 +214,8 @@ export function CtaSection() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-8 py-4 text-base font-bold transition-all duration-200 hover:scale-[1.03] active:scale-[0.97]"
               style={{
-                background: "#ffffff",
-                color: "#0a0a0a",
+                background: "#0a0a0a",
+                color: "#ffffff",
                 borderRadius: "999px",
                 letterSpacing: "0.01em",
               }}
@@ -226,11 +226,11 @@ export function CtaSection() {
               href={CTA_SECONDARY_HREF}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-4 text-base font-medium transition-all duration-200 hover:bg-white/8"
+              className="inline-flex items-center justify-center px-8 py-4 text-base font-medium transition-all duration-200 hover:bg-black/5"
               style={{
                 background: "transparent",
-                color: "#ffffff",
-                border: "1.5px solid rgba(255,255,255,0.28)",
+                color: "#0a0a0a",
+                border: "1.5px solid rgba(0,0,0,0.2)",
                 borderRadius: "999px",
               }}
             >
@@ -244,7 +244,7 @@ export function CtaSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 1.05 }}
             className="mt-8 text-sm"
-            style={{ color: "#525252" }}
+            style={{ color: "#9ca3af" }}
           >
             {REASSURANCE}
           </motion.p>

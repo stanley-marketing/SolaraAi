@@ -8,12 +8,14 @@ import { BeamHubSection } from "@/components/BeamHubSection";
 import { ServicesSection } from "@/components/ServicesSection";
 import { AdvantageSection } from "@/components/AdvantageSection";
 import { PricingSection } from "@/components/PricingSection";
-import { BeliefSection } from "@/components/BeliefSection";
+
 import { CtaSection } from "@/components/CtaSection";
+import { Footer } from "@/components/Footer";
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-white text-ink-900">
-      <TopNav />
+    <>
+      <main className="relative min-h-screen bg-white text-ink-900">
+        <TopNav />
 
       {/* Hero */}
       <AuroraBackground
@@ -87,12 +89,14 @@ export default function Home() {
           <BeamHubSection />
 
           {/* Remaining placeholder sections */}
-          <ServicesSection />
+          {/* <ServicesSection /> */}
           <AdvantageSection />
           <PricingSection />
-          <BeliefSection />
+
 
           <CtaSection />
-    </main>
+      </main>
+      <Footer />
+    </>
   );
 }
