@@ -35,7 +35,7 @@ export function BeamHubSection() {
   const leadsRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section className="border-t border-gray-100 px-6 py-28 sm:px-10">
+    <section className="px-6 py-28 sm:px-10">
 
       <div className="mx-auto max-w-3xl text-center">
         <BlurFade delay={0.15}>
