@@ -282,21 +282,9 @@ export function AgentsSection() {
               Four specialized agents that run your ads, content, creative, and analytics &mdash; so you can focus on growing.
             </p>
             <a
-              href="/pricing"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                padding: "12px 28px",
-                fontSize: "0.9375rem",
-                fontWeight: 600,
-                color: "#ffffff",
-                background: "#0f0f0f",
-                borderRadius: 10,
-                textDecoration: "none",
-                letterSpacing: "-0.01em",
-                transition: "background 0.2s",
-              }}
+              href="/contact"
+              className="inline-flex items-center rounded-[999px] bg-black px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-white transition-colors duration-200 hover:bg-gray-700"
+              style={{ textDecoration: "none" }}
             >
               Get started
             </a>
@@ -427,47 +415,19 @@ export function AgentsSection() {
 
 
       {/* Coming Next \u2014 Premium Bento */}
-      <div style={{ background: "#0a0a0a", marginTop: 40 }}>
+      <div style={{ background: "#fafafa", marginTop: 0 }}>
         <style>{`
-            @keyframes cn-top-beam {
-              0% { background-position: -200% 0; }
-              100% { background-position: 200% 0; }
-            }
-            @keyframes cn-shimmer {
-              0% { background-position: 200% center; }
-              100% { background-position: -200% center; }
-            }
             .cn-card {
               position: relative;
               overflow: hidden;
               border-radius: 16px;
-              border: 1px solid rgba(255,255,255,0.07);
-              background: rgba(255,255,255,0.025);
-              transition: border-color 0.4s ease, box-shadow 0.4s ease;
+              border: 1px solid #eaecf0;
+              background: #ffffff;
+              transition: border-color 0.35s ease, box-shadow 0.35s ease;
             }
             .cn-card:hover {
-              border-color: rgba(255,255,255,0.2);
-              box-shadow: 0 0 40px rgba(255,255,255,0.04), 0 0 0 1px rgba(255,255,255,0.1);
-            }
-            .cn-beam {
-              position: absolute;
-              top: 0; left: 0; right: 0;
-              height: 1px;
-              background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.6) 50%, transparent 100%);
-              background-size: 200% 100%;
-              animation: cn-top-beam 2.5s ease-in-out infinite;
-              opacity: 0;
-              transition: opacity 0.4s;
-              pointer-events: none;
-              z-index: 10;
-            }
-            .cn-card:hover .cn-beam { opacity: 1; }
-            .cn-spotlight {
-              position: absolute;
-              inset: 0;
-              background: radial-gradient(400px circle at var(--mx, -100%) var(--my, -100%), rgba(255,255,255,0.04), transparent 60%);
-              pointer-events: none;
-              z-index: 1;
+              border-color: #d1d5db;
+              box-shadow: 0 8px 30px rgba(0,0,0,0.06);
             }
             .cn-card-inner { position: relative; z-index: 2; }
             .cn-bento { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
@@ -475,26 +435,6 @@ export function AgentsSection() {
             @media (max-width: 720px) {
               .cn-bento { grid-template-columns: 1fr; }
               .cn-wide { grid-column: span 1; }
-            }
-            .cn-cta {
-              display: inline-flex;
-              align-items: center;
-              justify-content: center;
-              padding: 13px 34px;
-              border-radius: 999px;
-              font-size: 0.9375rem;
-              font-weight: 600;
-              text-decoration: none;
-              letter-spacing: 0.01em;
-              color: #0a0a0a;
-              background: linear-gradient(105deg, #fff 0%, #e0e0e0 25%, #fff 50%, #e8e8e8 75%, #fff 100%);
-              background-size: 200% auto;
-              animation: cn-shimmer 4s linear infinite;
-              transition: transform 0.2s, box-shadow 0.2s;
-            }
-            .cn-cta:hover {
-              transform: translateY(-1px);
-              box-shadow: 0 8px 30px rgba(255,255,255,0.12);
             }
           `}</style>
         <div style={{ maxWidth: 1200, margin: "0 auto", padding: "72px 24px 80px" }}>
@@ -505,24 +445,29 @@ export function AgentsSection() {
             transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
             style={{ textAlign: "center", marginBottom: 52 }}
           >
-            <p
+            {/* Prominent Coming Soon badge */}
+            <span
               style={{
-                fontSize: "0.65rem",
+                display: "inline-block",
+                fontSize: "0.75rem",
                 fontWeight: 700,
-                letterSpacing: "0.22em",
+                letterSpacing: "0.14em",
                 textTransform: "uppercase" as const,
-                color: "rgba(255,255,255,0.28)",
-                marginBottom: 18,
+                color: "#a855f7",
+                border: "1.5px solid #a855f7",
+                borderRadius: 999,
+                padding: "6px 20px",
+                marginBottom: 20,
               }}
             >
               Coming Soon
-            </p>
+            </span>
             <h3
               style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(1.75rem, 3.5vw, 2.375rem)",
                 fontWeight: 600,
-                color: "#ffffff",
+                color: "#0f0f0f",
                 letterSpacing: "-0.03em",
                 lineHeight: 1.2,
               }}
@@ -547,22 +492,7 @@ export function AgentsSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.15 }}
                   transition={{ duration: 0.55, delay: i * 0.09, ease: [0.25, 0.46, 0.45, 0.94] }}
-                  onMouseMove={(e) => {
-                    const el = e.currentTarget as HTMLDivElement;
-                    const rect = el.getBoundingClientRect();
-                    const x = ((e.clientX - rect.left) / rect.width) * 100;
-                    const y = ((e.clientY - rect.top) / rect.height) * 100;
-                    el.style.setProperty("--mx", `${x}%`);
-                    el.style.setProperty("--my", `${y}%`);
-                  }}
-                  onMouseLeave={(e) => {
-                    const el = e.currentTarget as HTMLDivElement;
-                    el.style.setProperty("--mx", "-100%");
-                    el.style.setProperty("--my", "-100%");
-                  }}
                 >
-                  <div className="cn-beam" />
-                  <div className="cn-spotlight" />
                   <div className="cn-card-inner">
                     <div
                       style={{
@@ -570,6 +500,7 @@ export function AgentsSection() {
                         width: "100%",
                         aspectRatio: isWide ? "16 / 7" : "4 / 3",
                         overflow: "hidden",
+                        borderRadius: "16px 16px 0 0",
                       }}
                     >
                       <Image
@@ -583,7 +514,7 @@ export function AgentsSection() {
                         style={{
                           position: "absolute",
                           inset: 0,
-                          background: "linear-gradient(to bottom, rgba(10,10,10,0) 35%, rgba(10,10,10,0.8) 100%)",
+                          background: "linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.45) 100%)",
                         }}
                       />
                     </div>
@@ -593,8 +524,8 @@ export function AgentsSection() {
                           fontFamily: "var(--font-display)",
                           fontWeight: 600,
                           fontSize: "0.9375rem",
-                          color: "rgba(255,255,255,0.88)",
-                          marginBottom: 7,
+                          color: "#0f0f0f",
+                          marginBottom: 6,
                           letterSpacing: "-0.01em",
                         }}
                       >
@@ -603,7 +534,7 @@ export function AgentsSection() {
                       <div
                         style={{
                           fontSize: "0.8125rem",
-                          color: "rgba(255,255,255,0.42)",
+                          color: "#6b7280",
                           lineHeight: 1.6,
                         }}
                       >
@@ -624,8 +555,8 @@ export function AgentsSection() {
           >
             <p
               style={{
-                fontSize: "0.875rem",
-                color: "rgba(255,255,255,0.28)",
+                fontSize: "0.9rem",
+                color: "#6b7280",
                 fontStyle: "italic",
                 marginBottom: 28,
                 lineHeight: 1.6,
@@ -633,12 +564,13 @@ export function AgentsSection() {
             >
               Same brain, same analytics, same approvals.
             </p>
-            <a href="/contact" className="cn-cta">
+            <a
+              href="/contact"
+              className="inline-flex items-center rounded-[999px] bg-black px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-white transition-colors duration-200 hover:bg-gray-700"
+              style={{ textDecoration: "none" }}
+            >
               Get Early Access
             </a>
-            <p style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.18)", marginTop: 12 }}>
-              Available now for select partners
-            </p>
           </motion.div>
         </div>
       </div>

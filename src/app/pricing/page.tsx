@@ -428,7 +428,7 @@ export default function PricingPage() {
             href="https://app.solaraai.com/auth/signup"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center rounded-xl bg-ink-900 px-6 py-3 font-[family-name:var(--font-body)] text-[16px] font-medium tracking-[1px] text-white transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90"
+            className="inline-flex items-center rounded-xl bg-ink-900 px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-white transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90"
           >
             Start free trial
           </a>
@@ -436,7 +436,7 @@ export default function PricingPage() {
             href="https://calendly.com/ilay-mor-solaraai/30min"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center rounded-xl border border-line bg-white px-6 py-3 font-[family-name:var(--font-body)] text-[16px] font-medium tracking-[1px] text-ink-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink-900/30"
+            className="inline-flex items-center rounded-xl border border-line bg-white px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-ink-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink-900/30"
           >
             Book a call
           </a>
