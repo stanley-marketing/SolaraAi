@@ -67,7 +67,7 @@ const rowVariants: Variants = {
 
 export function AboutValues() {
   return (
-    <section className="px-6 sm:px-10 py-24 sm:py-28 bg-white">
+    <section className="px-8 sm:px-14 py-24 sm:py-28 bg-white">
       <div className="mx-auto max-w-5xl">
 
         {/* ── Header ── */}

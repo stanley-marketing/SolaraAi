@@ -20,8 +20,8 @@ const FADE_UP = {
    ────────────────────────────────────────────── */
 
 const LABEL = "Pre-seed · 2024";
-const STAT = ".2M";
-const HEADING = "Backed by .2M in pre-seed funding";
+const STAT = "$1.2M";
+const HEADING = "Backed by $1.2M in pre-seed funding";
 
 const BODY_1 =
   "Solara AI raised $1.2 million in pre-seed funding in 2024. The investment reflects a shared conviction: that the gap between enterprise-grade marketing capabilities and what is available to most businesses is a problem worth solving properly.";
@@ -41,7 +41,7 @@ export function AboutFunding() {
       aria-labelledby="about-funding-heading"
     >
       <div className="mx-auto max-w-5xl">
-        <div className="grid grid-cols-1 gap-16 lg:grid-cols-[200px_1fr] lg:gap-20 lg:items-start">
+        <div className="grid grid-cols-1 gap-16 lg:grid-cols-[260px_1fr] lg:gap-20 lg:items-start">
 
           {/* ── Left: typographic stat anchor ── */}
           <motion.div

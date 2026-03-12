@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Volume2, VolumeX } from "lucide-react";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Permanent_Marker } from "next/font/google";
 
@@ -56,6 +56,7 @@ const MEDIA_DURATION = 6000;
 function MediaSwitcher() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([null, null]);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -87,6 +88,12 @@ function MediaSwitcher() {
       }
     });
   }, [activeIndex]);
+
+  useEffect(() => {
+    videoRefs.current.forEach((video) => {
+      if (video) video.muted = isMuted;
+    });
+  }, [isMuted]);
 
   const handleTabClick = useCallback(
     (index: number) => {
@@ -205,7 +212,7 @@ function MediaSwitcher() {
                 ref={(el) => { videoRefs.current[0] = el; }}
                 src="/creatives/ilay-lipsync.mp4"
                 autoPlay
-                muted
+
                 loop
                 playsInline
                 style={{ height: "100%" }}
@@ -236,7 +243,7 @@ function MediaSwitcher() {
             }}
             src="/creatives/instagram-story-video.mp4"
             autoPlay
-            muted
+
             loop
             playsInline
             style={{
@@ -266,6 +273,32 @@ function MediaSwitcher() {
               transition: "opacity 500ms ease-in-out",
             }}
           />
+          {/* Mute/Unmute button */}
+          <button
+            onClick={() => setIsMuted((m) => !m)}
+            style={{
+              position: "absolute",
+              bottom: 16,
+              right: 16,
+              width: 40,
+              height: 40,
+              borderRadius: "50%",
+              background: "rgba(0,0,0,0.6)",
+              border: "1px solid rgba(255,255,255,0.15)",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "white",
+              backdropFilter: "blur(8px)",
+              transition: "background 0.2s",
+              zIndex: 10,
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(0,0,0,0.8)")}
+            onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(0,0,0,0.6)")}
+          >
+            {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+          </button>
         </div>
       </div>
     </>
