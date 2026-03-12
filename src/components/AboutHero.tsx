@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 /* ──────────────────────────────────────────────
@@ -98,8 +99,19 @@ export function AboutHero() {
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-6xl">
 
+        {/* Logomark */}
+        <FadeUp delay={0}>
+          <Image
+            src="/solara-icon.svg"
+            alt="Solara AI"
+            width={48}
+            height={48}
+            className="mb-6"
+          />
+        </FadeUp>
+
         {/* Small eyebrow label */}
-        <FadeUp delay={0.05}>
+        <FadeUp delay={0.08}>
           <p
             className="text-xs font-semibold uppercase tracking-[0.28em]"
             style={{ color: "#9ca3af" }}
@@ -109,7 +121,7 @@ export function AboutHero() {
         </FadeUp>
 
         {/* H1 */}
-        <FadeUp delay={0.13}>
+        <FadeUp delay={0.16}>
           <h1
             className="mt-5 max-w-[860px] leading-[1.05] tracking-[-0.02em] text-ink-900"
             style={{
@@ -123,7 +135,7 @@ export function AboutHero() {
         </FadeUp>
 
         {/* Brand accent line */}
-        <FadeUp delay={0.22}>
+        <FadeUp delay={0.25}>
           <div
             className="mt-8"
             style={{
@@ -137,7 +149,7 @@ export function AboutHero() {
         </FadeUp>
 
         {/* Supporting copy */}
-        <FadeUp delay={0.3}>
+        <FadeUp delay={0.33}>
           <p
             className="mt-8 max-w-2xl text-ink-700/70"
             style={{
@@ -153,7 +165,7 @@ export function AboutHero() {
         </FadeUp>
 
         {/* Trust-intro: three restrained editorial items */}
-        <FadeUp delay={0.4}>
+        <FadeUp delay={0.43}>
           <div className="mt-14 grid grid-cols-1 gap-y-8 sm:grid-cols-3 sm:gap-x-12 sm:gap-y-0">
             {TRUST_ITEMS.map((item) => (
               <div key={item.label} className="flex flex-col">

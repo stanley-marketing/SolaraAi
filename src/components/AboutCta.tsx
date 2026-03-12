@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 /* ──────────────────────────────────────────────
    COPY
@@ -40,6 +41,22 @@ export function AboutCta() {
 
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-xl text-center">
+        {/* Logomark */}
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-6 flex justify-center"
+        >
+          <Image
+            src="/solara-icon.svg"
+            alt="Solara AI"
+            width={44}
+            height={44}
+          />
+        </motion.div>
+
         <motion.h2
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -54,7 +71,7 @@ export function AboutCta() {
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.55, delay: 0.13, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.55, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           className="mx-auto mt-6 max-w-md text-base leading-relaxed"
           style={{ color: "#6b7280" }}
         >
@@ -65,7 +82,7 @@ export function AboutCta() {
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.45, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.45, delay: 0.26, ease: [0.22, 1, 0.36, 1] }}
           className="mt-10"
         >
           <a
