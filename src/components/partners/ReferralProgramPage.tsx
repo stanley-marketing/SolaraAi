@@ -1,4 +1,3 @@
-import { ChevronDown } from "lucide-react";
 
 import { getCtaHref } from "@/lib/partners/cta-flows";
 import {
@@ -7,6 +6,7 @@ import {
   PartnerPitchBlock,
   PartnerProcessSteps,
   PartnerFinalCta,
+  PartnerFaq,
 } from "@/components/partners";
 import { PartnerTierCards } from "@/components/partners/PartnerTierCards";
 
@@ -121,8 +121,7 @@ export function ReferralProgramPage({ jsonLd }: ReferralProgramPageProps) {
       />
 
       {/* ── FAQ ──────────────────────────────────────────────── */}
-      <ReferralFaq />
-
+      <PartnerFaq items={FAQ_ITEMS} />
       {/* ── Final CTA ────────────────────────────────────────── */}
       <PartnerFinalCta
         headline="They're running marketing with ten disconnected tools and hope. You have the answer. Get paid for it."
@@ -134,8 +133,7 @@ export function ReferralProgramPage({ jsonLd }: ReferralProgramPageProps) {
 }
 
 /* ──────────────────────────────────────────────────────────────
-   ReferralFaq
-   3 referral-specific questions. Server component.
+   FAQ DATA
    ────────────────────────────────────────────────────────────── */
 
 const FAQ_ITEMS = [
@@ -156,65 +154,4 @@ const FAQ_ITEMS = [
   },
 ];
 
-function ReferralFaq() {
-  return (
-    <section className="border-t border-gray-100 bg-white px-6 py-28 sm:px-10">
-      <div className="mx-auto max-w-3xl">
-        <h2
-          className="text-ink-900"
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
-            fontWeight: 400,
-            letterSpacing: "-0.03em",
-            lineHeight: 1.1,
-            marginBottom: "3rem",
-          }}
-        >
-          Common questions
-        </h2>
 
-        <div className="flex flex-col divide-y divide-gray-100">
-          {FAQ_ITEMS.map((item) => (
-            <details key={item.question} className="group py-6">
-              <summary
-                className="flex cursor-pointer list-none items-start justify-between gap-4"
-                style={{ WebkitAppearance: "none" }}
-              >
-                <span
-                  className="text-ink-900"
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: "clamp(1rem, 1.5vw, 1.15rem)",
-                    fontWeight: 400,
-                    letterSpacing: "-0.015em",
-                    lineHeight: 1.35,
-                  }}
-                >
-                  {item.question}
-                </span>
-                <ChevronDown
-                  aria-hidden
-                  className="mt-0.5 shrink-0 text-neutral-400 transition-transform duration-200 group-open:rotate-180"
-                  size={18}
-                  strokeWidth={1.5}
-                />
-              </summary>
-              <p
-                className="mt-4 text-neutral-500"
-                style={{
-                  fontSize: "0.9rem",
-                  fontFamily: "var(--font-body)",
-                  lineHeight: 1.7,
-                  maxWidth: "60ch",
-                }}
-              >
-                {item.answer}
-              </p>
-            </details>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}

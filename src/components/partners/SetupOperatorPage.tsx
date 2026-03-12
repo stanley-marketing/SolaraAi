@@ -13,6 +13,7 @@ import { PartnerPitchBlock } from "./PartnerPitchBlock";
 import { PartnerBenefitsGrid } from "./PartnerBenefitsGrid";
 import { PartnerProcessSteps } from "./PartnerProcessSteps";
 import { PartnerFinalCta } from "./PartnerFinalCta";
+import { PartnerFaq } from "./PartnerFaq";
 
 /* ──────────────────────────────────────────────────────────────
    SetupOperatorPage
@@ -203,8 +204,7 @@ export function SetupOperatorPage({ jsonLd }: SetupOperatorPageProps) {
       />
 
       {/* ── FAQ ───────────────────────────────────────────────── */}
-      <FaqSection />
-
+      <PartnerFaq items={FAQS} />
       {/* ── Final CTA ─────────────────────────────────────────── */}
       <PartnerFinalCta
         headline="CRM setup is commoditized. Connected marketing is the new high-value skill."
@@ -337,55 +337,3 @@ function TierLadder() {
 
 /* ── FAQ sub-component ─────────────────────────────────────── */
 
-function FaqSection() {
-  return (
-    <section className="border-t border-gray-100 bg-white px-6 py-28 sm:px-10">
-      <div className="mx-auto max-w-3xl">
-        <h2
-          className="text-ink-900"
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
-            fontWeight: 400,
-            letterSpacing: "-0.03em",
-            lineHeight: 1.1,
-            marginBottom: "3.5rem",
-          }}
-        >
-          Common questions
-        </h2>
-
-        <div className="flex flex-col divide-y divide-gray-100">
-          {FAQS.map((faq) => (
-            <div key={faq.question} className="py-8">
-              <h3
-                className="text-ink-900"
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "1.1rem",
-                  fontWeight: 400,
-                  letterSpacing: "-0.015em",
-                  lineHeight: 1.3,
-                  marginBottom: "0.75rem",
-                }}
-              >
-                {faq.question}
-              </h3>
-              <p
-                className="text-neutral-500"
-                style={{
-                  fontSize: "0.9rem",
-                  lineHeight: 1.7,
-                  fontFamily: "var(--font-body)",
-                  maxWidth: "60ch",
-                }}
-              >
-                {faq.answer}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}

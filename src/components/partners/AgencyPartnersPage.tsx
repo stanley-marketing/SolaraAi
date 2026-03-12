@@ -6,6 +6,7 @@ PartnerPitchBlock,
 PartnerBenefitsGrid,
 PartnerProcessSteps,
 PartnerFinalCta,
+PartnerFaq,
 } from "@/components/partners";
 
 /* ──────────────────────────────────────────────────────────────
@@ -143,53 +144,7 @@ export function AgencyPartnersPage({ jsonLd }: AgencyPartnersPageProps) {
       <PartnerProcessSteps steps={PROCESS_STEPS} />
 
       {/* FAQ section */}
-      <section className="border-t border-gray-100 bg-[#fafafa] px-6 py-28 sm:px-10">
-        <div className="mx-auto max-w-3xl">
-          <h2
-            className="text-ink-900"
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
-              fontWeight: 400,
-              letterSpacing: "-0.03em",
-              lineHeight: 1.1,
-              marginBottom: "3rem",
-            }}
-          >
-            Frequently asked questions
-          </h2>
-
-          <dl className="flex flex-col gap-10">
-            {FAQ_ITEMS.map((item) => (
-              <div key={item.question} className="flex flex-col gap-3">
-                <dt
-                  className="text-ink-900"
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: "1.05rem",
-                    fontWeight: 400,
-                    letterSpacing: "-0.015em",
-                    lineHeight: 1.3,
-                  }}
-                >
-                  {item.question}
-                </dt>
-                <dd
-                  className="text-neutral-500"
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    fontSize: "0.9rem",
-                    lineHeight: 1.65,
-                  }}
-                >
-                  {item.answer}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
-
+      <PartnerFaq items={FAQ_ITEMS} />
       {/* Final CTA */}
       <PartnerFinalCta
         headline="Your agency. One connected system. Every client's marketing finally talking to itself."

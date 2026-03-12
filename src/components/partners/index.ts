@@ -7,3 +7,4 @@ export { PartnerFinalCta } from "./PartnerFinalCta";
 export { PartnerProofStrip } from "./PartnerProofStrip";
 export { PartnerTierCards } from "./PartnerTierCards";
 export type { PartnerTier } from "./PartnerTierCards";
+export { PartnerFaq } from "./PartnerFaq";
