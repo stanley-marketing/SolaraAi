@@ -8,6 +8,7 @@ import { BeamHubSection } from "@/components/BeamHubSection";
 import { ServicesSection } from "@/components/ServicesSection";
 import { AgentsSection } from "@/components/AgentsSection";
 import { AdvantageSection } from "@/components/AdvantageSection";
+import { CaseStudySection } from "@/components/CaseStudySection";
 import { PricingSection } from "@/components/PricingSection";
 
 import { CtaSection } from "@/components/CtaSection";
@@ -20,7 +21,7 @@ export default function Home() {
 
       {/* Hero */}
       <AuroraBackground
-        className="w-full min-h-[auto] sm:min-h-[93dvh] flex flex-col items-center justify-center px-6 pt-20 pb-10 text-center sm:px-10"
+        className="w-full flex flex-col items-center justify-center px-6 pt-28 pb-20 text-center sm:px-10 sm:pt-36 sm:pb-28"
         showRadialGradient={true}
       >
         {/* Pre-seed pill */}
@@ -113,6 +114,7 @@ export default function Home() {
           {/* Remaining placeholder sections */}
           <AgentsSection />
           <AdvantageSection />
+          <CaseStudySection />
           <PricingSection />
 
 

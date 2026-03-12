@@ -1,0 +1,201 @@
+import type { Metadata } from "next";
+import type { CaseStudy } from "./types";
+
+const SITE_URL = "https://solaraai.com";
+const CASE_STUDIES_PATH = "/case-study";
+const FORBIDDEN_SCHEMA_TYPES = new Set([
+  "LocalBusiness",
+  "GeneralContractor",
+  "AggregateRating",
+]);
+
+type AllowedPrimarySchemaType = "Article" | "WebPage";
+type ForbiddenSchemaType = "LocalBusiness" | "GeneralContractor" | "AggregateRating";
+
+export interface CaseStudyJsonLdInput
+  extends Pick<CaseStudy, "slug" | "clientName" | "executiveSummary" | "faq" | "seoMeta"> {
+  title?: string;
+  description?: string;
+  breadcrumbLabel?: string;
+  datePublished: string;
+  schemaType?: AllowedPrimarySchemaType | ForbiddenSchemaType;
+}
+
+type JsonLdNode = {
+  "@context": "https://schema.org";
+  "@type": string;
+  [key: string]: unknown;
+};
+
+const CASE_STUDY_METADATA: Record<
+  string,
+  {
+    title: string;
+    description: string;
+  }
+> = {
+  "maison-remodeling-group": {
+    title: "Maison Remodeling Group Case Study | Solara AI",
+    description:
+      "See how Solara AI helped Maison Remodeling Group in Santa Clara and San Jose generate 131 tracked leads in 27 tracked days, sign 5 contracts, and build an $800k+ proposal pipeline from zero digital presence.",
+  },
+};
+
+function getCanonicalPath(slug: string): string {
+  return `${CASE_STUDIES_PATH}/${slug}`;
+}
+
+function getCanonicalUrl(slug: string): string {
+  return `${SITE_URL}${getCanonicalPath(slug)}`;
+}
+
+function assertAllowedSchemaTypes(value: unknown): void {
+  if (Array.isArray(value)) {
+    value.forEach(assertAllowedSchemaTypes);
+    return;
+  }
+
+  if (!value || typeof value !== "object") {
+    return;
+  }
+
+  const schemaType = (value as { "@type"?: unknown })["@type"];
+  if (typeof schemaType === "string" && FORBIDDEN_SCHEMA_TYPES.has(schemaType)) {
+    throw new Error(`Forbidden schema type emitted: ${schemaType}`);
+  }
+
+  if (Array.isArray(schemaType)) {
+    for (const entry of schemaType) {
+      if (typeof entry === "string" && FORBIDDEN_SCHEMA_TYPES.has(entry)) {
+        throw new Error(`Forbidden schema type emitted: ${entry}`);
+      }
+    }
+  }
+
+  Object.values(value).forEach(assertAllowedSchemaTypes);
+}
+
+function getPrimarySchemaType(caseStudy: CaseStudyJsonLdInput): AllowedPrimarySchemaType {
+  const schemaType = caseStudy.schemaType ?? "Article";
+
+  if (
+    schemaType === "LocalBusiness" ||
+    schemaType === "GeneralContractor" ||
+    schemaType === "AggregateRating"
+  ) {
+    throw new Error(`Forbidden schema type emitted: ${schemaType}`);
+  }
+
+  return schemaType;
+}
+
+function getCaseStudyTitle(caseStudy: CaseStudyJsonLdInput): string {
+  return caseStudy.title ?? `${caseStudy.clientName} Case Study`;
+}
+
+function getCaseStudyDescription(caseStudy: CaseStudyJsonLdInput): string {
+  const description = caseStudy.description ?? caseStudy.seoMeta.description ?? caseStudy.executiveSummary;
+
+  if (!description) {
+    throw new Error(`Case study ${caseStudy.slug} is missing a description.`);
+  }
+
+  return description;
+}
+
+function getCaseStudyLabel(caseStudy: CaseStudyJsonLdInput): string {
+  return caseStudy.breadcrumbLabel ?? caseStudy.clientName ?? getCaseStudyTitle(caseStudy);
+}
+
+export function getCaseStudyMetadata(slug: string): Metadata {
+  const metadataEntry = CASE_STUDY_METADATA[slug];
+
+  if (!metadataEntry) {
+    throw new Error(`Unsupported case study slug: ${slug}`);
+  }
+
+  const canonical = getCanonicalUrl(slug);
+
+  return {
+    title: metadataEntry.title,
+    description: metadataEntry.description,
+    alternates: {
+      canonical,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    openGraph: {
+      title: metadataEntry.title,
+      description: metadataEntry.description,
+      type: "article",
+      url: canonical,
+      siteName: "Solara AI",
+    },
+  };
+}
+
+export function getCaseStudyJsonLd(caseStudy: CaseStudyJsonLdInput): JsonLdNode[] {
+  const description = getCaseStudyDescription(caseStudy);
+  const primaryType = getPrimarySchemaType(caseStudy);
+  const title = getCaseStudyTitle(caseStudy);
+  const url = getCanonicalUrl(caseStudy.slug);
+  const breadcrumbLabel = getCaseStudyLabel(caseStudy);
+
+  const jsonLd: JsonLdNode[] = [
+    {
+      "@context": "https://schema.org",
+      "@type": primaryType,
+      name: title,
+      headline: title,
+      description,
+      url,
+      datePublished: caseStudy.datePublished,
+      mainEntityOfPage: url,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: SITE_URL,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Case Studies",
+          item: `${SITE_URL}${CASE_STUDIES_PATH}`,
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: breadcrumbLabel,
+          item: url,
+        },
+      ],
+    },
+  ];
+
+  if (caseStudy.faq && caseStudy.faq.length > 0) {
+    jsonLd.push({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: caseStudy.faq.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      })),
+    });
+  }
+
+  assertAllowedSchemaTypes(jsonLd);
+
+  return jsonLd;
+}

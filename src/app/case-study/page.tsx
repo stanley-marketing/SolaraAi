@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+
 export default function CaseStudyPage() {
-  return <main />;
+  redirect("/case-study/maison-remodeling-group");
 }
