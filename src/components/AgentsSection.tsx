@@ -7,6 +7,7 @@ import { OrbitingCircles } from "@/components/ui/orbiting-circles";
 import { NumberTicker } from "@/components/ui/number-ticker";
 import { AnimatedList, AnimatedListItem } from "@/components/ui/animated-list";
 import { CardStack, CardItem } from "@/components/ui/card-stack";
+import MediaSwitcher from "@/components/MediaSwitcher";
 
 
 /* ═══════════════════════════════════════════════════════════
@@ -206,11 +207,7 @@ function AgentViz({ id }: { id: string }) {
         </div>
       );
     case "creative":
-      return (
-        <div style={{ width: "100%", alignSelf: "stretch", padding: "16px 24px 36px" }}>
-          <CardStack items={CREATIVE_CARDS} />
-        </div>
-      );
+      return <MediaSwitcher />;
     case "analytics":
       return (
         <div style={{ width: "100%", alignSelf: "stretch", overflow: "hidden", padding: "10px 16px" }}>
@@ -413,7 +410,7 @@ export function AgentsSection() {
               <div className="ag-light-spotlight" />
               <div style={{ position: "relative", zIndex: 2 }}>
                 {/* Illustration */}
-                <div style={{ height: 180, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", borderBottom: "1px solid #f0f0f0", overflow: "hidden" }}>
+                <div style={{ height: a.id === "creative" ? "auto" : 180, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", borderBottom: a.id === "creative" ? "none" : "1px solid #f0f0f0", overflow: "hidden" }}>
                   <AgentViz id={a.id} />
                 </div>
                 {/* Content */}

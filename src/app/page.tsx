@@ -54,7 +54,7 @@ export default function Home() {
             fontFamily: "var(--font-display)", fontWeight: 300,
           }}
         >
-          Looking for marketing and growth?
+          Looking for marketing & growth?
           <br className="hidden sm:block" />
           You&apos;re in the right place.
         </h1>

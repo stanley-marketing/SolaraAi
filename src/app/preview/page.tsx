@@ -46,7 +46,7 @@ function MiniHero({
 /* ── Media switcher constants ── */
 const MEDIA_ITEMS = [
   { label: "Ilay Video" },
-  { label: "Instagram Story" },
+  { label: "Feed Post" },
   { label: "Fashion Carousel" },
 ];
 
@@ -241,7 +241,7 @@ function MediaSwitcher() {
             ref={(el) => {
               videoRefs.current[1] = el;
             }}
-            src="/creatives/instagram-story-video.mp4"
+            src="/creatives/info-graphic.mp4"
             autoPlay
 
             loop
