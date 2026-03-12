@@ -128,9 +128,9 @@ export default function MediaSwitcher() {
                     className={graffitiFont.className}
                     style={{
                       transform: "rotate(-4deg)",
-                      fontSize: "clamp(12px, 1.5vw, 24px)",
+                      fontSize: "clamp(10px, 1.1vw, 18px)",
                       color: "rgba(255,255,255,0.75)",
-                      letterSpacing: "2px",
+                      letterSpacing: "1px",
                       textTransform: "uppercase",
                       whiteSpace: "nowrap",
                       textShadow: "0 0 20px rgba(139,92,246,0.5), 0 2px 4px rgba(0,0,0,0.8)",
@@ -155,9 +155,9 @@ export default function MediaSwitcher() {
                     className={graffitiFont.className}
                     style={{
                       transform: "rotate(4deg)",
-                      fontSize: "clamp(12px, 1.5vw, 24px)",
+                      fontSize: "clamp(10px, 1.1vw, 18px)",
                       color: "rgba(255,255,255,0.75)",
-                      letterSpacing: "2px",
+                      letterSpacing: "1px",
                       textTransform: "uppercase",
                       whiteSpace: "nowrap",
                       textShadow: "0 0 20px rgba(139,92,246,0.5), 0 2px 4px rgba(0,0,0,0.8)",
