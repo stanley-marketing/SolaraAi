@@ -7,6 +7,6 @@ export const metadata: Metadata = getPartnerPageMetadata("marketers");
 
 const jsonLdStrings = getPartnerPageJsonLd("marketers", { includeFaq: true });
 
-export default function ForMarketersPage() {
+export default function PartnersMarketersPage() {
   return <MarketerPage jsonLd={jsonLdStrings} />;
 }

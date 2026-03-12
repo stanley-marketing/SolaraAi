@@ -70,7 +70,7 @@ export const partnerPages: PartnerPage[] = [
   },
   {
     slug: "marketers",
-    route: "/for/marketers",
+    route: "/partners/marketers",
     audience: "solo-marketers-teams",
     primaryKeyword: "AI marketing platform for solo marketers",
     searchIntent: "product-adoption",
@@ -78,17 +78,17 @@ export const partnerPages: PartnerPage[] = [
     primaryCta: {
       label: "Get the Free Marketer Guide",
       type: "guide",
-      destination: `${SITE_URL}/for/marketers/guide`,
+      destination: `${SITE_URL}/partners/marketers/guide`,
       fallback: buildFallbackContactUrl("marketers"),
     },
     secondaryCta: {
       label: "See What Marketers Are Doing With Solara",
-      destination: `${SITE_URL}/for/marketers#results`,
+      destination: `${SITE_URL}/partners/marketers#results`,
     },
     faqAngle: "Time-to-value, team handoff, and workflow automation depth",
     internalLinkAnchorText: "See how marketers adopt Solara in week one",
     hasFaq: true,
-    useGlobeHero: false,
+    useGlobeHero: true,
   },
 ];
 

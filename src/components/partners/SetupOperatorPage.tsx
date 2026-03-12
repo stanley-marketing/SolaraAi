@@ -119,7 +119,7 @@ export function SetupOperatorPage({ jsonLd }: SetupOperatorPageProps) {
           label: "See the Operator Directory",
           href: getCtaHref("setup-operators", "secondary"),
         }}
-        useGlobe={false}
+        useGlobe={true}
       />
 
       {/* ── Pitch blocks ──────────────────────────────────────── */}

@@ -1,6 +1,31 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { TopNav } from "@/components/LandingSections";
+import { Footer } from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "Solara AI Blog | Marketing Guides, Comparisons, and Strategy",
+  description:
+    "Frameworks, tools, and strategies for marketers who want to move faster with AI, SEO, GEO, paid ads, and content systems.",
+  alternates: {
+    canonical: "https://www.solaraai.io/blog",
+  },
+  openGraph: {
+    title: "Solara AI Blog | Marketing Guides, Comparisons, and Strategy",
+    description:
+      "Frameworks, tools, and strategies for marketers who want to move faster with AI, SEO, GEO, paid ads, and content systems.",
+    url: "https://www.solaraai.io/blog",
+    siteName: "Solara AI",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Solara AI Blog | Marketing Guides, Comparisons, and Strategy",
+    description:
+      "Frameworks, tools, and strategies for marketers who want to move faster with AI, SEO, GEO, paid ads, and content systems.",
+  },
+};
 
 const AUTHOR = {
   name: "Yuval Strutti",
@@ -131,10 +156,10 @@ const articles = [
 ];
 
 const tagColors: Record<string, string> = {
-  Comparison: "bg-fog text-ink-700/60",
-  Guide:      "bg-amber/10 text-amber",
-  Strategy:   "bg-rose/10 text-rose",
-  Trends:     "bg-gold/10 text-ink-700/60",
+  Comparison: "bg-fog text-[#344054]",
+  Guide: "bg-amber/10 text-[#B54708]",
+  Strategy: "bg-rose/10 text-[#B42318]",
+  Trends: "bg-gold/10 text-[#7A5C00]",
 };
 
 const [featured, ...rest] = articles;
@@ -151,14 +176,15 @@ function AuthorChip() {
           unoptimized
         />
       </div>
-      <span className="text-[0.65rem] text-ink-700/50">{AUTHOR.name}</span>
+      <span className="text-[13px] text-[#667085]">{AUTHOR.name}</span>
     </div>
   );
 }
 
 export default function ArticlesPage() {
   return (
-    <main className="min-h-screen bg-white text-ink-900">
+    <>
+    <main className="min-h-screen bg-white font-[family-name:var(--font-blog)] text-ink-900">
       <TopNav />
 
       {/* Header */}
@@ -177,7 +203,7 @@ export default function ArticlesPage() {
             >
               The Knowledge Hub
             </h1>
-            <p className="mb-1 hidden max-w-xs text-right text-[0.82rem] leading-relaxed text-ink-700/50 sm:block">
+            <p className="mb-1 hidden max-w-xs text-right text-[16px] leading-relaxed text-ink-700/50 sm:block">
               Frameworks, tools, and strategies for marketers who want to move faster.
             </p>
           </div>
@@ -213,10 +239,10 @@ export default function ArticlesPage() {
             <div className="flex flex-col justify-between bg-shell p-8 lg:p-10">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className={`inline-block rounded-full px-2.5 py-0.5 text-[0.58rem] uppercase tracking-[0.16em] ${tagColors[featured.tag] ?? "bg-fog text-ink-700/60"}`}>
+                  <span className={`inline-block rounded-full px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-[0.12em] ${tagColors[featured.tag] ?? "bg-fog text-[#344054]"}`}>
                     {featured.tag}
                   </span>
-                  <span className="text-[0.62rem] text-ink-700/35">{featured.readTime}</span>
+                  <span className="text-[13px] text-[#667085]">{featured.readTime}</span>
                 </div>
                 <h2
                   className="mt-4 leading-tight tracking-[-0.015em] text-ink-900"
@@ -227,7 +253,7 @@ export default function ArticlesPage() {
                 >
                   {featured.title}
                 </h2>
-                <p className="mt-3 text-[0.82rem] leading-relaxed text-ink-700/60">
+                <p className="mt-3 text-[15px] leading-relaxed text-[#344054]">
                   {featured.excerpt}
                 </p>
               </div>
@@ -235,7 +261,7 @@ export default function ArticlesPage() {
                 <AuthorChip />
                 <span className="inline-flex items-center gap-1.5 text-[0.68rem] font-medium uppercase tracking-[0.14em] text-ink-900 underline-offset-4 group-hover:underline">
                   Read article
-                  <svg className="h-3 w-3" viewBox="0 0 12 12" fill="none">
+                  <svg aria-hidden="true" focusable="false" className="h-3 w-3" viewBox="0 0 12 12" fill="none">
                     <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </span>
@@ -248,15 +274,15 @@ export default function ArticlesPage() {
       {/* Grid */}
       <section className="px-6 pb-32 sm:px-10">
         <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-px gap-y-8 bg-line [&>*]:bg-white border border-line">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {rest.map((article) => (
               <Link
                 key={article.id}
                 href={article.href}
-                className="group flex flex-col bg-white transition-colors duration-150 hover:bg-shell"
+                className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white transition-all duration-150 hover:shadow-md hover:bg-shell"
               >
                 {/* Thumbnail */}
-                <div className="relative h-44 overflow-hidden">
+                <div className="relative aspect-[16/9] overflow-hidden rounded-t-2xl">
                   <Image
                     src={article.thumbnail}
                     alt={article.title}
@@ -269,29 +295,30 @@ export default function ArticlesPage() {
                 {/* Body */}
                 <div className="flex flex-1 flex-col p-6">
                   <div className="flex items-center justify-between">
-                    <span className={`inline-block rounded-full px-2.5 py-0.5 text-[0.56rem] uppercase tracking-[0.16em] ${tagColors[article.tag] ?? "bg-fog text-ink-700/60"}`}>
+                    <span className={`inline-block rounded-full px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-[0.12em] ${tagColors[article.tag] ?? "bg-fog text-[#344054]"}`}>
                       {article.tag}
                     </span>
-                    <span className="text-[0.6rem] text-ink-700/35">{article.readTime}</span>
+                    <span className="text-[13px] text-[#667085]">{article.readTime}</span>
                   </div>
 
                   <h3
                     className="mt-3 flex-1 leading-snug tracking-[-0.01em] text-ink-900"
                     style={{
-                      fontFamily: "var(--font-display)",
-                      fontSize: "clamp(0.95rem, 1.3vw, 1.1rem)",
+                      fontFamily: "var(--font-blog)",
+                      fontSize: "20px",
+                      fontWeight: 500,
                     }}
                   >
                     {article.title}
                   </h3>
 
-                  <p className="mt-2 text-[0.73rem] leading-relaxed text-ink-700/50 line-clamp-2">
+                  <p className="mt-2 text-[14px] leading-relaxed text-[#344054] line-clamp-2">
                     {article.excerpt}
                   </p>
 
                   <div className="mt-5 flex items-center justify-between border-t border-line pt-4">
                     <AuthorChip />
-                    <span className="text-[0.6rem] text-ink-700/35">{article.date}</span>
+                    <span className="text-[13px] text-[#667085]">{article.date}</span>
                   </div>
                 </div>
               </Link>
@@ -300,5 +327,7 @@ export default function ArticlesPage() {
         </div>
       </section>
     </main>
+    <Footer />
+  </>
   );
 }

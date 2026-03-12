@@ -72,8 +72,6 @@ function getBreadcrumbPath(slug: string): { label: string; path: string }[] {
 
   if (page.route.startsWith("/partners/")) {
     breadcrumbs.push({ label: "Partners", path: `${SITE_URL}/partners` });
-  } else if (page.route.startsWith("/for/")) {
-    // For /for/* pages, we don't add an intermediate breadcrumb
   }
 
   breadcrumbs.push({ label: breadcrumbLabels[slug], path: getCanonicalUrl(slug) });

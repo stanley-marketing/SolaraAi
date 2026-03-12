@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display } from "next/font/google";
+import { Playfair_Display, Inter } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 
@@ -8,6 +8,13 @@ const playfair = Playfair_Display({
   variable: "--font-display-playfair",
   display: "swap",
   weight: ["400", "500", "600", "700"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-blog",
+  display: "swap",
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -22,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${GeistSans.variable}`}>
+    <html lang="en" className={`${playfair.variable} ${GeistSans.variable} ${inter.variable}`}>
       <body className="bg-white text-ink-900">{children}</body>
     </html>
   );

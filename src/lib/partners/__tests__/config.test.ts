@@ -56,11 +56,11 @@ describe("partner pages config", () => {
     });
   });
 
-  it("exactly one page has useGlobeHero: true", () => {
+  it("exactly two pages have useGlobeHero: true", () => {
     const globeHeroPages = partnerPages.filter((page) => page.useGlobeHero);
 
-    expect(globeHeroPages).toHaveLength(1);
-    expect(globeHeroPages[0].slug).toBe("agencies");
+    expect(globeHeroPages).toHaveLength(2);
+    expect(globeHeroPages.map((p) => p.slug).sort()).toEqual(["agencies", "marketers"]);
   });
 
   it("all pages have hasFaq defined as boolean", () => {

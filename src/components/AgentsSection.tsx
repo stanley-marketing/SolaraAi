@@ -171,9 +171,9 @@ const CREATIVE_CARDS: CardItem[] = [
 
 const ANALYTICS_FEED = [
   { key: "1", platform: "google-ads",       text: "ROAS increased to 4.2x this week",          sub: "Up from 3.1x \u00b7 Google Search leading" },
-  { key: "2", platform: "meta",             text: "Meta CTR dropped below threshold",          sub: "Flagged for review \u00b7 0.6% vs 1.2% benchmark" },
-  { key: "3", platform: "google",           text: "Google Search driving 62% of conversions",  sub: "Budget reallocation recommended" },
-  { key: "4", platform: "instagram",        text: "Instagram retargeting underperforming",     sub: "Budget shifted to top-performing audience" },
+  { key: "2", platform: "meta",             text: "Meta CTR up 41% this month",                sub: "Best performing month since launch" },
+  { key: "3", platform: "instagram",        text: "Instagram reach up 2.8x this week",         sub: "Reels driving 74% of new followers" },
+  { key: "4", platform: "google",           text: "Google Search driving 62% of conversions",  sub: "Highest conversion share on record" },
   { key: "5", platform: "google-analytics", text: "Weekly report ready",                       sub: "Spend: $1,240 \u00b7 127 conversions \u00b7 ROAS 4.2x" },
 ];
 
@@ -532,7 +532,7 @@ export function AgentsSection() {
               box-shadow: 0 8px 30px rgba(0,0,0,0.06);
             }
             .cn-card-inner { position: relative; z-index: 2; }
-            .cn-bento { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+            .cn-bento { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
             @media (max-width: 720px) {
               .cn-bento { grid-template-columns: 1fr; }
             }

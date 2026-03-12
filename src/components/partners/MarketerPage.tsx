@@ -15,8 +15,8 @@ import {
 /* ──────────────────────────────────────────────────────────────
    MarketerPage
    Product persona page for solo marketers and small teams.
-   Route: /for/marketers
-   No globe, no partner/affiliate language, no whileInView.
+   Route: /partners/marketers
+   Globe enabled, no partner/affiliate language, no whileInView.
    ────────────────────────────────────────────────────────────── */
 
 const PITCH_BLOCKS: [
@@ -130,7 +130,7 @@ export function MarketerPage({ jsonLd }: MarketerPageProps) {
           label: "See What Marketers Are Doing With Solara",
           href: getCtaHref("marketers", "secondary"),
         }}
-        useGlobe={false}
+        useGlobe={true}
       />
 
       {/* ── Pitch blocks ─────────────────────────────────────── */}

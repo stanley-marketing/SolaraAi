@@ -40,75 +40,62 @@ const PLANS: Plan[] = [
   {
     id: "starter",
     name: "Starter",
-    tagline: "Launch your presence",
-    price: { monthly: 29, yearly: 23 },
-    credits: "1,350",
+    tagline: "Launch your marketing",
+    price: { monthly: 49, yearly: 29 },
+    credits: "",
     cta: "Get started",
     ctaHref: "https://app.solaraai.com/auth/signup",
     featured: false,
     features: [
-      "Content planner",
-      "Social integrations",
-      "4 SEO pages/mo",
-      "40 posts/mo",
+      "3 social media channels",
+      "1 ad campaign managed by Solara",
+      "Setup assistant",
+      "Analytics",
+      "No website needed",
+    ],
+  },
+  {
+    id: "growth",
+    name: "Growth",
+    tagline: "Scale your reach",
+    price: { monthly: 99, yearly: 59 },
+    credits: "",
+    cta: "Get started",
+    ctaHref: "https://app.solaraai.com/auth/signup",
+    featured: true,
+    features: [
+      "Up to 5 social media channels",
+      "Up to 3 ad campaigns",
+      "Quarterly strategy calls with a Solara expert",
+      "Setup assistant",
     ],
   },
   {
     id: "pro",
     name: "Pro",
-    tagline: "Run marketing end-to-end",
-    price: { monthly: 69, yearly: 53 },
-    credits: "3,450",
+    tagline: "Full-stack marketing",
+    price: { monthly: 199, yearly: 119 },
+    credits: "",
     cta: "Get started",
     ctaHref: "https://app.solaraai.com/auth/signup",
     featured: false,
     features: [
-      "Everything in Starter +",
-      "Paid ads management",
-      "Website + hosting",
-      "120 posts/mo",
-    ],
-  },
-  {
-    id: "premium",
-    name: "Premium",
-    tagline: "Your autonomous marketing dept",
-    price: { monthly: 119, yearly: 107 },
-    credits: "8,500",
-    cta: "Get started",
-    ctaHref: "https://app.solaraai.com/auth/signup",
-    featured: true,
-    features: [
-      "Everything in Pro +",
-      "Unlimited posts & campaigns",
-      "AI Voice Secretary 400min",
-      "Priority support",
-    ],
-  },
-  {
-    id: "agency",
-    name: "Agency",
-    tagline: "Built for scale",
-    price: { monthly: null, yearly: null },
-    credits: "Custom",
-    cta: "Talk to us",
-    ctaHref: "/contact",
-    featured: false,
-    features: [
-      "Everything in Premium +",
-      "Dedicated account manager",
-      "Custom integrations",
-      "White-label",
+      "Full SEO + GEO strategy",
+      "Content strategy across up to 5 channels",
+      "Unlimited ad campaigns",
+      "Quarterly strategy calls",
     ],
   },
 ];
 
 const TABLE_FEATURES: { label: string; values: string[] }[] = [
-  { label: "Credits / mo", values: ["1,350", "3,450", "8,500", "Custom"] },
-  { label: "Posts / mo", values: ["40", "120", "Unlimited", "Custom"] },
-  { label: "SEO pages / mo", values: ["4", "8", "16", "Custom"] },
-  { label: "Ads management", values: ["—", "Included", "Included", "Included"] },
-  { label: "AI Voice Secretary", values: ["—", "120 min", "400 min", "Custom"] },
+  { label: "Social channels", values: ["3", "Up to 5", "Up to 5"] },
+  { label: "Ad campaigns", values: ["1", "Up to 3", "Unlimited"] },
+  { label: "Setup assistant", values: ["Included", "Included", "Included"] },
+  { label: "Analytics", values: ["Included", "Included", "Included"] },
+  { label: "Strategy calls", values: ["—", "Quarterly", "Quarterly"] },
+  { label: "SEO + GEO strategy", values: ["—", "—", "Included"] },
+  { label: "Content strategy", values: ["—", "—", "Up to 5 channels"] },
 ];
 
 /* ─────────────────────────────────────────────────────────────
@@ -264,12 +251,6 @@ function PremiumCardInner({
       >
         {plan.tagline}
       </p>
-      <span
-        className="mt-2 text-[0.7rem] uppercase tracking-[0.14em]"
-        style={{ color: "rgba(255,255,255,0.28)" }}
-      >
-        {plan.credits} credits/mo
-      </span>
       <div className="mt-6 flex items-end gap-1">
         {price !== null ? (
           <>
@@ -358,7 +339,7 @@ export function PricingSection() {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "190px repeat(4, 1fr)",
+                gridTemplateColumns: "190px repeat(3, 1fr)",
               }}
             >
               {/* Empty label cell */}
@@ -455,7 +436,7 @@ export function PricingSection() {
                 key={row.label}
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "190px repeat(4, 1fr)",
+                  gridTemplateColumns: "190px repeat(3, 1fr)",
                   background: rIdx % 2 === 0 ? "#ffffff" : "#fafafa",
                 }}
               >
@@ -495,7 +476,7 @@ export function PricingSection() {
               className="border-t"
               style={{
                 display: "grid",
-                gridTemplateColumns: "190px repeat(4, 1fr)",
+                gridTemplateColumns: "190px repeat(3, 1fr)",
                 borderColor: "#e3e3e3",
               }}
             >

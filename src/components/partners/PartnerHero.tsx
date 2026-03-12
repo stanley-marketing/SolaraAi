@@ -1,17 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import createGlobe from "cobe";
+import { useEffect, useRef, useCallback } from "react";
 
 /* ──────────────────────────────────────────────────────────────
    PartnerHero
    Two variants:
      useGlobe=false (default) — clean light split-layout hero
-     useGlobe=true            — split layout with animated CSS
-                                globe on the right; no external
-                                globe packages required.
+     useGlobe=true            — split layout with cobe 3D rotating
+                                WebGL globe on the right.
    Motion: load-time fade-up / fade-in only (no whileInView).
-   Globe: pure SVG + CSS radial gradients — premium, no deps.
+   Globe: cobe WebGL globe — smooth 3D rotation with drag support.
    ────────────────────────────────────────────────────────────── */
 
 interface CtaButton {
@@ -28,33 +29,100 @@ interface PartnerHeroProps {
   useGlobe?: boolean;
 }
 
-/* ── Computed globe geometry ───────────────────────────────────
-   Latitude ellipses: perspective-projected rings at regular
-   intervals along the globe's vertical axis.
-   Meridian ellipses: vertical great-circles at varying angles
-   from the viewpoint, clipped to the sphere.                  */
+/* ── CobeGlobe ─────────────────────────────────────────────── */
+function CobeGlobe() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const pointerInteracting = useRef<number | null>(null);
+  const pointerInteractionMovement = useRef(0);
+  const phiRef = useRef(0);
+  const widthRef = useRef(400);
 
-const R = 152; // globe radius in SVG units
-const CX = 200;
-const CY = 200;
-const PERSP = 0.30; // vertical squish factor — simulates downward viewing angle
+  const r = useMotionValue(0);
+  const rs = useSpring(r, { mass: 1, damping: 30, stiffness: 100 });
 
-// Normalised vertical positions for latitude rings
-const LAT_T = [-0.72, -0.48, -0.22, 0.05, 0.32, 0.58];
-const latRings = LAT_T.map((t) => ({
-  cy: CY + t * R,
-  rx: Math.round(Math.sqrt(1 - t * t) * R),
-  ry: Math.round(Math.sqrt(1 - t * t) * R * PERSP),
-}));
+  const updatePointerInteraction = useCallback(
+    (value: number | null) => {
+      pointerInteracting.current = value;
+      if (canvasRef.current) {
+        canvasRef.current.style.cursor = value !== null ? "grabbing" : "grab";
+      }
+    },
+    [],
+  );
 
-// Meridians represented as vertical ellipses of varying widths
-// (rx = sin(θ) × R where θ is angle from front axis)
-const MERID_RX = [38, 78, 112, 140, 152];
+  const updateMovement = useCallback(
+    (clientX: number) => {
+      if (pointerInteracting.current !== null) {
+        const delta = clientX - pointerInteractionMovement.current;
+        pointerInteractionMovement.current = clientX;
+        r.set(r.get() + delta / 200);
+      }
+    },
+    [r],
+  );
 
-/* ── CssGlobe ──────────────────────────────────────────────── */
-function CssGlobe() {
+  useEffect(() => {
+    let globe: { destroy: () => void } | null = null;
+
+    const onResize = () => {
+      if (containerRef.current) {
+        widthRef.current = containerRef.current.offsetWidth;
+      }
+    };
+
+    window.addEventListener("resize", onResize);
+    onResize();
+
+    if (canvasRef.current) {
+      globe = createGlobe(canvasRef.current, {
+        devicePixelRatio: 2,
+        width: widthRef.current * 2,
+        height: widthRef.current * 2,
+        phi: 0,
+        theta: 0.3,
+        dark: 0,
+        diffuse: 0.4,
+        mapSamples: 16000,
+        mapBrightness: 1.2,
+        baseColor: [1, 1, 1],
+        markerColor: [0.6, 0.3, 1.0],
+        glowColor: [0.85, 0.7, 1.0],
+        markers: [
+          { location: [40.7128, -74.006], size: 0.05 },
+          { location: [51.5074, -0.1278], size: 0.04 },
+          { location: [35.6762, 139.6503], size: 0.04 },
+          { location: [-33.8688, 151.2093], size: 0.03 },
+          { location: [48.8566, 2.3522], size: 0.03 },
+          { location: [1.3521, 103.8198], size: 0.03 },
+        ],
+        onRender: (state) => {
+          if (pointerInteracting.current === null) {
+            phiRef.current += 0.005;
+          }
+          state.phi = phiRef.current + rs.get();
+          state.width = widthRef.current * 2;
+          state.height = widthRef.current * 2;
+        },
+      });
+
+      // Fade in canvas after globe initialises
+      setTimeout(() => {
+        if (canvasRef.current) {
+          canvasRef.current.style.opacity = "1";
+        }
+      }, 0);
+    }
+
+    return () => {
+      globe?.destroy();
+      window.removeEventListener("resize", onResize);
+    };
+  }, [rs]);
+
   return (
     <div
+      ref={containerRef}
       style={{
         position: "relative",
         width: 400,
@@ -103,115 +171,32 @@ function CssGlobe() {
         />
       </svg>
 
-      {/* Outer glow ring */}
-      <div
-        aria-hidden="true"
+      {/* Cobe WebGL globe canvas */}
+      <canvas
+        ref={canvasRef}
         style={{
-          position: "absolute",
-          inset: 8,
-          borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(168,85,247,0.13) 0%, rgba(236,72,153,0.07) 50%, transparent 75%)",
-          filter: "blur(28px)",
+          width: "100%",
+          height: "100%",
+          cursor: "grab",
+          opacity: 0,
+          transition: "opacity 0.8s ease",
+          position: "relative",
+          zIndex: 1,
+        }}
+        onPointerDown={(e) => {
+          pointerInteracting.current =
+            e.clientX - pointerInteractionMovement.current;
+          if (canvasRef.current) {
+            canvasRef.current.style.cursor = "grabbing";
+          }
+        }}
+        onPointerUp={() => updatePointerInteraction(null)}
+        onPointerOut={() => updatePointerInteraction(null)}
+        onMouseMove={(e) => updateMovement(e.clientX)}
+        onTouchMove={(e) => {
+          if (e.touches[0]) updateMovement(e.touches[0].clientX);
         }}
       />
-
-      {/* Globe SVG */}
-      <svg
-        viewBox="0 0 400 400"
-        width="400"
-        height="400"
-        style={{ position: "relative", zIndex: 1 }}
-        aria-hidden="true"
-      >
-        <defs>
-          {/* Sphere surface gradient — light from top-left */}
-          <radialGradient id="sphere-fill" cx="36%" cy="28%" r="72%">
-            <stop offset="0%" stopColor="#faf8ff" />
-            <stop offset="38%" stopColor="#ede8fd" />
-            <stop offset="78%" stopColor="#c4b5fd" />
-            <stop offset="100%" stopColor="#a78bfa" />
-          </radialGradient>
-
-          {/* Edge-darkening vignette for depth */}
-          <radialGradient id="sphere-edge" cx="50%" cy="50%" r="50%">
-            <stop offset="68%" stopColor="transparent" />
-            <stop offset="100%" stopColor="rgba(88, 28, 235, 0.20)" />
-          </radialGradient>
-
-          {/* Clip path — everything on globe surface */}
-          <clipPath id="globe-clip">
-            <circle cx={CX} cy={CY} r={R} />
-          </clipPath>
-        </defs>
-
-        {/* 1. Base sphere fill */}
-        <circle cx={CX} cy={CY} r={R} fill="url(#sphere-fill)" />
-
-        {/* 2. Grid lines clipped to sphere */}
-        <g clipPath="url(#globe-clip)" opacity="0.22">
-          {/* Latitude rings */}
-          {latRings.map((ring, i) => (
-            <ellipse
-              key={`lat-${i}`}
-              cx={CX}
-              cy={ring.cy}
-              rx={ring.rx}
-              ry={ring.ry}
-              fill="none"
-              stroke="#6d28d9"
-              strokeWidth="0.9"
-            />
-          ))}
-
-          {/* Meridian arcs */}
-          {MERID_RX.map((rx, i) => (
-            <ellipse
-              key={`mer-${i}`}
-              cx={CX}
-              cy={CY}
-              rx={rx}
-              ry={R}
-              fill="none"
-              stroke="#6d28d9"
-              strokeWidth="0.9"
-            />
-          ))}
-
-          {/* Central vertical meridian (great circle facing viewer) */}
-          <line
-            x1={CX}
-            y1={CY - R}
-            x2={CX}
-            y2={CY + R}
-            stroke="#6d28d9"
-            strokeWidth="0.9"
-          />
-        </g>
-
-        {/* 3. Edge vignette overlay */}
-        <circle cx={CX} cy={CY} r={R} fill="url(#sphere-edge)" />
-
-        {/* 4. Top-left specular highlight */}
-        <ellipse
-          cx={CX - 52}
-          cy={CY - 56}
-          rx={52}
-          ry={36}
-          fill="white"
-          opacity="0.16"
-        />
-
-        {/* 5. Thin border ring */}
-        <circle
-          cx={CX}
-          cy={CY}
-          r={R}
-          fill="none"
-          stroke="rgba(109,40,217,0.18)"
-          strokeWidth="1"
-        />
-      </svg>
     </div>
   );
 }
@@ -332,22 +317,13 @@ export function PartnerHero({
           {useGlobe ? (
             /* ── Globe variant ─────────────────────────────────
                Entrance: fade in from right.
-               Float: continuous gentle vertical oscillation.   */
+               Cobe WebGL globe handles all rotation animation.   */
             <motion.div
               initial={{ opacity: 0, x: 24 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.75, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
             >
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{
-                  duration: 5.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                <CssGlobe />
-              </motion.div>
+              <CobeGlobe />
             </motion.div>
           ) : (
             /* ── Static graphic panel ───────────────────────── */

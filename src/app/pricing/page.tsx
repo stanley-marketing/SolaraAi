@@ -3,134 +3,80 @@
 import { useState } from "react";
 import Link from "next/link";
 import { TopNav } from "@/components/LandingSections";
+import { Footer } from "@/components/Footer";
 
-type BillingPeriod = "monthly" | "quarterly" | "yearly";
+type BillingPeriod = "monthly" | "yearly";
 
 const plans = [
   {
     id: "starter",
     name: "Starter",
-    tagline: "Launch your presence",
-    price: { monthly: 29, quarterly: 31, yearly: 23 },
-    credits: "1,350",
+    tagline: "Launch your marketing",
+    price: { monthly: 49, yearly: 29 },
     cta: "Get started",
     ctaHref: "https://app.solaraai.com/auth/signup",
     featured: false,
     features: [
-      "Content planner",
-      "Social integrations",
-      "Website generator",
-      "Brand theme",
-      "Unlimited members",
-      "Unlimited content publishing",
-      "Video content",
-      "Infographic videos",
-      "4 SEO pages / mo",
-      "40 posts / mo",
-      "4 videos / mo",
-      "100 generated images / mo",
-      "Basic analytics",
+      "3 social media channels",
+      "1 ad campaign managed by Solara",
+      "Setup assistant",
+      "Analytics",
+      "No website needed",
+    ],
+  },
+  {
+    id: "growth",
+    name: "Growth",
+    tagline: "Scale your reach",
+    price: { monthly: 99, yearly: 59 },
+    cta: "Get started",
+    ctaHref: "https://app.solaraai.com/auth/signup",
+    featured: true,
+    features: [
+      "Up to 5 social media channels",
+      "Up to 3 ad campaigns",
+      "Quarterly strategy calls with a Solara expert",
+      "Setup assistant",
     ],
   },
   {
     id: "pro",
     name: "Pro",
-    tagline: "Run marketing end-to-end",
-    price: { monthly: 69, quarterly: 71, yearly: 53 },
-    credits: "3,450",
+    tagline: "Full-stack marketing",
+    price: { monthly: 199, yearly: 119 },
     cta: "Get started",
     ctaHref: "https://app.solaraai.com/auth/signup",
     featured: false,
     features: [
-      "Everything in Starter",
-      "Website + hosting + security",
-      "8 SEO pages / mo",
-      "Social content strategy",
-      "Digital presenter video",
-      "Performance optimization",
-      "AI Voice Secretary — 120 min",
-      "Paid ads management",
-      "Advanced analytics",
-      "Continuous site improvements",
-      "120 posts / mo",
-      "12 videos / mo",
-      "300 generated images / mo",
-    ],
-  },
-  {
-    id: "premium",
-    name: "Premium",
-    tagline: "Your autonomous marketing dept",
-    price: { monthly: 119, quarterly: 143, yearly: 107 },
-    credits: "8,500",
-    cta: "Get started",
-    ctaHref: "https://app.solaraai.com/auth/signup",
-    featured: true,
-    features: [
-      "Everything in Pro",
-      "Enterprise hosting",
-      "16 SEO pages / mo",
-      "AI Voice Secretary — 400 min",
-      "Growth intelligence",
-      "Priority support",
-      "Unlimited posts / mo",
-      "Unlimited videos / mo",
-      "Unlimited campaigns / mo",
-      "700 generated images / mo",
-      "4 site scans / mo",
-      "6 presenter video mins",
-      "Advanced analytics",
-    ],
-  },
-  {
-    id: "agency",
-    name: "Agency",
-    tagline: "Built for scale",
-    price: { monthly: null, quarterly: null, yearly: null },
-    credits: "Custom",
-    cta: "Talk to us",
-    ctaHref: "/contact",
-    featured: false,
-    features: [
-      "Everything in Premium",
-      "Custom credit volume",
-      "Enterprise hosting",
-      "Custom SEO pages / mo",
-      "Custom Voice Secretary",
-      "Custom presenter video",
-      "Custom site scans",
-      "Custom campaigns",
-      "Custom generated images",
-      "Enterprise analytics",
-      "Dedicated account manager",
-      "Custom integrations",
-      "White-label options",
+      "Full SEO + GEO strategy",
+      "Content strategy across up to 5 channels",
+      "Unlimited ad campaigns",
+      "Quarterly strategy calls",
     ],
   },
 ];
 
 const billingLabels: Record<BillingPeriod, string> = {
   monthly: "Monthly",
-  quarterly: "Quarterly · 20% off",
-  yearly: "Yearly · 40% off",
+  yearly: "Yearly \u00b7 40% off",
 };
 
 const faqs = [
   {
-    q: "What are credits and how do they work?",
-    a: "Credits power every AI action on the platform — generating content, running SEO scans, creating videos, and more. Each plan comes with a monthly credit allowance: Starter 1,350 / Pro 3,450 / Premium 8,500. Unused credits roll over for 30 days.",
+    q: "What\u2019s included in every plan?",
+    a: "Every plan includes a dedicated setup assistant to get you started, analytics to track performance, and direct access to Solara\u2019s marketing platform.",
   },
   {
     q: "Can I change my plan later?",
-    a: "Yes, upgrade or downgrade any time from Settings → Billing. Changes take effect immediately; you'll be charged or credited the prorated difference.",
+    a: "Yes, upgrade or downgrade any time from Settings \u2192 Billing. Changes take effect immediately; you\u2019ll be charged or credited the prorated difference.",
   },
   {
-    q: "How does the referral program work?",
-    a: "Invite a friend with your unique link. When they subscribe, you both receive a bonus credit package added to your next billing cycle.",
+    q: "How do strategy calls work?",
+    a: "Growth and Pro plans include quarterly strategy calls with a Solara marketing expert. These are 30-minute sessions to review performance, adjust campaigns, and plan ahead.",
   },
   {
     q: "How do I cancel?",
-    a: "Go to Settings → Billing → Manage Plan → Cancel Subscription. Your plan stays active until the end of the billing period — no hidden fees.",
+    a: "Go to Settings \u2192 Billing \u2192 Manage Plan \u2192 Cancel Subscription. Your plan stays active until the end of the billing period \u2014 no hidden fees.",
   },
 ];
 
@@ -139,8 +85,9 @@ export default function PricingPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <main className="min-h-screen bg-white text-ink-900">
-      <TopNav />
+    <>
+      <main className="min-h-screen bg-white text-ink-900">
+        <TopNav />
 
       {/* Hero */}
       <section className="px-6 pb-0 pt-40 text-center sm:px-10">
@@ -165,8 +112,9 @@ export default function PricingPage() {
 
         {/* Billing toggle */}
         <div className="mt-10 inline-flex items-center rounded-full border border-line bg-shell p-1 gap-1">
-          {(["monthly", "quarterly", "yearly"] as BillingPeriod[]).map((period) => (
+          {(["monthly", "yearly"] as BillingPeriod[]).map((period) => (
             <button
+              type="button"
               key={period}
               onClick={() => setBilling(period)}
               className={`rounded-full px-4 py-1.5 text-[0.8rem] uppercase tracking-[0.16em] transition-all duration-200 ${
@@ -182,8 +130,8 @@ export default function PricingPage() {
       </section>
 
       {/* Cards */}
-      <section className="mx-auto mt-14 max-w-7xl px-6 sm:px-10">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <section className="mx-auto mt-14 max-w-6xl px-6 sm:px-10">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {plans.map((plan) => {
             const price = plan.price[billing];
             const isFeatured = plan.featured;
@@ -228,7 +176,6 @@ export default function PricingPage() {
                   >
                     {plan.name}
                   </span>
-
                 </div>
 
                 <p
@@ -238,48 +185,25 @@ export default function PricingPage() {
                 >
                   {plan.tagline}
                 </p>
-                <span
-                  className={`mt-2 inline-block text-[0.72rem] uppercase tracking-[0.16em] ${
-                    isFeatured ? "text-white/40" : "text-ink-700/40"
-                  }`}
-                >
-                  {plan.credits} credits
-                </span>
 
                 <div className="mt-6 flex items-end gap-1">
-                  {price !== null ? (
-                    <>
-                      <span
-                        className="leading-none"
-                        style={{
-                          fontFamily: "var(--font-display)",
-                          fontSize: "clamp(2.525rem, 4vw, 3.325rem)",
-                        }}
-                      >
-                        ${price}
-                      </span>
-                      <span
-                        className={`mb-1.5 text-[0.84rem] ${
-                          isFeatured ? "text-white/40" : "text-ink-700/40"
-                        }`}
-                      >
-                        / mo
-                      </span>
-                    </>
-                  ) : (
-                    <span
-                      className="leading-none"
-                      style={{
-                        fontFamily: "var(--font-display)",
-                        fontSize: "clamp(1.925rem, 3vw, 2.525rem)",
-                      }}
-                    >
-                      Custom
-                    </span>
-                  )}
+                  <span
+                    className="leading-none"
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "clamp(2.525rem, 4vw, 3.325rem)",
+                    }}
+                  >
+                    ${price}
+                  </span>
+                  <span
+                    className={`mb-1.5 text-[0.84rem] ${
+                      isFeatured ? "text-white/40" : "text-ink-700/40"
+                    }`}
+                  >
+                    / mo
+                  </span>
                 </div>
-
-
 
                 <a
                   href={plan.ctaHref}
@@ -309,6 +233,8 @@ export default function PricingPage() {
                       }`}
                     >
                       <svg
+                        aria-hidden="true"
+                        focusable="false"
                         className={`mt-0.5 h-3 w-3 shrink-0 ${
                           isFeatured ? "text-white/50" : "text-ink-900/40"
                         }`}
@@ -340,7 +266,7 @@ export default function PricingPage() {
           {[
             { stat: "50 hrs", label: "saved per week, avg client" },
             { stat: "67.3%", label: "CTR increase across campaigns" },
-            { stat: "3×", label: "ROI on same ad budget" },
+            { stat: "3\u00d7", label: "ROI on same ad budget" },
             { stat: "80%", label: "increase in conversions" },
           ].map(({ stat, label }) => (
             <div key={stat} className="bg-white px-8 py-8">
@@ -376,8 +302,9 @@ export default function PricingPage() {
 
         <div className="divide-y divide-line">
           {faqs.map((faq, i) => (
-            <div key={i} className="py-5">
+            <div key={faq.q} className="py-5">
               <button
+                type="button"
                 onClick={() => setOpenFaq(openFaq === i ? null : i)}
                 className="flex w-full items-start justify-between gap-4 text-left"
               >
@@ -385,6 +312,8 @@ export default function PricingPage() {
                   {faq.q}
                 </span>
                 <svg
+                  aria-hidden="true"
+                  focusable="false"
                   className={`mt-0.5 h-4 w-4 shrink-0 text-ink-700/40 transition-transform duration-200 ${
                     openFaq === i ? "rotate-45" : ""
                   }`}
@@ -442,6 +371,8 @@ export default function PricingPage() {
           </a>
         </div>
       </section>
-    </main>
+      </main>
+      <Footer />
+    </>
   );
 }

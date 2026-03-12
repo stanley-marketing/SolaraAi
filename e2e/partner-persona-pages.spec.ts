@@ -60,7 +60,7 @@ const PAGE_EXPECTATIONS: PageExpectation[] = [
     ],
   },
   {
-    route: "/for/marketers",
+    route: "/partners/marketers",
     titlePattern: /marketer/i,
     eyebrowPattern: /marketers/i,
     primaryCtaLabel: "Get the Free Marketer Guide",

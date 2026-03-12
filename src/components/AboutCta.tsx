@@ -74,7 +74,7 @@ export function AboutCta() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="font-[family-name:var(--font-display-playfair)] text-4xl font-bold leading-tight tracking-tight text-ink-900 md:text-5xl"
+          className="font-[family-name:var(--font-display-playfair)] text-4xl font-medium leading-tight tracking-tight text-ink-900 md:text-5xl"
         >
           {HEADING}
         </motion.h2>

@@ -10,10 +10,10 @@ const AUTHOR = {
 };
 
 const tagColors: Record<string, string> = {
-  Comparison: "bg-fog text-ink-700/60",
+  Comparison: "bg-fog text-[#344054]",
   Guide: "bg-amber-50 text-amber-700",
   Strategy: "bg-rose-50 text-rose-700",
-  Trends: "bg-stone-100 text-ink-700/60",
+  Trends: "bg-stone-100 text-[#344054]",
 };
 
 function AuthorChip() {
@@ -28,7 +28,7 @@ function AuthorChip() {
           unoptimized
         />
       </div>
-      <span className="text-[0.65rem] text-ink-700/50">{AUTHOR.name}</span>
+      <span className="text-[13px] text-[#667085]">{AUTHOR.name}</span>
     </div>
   );
 }
@@ -36,11 +36,11 @@ function AuthorChip() {
 function ArticleCard({ article }: { article: Article }) {
   return (
     <Link
-      href={`/articles/${article.slug}`}
-      className="group flex flex-col bg-white transition-colors duration-150 hover:bg-shell"
+      href={`/blog/${article.slug}`}
+      className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white transition-all duration-150 hover:bg-shell hover:shadow-md"
     >
       {/* Thumbnail */}
-      <div className="relative h-44 overflow-hidden">
+      <div className="relative aspect-[16/9] overflow-hidden rounded-t-2xl">
         <Image
           src={article.thumbnail}
           alt={article.title}
@@ -54,30 +54,31 @@ function ArticleCard({ article }: { article: Article }) {
       <div className="flex flex-1 flex-col p-6">
         <div className="flex items-center justify-between">
           <span
-            className={`inline-block rounded-full px-2.5 py-0.5 text-[0.56rem] uppercase tracking-[0.16em] ${tagColors[article.tag] ?? "bg-fog text-ink-700/60"}`}
+            className={`inline-block rounded-full px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-[0.12em] ${tagColors[article.tag] ?? "bg-fog text-[#344054]"}`}
           >
             {article.tag}
           </span>
-          <span className="text-[0.6rem] text-ink-700/35">{article.readTime}</span>
+          <span className="text-[13px] text-[#667085]">{article.readTime}</span>
         </div>
 
         <h3
           className="mt-3 flex-1 leading-snug tracking-[-0.01em] text-ink-900"
           style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(0.95rem, 1.3vw, 1.1rem)",
+            fontFamily: "var(--font-blog)",
+            fontSize: "20px",
+            fontWeight: 500,
           }}
         >
           {article.title}
         </h3>
 
-        <p className="mt-2 text-[0.73rem] leading-relaxed text-ink-700/50 line-clamp-2">
+        <p className="mt-2 text-[14px] leading-relaxed text-[#344054] line-clamp-2">
           {article.excerpt}
         </p>
 
         <div className="mt-5 flex items-center justify-between border-t border-line pt-4">
           <AuthorChip />
-          <span className="text-[0.6rem] text-ink-700/35">{article.date}</span>
+          <span className="text-[13px] text-[#667085]">{article.date}</span>
         </div>
       </div>
     </Link>
@@ -90,10 +91,10 @@ export function RelatedArticles({ currentSlug }: { currentSlug: string }) {
   return (
     <section className="border-t border-line px-6 py-16 sm:px-10">
       <div className="mx-auto max-w-7xl">
-        <p className="mb-6 text-[0.65rem] uppercase tracking-[0.26em] text-ink-700/50">
+        <p className="mb-6 text-[0.7rem] uppercase tracking-[0.22em] text-[#667085]">
           More articles
         </p>
-        <div className="grid grid-cols-1 gap-x-px gap-y-8 border border-line bg-line sm:grid-cols-2 lg:grid-cols-3 [&>*]:bg-white">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {related.map((article) => (
             <ArticleCard key={article.slug} article={article} />
           ))}
