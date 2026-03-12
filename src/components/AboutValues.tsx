@@ -106,7 +106,7 @@ export function AboutValues() {
               <motion.div
                 key={p.index}
                 variants={rowVariants}
-                className="group relative grid grid-cols-[56px_1fr] gap-10 py-8 sm:grid-cols-[80px_1fr] sm:gap-14"
+                className="group relative grid grid-cols-[56px_1fr] gap-6 py-8 sm:grid-cols-[80px_1fr] sm:gap-14"
               >
                 {/* Left accent bar — appears on hover */}
                 <div

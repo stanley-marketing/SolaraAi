@@ -77,49 +77,6 @@ export function AboutHero() {
         <rect width="100%" height="100%" fill="url(#about-hero-dots)" />
       </svg>
 
-      {/* Atmospheric: soft radial glow — top-center, same palette as homepage aurora */}
-      <motion.div
-        aria-hidden="true"
-        className="pointer-events-none absolute"
-        style={{
-          top: "-15%",
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: "900px",
-          height: "520px",
-          background:
-            "radial-gradient(ellipse at center, rgba(168,85,247,0.07) 0%, rgba(236,72,153,0.045) 45%, transparent 72%)",
-          filter: "blur(72px)",
-        }}
-        animate={{ opacity: [0.55, 0.95, 0.55] }}
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      {/* Decorative crescent arc — right side, desktop only */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute hidden sm:block"
-        style={{
-          top: "8%",
-          right: "-14%",
-          width: "560px",
-          height: "560px",
-          borderRadius: "50%",
-          border: "1.5px solid rgba(168,85,247,0.07)",
-        }}
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute hidden sm:block"
-        style={{
-          top: "18%",
-          right: "-8%",
-          width: "380px",
-          height: "380px",
-          borderRadius: "50%",
-          border: "1px solid rgba(236,72,153,0.05)",
-        }}
-      />
 
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-6xl">

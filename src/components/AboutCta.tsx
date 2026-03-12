@@ -19,7 +19,7 @@ const CTA_HREF = "https://calendly.com/ilay-mor-solaraai/30min";
 
 export function AboutCta() {
   return (
-    <section className="relative overflow-hidden bg-[#fafaf8] px-6 py-24 sm:px-10 sm:py-28">
+    <section className="relative overflow-hidden bg-white px-6 py-24 sm:px-10 sm:py-28">
       {/* Soft top divider — barely-there rule to close the section above */}
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-px"
@@ -29,24 +29,27 @@ export function AboutCta() {
         }}
       />
 
-      {/* Ambient glow — a single, still radial gradient anchored to the bottom center.
-          Deliberately static (no animation) so it reads as texture, not emphasis. */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 90% 55% at 50% 110%, rgba(168,85,247,0.08) 0%, rgba(236,72,153,0.04) 45%, transparent 70%)",
-        }}
-      />
-
-      {/* Transition to footer — gentle darkening at the bottom edge */}
-      <div
+      {/* Atmospheric: fine dot-grid texture (matches hero) */}
+      <svg
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-24"
-        style={{
-          background: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.03))",
-        }}
-      />
+        className="pointer-events-none absolute inset-0 h-full w-full"
+        style={{ opacity: 0.042 }}
+      >
+        <defs>
+          <pattern
+            id="about-cta-dots"
+            x="0"
+            y="0"
+            width="28"
+            height="28"
+            patternUnits="userSpaceOnUse"
+          >
+            <circle cx="1.5" cy="1.5" r="1.5" fill="#111111" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#about-cta-dots)" />
+      </svg>
+
 
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-xl text-center">
