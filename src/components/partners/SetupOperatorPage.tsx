@@ -6,6 +6,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 
+import { getCtaHref } from "@/lib/partners/cta-flows";
 import { PartnerPageShell } from "./PartnerPageShell";
 import { PartnerHero } from "./PartnerHero";
 import { PartnerPitchBlock } from "./PartnerPitchBlock";
@@ -112,11 +113,11 @@ export function SetupOperatorPage({ jsonLd }: SetupOperatorPageProps) {
         subhead="Setting up a CRM is easy — it's a spreadsheet with a logo. The next generation of operators won't organize data. They'll connect the one system that actually drives revenue: marketing."
         primaryCta={{
           label: "Become a Setup Operator",
-          href: "/partners/setup-operators/apply",
+          href: getCtaHref("setup-operators", "primary"),
         }}
         secondaryCta={{
           label: "See the Operator Directory",
-          href: "/partners/setup-operators/directory",
+          href: getCtaHref("setup-operators", "secondary"),
         }}
         useGlobe={false}
       />
@@ -210,7 +211,7 @@ export function SetupOperatorPage({ jsonLd }: SetupOperatorPageProps) {
         subtext="The operators who get there first will have the clients. The rest will spend years catching up. Apply now."
         primaryCta={{
           label: "Become a Setup Operator",
-          href: "/partners/setup-operators/apply",
+          href: getCtaHref("setup-operators", "primary"),
         }}
       />
     </PartnerPageShell>

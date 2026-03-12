@@ -1,6 +1,8 @@
 import { ChevronDown } from "lucide-react";
 
+import { getCtaHref } from "@/lib/partners/cta-flows";
 import {
+  PartnerPageShell,
   PartnerHero,
   PartnerPitchBlock,
   PartnerProcessSteps,
@@ -14,12 +16,16 @@ import { PartnerTierCards } from "@/components/partners/PartnerTierCards";
    Server component — no interactivity needed.
    ────────────────────────────────────────────────────────────── */
 
-const REFERRAL_SIGNUP_URL = "/partners/referral-program/signup";
-const REWARDS_ANCHOR = "/partners/referral-program#rewards";
+interface ReferralProgramPageProps {
+  jsonLd?: string[];
+}
 
-export function ReferralProgramPage() {
+const REFERRAL_SIGNUP_URL = getCtaHref("referral-program", "primary");
+const REWARDS_ANCHOR = getCtaHref("referral-program", "secondary");
+
+export function ReferralProgramPage({ jsonLd }: ReferralProgramPageProps) {
   return (
-    <>
+    <PartnerPageShell jsonLd={jsonLd}>
       {/* ── Hero ─────────────────────────────────────────────── */}
       <PartnerHero
         eyebrow="SOLARA REFERRAL PROGRAM"
@@ -123,7 +129,7 @@ export function ReferralProgramPage() {
         subtext="Join the referral program and start earning recurring revenue today."
         primaryCta={{ label: "Get Your Referral Link", href: REFERRAL_SIGNUP_URL }}
       />
-    </>
+    </PartnerPageShell>
   );
 }
 

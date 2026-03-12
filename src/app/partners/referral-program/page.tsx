@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 
-import { PartnerPageShell } from "@/components/partners";
 import { ReferralProgramPage } from "@/components/partners/ReferralProgramPage";
 import {
   getPartnerPageMetadata,
@@ -15,9 +13,5 @@ export default function ReferralProgramRoute() {
     includeFaq: true,
   });
 
-  return (
-    <PartnerPageShell jsonLd={jsonLdStrings}>
-      <ReferralProgramPage />
-    </PartnerPageShell>
-  );
+  return <ReferralProgramPage jsonLd={jsonLdStrings} />;
 }

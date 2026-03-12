@@ -2,6 +2,7 @@
 
 import { HelpCircle, Zap, Globe, Clock } from "lucide-react";
 
+import { getCtaHref } from "@/lib/partners/cta-flows";
 import {
   PartnerPageShell,
   PartnerHero,
@@ -39,29 +40,29 @@ const PITCH_BLOCKS: [
 
 const BENEFITS_ITEMS = [
   {
-    title: "White-label reports",
-    body: "Send clients and stakeholders polished, branded reports without spending hours in spreadsheets.",
+    title: "AI-generated content across every channel",
+    body: "Blog posts, social captions, email sequences, and ad copy — all produced in minutes, not days.",
   },
   {
-    title: "White-label tech stack",
-    body: "Present a seamless, branded experience across every tool in your marketing workflow.",
-    comingSoon: true,
+    title: "Campaign performance that compounds",
+    body: "Solara learns your brand voice and audience over time, improving results with every campaign you run.",
+    comingSoon: false,
   },
   {
-    title: "Early access to features",
-    body: "Get new Solara capabilities before they roll out broadly — stay ahead of the curve.",
+    title: "One platform, every channel",
+    body: "Manage SEO, social, email, and paid ads from a single dashboard. No more juggling five tools.",
   },
   {
-    title: "Co-branded case studies",
-    body: "Turn your results into proof. Solara helps you document and publish what you've built.",
+    title: "Reporting your CMO will actually read",
+    body: "Auto-generated performance summaries with plain-English insights, ready to share in one click.",
   },
   {
-    title: "Major discounts",
-    body: "Access Solara at rates that make sense for solo marketers and lean teams.",
+    title: "Always-on content calendar",
+    body: "Never stare at a blank page again. Solara fills your calendar with on-brand ideas tailored to your goals.",
   },
   {
-    title: "And way more",
-    body: "The platform keeps expanding. Early adopters shape what gets built next.",
+    title: "Built for lean teams",
+    body: "Whether you're a team of one or ten, Solara scales with you — no agency retainer required.",
   },
 ];
 
@@ -109,9 +110,13 @@ const FAQ_ITEMS: { question: string; answer: string; icon: React.ReactNode }[] =
     },
   ];
 
-export function MarketerPage() {
+interface MarketerPageProps {
+  jsonLd?: string[];
+}
+
+export function MarketerPage({ jsonLd }: MarketerPageProps) {
   return (
-    <PartnerPageShell>
+    <PartnerPageShell jsonLd={jsonLd}>
       {/* ── Hero ─────────────────────────────────────────────── */}
       <PartnerHero
         eyebrow="SOLARA FOR MARKETERS"
@@ -119,11 +124,11 @@ export function MarketerPage() {
         subhead="Not by working harder. By being the person whose marketing is connected — where every channel sees every other channel and the whole system self-corrects while you focus on the decisions that matter."
         primaryCta={{
           label: "Get the Free Marketer Guide",
-          href: "/for/marketers/guide",
+          href: getCtaHref("marketers", "primary"),
         }}
         secondaryCta={{
           label: "See What Marketers Are Doing With Solara",
-          href: "/for/marketers#results",
+          href: getCtaHref("marketers", "secondary"),
         }}
         useGlobe={false}
       />
@@ -228,7 +233,7 @@ export function MarketerPage() {
         subtext="Solara connects your entire marketing. When something changes, everything adapts. You just say yes."
         primaryCta={{
           label: "Get the Free Marketer Guide",
-          href: "/for/marketers/guide",
+          href: getCtaHref("marketers", "primary"),
         }}
       />
     </PartnerPageShell>

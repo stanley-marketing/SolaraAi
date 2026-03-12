@@ -1,10 +1,11 @@
+import { getCtaHref } from "@/lib/partners/cta-flows";
 import {
-  PartnerPageShell,
-  PartnerHero,
-  PartnerPitchBlock,
-  PartnerBenefitsGrid,
-  PartnerProcessSteps,
-  PartnerFinalCta,
+PartnerPageShell,
+PartnerHero,
+PartnerPitchBlock,
+PartnerBenefitsGrid,
+PartnerProcessSteps,
+PartnerFinalCta,
 } from "@/components/partners";
 
 /* ──────────────────────────────────────────────────────────────
@@ -19,12 +20,12 @@ interface AgencyPartnersPageProps {
 
 const PRIMARY_CTA = {
   label: "Get the Free Agency Guide",
-  href: "https://solaraai.com/partners/agencies/guide",
+  href: getCtaHref("agencies", "primary"),
 };
 
 const SECONDARY_CTA = {
   label: "Book a Partner Call",
-  href: "https://solaraai.com/contact?topic=agency-partner",
+  href: getCtaHref("agencies", "secondary"),
 };
 
 const PITCH_BLOCKS: [
