@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 // No props needed for this section
 type CaseStudySectionProps = Record<string, never>;
@@ -37,12 +38,21 @@ export function CaseStudySection(_props?: CaseStudySectionProps) {
         <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
           {/* Left: narrative copy + CTA */}
           <div>
-            <p
-              className="text-sm font-semibold uppercase tracking-[2px] text-gray-400"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Case Study
-            </p>
+            <div className="flex items-center gap-3">
+              <Image
+                src="/images/maison-logo.jpeg"
+                alt="Maison Remodeling Group logo"
+                width={36}
+                height={36}
+                className="rounded-lg object-contain"
+              />
+              <p
+                className="text-sm font-semibold uppercase tracking-[2px] text-gray-400"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                Case Study
+              </p>
+            </div>
 
             <h2
               className="mt-4 text-3xl tracking-tight text-gray-900 sm:text-4xl md:text-[44px] md:leading-[1.15]"
@@ -80,7 +90,7 @@ export function CaseStudySection(_props?: CaseStudySectionProps) {
                 style={{ border: "1px solid #eaecf0" }}
               >
                 <p
-                  className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 bg-clip-text text-5xl font-light tracking-tight text-transparent sm:text-6xl"
+                  className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 bg-clip-text text-5xl font-normal tracking-tight text-transparent sm:text-6xl"
                 >
                   {metric.value}
                 </p>

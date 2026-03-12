@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getAllCaseSlugs, getCaseStudy } from "@/lib/case-studies";
 import { getCaseStudyJsonLd, getCaseStudyMetadata } from "@/lib/case-studies/seo";
 import { MaisonDetailPage } from "@/components/case-study/MaisonDetailPage";
+import { TopNav } from "@/components/LandingSections";
 
 export async function generateStaticParams() {
   return getAllCaseSlugs().map((slug) => ({ slug }));
@@ -36,7 +37,8 @@ export default async function CaseStudyPage({
   });
 
   return (
-    <>
+    <main className="min-h-screen bg-white text-ink-900">
+      <TopNav />
       {jsonLdNodes.map((node) => {
         const scriptId = `${caseStudy.slug}-jsonld-${String(node["@type"]).toLowerCase()}`;
 
@@ -44,13 +46,13 @@ export default async function CaseStudyPage({
           <Script
             key={scriptId}
             id={scriptId}
-          type="application/ld+json"
+            type="application/ld+json"
           >
             {JSON.stringify(node)}
           </Script>
         );
       })}
       <MaisonDetailPage caseStudy={caseStudy} />
-    </>
+    </main>
   );
 }

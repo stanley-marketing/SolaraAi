@@ -132,32 +132,6 @@ export function MaisonDetailPage({ caseStudy }: { caseStudy: CaseStudy }) {
   return (
     <div className="min-h-screen overflow-x-hidden bg-white">
       {/* ═══════════════════════════════════════════════
-          Sticky Nav
-      ═══════════════════════════════════════════════ */}
-      <nav
-        className="sticky top-0 z-50 border-b bg-white"
-        style={{ borderColor: "#eaecf0" }}
-      >
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 sm:px-10">
-          <Link
-            href="/"
-            className="text-sm font-semibold tracking-tight text-gray-900"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            Solara AI
-          </Link>
-          <a
-            href={caseStudy.cta.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-[999px] bg-black px-6 py-3 text-[14px] font-medium tracking-[1px] text-white transition-opacity hover:opacity-80"
-          >
-            Book a strategy call
-          </a>
-        </div>
-      </nav>
-
-      {/* ═══════════════════════════════════════════════
           Hero
       ═══════════════════════════════════════════════ */}
       <section className="px-6 py-20 sm:px-10">
