@@ -42,7 +42,7 @@ export default function Home() {
               border: "1px solid #e5e7eb",
             }}
           >
-            Backed by $1M in pre-seed funding
+            Backed by $1.2M in pre-seed funding
             <ArrowRight size={13} color="#9ca3af" />
           </div>
         </div>

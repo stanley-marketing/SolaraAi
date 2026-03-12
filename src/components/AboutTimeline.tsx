@@ -12,9 +12,9 @@ const MILESTONES = [
     title: "Solara AI is founded",
   },
   {
-    label: "$1M pre-seed",
+    label: ".2M pre-seed",
     title:
-      "Solara AI raises $1M in pre-seed funding",
+      "Solara AI raises $1.2M in pre-seed funding",
   },
 ] as const;
 

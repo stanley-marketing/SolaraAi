@@ -1,6 +1,10 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { Permanent_Marker } from "next/font/google";
+
+const graffitiFont = Permanent_Marker({ weight: "400", subsets: ["latin"] });
 
 /* ── Shared mini-hero shell ── */
 function MiniHero({
@@ -36,6 +40,235 @@ function MiniHero({
         {children}
       </div>
     </div>
+  );
+}
+
+/* ── Media switcher constants ── */
+const MEDIA_ITEMS = [
+  { label: "Ilay Video" },
+  { label: "Instagram Story" },
+  { label: "Fashion Carousel" },
+];
+
+const MEDIA_DURATION = 6000;
+
+/* ── Media switching showcase component ── */
+function MediaSwitcher() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([null, null]);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startInterval = useCallback(() => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % MEDIA_ITEMS.length);
+    }, MEDIA_DURATION);
+  }, []);
+
+  useEffect(() => {
+    if (isPaused) {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    } else {
+      startInterval();
+    }
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [isPaused, startInterval]);
+
+  useEffect(() => {
+    videoRefs.current.forEach((video, i) => {
+      if (!video) return;
+      if (i === activeIndex) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  }, [activeIndex]);
+
+  const handleTabClick = useCallback(
+    (index: number) => {
+      setActiveIndex(index);
+      startInterval();
+    },
+    [startInterval],
+  );
+
+  return (
+    <>
+      <style>{`
+        @keyframes ms-progress {
+          from { width: 0%; }
+          to { width: 100%; }
+        }
+      `}</style>
+      <div style={{ padding: "28px 28px 32px" }}>
+        {/* Tab row */}
+        <div
+          style={{
+            display: "flex",
+            borderBottom: "1px solid #e5e7eb",
+            marginBottom: 20,
+          }}
+        >
+          {MEDIA_ITEMS.map((item, i) => (
+            <button
+              key={i}
+              onClick={() => handleTabClick(i)}
+              style={{
+                position: "relative",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                padding: "10px 22px 14px",
+                fontSize: "0.82rem",
+                fontFamily: "var(--font-body)",
+                fontWeight: activeIndex === i ? 500 : 400,
+                color: activeIndex === i ? "#111827" : "#9ca3af",
+                transition: "color 0.2s",
+              }}
+            >
+              {item.label}
+              {activeIndex === i && (
+                <span
+                  key={activeIndex}
+                  style={{
+                    position: "absolute",
+                    bottom: 0,
+                    left: 0,
+                    height: 2,
+                    background: "#111827",
+                    width: "0%",
+                    animationName: "ms-progress",
+                    animationDuration: `${MEDIA_DURATION / 1000}s`,
+                    animationTimingFunction: "linear",
+                    animationFillMode: "forwards",
+                  }}
+                />
+              )}
+            </button>
+          ))}
+        </div>
+
+        {/* Media container */}
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            aspectRatio: "16 / 9",
+            borderRadius: 16,
+            overflow: "hidden",
+            background: "#171717",
+            boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
+          }}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {/* Ilay Video */}
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              opacity: activeIndex === 0 ? 1 : 0,
+              transition: "opacity 500ms ease-in-out",
+            }}
+          >
+            {/* 3-column layout: left bar | video | right bar */}
+            <div style={{ display: "flex", width: "100%", height: "100%" }}>
+              {/* Left black bar with text */}
+              <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", background: "black" }}>
+                <span
+                  className={graffitiFont.className}
+                  style={{
+                    transform: "rotate(-4deg)",
+                    fontSize: "clamp(12px, 1.5vw, 24px)",
+                    color: "rgba(255,255,255,0.75)",
+                    letterSpacing: "2px",
+                    textTransform: "uppercase",
+                    whiteSpace: "nowrap",
+                    textShadow: "0 0 20px rgba(139,92,246,0.5), 0 2px 4px rgba(0,0,0,0.8)",
+                  }}
+                >
+                  Your Presenter
+                </span>
+              </div>
+              {/* Center video */}
+              <video
+                ref={(el) => { videoRefs.current[0] = el; }}
+                src="/creatives/ilay-lipsync.mov"
+                autoPlay
+                muted
+                loop
+                playsInline
+                style={{ height: "100%" }}
+              />
+              {/* Right black bar with text */}
+              <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", background: "black" }}>
+                <span
+                  className={graffitiFont.className}
+                  style={{
+                    transform: "rotate(4deg)",
+                    fontSize: "clamp(12px, 1.5vw, 24px)",
+                    color: "rgba(255,255,255,0.75)",
+                    letterSpacing: "2px",
+                    textTransform: "uppercase",
+                    whiteSpace: "nowrap",
+                    textShadow: "0 0 20px rgba(139,92,246,0.5), 0 2px 4px rgba(0,0,0,0.8)",
+                  }}
+                >
+                  Your Presenter
+                </span>
+              </div>
+            </div>
+          </div>
+          {/* Instagram Story Video */}
+          <video
+            ref={(el) => {
+              videoRefs.current[1] = el;
+            }}
+            src="/creatives/instagram-story-video.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              opacity: activeIndex === 1 ? 1 : 0,
+              transition: "opacity 500ms ease-in-out",
+            }}
+          />
+          {/* Fashion Carousel Image */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/creatives/carousel-ad.jpg"
+            alt="Fashion Carousel Ad"
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              opacity: activeIndex === 2 ? 1 : 0,
+              transition: "opacity 500ms ease-in-out",
+            }}
+          />
+        </div>
+      </div>
+    </>
   );
 }
 
@@ -147,7 +380,7 @@ export default function PreviewPage() {
         Funding Announcement Placement — Preview
       </h1>
       <p style={{ color: "#6b7280", fontSize: "0.9rem", marginBottom: 48 }}>
-        4 options for displaying &quot;Raised $1M in pre-seed funding&quot; in the hero.
+        4 options for displaying &quot;Raised $1.2M in pre-seed funding&quot; in the hero.
       </p>
 
       {/* ── Option A: Announcement bar above nav ── */}
@@ -163,7 +396,7 @@ export default function PreviewPage() {
           }}
         >
           <span style={{ fontSize: "0.78rem", color: "#fff", fontWeight: 500 }}>
-            We raised $1M in pre-seed funding
+            We raised $1.2M in pre-seed funding
           </span>
           <ArrowRight size={14} color="#fff" />
         </div>
@@ -204,7 +437,7 @@ export default function PreviewPage() {
                   background: "rgba(255,255,255,0.6)",
                 }}
               >
-                Backed by $1M in pre-seed funding
+                Backed by $1.2M in pre-seed funding
                 <ArrowRight size={12} color="#9ca3af" />
               </span>
             </div>
@@ -223,7 +456,7 @@ export default function PreviewPage() {
                   color: "#6b7280",
                 }}
               >
-                <span style={{ fontWeight: 600, color: "#111" }}>$1M</span> pre-seed raised
+                <span style={{ fontWeight: 600, color: "#111" }}>$1.2M</span> pre-seed raised
               </span>
               <span style={{ color: "#d1d5db" }}>·</span>
               <span
@@ -269,7 +502,7 @@ export default function PreviewPage() {
               margin: "16px auto 0",
             }}
           >
-            <span style={{ fontWeight: 600, color: "#374151" }}>Backed by $1M in pre-seed funding.</span>{" "}
+            <span style={{ fontWeight: 600, color: "#374151" }}>Backed by $1.2M in pre-seed funding.</span>{" "}
             We are leading the new era of AI marketing. More marketing. More growth.
             Less cost. That&apos;s not a pitch. That&apos;s the model.
           </p>
@@ -323,6 +556,11 @@ export default function PreviewPage() {
             </p>
           </div>
         </div>
+      </MiniHero>
+
+      {/* ── Creative Agent — Media Switcher ── */}
+      <MiniHero label="Creative Agent — Media Switcher">
+        <MediaSwitcher />
       </MiniHero>
     </div>
   );

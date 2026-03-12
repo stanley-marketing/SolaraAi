@@ -20,11 +20,11 @@ const FADE_UP = {
    ────────────────────────────────────────────── */
 
 const LABEL = "Pre-seed · 2024";
-const STAT = "$1M";
-const HEADING = "Backed by $1M in pre-seed funding";
+const STAT = ".2M";
+const HEADING = "Backed by .2M in pre-seed funding";
 
 const BODY_1 =
-  "Solara AI raised $1 million in pre-seed funding in 2024. The investment reflects a shared conviction: that the gap between enterprise-grade marketing capabilities and what is available to most businesses is a problem worth solving properly.";
+  "Solara AI raised $1.2 million in pre-seed funding in 2024. The investment reflects a shared conviction: that the gap between enterprise-grade marketing capabilities and what is available to most businesses is a problem worth solving properly.";
 
 const BODY_2 =
   "Solara AI was built to close that gap — not with complexity or AI buzzwords, but with a system that runs marketing end-to-end, making the best available technology genuinely accessible to every business that needs it.";
@@ -192,7 +192,7 @@ export function AboutFunding() {
                     lineHeight: 1,
                   }}
                 >
-                  $1M
+                  $1.2M
                 </span>
                 <span
                   className="text-xs uppercase tracking-[0.22em]"

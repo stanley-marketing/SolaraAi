@@ -12,14 +12,14 @@ import { Footer } from "@/components/Footer";
 export const metadata: Metadata = {
   title: "About Solara AI — AI-Powered Marketing for Growing Businesses",
   description:
-    "Solara AI is a 2024-founded AI marketing service backed by $1M in pre-seed funding. We help growing businesses run smarter paid ads, content, and campaigns — without the agency overhead.",
+    "Solara AI is a 2024-founded AI marketing service backed by $1.2M in pre-seed funding. We help growing businesses run smarter paid ads, content, and campaigns — without the agency overhead.",
   alternates: {
     canonical: "https://www.solaraai.io/about",
   },
   openGraph: {
     title: "About Solara AI",
     description:
-      "AI-powered marketing service founded in 2024. Backed by $1M pre-seed. We help growing businesses run smarter campaigns.",
+      "AI-powered marketing service founded in 2024. Backed by $1.2M pre-seed. We help growing businesses run smarter campaigns.",
     url: "https://www.solaraai.io/about",
     siteName: "Solara AI",
     type: "website",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About Solara AI",
     description:
-      "AI-powered marketing service founded in 2024. Backed by $1M pre-seed.",
+      "AI-powered marketing service founded in 2024. Backed by $1.2M pre-seed.",
   },
 };
 
