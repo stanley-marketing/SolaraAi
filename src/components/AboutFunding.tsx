@@ -152,33 +152,55 @@ export function AboutFunding() {
               {BODY_2}
             </motion.p>
 
-            {/* Proof accent: founding year callout */}
+            {/* Milestones */}
             <motion.div
               custom={0.42}
               variants={FADE_UP}
-              className="mt-10 inline-flex items-baseline gap-2"
+              className="mt-12 flex flex-col gap-4 sm:flex-row sm:gap-10"
             >
-              <span
-                style={{
-                  fontFamily: "var(--font-display-playfair)",
-                  fontSize: "clamp(1.5rem, 3vw, 2rem)",
-                  fontWeight: 400,
-                  letterSpacing: "-0.02em",
-                  color: "#111111",
-                  lineHeight: 1,
-                }}
-              >
-                2024
-              </span>
-              <span
-                className="text-xs uppercase tracking-[0.22em]"
-                style={{
-                  fontFamily: "var(--font-body)",
-                  color: "#9a9a9a",
-                }}
-              >
-                Founded
-              </span>
+              {/* Milestone 1 */}
+              <div className="flex items-baseline gap-3">
+                <span
+                  style={{
+                    fontFamily: "var(--font-display-playfair)",
+                    fontSize: "clamp(1.3rem, 2.5vw, 1.75rem)",
+                    fontWeight: 400,
+                    letterSpacing: "-0.02em",
+                    color: "#111111",
+                    lineHeight: 1,
+                  }}
+                >
+                  2024
+                </span>
+                <span
+                  className="text-xs uppercase tracking-[0.22em]"
+                  style={{ fontFamily: "var(--font-body)", color: "#9a9a9a" }}
+                >
+                  Founded
+                </span>
+              </div>
+
+              {/* Milestone 2 */}
+              <div className="flex items-baseline gap-3">
+                <span
+                  style={{
+                    fontFamily: "var(--font-display-playfair)",
+                    fontSize: "clamp(1.3rem, 2.5vw, 1.75rem)",
+                    fontWeight: 400,
+                    letterSpacing: "-0.02em",
+                    color: "#111111",
+                    lineHeight: 1,
+                  }}
+                >
+                  $1M
+                </span>
+                <span
+                  className="text-xs uppercase tracking-[0.22em]"
+                  style={{ fontFamily: "var(--font-body)", color: "#9a9a9a" }}
+                >
+                  Pre-seed raised
+                </span>
+              </div>
             </motion.div>
           </motion.div>
 

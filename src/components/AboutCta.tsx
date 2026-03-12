@@ -19,7 +19,7 @@ const CTA_HREF = "https://calendly.com/ilay-mor-solaraai/30min";
 
 export function AboutCta() {
   return (
-    <section className="relative overflow-hidden px-6 py-24 sm:px-10 sm:py-28">
+    <section className="relative overflow-hidden bg-[#fafaf8] px-6 py-24 sm:px-10 sm:py-28">
       {/* Soft top divider — barely-there rule to close the section above */}
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-px"
@@ -35,7 +35,16 @@ export function AboutCta() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 90% 55% at 50% 110%, rgba(168,85,247,0.05) 0%, rgba(236,72,153,0.025) 45%, transparent 70%)",
+            "radial-gradient(ellipse 90% 55% at 50% 110%, rgba(168,85,247,0.08) 0%, rgba(236,72,153,0.04) 45%, transparent 70%)",
+        }}
+      />
+
+      {/* Transition to footer — gentle darkening at the bottom edge */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-24"
+        style={{
+          background: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.03))",
         }}
       />
 

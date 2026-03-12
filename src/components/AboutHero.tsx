@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 /* ──────────────────────────────────────────────
@@ -96,22 +95,37 @@ export function AboutHero() {
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
       />
 
+      {/* Decorative crescent arc — right side, desktop only */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute hidden sm:block"
+        style={{
+          top: "8%",
+          right: "-14%",
+          width: "560px",
+          height: "560px",
+          borderRadius: "50%",
+          border: "1.5px solid rgba(168,85,247,0.07)",
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute hidden sm:block"
+        style={{
+          top: "18%",
+          right: "-8%",
+          width: "380px",
+          height: "380px",
+          borderRadius: "50%",
+          border: "1px solid rgba(236,72,153,0.05)",
+        }}
+      />
+
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-6xl">
 
-        {/* Logomark */}
-        <FadeUp delay={0}>
-          <Image
-            src="/solara-icon.svg"
-            alt="Solara AI"
-            width={48}
-            height={48}
-            className="mb-6"
-          />
-        </FadeUp>
-
         {/* Small eyebrow label */}
-        <FadeUp delay={0.08}>
+        <FadeUp delay={0}>
           <p
             className="text-xs font-semibold uppercase tracking-[0.28em]"
             style={{ color: "#9ca3af" }}
@@ -121,7 +135,7 @@ export function AboutHero() {
         </FadeUp>
 
         {/* H1 */}
-        <FadeUp delay={0.16}>
+        <FadeUp delay={0.08}>
           <h1
             className="mt-5 max-w-[860px] leading-[1.05] tracking-[-0.02em] text-ink-900"
             style={{
@@ -135,7 +149,7 @@ export function AboutHero() {
         </FadeUp>
 
         {/* Brand accent line */}
-        <FadeUp delay={0.25}>
+        <FadeUp delay={0.16}>
           <div
             className="mt-8"
             style={{
@@ -149,7 +163,7 @@ export function AboutHero() {
         </FadeUp>
 
         {/* Supporting copy */}
-        <FadeUp delay={0.33}>
+        <FadeUp delay={0.25}>
           <p
             className="mt-8 max-w-2xl text-ink-700/70"
             style={{
@@ -165,7 +179,7 @@ export function AboutHero() {
         </FadeUp>
 
         {/* Trust-intro: three restrained editorial items */}
-        <FadeUp delay={0.43}>
+        <FadeUp delay={0.33}>
           <div className="mt-14 grid grid-cols-1 gap-y-8 sm:grid-cols-3 sm:gap-x-12 sm:gap-y-0">
             {TRUST_ITEMS.map((item) => (
               <div key={item.label} className="flex flex-col">

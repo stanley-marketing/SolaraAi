@@ -120,14 +120,14 @@ export function AboutValues() {
                 {/* Index + icon column */}
                 <div className="flex flex-col items-start gap-3 pt-1">
                   <span
-                    className="font-mono text-xs tabular-nums text-gray-300"
+                    className="font-mono text-xs tabular-nums text-gray-400"
                     aria-hidden="true"
                   >
                     {p.index}
                   </span>
                   <Icon
-                    size={15}
-                    className="text-gray-300 transition-colors duration-300 group-hover:text-ink-900"
+                    size={17}
+                    className="text-gray-400 transition-colors duration-300 group-hover:text-ink-900"
                     strokeWidth={1.5}
                   />
                 </div>

@@ -6,7 +6,6 @@ import { AboutHero } from "@/components/AboutHero";
 import { AboutFunding } from "@/components/AboutFunding";
 import { AboutMethodology } from "@/components/AboutMethodology";
 import { AboutValues } from "@/components/AboutValues";
-import { AboutTimeline } from "@/components/AboutTimeline";
 import { AboutCta } from "@/components/AboutCta";
 import { Footer } from "@/components/Footer";
 
@@ -62,7 +61,6 @@ export default function AboutPage() {
       <AboutFunding />
       <AboutMethodology />
       <AboutValues />
-      <AboutTimeline />
       <AboutCta />
       <Footer />
     </main>
