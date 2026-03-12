@@ -203,7 +203,7 @@ function MediaSwitcher() {
               {/* Center video */}
               <video
                 ref={(el) => { videoRefs.current[0] = el; }}
-                src="/creatives/ilay-lipsync.mov"
+                src="/creatives/ilay-lipsync.mp4"
                 autoPlay
                 muted
                 loop
