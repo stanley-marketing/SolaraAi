@@ -5,6 +5,7 @@ import { getAllCaseSlugs, getCaseStudy } from "@/lib/case-studies";
 import { getCaseStudyJsonLd, getCaseStudyMetadata } from "@/lib/case-studies/seo";
 import { MaisonDetailPage } from "@/components/case-study/MaisonDetailPage";
 import { TopNav } from "@/components/LandingSections";
+import { Footer } from "@/components/Footer";
 
 export async function generateStaticParams() {
   return getAllCaseSlugs().map((slug) => ({ slug }));
@@ -53,6 +54,7 @@ export default async function CaseStudyPage({
         );
       })}
       <MaisonDetailPage caseStudy={caseStudy} />
+      <Footer />
     </main>
   );
 }

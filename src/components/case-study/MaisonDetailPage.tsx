@@ -139,7 +139,7 @@ export function MaisonDetailPage({ caseStudy }: { caseStudy: CaseStudy }) {
             </Link>
             <span>/</span>
             <Link
-              href="/case-studies"
+              href="/case-study"
               className="transition-colors hover:text-gray-600"
             >
               Case Studies
@@ -377,18 +377,18 @@ export function MaisonDetailPage({ caseStudy }: { caseStudy: CaseStudy }) {
             See what Solara AI can build for your business. No pressure, no
             pitch deck — just a direct conversation about your goals.
           </p>
-          <div className="mt-8 flex flex-col items-center gap-4">
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <a
               href={caseStudy.cta.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-[999px] bg-black px-8 py-4 text-[14px] font-medium tracking-[1px] text-white transition-opacity hover:opacity-80"
+              className="inline-flex items-center rounded-[999px] bg-black px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-white transition-colors duration-200 hover:bg-gray-700"
             >
               Book a strategy call
             </a>
             <Link
               href="/"
-              className="text-sm text-gray-400 underline-offset-2 transition-colors hover:text-gray-600 hover:underline"
+              className="inline-flex items-center rounded-[999px] border border-line bg-white/60 px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-ink-900 backdrop-blur-sm transition-colors duration-200 hover:bg-gray-100"
             >
               Learn about Solara AI
             </Link>

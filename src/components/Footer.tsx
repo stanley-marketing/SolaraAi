@@ -17,7 +17,7 @@ const PRODUCT = [
 
 const RESOURCES = [
   { label: "Blog", href: "/blog" },
-  { label: "Case Studies", href: "/case-studies" },
+  { label: "Case Studies", href: "/case-study" },
   { label: "Changelog", href: "/changelog" },
 ];
 
