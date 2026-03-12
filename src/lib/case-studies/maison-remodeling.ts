@@ -7,6 +7,7 @@ const maisonRemodelingCaseStudy: CaseStudy = {
   industry: "Home Remodeling & General Contracting",
   location: "Santa Clara / San Jose, California",
   engagementPeriod: "December 2025 - March 2026 (90 days)",
+  datePublished: "2026-03-12",
   challenge:
     "Maison Remodeling Group had years of Bay Area remodeling experience and a strong referral reputation, but it started with no website, no SEO footprint, no content strategy, minimal social traction, and no reliable digital lead generation system.",
   executiveSummary:

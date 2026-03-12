@@ -38,6 +38,7 @@ export interface CaseStudy {
   industry: string;
   location: string;
   engagementPeriod: string;
+  datePublished: string;
   challenge: string;
   executiveSummary: string;
   metrics: CaseStudyMetric[];

@@ -32,7 +32,7 @@ export default async function CaseStudyPage({
 
   const jsonLdNodes = getCaseStudyJsonLd({
     ...caseStudy,
-    datePublished: "2026-03-12",
+    datePublished: caseStudy.datePublished,
   });
 
   return (
