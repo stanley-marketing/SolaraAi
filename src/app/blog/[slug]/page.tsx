@@ -131,9 +131,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <main className="min-h-screen bg-white text-ink-900 font-[family-name:var(--font-blog)]">
+      <main className="min-h-screen bg-white text-ink-900">
         <TopNav />
 
+        <div className="font-[family-name:var(--font-blog)]">
         {/* Blog post header — centered */}
         <section className="pt-32 pb-8">
           <div className="mx-auto max-w-6xl px-6 sm:px-10">
@@ -248,6 +249,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             </a>
           </div>
         </section>
+        </div>
       </main>
       <Footer />
     </>

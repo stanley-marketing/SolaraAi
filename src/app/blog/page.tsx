@@ -184,7 +184,7 @@ function AuthorChip() {
 export default function ArticlesPage() {
   return (
     <>
-    <main className="min-h-screen bg-white font-[family-name:var(--font-blog)] text-ink-900">
+    <main className="min-h-screen bg-white text-ink-900">
       <TopNav />
 
       {/* CollectionPage structured data */}
@@ -224,6 +224,7 @@ export default function ArticlesPage() {
         }}
       />
 
+      <div className="font-[family-name:var(--font-blog)]">
       {/* Header */}
       <section className="px-6 pb-4 pt-40 sm:px-10">
         <div className="mx-auto max-w-7xl">
@@ -363,6 +364,7 @@ export default function ArticlesPage() {
           </div>
         </div>
       </section>
+      </div>
     </main>
     <Footer />
   </>
