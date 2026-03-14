@@ -123,7 +123,7 @@ function StatTabs({
   onSelect: (i: number) => void;
 }) {
   return (
-    <div className="mt-16 grid grid-cols-4">
+    <div className="mt-16 grid grid-cols-2 gap-y-4 sm:grid-cols-4 sm:gap-y-0">
       {STATS.map((s, i) => (
         <button
           key={s.label}
@@ -210,10 +210,179 @@ export function AdvantageSection() {
         {/* Stat tabs */}
         <StatTabs active={active} onSelect={(i) => { setActive(i); setResetKey((k) => k + 1); }} />
 
-        {/* Photon Beam — branded for Solara AI */}
+        {/* Mobile: per-tab visual modes — each tab looks dramatically different */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="relative mx-auto mt-10 overflow-hidden rounded-2xl border border-gray-100 sm:hidden"
+            style={{ height: 280 }}
+          >
+            <style dangerouslySetInnerHTML={{ __html: `
+              @keyframes adv-pulse-bright {
+                0%, 100% { transform: scale(1); opacity: 0.5; }
+                50% { transform: scale(1.5); opacity: 1; }
+              }
+              @keyframes adv-glow-strong {
+                0%, 100% { box-shadow: 0 0 0 0 transparent; }
+                50% { box-shadow: 0 0 32px 12px ${STATS[active].color}30; }
+              }
+              @keyframes adv-agent-pop {
+                0% { transform: scale(0); opacity: 0; }
+                70% { transform: scale(1.15); opacity: 1; }
+                100% { transform: scale(1); opacity: 1; }
+              }
+              @keyframes adv-line-grow {
+                from { clip-path: inset(-1px 100% -1px 0); }
+                to { clip-path: inset(-1px 0% -1px 0); }
+              }
+              @keyframes adv-data-travel {
+                0% { left: 0; opacity: 0; }
+                12% { opacity: 1; }
+                88% { opacity: 1; left: calc(100% - 5px); }
+                100% { left: calc(100% - 5px); opacity: 0; }
+              }
+              @keyframes adv-hub-ring {
+                0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.35; }
+                100% { transform: translate(-50%, -50%) scale(2.2); opacity: 0; }
+              }
+              @keyframes adv-orbit {
+                from { transform: translate(-50%, -50%) rotate(0deg); }
+                to { transform: translate(-50%, -50%) rotate(360deg); }
+              }
+              @keyframes adv-trail {
+                0%, 100% { opacity: 0.6; box-shadow: 0 0 6px currentColor; }
+                50% { opacity: 1; box-shadow: 0 0 14px 4px currentColor; }
+              }
+            `}} />
+
+            {active === 0 && (
+              /* 90% AI — all dots large, bright, strong glows, active feel */
+              <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #f5f0ff, #fdf2f8)" }}>
+                <div className="relative h-full w-full">
+                  {AGENTS.map((agent, i) => {
+                    const angle = (i * 60 - 90) * (Math.PI / 180);
+                    const r = 80;
+                    return (
+                      <div key={agent.name} className="absolute flex flex-col items-center gap-1" style={{ left: `calc(50% + ${Math.round(Math.cos(angle) * r)}px)`, top: `calc(42% + ${Math.round(Math.sin(angle) * r)}px)`, transform: "translate(-50%, -50%)" }}>
+                        <div className="h-4 w-4 rounded-full" style={{ backgroundColor: agent.color, animation: "adv-pulse-bright 2s infinite ease-in-out", animationDelay: `${i * 0.3}s`, boxShadow: `0 0 16px 4px ${agent.color}50` }} />
+                        <span className="whitespace-nowrap text-[10px] font-semibold" style={{ color: agent.color }}>{agent.name}</span>
+                      </div>
+                    );
+                  })}
+                  {AGENTS.map((agent, i) => (
+                    <div key={`line-${i}`} className="absolute" style={{ left: "50%", top: "42%", width: 80, height: 2, background: `linear-gradient(90deg, ${STATS[0].color}25, ${agent.color}50)`, transformOrigin: "0% 50%", transform: `rotate(${i * 60 - 90}deg)` }} />
+                  ))}
+                  <div className="absolute flex h-16 w-16 items-center justify-center rounded-full bg-white" style={{ left: "50%", top: "42%", transform: "translate(-50%, -50%)", animation: "adv-glow-strong 2.5s infinite ease-in-out", border: `2px solid ${STATS[0].color}30` }}>
+                    <Image src="/solara-icon.svg" alt="Solara" width={32} height={32} />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {active === 1 && (
+              /* 6 Agents — staggered boot-up with network connections and data pulses */
+              <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #eff6ff, #f0fdf4)" }}>
+                <div className="relative h-full w-full">
+                  {/* Expanding hub rings */}
+                  {[0, 1].map((ring) => (
+                    <div key={`ring-${ring}`} className="absolute rounded-full" style={{ left: "50%", top: "42%", width: 40, height: 40, border: `1.5px solid ${STATS[1].color}25`, animation: "adv-hub-ring 3s ease-out infinite", animationDelay: `${ring * 1.5}s` }} />
+                  ))}
+                  {/* Connecting lines with traveling data pulses */}
+                  {AGENTS.map((agent, i) => (
+                    <div key={`conn-${i}`} className="absolute" style={{ left: "50%", top: "42%", width: 90, height: 2, transformOrigin: "0% 50%", transform: `rotate(${i * 60 - 90}deg)`, background: `linear-gradient(90deg, ${STATS[1].color}20, ${agent.color}45)`, animation: "adv-line-grow 0.4s ease-out both", animationDelay: `${0.7 + i * 0.08}s`, position: "absolute" }}>
+                      <div className="absolute rounded-full" style={{ width: 5, height: 5, top: -1.5, backgroundColor: agent.color, boxShadow: `0 0 8px 2px ${agent.color}50`, animation: "adv-data-travel 2.2s ease-in-out infinite", animationDelay: `${1.4 + i * 0.35}s` }} />
+                    </div>
+                  ))}
+                  {/* Agent badges — staggered pop-in */}
+                  {AGENTS.map((agent, i) => {
+                    const angle = (i * 60 - 90) * (Math.PI / 180);
+                    const r = 90;
+                    return (
+                      <div key={agent.name} className="absolute" style={{ left: `calc(50% + ${Math.round(Math.cos(angle) * r)}px)`, top: `calc(42% + ${Math.round(Math.sin(angle) * r)}px)`, transform: "translate(-50%, -50%)" }}>
+                        <div className="flex flex-col items-center gap-1" style={{ animation: "adv-agent-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both", animationDelay: `${i * 0.12}s` }}>
+                          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white" style={{ border: `2px solid ${agent.color}`, boxShadow: `0 2px 8px ${agent.color}18` }}>
+                            <div className="h-4 w-4 rounded-full" style={{ backgroundColor: agent.color }} />
+                          </div>
+                          <span className="whitespace-nowrap text-[10px] font-bold tracking-wide" style={{ color: agent.color }}>{agent.name}</span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                  {/* Center hub */}
+                  <div className="absolute flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-lg" style={{ left: "50%", top: "42%", transform: "translate(-50%, -50%)", border: `2px solid ${STATS[1].color}35`, boxShadow: `0 0 16px 4px ${STATS[1].color}12` }}>
+                    <Image src="/solara-icon.svg" alt="Solara" width={28} height={28} />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {active === 2 && (
+              /* 24/7 — orbital rotation, dots circling the center continuously */
+              <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #ecfeff, #eff6ff)" }}>
+                <div className="relative h-full w-full">
+                  <div className="absolute" style={{ left: "50%", top: "42%", width: 160, height: 160, transform: "translate(-50%, -50%)" }}>
+                    <div className="absolute inset-0 rounded-full" style={{ border: "1px dashed #06b6d430" }} />
+                  </div>
+                  <div className="absolute" style={{ left: "50%", top: "42%", animation: "adv-orbit 8s linear infinite" }}>
+                    {AGENTS.map((agent, i) => {
+                      const angle = (i * 60 - 90) * (Math.PI / 180);
+                      const r = 80;
+                      return (
+                        <div key={agent.name} className="absolute flex flex-col items-center gap-1" style={{ left: `${Math.round(Math.cos(angle) * r)}px`, top: `${Math.round(Math.sin(angle) * r)}px`, transform: "translate(-50%, -50%)" }}>
+                          <div className="h-3.5 w-3.5 rounded-full" style={{ backgroundColor: agent.color, color: agent.color, animation: "adv-trail 1.2s infinite ease-in-out", animationDelay: `${i * 0.2}s` }} />
+                          <span className="whitespace-nowrap text-[10px] font-medium text-gray-500">{agent.name}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="absolute flex h-14 w-14 items-center justify-center rounded-full bg-white" style={{ left: "50%", top: "42%", transform: "translate(-50%, -50%)", border: "2px solid #06b6d440", boxShadow: "0 0 20px 6px #06b6d415" }}>
+                    <Image src="/solara-icon.svg" alt="Solara" width={28} height={28} />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {active === 3 && (
+              /* 10% Human — dots dimmed and tiny, center prominent with warm glow */
+              <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #faf5ff, #fdf4ff)" }}>
+                <div className="relative h-full w-full">
+                  {AGENTS.map((agent, i) => {
+                    const angle = (i * 60 - 90) * (Math.PI / 180);
+                    const r = 85;
+                    return (
+                      <div key={agent.name} className="absolute flex flex-col items-center gap-1" style={{ left: `calc(50% + ${Math.round(Math.cos(angle) * r)}px)`, top: `calc(42% + ${Math.round(Math.sin(angle) * r)}px)`, transform: "translate(-50%, -50%)" }}>
+                        <div className="h-2 w-2 rounded-full bg-gray-300" style={{ opacity: 0.4 }} />
+                        <span className="whitespace-nowrap text-[10px] text-gray-300">{agent.name}</span>
+                      </div>
+                    );
+                  })}
+                  {AGENTS.map((_, i) => (
+                    <div key={`line-dim-${i}`} className="absolute" style={{ left: "50%", top: "42%", width: 85, height: 1, background: "linear-gradient(90deg, #a855f710, #d4d4d415)", transformOrigin: "0% 50%", transform: `rotate(${i * 60 - 90}deg)` }} />
+                  ))}
+                  <div className="absolute flex h-20 w-20 items-center justify-center rounded-full" style={{ left: "50%", top: "42%", transform: "translate(-50%, -50%)", background: "linear-gradient(135deg, #f5f0ff, #fdf2f8)", border: "2px solid #a855f730", boxShadow: "0 0 40px 16px #a855f720" }}>
+                    <Image src="/solara-icon.svg" alt="Solara" width={40} height={40} />
+                  </div>
+                  <div className="absolute text-center" style={{ left: "50%", top: "calc(42% + 56px)", transform: "translateX(-50%)" }}>
+                    <span className="text-xs font-semibold text-purple-400">You</span>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-white to-transparent px-6 pt-8 pb-4">
+              <p className="text-center text-sm text-gray-400">{cfg.caption}</p>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Desktop: PhotonBeam (Three.js WebGL) */}
         <div
           ref={beamRef}
-          className="relative mx-auto mt-10 overflow-hidden rounded-2xl border border-gray-100"
+          className="relative mx-auto mt-10 hidden overflow-hidden rounded-2xl border border-gray-100 sm:block"
           style={{ height: 420, background: "#ffffff" }}
         >
           {isVisible ? (

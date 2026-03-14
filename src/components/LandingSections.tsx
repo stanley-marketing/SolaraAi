@@ -66,10 +66,12 @@ export function TopNav() {
           <div className="flex items-center gap-3">
             {/* Book a call — desktop only */}
             <a
-            href="/contact"
-            className="hidden items-center rounded-[999px] bg-black px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-white transition-colors duration-200 hover:bg-gray-700 lg:inline-flex"
-          >
-            Book a call
+              href="/contact"
+              className={`hidden lg:inline-flex items-center rounded-full px-4 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.17em] text-ink-900 transition-colors duration-300 hover:bg-black hover:text-white ${
+                isScrolled ? "border border-line" : "border border-black/20"
+              }`}
+            >
+              Book a call
             </a>
 
             {/* Hamburger — mobile only */}
