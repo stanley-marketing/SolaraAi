@@ -5,6 +5,8 @@ import Link from "next/link";
 import { TopNav } from "@/components/LandingSections";
 import { Footer } from "@/components/Footer";
 
+const SITE_URL = "https://solaraai.com";
+
 type BillingPeriod = "monthly" | "yearly";
 
 const plans = [
@@ -14,7 +16,7 @@ const plans = [
     tagline: "Launch your marketing",
     price: { monthly: 49, yearly: 29 },
     cta: "Get started",
-    ctaHref: "https://app.solaraai.com/auth/signup",
+    ctaHref: "/contact",
     featured: false,
     features: [
       "3 social media channels",
@@ -30,7 +32,7 @@ const plans = [
     tagline: "Scale your reach",
     price: { monthly: 99, yearly: 59 },
     cta: "Get started",
-    ctaHref: "https://app.solaraai.com/auth/signup",
+    ctaHref: "/contact",
     featured: true,
     features: [
       "Up to 5 social media channels",
@@ -45,7 +47,7 @@ const plans = [
     tagline: "Full-stack marketing",
     price: { monthly: 199, yearly: 119 },
     cta: "Get started",
-    ctaHref: "https://app.solaraai.com/auth/signup",
+    ctaHref: "/contact",
     featured: false,
     features: [
       "Full SEO + GEO strategy",
@@ -88,6 +90,55 @@ export default function PricingPage() {
     <>
       <main className="min-h-screen bg-white text-ink-900">
         <TopNav />
+
+      {/* WebPage + FAQPage structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "Pricing \u2014 Solara AI",
+            url: `${SITE_URL}/pricing`,
+            description:
+              "Pick the plan that matches your growth velocity. Starter, Growth, and Pro tiers \u2014 from $29/mo.",
+            breadcrumb: {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Home",
+                  item: SITE_URL,
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Pricing",
+                  item: `${SITE_URL}/pricing`,
+                },
+              ],
+            },
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: f.a,
+              },
+            })),
+          }),
+        }}
+      />
 
       {/* Hero */}
       <section className="px-6 pb-0 pt-40 text-center sm:px-10">
@@ -264,10 +315,10 @@ export default function PricingPage() {
       <section className="mx-auto mt-20 max-w-7xl px-6 sm:px-10">
         <div className="grid grid-cols-2 gap-px border border-line bg-line sm:grid-cols-4">
           {[
-            { stat: "50 hrs", label: "saved per week, avg client" },
-            { stat: "67.3%", label: "CTR increase across campaigns" },
-            { stat: "3\u00d7", label: "ROI on same ad budget" },
-            { stat: "80%", label: "increase in conversions" },
+            { stat: "50 hrs", label: "saved per week, avg across clients" },
+            { stat: "67.3%", label: "avg CTR increase across campaigns" },
+            { stat: "3\u00d7", label: "avg ROI on same ad budget" },
+            { stat: "80%", label: "avg increase in conversions" },
           ].map(({ stat, label }) => (
             <div key={stat} className="bg-white px-8 py-8">
               <div
@@ -354,17 +405,13 @@ export default function PricingPage() {
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <a
-            href="https://app.solaraai.com/auth/signup"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/contact"
             className="inline-flex items-center rounded-xl bg-ink-900 px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-white transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90"
           >
             Start free trial
           </a>
           <a
-            href="https://calendly.com/ilay-mor-solaraai/30min"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/contact"
             className="inline-flex items-center rounded-xl border border-line bg-white px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-ink-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink-900/30"
           >
             Book a call

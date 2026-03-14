@@ -9,13 +9,13 @@ export const metadata: Metadata = {
   description:
     "Frameworks, tools, and strategies for marketers who want to move faster with AI, SEO, GEO, paid ads, and content systems.",
   alternates: {
-    canonical: "https://www.solaraai.io/blog",
+    canonical: "https://solaraai.com/blog",
   },
   openGraph: {
     title: "Solara AI Blog | Marketing Guides, Comparisons, and Strategy",
     description:
       "Frameworks, tools, and strategies for marketers who want to move faster with AI, SEO, GEO, paid ads, and content systems.",
-    url: "https://www.solaraai.io/blog",
+    url: "https://solaraai.com/blog",
     siteName: "Solara AI",
     type: "website",
   },
@@ -186,6 +186,43 @@ export default function ArticlesPage() {
     <>
     <main className="min-h-screen bg-white font-[family-name:var(--font-blog)] text-ink-900">
       <TopNav />
+
+      {/* CollectionPage structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: "Solara AI Blog | Marketing Guides, Comparisons, and Strategy",
+            url: "https://solaraai.com/blog",
+            description:
+              "Frameworks, tools, and strategies for marketers who want to move faster with AI, SEO, GEO, paid ads, and content systems.",
+            breadcrumb: {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Home",
+                  item: "https://solaraai.com",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Blog",
+                  item: "https://solaraai.com/blog",
+                },
+              ],
+            },
+            isPartOf: {
+              "@type": "WebSite",
+              name: "Solara AI",
+              url: "https://solaraai.com",
+            },
+          }),
+        }}
+      />
 
       {/* Header */}
       <section className="px-6 pb-4 pt-40 sm:px-10">

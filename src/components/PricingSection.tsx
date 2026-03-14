@@ -44,7 +44,7 @@ const PLANS: Plan[] = [
     price: { monthly: 49, yearly: 29 },
     credits: "",
     cta: "Get started",
-    ctaHref: "https://app.solaraai.com/auth/signup",
+    ctaHref: "/contact",
     featured: false,
     features: [
       "3 social media channels",
@@ -61,7 +61,7 @@ const PLANS: Plan[] = [
     price: { monthly: 99, yearly: 59 },
     credits: "",
     cta: "Get started",
-    ctaHref: "https://app.solaraai.com/auth/signup",
+    ctaHref: "/contact",
     featured: true,
     features: [
       "Up to 5 social media channels",
@@ -77,7 +77,7 @@ const PLANS: Plan[] = [
     price: { monthly: 199, yearly: 119 },
     credits: "",
     cta: "Get started",
-    ctaHref: "https://app.solaraai.com/auth/signup",
+    ctaHref: "/contact",
     featured: false,
     features: [
       "Full SEO + GEO strategy",

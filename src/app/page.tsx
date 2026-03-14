@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { ArrowRight } from "lucide-react";
 
@@ -13,15 +14,79 @@ import { PricingSection } from "@/components/PricingSection";
 
 import { CtaSection } from "@/components/CtaSection";
 import { Footer } from "@/components/Footer";
+
+const SITE_URL = "https://solaraai.com";
+
+export const metadata: Metadata = {
+  title: "Solara AI \u2014 AI That Runs Your Marketing",
+  description:
+    "Solara AI is a full-stack AI marketing platform that manages ads, social media, SEO, and content \u2014 so growing businesses get an entire marketing department without the overhead.",
+  alternates: { canonical: SITE_URL },
+  openGraph: {
+    title: "Solara AI \u2014 AI That Runs Your Marketing",
+    description:
+      "Full-stack AI marketing: ads, social, SEO, content \u2014 all managed by AI. More growth. Less cost.",
+    url: SITE_URL,
+    siteName: "Solara AI",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Solara AI \u2014 AI That Runs Your Marketing",
+    description:
+      "Full-stack AI marketing: ads, social, SEO, content \u2014 all managed by AI. More growth. Less cost.",
+  },
+};
+
 export default function Home() {
   return (
     <>
       <main className="relative min-h-screen bg-white text-ink-900">
         <TopNav />
 
+      {/* Organisation + WebPage structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "Solara AI",
+            url: SITE_URL,
+            logo: { "@type": "ImageObject", url: `${SITE_URL}/Logo.svg` },
+            foundingDate: "2024",
+            description:
+              "AI-powered marketing platform that manages ads, social media, SEO, and content for growing businesses.",
+            sameAs: [
+              "https://www.instagram.com/solara.ai.official/",
+              "https://www.facebook.com/profile.php?id=61577711271834",
+              "https://www.linkedin.com/company/solaraai/",
+            ],
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "Solara AI \u2014 AI That Runs Your Marketing",
+            url: SITE_URL,
+            description:
+              "Full-stack AI marketing platform: ads, social media, SEO, and content \u2014 all managed by AI.",
+            isPartOf: {
+              "@type": "WebSite",
+              name: "Solara AI",
+              url: SITE_URL,
+            },
+          }),
+        }}
+      />
+
       {/* Hero */}
       <AuroraBackground
-        className="w-full min-h-[85vh] flex flex-col items-center justify-center px-6 py-20 text-center sm:px-10 sm:py-28"
+        className="w-full flex flex-col items-center justify-center px-6 py-16 text-center sm:min-h-[85vh] sm:px-10 sm:py-28"
         showRadialGradient={true}
       >
         {/* Pre-seed pill */}
@@ -75,7 +140,7 @@ export default function Home() {
             Sign Up
           </a>
           <a
-            href="/product"
+            href="/contact"
             className="inline-flex items-center rounded-[999px] border border-line bg-white/60 px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-ink-900 backdrop-blur-sm transition-colors duration-200 hover:bg-gray-100"
           >
             Contact Sales

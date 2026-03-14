@@ -14,7 +14,7 @@ const AUTHOR = {
     "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/690750f26031dfaacaf32be1_iV_Hy7-_vh6qz7lMknoxU%20(1).jpg",
 };
 
-const SITE_URL = "https://www.solaraai.io";
+const SITE_URL = "https://solaraai.com";
 
 function toIsoDate(date: string) {
   const parsed = new Date(date);
@@ -94,6 +94,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       },
     },
     mainEntityOfPage: articleUrl,
+    url: articleUrl,
   };
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -122,8 +123,14 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
   return (
     <>
-      <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
-      <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <main className="min-h-screen bg-white text-ink-900 font-[family-name:var(--font-blog)]">
         <TopNav />
 
@@ -228,17 +235,13 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <a
-              href="https://app.solaraai.com/auth/signup"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/contact"
               className="inline-flex items-center rounded-xl bg-ink-900 px-7 py-3.5 text-[0.82rem] font-semibold uppercase tracking-[0.16em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90"
             >
               Start free trial
             </a>
             <a
-              href="https://calendly.com/ilay-mor-solaraai/30min"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/contact"
               className="inline-flex items-center rounded-xl border border-line bg-white px-7 py-3.5 text-[0.82rem] font-medium tracking-[0.08em] text-ink-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink-900/30"
             >
               Book a call

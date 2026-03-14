@@ -27,17 +27,13 @@ export function MobileCtaBar() {
       }}
     >
       <a
-        href="https://calendly.com/ilay-mor-solaraai/30min"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="/contact"
         className="flex-1 inline-flex items-center justify-center rounded-xl border border-line bg-white px-4 py-3.5 text-[0.82rem] font-medium tracking-[0.08em] text-ink-900 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.12)] transition-all duration-200 active:scale-[0.97]"
       >
         Book a call
       </a>
       <a
-        href="https://app.solaraai.com/auth/signup"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="/contact"
         className="flex-1 inline-flex items-center justify-center rounded-xl bg-ink-900 px-4 py-3.5 text-[0.82rem] font-semibold uppercase tracking-[0.16em] text-white shadow-[0_4px_20px_-4px_rgba(0,0,0,0.28)] transition-all duration-200 active:scale-[0.97]"
       >
         Start free trial

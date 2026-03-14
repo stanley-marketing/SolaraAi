@@ -66,21 +66,17 @@ export function TopNav() {
           <div className="flex items-center gap-3">
             {/* Book a call — desktop only */}
             <a
-              href="https://calendly.com/ilay-mor-solaraai/30min?utm_source=website&utm_medium=nav_cta&utm_campaign=book-a-call&month=2026-03"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`hidden lg:inline-flex items-center rounded-full px-4 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.17em] text-ink-900 transition-colors duration-300 hover:bg-black hover:text-white ${
-                isScrolled ? "border border-line" : "border border-black/20"
-              }`}
-            >
-              Book a call
+            href="/contact"
+            className="hidden items-center rounded-[999px] bg-black px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-white transition-colors duration-200 hover:bg-gray-700 lg:inline-flex"
+          >
+            Book a call
             </a>
 
             {/* Hamburger — mobile only */}
             <button
               onClick={() => setMenuOpen(true)}
               aria-label="Open menu"
-              className="flex h-8 w-8 flex-col items-center justify-center gap-[5px] lg:hidden"
+              className="flex h-11 w-11 flex-col items-center justify-center gap-[5px] lg:hidden"
             >
               <span className="block h-px w-5 bg-ink-900" />
               <span className="block h-px w-5 bg-ink-900" />
@@ -107,7 +103,7 @@ export function TopNav() {
           <button
             onClick={close}
             aria-label="Close menu"
-            className="flex h-8 w-8 items-center justify-center text-ink-900"
+            className="flex h-11 w-11 items-center justify-center text-ink-900"
           >
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
@@ -154,18 +150,14 @@ export function TopNav() {
           }}
         >
           <a
-            href="https://calendly.com/ilay-mor-solaraai/30min?utm_source=website&utm_medium=nav_cta&utm_campaign=book-a-call&month=2026-03"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/contact"
             onClick={close}
             className="flex w-full items-center justify-center rounded-xl bg-ink-900 px-6 py-3.5 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-white transition-opacity duration-200 hover:opacity-85"
           >
             Book a call
           </a>
           <a
-            href="https://app.solaraai.com/auth/signup"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/contact"
             onClick={close}
             className="flex w-full items-center justify-center rounded-xl border border-line px-6 py-3.5 text-[0.72rem] font-medium uppercase tracking-[0.18em] text-ink-900 transition-colors duration-200 hover:border-ink-900/30"
           >

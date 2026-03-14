@@ -11,9 +11,9 @@ const BODY_1 =
   "The largest companies in the world are doubling down on marketing right now. They have entire departments for it.";
 const SUBLINE = "One flat investment. Fully managed. Built to grow with you.";
 const CTA_PRIMARY_TEXT = "Let's Start Growing";
-const CTA_PRIMARY_HREF = "https://app.solaraai.com/auth/signup";
+const CTA_PRIMARY_HREF = "/contact";
 const CTA_SECONDARY_TEXT = "Talk To Us First";
-const CTA_SECONDARY_HREF = "https://calendly.com/ilay-mor-solaraai/30min";
+const CTA_SECONDARY_HREF = "/contact";
 const REASSURANCE = "No long-term lock-ins. No confusing contracts. Just growth.";
 
 /* ──────────────────────────────────────────────
@@ -190,8 +190,6 @@ export function CtaSection() {
           >
             <a
               href={CTA_PRIMARY_HREF}
-              target="_blank"
-              rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-8 py-4 text-base font-bold transition-all duration-200 hover:scale-[1.03] active:scale-[0.97]"
               style={{
                 background: "#0a0a0a",
@@ -204,8 +202,6 @@ export function CtaSection() {
             </a>
             <a
               href={CTA_SECONDARY_HREF}
-              target="_blank"
-              rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-8 py-4 text-base font-medium transition-all duration-200 hover:bg-black/5"
               style={{
                 background: "transparent",

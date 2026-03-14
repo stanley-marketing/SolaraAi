@@ -68,7 +68,7 @@ export function Footer() {
     <footer className="border-t border-[#E5E7EB] bg-white" style={{ fontFamily: "var(--font-blog), sans-serif" }}>
       <div className="mx-auto max-w-[1200px] px-6 pt-16 pb-0 sm:px-10">
         {/* ── Main grid ── */}
-        <div className="grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-[240px_1fr_1fr_1fr] lg:gap-x-12">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-[240px_1fr_1fr_1fr_1fr] lg:gap-x-12">
           {/* Brand column */}
           <div className="col-span-2 lg:col-span-1">
             <Image src="/Logo.svg" alt="Solara AI" width={126} height={27} className="h-auto w-[126px]" />

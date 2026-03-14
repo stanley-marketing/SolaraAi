@@ -220,7 +220,7 @@ function AgentViz({ id }: { id: string }) {
                   </div>
                   <div>
                     <p style={{ margin: 0, fontSize: "0.75rem", fontWeight: 600, color: "#0f0f0f", lineHeight: 1.4 }}>{item.text}</p>
-                    <p style={{ margin: 0, fontSize: "0.67rem", color: "#9ca3af", lineHeight: 1.4 }}>{item.sub}</p>
+                    <p style={{ margin: 0, fontSize: "0.75rem", color: "#9ca3af", lineHeight: 1.4 }}>{item.sub}</p>
                   </div>
                 </div>
               </AnimatedListItem>

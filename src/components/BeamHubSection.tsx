@@ -67,7 +67,7 @@ export function BeamHubSection() {
             ref={containerRef}
             className="relative mx-auto flex h-[400px] w-full items-center justify-center overflow-hidden p-6"
           >
-            <div className="relative z-10 flex h-full w-full origin-left scale-[0.55] flex-row items-stretch justify-between gap-10 sm:origin-center sm:scale-100">
+            <div className="relative z-10 flex h-full w-full scale-[0.8] flex-row items-stretch justify-between gap-10 sm:scale-100">
               {/* Left column */}
               <div className="flex flex-col items-center justify-center gap-8">
                 <div className="flex flex-col items-center gap-1.5">
@@ -77,7 +77,7 @@ export function BeamHubSection() {
                       <path d="M7 16l4-8 4 4 5-9" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </Circle>
-                  <span className="text-[11px] font-medium text-gray-500">Ads</span>
+                  <span className="text-xs font-medium text-gray-500">Ads</span>
                 </div>
                 <div className="flex flex-col items-center gap-1.5">
                   <Circle nodeRef={seoRef}>
@@ -86,7 +86,7 @@ export function BeamHubSection() {
                       <path d="M21 21l-4.35-4.35" strokeLinecap="round" />
                     </svg>
                   </Circle>
-                  <span className="text-[11px] font-medium text-gray-500">SEO</span>
+                  <span className="text-xs font-medium text-gray-500">SEO</span>
                 </div>
                 <div className="flex flex-col items-center gap-1.5">
                   <Circle nodeRef={creativeRef}>
@@ -96,7 +96,7 @@ export function BeamHubSection() {
                       <path d="M2 12l10 5 10-5" />
                     </svg>
                   </Circle>
-                  <span className="text-[11px] font-medium text-gray-500">Creative</span>
+                  <span className="text-xs font-medium text-gray-500">Creative</span>
                 </div>
               </div>
 
@@ -124,7 +124,7 @@ export function BeamHubSection() {
                       <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10A15.3 15.3 0 0112 2z" />
                     </svg>
                   </Circle>
-                  <span className="text-[11px] font-medium text-gray-500">Website</span>
+                  <span className="text-xs font-medium text-gray-500">Website</span>
                 </div>
                 <div className="flex flex-col items-center gap-1.5">
                   <Circle nodeRef={socialRef}>
@@ -132,7 +132,7 @@ export function BeamHubSection() {
                       <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </Circle>
-                  <span className="text-[11px] font-medium text-gray-500">Social</span>
+                  <span className="text-xs font-medium text-gray-500">Social</span>
                 </div>
                 <div className="flex flex-col items-center gap-1.5">
                   <Circle nodeRef={leadsRef}>
@@ -143,7 +143,7 @@ export function BeamHubSection() {
                       <path d="M16 3.13a4 4 0 010 7.75" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </Circle>
-                  <span className="text-[11px] font-medium text-gray-500">Leads</span>
+                  <span className="text-xs font-medium text-gray-500">Leads</span>
                 </div>
               </div>
             </div>

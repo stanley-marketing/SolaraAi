@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { notFound } from "next/navigation";
 import { getAllCaseSlugs, getCaseStudy } from "@/lib/case-studies";
 import { getCaseStudyJsonLd, getCaseStudyMetadata } from "@/lib/case-studies/seo";
@@ -44,13 +43,11 @@ export default async function CaseStudyPage({
         const scriptId = `${caseStudy.slug}-jsonld-${String(node["@type"]).toLowerCase()}`;
 
         return (
-          <Script
+          <script
             key={scriptId}
-            id={scriptId}
             type="application/ld+json"
-          >
-            {JSON.stringify(node)}
-          </Script>
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(node) }}
+          />
         );
       })}
       <MaisonDetailPage caseStudy={caseStudy} />

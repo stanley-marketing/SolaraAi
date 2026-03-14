@@ -11,7 +11,7 @@ const HEADING = "See if Solara is a fit";
 const BODY =
   "If you've read this far, you're already asking the right questions. Let's spend 30 minutes finding out if Solara is the right answer for your team.";
 const CTA_TEXT = "Book a Free 30-Minute Call";
-const CTA_HREF = "https://calendly.com/ilay-mor-solaraai/30min";
+const CTA_HREF = "/contact";
 
 /* ──────────────────────────────────────────────
    COMPONENT
@@ -99,8 +99,6 @@ export function AboutCta() {
         >
           <a
             href={CTA_HREF}
-            target="_blank"
-            rel="noopener noreferrer"
             className="inline-flex items-center rounded-[999px] bg-black px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-white transition-colors duration-200 hover:bg-gray-700"
           >
             {CTA_TEXT}
