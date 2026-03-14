@@ -99,7 +99,7 @@ export function Footer() {
           {COLUMNS.map(({ heading, links }) => (
             <div key={heading}>
               <div
-                className="mb-4 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-[#98A2B3]"
+                className="mb-4 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-[#667085]"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 {heading}

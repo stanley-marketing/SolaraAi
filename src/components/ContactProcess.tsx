@@ -88,7 +88,7 @@ export function ContactProcess() {
                     style={{
                       fontSize: "0.75rem",
                       fontFamily: "var(--font-body)",
-                      color: "#9ca3af",
+                      color: "#6b7280",
                       letterSpacing: "0.1em",
                       fontWeight: 500,
                     }}

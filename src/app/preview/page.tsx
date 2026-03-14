@@ -212,9 +212,10 @@ function MediaSwitcher() {
                 ref={(el) => { videoRefs.current[0] = el; }}
                 src="/creatives/ilay-lipsync.mp4"
                 autoPlay
-
+                muted
                 loop
                 playsInline
+                preload="none"
                 style={{ height: "100%" }}
               />
               {/* Right black bar with text */}
@@ -243,9 +244,10 @@ function MediaSwitcher() {
             }}
             src="/creatives/info-graphic.mp4"
             autoPlay
-
+            muted
             loop
             playsInline
+            preload="none"
             style={{
               position: "absolute",
               top: 0,
@@ -262,6 +264,7 @@ function MediaSwitcher() {
           <img
             src="/creatives/carousel-ad.jpg"
             alt="Fashion Carousel Ad"
+            loading="lazy"
             style={{
               position: "absolute",
               top: 0,
@@ -275,6 +278,7 @@ function MediaSwitcher() {
           />
           {/* Mute/Unmute button */}
           <button
+            aria-label={isMuted ? "Unmute video" : "Mute video"}
             onClick={() => setIsMuted((m) => !m)}
             style={{
               position: "absolute",

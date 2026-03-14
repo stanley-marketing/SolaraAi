@@ -147,6 +147,7 @@ export default function MediaSwitcher() {
                   muted
                   loop
                   playsInline
+                  preload="none"
                   style={{ height: "100%" }}
                 />
                 {/* Right black bar with text */}
@@ -176,6 +177,7 @@ export default function MediaSwitcher() {
                 muted
                 loop
                 playsInline
+                preload="none"
                 style={{
                   position: "absolute",
                   inset: 0,
@@ -189,6 +191,7 @@ export default function MediaSwitcher() {
               <img
                 src="/creatives/carousel-ad.jpg"
                 alt="Fashion brand carousel ad"
+                loading="lazy"
                 style={{
                   position: "absolute",
                   inset: 0,
@@ -203,6 +206,7 @@ export default function MediaSwitcher() {
 
         {/* Mute/Unmute button */}
         <button
+          aria-label={isMuted ? "Unmute video" : "Mute video"}
           onClick={() => setIsMuted((m) => !m)}
           style={{
             position: "absolute",
