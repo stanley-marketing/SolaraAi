@@ -537,12 +537,46 @@ export function AdvantageSection() {
           className="relative mx-auto mt-10 hidden overflow-hidden rounded-2xl border border-gray-100 sm:block"
           style={{ height: 420, background: "#ffffff" }}
         >
-          {isVisible ? (
+          {/* Skeleton placeholder — shows instantly, fades out when beam loads */}
+          <div
+            className="absolute inset-0 transition-opacity duration-500"
+            style={{ opacity: isVisible ? 0 : 1, pointerEvents: "none" }}
+          >
+            <style dangerouslySetInnerHTML={{ __html: `
+              @keyframes adv-skel-pulse { 0%,100%{opacity:.15} 50%{opacity:.35} }
+              @keyframes adv-skel-flow { 0%{transform:translateX(-100%)} 100%{transform:translateX(200%)} }
+            `}} />
+            {/* Mimic beam lines */}
+            {[0.18, 0.32, 0.44, 0.56, 0.68, 0.82].map((y, i) => (
+              <div
+                key={i}
+                className="absolute overflow-hidden"
+                style={{ left: "12%", right: "12%", top: `${y * 100}%`, height: 2 }}
+              >
+                <div
+                  className="absolute inset-0 rounded-full bg-gray-200"
+                  style={{ animation: `adv-skel-pulse 2s ease-in-out ${i * 0.2}s infinite` }}
+                />
+                <div
+                  className="absolute inset-y-0 w-1/3 rounded-full bg-gray-300/40"
+                  style={{ animation: `adv-skel-flow 2.5s ease-in-out ${i * 0.3}s infinite` }}
+                />
+              </div>
+            ))}
+            {/* Center convergence glow */}
+            <div
+              className="absolute right-[5%] top-1/2 h-12 w-12 -translate-y-1/2 rounded-full bg-gray-100"
+              style={{ animation: "adv-skel-pulse 2s ease-in-out infinite" }}
+            />
+          </div>
+
+          {/* Real PhotonBeam — fades in when loaded */}
+          {isVisible && (
             <motion.div
               key={active}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.6 }}
               className="absolute inset-0"
               style={{ filter: "invert(1) hue-rotate(180deg)" }}
             >
@@ -566,8 +600,6 @@ export function AdvantageSection() {
                 curvePower={cfg.curvePower}
               />
             </motion.div>
-          ) : (
-            <div className="absolute inset-0 bg-white" />
           )}
 
           {/* Agent labels — left side (fan-out) */}
