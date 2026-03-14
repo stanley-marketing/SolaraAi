@@ -96,7 +96,7 @@ export function CaseStudySection(_props?: CaseStudySectionProps) {
                     style={{ backgroundColor: "#fafafa" }}
                   >
                     <p
-                      className="text-5xl font-normal tracking-tight text-gray-900 sm:text-6xl"
+                      className="text-3xl font-normal tracking-tight text-gray-900 sm:text-5xl md:text-6xl"
                     >
                       {metric.value}
                     </p>

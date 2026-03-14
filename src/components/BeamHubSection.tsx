@@ -63,11 +63,94 @@ export function BeamHubSection() {
       <div className="mx-auto mt-20 grid max-w-6xl items-center gap-12 md:grid-cols-[1fr_1fr]">
         {/* Visual: Beam hub */}
         <BlurFade delay={0}>
+          {/* Mobile: clean static hub grid */}
+          <div className="mx-auto max-w-xs sm:hidden">
+            <div className="grid grid-cols-3 items-center gap-y-6">
+              <div className="flex flex-col items-center gap-1.5">
+                <Circle nodeRef={adsRef}>
+                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M3 3v18h18" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M7 16l4-8 4 4 5-9" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Circle>
+                <span className="text-xs font-medium text-gray-500">Ads</span>
+              </div>
+              <div className="flex flex-col items-center gap-1.5">
+                <Circle nodeRef={seoRef}>
+                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="M21 21l-4.35-4.35" strokeLinecap="round" />
+                  </svg>
+                </Circle>
+                <span className="text-xs font-medium text-gray-500">SEO</span>
+              </div>
+              <div className="flex flex-col items-center gap-1.5">
+                <Circle nodeRef={socialRef}>
+                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Circle>
+                <span className="text-xs font-medium text-gray-500">Social</span>
+              </div>
+              {/* Center row: icon - Solara hub - icon */}
+              <div className="flex flex-col items-center gap-1.5">
+                <Circle nodeRef={creativeRef}>
+                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                    <path d="M2 17l10 5 10-5" />
+                    <path d="M2 12l10 5 10-5" />
+                  </svg>
+                </Circle>
+                <span className="text-xs font-medium text-gray-500">Creative</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <div
+                  ref={centerRef}
+                  className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-gray-100 bg-white shadow-lg"
+                >
+                  <img
+                    src="/solara-icon.svg"
+                    alt="Solara"
+                    className="h-9 w-9 rounded-full"
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col items-center gap-1.5">
+                <Circle nodeRef={cmsRef}>
+                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="2" y1="12" x2="22" y2="12" />
+                    <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10A15.3 15.3 0 0112 2z" />
+                  </svg>
+                </Circle>
+                <span className="text-xs font-medium text-gray-500">Website</span>
+              </div>
+              {/* Bottom row */}
+              <div className="flex flex-col items-center gap-1.5">
+                <Circle nodeRef={leadsRef}>
+                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" strokeLinecap="round" strokeLinejoin="round" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 00-3-3.87" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M16 3.13a4 4 0 010 7.75" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Circle>
+                <span className="text-xs font-medium text-gray-500">Leads</span>
+              </div>
+              <div />
+              <div />
+            </div>
+            <p className="mt-6 text-center text-sm text-gray-400">
+              Tasks flowing through your AI marketing engine
+            </p>
+          </div>
+
+          {/* Desktop: animated beam hub */}
           <div
             ref={containerRef}
-            className="relative mx-auto flex h-[400px] w-full items-center justify-center overflow-hidden p-6"
+            className="relative mx-auto hidden h-[400px] w-full items-center justify-center overflow-hidden p-6 sm:flex"
           >
-            <div className="relative z-10 flex h-full w-full origin-left scale-[0.8] flex-row items-stretch justify-between gap-10 sm:origin-center sm:scale-100">
+            <div className="relative z-10 flex h-full w-full flex-row items-stretch justify-between gap-10">
               {/* Left column */}
               <div className="flex flex-col items-center justify-center gap-8">
                 <div className="flex flex-col items-center gap-1.5">
