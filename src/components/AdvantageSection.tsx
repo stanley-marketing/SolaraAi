@@ -16,6 +16,7 @@ import {
   WandSparkles,
 } from "lucide-react";
 
+
 /* Lazy-load PhotonBeam — code-split Three.js out of main bundle */
 const PhotonBeam = dynamic(() => import("@/components/ui/photon-beam"), {
   ssr: false,
@@ -364,35 +365,66 @@ export function AdvantageSection() {
               )}
 
               {active === 1 && (
-                <div>
-                  <div className="grid grid-cols-3 gap-2">
-                    {AGENTS.map((agent, i) => (
-                      <div
-                        key={agent.name}
-                        className="rounded-xl border border-white/80 bg-white/85 p-2 text-center"
-                        style={{
-                          animation: "adv-tile-rise 0.45s ease-out both",
-                          animationDelay: `${i * 0.08}s`,
-                        }}
-                      >
-                        <div
-                          className="mx-auto mb-1 h-2.5 w-2.5 rounded-full"
-                          style={{ backgroundColor: agent.color }}
-                        />
-                        <p className="text-[11px] font-semibold text-gray-700">
-                          {agent.name}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-3 rounded-xl border border-white/80 bg-white/80 p-3">
-                    <div className="flex items-center gap-2 text-sm font-semibold text-gray-900">
-                      <BrainCircuit size={14} className="text-blue-500" />
-                      6 specialists running in parallel
+                <div className="space-y-2">
+                  {[
+                    [AGENTS[0], AGENTS[1]],
+                    [AGENTS[2], AGENTS[3]],
+                    [AGENTS[4], AGENTS[5]],
+                  ].map((pair, rowIdx) => (
+                    <div key={rowIdx} className="grid grid-cols-2 gap-2">
+                      {pair.map((agent, colIdx) => {
+                        const idx = rowIdx * 2 + colIdx;
+                        return (
+                          <motion.div
+                            key={agent.name}
+                            initial={{ opacity: 0, scale: 0.85 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: idx * 0.08, duration: 0.35 }}
+                            className="flex items-center gap-2.5 rounded-xl bg-white/90 px-3 py-2.5"
+                            style={{ border: `1.5px solid ${agent.color}25` }}
+                          >
+                            <div className="relative flex-shrink-0">
+                              <div
+                                className="h-8 w-8 rounded-full"
+                                style={{
+                                  backgroundColor: `${agent.color}12`,
+                                  border: `2px solid ${agent.color}`,
+                                }}
+                              />
+                              <div
+                                className="absolute left-1/2 top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                                style={{
+                                  backgroundColor: agent.color,
+                                  animation: `adv-dot-pulse 2s ease-in-out ${idx * 0.3}s infinite`,
+                                }}
+                              />
+                            </div>
+                            <div className="min-w-0">
+                              <p className="text-xs font-semibold text-gray-800">{agent.name}</p>
+                              <div className="mt-1 h-1 w-full overflow-hidden rounded-full bg-gray-100">
+                                <motion.div
+                                  className="h-full rounded-full"
+                                  style={{ backgroundColor: agent.color }}
+                                  initial={{ width: "0%" }}
+                                  animate={{ width: "100%" }}
+                                  transition={{
+                                    duration: 1.8 + idx * 0.3,
+                                    repeat: Infinity,
+                                    repeatType: "reverse",
+                                    ease: "easeInOut",
+                                    delay: idx * 0.15,
+                                  }}
+                                />
+                              </div>
+                            </div>
+                          </motion.div>
+                        );
+                      })}
                     </div>
-                    <p className="mt-1 text-xs text-gray-500">
-                      Each agent owns one domain and hands results back to your core strategy.
-                    </p>
+                  ))}
+                  <div className="flex items-center justify-center gap-2 pt-1 text-xs text-blue-600">
+                    <BrainCircuit size={13} />
+                    <span className="font-medium">All running in parallel</span>
                   </div>
                 </div>
               )}
