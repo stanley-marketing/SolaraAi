@@ -86,7 +86,7 @@ export default function Home() {
 
       {/* Hero */}
       <AuroraBackground
-        className="w-full flex flex-col items-center justify-center px-6 py-16 text-center sm:min-h-[85vh] sm:px-10 sm:py-28"
+        className="w-full flex flex-col items-center justify-center px-6 pt-28 pb-16 text-center sm:min-h-[85vh] sm:px-10 sm:py-28"
         showRadialGradient={true}
       >
         {/* Pre-seed pill */}

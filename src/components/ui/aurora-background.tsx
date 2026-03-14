@@ -31,6 +31,7 @@ export const AuroraBackground = ({
         />
       </div>
       {children}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-b from-transparent to-white sm:hidden" />
     </div>
   );
 };
