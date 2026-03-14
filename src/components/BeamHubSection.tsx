@@ -67,7 +67,7 @@ export function BeamHubSection() {
             ref={containerRef}
             className="relative mx-auto flex h-[400px] w-full items-center justify-center overflow-hidden p-6"
           >
-            <div className="relative z-10 flex h-full w-full scale-[0.8] flex-row items-stretch justify-between gap-10 sm:scale-100">
+            <div className="relative z-10 flex h-full w-full origin-left scale-[0.8] flex-row items-stretch justify-between gap-10 sm:origin-center sm:scale-100">
               {/* Left column */}
               <div className="flex flex-col items-center justify-center gap-8">
                 <div className="flex flex-col items-center gap-1.5">
