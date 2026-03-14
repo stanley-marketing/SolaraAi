@@ -14,7 +14,7 @@ export function HeroScreenshot() {
       {/* Screenshot card */}
       <div className="overflow-hidden rounded-2xl border border-gray-200/50 shadow-[0_20px_80px_-20px_rgba(0,0,0,0.2)]">
         <Image
-          src="/dashboard-hero.png"
+          src="/dashboard-hero.webp"
           alt="Solara AI Dashboard — your marketing command center"
           width={2048}
           height={1248}

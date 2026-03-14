@@ -202,17 +202,19 @@ export function AdvantageSection() {
   useEffect(() => {
     const el = beamRef.current;
     if (!el) return;
+    let timerId: ReturnType<typeof setTimeout>;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true);
           observer.disconnect();
+          /* Defer Three.js mount so it doesn't compete with LCP paint */
+          timerId = setTimeout(() => setIsVisible(true), 2000);
         }
       },
       { threshold: 0.1 },
     );
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => { observer.disconnect(); clearTimeout(timerId); };
   }, []);
 
 

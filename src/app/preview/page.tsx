@@ -262,7 +262,7 @@ function MediaSwitcher() {
           {/* Fashion Carousel Image */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/creatives/carousel-ad.jpg"
+            src="/creatives/carousel-ad.webp"
             alt="Fashion Carousel Ad"
             loading="lazy"
             style={{

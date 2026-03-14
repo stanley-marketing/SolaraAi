@@ -574,10 +574,10 @@ export function AgentsSection() {
           <div className="cn-bento">
             {COMING_NEXT.map((agent, i) => {
               const imgs = [
-                "/images/agents/cms-agent.png",
-                "/images/agents/seo-agent.png",
-                "/images/agents/ai-search-agent.png",
-                "/images/agents/email-agent.png",
+                "/images/agents/cms-agent.webp",
+                "/images/agents/seo-agent.webp",
+                "/images/agents/ai-search-agent.webp",
+                "/images/agents/email-agent.webp",
               ];
               return (
                 <div

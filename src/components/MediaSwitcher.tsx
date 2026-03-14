@@ -143,6 +143,7 @@ export default function MediaSwitcher() {
                 <video
                   ref={(el) => { videoRefs.current[0] = el; }}
                   src="/creatives/ilay-lipsync.mp4"
+                  poster="/creatives/ilay-poster.jpg"
                   autoPlay
                   muted
                   loop
@@ -189,7 +190,7 @@ export default function MediaSwitcher() {
             )}
             {i === 2 && (
               <img
-                src="/creatives/carousel-ad.jpg"
+                src="/creatives/carousel-ad.webp"
                 alt="Fashion brand carousel ad"
                 loading="lazy"
                 style={{

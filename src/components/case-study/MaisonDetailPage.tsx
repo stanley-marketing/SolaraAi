@@ -189,7 +189,7 @@ export function MaisonDetailPage({ caseStudy }: { caseStudy: CaseStudy }) {
             {/* Right: portrait */}
             <div className="flex justify-center lg:justify-end">
               <Image
-                src="/images/omer.png"
+                src="/images/omer.webp"
                 alt="Omer, Founder of Maison Remodeling Group"
                 width={300}
                 height={360}
@@ -286,7 +286,7 @@ export function MaisonDetailPage({ caseStudy }: { caseStudy: CaseStudy }) {
               </p>
               <div className="mt-8 flex items-center gap-4">
                 <Image
-                  src="/images/omer.png"
+                  src="/images/omer.webp"
                   alt="Omer"
                   width={56}
                   height={56}
