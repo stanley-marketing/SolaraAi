@@ -42,15 +42,15 @@ export function PartnerBenefitsGrid({
 
         {/* Benefits grid */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((item, i) => (
+          {items.map((item) => (
             <div
-              key={i}
+              key={item.title}
               className="relative flex flex-col rounded-2xl bg-white p-7 transition-shadow hover:shadow-md"
               style={{ border: "1px solid #eaecf0" }}
             >
               {/* Coming soon badge */}
               {item.comingSoon && (
-                <div className="mb-4 inline-flex w-fit items-center gap-1.5 rounded-full bg-amber-50 px-3 py-1 text-[11px] font-medium tracking-wide text-amber-600"
+                <div className="mb-4 inline-flex w-fit items-center gap-1.5 rounded-full bg-amber-50 px-3 py-1 text-xs font-medium tracking-wide text-amber-600"
                   style={{ border: "1px solid #fde68a" }}
                 >
                   <Clock size={11} strokeWidth={2} />
@@ -73,7 +73,7 @@ export function PartnerBenefitsGrid({
               </h3>
 
               <p
-                className="text-neutral-500"
+                className="text-neutral-600"
                 style={{
                   fontSize: "0.875rem",
                   lineHeight: 1.6,

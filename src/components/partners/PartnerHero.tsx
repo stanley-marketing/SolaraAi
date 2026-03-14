@@ -230,7 +230,7 @@ export function PartnerHero({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-6 inline-flex w-fit items-center gap-2 rounded-full px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.18em] text-purple-600"
+            className="mb-6 inline-flex w-fit items-center gap-2 rounded-full px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-purple-600"
             style={{ border: "1px solid #e9d5ff" }}
           >
             {eyebrow}
@@ -256,7 +256,7 @@ export function PartnerHero({
 
           {/* Subhead */}
           <motion.p
-            className="text-neutral-500"
+            className="text-neutral-600"
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}

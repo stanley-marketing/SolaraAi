@@ -22,6 +22,7 @@ function FaqItem({
   return (
     <div className="border-b border-gray-100">
       <button
+        type="button"
         onClick={onToggle}
         className="flex w-full items-center justify-between py-5 text-left transition-colors duration-150"
         aria-expanded={isOpen}
@@ -45,7 +46,7 @@ function FaqItem({
           <ChevronDown
             size={18}
             strokeWidth={1.5}
-            style={{ color: "#9ca3af" }}
+            style={{ color: "#6b7280" }}
           />
         </motion.span>
       </button>
@@ -61,7 +62,7 @@ function FaqItem({
             style={{ overflow: "hidden" }}
           >
             <p
-              className="pb-5 text-ink-700/70"
+              className="pb-5 text-neutral-600"
               style={{
                 fontSize: "0.9375rem",
                 lineHeight: 1.65,
@@ -97,7 +98,7 @@ export function PartnerFaq({ items }: PartnerFaqProps) {
           className="text-ink-900"
           style={{
             fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
-            fontFamily: "var(--font-display-playfair)",
+            fontFamily: "var(--font-display)",
             fontWeight: 400,
             letterSpacing: "-0.02em",
             lineHeight: 1.1,

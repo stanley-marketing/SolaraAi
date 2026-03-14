@@ -1,4 +1,3 @@
-import Script from "next/script";
 import { TopNav } from "@/components/LandingSections";
 import { Footer } from "@/components/Footer";
 
@@ -19,14 +18,12 @@ export function PartnerPageShell({ children, jsonLd }: PartnerPageShellProps) {
     <main className="relative min-h-screen bg-white text-ink-900">
       {/* Structured data */}
       {jsonLd?.map((ld, i) => (
-        <Script
-          key={i}
+        <script
+          key={`partner-jsonld-${i}`}
           id={`partner-jsonld-${i}`}
           type="application/ld+json"
-          strategy="afterInteractive"
-        >
-          {ld}
-        </Script>
+          dangerouslySetInnerHTML={{ __html: ld }}
+        />
       ))}
 
       {/* Fixed nav */}

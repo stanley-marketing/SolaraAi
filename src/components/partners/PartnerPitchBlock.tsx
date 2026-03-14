@@ -22,7 +22,7 @@ export function PartnerPitchBlock({ blocks }: PartnerPitchBlockProps) {
             const isLast = i === blocks.length - 1;
             return (
               <div
-                key={i}
+                key={block.headline}
                 className={[
                   "flex flex-col py-10 sm:py-0 sm:px-10",
                   !isLast
@@ -34,7 +34,7 @@ export function PartnerPitchBlock({ blocks }: PartnerPitchBlockProps) {
               >
               {/* Subtle numbered label */}
               <span
-                className="mb-5 text-neutral-400"
+                className="mb-5 text-neutral-500"
                 style={{
                   fontSize: "0.75rem",
                   fontFamily: "var(--font-body)",
@@ -60,7 +60,7 @@ export function PartnerPitchBlock({ blocks }: PartnerPitchBlockProps) {
               </h2>
 
               <p
-                className="text-neutral-500"
+                className="text-neutral-600"
                 style={{
                   fontSize: "0.9rem",
                   lineHeight: 1.65,

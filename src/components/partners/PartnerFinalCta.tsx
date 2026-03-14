@@ -59,7 +59,7 @@ export function PartnerFinalCta({
             </h2>
 
             <p
-              className="mx-auto text-neutral-500"
+              className="mx-auto text-neutral-600"
               style={{
                 fontSize: "clamp(0.95rem, 1.5vw, 1.05rem)",
                 lineHeight: 1.65,
@@ -99,7 +99,7 @@ export function PartnerFinalCta({
                     fontWeight: 500,
                     letterSpacing: "1px",
                     textTransform: "uppercase",
-                    border: "1px solid #e5e7eb",
+                    border: "1px solid #d1d5db",
                   }}
                 >
                   {secondaryCta.label}

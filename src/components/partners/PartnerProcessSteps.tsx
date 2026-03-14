@@ -57,7 +57,7 @@ export function PartnerProcessSteps({ steps }: PartnerProcessStepsProps) {
                   style={{
                     fontSize: "0.75rem",
                     fontFamily: "var(--font-body)",
-                    color: "#9ca3af",
+                    color: "#6b7280",
                     letterSpacing: "0.1em",
                     fontWeight: 500,
                   }}
@@ -92,7 +92,7 @@ export function PartnerProcessSteps({ steps }: PartnerProcessStepsProps) {
 
               {/* Step body */}
               <p
-                className="text-neutral-500"
+                className="text-neutral-600"
                 style={{
                   fontSize: "0.875rem",
                   lineHeight: 1.65,
