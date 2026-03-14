@@ -151,11 +151,11 @@ export default function Home() {
         <div className="relative z-10 mt-8 mb-2 flex items-center justify-center gap-3">
           <div className="flex -space-x-2">
             {[
-              'https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=80&h=80&fit=crop&crop=faces',
-              'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=faces',
-              'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&h=80&fit=crop&crop=faces',
-              'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=faces',
-              'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=faces',
+'/avatars/avatar-1.jpg',
+'/avatars/avatar-2.jpg',
+'/avatars/avatar-3.jpg',
+'/avatars/avatar-4.jpg',
+'/avatars/avatar-5.jpg',
             ].map((src, i) => (
               <img
                 key={i}
