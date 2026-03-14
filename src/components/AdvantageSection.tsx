@@ -5,6 +5,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import {
+  Activity,
+  Bot,
+  BrainCircuit,
+  Clock3,
+  Gauge,
+  Sparkles,
+  UserRound,
+  WandSparkles,
+} from "lucide-react";
 
 /* Lazy-load PhotonBeam — code-split Three.js out of main bundle */
 const PhotonBeam = dynamic(() => import("@/components/ui/photon-beam"), {
@@ -21,12 +31,35 @@ const STATS = [
 ];
 
 const AGENTS = [
-  { name: "Ads", icon: "📊", color: "#7c5cfc" },
-  { name: "SEO", icon: "🔍", color: "#3b82f6" },
-  { name: "Social", icon: "💬", color: "#06b6d4" },
-  { name: "Creative", icon: "🎨", color: "#ec4899" },
-  { name: "Website", icon: "📝", color: "#f59e0b" },
-  { name: "Leads", icon: "👥", color: "#10b981" },
+  { name: "Ads", color: "#7c5cfc" },
+  { name: "SEO", color: "#3b82f6" },
+  { name: "Social", color: "#06b6d4" },
+  { name: "Creative", color: "#ec4899" },
+  { name: "Website", color: "#f59e0b" },
+  { name: "Leads", color: "#10b981" },
+];
+
+const MOBILE_PANEL_COPY = [
+  {
+    eyebrow: "Automation throughput",
+    title: "Tasks stream into one AI core",
+    icon: Sparkles,
+  },
+  {
+    eyebrow: "Parallel specialists",
+    title: "Six agents working at the same time",
+    icon: Bot,
+  },
+  {
+    eyebrow: "Live optimization",
+    title: "Monitoring and tuning every minute",
+    icon: Clock3,
+  },
+  {
+    eyebrow: "Human in command",
+    title: "You steer strategy while AI executes",
+    icon: UserRound,
+  },
 ];
 
 /* Per-stat beam configuration */
@@ -210,171 +243,256 @@ export function AdvantageSection() {
         {/* Stat tabs */}
         <StatTabs active={active} onSelect={(i) => { setActive(i); setResetKey((k) => k + 1); }} />
 
-        {/* Mobile: per-tab visual modes — each tab looks dramatically different */}
         <AnimatePresence mode="wait">
           <motion.div
             key={active}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.25 }}
             className="relative mx-auto mt-10 overflow-hidden rounded-2xl border border-gray-100 sm:hidden"
-            style={{ height: 280 }}
+            style={{ height: 320 }}
           >
-            <style dangerouslySetInnerHTML={{ __html: `
-              @keyframes adv-pulse-bright {
-                0%, 100% { transform: scale(1); opacity: 0.5; }
-                50% { transform: scale(1.5); opacity: 1; }
-              }
-              @keyframes adv-glow-strong {
-                0%, 100% { box-shadow: 0 0 0 0 transparent; }
-                50% { box-shadow: 0 0 32px 12px ${STATS[active].color}30; }
-              }
-              @keyframes adv-agent-pop {
-                0% { transform: scale(0); opacity: 0; }
-                70% { transform: scale(1.15); opacity: 1; }
-                100% { transform: scale(1); opacity: 1; }
-              }
-              @keyframes adv-line-grow {
-                from { clip-path: inset(-1px 100% -1px 0); }
-                to { clip-path: inset(-1px 0% -1px 0); }
-              }
-              @keyframes adv-data-travel {
-                0% { left: 0; opacity: 0; }
-                12% { opacity: 1; }
-                88% { opacity: 1; left: calc(100% - 5px); }
-                100% { left: calc(100% - 5px); opacity: 0; }
-              }
-              @keyframes adv-hub-ring {
-                0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.35; }
-                100% { transform: translate(-50%, -50%) scale(2.2); opacity: 0; }
-              }
-              @keyframes adv-orbit {
-                from { transform: translate(-50%, -50%) rotate(0deg); }
-                to { transform: translate(-50%, -50%) rotate(360deg); }
-              }
-              @keyframes adv-trail {
-                0%, 100% { opacity: 0.6; box-shadow: 0 0 6px currentColor; }
-                50% { opacity: 1; box-shadow: 0 0 14px 4px currentColor; }
-              }
-            `}} />
+            <style
+              dangerouslySetInnerHTML={{
+                __html: `
+                  @keyframes adv-lane-flow {
+                    0% { left: 0; opacity: 0; }
+                    12% { opacity: 1; }
+                    88% { opacity: 1; }
+                    100% { left: calc(100% - 8px); opacity: 0; }
+                  }
+                  @keyframes adv-tile-rise {
+                    0% { transform: translateY(10px); opacity: 0; }
+                    100% { transform: translateY(0); opacity: 1; }
+                  }
+                  @keyframes adv-monitor-sweep {
+                    0% { left: -22%; }
+                    100% { left: 100%; }
+                  }
+                  @keyframes adv-dot-pulse {
+                    0%, 100% { transform: scale(1); opacity: 0.45; }
+                    50% { transform: scale(1.25); opacity: 1; }
+                  }
+                  @keyframes adv-human-glow {
+                    0%, 100% { box-shadow: 0 0 12px 4px #a855f71f; }
+                    50% { box-shadow: 0 0 24px 10px #a855f738; }
+                  }
+                `,
+              }}
+            />
 
-            {active === 0 && (
-              /* 90% AI — all dots large, bright, strong glows, active feel */
-              <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #f5f0ff, #fdf2f8)" }}>
-                <div className="relative h-full w-full">
-                  {AGENTS.map((agent, i) => {
-                    const angle = (i * 60 - 90) * (Math.PI / 180);
-                    const r = 80;
-                    return (
-                      <div key={agent.name} className="absolute flex flex-col items-center gap-1" style={{ left: `calc(50% + ${Math.round(Math.cos(angle) * r)}px)`, top: `calc(42% + ${Math.round(Math.sin(angle) * r)}px)`, transform: "translate(-50%, -50%)" }}>
-                        <div className="h-4 w-4 rounded-full" style={{ backgroundColor: agent.color, animation: "adv-pulse-bright 2s infinite ease-in-out", animationDelay: `${i * 0.3}s`, boxShadow: `0 0 16px 4px ${agent.color}50` }} />
-                        <span className="whitespace-nowrap text-[10px] font-semibold" style={{ color: agent.color }}>{agent.name}</span>
-                      </div>
-                    );
-                  })}
-                  {AGENTS.map((agent, i) => (
-                    <div key={`line-${i}`} className="absolute" style={{ left: "50%", top: "42%", width: 80, height: 2, background: `linear-gradient(90deg, ${STATS[0].color}25, ${agent.color}50)`, transformOrigin: "0% 50%", transform: `rotate(${i * 60 - 90}deg)` }} />
-                  ))}
-                  <div className="absolute flex h-16 w-16 items-center justify-center rounded-full bg-white" style={{ left: "50%", top: "42%", transform: "translate(-50%, -50%)", animation: "adv-glow-strong 2.5s infinite ease-in-out", border: `2px solid ${STATS[0].color}30` }}>
-                    <Image src="/solara-icon.svg" alt="Solara" width={32} height={32} />
-                  </div>
+            <div
+              className="absolute inset-0 p-4"
+              style={{
+                background:
+                  active === 0
+                    ? "linear-gradient(135deg, #f7f2ff, #fdf5fb)"
+                    : active === 1
+                      ? "linear-gradient(135deg, #f0f6ff, #f4fbf8)"
+                      : active === 2
+                        ? "linear-gradient(135deg, #ecfeff, #eff6ff)"
+                        : "linear-gradient(135deg, #f8f4ff, #fdf5ff)",
+              }}
+            >
+              <div className="mb-3 flex items-start justify-between gap-3">
+                <div>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-gray-500">
+                    {MOBILE_PANEL_COPY[active].eyebrow}
+                  </p>
+                  <p className="mt-1 text-sm font-semibold text-gray-900">
+                    {MOBILE_PANEL_COPY[active].title}
+                  </p>
+                </div>
+                <div
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/90"
+                  style={{ border: `1px solid ${STATS[active].color}35` }}
+                >
+                  {(() => {
+                    const Icon = MOBILE_PANEL_COPY[active].icon;
+                    return <Icon size={16} style={{ color: STATS[active].color }} />;
+                  })()}
                 </div>
               </div>
-            )}
 
-            {active === 1 && (
-              /* 6 Agents — staggered boot-up with network connections and data pulses */
-              <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #eff6ff, #f0fdf4)" }}>
-                <div className="relative h-full w-full">
-                  {/* Expanding hub rings */}
-                  {[0, 1].map((ring) => (
-                    <div key={`ring-${ring}`} className="absolute rounded-full" style={{ left: "50%", top: "42%", width: 40, height: 40, border: `1.5px solid ${STATS[1].color}25`, animation: "adv-hub-ring 3s ease-out infinite", animationDelay: `${ring * 1.5}s` }} />
-                  ))}
-                  {/* Connecting lines with traveling data pulses */}
-                  {AGENTS.map((agent, i) => (
-                    <div key={`conn-${i}`} className="absolute" style={{ left: "50%", top: "42%", width: 90, height: 2, transformOrigin: "0% 50%", transform: `rotate(${i * 60 - 90}deg)`, background: `linear-gradient(90deg, ${STATS[1].color}20, ${agent.color}45)`, animation: "adv-line-grow 0.4s ease-out both", animationDelay: `${0.7 + i * 0.08}s`, position: "absolute" }}>
-                      <div className="absolute rounded-full" style={{ width: 5, height: 5, top: -1.5, backgroundColor: agent.color, boxShadow: `0 0 8px 2px ${agent.color}50`, animation: "adv-data-travel 2.2s ease-in-out infinite", animationDelay: `${1.4 + i * 0.35}s` }} />
+              {active === 0 && (
+                <div className="space-y-3">
+                  {[
+                    { label: "Ads + SEO", delay: "0s" },
+                    { label: "Social + Creative", delay: "0.35s" },
+                    { label: "Website + Leads", delay: "0.7s" },
+                  ].map((lane) => (
+                    <div
+                      key={lane.label}
+                      className="grid grid-cols-[104px_1fr_68px] items-center gap-2"
+                    >
+                      <div className="rounded-full border border-white/80 bg-white/80 px-2 py-1 text-[10px] font-semibold text-gray-700">
+                        {lane.label}
+                      </div>
+                      <div className="relative h-[2px] overflow-hidden rounded-full bg-violet-200/60">
+                        <div
+                          className="absolute top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-violet-500"
+                          style={{
+                            boxShadow: "0 0 8px 2px #7c5cfc55",
+                            animation: "adv-lane-flow 1.9s ease-in-out infinite",
+                            animationDelay: lane.delay,
+                          }}
+                        />
+                      </div>
+                      <div className="rounded-lg border border-violet-300/60 bg-white px-2 py-1 text-center text-[10px] font-semibold text-violet-600">
+                        Core
+                      </div>
                     </div>
                   ))}
-                  {/* Agent badges — staggered pop-in */}
-                  {AGENTS.map((agent, i) => {
-                    const angle = (i * 60 - 90) * (Math.PI / 180);
-                    const r = 90;
-                    return (
-                      <div key={agent.name} className="absolute" style={{ left: `calc(50% + ${Math.round(Math.cos(angle) * r)}px)`, top: `calc(42% + ${Math.round(Math.sin(angle) * r)}px)`, transform: "translate(-50%, -50%)" }}>
-                        <div className="flex flex-col items-center gap-1" style={{ animation: "adv-agent-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both", animationDelay: `${i * 0.12}s` }}>
-                          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white" style={{ border: `2px solid ${agent.color}`, boxShadow: `0 2px 8px ${agent.color}18` }}>
-                            <div className="h-4 w-4 rounded-full" style={{ backgroundColor: agent.color }} />
-                          </div>
-                          <span className="whitespace-nowrap text-[10px] font-bold tracking-wide" style={{ color: agent.color }}>{agent.name}</span>
-                        </div>
+
+                  <div className="mt-3 rounded-xl border border-white/80 bg-white/80 p-3">
+                    <div className="flex items-center justify-between">
+                      <p className="text-xs font-medium text-gray-500">Automated workload</p>
+                      <Gauge size={14} className="text-violet-500" />
+                    </div>
+                    <p className="mt-1 text-3xl font-light text-violet-600">90%</p>
+                    <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-violet-100">
+                      <motion.div
+                        className="h-full rounded-full bg-violet-500"
+                        initial={{ width: "0%" }}
+                        animate={{ width: "90%" }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {active === 1 && (
+                <div>
+                  <div className="grid grid-cols-3 gap-2">
+                    {AGENTS.map((agent, i) => (
+                      <div
+                        key={agent.name}
+                        className="rounded-xl border border-white/80 bg-white/85 p-2 text-center"
+                        style={{
+                          animation: "adv-tile-rise 0.45s ease-out both",
+                          animationDelay: `${i * 0.08}s`,
+                        }}
+                      >
+                        <div
+                          className="mx-auto mb-1 h-2.5 w-2.5 rounded-full"
+                          style={{ backgroundColor: agent.color }}
+                        />
+                        <p className="text-[11px] font-semibold text-gray-700">
+                          {agent.name}
+                        </p>
                       </div>
-                    );
-                  })}
-                  {/* Center hub */}
-                  <div className="absolute flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-lg" style={{ left: "50%", top: "42%", transform: "translate(-50%, -50%)", border: `2px solid ${STATS[1].color}35`, boxShadow: `0 0 16px 4px ${STATS[1].color}12` }}>
-                    <Image src="/solara-icon.svg" alt="Solara" width={28} height={28} />
+                    ))}
+                  </div>
+                  <div className="mt-3 rounded-xl border border-white/80 bg-white/80 p-3">
+                    <div className="flex items-center gap-2 text-sm font-semibold text-gray-900">
+                      <BrainCircuit size={14} className="text-blue-500" />
+                      6 specialists running in parallel
+                    </div>
+                    <p className="mt-1 text-xs text-gray-500">
+                      Each agent owns one domain and hands results back to your core strategy.
+                    </p>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            {active === 2 && (
-              /* 24/7 — orbital rotation, dots circling the center continuously */
-              <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #ecfeff, #eff6ff)" }}>
-                <div className="relative h-full w-full">
-                  <div className="absolute" style={{ left: "50%", top: "42%", width: 160, height: 160, transform: "translate(-50%, -50%)" }}>
-                    <div className="absolute inset-0 rounded-full" style={{ border: "1px dashed #06b6d430" }} />
+              {active === 2 && (
+                <div className="rounded-xl border border-white/80 bg-white/82 p-3">
+                  <div className="mb-2 flex items-center justify-between text-[11px] font-semibold text-cyan-700">
+                    <span className="inline-flex items-center gap-1">
+                      <Activity size={12} />
+                      Live cycle
+                    </span>
+                    <span>24/7</span>
                   </div>
-                  <div className="absolute" style={{ left: "50%", top: "42%", animation: "adv-orbit 8s linear infinite" }}>
-                    {AGENTS.map((agent, i) => {
-                      const angle = (i * 60 - 90) * (Math.PI / 180);
-                      const r = 80;
-                      return (
-                        <div key={agent.name} className="absolute flex flex-col items-center gap-1" style={{ left: `${Math.round(Math.cos(angle) * r)}px`, top: `${Math.round(Math.sin(angle) * r)}px`, transform: "translate(-50%, -50%)" }}>
-                          <div className="h-3.5 w-3.5 rounded-full" style={{ backgroundColor: agent.color, color: agent.color, animation: "adv-trail 1.2s infinite ease-in-out", animationDelay: `${i * 0.2}s` }} />
-                          <span className="whitespace-nowrap text-[10px] font-medium text-gray-500">{agent.name}</span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div className="absolute flex h-14 w-14 items-center justify-center rounded-full bg-white" style={{ left: "50%", top: "42%", transform: "translate(-50%, -50%)", border: "2px solid #06b6d440", boxShadow: "0 0 20px 6px #06b6d415" }}>
-                    <Image src="/solara-icon.svg" alt="Solara" width={28} height={28} />
-                  </div>
-                </div>
-              </div>
-            )}
 
-            {active === 3 && (
-              /* 10% Human — dots dimmed and tiny, center prominent with warm glow */
-              <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #faf5ff, #fdf4ff)" }}>
-                <div className="relative h-full w-full">
-                  {AGENTS.map((agent, i) => {
-                    const angle = (i * 60 - 90) * (Math.PI / 180);
-                    const r = 85;
-                    return (
-                      <div key={agent.name} className="absolute flex flex-col items-center gap-1" style={{ left: `calc(50% + ${Math.round(Math.cos(angle) * r)}px)`, top: `calc(42% + ${Math.round(Math.sin(angle) * r)}px)`, transform: "translate(-50%, -50%)" }}>
-                        <div className="h-2 w-2 rounded-full bg-gray-300" style={{ opacity: 0.4 }} />
-                        <span className="whitespace-nowrap text-[10px] text-gray-300">{agent.name}</span>
+                  <div className="relative overflow-hidden rounded-lg border border-cyan-100 bg-white p-2">
+                    <div className="grid grid-cols-12 items-end gap-1">
+                      {[18, 40, 26, 58, 34, 44, 22, 62, 31, 54, 37, 48].map(
+                        (h, i) => (
+                          <div
+                            key={i}
+                            className="rounded-sm bg-cyan-200"
+                            style={{
+                              height: `${h}%`,
+                              minHeight: 8,
+                              animation: "adv-dot-pulse 1.8s ease-in-out infinite",
+                              animationDelay: `${i * 0.08}s`,
+                            }}
+                          />
+                        ),
+                      )}
+                    </div>
+                    <div
+                      className="pointer-events-none absolute inset-y-0 w-1/5"
+                      style={{
+                        background:
+                          "linear-gradient(90deg, transparent 0%, #06b6d435 50%, transparent 100%)",
+                        animation: "adv-monitor-sweep 2.8s linear infinite",
+                      }}
+                    />
+                  </div>
+
+                  <div className="mt-3 flex items-center gap-2 text-[11px]">
+                    {["Monitoring", "Optimizing", "Adjusting"].map((label, i) => (
+                      <div
+                        key={label}
+                        className="inline-flex items-center gap-1 rounded-full border border-cyan-100 bg-white px-2.5 py-1 text-cyan-700"
+                      >
+                        <span
+                          className="h-1.5 w-1.5 rounded-full bg-cyan-500"
+                          style={{
+                            animation: "adv-dot-pulse 1.2s ease-in-out infinite",
+                            animationDelay: `${i * 0.2}s`,
+                          }}
+                        />
+                        {label}
                       </div>
-                    );
-                  })}
-                  {AGENTS.map((_, i) => (
-                    <div key={`line-dim-${i}`} className="absolute" style={{ left: "50%", top: "42%", width: 85, height: 1, background: "linear-gradient(90deg, #a855f710, #d4d4d415)", transformOrigin: "0% 50%", transform: `rotate(${i * 60 - 90}deg)` }} />
-                  ))}
-                  <div className="absolute flex h-20 w-20 items-center justify-center rounded-full" style={{ left: "50%", top: "42%", transform: "translate(-50%, -50%)", background: "linear-gradient(135deg, #f5f0ff, #fdf2f8)", border: "2px solid #a855f730", boxShadow: "0 0 40px 16px #a855f720" }}>
-                    <Image src="/solara-icon.svg" alt="Solara" width={40} height={40} />
-                  </div>
-                  <div className="absolute text-center" style={{ left: "50%", top: "calc(42% + 56px)", transform: "translateX(-50%)" }}>
-                    <span className="text-xs font-semibold text-purple-400">You</span>
+                    ))}
                   </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-white to-transparent px-6 pt-8 pb-4">
-              <p className="text-center text-sm text-gray-400">{cfg.caption}</p>
+              {active === 3 && (
+                <div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="rounded-xl border border-white/80 bg-white/80 p-3">
+                      <Bot size={14} className="text-gray-500" />
+                      <p className="mt-2 text-xs font-medium text-gray-500">AI execution</p>
+                      <p className="mt-1 text-2xl font-light text-gray-700">90%</p>
+                    </div>
+                    <div
+                      className="rounded-xl border border-purple-200/80 bg-white p-3"
+                      style={{ animation: "adv-human-glow 2.4s ease-in-out infinite" }}
+                    >
+                      <WandSparkles size={14} className="text-purple-500" />
+                      <p className="mt-2 text-xs font-medium text-purple-500">Human strategy</p>
+                      <p className="mt-1 text-2xl font-light text-purple-600">10%</p>
+                    </div>
+                  </div>
+
+                  <div className="mt-3 rounded-xl border border-white/80 bg-white/80 p-3">
+                    <div className="mb-2 flex items-center justify-between text-[11px] font-semibold">
+                      <span className="text-gray-500">Execution balance</span>
+                      <span className="text-purple-500">Human-guided</span>
+                    </div>
+                    <div className="relative h-2 rounded-full bg-gray-200">
+                      <div className="absolute inset-y-0 left-0 rounded-full bg-gray-500/60" style={{ width: "90%" }} />
+                      <motion.div
+                        className="absolute top-1/2 h-4 w-4 -translate-y-1/2 rounded-full border border-purple-300 bg-white"
+                        style={{ left: "calc(90% - 8px)", boxShadow: "0 0 10px 1px #a855f744" }}
+                        animate={{ x: [0, 2, 0, -2, 0] }}
+                        transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-white to-transparent px-5 pt-8 pb-4">
+              <p className="text-center text-xs text-gray-500">{cfg.caption}</p>
             </div>
           </motion.div>
         </AnimatePresence>
