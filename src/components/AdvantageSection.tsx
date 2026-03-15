@@ -645,10 +645,10 @@ export function AdvantageSection() {
               <motion.p
                 key={active}
                 initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 0.6 }}
+                animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.4 }}
-                className="text-center text-sm text-gray-400"
+                className="text-center text-sm text-gray-500"
               >
                 {cfg.caption}
               </motion.p>
