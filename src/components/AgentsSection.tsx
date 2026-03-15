@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Check, Target, Share2, BarChart3, Palette } from "lucide-react";
-import Image from "next/image";
 import { OrbitingCircles } from "@/components/ui/orbiting-circles";
 import { NumberTicker } from "@/components/ui/number-ticker";
 import { AnimatedList, AnimatedListItem } from "@/components/ui/animated-list";
@@ -106,12 +105,6 @@ const PROACTIVE_AGENT: AgentItem = {
   closer: "So it feels powerful \u2014 not risky.",
 };
 
-const COMING_NEXT = [
-  { name: "Website Agent", desc: "Your website managed, updated, and optimized without touching code." },
-  { name: "SEO Agent", desc: "Organic visibility that compounds. Content that ranks. The long game, handled." },
-  { name: "AI Search Agent (GEO/AEO)", desc: "Show up in the new era of AI search, not just traditional search." },
-  { name: "Email Agent", desc: "Sequences, segmentation, timing, personalization \u2014 automated and learning." },
-];
 
 /* \u2500\u2500 Proactive card particles \u2014 golden-ratio spread (brand colors for white bg) \u2500\u2500 */
 const AG_PARTICLES = Array.from({ length: 50 }, (_, i) => {
@@ -514,169 +507,6 @@ export function AgentsSection() {
       </div>
 
       {/* Part 2: Proactive card — hidden */}
-
-
-      {/* Coming Next \u2014 Premium Bento */}
-      <div style={{ background: "#fafafa", marginTop: 0 }}>
-        <style>{`
-            .cn-card {
-              position: relative;
-              overflow: hidden;
-              border-radius: 16px;
-              border: 1px solid #eaecf0;
-              background: #ffffff;
-              transition: border-color 0.35s ease, box-shadow 0.35s ease;
-            }
-            .cn-card:hover {
-              border-color: #d1d5db;
-              box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-            }
-            .cn-card-inner { position: relative; z-index: 2; }
-            .cn-bento { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            @media (max-width: 720px) {
-              .cn-bento { grid-template-columns: 1fr; }
-            }
-          `}</style>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "72px 24px 80px" }}>
-          <div
-            style={{ textAlign: "center", marginBottom: 52 }}
-          >
-            {/* Prominent Coming Soon badge */}
-            <span
-              style={{
-                display: "inline-block",
-                fontSize: "0.75rem",
-                fontWeight: 700,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase" as const,
-                color: "#6b7280",
-                border: "1.5px solid #d1d5db",
-                borderRadius: 999,
-                padding: "6px 20px",
-                marginBottom: 20,
-              }}
-            >
-              Coming Soon
-            </span>
-            <h3
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "clamp(1.75rem, 3.5vw, 2.375rem)",
-                fontWeight: 600,
-                color: "#0f0f0f",
-                letterSpacing: "-0.03em",
-                lineHeight: 1.2,
-              }}
-            >
-              Good marketing is everything connected.
-            </h3>
-          </div>
-          <div className="cn-bento">
-            {COMING_NEXT.map((agent, i) => {
-              const imgs = [
-                "/images/agents/cms-agent.webp",
-                "/images/agents/seo-agent.webp",
-                "/images/agents/ai-search-agent.webp",
-                "/images/agents/email-agent.webp",
-              ];
-              return (
-                <div
-                  key={agent.name}
-                  className="cn-card"
-                >
-                  <div className="cn-card-inner">
-                    <div
-                      style={{
-                        position: "relative",
-                        width: "100%",
-                        aspectRatio: "4 / 3",
-                        overflow: "hidden",
-                        borderRadius: "16px 16px 0 0",
-                      }}
-                    >
-                      <Image
-                        src={imgs[i]}
-                        alt={agent.name}
-                        fill
-                        style={{ objectFit: "cover" }}
-                        sizes="(max-width: 720px) 100vw, 25vw"
-                      />
-                      <div
-                        style={{
-                          position: "absolute",
-                          inset: 0,
-                          background: "linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.45) 100%)",
-                        }}
-                      />
-                    </div>
-                    <div style={{ padding: "20px 24px 24px" }}>
-                      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
-                        <span
-                          style={{
-                            fontFamily: "var(--font-display)",
-                            fontWeight: 600,
-                            fontSize: "0.9375rem",
-                            color: "#0f0f0f",
-                            letterSpacing: "-0.01em",
-                          }}
-                        >
-                          {agent.name}
-                        </span>
-                        <span
-                          style={{
-                            fontSize: "0.625rem",
-                            fontWeight: 600,
-                            letterSpacing: "0.08em",
-                            textTransform: "uppercase" as const,
-                            color: "#6b7280",
-                            border: "1px solid #d1d5db",
-                            borderRadius: 999,
-                            padding: "2px 8px",
-                            whiteSpace: "nowrap",
-                          }}
-                        >
-                          Soon
-                        </span>
-                      </div>
-                      <div
-                        style={{
-                          fontSize: "0.8125rem",
-                          color: "#6b7280",
-                          lineHeight: 1.6,
-                        }}
-                      >
-                        {agent.desc}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          <div
-            style={{ textAlign: "center", marginTop: 52 }}
-          >
-            <p
-              style={{
-                fontSize: "0.9rem",
-                color: "#6b7280",
-                fontStyle: "italic",
-                marginBottom: 28,
-                lineHeight: 1.6,
-              }}
-            >
-              Same brain, same analytics, same approvals.
-            </p>
-            <a
-              href="/contact"
-              className="inline-flex items-center rounded-[999px] bg-black px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-white transition-colors duration-200 hover:bg-gray-700"
-              style={{ textDecoration: "none" }}
-            >
-              Get Early Access
-            </a>
-          </div>
-        </div>
-      </div>
     </section>
   );
 }

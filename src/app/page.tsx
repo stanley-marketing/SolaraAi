@@ -8,6 +8,7 @@ import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { BeamHubSection } from "@/components/BeamHubSection";
 import { ServicesSection } from "@/components/ServicesSection";
 import { AgentsSection } from "@/components/AgentsSection";
+import { EnterpriseAgentsStrip } from "@/components/EnterpriseAgentsStrip";
 import { AdvantageSection } from "@/components/AdvantageSection";
 import { CaseStudySection } from "@/components/CaseStudySection";
 import { PricingSection } from "@/components/PricingSection";
@@ -178,6 +179,7 @@ export default function Home() {
 
           {/* Remaining placeholder sections */}
           <AgentsSection />
+          <EnterpriseAgentsStrip />
           <AdvantageSection />
           <CaseStudySection />
           <PricingSection />
