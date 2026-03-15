@@ -228,7 +228,7 @@ export function EnterpriseAgentsStrip() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="border-b bg-[#fafafa]" style={{ borderColor: "#eaecf0", borderTop: "none" }}>
+    <section ref={sectionRef}>
       <style>{`
         .eas-tab {
           padding: 8px 18px; border-radius: 999px; font-size: 0.825rem;
@@ -237,7 +237,8 @@ export function EnterpriseAgentsStrip() {
           background: transparent; color: #64748b; white-space: nowrap;
           letter-spacing: 0.01em; line-height: 1;
         }
-        .eas-tab:hover:not(.eas-tab-active) { color: #0f172a; background: #f1f5f9; }
+        .eas-tab:hover:not(.eas-tab-active) { color: #0f172a; background: #e2e8f0; }
+        .eas-tab:focus-visible { outline: 2px solid #7c3aed; outline-offset: 2px; }
         .eas-tab.eas-tab-active { background: #0f172a; color: #fff; }
         .eas-panel { animation: easFade 0.3s cubic-bezier(0.16,1,0.3,1) forwards; }
         @keyframes easFade {
@@ -246,11 +247,11 @@ export function EnterpriseAgentsStrip() {
         }
         .eas-cap {
           display: flex; align-items: flex-start; gap: 10px;
-          padding: 10px 0; border-bottom: 1px solid #f1f5f9;
+          padding: 12px 0; border-bottom: 1px solid #eaecf0;
           font-size: 0.875rem; color: #334155; line-height: 1.55;
         }
-        .eas-cap:first-child { border-top: 1px solid #f1f5f9; }
-        .eas-cta:hover { opacity: 0.88; }
+        .eas-cap:first-child { border-top: 1px solid #eaecf0; }
+        .eas-cta:hover { background: #1e293b; }
         @keyframes easBarGrow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
         @keyframes easLineDraw { from { stroke-dashoffset: 380; } to { stroke-dashoffset: 0; } }
         @keyframes easGlowPop { from { opacity: 0; transform: scale(0.4); } to { opacity: 1; transform: scale(1); } }
@@ -258,32 +259,39 @@ export function EnterpriseAgentsStrip() {
         @keyframes easConnDraw { from { stroke-dashoffset: 80; opacity: 0; } to { stroke-dashoffset: 0; opacity: 1; } }
         @keyframes easNodePop { from { opacity: 0; transform: scale(0.3); } to { opacity: 1; transform: scale(1); } }
         @keyframes easSlideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+        @media (prefers-reduced-motion: reduce) {
+          .eas-panel, .eas-panel * { animation: none !important; }
+        }
         @media (max-width: 640px) {
           .eas-panel-grid { grid-template-columns: 1fr !important; }
           .eas-visual { display: none !important; }
         }
       `}</style>
 
-      <div className="mx-auto px-6 py-28 sm:px-10" style={{ maxWidth: 1200 }}>
-        <div style={{ marginBottom: 44 }}>
-          <p className="mb-4 text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-neutral-400">
+      <div className="mx-auto px-6 pt-10 pb-28 sm:px-10" style={{ maxWidth: 1200 }}>
+        <div style={{ marginBottom: 36, textAlign: "center" }}>
+          <div className="shimmer-pill" style={{
+            position: "relative", overflow: "hidden",
+            display: "inline-flex", alignItems: "center", gap: 6,
+            fontSize: "14px", fontWeight: 500, color: "#374151",
+            borderRadius: 999, padding: "7px 16px",
+            background: "rgba(255,255,255,0.65)", border: "1px solid #e5e7eb",
+            marginBottom: 16,
+          }}>
             Enterprise
-          </p>
+          </div>
           <h2
-            className="text-[2.125rem] font-semibold leading-[1.1] tracking-[-0.03em] text-gray-950 sm:text-[2.5rem]"
+            className="text-[1.75rem] font-semibold leading-[1.15] tracking-[-0.03em] text-gray-950 sm:text-[2.125rem]"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            Four agents.
-            <br />
-            One subscription.
+            Four more agents, one subscription.
           </h2>
-          <p className="mt-4 text-[1rem] leading-[1.7] text-neutral-500" style={{ maxWidth: 460 }}>
-            Each agent runs autonomously, handles its own execution, and
-            escalates only what demands a human decision.
+          <p className="mx-auto mt-3 text-[0.94rem] leading-[1.7] text-neutral-500" style={{ maxWidth: 480 }}>
+            Each runs autonomously and escalates only what demands a human decision.
           </p>
         </div>
 
-        <div style={{ display: "flex", gap: 4, marginBottom: 40, padding: "5px", background: "#f1f5f9", borderRadius: 999, width: "fit-content", flexWrap: "wrap" }}>
+        <div style={{ display: "flex", gap: 4, marginBottom: 40, padding: "5px", background: "#eef1f6", borderRadius: 999, width: "fit-content", flexWrap: "wrap", border: "1px solid #e2e8f0", margin: "0 auto 40px" }}>
           {AGENTS.map((a) => (
             <button key={a.id} type="button"
               className={`eas-tab${active === a.id ? " eas-tab-active" : ""}`}
@@ -295,14 +303,14 @@ export function EnterpriseAgentsStrip() {
         </div>
 
         <div key={active} className="eas-panel eas-panel-grid"
-          style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 48px", alignItems: "stretch" }}
+          style={{ display: "grid", gridTemplateColumns: "1fr 0.85fr", gap: "0 56px", alignItems: "center" }}
         >
           <div>
             <p style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(1.35rem, 2.6vw, 2rem)",
-              fontWeight: 700, letterSpacing: "-0.03em",
-              lineHeight: 1.2, color: "#0f172a", margin: "0 0 14px",
+              fontSize: "clamp(1.35rem, 2.6vw, 1.75rem)",
+              fontWeight: 600, letterSpacing: "-0.03em",
+              lineHeight: 1.25, color: "#0f172a", margin: "0 0 14px",
             }}>
               {agent.tagline}
             </p>
@@ -328,8 +336,8 @@ export function EnterpriseAgentsStrip() {
             borderRadius: 14, background: "#f8fafc", border: "1px solid #e2e8f0",
             padding: "18px 24px 24px", display: "flex", flexDirection: "column",
             justifyContent: "center", minHeight: 280,
-            backgroundImage: "radial-gradient(circle, #cbd5e1 1px, transparent 1px)",
-            backgroundSize: "18px 18px",
+            backgroundImage: "radial-gradient(circle, #d6dce4 0.8px, transparent 0.8px)",
+            backgroundSize: "16px 16px",
           }}>
             <TabPanelVisual agentId={active} inView={inView} />
           </div>
