@@ -6,8 +6,6 @@ import { SOLARA_PLUS_CONTENT } from "./content";
 
 const { hero } = SOLARA_PLUS_CONTENT;
 
-const PROOF_TAGS = ["Expert-managed", "AI-powered", "Always-on"] as const;
-
 const SERVICE_CHIPS = [
   "Paid Ads",
   "Content Strategy",
@@ -112,7 +110,7 @@ export function SolaraPlusHero() {
           transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" }}
           className="mb-20 flex items-center gap-2 text-[13px] text-neutral-400"
         >
-          {PROOF_TAGS.map((tag, i) => (
+           {hero.proofTags.map((tag, i) => (
             <span key={tag} className="flex items-center gap-2">
               {i > 0 && (
                 <span aria-hidden className="select-none text-neutral-300">

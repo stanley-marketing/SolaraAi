@@ -272,7 +272,7 @@ export function PartnerHero({
 
           {/* CTA row */}
           <motion.div
-            className="flex flex-wrap items-center gap-3"
+            className="flex flex-wrap items-center justify-center gap-3 lg:justify-start"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.38, ease: [0.16, 1, 0.3, 1] }}

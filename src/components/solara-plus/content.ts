@@ -21,6 +21,7 @@ export type HeroContent = {
   headline: string;
   subheadline: string;
   cta: Cta;
+  proofTags: readonly string[];
 };
 
 export type PainPoint = {
@@ -134,6 +135,7 @@ export const SOLARA_PLUS_CONTENT: SolaraPlusContent = {
     subheadline:
       "Solara+ is the done-for-you service where our team handles your paid ads, content strategy, and campaigns — powered by AI, delivered by experts.",
     cta: CTA,
+    proofTags: ["Expert-managed", "AI-powered", "Always-on"],
   },
 
   // -------------------------------------------------------------------------
