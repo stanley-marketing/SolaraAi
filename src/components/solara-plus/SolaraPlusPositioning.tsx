@@ -13,8 +13,13 @@ export function SolaraPlusPositioning() {
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
           <h2
-            className="text-3xl leading-tight tracking-tight text-[#111111] sm:text-4xl"
-            style={{ fontFamily: "var(--font-display)" }}
+            className="text-[#111111]"
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
+              letterSpacing: "-0.025em",
+              lineHeight: 1.1,
+            }}
           >
             {headline}
           </h2>

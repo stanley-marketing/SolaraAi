@@ -2,6 +2,15 @@ import type { Metadata } from "next";
 
 import { TopNav } from "@/components/LandingSections";
 import { Footer } from "@/components/Footer";
+import { SolaraPlusHero } from "@/components/solara-plus/SolaraPlusHero";
+import { SolaraPlusInsight } from "@/components/solara-plus/SolaraPlusInsight";
+import { SolaraPlusPositioning } from "@/components/solara-plus/SolaraPlusPositioning";
+import { SolaraPlusProcess } from "@/components/solara-plus/SolaraPlusProcess";
+import { SolaraPlusMockup } from "@/components/solara-plus/SolaraPlusMockup";
+import { SolaraPlusProof } from "@/components/solara-plus/SolaraPlusProof";
+import { SolaraPlusComparison } from "@/components/solara-plus/SolaraPlusComparison";
+import { SolaraPlusTrust } from "@/components/solara-plus/SolaraPlusTrust";
+import { SolaraPlusClosingCta } from "@/components/solara-plus/SolaraPlusClosingCta";
 
 export const metadata: Metadata = {
   title: "Solara+ Managed Marketing — Done-For-You AI Marketing Service | Solara AI",
@@ -57,7 +66,15 @@ export default function SolaraPlusPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
       />
       <TopNav />
-      {/* Solara+ sections will be imported here */}
+      <SolaraPlusHero />
+      <SolaraPlusInsight />
+      <SolaraPlusPositioning />
+      <SolaraPlusProcess />
+      <SolaraPlusMockup />
+      <SolaraPlusProof />
+      <SolaraPlusComparison />
+      <SolaraPlusTrust />
+      <SolaraPlusClosingCta />
       <Footer />
     </main>
   );

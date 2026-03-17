@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { SOLARA_PLUS_CONTENT } from "./content";
 
@@ -17,6 +17,9 @@ const SERVICE_CHIPS = [
 ] as const;
 
 export function SolaraPlusHero() {
+  const prefersReduced = useReducedMotion();
+  const noMotion = prefersReduced === true;
+
   return (
     <section className="relative overflow-hidden bg-white px-6 pb-24 pt-36 sm:px-10 sm:pt-44">
       <div
@@ -30,7 +33,7 @@ export function SolaraPlusHero() {
 
       <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={noMotion ? false : { opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
           className="mb-7"
@@ -58,9 +61,9 @@ export function SolaraPlusHero() {
 
         <motion.h1
           className="text-ink-900"
-          initial={{ opacity: 0, y: 18 }}
+          initial={noMotion ? false : { opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
           style={{
             fontFamily: "var(--font-display)",
             fontSize: "clamp(2.4rem, 5.5vw, 4rem)",
@@ -76,9 +79,9 @@ export function SolaraPlusHero() {
 
         <motion.p
           className="text-neutral-500"
-          initial={{ opacity: 0, y: 14 }}
+          initial={noMotion ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.65, delay: 0.20, ease: [0.16, 1, 0.3, 1] }}
           style={{
             fontSize: "clamp(1rem, 1.5vw, 1.125rem)",
             lineHeight: 1.72,
@@ -90,23 +93,23 @@ export function SolaraPlusHero() {
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={noMotion ? false : { opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.55, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
           className="mb-8"
         >
           <Link
             href={hero.cta.href}
-            className="inline-flex items-center gap-2 rounded-[999px] bg-[#040404] px-6 py-3 text-[14px] font-medium tracking-[1px] text-white transition-colors hover:bg-[#1a1a1a]"
+            className="inline-flex items-center gap-2 rounded-[999px] bg-[#040404] px-6 py-3 text-[14px] font-medium tracking-[1px] text-white transition-colors hover:bg-[#1a1a1a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#040404]"
           >
             {hero.cta.label}
           </Link>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0 }}
+          initial={noMotion ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.44, ease: "easeOut" }}
+          transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" }}
           className="mb-20 flex items-center gap-2 text-[13px] text-neutral-400"
         >
           {PROOF_TAGS.map((tag, i) => (
@@ -123,9 +126,9 @@ export function SolaraPlusHero() {
 
         <motion.div
           className="w-full"
-          initial={{ opacity: 0, y: 22 }}
+          initial={noMotion ? false : { opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75, delay: 0.52, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.75, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}
         >
           <div
             className="relative overflow-hidden rounded-2xl"

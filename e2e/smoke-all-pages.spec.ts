@@ -8,6 +8,7 @@ const SMOKE_ROUTES = [
   "/blog",
   "/contact",
   "/pricing",
+  "/solara-plus",
   "/partners/agencies",
   "/partners/marketers",
   "/partners/referral-program",

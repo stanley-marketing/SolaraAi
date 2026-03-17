@@ -22,6 +22,7 @@ const PAGE_CONFIGS: PageSeoConfig[] = [
     requiredSchemaTypes: ["WebPage", "FAQPage"],
     faqQuestionCount: 4,
   },
+  { route: "/solara-plus", requiredSchemaTypes: ["WebPage"] },
   { route: "/partners/agencies", requiredSchemaTypes: ["WebPage"] },
   { route: "/partners/marketers", requiredSchemaTypes: ["WebPage"] },
   {

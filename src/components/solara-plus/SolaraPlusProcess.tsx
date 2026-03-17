@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { SOLARA_PLUS_CONTENT } from "./content";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -16,11 +16,13 @@ function StepCard({
   description: string;
   index: number;
 }) {
+  const prefersReduced = useReducedMotion();
+  const noMotion = prefersReduced === true;
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 22 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px 0px" }}
+      initial={noMotion ? false : { opacity: 0, y: 22 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.08 + index * 0.1, ease: EASE }}
       className="relative flex h-full flex-col rounded-2xl bg-white p-6"
       style={{ border: "1px solid #eaecf0" }}
@@ -55,12 +57,14 @@ function StepCard({
 }
 
 function ConnectorArrow({ index }: { index: number }) {
+  const prefersReduced = useReducedMotion();
+  const noMotion = prefersReduced === true;
+
   return (
     <motion.div
       aria-hidden="true"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
+      initial={noMotion ? false : { opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 0.5, delay: 0.2 + index * 0.1, ease: EASE }}
       className="hidden shrink-0 items-center justify-center px-1 lg:flex"
     >
@@ -89,14 +93,15 @@ function ConnectorArrow({ index }: { index: number }) {
 
 export function SolaraPlusProcess() {
   const { headline, steps } = SOLARA_PLUS_CONTENT.process;
+  const prefersReduced = useReducedMotion();
+  const noMotion = prefersReduced === true;
 
   return (
     <section className="border-t border-gray-100 bg-[#fafafa] px-6 py-28 sm:px-10">
       <div className="mx-auto max-w-5xl">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          initial={noMotion ? false : { opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: EASE }}
           className="mb-12"
         >

@@ -47,7 +47,7 @@ export function SolaraPlusMockup() {
   const noMotion = prefersReduced === true;
 
   return (
-    <section className="bg-[#fafafa] px-6 py-28 sm:px-10">
+    <section className="overflow-hidden bg-[#fafafa] px-6 py-28 sm:px-10">
       <div className="mx-auto max-w-6xl">
         <div className="mb-14 text-center">
           <motion.h2

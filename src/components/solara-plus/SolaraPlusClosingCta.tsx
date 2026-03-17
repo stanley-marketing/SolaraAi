@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 
 import { SOLARA_PLUS_CONTENT } from "./content";
@@ -9,6 +9,8 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export function SolaraPlusClosingCta() {
   const { headline, sub, cta } = SOLARA_PLUS_CONTENT.closingCta;
+  const prefersReduced = useReducedMotion();
+  const noMotion = prefersReduced === true;
 
   return (
     <section className="relative overflow-hidden bg-[#040404] px-6 py-28 sm:px-10">
@@ -33,7 +35,7 @@ export function SolaraPlusClosingCta() {
 
       <div className="relative mx-auto max-w-3xl text-center">
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+          initial={noMotion ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.05, ease: EASE }}
           style={{
@@ -50,7 +52,7 @@ export function SolaraPlusClosingCta() {
         </motion.h2>
 
         <motion.p
-          initial={{ opacity: 0, y: 14 }}
+          initial={noMotion ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, delay: 0.15, ease: EASE }}
           className="mx-auto mb-10 max-w-[52ch] text-[1.0625rem] leading-relaxed text-white/70"
@@ -59,13 +61,13 @@ export function SolaraPlusClosingCta() {
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={noMotion ? false : { opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.25, ease: EASE }}
         >
           <Link
             href={cta.href}
-            className="inline-flex items-center gap-2 rounded-[999px] bg-white px-6 py-3 text-[14px] font-medium tracking-[1px] text-[#040404] transition-colors hover:bg-gray-100"
+            className="inline-flex items-center gap-2 rounded-[999px] bg-white px-6 py-3 text-[14px] font-medium tracking-[1px] text-[#040404] transition-colors hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
             {cta.label}
           </Link>

@@ -14,8 +14,13 @@ export function SolaraPlusInsight() {
         </p>
 
         <h2
-          className="mx-auto mt-4 max-w-2xl text-center text-3xl tracking-tight text-[#101828] sm:text-[38px] sm:leading-[1.2]"
-          style={{ fontFamily: "var(--font-display)" }}
+          className="mx-auto mt-4 max-w-2xl text-center text-[#101828]"
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
+            letterSpacing: "-0.025em",
+            lineHeight: 1.1,
+          }}
         >
           {headline}
         </h2>

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Layers, TrendingDown, TrendingUp } from "lucide-react";
 import { SOLARA_PLUS_CONTENT } from "./content";
 
@@ -10,12 +10,14 @@ const CARD_ICONS = [TrendingDown, TrendingUp, Layers] as const;
 
 export function SolaraPlusProof() {
   const { headline, sub, cards } = SOLARA_PLUS_CONTENT.proof;
+  const prefersReduced = useReducedMotion();
+  const noMotion = prefersReduced === true;
 
   return (
     <section className="border-t border-gray-100 bg-white px-6 py-28 sm:px-10">
       <div className="mx-auto max-w-5xl">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={noMotion ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: EASE }}
           className="mb-14 text-center"
@@ -54,7 +56,7 @@ export function SolaraPlusProof() {
             return (
               <motion.div
                 key={card.title}
-                initial={{ opacity: 0, y: 22 }}
+                initial={noMotion ? false : { opacity: 0, y: 22 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
                   duration: 0.6,

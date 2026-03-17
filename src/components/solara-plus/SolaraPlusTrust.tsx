@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Clock, Cpu, Shield } from "lucide-react";
 
 import { SOLARA_PLUS_CONTENT } from "./content";
@@ -11,12 +11,14 @@ const STATEMENT_ICONS = [Shield, Cpu, Clock] as const;
 
 export function SolaraPlusTrust() {
   const { statements } = SOLARA_PLUS_CONTENT.trust;
+  const prefersReduced = useReducedMotion();
+  const noMotion = prefersReduced === true;
 
   return (
     <section className="border-t border-gray-100 bg-white px-6 py-20 sm:px-10">
       <div className="mx-auto max-w-4xl">
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
+          initial={noMotion ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.05, ease: EASE }}
           className="mb-10 text-center"
@@ -30,7 +32,7 @@ export function SolaraPlusTrust() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={noMotion ? false : { opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.12, ease: EASE }}
           className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap"
@@ -40,7 +42,7 @@ export function SolaraPlusTrust() {
             return (
               <motion.div
                 key={statement}
-                initial={{ opacity: 0, y: 8 }}
+                initial={noMotion ? false : { opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.18 + i * 0.08, ease: EASE }}
                 className="flex items-center gap-2 rounded-full px-4 py-2 text-sm text-[#344054]"
