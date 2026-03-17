@@ -4,6 +4,7 @@
    Server component — no interactivity needed.
    ────────────────────────────────────────────────────────────── */
 
+
 interface PitchBlock {
   headline: string;
   body: string;

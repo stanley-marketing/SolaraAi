@@ -123,10 +123,6 @@ export function MarketerPage({ jsonLd }: MarketerPageProps) {
           label: "Get the Free Marketer Guide",
           href: getCtaHref("marketers", "primary"),
         }}
-        secondaryCta={{
-          label: "See What Marketers Are Doing With Solara",
-          href: getCtaHref("marketers", "secondary"),
-        }}
         useGlobe={true}
       />
 

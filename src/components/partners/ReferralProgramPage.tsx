@@ -32,7 +32,6 @@ export function ReferralProgramPage({ jsonLd }: ReferralProgramPageProps) {
         headline="Make money giving businesses what they've been wishing for."
         subhead="Every business you know is running marketing with disconnected tools and a human trying to hold it all together. You're about to hand them something that actually fixes that — and get paid every time you do."
         primaryCta={{ label: "Get Your Referral Link", href: REFERRAL_SIGNUP_URL }}
-        secondaryCta={{ label: "See the Full Reward Breakdown", href: REWARDS_ANCHOR }}
         useGlobe={true}
       />
 

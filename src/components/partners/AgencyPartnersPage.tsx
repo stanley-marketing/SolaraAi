@@ -127,7 +127,6 @@ export function AgencyPartnersPage({ jsonLd }: AgencyPartnersPageProps) {
         headline="Burnout is an old-fashioned word."
         subhead="Your team isn't burned out because they're bad at marketing. They're burned out because they're the only bridge between ten disconnected tools. Solara eliminates that entire layer."
         primaryCta={PRIMARY_CTA}
-        secondaryCta={SECONDARY_CTA}
         useGlobe={true}
       />
 

@@ -5,6 +5,7 @@
    Server component — no interactivity needed.
    ────────────────────────────────────────────────────────────── */
 
+
 interface ProcessStep {
   number: string;
   label: string;

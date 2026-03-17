@@ -116,10 +116,6 @@ export function SetupOperatorPage({ jsonLd }: SetupOperatorPageProps) {
           label: "Become a Setup Operator",
           href: getCtaHref("setup-operators", "primary"),
         }}
-        secondaryCta={{
-          label: "See the Operator Directory",
-          href: getCtaHref("setup-operators", "secondary"),
-        }}
         useGlobe={true}
       />
 

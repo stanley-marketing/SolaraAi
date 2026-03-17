@@ -42,7 +42,7 @@ export function PartnerBenefitsGrid({
 
         {/* Benefits grid */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((item) => (
+          {items.map((item, i) => (
             <div
               key={item.title}
               className="relative flex flex-col rounded-2xl bg-white p-7 transition-shadow hover:shadow-md"

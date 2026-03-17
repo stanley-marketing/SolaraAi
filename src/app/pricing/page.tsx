@@ -523,13 +523,13 @@ export default function PricingPage() {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <a
               href="/contact"
-              className="inline-flex items-center rounded-xl bg-ink-900 px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-white transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90"
+              className="inline-flex items-center rounded-[999px] bg-black px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-white transition-colors duration-200 hover:bg-gray-700"
             >
               Start free trial
             </a>
             <a
               href="/contact"
-              className="inline-flex items-center rounded-xl border border-line bg-white px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-ink-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink-900/30"
+              className="inline-flex items-center rounded-[999px] border border-line bg-white/60 px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-ink-900 backdrop-blur-sm transition-colors duration-200 hover:bg-gray-100"
             >
               Book a call
             </a>

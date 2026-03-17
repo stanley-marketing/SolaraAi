@@ -72,7 +72,7 @@ export function Footer() {
           {/* Brand column */}
           <div className="col-span-2 lg:col-span-1">
             <Image src="/Logo.svg" alt="Solara AI" width={126} height={27} className="h-auto w-[126px]" />
-            <p className="mt-3 max-w-[220px] text-[16px] leading-relaxed text-[#667085]">
+            <p className="mt-3 max-w-[220px] text-[16px] leading-relaxed text-[#555555]">
               AI-powered marketing
               <br />
               that runs 24/7.
@@ -99,7 +99,7 @@ export function Footer() {
           {COLUMNS.map(({ heading, links }) => (
             <div key={heading}>
               <div
-                className="mb-4 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-[#667085]"
+                className="mb-4 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-[#555555]"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 {heading}
@@ -109,7 +109,7 @@ export function Footer() {
                   <li key={l.href}>
                     <Link
                       href={l.href}
-                      className="text-[16px] leading-none text-[#344054] transition-colors duration-200 hover:text-[#0F141F]"
+                      className="text-[16px] leading-none text-[#444444] transition-colors duration-200 hover:text-[#111111]"
                     >
                       {l.label}
                     </Link>
@@ -122,10 +122,10 @@ export function Footer() {
 
         {/* ── Bottom bar ── */}
         <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-[#E5E7EB] py-6 sm:flex-row">
-          <span className="text-[0.76rem] text-[#98A2B3]">
+          <span className="text-[0.76rem] text-[#888888]">
             &copy; 2026 Solara AI, Inc. All rights reserved.
           </span>
-          <span className="text-[0.76rem] text-[#98A2B3]">Built for modern marketing teams.</span>
+          <span className="text-[0.76rem] text-[#888888]">Built for modern marketing teams.</span>
         </div>
       </div>
     </footer>
