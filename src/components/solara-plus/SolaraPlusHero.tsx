@@ -98,9 +98,23 @@ export function SolaraPlusHero() {
         >
           <Link
             href={hero.cta.href}
-            className="inline-flex items-center gap-2 rounded-[999px] bg-[#040404] px-6 py-3 text-[14px] font-medium tracking-[1px] text-white transition-colors hover:bg-[#1a1a1a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#040404]"
+            className="group inline-flex items-center gap-2 rounded-[999px] bg-[#040404] px-6 py-3 text-[14px] font-medium tracking-[1px] text-white transition-all duration-200 hover:bg-[#1a1a1a] hover:gap-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#040404]"
           >
             {hero.cta.label}
+            <svg
+              className="h-3.5 w-0 opacity-0 transition-all duration-200 group-hover:w-3.5 group-hover:opacity-100"
+              viewBox="0 0 14 14"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M1 7h12m0 0L8.5 2.5M13 7l-4.5 4.5"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </Link>
         </motion.div>
 
@@ -163,11 +177,12 @@ export function SolaraPlusHero() {
               {SERVICE_CHIPS.map((chip) => (
                 <span
                   key={chip}
-                  className="inline-flex items-center rounded-full bg-white text-[13px] font-medium text-ink-900"
+                  className="inline-flex items-center rounded-full bg-white text-[13px] font-medium text-ink-900 transition-all duration-200 hover:scale-[1.04] hover:shadow-md"
                   style={{
                     border: "1px solid #e5e7eb",
                     padding: "6px 14px",
                     boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
+                    cursor: "default",
                   }}
                 >
                   {chip}

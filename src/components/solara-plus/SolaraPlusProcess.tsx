@@ -24,7 +24,7 @@ function StepCard({
       initial={noMotion ? false : { opacity: 0, y: 22 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.08 + index * 0.1, ease: EASE }}
-      className="relative flex h-full flex-col rounded-2xl bg-white p-6"
+      className="relative flex h-full flex-col rounded-2xl bg-white p-6 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
       style={{ border: "1px solid #eaecf0" }}
     >
       <span
@@ -35,20 +35,19 @@ function StepCard({
         {number}
       </span>
 
-      <div className="relative z-10 mb-5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[#040404] text-sm font-medium text-white">
+      <div className="relative z-10 mb-5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[#040404] text-sm font-medium text-white shadow-[0_0_0_0_rgba(4,4,4,0)] transition-shadow duration-300 hover:shadow-[0_0_0_4px_rgba(4,4,4,0.08)]">
         {number}
       </div>
 
       <h3
         className="relative z-10 mb-2 text-[1rem] font-semibold leading-snug text-ink-900"
-        style={{ fontFamily: "var(--font-body)", letterSpacing: "-0.01em" }}
+        style={{ letterSpacing: "-0.01em" }}
       >
         {title}
       </h3>
 
       <p
         className="relative z-10 text-[0.875rem] leading-relaxed text-ink-700/70"
-        style={{ fontFamily: "var(--font-body)" }}
       >
         {description}
       </p>
@@ -97,7 +96,7 @@ export function SolaraPlusProcess() {
   const noMotion = prefersReduced === true;
 
   return (
-    <section className="border-t border-gray-100 bg-[#fafafa] px-6 py-28 sm:px-10">
+    <section className="border-t border-b border-gray-100 bg-[#fafafa] px-6 py-28 sm:px-10">
       <div className="mx-auto max-w-5xl">
         <motion.div
           initial={noMotion ? false : { opacity: 0, y: 16 }}
@@ -107,7 +106,6 @@ export function SolaraPlusProcess() {
         >
           <p
             className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-ink-900/40"
-            style={{ fontFamily: "var(--font-body)" }}
           >
             The process
           </p>

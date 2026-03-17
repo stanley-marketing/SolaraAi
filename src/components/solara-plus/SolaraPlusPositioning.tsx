@@ -1,15 +1,41 @@
+"use client";
+
 import { Sparkles, TimerReset, Wrench } from "lucide-react";
+import { useReducedMotion } from "framer-motion";
 
 import { SOLARA_PLUS_CONTENT } from "./content";
 
-const RAINBOW_BORDER =
-  "linear-gradient(135deg, #f97316, #eab308, #22c55e, #06b6d4, #8b5cf6, #ec4899, #f97316)";
+const RAINBOW_COLORS = "#f97316, #eab308, #22c55e, #06b6d4, #8b5cf6, #ec4899, #f97316";
 
 export function SolaraPlusPositioning() {
   const { headline, columns } = SOLARA_PLUS_CONTENT.positioning;
+  const prefersReduced = useReducedMotion();
+  const noMotion = prefersReduced === true;
 
   return (
-    <section className="px-6 py-28 sm:px-10" style={{ background: "#ffffff" }}>
+    <section className="bg-white px-6 py-28 sm:px-10">
+      {!noMotion && (
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              @keyframes sp-border-spin {
+                to { --sp-angle: 360deg; }
+              }
+              @property --sp-angle {
+                syntax: "<angle>";
+                initial-value: 0deg;
+                inherits: false;
+              }
+              .sp-rainbow-border {
+                --sp-angle: 0deg;
+                background: conic-gradient(from var(--sp-angle), ${RAINBOW_COLORS});
+                animation: sp-border-spin 6s linear infinite;
+              }
+            `,
+          }}
+        />
+      )}
+
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
           <h2
@@ -17,6 +43,7 @@ export function SolaraPlusPositioning() {
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
+              fontWeight: 400,
               letterSpacing: "-0.025em",
               lineHeight: 1.1,
             }}
@@ -40,7 +67,16 @@ export function SolaraPlusPositioning() {
 
             if (isHighlighted) {
               return (
-                <article key={column.label} className="h-full rounded-3xl" style={{ background: RAINBOW_BORDER, padding: "1.5px" }}>
+                <article
+                  key={column.label}
+                  className={`h-full rounded-3xl ${noMotion ? "" : "sp-rainbow-border"}`}
+                  style={{
+                    background: noMotion
+                      ? `linear-gradient(135deg, ${RAINBOW_COLORS})`
+                      : undefined,
+                    padding: "1.5px",
+                  }}
+                >
                   <div className="relative flex h-full flex-col rounded-[calc(1.5rem-1.5px)] bg-[#040404] p-6 sm:p-7">
                     <div
                       className="pointer-events-none absolute inset-0 rounded-[calc(1.5rem-1.5px)] opacity-[0.045]"
@@ -75,7 +111,7 @@ export function SolaraPlusPositioning() {
             return (
               <article
                 key={column.label}
-                className="flex h-full flex-col rounded-3xl bg-[#f8f9fb] p-6 sm:p-7"
+                className="flex h-full flex-col rounded-3xl bg-[#f8f9fb] p-6 sm:p-7 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
                 style={{ border: "1px solid #eaecf0" }}
               >
                 <div className="flex items-start gap-3">

@@ -9,7 +9,7 @@ export function SolaraPlusInsight() {
   return (
     <section className="px-6 py-28 sm:px-10 bg-white">
       <div className="mx-auto max-w-4xl">
-        <p className="text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-[#667085]">
+        <p className="text-center text-[11px] font-semibold uppercase tracking-[0.28em] text-ink-900/40">
           The challenge
         </p>
 
@@ -18,6 +18,7 @@ export function SolaraPlusInsight() {
           style={{
             fontFamily: "var(--font-display)",
             fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
+            fontWeight: 400,
             letterSpacing: "-0.025em",
             lineHeight: 1.1,
           }}
@@ -32,7 +33,7 @@ export function SolaraPlusInsight() {
               <div
                 key={point.text}
                 style={{ border: "1px solid #eaecf0" }}
-                className="rounded-2xl p-6 flex items-start gap-4 bg-white"
+                className="rounded-2xl p-6 flex items-start gap-4 bg-white transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
               >
                 <Icon className="w-5 h-5 text-[#667085] mt-0.5 flex-shrink-0" />
                 <p className="text-[15px] leading-snug text-[#344054]">

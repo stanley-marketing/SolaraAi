@@ -35,14 +35,15 @@ export function SolaraPlusComparison() {
   return (
     <section
       className="px-6 py-28 sm:px-10"
-      style={{ background: "#f9fafb" }}
+      style={{ background: "#fafafa" }}
     >
       <div className="max-w-5xl mx-auto">
         <h2
           className="text-center"
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(1.9rem, 4vw, 3rem)",
+            fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
+            fontWeight: 400,
             color: "#111111",
             letterSpacing: "-0.025em",
             lineHeight: 1.1,

@@ -25,7 +25,6 @@ export function SolaraPlusTrust() {
         >
           <p
             className="text-[11px] font-semibold uppercase tracking-[0.28em] text-ink-900/40"
-            style={{ fontFamily: "var(--font-body)" }}
           >
             Why teams choose Solara+
           </p>

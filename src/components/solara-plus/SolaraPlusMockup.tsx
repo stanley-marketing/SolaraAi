@@ -216,9 +216,16 @@ export function SolaraPlusMockup() {
                 </div>
 
                 <div className="flex gap-3" style={{ marginBottom: "20px" }}>
-                  {STATUS_CHIPS.map(({ label, count, dot }) => (
-                    <div
+                  {STATUS_CHIPS.map(({ label, count, dot }, chipIdx) => (
+                    <motion.div
                       key={label}
+                      initial={noMotion ? false : { opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.45,
+                        delay: 0.6 + chipIdx * 0.08,
+                        ease: [0.16, 1, 0.3, 1],
+                      }}
                       style={{
                         flex: 1,
                         background: "#f9fafb",
@@ -267,7 +274,7 @@ export function SolaraPlusMockup() {
                       >
                         {count}
                       </span>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
 
@@ -301,14 +308,22 @@ export function SolaraPlusMockup() {
                       aria-label="Bar chart showing weekly campaign performance"
                     >
                       {BAR_DATA.map(({ day, value }, idx) => (
-                        <div
+                        <motion.div
                           key={day}
+                          initial={noMotion ? false : { scaleY: 0 }}
+                          animate={{ scaleY: 1 }}
+                          transition={{
+                            duration: 0.6,
+                            delay: 0.8 + idx * 0.07,
+                            ease: [0.16, 1, 0.3, 1],
+                          }}
                           style={{
                             flex: 1,
                             height: `${(value / 100) * BAR_MAX_PX}px`,
                             backgroundColor: BAR_COLOR,
                             borderRadius: "3px 3px 0 0",
                             opacity: 0.55 + (idx / (BAR_DATA.length - 1)) * 0.45,
+                            transformOrigin: "bottom",
                           }}
                         />
                       ))}
@@ -354,9 +369,16 @@ export function SolaraPlusMockup() {
                     </div>
 
                     <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                      {ACTIVITY_ITEMS.map(({ id, done, text, time }) => (
-                        <div
+                      {ACTIVITY_ITEMS.map(({ id, done, text, time }, actIdx) => (
+                        <motion.div
                           key={id}
+                          initial={noMotion ? false : { opacity: 0, x: -8 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{
+                            duration: 0.45,
+                            delay: 1.0 + actIdx * 0.12,
+                            ease: [0.16, 1, 0.3, 1],
+                          }}
                           style={{ display: "flex", alignItems: "flex-start", gap: "9px" }}
                         >
                           {done ? (
@@ -396,6 +418,7 @@ export function SolaraPlusMockup() {
                             <span
                               role="img"
                               aria-label="In progress"
+                              className={noMotion ? "" : "animate-pulse"}
                               style={{
                                 display: "flex",
                                 alignItems: "center",
@@ -406,6 +429,7 @@ export function SolaraPlusMockup() {
                                 border: "1.5px solid #93c5fd",
                                 flexShrink: 0,
                                 marginTop: "1px",
+                                animationDuration: noMotion ? undefined : "2s",
                               }}
                             >
                               <span
@@ -443,7 +467,7 @@ export function SolaraPlusMockup() {
                           >
                             {time}
                           </span>
-                        </div>
+                        </motion.div>
                       ))}
                     </div>
                   </div>
