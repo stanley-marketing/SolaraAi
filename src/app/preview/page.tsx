@@ -1,572 +1,318 @@
 "use client";
 
-import { useState, useRef } from "react";
-import {
-  ArrowRight,
-  Globe,
-  TrendingUp,
-  Sparkles,
-  Mail,
-  ChevronDown,
-  Check,
-} from "lucide-react";
+import { useState } from "react";
 import Link from "next/link";
+import { Check } from "lucide-react";
 
-/* ── Shell ─────────────────────────────────────────────────────────────────── */
+const RAINBOW = "linear-gradient(135deg, #f97316, #eab308, #22c55e, #06b6d4, #8b5cf6, #ec4899, #f97316)";
+const NOISE_BG = `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`;
 
-function OptionShell({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div style={{ marginBottom: 72 }}>
-      <p
-        style={{
-          fontFamily: "var(--font-body)",
-          fontSize: "0.7rem",
-          fontWeight: 600,
-          letterSpacing: "0.08em",
-          textTransform: "uppercase",
-          color: "#9ca3af",
-          marginBottom: 10,
-        }}
-      >
-        {label}
-      </p>
-      <div
-        style={{
-          border: "1px solid #eaecf0",
-          borderRadius: 16,
-          overflow: "hidden",
-          background: "#fff",
-        }}
-      >
-        {children}
-      </div>
-    </div>
-  );
-}
+type Plan = {
+  id: string;
+  name: string;
+  tagline: string;
+  monthly: number | null;
+  yearly: number | null;
+  popular: boolean;
+  cta: string;
+  features: string[];
+};
 
-/* ── Shared Data ────────────────────────────────────────────────────────────── */
-
-const AGENTS = [
+const PLANS: Plan[] = [
   {
-    id: 0,
-    name: "AI Search Agent",
-    article: "an",
-    tagline: "Gets you cited in ChatGPT, Perplexity, and AI answers.",
-    suffix: "that gets you cited in ChatGPT, Perplexity, and AI Overviews.",
-    desc: "Positions your brand for the new era of search — where LLM citations drive discovery and entity authority determines whether AI recommends you or your competitor.",
-    caps: [
-      "Optimizes content for LLM-friendly structure",
-      "Monitors your AI citation appearances daily",
-      "Builds entity authority signals continuously",
+    id: "starter",
+    name: "Starter",
+    tagline: "Launch your marketing with AI-powered tools and guidance.",
+    monthly: 49, yearly: 29,
+    popular: false, cta: "Get started",
+    features: [
+      "Up to 3 social media channels",
+      "1 ad campaign managed by Solara",
+      "All content types included",
+      "Models level \u2014 One V",
+      "Setup assistant",
+      "Analytics dashboard",
     ],
-    stat: "3.1×",
-    statLabel: "AI citation rate",
-    Icon: Sparkles,
-    accent: "#7c3aed",
-    bgTint: "#faf5ff",
-    textOnTint: "#5b21b6",
   },
   {
-    id: 1,
-    name: "SEO Agent",
-    article: "an",
-    tagline: "Monitors and improves your rankings around the clock.",
-    suffix: "that monitors and improves your search rankings 24/7.",
-    desc: "Tracks every keyword, identifies decay before it touches your traffic, and implements technical fixes directly — no tickets, no briefing cycles, no delays.",
-    caps: [
-      "Tracks keyword positions daily across all markets",
-      "Generates optimized content briefs on demand",
-      "Fixes technical SEO issues automatically",
+    id: "growth",
+    name: "Growth",
+    tagline: "Scale your reach across channels with expert strategy support.",
+    monthly: 99, yearly: 59,
+    popular: true, cta: "Get started",
+    features: [
+      "Everything in Starter, plus:",
+      "Up to 5 social media channels",
+      "Up to 3 ad campaigns",
+      "Quarterly strategy call with a Solara expert",
     ],
-    stat: "+47%",
-    statLabel: "organic traffic",
-    Icon: TrendingUp,
-    accent: "#059669",
-    bgTint: "#f0fdf4",
-    textOnTint: "#065f46",
   },
   {
-    id: 2,
-    name: "Website Agent",
-    article: "a",
-    tagline: "Rebuilds and optimizes your web presence continuously.",
-    suffix: "that rebuilds your web presence on autopilot.",
-    desc: "Audits, rewrites, and optimizes every page — copy, structure, and performance — so your site is always operating at its peak without any manual effort.",
-    caps: [
-      "Generates conversion-optimized landing pages",
-      "A/B tests layouts and copy variants autonomously",
-      "Monitors Core Web Vitals and resolves bottlenecks",
+    id: "pro",
+    name: "Pro",
+    tagline: "Full-stack marketing with SEO, content strategy, and unlimited ads.",
+    monthly: 199, yearly: 119,
+    popular: false, cta: "Get started",
+    features: [
+      "Everything in Growth, plus:",
+      "Full SEO + GEO strategy",
+      "Content strategy across 5 channels",
+      "Unlimited ad campaigns",
+      "Monthly consulting call",
     ],
-    stat: "2.3×",
-    statLabel: "conversion lift",
-    Icon: Globe,
-    accent: "#2563eb",
-    bgTint: "#eff6ff",
-    textOnTint: "#1e40af",
   },
   {
-    id: 3,
-    name: "Email Agent",
-    article: "an",
-    tagline: "Writes and sends campaigns on full autopilot.",
-    suffix: "that writes and sends your email campaigns on autopilot.",
-    desc: "Complete email execution — from writing personalized sequences to optimizing deliverability — without a brief, a review cycle, or a retained agency.",
-    caps: [
-      "Generates personalized email sequences per segment",
-      "Optimizes send times based on recipient patterns",
-      "A/B tests subject lines and body content at scale",
+    id: "advanced",
+    name: "Advanced",
+    tagline: "Enhanced AI models, full recommendations, and expert rhythm.",
+    monthly: 319, yearly: 191,
+    popular: false, cta: "Get started",
+    features: [
+      "Everything in Pro, plus:",
+      "Full SEO + GEO recommendations",
+      "Enhanced AI models",
+      "All content types",
+      "Quarterly strategy call",
     ],
-    stat: "38%",
-    statLabel: "open rate avg.",
-    Icon: Mail,
-    accent: "#b45309",
-    bgTint: "#fffbeb",
-    textOnTint: "#92400e",
   },
-] as const;
+  {
+    id: "expert",
+    name: "Solara Expert",
+    tagline: "We run your entire marketing engine \u2014 strategy, execution, and optimization.",
+    monthly: null, yearly: null,
+    popular: false, cta: "Talk to us",
+    features: [
+      "Everything in Advanced, plus:",
+      "Dedicated marketing expert",
+      "Full strategy + execution",
+      "SEO, AI Search, Ads \u2014 all managed",
+      "Commercial-grade AI models",
+      "Custom website design included",
+    ],
+  },
+];
 
-/* ══════════════════════════════════════════════════════════════════════════════
-   OPTION 1 — TAB / PILL SWITCHER
-   Inspired by Vercel's capabilities section: pill row + large panel per agent
-══════════════════════════════════════════════════════════════════════════════ */
-
-function TabPanelVisual({ agentId }: { agentId: number }) {
-  const agent = AGENTS[agentId];
-  const IconComp = agent.Icon;
-
-  if (agentId === 0) {
-    /* AI Search Agent — network diagram */
-    const cx = 120, cy = 90;
-    const platforms = [
-      { label: "ChatGPT", angle: -70, dist: 68 },
-      { label: "Perplexity", angle: -10, dist: 72 },
-      { label: "Claude", angle: 55, dist: 70 },
-      { label: "Gemini", angle: 170, dist: 70 },
-      { label: "AI Overviews", angle: 235, dist: 66 },
-    ];
-    const nodes = platforms.map((p, i) => {
-      const rad = (p.angle * Math.PI) / 180;
-      return { ...p, x: cx + Math.cos(rad) * p.dist, y: cy + Math.sin(rad) * p.dist, i };
-    });
-    return (
-      <div style={{ width: "100%", height: "100%", minHeight: 220, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 14 }}>
-        <svg viewBox="0 0 240 180" style={{ width: "100%", maxWidth: 280, overflow: "visible" }}>
-          <defs>
-            <radialGradient id="aiCenterGlow">
-              <stop offset="0%" stopColor={agent.accent} stopOpacity="0.35" />
-              <stop offset="100%" stopColor={agent.accent} stopOpacity="0" />
-            </radialGradient>
-          </defs>
-          <circle cx={cx} cy={cy} r="52" fill="url(#aiCenterGlow)" />
-          {nodes.map((n) => (
-            <line key={`line-${n.i}`} x1={cx} y1={cy} x2={n.x} y2={n.y}
-              stroke={agent.accent} strokeWidth="1" strokeOpacity="0.25"
-              strokeDasharray="4 3"
-              style={{ animation: `o1visConnDraw 1.2s ease ${0.3 + n.i * 0.2}s both` }}
-            />
-          ))}
-          <circle cx={cx} cy={cy} r="18" fill="none" stroke={agent.accent} strokeWidth="1" strokeOpacity="0.2"
-            style={{ animation: "o1visRingPulse 3s ease-out 0.5s infinite" }} />
-          <circle cx={cx} cy={cy} r="12" fill={agent.accent}
-            style={{ filter: `drop-shadow(0 0 10px ${agent.accent}88)`, animation: "o1visGlowPop 0.6s ease 0.15s both", opacity: 0 }} />
-          <text x={cx} y={cy + 1} textAnchor="middle" dominantBaseline="central"
-            fill="#fff" fontSize="5.5" fontWeight="700" letterSpacing="0.06em">YOU</text>
-          {nodes.map((n) => (
-            <g key={`node-${n.i}`} style={{ animation: `o1visNodePop 0.5s cubic-bezier(0.34,1.56,0.64,1) ${0.5 + n.i * 0.18}s both`, opacity: 0 }}>
-              <circle cx={n.x} cy={n.y} r="10" fill={`${agent.accent}20`} stroke={agent.accent} strokeWidth="1.5" />
-              <circle cx={n.x} cy={n.y} r="4.5" fill={agent.accent} />
-              <text x={n.x} y={n.y + 18} textAnchor="middle" fill="#64748b" fontSize="7" fontWeight="600">{n.label}</text>
-            </g>
-          ))}
-        </svg>
-        <div style={{ textAlign: "center" }}>
-          <div style={{ fontSize: "1.15rem", fontWeight: 700, color: "#0f172a", letterSpacing: "-0.03em" }}>{agent.stat}</div>
-          <div style={{ fontSize: "0.58rem", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.14em", marginTop: 4 }}>{agent.statLabel}</div>
-        </div>
-      </div>
-    );
-  }
-  if (agentId === 1) {
-    const linePts = [62, 52, 57, 44, 38, 30, 24, 18, 12, 5];
-    const LW = 200, LH = 66;
-    const polyPts = linePts.map((y, i) => `${(i / (linePts.length - 1)) * LW},${y}`).join(" ");
-    return (
-      <div style={{ width: "100%", height: "100%", minHeight: 220, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 18 }}>
-        <svg viewBox={`-8 -8 ${LW + 16} ${LH + 16}`} style={{ width: "80%", maxWidth: 220, overflow: "visible" }}>
-          <polyline
-            points={polyPts}
-            fill="none"
-            stroke={agent.accent}
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeDasharray="380"
-            strokeDashoffset="380"
-            style={{ animation: "o1visLineDraw 1.6s cubic-bezier(0.25,1,0.5,1) 0.1s forwards" }}
-          />
-          <circle
-            cx={LW} cy={5} r="5"
-            fill={agent.accent}
-            style={{ filter: `drop-shadow(0 0 7px ${agent.accent})`, animation: "o1visGlowPop 0.5s ease 1.6s both", opacity: 0 }}
-          />
-        </svg>
-        <div style={{ textAlign: "center" }}>
-          <div style={{ fontSize: "1.15rem", fontWeight: 700, color: "#0f172a", letterSpacing: "-0.03em" }}>{agent.stat}</div>
-          <div style={{ fontSize: "0.58rem", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.14em", marginTop: 4 }}>{agent.statLabel}</div>
-        </div>
-      </div>
-    );
-  }
-  if (agentId === 2) {
-    /* Website Agent — bar chart */
-    const bars = [
-      { h: 56, delay: "0s" },
-      { h: 74, delay: "0.12s" },
-      { h: 62, delay: "0.24s" },
-      { h: 86, delay: "0.36s" },
-      { h: 98, delay: "0.5s" },
-    ];
-    return (
-      <div style={{ width: "100%", height: "100%", minHeight: 220, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 20 }}>
-        <div style={{ display: "flex", alignItems: "flex-end", gap: 10, height: 100 }}>
-          {bars.map((b, i) => (
-            <div key={i} style={{
-              width: 24, height: b.h,
-              background: `linear-gradient(180deg, ${agent.accent}bb 0%, ${agent.accent} 100%)`,
-              borderRadius: "5px 5px 0 0",
-              transformOrigin: "center bottom",
-              animation: `o1visBarGrow 0.75s cubic-bezier(0.34,1.56,0.64,1) ${b.delay} both`,
-            }} />
-          ))}
-        </div>
-        <div style={{ textAlign: "center" }}>
-          <div style={{ fontSize: "1.15rem", fontWeight: 700, color: "#0f172a", letterSpacing: "-0.03em" }}>{agent.stat}</div>
-          <div style={{ fontSize: "0.58rem", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.14em", marginTop: 4 }}>{agent.statLabel}</div>
-        </div>
-      </div>
-    );
-  }
-  /* Email agent (agentId === 3) */
-  const emailSeqs = [
-    { label: "Welcome sequence", rate: "62%" },
-    { label: "Value delivery", rate: "48%" },
-    { label: "Offer campaign", rate: "38%" },
-  ];
-  return (
-    <div style={{ width: "100%", height: "100%", minHeight: 220, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 8, padding: "0 8px" }}>
-      {emailSeqs.map((seq, i) => (
-        <div key={i} style={{
-          width: "100%", display: "flex", alignItems: "center", gap: 10,
-          padding: "10px 14px", background: "#fff",
-          border: `1px solid ${i === 0 ? agent.accent + "55" : "#e2e8f0"}`,
-          borderRadius: 10,
-          boxShadow: i === 0 ? `0 3px 14px ${agent.accent}20` : "0 1px 4px rgba(0,0,0,0.04)",
-          animation: `o1visSlideIn 0.55s cubic-bezier(0.25,1,0.5,1) ${i * 0.18}s both`,
-          opacity: 0,
-        }}>
-          <div style={{ width: 28, height: 28, borderRadius: 8, flexShrink: 0, background: i === 0 ? agent.accent : `${agent.accent}14`, border: `1px solid ${i === 0 ? "transparent" : agent.accent + "30"}`, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <IconComp size={13} color={i === 0 ? "#fff" : agent.accent} />
-          </div>
-          <span style={{ flex: 1, fontSize: "0.75rem", fontWeight: 600, color: "#334155" }}>{seq.label}</span>
-          <span style={{ fontSize: "0.7rem", fontWeight: 700, color: agent.accent, background: `${agent.accent}12`, padding: "2px 8px", borderRadius: 999 }}>{seq.rate}</span>
-        </div>
-      ))}
-      <div style={{ marginTop: 6, textAlign: "center" }}>
-        <span style={{ fontSize: "1rem", fontWeight: 700, color: "#0f172a" }}>{agent.stat}</span>
-        <span style={{ fontSize: "0.58rem", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.1em", marginLeft: 9 }}>{agent.statLabel}</span>
-      </div>
-    </div>
-  );
-}
-
-function Option1TabSwitcher() {
-  const [active, setActive] = useState(0);
-  const agent = AGENTS[active];
-
-  return (
-    <>
-      <style>{`
-        .o1-tab {
-          padding: 8px 18px;
-          border-radius: 999px;
-          font-size: 0.825rem;
-          font-weight: 500;
-          cursor: pointer;
-          border: none;
-          transition: background 0.18s ease, color 0.18s ease;
-          background: transparent;
-          color: #64748b;
-          white-space: nowrap;
-          letter-spacing: 0.01em;
-          line-height: 1;
-        }
-        .o1-tab:hover:not(.o1-tab-active) {
-          color: #0f172a;
-          background: #f1f5f9;
-        }
-        .o1-tab.o1-tab-active {
-          background: #0f172a;
-          color: #fff;
-        }
-        .o1-panel {
-          animation: o1Fade 0.3s cubic-bezier(0.16,1,0.3,1) forwards;
-        }
-        @keyframes o1Fade {
-          from { opacity: 0; transform: translateY(8px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        .o1-cap {
-          display: flex;
-          align-items: flex-start;
-          gap: 10px;
-          padding: 10px 0;
-          border-bottom: 1px solid #f1f5f9;
-          font-size: 0.875rem;
-          color: #334155;
-          line-height: 1.55;
-        }
-        .o1-cap:first-child { border-top: 1px solid #f1f5f9; }
-        .o1-cta:hover { opacity: 0.88; }
-        @keyframes o1visBarGrow {
-          from { transform: scaleY(0); }
-          to   { transform: scaleY(1); }
-        }
-        @keyframes o1visLineDraw {
-          from { stroke-dashoffset: 380; }
-          to   { stroke-dashoffset: 0; }
-        }
-        @keyframes o1visGlowPop {
-          from { opacity: 0; transform: scale(0.4); }
-          to   { opacity: 1; transform: scale(1); }
-        }
-        @keyframes o1visRingPulse {
-          0%   { transform: scale(1); opacity: 0.4; }
-          100% { transform: scale(3.5); opacity: 0; }
-        }
-        @keyframes o1visConnDraw {
-          from { stroke-dashoffset: 80; opacity: 0; }
-          to   { stroke-dashoffset: 0; opacity: 1; }
-        }
-        @keyframes o1visNodePop {
-          from { opacity: 0; transform: scale(0.3); }
-          to   { opacity: 1; transform: scale(1); }
-        }
-        @keyframes o1visSlideIn {
-          from { opacity: 0; transform: translateX(-20px); }
-          to   { opacity: 1; transform: translateX(0); }
-        }
-        @media (max-width: 640px) {
-          .o1-panel-grid { grid-template-columns: 1fr !important; }
-          .o1-visual { display: none !important; }
-        }
-      `}</style>
-
-      <div style={{ padding: "56px clamp(24px, 6vw, 72px) 64px" }}>
-        <div style={{ marginBottom: 44 }}>
-          <p
-            style={{
-              fontSize: "0.68rem",
-              fontWeight: 700,
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              color: "#94a3b8",
-              margin: "0 0 14px",
-            }}
-          >
-            Enterprise Agents
-          </p>
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
-              fontWeight: 700,
-              letterSpacing: "-0.04em",
-              lineHeight: 1.05,
-              color: "#0f172a",
-              margin: "0 0 16px",
-            }}
-          >
-            Four agents.
-            <br />
-            One subscription.
-          </h2>
-          <p
-            style={{
-              fontSize: "1rem",
-              color: "#64748b",
-              lineHeight: 1.7,
-              maxWidth: 460,
-              margin: 0,
-            }}
-          >
-            Each agent runs autonomously, handles its own execution, and
-            escalates only what demands a human decision.
-          </p>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            gap: 4,
-            marginBottom: 40,
-            padding: "5px",
-            background: "#f1f5f9",
-            borderRadius: 999,
-            width: "fit-content",
-            flexWrap: "wrap",
-          }}
-        >
-          {AGENTS.map((a) => (
-            <button
-              key={a.id}
-              type="button"
-              className={`o1-tab${active === a.id ? " o1-tab-active" : ""}`}
-              onClick={() => setActive(a.id)}
-            >
-              {a.name}
-            </button>
-          ))}
-        </div>
-
-        <div
-          key={active}
-          className="o1-panel o1-panel-grid"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "0 48px",
-            alignItems: "stretch",
-          }}
-        >
-          <div>
-            <p
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "clamp(1.35rem, 2.6vw, 2rem)",
-                fontWeight: 700,
-                letterSpacing: "-0.03em",
-                lineHeight: 1.2,
-                color: "#0f172a",
-                margin: "0 0 14px",
-              }}
-            >
-              {agent.tagline}
-            </p>
-            <p
-              style={{
-                fontSize: "0.9rem",
-                lineHeight: 1.8,
-                color: "#64748b",
-                margin: "0 0 28px",
-              }}
-            >
-              {agent.desc}
-            </p>
-            <div style={{ marginBottom: 36 }}>
-              {agent.caps.map((cap) => (
-                <div key={cap} className="o1-cap">
-                  <Check
-                    size={14}
-                    color={agent.accent}
-                    style={{ flexShrink: 0, marginTop: 2 }}
-                  />
-                  <span>{cap}</span>
-                </div>
-              ))}
-            </div>
-            <Link
-              href="/contact"
-              className="o1-cta"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 7,
-                background: "#0f172a",
-                color: "#fff",
-                borderRadius: 999,
-                padding: "12px 24px",
-                fontSize: "14px",
-                fontWeight: 500,
-                letterSpacing: "1px",
-                textDecoration: "none",
-                transition: "opacity 0.18s",
-              }}
-            >
-              Contact Sales <ArrowRight size={13} />
-            </Link>
-          </div>
-
-          <div
-            className="o1-visual"
-            style={{
-              borderRadius: 14,
-              background: "#f8fafc",
-              border: "1px solid #e2e8f0",
-              padding: "18px 24px 24px",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              minHeight: 280,
-              backgroundImage: "radial-gradient(circle, #cbd5e1 1px, transparent 1px)",
-              backgroundSize: "18px 18px",
-            }}
-          >
-            <TabPanelVisual agentId={active} />
-          </div>
-        </div>
-      </div>
-    </>
-  );
-}
-
-/* ══════════════════════════════════════════════════════════════════════════════
-   PAGE
-══════════════════════════════════════════════════════════════════════════════ */
+const TABLE_FEATURES = [
+  { label: "Creative", values: ["Included", "Included", "Included", "Included", "Included"] },
+  { label: "Models Quality", values: ["One V", "One V", "Higher / Multi V", "Enhanced", "Enterprise-grade"] },
+  { label: "Platform Access", values: ["Full", "Full", "Full", "Full", "Full"] },
+  { label: "Assistant", values: ["Setup + Guidance", "Setup + Guidance", "Setup + Guidance", "Setup + Guidance", "Full Expert Support"] },
+  { label: "Presenter / Min", values: ["\u2014", "\u2014", "Included", "Included", "Included"] },
+  { label: "Custom Design Website", values: ["\u2014", "\u2014", "\u2014", "\u2014", "Included"] },
+  { label: "Strategy", values: ["\u2014", "Quarterly Call", "Monthly Call", "Quarterly Call", "Full Managed"] },
+  { label: "Analytics / Reporting", values: ["Included", "Included", "Included", "Included", "Included"] },
+];
 
 export default function PreviewPage() {
+  const [yearly, setYearly] = useState(false);
+
   return (
-    <div
-      style={{
-        maxWidth: 1040,
-        margin: "0 auto",
-        padding: "60px 24px 100px",
-        fontFamily: "var(--font-body)",
-        background: "#fff",
-      }}
-    >
-      <h1
-        style={{
-          fontFamily: "var(--font-display)",
-          fontSize: "1.5rem",
-          fontWeight: 700,
-          color: "#0f0f0f",
-          marginBottom: 6,
-          letterSpacing: "-0.03em",
-        }}
-      >
-        Enterprise Agents — 5 New Options
-      </h1>
-      <p
-        style={{
-          color: "#9ca3af",
-          fontSize: "0.875rem",
-          marginBottom: 56,
-          lineHeight: 1.6,
-        }}
-      >
-        Five distinct design directions. Options 1 and 5 are interactive.
-      </p>
+    <main style={{ background: "#ffffff", minHeight: "100vh", padding: "88px 24px 120px", fontFamily: "var(--font-body, system-ui, -apple-system, sans-serif)" }}>
+      <div style={{ maxWidth: 1320, margin: "0 auto" }}>
 
-      <OptionShell label="Option 1 — Tab Switcher (Vercel-inspired)">
-        <Option1TabSwitcher />
-      </OptionShell>
+        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.1rem, 5vw, 3.6rem)", color: "#111111", textAlign: "center", letterSpacing: "-0.028em", margin: "0 0 12px", lineHeight: 1.08 }}>
+          Simple pricing. Serious results.
+        </h2>
+        <p style={{ textAlign: "center", fontSize: "1rem", color: "#6b6b6b", maxWidth: 420, margin: "0 auto 40px", lineHeight: 1.6 }}>
+          Every plan includes AI-powered marketing that runs 24/7. Pick the scale that fits.
+        </p>
 
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: 48 }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 12 }}>
+            <span style={{ fontSize: "0.88rem", fontWeight: 600, color: yearly ? "#9a9a9a" : "#111111", transition: "color 0.2s" }}>Monthly</span>
+            <button type="button" aria-label={yearly ? "Switch to monthly billing" : "Switch to yearly billing"} onClick={() => setYearly(!yearly)} className="billing-toggle" style={{ position: "relative", width: 44, height: 24, borderRadius: 999, background: yearly ? "#111111" : "#d4d4d4", border: "none", cursor: "pointer", transition: "background 0.2s ease", padding: 0 }}>
+              <div style={{ position: "absolute", top: 3, left: yearly ? 23 : 3, width: 18, height: 18, borderRadius: "50%", background: "#ffffff", transition: "left 0.2s ease", boxShadow: "0 1px 3px rgba(0,0,0,0.15)" }} />
+            </button>
+            <span style={{ fontSize: "0.88rem", fontWeight: 600, color: yearly ? "#111111" : "#9a9a9a", transition: "color 0.2s" }}>Yearly</span>
+            <span style={{ background: yearly ? "#111111" : "#e3e3e3", color: yearly ? "#ffffff" : "#9a9a9a", borderRadius: 999, fontSize: "0.68rem", fontWeight: 700, padding: "4px 10px", letterSpacing: "0.04em", transition: "all 0.2s" }}>Save 40%</span>
+          </div>
+        </div>
+
+        <div className="pricing-grid">
+          {PLANS.map((plan) => (
+            <PlanCard key={plan.id} plan={plan} yearly={yearly} />
+          ))}
+        </div>
+
+        <div style={{ textAlign: "center", marginTop: 40 }}>
+          <Link href="/pricing" className="compare-link" style={{ fontSize: "0.84rem", color: "#9a9a9a", textDecoration: "none", transition: "color 0.15s" }}>
+            See full feature comparison &rarr;
+          </Link>
+        </div>
+
+        <div className="compare-table" style={{ marginTop: 72 }}>
+          <CompareTable yearly={yearly} />
+        </div>
+      </div>
+
+      <style>{`
+        .pricing-grid {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 14px;
+          align-items: stretch;
+        }
+        @media (max-width: 1200px) {
+          .pricing-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 768px) {
+          .pricing-grid { grid-template-columns: 1fr; }
+        }
+        .plan-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.09) !important; }
+        .plan-card-popular:hover { box-shadow: 0 12px 36px rgba(124,58,237,0.18) !important; }
+        .cta-outlined:hover { border-color: #111 !important; background: #f8fafc !important; }
+        .cta-filled:hover { opacity: 0.88; }
+        .cta-outlined:focus-visible, .cta-filled:focus-visible, .billing-toggle:focus-visible {
+          outline: 2px solid #7c3aed; outline-offset: 2px;
+        }
+        .compare-link:hover { color: #111111 !important; }
+        .compare-table { display: block; }
+        @media (max-width: 900px) { .compare-table { display: none; } }
+        @media (prefers-reduced-motion: reduce) {
+          *, *::before, *::after { transition: none !important; }
+        }
+      `}</style>
+    </main>
+  );
+}
+
+function PlanCard({ plan, yearly }: { plan: Plan; yearly: boolean }) {
+  const isExpert = plan.id === "expert";
+  const price = yearly ? plan.yearly : plan.monthly;
+
+  if (plan.popular) {
+    return (
+      <div style={{ position: "relative", height: "100%" }}>
+        <div style={{ background: RAINBOW, borderRadius: 16, padding: "2px", height: "100%" }}>
+          <div className="plan-card-popular" style={{ background: "#040404", borderRadius: 14, padding: "28px 22px", display: "flex", flexDirection: "column", position: "relative", transition: "box-shadow 0.22s ease", height: "100%" }}>
+            <div className="pointer-events-none" style={{ position: "absolute", inset: 0, borderRadius: 14, opacity: 0.045, backgroundImage: NOISE_BG, backgroundRepeat: "repeat" }} />
+            <span style={{ position: "absolute", top: 16, right: 16, background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.7)", fontSize: "0.63rem", fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase", borderRadius: 999, padding: "4px 12px" }}>Popular</span>
+            <span style={{ fontSize: "0.72rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: 4 }}>{plan.name}</span>
+            <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.5, margin: "0 0 24px", minHeight: 60 }}>{plan.tagline}</p>
+            <div style={{ display: "flex", alignItems: "end", gap: 4, marginBottom: 4 }}>
+              <span style={{ fontFamily: "var(--font-display)", fontSize: "2.4rem", color: "#ffffff", lineHeight: 1 }}>${price}</span>
+              <span style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.38)", marginBottom: 3 }}>/mo</span>
+            </div>
+            <div style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.3)", marginBottom: 24 }}>{yearly ? "billed annually" : "billed monthly"}</div>
+            <Link href="/contact" className="cta-filled" style={{ display: "block", textAlign: "center", background: "#ffffff", color: "#111111", borderRadius: 999, padding: "12px 20px", fontSize: "14px", fontWeight: 500, letterSpacing: "1px", textDecoration: "none", transition: "all 0.2s", marginBottom: 24 }}>{plan.cta}</Link>
+            <div style={{ height: 1, background: "rgba(255,255,255,0.1)", marginBottom: 20 }} />
+            <div style={{ flex: 1 }}>
+              {plan.features.map((f) => {
+                const isBridge = f.startsWith("Everything in");
+                return (
+                <div key={f} style={{ display: "flex", alignItems: "flex-start", gap: 8, marginBottom: isBridge ? 12 : 8 }}>
+                  {isBridge ? <span style={{ width: 13, flexShrink: 0 }} /> : <Check size={13} style={{ flexShrink: 0, marginTop: 2, color: "rgba(255,255,255,0.4)" }} />}
+                  <span style={{ fontSize: "0.8rem", color: isBridge ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.65)", lineHeight: 1.5, fontStyle: isBridge ? "italic" : "normal" }}>{f}</span>
+                </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="plan-card" style={{ background: "#fafafa", borderRadius: 16, padding: "28px 22px", border: "1px solid #e3e3e3", display: "flex", flexDirection: "column", transition: "box-shadow 0.22s ease, border-color 0.22s ease" }}>
+      <span style={{ fontSize: "0.72rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(17,17,17,0.4)", marginBottom: 4 }}>{plan.name}</span>
+      <p style={{ fontSize: "0.85rem", color: "#8c8c8c", lineHeight: 1.5, margin: "0 0 24px", minHeight: 60 }}>{plan.tagline}</p>
+      <div style={{ display: "flex", alignItems: "end", gap: 4, marginBottom: 4, minHeight: 38 }}>
+        {price !== null ? (
+          <>
+            <span style={{ fontFamily: "var(--font-display)", fontSize: "2.4rem", color: "#111111", lineHeight: 1 }}>${price}</span>
+            <span style={{ fontSize: "0.78rem", color: "rgba(17,17,17,0.38)", marginBottom: 3 }}>/mo</span>
+          </>
+        ) : (
+          <span style={{ fontFamily: "var(--font-display)", fontSize: "2.4rem", color: "#111111", lineHeight: 1 }}>$499<span style={{ fontSize: "0.78rem", color: "rgba(17,17,17,0.38)", fontFamily: "var(--font-body, system-ui, sans-serif)", marginLeft: 2 }}>/mo</span></span>
+        )}
+      </div>
+      <div style={{ fontSize: "0.7rem", color: "rgba(17,17,17,0.25)", marginBottom: 24 }}>
+        {isExpert ? "starting from \u00b7 custom pricing" : yearly ? "billed annually" : "billed monthly"}
+      </div>
+      <Link href="/contact" className="cta-outlined" style={{ display: "block", textAlign: "center", background: "transparent", color: "#111111", border: "1px solid #c8c8c8", borderRadius: 999, padding: "12px 20px", fontSize: "14px", fontWeight: 500, letterSpacing: "1px", textDecoration: "none", transition: "all 0.2s", marginBottom: 24 }}>{plan.cta}</Link>
+      <div style={{ height: 1, background: "#e3e3e3", marginBottom: 20 }} />
+      <div style={{ flex: 1 }}>
+        {plan.features.map((f) => {
+          const isBridge = f.startsWith("Everything in");
+          return (
+          <div key={f} style={{ display: "flex", alignItems: "flex-start", gap: 8, marginBottom: isBridge ? 12 : 8 }}>
+            {isBridge ? <span style={{ width: 13, flexShrink: 0 }} /> : <Check size={13} style={{ flexShrink: 0, marginTop: 2, color: "rgba(17,17,17,0.35)" }} />}
+            <span style={{ fontSize: "0.8rem", color: isBridge ? "#9a9a9a" : "#333333", lineHeight: 1.5, fontStyle: isBridge ? "italic" : "normal" }}>{f}</span>
+          </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function CompareTable({ yearly }: { yearly: boolean }) {
+  const colW = "1fr";
+  const labelW = "180px";
+  const cols = `${labelW} repeat(5, ${colW})`;
+
+  return (
+    <div style={{ borderRadius: 16, border: "1px solid #e3e3e3", overflow: "hidden" }}>
+      <div style={{ display: "grid", gridTemplateColumns: cols }}>
+        <div style={{ padding: "20px 20px", background: "#fafafa", borderRight: "1px solid #e3e3e3", borderBottom: "1px solid #e3e3e3" }} />
+        {PLANS.map((plan, i) => {
+          const price = yearly ? plan.yearly : plan.monthly;
+          return (
+            <div key={plan.id} style={{
+              padding: "20px 16px", borderBottom: "1px solid #e3e3e3",
+              borderRight: i < PLANS.length - 1 ? "1px solid #e3e3e3" : "none",
+              background: plan.popular ? "#f9f7ff" : "#fafafa",
+              position: "relative",
+            }}>
+              {plan.popular && <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: RAINBOW }} />}
+              <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                <span style={{ fontSize: "0.68rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(17,17,17,0.4)" }}>{plan.name}</span>
+                {plan.popular && <span style={{ background: "#111", color: "#fff", fontSize: "0.56rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", borderRadius: 999, padding: "2px 8px" }}>Popular</span>}
+              </div>
+              <div style={{ marginTop: 8, display: "flex", alignItems: "baseline", gap: 3 }}>
+                {price !== null ? (
+                  <>
+                    <span style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", color: "#111" }}>${price}</span>
+                    <span style={{ fontSize: "0.72rem", color: "rgba(17,17,17,0.38)" }}>/mo</span>
+                  </>
+                ) : (
+                  <span style={{ fontFamily: "var(--font-display)", fontSize: "1.3rem", color: "#111" }}>Custom</span>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {TABLE_FEATURES.map((row, rIdx) => (
+        <div key={row.label} style={{ display: "grid", gridTemplateColumns: cols, background: rIdx % 2 === 0 ? "#ffffff" : "#fafafa" }}>
+          <div style={{ padding: "14px 20px", fontSize: "0.82rem", fontWeight: 500, color: "#111", borderRight: "1px solid #e3e3e3" }}>{row.label}</div>
+          {row.values.map((val, vIdx) => (
+            <div key={vIdx} style={{
+              padding: "14px 16px", fontSize: "0.82rem", textAlign: "center",
+              borderRight: vIdx < row.values.length - 1 ? "1px solid #e3e3e3" : "none",
+              color: val === "\u2014" ? "rgba(17,17,17,0.2)" : "#333",
+              background: PLANS[vIdx].popular ? "#f9f7ff" : "transparent",
+              fontWeight: val !== "\u2014" && PLANS[vIdx].popular ? 500 : 400,
+            }}>{val}</div>
+          ))}
+        </div>
+      ))}
+
+      <div style={{ display: "grid", gridTemplateColumns: cols, borderTop: "1px solid #e3e3e3" }}>
+        <div style={{ borderRight: "1px solid #e3e3e3" }} />
+        {PLANS.map((plan, i) => (
+          <div key={plan.id} style={{ padding: "16px 12px", borderRight: i < PLANS.length - 1 ? "1px solid #e3e3e3" : "none", background: plan.popular ? "#f9f7ff" : "transparent" }}>
+            <Link href="/contact" style={{
+              display: "block", textAlign: "center", borderRadius: 999, padding: "10px 12px", fontSize: "0.78rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", textDecoration: "none", transition: "all 0.2s",
+              background: plan.popular ? "#111" : "transparent",
+              color: plan.popular ? "#fff" : "#111",
+              border: plan.popular ? "none" : "1px solid #c8c8c8",
+            }}>{plan.cta}</Link>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
