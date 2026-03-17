@@ -417,8 +417,9 @@ export default function SetupOperatorsPage() {
   const fillHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <div style={{ fontFamily: "Inter, system-ui, -apple-system, sans-serif" }}>
+    <>
       <TopNav />
+      <div style={{ fontFamily: "Inter, system-ui, -apple-system, sans-serif" }}>
 
       <PartnerHero
         eyebrow="SOLARA SETUP OPERATORS"
@@ -994,7 +995,8 @@ export default function SetupOperatorsPage() {
         </div>
       </section>
 
+      </div>
       <Footer />
-    </div>
+    </>
   );
 }

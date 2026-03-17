@@ -446,7 +446,7 @@ export default function ReferralProgramPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <div style={{ fontFamily: "Inter, system-ui, -apple-system, sans-serif" }}>
+    <>
       <style>{`
         .step-digit-track {
           display: flex;
@@ -469,6 +469,7 @@ export default function ReferralProgramPage() {
       `}</style>
 
       <TopNav />
+      <div style={{ fontFamily: "Inter, system-ui, -apple-system, sans-serif" }}>
 
       <PartnerHero
         eyebrow="SOLARA REFERRAL PROGRAM"
@@ -926,7 +927,8 @@ export default function ReferralProgramPage() {
         </div>
       </section>
 
+      </div>
       <Footer />
-    </div>
+    </>
   );
 }

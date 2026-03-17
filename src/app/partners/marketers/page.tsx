@@ -431,8 +431,9 @@ export default function PartnersMarketersPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <div style={{ fontFamily: "Inter, system-ui, -apple-system, sans-serif" }}>
+    <>
       <TopNav />
+      <div style={{ fontFamily: "Inter, system-ui, -apple-system, sans-serif" }}>
 
       <PartnerHero
         eyebrow="SOLARA FOR MARKETERS"
@@ -872,7 +873,8 @@ export default function PartnersMarketersPage() {
         </div>
       </section>
 
+      </div>
       <Footer />
-    </div>
+    </>
   );
 }

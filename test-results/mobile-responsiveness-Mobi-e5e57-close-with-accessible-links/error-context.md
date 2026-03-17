@@ -1,0 +1,129 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - region "Notifications alt+T"
+  - generic [ref=e2]:
+    - generic "Connection Error:"
+    - generic [ref=e3]:
+      - generic [ref=e5]:
+        - generic [ref=e6]:
+          - img [ref=e7]
+          - paragraph [ref=e10]: AI Visibility
+        - generic [ref=e11]:
+          - paragraph [ref=e12]: WORKSPACE
+          - combobox [ref=e14]:
+            - generic [ref=e15]: default
+            - img [ref=e16]
+          - button "New Workspace" [ref=e18]:
+            - img [ref=e19]
+            - text: New Workspace
+        - paragraph [ref=e21]: NAVIGATION
+        - generic [ref=e22]:
+          - link "Dashboard" [ref=e23] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e24]:
+              - img [ref=e25]
+              - paragraph [ref=e30]: Dashboard
+          - link "Setup" [ref=e31] [cursor=pointer]:
+            - /url: /onboarding
+            - generic [ref=e32]:
+              - img [ref=e33]
+              - paragraph [ref=e38]: Setup
+          - link "Scans" [ref=e39] [cursor=pointer]:
+            - /url: /runs
+            - generic [ref=e40]:
+              - img [ref=e41]
+              - paragraph [ref=e44]: Scans
+          - link "Questions" [ref=e45] [cursor=pointer]:
+            - /url: /prompts
+            - generic [ref=e46]:
+              - img [ref=e47]
+              - paragraph [ref=e49]: Questions
+          - link "AI Responses" [ref=e50] [cursor=pointer]:
+            - /url: /citations
+            - generic [ref=e51]:
+              - img [ref=e52]
+              - paragraph [ref=e55]: AI Responses
+          - link "Action Plan" [ref=e56] [cursor=pointer]:
+            - /url: /recommendations
+            - generic [ref=e57]:
+              - img [ref=e58]
+              - paragraph [ref=e60]: Action Plan
+        - paragraph [ref=e62]: AI Visibility v0.1
+      - generic [ref=e63]:
+        - heading "Dashboard" [level=1] [ref=e66]
+        - generic [ref=e69]:
+          - generic [ref=e70]:
+            - generic [ref=e71]:
+              - paragraph [ref=e72]: Overview
+              - paragraph [ref=e73]: default
+            - button "Refresh" [ref=e74]:
+              - img [ref=e75]
+              - text: Refresh
+          - generic [ref=e80]:
+            - generic [ref=e81]:
+              - generic [ref=e83]:
+                - img [ref=e86]
+                - paragraph [ref=e91]: –
+                - paragraph [ref=e92]: Visibility Score
+                - paragraph [ref=e93]: How often AI assistants mention your brand (0–100%)
+              - generic [ref=e95]:
+                - img [ref=e98]
+                - paragraph [ref=e102]: –
+                - paragraph [ref=e103]: Citation Coverage
+                - paragraph [ref=e104]: How often AI linked directly to your website
+              - generic [ref=e106]:
+                - img [ref=e109]
+                - paragraph [ref=e116]: –
+                - paragraph [ref=e117]: Competitor Wins
+                - paragraph [ref=e118]: Times a competitor was mentioned instead of you
+            - generic [ref=e119]:
+              - generic [ref=e121]:
+                - heading "Results by AI Assistant" [level=1] [ref=e122]
+                - paragraph [ref=e123]: How many times each AI assistant mentioned your brand
+                - paragraph [ref=e124]: Run your first scan to see charts
+              - generic [ref=e126]:
+                - heading "Mention Type Breakdown" [level=1] [ref=e127]
+                - paragraph [ref=e128]: How AI assistants reference your brand across all scans
+                - paragraph [ref=e129]: Run your first scan to see charts
+            - generic [ref=e130]:
+              - generic [ref=e132]:
+                - heading "Competitor Comparison" [level=1] [ref=e133]
+                - paragraph [ref=e134]: How often each brand appears in AI responses
+                - application [ref=e137]:
+                  - generic [ref=e147]:
+                    - generic [ref=e150]: default
+                    - generic [ref=e151]:
+                      - generic [ref=e153]: "0"
+                      - generic [ref=e155]: "1"
+                      - generic [ref=e157]: "2"
+                      - generic [ref=e159]: "3"
+                      - generic [ref=e161]: "4"
+              - generic [ref=e163]:
+                - heading "Visibility Trend" [level=1] [ref=e164]
+                - paragraph [ref=e165]: Visibility score across scans over time
+                - paragraph [ref=e166]: Run your first scan to see charts
+            - generic [ref=e167]:
+              - generic [ref=e169]:
+                - heading "Issues Found" [level=1] [ref=e170]
+                - paragraph [ref=e171]: Reasons your brand may not be appearing in AI answers
+              - generic [ref=e173]:
+                - heading "Recommended Actions" [level=1] [ref=e174]
+                - paragraph [ref=e175]: Steps to improve how AI assistants talk about your brand
+            - generic [ref=e177]:
+              - paragraph [ref=e178]: Visibility change since last scan
+              - generic [ref=e179]:
+                - img [ref=e180]
+                - paragraph [ref=e183]: "0"
+                - paragraph [ref=e184]: points
+            - generic [ref=e185]:
+              - generic:
+                - generic:
+                  - heading "Scan History" [level=1] [ref=e186]
+                  - button "Run New Check" [ref=e187]:
+                    - img [ref=e188]
+                    - text: Run New Check
+                - paragraph [ref=e189]: No scans yet. Click 'Run New Check' to see how AI assistants talk about your brand.
+  - generic [ref=e190]: "0"
+```
