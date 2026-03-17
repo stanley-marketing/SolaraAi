@@ -649,7 +649,7 @@ function PlanCard({ plan, yearly }: { plan: Plan; yearly: boolean }) {
     <div
       className="plan-card"
       style={{
-        background: "#fafafa",
+        background: "#ffffff",
         borderRadius: 16,
         padding: "28px 22px",
         border: "1px solid #e3e3e3",
