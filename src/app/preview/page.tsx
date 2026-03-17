@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { Check } from "lucide-react";
 
@@ -39,7 +40,7 @@ const PLANS: Plan[] = [
     name: "Growth",
     tagline: "Scale your reach across channels with expert strategy support.",
     monthly: 99, yearly: 59,
-    popular: true, cta: "Get started",
+    popular: false, cta: "Get started",
     features: [
       "Everything in Starter, plus:",
       "Up to 5 social media channels",
@@ -52,7 +53,7 @@ const PLANS: Plan[] = [
     name: "Pro",
     tagline: "Full-stack marketing with SEO, content strategy, and unlimited ads.",
     monthly: 199, yearly: 119,
-    popular: false, cta: "Get started",
+    popular: true, cta: "Get started",
     features: [
       "Everything in Growth, plus:",
       "Full SEO + GEO strategy",
@@ -75,47 +76,107 @@ const PLANS: Plan[] = [
       "Quarterly strategy call",
     ],
   },
+];
+
+const EXPERT_PLANS: Plan[] = [
   {
-    id: "expert",
-    name: "Solara Expert",
-    tagline: "We run your entire marketing engine \u2014 strategy, execution, and optimization.",
+    id: "expert-essential",
+    name: "Essential",
+    tagline: "Expert-led strategy with AI-powered execution across core channels.",
+    monthly: 499, yearly: 399,
+    popular: false, cta: "Talk to us",
+    features: [
+      "Dedicated marketing expert",
+      "Up to 3 managed channels",
+      "SEO strategy + execution",
+      "Monthly performance review",
+      "AI-powered content creation",
+    ],
+  },
+  {
+    id: "expert-growth",
+    name: "Growth",
+    tagline: "Full-stack managed marketing across all channels with hands-on optimization.",
+    monthly: 999, yearly: 799,
+    popular: true, cta: "Talk to us",
+    features: [
+      "Everything in Essential, plus:",
+      "Unlimited managed channels",
+      "Ads management \u2014 Meta, Google, TikTok",
+      "AI Search & visibility optimization",
+      "Weekly strategy calls",
+      "Custom website design",
+    ],
+  },
+  {
+    id: "expert-scale",
+    name: "Scale",
+    tagline: "Enterprise-grade marketing operations with dedicated team and custom integrations.",
     monthly: null, yearly: null,
     popular: false, cta: "Talk to us",
     features: [
-      "Everything in Advanced, plus:",
-      "Dedicated marketing expert",
-      "Full strategy + execution",
-      "SEO, AI Search, Ads \u2014 all managed",
+      "Everything in Growth, plus:",
+      "Dedicated marketing team",
+      "Custom integrations & reporting",
+      "Multi-brand management",
       "Commercial-grade AI models",
-      "Custom website design included",
+      "Priority support & SLA",
     ],
   },
 ];
 
 const TABLE_FEATURES = [
-  { label: "Creative", values: ["Included", "Included", "Included", "Included", "Included"] },
-  { label: "Models Quality", values: ["One V", "One V", "Higher / Multi V", "Enhanced", "Enterprise-grade"] },
-  { label: "Platform Access", values: ["Full", "Full", "Full", "Full", "Full"] },
-  { label: "Assistant", values: ["Setup + Guidance", "Setup + Guidance", "Setup + Guidance", "Setup + Guidance", "Full Expert Support"] },
-  { label: "Presenter / Min", values: ["\u2014", "\u2014", "Included", "Included", "Included"] },
-  { label: "Custom Design Website", values: ["\u2014", "\u2014", "\u2014", "\u2014", "Included"] },
-  { label: "Strategy", values: ["\u2014", "Quarterly Call", "Monthly Call", "Quarterly Call", "Full Managed"] },
-  { label: "Analytics / Reporting", values: ["Included", "Included", "Included", "Included", "Included"] },
+  { label: "Creative", values: ["Included", "Included", "Included", "Included"] },
+  { label: "Models Quality", values: ["One V", "One V", "Higher / Multi V", "Enhanced"] },
+  { label: "Platform Access", values: ["Full", "Full", "Full", "Full"] },
+  { label: "Assistant", values: ["Setup + Guidance", "Setup + Guidance", "Setup + Guidance", "Setup + Guidance"] },
+  { label: "Presenter / Min", values: ["\u2014", "\u2014", "Included", "Included"] },
+  { label: "Strategy", values: ["\u2014", "Quarterly Call", "Monthly Call", "Quarterly Call"] },
+  { label: "Analytics / Reporting", values: ["Included", "Included", "Included", "Included"] },
 ];
 
 export default function PreviewPage() {
-  const [yearly, setYearly] = useState(false);
+  const [tab, setTab] = useState<"self" | "expert">("self");
+  const [yearly, setYearly] = useState(true);
+  const activePlans = tab === "self" ? PLANS : EXPERT_PLANS;
 
   return (
-    <main style={{ background: "#ffffff", minHeight: "100vh", padding: "88px 24px 120px", fontFamily: "var(--font-body, system-ui, -apple-system, sans-serif)" }}>
+    <main style={{ background: "#ffffff", minHeight: "100vh", padding: "88px 24px 120px", fontFamily: "Inter, system-ui, -apple-system, sans-serif" }}>
       <div style={{ maxWidth: 1320, margin: "0 auto" }}>
 
         <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.1rem, 5vw, 3.6rem)", color: "#111111", textAlign: "center", letterSpacing: "-0.028em", margin: "0 0 12px", lineHeight: 1.08 }}>
           Simple pricing. Serious results.
         </h2>
-        <p style={{ textAlign: "center", fontSize: "1rem", color: "#6b6b6b", maxWidth: 420, margin: "0 auto 40px", lineHeight: 1.6 }}>
+        <p style={{ textAlign: "center", fontSize: "1rem", color: "#6b6b6b", maxWidth: 420, margin: "0 auto 32px", lineHeight: 1.6 }}>
           Every plan includes AI-powered marketing that runs 24/7. Pick the scale that fits.
         </p>
+
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: 32 }}>
+          <div style={{ display: "inline-flex", position: "relative", background: "#f1f1f1", borderRadius: 999, padding: 4, gap: 4 }}>
+            {([
+              { key: "self" as const, label: "Self-managed" },
+              { key: "expert" as const, label: "Solara Expert" },
+            ]).map(({ key, label }) => {
+              const active = tab === key;
+              return (
+                <button key={key} type="button" onClick={() => setTab(key)} style={{
+                  position: "relative", border: "none", padding: "10px 28px", fontSize: "0.88rem", fontWeight: 600,
+                  cursor: "pointer", lineHeight: 1, background: "transparent", color: active ? "#ffffff" : "#666666",
+                  borderRadius: 999, zIndex: 1, transition: "color 0.25s ease",
+                }}>
+                  {active && (
+                    <motion.div
+                      layoutId="pricing-tab-pill"
+                      style={{ position: "absolute", inset: 0, background: "#111111", borderRadius: 999 }}
+                      transition={{ type: "spring", duration: 0.45, bounce: 0.15 }}
+                    />
+                  )}
+                  <span style={{ position: "relative", zIndex: 2 }}>{label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
 
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 48 }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 12 }}>
@@ -124,31 +185,34 @@ export default function PreviewPage() {
               <div style={{ position: "absolute", top: 3, left: yearly ? 23 : 3, width: 18, height: 18, borderRadius: "50%", background: "#ffffff", transition: "left 0.2s ease", boxShadow: "0 1px 3px rgba(0,0,0,0.15)" }} />
             </button>
             <span style={{ fontSize: "0.88rem", fontWeight: 600, color: yearly ? "#111111" : "#9a9a9a", transition: "color 0.2s" }}>Yearly</span>
-            <span style={{ background: yearly ? "#111111" : "#e3e3e3", color: yearly ? "#ffffff" : "#9a9a9a", borderRadius: 999, fontSize: "0.68rem", fontWeight: 700, padding: "4px 10px", letterSpacing: "0.04em", transition: "all 0.2s" }}>Save 40%</span>
+            <span style={{ background: yearly ? "#111111" : "#e8e8e8", color: yearly ? "#ffffff" : "#9a9a9a", borderRadius: 999, fontSize: "0.68rem", fontWeight: 700, padding: "4px 10px", letterSpacing: "0.04em", transition: "all 0.2s" }}>Save 40%</span>
           </div>
         </div>
 
-        <div className="pricing-grid">
-          {PLANS.map((plan) => (
+        <div className={tab === "self" ? "pricing-grid" : "pricing-grid-expert"}>
+          {activePlans.map((plan) => (
             <PlanCard key={plan.id} plan={plan} yearly={yearly} />
           ))}
         </div>
 
-        <div style={{ textAlign: "center", marginTop: 40 }}>
-          <Link href="/pricing" className="compare-link" style={{ fontSize: "0.84rem", color: "#9a9a9a", textDecoration: "none", transition: "color 0.15s" }}>
-            See full feature comparison &rarr;
-          </Link>
-        </div>
-
-        <div className="compare-table" style={{ marginTop: 72 }}>
-          <CompareTable yearly={yearly} />
-        </div>
+        {tab === "self" && (
+          <>
+            <div style={{ textAlign: "center", marginTop: 40 }}>
+              <Link href="/pricing" className="compare-link" style={{ fontSize: "0.84rem", color: "#9a9a9a", textDecoration: "none", transition: "color 0.15s" }}>
+                See full feature comparison &rarr;
+              </Link>
+            </div>
+            <div className="compare-table" style={{ marginTop: 72 }}>
+              <CompareTable yearly={yearly} />
+            </div>
+          </>
+        )}
       </div>
 
       <style>{`
         .pricing-grid {
           display: grid;
-          grid-template-columns: repeat(5, 1fr);
+          grid-template-columns: repeat(4, 1fr);
           gap: 14px;
           align-items: stretch;
         }
@@ -158,8 +222,19 @@ export default function PreviewPage() {
         @media (max-width: 768px) {
           .pricing-grid { grid-template-columns: 1fr; }
         }
-        .plan-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.09) !important; }
-        .plan-card-popular:hover { box-shadow: 0 12px 36px rgba(124,58,237,0.18) !important; }
+        .pricing-grid-expert {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 14px;
+          align-items: stretch;
+          max-width: 1000px;
+          margin: 0 auto;
+        }
+        @media (max-width: 768px) {
+          .pricing-grid-expert { grid-template-columns: 1fr; }
+        }
+        .plan-card:hover { border-color: #c8c8c8 !important; }
+        .plan-card-popular:hover { }
         .cta-outlined:hover { border-color: #111 !important; background: #f8fafc !important; }
         .cta-filled:hover { opacity: 0.88; }
         .cta-outlined:focus-visible, .cta-filled:focus-visible, .billing-toggle:focus-visible {
@@ -177,7 +252,7 @@ export default function PreviewPage() {
 }
 
 function PlanCard({ plan, yearly }: { plan: Plan; yearly: boolean }) {
-  const isExpert = plan.id === "expert";
+  const isExpert = plan.monthly === null;
   const price = yearly ? plan.yearly : plan.monthly;
 
   if (plan.popular) {
@@ -215,21 +290,19 @@ function PlanCard({ plan, yearly }: { plan: Plan; yearly: boolean }) {
 
   return (
     <div className="plan-card" style={{ background: "#fafafa", borderRadius: 16, padding: "28px 22px", border: "1px solid #e3e3e3", display: "flex", flexDirection: "column", transition: "box-shadow 0.22s ease, border-color 0.22s ease" }}>
-      <span style={{ fontSize: "0.72rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(17,17,17,0.4)", marginBottom: 4 }}>{plan.name}</span>
-      <p style={{ fontSize: "0.85rem", color: "#8c8c8c", lineHeight: 1.5, margin: "0 0 24px", minHeight: 60 }}>{plan.tagline}</p>
+      <span style={{ fontSize: "0.72rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#666666", marginBottom: 4 }}>{plan.name}</span>
+      <p style={{ fontSize: "0.85rem", color: "#555555", lineHeight: 1.5, margin: "0 0 24px", minHeight: 60 }}>{plan.tagline}</p>
       <div style={{ display: "flex", alignItems: "end", gap: 4, marginBottom: 4, minHeight: 38 }}>
         {price !== null ? (
           <>
             <span style={{ fontFamily: "var(--font-display)", fontSize: "2.4rem", color: "#111111", lineHeight: 1 }}>${price}</span>
-            <span style={{ fontSize: "0.78rem", color: "rgba(17,17,17,0.38)", marginBottom: 3 }}>/mo</span>
+            <span style={{ fontSize: "0.78rem", color: "#888888", marginBottom: 3 }}>/mo</span>
           </>
         ) : (
-          <span style={{ fontFamily: "var(--font-display)", fontSize: "2.4rem", color: "#111111", lineHeight: 1 }}>$499<span style={{ fontSize: "0.78rem", color: "rgba(17,17,17,0.38)", fontFamily: "var(--font-body, system-ui, sans-serif)", marginLeft: 2 }}>/mo</span></span>
+          <span style={{ fontFamily: "var(--font-display)", fontSize: "2rem", color: "#111111", lineHeight: 1 }}>Custom</span>
         )}
       </div>
-      <div style={{ fontSize: "0.7rem", color: "rgba(17,17,17,0.25)", marginBottom: 24 }}>
-        {isExpert ? "starting from \u00b7 custom pricing" : yearly ? "billed annually" : "billed monthly"}
-      </div>
+      <div style={{ fontSize: "0.7rem", color: "#999999", marginBottom: 24 }}>{isExpert ? "custom pricing" : yearly ? "billed annually" : "billed monthly"}</div>
       <Link href="/contact" className="cta-outlined" style={{ display: "block", textAlign: "center", background: "transparent", color: "#111111", border: "1px solid #c8c8c8", borderRadius: 999, padding: "12px 20px", fontSize: "14px", fontWeight: 500, letterSpacing: "1px", textDecoration: "none", transition: "all 0.2s", marginBottom: 24 }}>{plan.cta}</Link>
       <div style={{ height: 1, background: "#e3e3e3", marginBottom: 20 }} />
       <div style={{ flex: 1 }}>
@@ -237,7 +310,7 @@ function PlanCard({ plan, yearly }: { plan: Plan; yearly: boolean }) {
           const isBridge = f.startsWith("Everything in");
           return (
           <div key={f} style={{ display: "flex", alignItems: "flex-start", gap: 8, marginBottom: isBridge ? 12 : 8 }}>
-            {isBridge ? <span style={{ width: 13, flexShrink: 0 }} /> : <Check size={13} style={{ flexShrink: 0, marginTop: 2, color: "rgba(17,17,17,0.35)" }} />}
+            {isBridge ? <span style={{ width: 13, flexShrink: 0 }} /> : <Check size={13} style={{ flexShrink: 0, marginTop: 2, color: "#22c55e" }} />}
             <span style={{ fontSize: "0.8rem", color: isBridge ? "#9a9a9a" : "#333333", lineHeight: 1.5, fontStyle: isBridge ? "italic" : "normal" }}>{f}</span>
           </div>
           );
@@ -250,7 +323,7 @@ function PlanCard({ plan, yearly }: { plan: Plan; yearly: boolean }) {
 function CompareTable({ yearly }: { yearly: boolean }) {
   const colW = "1fr";
   const labelW = "180px";
-  const cols = `${labelW} repeat(5, ${colW})`;
+  const cols = `${labelW} repeat(4, ${colW})`;
 
   return (
     <div style={{ borderRadius: 16, border: "1px solid #e3e3e3", overflow: "hidden" }}>

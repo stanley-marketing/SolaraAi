@@ -11,7 +11,7 @@ Founded in 2024. Pre-seed funded ($1.2M). Headquartered remotely.
 ## Key Pages
 
 - [Homepage](${SITE_URL}/): Platform overview, value proposition, and feature summary
-- [Pricing](${SITE_URL}/pricing): Three tiers — Starter ($29/mo annual), Growth ($59/mo annual), Pro ($119/mo annual)
+- [Pricing](${SITE_URL}/pricing): Two paths — Self-managed (Starter $49, Growth $99, Pro $199, Advanced $319/mo) and Solara Expert (Essential $499, Growth $999, Scale custom/mo). 40% off annual.
 - [About](${SITE_URL}/about): Company story, mission, founding team
 - [Contact](${SITE_URL}/contact): Sales inquiries, demo requests, support
 - [Blog](${SITE_URL}/blog): Marketing guides, product updates, industry insights

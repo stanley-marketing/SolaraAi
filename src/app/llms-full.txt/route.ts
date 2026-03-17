@@ -28,34 +28,61 @@ Solara AI replaces the marketing stack most businesses cobble together — ad ma
 
 ## Pricing
 
-All prices billed annually (monthly billing available at higher rates). All plans include a free trial.
+Two paths. All plans include a free trial. 40% off with annual billing.
 
-### Starter — $29/month (billed annually)
-- Manage up to 3 social media channels
-- 1 active ad campaign
-- AI setup assistant
-- Analytics dashboard
-- No website needed to get started
-- Best for: Solo entrepreneurs and very small businesses just getting started with marketing
+### Path 1 — Self-Managed (You Manage It, We Guide You)
 
-### Growth — $59/month (billed annually) — Most Popular
-- Manage up to 5 social media channels
-- Up to 3 active ad campaigns
-- Quarterly 30-minute strategy calls with a marketing expert
-- AI setup assistant
-- Analytics dashboard
-- Best for: Growing businesses ready to scale their marketing across multiple channels
+#### Starter — $49/month ($29 billed annually)
+- Up to 3 social media channels
+- 1 ad campaign managed by Solara
+- All content types included
+- Models level: One V
+- Setup assistant + Analytics dashboard
+- Best for: Solo entrepreneurs just getting started
 
-### Pro — $119/month (billed annually)
-- Full SEO + GEO optimization strategy
-- Content strategy across up to 5 channels
-- Unlimited active ad campaigns
-- Quarterly 30-minute strategy calls with a marketing expert
-- AI setup assistant
-- Analytics dashboard
-- Best for: Established businesses wanting comprehensive AI-driven marketing with SEO and content strategy
+#### Growth — $99/month ($59 billed annually)
+- Up to 5 social media channels
+- Up to 3 ad campaigns
+- Quarterly strategy call with a Solara expert
+- Setup assistant
+- Best for: Growing businesses scaling across channels
 
-Monthly pricing: Starter $49/mo, Growth $99/mo, Pro $199/mo (40% savings on annual).
+#### Pro — $199/month ($119 billed annually) — Most Popular
+- Full SEO + GEO strategy
+- Content strategy across 5 channels
+- Unlimited ad campaigns
+- Monthly consulting call with a Solara expert
+- Best for: Established businesses wanting comprehensive AI-driven marketing
+
+#### Advanced — $319/month ($191 billed annually)
+- Full SEO + GEO recommendations
+- Enhanced AI models
+- All content types
+- Quarterly strategy call
+- Best for: Businesses needing advanced AI capabilities
+
+### Path 2 — Solara Expert (Fully Managed Marketing)
+
+#### Essential — $499/month ($399 billed annually)
+- Dedicated marketing expert
+- Up to 3 managed channels
+- SEO strategy + execution
+- Monthly performance review
+- AI-powered content creation
+
+#### Growth — $999/month ($799 billed annually) — Most Popular
+- Unlimited managed channels
+- Ads management (Meta, Google, TikTok)
+- AI Search & visibility optimization
+- Weekly strategy calls
+- Custom website design
+
+#### Scale — Custom pricing
+- Dedicated marketing team
+- Custom integrations & reporting
+- Multi-brand management
+- Commercial-grade AI models
+- Priority support & SLA
 
 Sign up: ${APP_URL}/auth/signup
 
@@ -85,7 +112,7 @@ Learn more: ${SITE_URL}/partners/setup-operators
 1. **All-in-one platform** — Replaces 4–6 separate marketing tools (ad manager + social scheduler + SEO tool + content creator + analytics + reporting).
 2. **AI-native, not AI-bolted-on** — Built from the ground up with AI at the core, not a legacy tool with AI features added after the fact.
 3. **No expertise required** — The setup assistant guides users through connecting channels and launching their first campaign. No marketing knowledge needed.
-4. **Affordable for SMBs** — Starting at $29/month (annual), significantly cheaper than hiring an agency ($2,000–$10,000+/month) or assembling a tool stack.
+4. **Affordable for SMBs** — Self-managed from $49/month ($29 annual), or fully managed Solara Expert from $499/month — significantly cheaper than hiring an agency ($5,000–$10,000+/month).
 5. **Multi-channel from day one** — Manages ads, social, SEO, and content in one place rather than requiring users to learn separate tools.
 
 ## Frequently Asked Questions
@@ -105,17 +132,23 @@ No. The AI setup assistant guides you through connecting your accounts and launc
 **Can I try Solara AI for free?**
 Yes. All plans include a free trial. Sign up at ${APP_URL}/auth/signup.
 
+**What's the difference between Self-managed and Solara Expert?**
+Self-managed gives you AI tools with expert guidance — you run it. Solara Expert is fully managed by a dedicated marketing expert plus AI infrastructure.
+
 **What's included in every plan?**
-Every plan includes the AI setup assistant, analytics dashboard, and full platform access. Plans differ in the number of social channels, ad campaigns, and whether strategy calls and SEO features are included.
+Every plan includes the AI setup assistant, analytics dashboard, and full platform access. Plans differ in channels, campaigns, strategy calls, and AI model quality.
 
 **Can I change my plan later?**
-Yes. You can upgrade or downgrade anytime from Settings > Billing. Changes are prorated.
+Yes. Upgrade or downgrade anytime from Settings > Billing. Changes are prorated.
+
+**How do strategy calls work?**
+Growth and Advanced include quarterly calls. Pro includes monthly consulting calls. Solara Expert Growth includes weekly calls. All are 30-minute sessions with a Solara marketing expert.
 
 **How do I cancel?**
 Go to Settings > Billing > Cancel Subscription. Your account remains active until the end of your current billing period.
 
-**How do strategy calls work?**
-Available on Growth and Pro plans. Quarterly 30-minute sessions with a marketing expert to review performance and discuss strategy.
+**What does custom pricing mean for Scale?**
+The Scale plan is tailored to your organization's needs — channels, integrations, team size. Contact us to discuss.
 
 ## Contact
 

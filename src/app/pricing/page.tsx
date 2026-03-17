@@ -1,425 +1,814 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
+import { Check } from "lucide-react";
 import { TopNav } from "@/components/LandingSections";
 import { Footer } from "@/components/Footer";
 
 const SITE_URL = "https://solaraai.com";
+const RAINBOW = "linear-gradient(135deg, #f97316, #eab308, #22c55e, #06b6d4, #8b5cf6, #ec4899, #f97316)";
+const NOISE_BG = `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`;
 
-type BillingPeriod = "monthly" | "yearly";
+type Plan = {
+  id: string;
+  name: string;
+  tagline: string;
+  monthly: number | null;
+  yearly: number | null;
+  popular: boolean;
+  cta: string;
+  features: string[];
+};
 
-const plans = [
+const PLANS: Plan[] = [
   {
     id: "starter",
     name: "Starter",
-    tagline: "Launch your marketing",
-    price: { monthly: 49, yearly: 29 },
+    tagline: "Launch your marketing with AI-powered tools and guidance.",
+    monthly: 49,
+    yearly: 29,
+    popular: false,
     cta: "Get started",
-    ctaHref: "/contact",
-    featured: false,
     features: [
-      "3 social media channels",
+      "Up to 3 social media channels",
       "1 ad campaign managed by Solara",
+      "All content types included",
+      "Models level - One V",
       "Setup assistant",
-      "Analytics",
-      "No website needed",
+      "Analytics dashboard",
     ],
   },
   {
     id: "growth",
     name: "Growth",
-    tagline: "Scale your reach",
-    price: { monthly: 99, yearly: 59 },
+    tagline: "Scale your reach across channels with expert strategy support.",
+    monthly: 99,
+    yearly: 59,
+    popular: false,
     cta: "Get started",
-    ctaHref: "/contact",
-    featured: true,
     features: [
+      "Everything in Starter, plus:",
       "Up to 5 social media channels",
       "Up to 3 ad campaigns",
-      "Quarterly strategy calls with a Solara expert",
-      "Setup assistant",
+      "Quarterly strategy call with a Solara expert",
     ],
   },
   {
     id: "pro",
     name: "Pro",
-    tagline: "Full-stack marketing",
-    price: { monthly: 199, yearly: 119 },
+    tagline: "Full-stack marketing with SEO, content strategy, and unlimited ads.",
+    monthly: 199,
+    yearly: 119,
+    popular: true,
     cta: "Get started",
-    ctaHref: "/contact",
-    featured: false,
     features: [
+      "Everything in Growth, plus:",
       "Full SEO + GEO strategy",
-      "Content strategy across up to 5 channels",
+      "Content strategy across 5 channels",
       "Unlimited ad campaigns",
-      "Quarterly strategy calls",
+      "Monthly consulting call",
+    ],
+  },
+  {
+    id: "advanced",
+    name: "Advanced",
+    tagline: "Enhanced AI models, full recommendations, and expert rhythm.",
+    monthly: 319,
+    yearly: 191,
+    popular: false,
+    cta: "Get started",
+    features: [
+      "Everything in Pro, plus:",
+      "Full SEO + GEO recommendations",
+      "Enhanced AI models",
+      "All content types",
+      "Quarterly strategy call",
     ],
   },
 ];
 
-const billingLabels: Record<BillingPeriod, string> = {
-  monthly: "Monthly",
-  yearly: "Yearly \u00b7 40% off",
-};
+const EXPERT_PLANS: Plan[] = [
+  {
+    id: "expert-essential",
+    name: "Essential",
+    tagline: "Expert-led strategy with AI-powered execution across core channels.",
+    monthly: 499,
+    yearly: 399,
+    popular: false,
+    cta: "Talk to us",
+    features: [
+      "Dedicated marketing expert",
+      "Up to 3 managed channels",
+      "SEO strategy + execution",
+      "Monthly performance review",
+      "AI-powered content creation",
+    ],
+  },
+  {
+    id: "expert-growth",
+    name: "Growth",
+    tagline: "Full-stack managed marketing across all channels with hands-on optimization.",
+    monthly: 999,
+    yearly: 799,
+    popular: true,
+    cta: "Talk to us",
+    features: [
+      "Everything in Essential, plus:",
+      "Unlimited managed channels",
+      "Ads management - Meta, Google, TikTok",
+      "AI Search & visibility optimization",
+      "Weekly strategy calls",
+      "Custom website design",
+    ],
+  },
+  {
+    id: "expert-scale",
+    name: "Scale",
+    tagline: "Enterprise-grade marketing operations with dedicated team and custom integrations.",
+    monthly: null,
+    yearly: null,
+    popular: false,
+    cta: "Talk to us",
+    features: [
+      "Everything in Growth, plus:",
+      "Dedicated marketing team",
+      "Custom integrations & reporting",
+      "Multi-brand management",
+      "Commercial-grade AI models",
+      "Priority support & SLA",
+    ],
+  },
+];
+
+const TABLE_FEATURES = [
+  { label: "Creative", values: ["Included", "Included", "Included", "Included"] },
+  { label: "Models Quality", values: ["One V", "One V", "Higher / Multi V", "Enhanced"] },
+  { label: "Platform Access", values: ["Full", "Full", "Full", "Full"] },
+  { label: "Assistant", values: ["Setup + Guidance", "Setup + Guidance", "Setup + Guidance", "Setup + Guidance"] },
+  { label: "Presenter / Min", values: ["-", "-", "Included", "Included"] },
+  { label: "Strategy", values: ["-", "Quarterly Call", "Monthly Call", "Quarterly Call"] },
+  { label: "Analytics / Reporting", values: ["Included", "Included", "Included", "Included"] },
+];
 
 const faqs = [
   {
-    q: "What\u2019s included in every plan?",
-    a: "Every plan includes a dedicated setup assistant to get you started, analytics to track performance, and direct access to Solara\u2019s marketing platform.",
+    q: "What's the difference between Self-managed and Solara Expert?",
+    a: "Self-managed gives you AI tools with expert guidance - you run it. Solara Expert is fully managed by a dedicated marketing expert plus AI infrastructure.",
+  },
+  {
+    q: "What's included in every plan?",
+    a: "Every plan includes the AI setup assistant, analytics dashboard, and full platform access. Plans differ in channels, campaigns, strategy calls, and AI model quality.",
   },
   {
     q: "Can I change my plan later?",
-    a: "Yes, upgrade or downgrade any time from Settings \u2192 Billing. Changes take effect immediately; you\u2019ll be charged or credited the prorated difference.",
+    a: "Yes. Upgrade or downgrade anytime from Settings -> Billing. Changes are prorated.",
   },
   {
     q: "How do strategy calls work?",
-    a: "Growth and Pro plans include quarterly strategy calls with a Solara marketing expert. These are 30-minute sessions to review performance, adjust campaigns, and plan ahead.",
+    a: "Growth and Advanced include quarterly calls. Pro includes monthly consulting calls. Solara Expert Growth includes weekly calls. All are 30-minute sessions with a Solara marketing expert.",
   },
   {
     q: "How do I cancel?",
-    a: "Go to Settings \u2192 Billing \u2192 Manage Plan \u2192 Cancel Subscription. Your plan stays active until the end of the billing period \u2014 no hidden fees.",
+    a: "Go to Settings -> Billing -> Cancel Subscription. Your account remains active until the end of your current billing period.",
+  },
+  {
+    q: "What does custom pricing mean for Scale?",
+    a: "The Scale plan is tailored to your organization's needs - channels, integrations, team size. Contact us to discuss.",
   },
 ];
 
 export default function PricingPage() {
-  const [billing, setBilling] = useState<BillingPeriod>("monthly");
+  const [tab, setTab] = useState<"self" | "expert">("self");
+  const [yearly, setYearly] = useState(true);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const activePlans = tab === "self" ? PLANS : EXPERT_PLANS;
 
   return (
     <>
       <main className="min-h-screen bg-white text-ink-900">
         <TopNav />
 
-      {/* WebPage + FAQPage structured data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            name: "Pricing \u2014 Solara AI",
-            url: `${SITE_URL}/pricing`,
-            description:
-              "Pick the plan that matches your growth velocity. Starter, Growth, and Pro tiers \u2014 from $29/mo.",
-            breadcrumb: {
-              "@type": "BreadcrumbList",
-              itemListElement: [
-                {
-                  "@type": "ListItem",
-                  position: 1,
-                  name: "Home",
-                  item: SITE_URL,
-                },
-                {
-                  "@type": "ListItem",
-                  position: 2,
-                  name: "Pricing",
-                  item: `${SITE_URL}/pricing`,
-                },
-              ],
-            },
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: faqs.map((f) => ({
-              "@type": "Question",
-              name: f.q,
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: f.a,
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              name: "Pricing - Solara AI",
+              url: `${SITE_URL}/pricing`,
+              description:
+                "Choose between Self-managed and Solara Expert plans. Pick the plan that matches your velocity and scale your marketing with AI.",
+              breadcrumb: {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "Home",
+                    item: SITE_URL,
+                  },
+                  {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: "Pricing",
+                    item: `${SITE_URL}/pricing`,
+                  },
+                ],
               },
-            })),
-          }),
-        }}
-      />
-
-      {/* Hero */}
-      <section className="px-6 pb-0 pt-40 text-center sm:px-10">
-        <p
-          className="mx-auto mb-5 text-[0.8rem] uppercase tracking-[0.26em] text-ink-700/60"
-        >
-          Pricing
-        </p>
-        <h1
-          className="mx-auto max-w-3xl leading-[0.92] tracking-[-0.02em]"
-          style={{
-            fontSize: "clamp(2.8rem, 6vw, 5.4rem)",
-            fontFamily: "var(--font-display)",
+            }),
           }}
-        >
-          One system.<br />
-          Every lever.
-        </h1>
-        <p className="mx-auto mt-6 max-w-md text-[1.07rem] leading-relaxed text-ink-700/70">
-          Pick the plan that matches your velocity. Upgrade or cancel anytime.
-        </p>
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: faqs.map((f) => ({
+                "@type": "Question",
+                name: f.q,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: f.a,
+                },
+              })),
+            }),
+          }}
+        />
 
-        {/* Billing toggle */}
-        <div className="mt-10 inline-flex items-center rounded-full border border-line bg-shell p-1 gap-1">
-          {(["monthly", "yearly"] as BillingPeriod[]).map((period) => (
-            <button
-              type="button"
-              key={period}
-              onClick={() => setBilling(period)}
-              className={`rounded-full px-4 py-1.5 text-[0.8rem] uppercase tracking-[0.16em] transition-all duration-200 ${
-                billing === period
-                  ? "bg-ink-900 text-white shadow-sm"
-                  : "text-ink-700/60 hover:text-ink-900"
-              }`}
+        <div style={{ fontFamily: "Inter, system-ui, -apple-system, sans-serif" }}>
+        <section style={{ padding: "160px 24px 0" }}>
+          <div style={{ maxWidth: 1320, margin: "0 auto" }}>
+            <p
+              style={{
+                textAlign: "center",
+                fontSize: "0.8rem",
+                textTransform: "uppercase",
+                letterSpacing: "0.26em",
+                color: "rgba(17,17,17,0.6)",
+                margin: "0 0 20px",
+              }}
             >
-              {billingLabels[period]}
-            </button>
-          ))}
-        </div>
-      </section>
+              Pricing
+            </p>
+            <h1
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(2.8rem, 6vw, 5.4rem)",
+                color: "#111111",
+                textAlign: "center",
+                letterSpacing: "-0.02em",
+                margin: 0,
+                lineHeight: 0.92,
+              }}
+            >
+              One system.
+              <br />
+              Every lever.
+            </h1>
+            <p
+              style={{
+                textAlign: "center",
+                fontSize: "1.07rem",
+                color: "rgba(17,17,17,0.7)",
+                maxWidth: 460,
+                margin: "24px auto 0",
+                lineHeight: 1.6,
+              }}
+            >
+              Pick the plan that matches your velocity. Upgrade or cancel anytime.
+            </p>
 
-      {/* Cards */}
-      <section className="mx-auto mt-14 max-w-6xl px-6 sm:px-10">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          {plans.map((plan) => {
-            const price = plan.price[billing];
-            const isFeatured = plan.featured;
-
-            return (
-              <div
-                key={plan.id}
-                className={`relative ${isFeatured ? "rounded-2xl p-[2px]" : ""}`}
-                style={
-                  isFeatured
-                    ? { background: "linear-gradient(135deg, #f97316, #eab308, #22c55e, #06b6d4, #8b5cf6, #ec4899, #f97316)" }
-                    : undefined
-                }
-              >
-
-                <div
-                  className={`relative flex h-full flex-col ${isFeatured ? "rounded-[14px]" : "rounded-2xl border"} p-7 transition-all duration-300 ${
-                    isFeatured
-                      ? "bg-[#040404] text-white shadow-[0_28px_60px_-20px_rgba(17,17,17,0.45)]"
-                      : "border-line bg-white hover:border-ink-900/30 hover:shadow-[0_12px_40px_-16px_rgba(17,17,17,0.1)]"
-                  }`}
-                >
-                {isFeatured && (
-                  <div
-                    className="pointer-events-none absolute inset-0 rounded-2xl opacity-[0.045]"
-                    style={{
-                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-                      backgroundRepeat: "repeat",
-                    }}
-                  />
-                )}
-                {isFeatured && (
-                  <span className="absolute top-5 right-5 rounded-full bg-white/10 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-white/70">
-                    Popular
-                  </span>
-                )}
-                <div className="mb-1 flex items-center justify-between">
-                  <span
-                    className={`text-[0.82rem] uppercase tracking-[0.2em] ${
-                      isFeatured ? "text-white/50" : "text-ink-700/50"
-                    }`}
-                  >
-                    {plan.name}
-                  </span>
-                </div>
-
-                <p
-                  className={`mt-1 text-[0.94rem] leading-snug ${
-                    isFeatured ? "text-white/60" : "text-ink-700/60"
-                  }`}
-                >
-                  {plan.tagline}
-                </p>
-
-                <div className="mt-6 flex items-end gap-1">
-                  <span
-                    className="leading-none"
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      fontSize: "clamp(2.525rem, 4vw, 3.325rem)",
-                    }}
-                  >
-                    ${price}
-                  </span>
-                  <span
-                    className={`mb-1.5 text-[0.84rem] ${
-                      isFeatured ? "text-white/40" : "text-ink-700/40"
-                    }`}
-                  >
-                    / mo
-                  </span>
-                </div>
-
-                <a
-                  href={plan.ctaHref}
-                  target={plan.ctaHref.startsWith("http") ? "_blank" : undefined}
-                  rel={plan.ctaHref.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className={`mt-7 inline-flex w-full items-center justify-center rounded-xl py-3 text-[0.84rem] font-semibold uppercase tracking-[0.18em] transition-all duration-200 hover:-translate-y-0.5 ${
-                    isFeatured
-                      ? "bg-white text-ink-900 hover:bg-fog"
-                      : "border border-ink-900 bg-transparent text-ink-900 hover:bg-ink-900 hover:text-white"
-                  }`}
-                >
-                  {plan.cta}
-                </a>
-
-                <div
-                  className={`mt-7 h-px w-full ${
-                    isFeatured ? "bg-white/12" : "bg-line"
-                  }`}
-                />
-
-                <ul className="mt-6 space-y-3">
-                  {plan.features.map((f) => (
-                    <li
-                      key={f}
-                      className={`flex items-start gap-2.5 text-[0.9rem] leading-snug ${
-                        isFeatured ? "text-white/70" : "text-ink-700/80"
-                      }`}
+            <div style={{ display: "flex", justifyContent: "center", marginTop: 40, marginBottom: 32 }}>
+              <div style={{ display: "inline-flex", position: "relative", background: "#f1f1f1", borderRadius: 999, padding: 4, gap: 4 }}>
+                {([
+                  { key: "self" as const, label: "Self-managed" },
+                  { key: "expert" as const, label: "Solara Expert" },
+                ]).map(({ key, label }) => {
+                  const active = tab === key;
+                  return (
+                    <button
+                      key={key}
+                      type="button"
+                      onClick={() => setTab(key)}
+                      style={{
+                        position: "relative",
+                        border: "none",
+                        padding: "10px 28px",
+                        fontSize: "0.88rem",
+                        fontWeight: 600,
+                        cursor: "pointer",
+                        lineHeight: 1,
+                        background: "transparent",
+                        color: active ? "#ffffff" : "#666666",
+                        borderRadius: 999,
+                        zIndex: 1,
+                        transition: "color 0.25s ease",
+                      }}
                     >
-                      <svg
-                        aria-hidden="true"
-                        focusable="false"
-                        className={`mt-0.5 h-3 w-3 shrink-0 ${
-                          isFeatured ? "text-white/50" : "text-ink-900/40"
-                        }`}
-                        viewBox="0 0 12 12"
-                        fill="none"
-                      >
-                        <path
-                          d="M2 6l3 3 5-5"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
+                      {active && (
+                        <motion.div
+                          layoutId="pricing-tab-pill"
+                          style={{ position: "absolute", inset: 0, background: "#111111", borderRadius: 999 }}
+                          transition={{ type: "spring", duration: 0.45, bounce: 0.15 }}
                         />
-                      </svg>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
+                      )}
+                      <span style={{ position: "relative", zIndex: 2 }}>{label}</span>
+                    </button>
+                  );
+                })}
               </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Metrics strip */}
-      <section className="mx-auto mt-20 max-w-7xl px-6 sm:px-10">
-        <div className="grid grid-cols-2 gap-px border border-line bg-line sm:grid-cols-4">
-          {[
-            { stat: "50 hrs", label: "saved per week, avg across clients" },
-            { stat: "67.3%", label: "avg CTR increase across campaigns" },
-            { stat: "3\u00d7", label: "avg ROI on same ad budget" },
-            { stat: "80%", label: "avg increase in conversions" },
-          ].map(({ stat, label }) => (
-            <div key={stat} className="bg-white px-8 py-8">
-              <div
-                className="leading-none text-ink-900"
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "clamp(1.925rem, 3vw, 2.725rem)",
-                }}
-              >
-                {stat}
-              </div>
-              <p className="mt-2 text-[0.84rem] leading-snug text-ink-700/55">{label}</p>
             </div>
-          ))}
-        </div>
-      </section>
 
-      {/* FAQ */}
-      <section className="mx-auto mt-24 max-w-2xl px-6 pb-32 sm:px-10">
-        <p className="mb-3 text-[0.77rem] uppercase tracking-[0.26em] text-ink-700/50">
-          FAQ
-        </p>
-        <h2
-          className="mb-10 leading-tight tracking-[-0.015em]"
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(1.925rem, 3vw, 2.525rem)",
-          }}
-        >
-          Common questions
-        </h2>
-
-        <div className="divide-y divide-line">
-          {faqs.map((faq, i) => (
-            <div key={faq.q} className="py-5">
-              <button
-                type="button"
-                onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                className="flex w-full items-start justify-between gap-4 text-left"
-              >
-                <span className="text-[1rem] font-medium leading-snug text-ink-900">
-                  {faq.q}
-                </span>
-                <svg
-                  aria-hidden="true"
-                  focusable="false"
-                  className={`mt-0.5 h-4 w-4 shrink-0 text-ink-700/40 transition-transform duration-200 ${
-                    openFaq === i ? "rotate-45" : ""
-                  }`}
-                  viewBox="0 0 16 16"
-                  fill="none"
+            <div style={{ display: "flex", justifyContent: "center", marginBottom: 48 }}>
+              <div style={{ display: "inline-flex", alignItems: "center", gap: 12 }}>
+                <span
+                  style={{
+                    fontSize: "0.88rem",
+                    fontWeight: 600,
+                    color: yearly ? "#9a9a9a" : "#111111",
+                    transition: "color 0.2s",
+                  }}
                 >
-                  <path
-                    d="M8 2v12M2 8h12"
-                    stroke="currentColor"
-                    strokeWidth="1.4"
-                    strokeLinecap="round"
+                  Monthly
+                </span>
+                <button
+                  type="button"
+                  aria-label={yearly ? "Switch to monthly billing" : "Switch to yearly billing"}
+                  onClick={() => setYearly(!yearly)}
+                  className="billing-toggle"
+                  style={{
+                    position: "relative",
+                    width: 44,
+                    height: 24,
+                    borderRadius: 999,
+                    background: yearly ? "#111111" : "#d4d4d4",
+                    border: "none",
+                    cursor: "pointer",
+                    transition: "background 0.2s ease",
+                    padding: 0,
+                  }}
+                >
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: 3,
+                      left: yearly ? 23 : 3,
+                      width: 18,
+                      height: 18,
+                      borderRadius: "50%",
+                      background: "#ffffff",
+                      transition: "left 0.2s ease",
+                      boxShadow: "0 1px 3px rgba(0,0,0,0.15)",
+                    }}
                   />
-                </svg>
-              </button>
-              {openFaq === i && (
-                <p className="mt-3 text-[0.94rem] leading-relaxed text-ink-700/65">
-                  {faq.a}
-                </p>
-              )}
+                </button>
+                <span
+                  style={{
+                    fontSize: "0.88rem",
+                    fontWeight: 600,
+                    color: yearly ? "#111111" : "#9a9a9a",
+                    transition: "color 0.2s",
+                  }}
+                >
+                  Yearly
+                </span>
+                <span
+                  style={{
+                    background: yearly ? "#111111" : "#e8e8e8",
+                    color: yearly ? "#ffffff" : "#9a9a9a",
+                    borderRadius: 999,
+                    fontSize: "0.68rem",
+                    fontWeight: 700,
+                    padding: "4px 10px",
+                    letterSpacing: "0.04em",
+                    transition: "all 0.2s",
+                  }}
+                >
+                  Save 40%
+                </span>
+              </div>
             </div>
-          ))}
-        </div>
-      </section>
 
-      {/* Footer CTA */}
-      <section className="border-t border-line bg-shell px-6 py-20 text-center sm:px-10">
-        <h2
-          className="mx-auto max-w-xl leading-tight tracking-[-0.015em]"
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(1.925rem, 3.5vw, 3.125rem)",
-          }}
-        >
-          Turn your marketing engine on.
-        </h2>
-        <p className="mx-auto mt-4 max-w-sm text-[1rem] text-ink-700/60">
-          Start free. No credit card required.
-        </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <a
-            href="/contact"
-            className="inline-flex items-center rounded-xl bg-ink-900 px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-white transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90"
+            <div className={tab === "self" ? "pricing-grid" : "pricing-grid-expert"}>
+              {activePlans.map((plan) => (
+                <PlanCard key={plan.id} plan={plan} yearly={yearly} />
+              ))}
+            </div>
+
+            {tab === "self" && (
+              <>
+                <div className="compare-table" style={{ marginTop: 72 }}>
+                  <CompareTable yearly={yearly} />
+                </div>
+              </>
+            )}
+          </div>
+        </section>
+
+        <style>{`
+          .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            align-items: stretch;
+          }
+          @media (max-width: 1200px) {
+            .pricing-grid { grid-template-columns: repeat(3, 1fr); }
+          }
+          @media (max-width: 768px) {
+            .pricing-grid { grid-template-columns: 1fr; }
+          }
+          .pricing-grid-expert {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            align-items: stretch;
+            max-width: 1000px;
+            margin: 0 auto;
+          }
+          @media (max-width: 768px) {
+            .pricing-grid-expert { grid-template-columns: 1fr; }
+          }
+          .plan-card:hover { border-color: #c8c8c8 !important; }
+          .cta-outlined:hover { border-color: #111 !important; background: #f8fafc !important; }
+          .cta-filled:hover { opacity: 0.88; }
+          .cta-outlined:focus-visible, .cta-filled:focus-visible, .billing-toggle:focus-visible {
+            outline: 2px solid #7c3aed; outline-offset: 2px;
+          }
+          .compare-link:hover { color: #111111 !important; }
+          .compare-table { display: block; }
+          @media (max-width: 900px) { .compare-table { display: none; } }
+          @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { transition: none !important; }
+          }
+        `}</style>
+
+        <section className="mx-auto mt-20 max-w-7xl px-6 sm:px-10">
+          <div className="grid grid-cols-2 gap-px border border-line bg-line sm:grid-cols-4">
+            {[
+              { stat: "50 hrs", label: "saved per week, avg across clients" },
+              { stat: "67.3%", label: "avg CTR increase across campaigns" },
+              { stat: "3×", label: "avg ROI on same ad budget" },
+              { stat: "80%", label: "avg increase in conversions" },
+            ].map(({ stat, label }) => (
+              <div key={stat} className="bg-white px-8 py-8">
+                <div
+                  className="leading-none text-ink-900"
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "clamp(1.925rem, 3vw, 2.725rem)",
+                  }}
+                >
+                  {stat}
+                </div>
+                <p className="mt-2 text-[0.84rem] leading-snug text-ink-700/55">{label}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mx-auto mt-24 max-w-2xl px-6 pb-32 sm:px-10">
+          <p className="mb-3 text-[0.77rem] uppercase tracking-[0.26em] text-ink-700/50">FAQ</p>
+          <h2
+            className="mb-10 leading-tight tracking-[-0.015em]"
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(1.925rem, 3vw, 2.525rem)",
+            }}
           >
-            Start free trial
-          </a>
-          <a
-            href="/contact"
-            className="inline-flex items-center rounded-xl border border-line bg-white px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-ink-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink-900/30"
+            Common questions
+          </h2>
+
+          <div className="divide-y divide-line">
+            {faqs.map((faq, i) => (
+              <div key={faq.q} className="py-5">
+                <button
+                  type="button"
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="flex w-full items-start justify-between gap-4 text-left"
+                >
+                  <span className="text-[1rem] font-medium leading-snug text-ink-900">{faq.q}</span>
+                  <svg
+                    aria-hidden="true"
+                    focusable="false"
+                    className={`mt-0.5 h-4 w-4 shrink-0 text-ink-700/40 transition-transform duration-200 ${
+                      openFaq === i ? "rotate-45" : ""
+                    }`}
+                    viewBox="0 0 16 16"
+                    fill="none"
+                  >
+                    <path d="M8 2v12M2 8h12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+                  </svg>
+                </button>
+                {openFaq === i && <p className="mt-3 text-[0.94rem] leading-relaxed text-ink-700/65">{faq.a}</p>}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="border-t border-line bg-shell px-6 py-20 text-center sm:px-10">
+          <h2
+            className="mx-auto max-w-xl leading-tight tracking-[-0.015em]"
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(1.925rem, 3.5vw, 3.125rem)",
+            }}
           >
-            Book a call
-          </a>
+            Turn your marketing engine on.
+          </h2>
+          <p className="mx-auto mt-4 max-w-sm text-[1rem] text-ink-700/60">Start free. No credit card required.</p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <a
+              href="/contact"
+              className="inline-flex items-center rounded-xl bg-ink-900 px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-white transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90"
+            >
+              Start free trial
+            </a>
+            <a
+              href="/contact"
+              className="inline-flex items-center rounded-xl border border-line bg-white px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-ink-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink-900/30"
+            >
+              Book a call
+            </a>
+          </div>
+        </section>
         </div>
-      </section>
       </main>
       <Footer />
     </>
+  );
+}
+
+function PlanCard({ plan, yearly }: { plan: Plan; yearly: boolean }) {
+  const isExpert = plan.monthly === null;
+  const price = yearly ? plan.yearly : plan.monthly;
+
+  if (plan.popular) {
+    return (
+      <div style={{ position: "relative", height: "100%" }}>
+        <div style={{ background: RAINBOW, borderRadius: 16, padding: "2px", height: "100%" }}>
+          <div
+            className="plan-card-popular"
+            style={{
+              background: "#040404",
+              borderRadius: 14,
+              padding: "28px 22px",
+              display: "flex",
+              flexDirection: "column",
+              position: "relative",
+              transition: "box-shadow 0.22s ease",
+              height: "100%",
+            }}
+          >
+            <div
+              className="pointer-events-none"
+              style={{
+                position: "absolute",
+                inset: 0,
+                borderRadius: 14,
+                opacity: 0.045,
+                backgroundImage: NOISE_BG,
+                backgroundRepeat: "repeat",
+              }}
+            />
+            <span
+              style={{
+                position: "absolute",
+                top: 16,
+                right: 16,
+                background: "rgba(255,255,255,0.1)",
+                color: "rgba(255,255,255,0.7)",
+                fontSize: "0.63rem",
+                fontWeight: 600,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                borderRadius: 999,
+                padding: "4px 12px",
+              }}
+            >
+              Popular
+            </span>
+            <span style={{ fontSize: "0.72rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: 4 }}>{plan.name}</span>
+            <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.5, margin: "0 0 24px", minHeight: 60 }}>{plan.tagline}</p>
+            <div style={{ display: "flex", alignItems: "end", gap: 4, marginBottom: 4 }}>
+              <span style={{ fontFamily: "var(--font-display)", fontSize: "2.4rem", color: "#ffffff", lineHeight: 1 }}>${price}</span>
+              <span style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.38)", marginBottom: 3 }}>/mo</span>
+            </div>
+            <div style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.3)", marginBottom: 24 }}>{yearly ? "billed annually" : "billed monthly"}</div>
+            <Link
+              href="/contact"
+              className="cta-filled"
+              style={{
+                display: "block",
+                textAlign: "center",
+                background: "#ffffff",
+                color: "#111111",
+                borderRadius: 999,
+                padding: "12px 20px",
+                fontSize: "14px",
+                fontWeight: 500,
+                letterSpacing: "1px",
+                textDecoration: "none",
+                transition: "all 0.2s",
+                marginBottom: 24,
+              }}
+            >
+              {plan.cta}
+            </Link>
+            <div style={{ height: 1, background: "rgba(255,255,255,0.1)", marginBottom: 20 }} />
+            <div style={{ flex: 1 }}>
+              {plan.features.map((feature) => {
+                const isBridge = feature.startsWith("Everything in");
+                return (
+                  <div key={feature} style={{ display: "flex", alignItems: "flex-start", gap: 8, marginBottom: isBridge ? 12 : 8 }}>
+                    {isBridge ? <span style={{ width: 13, flexShrink: 0 }} /> : <Check size={13} style={{ flexShrink: 0, marginTop: 2, color: "rgba(255,255,255,0.4)" }} />}
+                    <span
+                      style={{
+                        fontSize: "0.8rem",
+                        color: isBridge ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.65)",
+                        lineHeight: 1.5,
+                        fontStyle: isBridge ? "italic" : "normal",
+                      }}
+                    >
+                      {feature}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className="plan-card"
+      style={{
+        background: "#fafafa",
+        borderRadius: 16,
+        padding: "28px 22px",
+        border: "1px solid #e3e3e3",
+        display: "flex",
+        flexDirection: "column",
+        transition: "box-shadow 0.22s ease, border-color 0.22s ease",
+        height: "100%",
+      }}
+    >
+      <span style={{ fontSize: "0.72rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#666666", marginBottom: 4 }}>{plan.name}</span>
+      <p style={{ fontSize: "0.85rem", color: "#555555", lineHeight: 1.5, margin: "0 0 24px", minHeight: 60 }}>{plan.tagline}</p>
+      <div style={{ display: "flex", alignItems: "end", gap: 4, marginBottom: 4, minHeight: 38 }}>
+        {price !== null ? (
+          <>
+            <span style={{ fontFamily: "var(--font-display)", fontSize: "2.4rem", color: "#111111", lineHeight: 1 }}>${price}</span>
+            <span style={{ fontSize: "0.78rem", color: "#888888", marginBottom: 3 }}>/mo</span>
+          </>
+        ) : (
+          <span style={{ fontFamily: "var(--font-display)", fontSize: "2rem", color: "#111111", lineHeight: 1 }}>Custom</span>
+        )}
+      </div>
+      <div style={{ fontSize: "0.7rem", color: "#999999", marginBottom: 24 }}>{isExpert ? "custom pricing" : yearly ? "billed annually" : "billed monthly"}</div>
+      <Link
+        href="/contact"
+        className="cta-outlined"
+        style={{
+          display: "block",
+          textAlign: "center",
+          background: "transparent",
+          color: "#111111",
+          border: "1px solid #c8c8c8",
+          borderRadius: 999,
+          padding: "12px 20px",
+          fontSize: "14px",
+          fontWeight: 500,
+          letterSpacing: "1px",
+          textDecoration: "none",
+          transition: "all 0.2s",
+          marginBottom: 24,
+        }}
+      >
+        {plan.cta}
+      </Link>
+      <div style={{ height: 1, background: "#e3e3e3", marginBottom: 20 }} />
+      <div style={{ flex: 1 }}>
+        {plan.features.map((feature) => {
+          const isBridge = feature.startsWith("Everything in");
+          return (
+            <div key={feature} style={{ display: "flex", alignItems: "flex-start", gap: 8, marginBottom: isBridge ? 12 : 8 }}>
+              {isBridge ? <span style={{ width: 13, flexShrink: 0 }} /> : <Check size={13} style={{ flexShrink: 0, marginTop: 2, color: "#22c55e" }} />}
+              <span
+                style={{
+                  fontSize: "0.8rem",
+                  color: isBridge ? "#9a9a9a" : "#333333",
+                  lineHeight: 1.5,
+                  fontStyle: isBridge ? "italic" : "normal",
+                }}
+              >
+                {feature}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function CompareTable({ yearly }: { yearly: boolean }) {
+  const colW = "1fr";
+  const labelW = "180px";
+  const cols = `${labelW} repeat(4, ${colW})`;
+
+  return (
+    <div style={{ borderRadius: 16, border: "1px solid #e3e3e3", overflow: "hidden" }}>
+      <div style={{ display: "grid", gridTemplateColumns: cols }}>
+        <div style={{ padding: "20px 20px", background: "#fafafa", borderRight: "1px solid #e3e3e3", borderBottom: "1px solid #e3e3e3" }} />
+        {PLANS.map((plan, i) => {
+          const price = yearly ? plan.yearly : plan.monthly;
+          return (
+            <div
+              key={plan.id}
+              style={{
+                padding: "20px 16px",
+                borderBottom: "1px solid #e3e3e3",
+                borderRight: i < PLANS.length - 1 ? "1px solid #e3e3e3" : "none",
+                background: plan.popular ? "#f9f7ff" : "#fafafa",
+                position: "relative",
+              }}
+            >
+              {plan.popular && <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: RAINBOW }} />}
+              <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                <span style={{ fontSize: "0.68rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(17,17,17,0.4)" }}>{plan.name}</span>
+                {plan.popular && <span style={{ background: "#111", color: "#fff", fontSize: "0.56rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", borderRadius: 999, padding: "2px 8px" }}>Popular</span>}
+              </div>
+              <div style={{ marginTop: 8, display: "flex", alignItems: "baseline", gap: 3 }}>
+                {price !== null ? (
+                  <>
+                    <span style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", color: "#111" }}>${price}</span>
+                    <span style={{ fontSize: "0.72rem", color: "rgba(17,17,17,0.38)" }}>/mo</span>
+                  </>
+                ) : (
+                  <span style={{ fontFamily: "var(--font-display)", fontSize: "1.3rem", color: "#111" }}>Custom</span>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {TABLE_FEATURES.map((row, rIdx) => (
+        <div key={row.label} style={{ display: "grid", gridTemplateColumns: cols, background: rIdx % 2 === 0 ? "#ffffff" : "#fafafa" }}>
+          <div style={{ padding: "14px 20px", fontSize: "0.82rem", fontWeight: 500, color: "#111", borderRight: "1px solid #e3e3e3" }}>{row.label}</div>
+          {row.values.map((val, vIdx) => (
+            <div
+              key={`${row.label}-${vIdx}`}
+              style={{
+                padding: "14px 16px",
+                fontSize: "0.82rem",
+                textAlign: "center",
+                borderRight: vIdx < row.values.length - 1 ? "1px solid #e3e3e3" : "none",
+                color: val === "-" ? "rgba(17,17,17,0.2)" : "#333",
+                background: PLANS[vIdx].popular ? "#f9f7ff" : "transparent",
+                fontWeight: val !== "-" && PLANS[vIdx].popular ? 500 : 400,
+              }}
+            >
+              {val}
+            </div>
+          ))}
+        </div>
+      ))}
+
+      <div style={{ display: "grid", gridTemplateColumns: cols, borderTop: "1px solid #e3e3e3" }}>
+        <div style={{ borderRight: "1px solid #e3e3e3" }} />
+        {PLANS.map((plan, i) => (
+          <div key={plan.id} style={{ padding: "16px 12px", borderRight: i < PLANS.length - 1 ? "1px solid #e3e3e3" : "none", background: plan.popular ? "#f9f7ff" : "transparent" }}>
+            <Link
+              href="/contact"
+              style={{
+                display: "block",
+                textAlign: "center",
+                borderRadius: 999,
+                padding: "10px 12px",
+                fontSize: "0.78rem",
+                fontWeight: 600,
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                textDecoration: "none",
+                transition: "all 0.2s",
+                background: plan.popular ? "#111" : "transparent",
+                color: plan.popular ? "#fff" : "#111",
+                border: plan.popular ? "none" : "1px solid #c8c8c8",
+              }}
+            >
+              {plan.cta}
+            </Link>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
