@@ -13,15 +13,15 @@ export function SolaraPlusClosingCta() {
   const noMotion = prefersReduced === true;
 
   return (
-    <section className="relative overflow-hidden bg-[#040404] px-6 py-28 sm:px-10">
+    <section className="relative overflow-hidden bg-[#030607] px-6 py-28 sm:px-10">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-          backgroundRepeat: "repeat",
-          opacity: 0.035,
+          backgroundImage: "url('/solara-plus/cta-orbit.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: 0.45,
         }}
       />
       <div
@@ -29,9 +29,45 @@ export function SolaraPlusClosingCta() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 70% 60% at 50% 110%, rgba(130,100,240,0.08) 0%, transparent 65%)",
+            "radial-gradient(ellipse 72% 58% at 18% 12%, rgba(16,185,129,0.22) 0%, transparent 72%), radial-gradient(ellipse 68% 54% at 84% 88%, rgba(56,189,248,0.2) 0%, transparent 70%), linear-gradient(180deg, rgba(2,6,23,0.58) 0%, rgba(2,6,23,0.86) 100%)",
         }}
       />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage:
+            "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
+          backgroundRepeat: "repeat",
+          opacity: 0.06,
+        }}
+      />
+
+      {!noMotion && (
+        <>
+          <span
+            aria-hidden
+            className="pointer-events-none absolute left-[12%] top-20 h-36 w-36 rounded-full border border-white/20"
+            style={{ animation: "sp-orbit-rotate 14s linear infinite" }}
+          />
+          <span
+            aria-hidden
+            className="pointer-events-none absolute bottom-12 right-[10%] h-44 w-44 rounded-full border border-white/15"
+            style={{ animation: "sp-orbit-rotate 18s linear infinite reverse" }}
+          />
+          <style
+            dangerouslySetInnerHTML={{
+              __html: `
+                @keyframes sp-orbit-rotate {
+                  from { transform: rotate(0deg) scale(1); }
+                  50% { transform: rotate(180deg) scale(1.06); }
+                  to { transform: rotate(360deg) scale(1); }
+                }
+              `,
+            }}
+          />
+        </>
+      )}
 
       <div className="relative mx-auto max-w-3xl text-center">
         <motion.h2

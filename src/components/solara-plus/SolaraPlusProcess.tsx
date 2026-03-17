@@ -5,108 +5,30 @@ import { SOLARA_PLUS_CONTENT } from "./content";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-function StepCard({
-  number,
-  title,
-  description,
-  index,
-}: {
-  number: number;
-  title: string;
-  description: string;
-  index: number;
-}) {
-  const prefersReduced = useReducedMotion();
-  const noMotion = prefersReduced === true;
-
-  return (
-    <motion.div
-      initial={noMotion ? false : { opacity: 0, y: 22 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.08 + index * 0.1, ease: EASE }}
-      className="relative flex h-full flex-col rounded-2xl bg-white p-6 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
-      style={{ border: "1px solid #eaecf0" }}
-    >
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute right-5 top-4 select-none text-6xl font-black leading-none text-gray-100"
-        style={{ fontFamily: "var(--font-display)" }}
-      >
-        {number}
-      </span>
-
-      <div className="relative z-10 mb-5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[#040404] text-sm font-medium text-white shadow-[0_0_0_0_rgba(4,4,4,0)] transition-shadow duration-300 hover:shadow-[0_0_0_4px_rgba(4,4,4,0.08)]">
-        {number}
-      </div>
-
-      <h3
-        className="relative z-10 mb-2 text-[1rem] font-semibold leading-snug text-ink-900"
-        style={{ letterSpacing: "-0.01em" }}
-      >
-        {title}
-      </h3>
-
-      <p
-        className="relative z-10 text-[0.875rem] leading-relaxed text-ink-700/70"
-      >
-        {description}
-      </p>
-    </motion.div>
-  );
-}
-
-function ConnectorArrow({ index }: { index: number }) {
-  const prefersReduced = useReducedMotion();
-  const noMotion = prefersReduced === true;
-
-  return (
-    <motion.div
-      aria-hidden="true"
-      initial={noMotion ? false : { opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5, delay: 0.2 + index * 0.1, ease: EASE }}
-      className="hidden shrink-0 items-center justify-center px-1 lg:flex"
-    >
-      <div className="flex items-center">
-        <div className="h-px w-5 bg-[#d1d5db]" />
-        <svg
-          width="8"
-          height="12"
-          viewBox="0 0 8 12"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          <path
-            d="M1 1L7 6L1 11"
-            stroke="#d1d5db"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </div>
-    </motion.div>
-  );
-}
-
 export function SolaraPlusProcess() {
   const { headline, steps } = SOLARA_PLUS_CONTENT.process;
   const prefersReduced = useReducedMotion();
   const noMotion = prefersReduced === true;
 
   return (
-    <section className="border-t border-b border-gray-100 bg-[#fafafa] px-6 py-28 sm:px-10">
-      <div className="mx-auto max-w-5xl">
+    <section className="relative overflow-hidden border-y border-gray-100 bg-[#f8fafc] px-6 py-28 sm:px-10">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 45% at 80% 8%, rgba(34,197,94,0.08) 0%, transparent 70%), radial-gradient(ellipse 60% 45% at 20% 88%, rgba(59,130,246,0.08) 0%, transparent 75%)",
+        }}
+      />
+
+      <div className="relative mx-auto max-w-5xl">
         <motion.div
           initial={noMotion ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: EASE }}
-          className="mb-12"
+          className="mb-14 max-w-2xl"
         >
-          <p
-            className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-ink-900/40"
-          >
+          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-ink-900/40">
             The process
           </p>
           <h2
@@ -123,20 +45,57 @@ export function SolaraPlusProcess() {
           </h2>
         </motion.div>
 
-        <div className="flex flex-col gap-4 sm:grid sm:grid-cols-2 sm:gap-4 lg:flex lg:flex-row lg:items-stretch lg:gap-0">
-          {steps.map((step, i) => (
-            <div key={step.number} className="flex items-stretch lg:flex-1">
-              <div className="w-full">
-                <StepCard
-                  number={step.number}
-                  title={step.title}
-                  description={step.description}
-                  index={i}
+        <div className="relative pl-0 sm:pl-7">
+          <div
+            aria-hidden
+            className="absolute bottom-0 left-4 top-2 hidden w-px bg-gradient-to-b from-[#10b981]/10 via-[#10b981]/50 to-[#10b981]/10 sm:block"
+          />
+
+          <div className="space-y-5">
+            {steps.map((step, i) => (
+              <motion.article
+                key={step.number}
+                initial={noMotion ? false : { opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.08 + i * 0.1, ease: EASE }}
+                className="relative rounded-2xl bg-white p-6 sm:ml-8 sm:p-7"
+                style={{ border: "1px solid #eaecf0" }}
+              >
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 rounded-2xl"
+                  style={{
+                    background:
+                      "linear-gradient(120deg, rgba(16,185,129,0.07) 0%, rgba(255,255,255,0) 38%)",
+                  }}
                 />
-              </div>
-              {i < steps.length - 1 && <ConnectorArrow index={i} />}
-            </div>
-          ))}
+
+                <span
+                  className="mb-4 inline-flex rounded-full bg-[#ecfdf3] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#047857]"
+                  style={{ border: "1px solid #a7f3d0" }}
+                >
+                  Step {step.number}
+                </span>
+
+                <h3
+                  className="relative mb-2 text-[1rem] font-semibold leading-snug text-ink-900"
+                  style={{ letterSpacing: "-0.01em" }}
+                >
+                  {step.title}
+                </h3>
+
+                <p className="relative text-[0.9rem] leading-relaxed text-ink-700/75">
+                  {step.description}
+                </p>
+
+                <span
+                  aria-hidden
+                  className="absolute left-4 top-8 hidden h-4 w-4 -translate-x-[2.625rem] rounded-full bg-white shadow-[0_0_0_5px_rgba(16,185,129,0.16)] sm:block"
+                  style={{ border: "1px solid #6ee7b7" }}
+                />
+              </motion.article>
+            ))}
+          </div>
         </div>
       </div>
     </section>

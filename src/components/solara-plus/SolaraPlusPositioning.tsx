@@ -13,7 +13,15 @@ export function SolaraPlusPositioning() {
   const noMotion = prefersReduced === true;
 
   return (
-    <section className="bg-white px-6 py-28 sm:px-10">
+    <section className="relative overflow-hidden bg-white px-6 py-28 sm:px-10">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 45% 55% at 0% 0%, rgba(249,115,22,0.08) 0%, transparent 70%), radial-gradient(ellipse 45% 55% at 100% 100%, rgba(14,165,233,0.09) 0%, transparent 70%)",
+        }}
+      />
       {!noMotion && (
         <style
           dangerouslySetInnerHTML={{
@@ -30,6 +38,13 @@ export function SolaraPlusPositioning() {
                 --sp-angle: 0deg;
                 background: conic-gradient(from var(--sp-angle), ${RAINBOW_COLORS});
                 animation: sp-border-spin 6s linear infinite;
+              }
+              @keyframes sp-soft-float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-4px); }
+              }
+              .sp-soft-float {
+                animation: sp-soft-float 4.5s ease-in-out infinite;
               }
             `,
           }}
@@ -111,20 +126,30 @@ export function SolaraPlusPositioning() {
             return (
               <article
                 key={column.label}
-                className="flex h-full flex-col rounded-3xl bg-[#f8f9fb] p-6 sm:p-7 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+                className={`relative flex h-full flex-col rounded-3xl p-6 sm:p-7 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md ${noMotion ? "" : "sp-soft-float"}`}
                 style={{ border: "1px solid #eaecf0" }}
               >
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 rounded-3xl"
+                  style={{
+                    background:
+                      index === 0
+                        ? "linear-gradient(155deg, rgba(249,115,22,0.08) 0%, rgba(255,255,255,1) 42%, rgba(255,255,255,1) 100%)"
+                        : "linear-gradient(155deg, rgba(6,182,212,0.1) 0%, rgba(255,255,255,1) 42%, rgba(255,255,255,1) 100%)",
+                  }}
+                />
                 <div className="flex items-start gap-3">
                   <span
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[#98a2b3]"
+                    className="relative inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[#98a2b3]"
                     style={{ border: "1px solid #eaecf0" }}
                   >
                     <Icon size={18} />
                   </span>
-                  <h3 className="text-xl font-semibold text-[#344054]">{column.label}</h3>
+                  <h3 className="relative text-xl font-semibold text-[#344054]">{column.label}</h3>
                 </div>
 
-                <p className="mt-5 text-sm leading-7 text-[#667085]">{column.description}</p>
+                <p className="relative mt-5 text-sm leading-7 text-[#667085]">{column.description}</p>
               </article>
             );
           })}

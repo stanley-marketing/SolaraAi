@@ -14,7 +14,15 @@ export function SolaraPlusProof() {
   const noMotion = prefersReduced === true;
 
   return (
-    <section className="border-t border-gray-100 bg-white px-6 py-28 sm:px-10">
+    <section className="relative overflow-hidden border-t border-gray-100 bg-white px-6 py-28 sm:px-10">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 45% 40% at 10% 85%, rgba(34,197,94,0.09) 0%, transparent 72%), radial-gradient(ellipse 45% 40% at 90% 12%, rgba(16,185,129,0.08) 0%, transparent 72%)",
+        }}
+      />
       {!noMotion && (
         <style
           dangerouslySetInnerHTML={{
@@ -76,16 +84,24 @@ export function SolaraPlusProof() {
                   delay: 0.12 + i * 0.1,
                   ease: EASE,
                 }}
-                className="flex flex-col gap-4 rounded-2xl bg-white p-8 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+                className="relative flex flex-col gap-4 overflow-hidden rounded-2xl bg-white p-8 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
                 style={{ border: "1px solid #eaecf0" }}
               >
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(140deg, rgba(34,197,94,0.09) 0%, rgba(255,255,255,0) 42%), radial-gradient(ellipse 35% 30% at 100% 0%, rgba(16,185,129,0.12) 0%, transparent 72%)",
+                  }}
+                />
                 <Icon
-                  className={`h-6 w-6 ${noMotion ? "" : "sp-float-icon"}`}
+                  className={`relative h-6 w-6 ${noMotion ? "" : "sp-float-icon"}`}
                   style={{ color: "#22c55e", animationDelay: noMotion ? undefined : `${i}s` }}
                 />
 
                 <h3
-                  className="text-[1rem] font-semibold leading-snug text-ink-900"
+                  className="relative text-[1rem] font-semibold leading-snug text-ink-900"
                   style={{
                     fontFamily: "var(--font-display)",
                     letterSpacing: "-0.01em",
@@ -94,9 +110,7 @@ export function SolaraPlusProof() {
                   {card.title}
                 </h3>
 
-                <p
-                  className="text-[15px] leading-relaxed text-[#667085]"
-                >
+                <p className="relative text-[15px] leading-relaxed text-[#667085]">
                   {card.description}
                 </p>
               </motion.div>

@@ -47,7 +47,30 @@ export function SolaraPlusMockup() {
   const noMotion = prefersReduced === true;
 
   return (
-    <section className="overflow-hidden bg-[#fafafa] px-6 py-28 sm:px-10">
+    <section className="relative overflow-hidden bg-[#f8fafc] px-6 py-28 sm:px-10">
+      {!noMotion && (
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              @keyframes sp-border-beam {
+                0% { transform: translateX(-120%); }
+                100% { transform: translateX(240%); }
+              }
+              .sp-border-beam {
+                animation: sp-border-beam 4.6s linear infinite;
+              }
+            `,
+          }}
+        />
+      )}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 42% at 0% 40%, rgba(16,185,129,0.08) 0%, transparent 70%), radial-gradient(ellipse 60% 50% at 100% 60%, rgba(59,130,246,0.09) 0%, transparent 78%)",
+        }}
+      />
       <div className="mx-auto max-w-6xl">
         <div className="mb-14 text-center">
           <motion.h2
@@ -96,13 +119,26 @@ export function SolaraPlusMockup() {
             initial={noMotion ? false : { opacity: 0, y: 32, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden rounded-2xl"
+            className="relative overflow-hidden rounded-2xl"
             style={{
               border: "1px solid #eaecf0",
               boxShadow:
-                "0 32px 80px -16px rgba(0,0,0,0.16), 0 8px 24px -4px rgba(0,0,0,0.06)",
+                "0 36px 90px -22px rgba(2,6,23,0.34), 0 8px 24px -4px rgba(2,6,23,0.12), 0 0 0 1px rgba(16,185,129,0.1)",
             }}
           >
+            {!noMotion && (
+              <div className="pointer-events-none absolute inset-0 z-10 overflow-hidden rounded-2xl" aria-hidden>
+                <span
+                  className="sp-border-beam absolute -top-6 left-0 h-12 w-40"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(125,211,252,0.05) 25%, rgba(16,185,129,0.65) 50%, rgba(125,211,252,0.05) 75%, rgba(255,255,255,0) 100%)",
+                    filter: "blur(6px)",
+                    transform: "rotate(1deg)",
+                  }}
+                />
+              </div>
+            )}
             <div
               className="flex items-center gap-3 px-4 py-3"
               style={{ background: "#f5f5f5", borderBottom: "1px solid #e5e7eb" }}
