@@ -6,27 +6,19 @@ import { GROW_CONTENT } from "./content";
 
 const { hero } = GROW_CONTENT;
 
-const SERVICE_CHIPS = [
-  "Paid Ads",
-  "Content Strategy",
-  "Campaign Management",
-  "AI Optimisation",
-  "Monthly Reporting",
-] as const;
-
 const HERO_STATS = [
   { value: "Expert-managed", label: "Dedicated operators" },
   { value: "AI-powered", label: "Continuous optimization" },
   { value: "Always-on", label: "Ongoing execution" },
 ] as const;
 
-export function SolaraPlusHero() {
+export function SolaraGrowHero() {
   const prefersReduced = useReducedMotion();
   const noMotion = prefersReduced === true;
   const headlineParts = hero.headline.split("Managed by AI");
 
   return (
-    <section className="relative overflow-hidden bg-[#040404] px-6 pb-24 pt-36 text-white sm:px-10 sm:pt-44">
+    <section className="relative flex min-h-screen flex-col overflow-hidden bg-[#040404] px-6 pb-24 pt-36 text-white sm:px-10 sm:pt-44">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -167,80 +159,6 @@ export function SolaraPlusHero() {
               />
             </svg>
           </Link>
-        </motion.div>
-
-        <motion.div
-          initial={noMotion ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" }}
-          className="mb-16 flex items-center gap-2 text-[13px] text-white/60"
-        >
-           {hero.proofTags.map((tag, i) => (
-            <span key={tag} className="flex items-center gap-2">
-              {i > 0 && (
-                 <span aria-hidden className="select-none text-white/35">
-                   ·
-                 </span>
-              )}
-              {tag}
-            </span>
-          ))}
-        </motion.div>
-
-        <motion.div
-          className="mb-12 w-full"
-          initial={noMotion ? false : { opacity: 0, y: 22 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <div
-            className="relative overflow-hidden rounded-2xl"
-            style={{
-              background: "#fafafa",
-              border: "1px solid rgba(255,255,255,0.14)",
-              padding: "28px 32px",
-              backdropFilter: "blur(12px)",
-            }}
-          >
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0"
-              style={{
-                 backgroundImage: "radial-gradient(circle, #9db4d2 1px, transparent 1px)",
-                 backgroundSize: "24px 24px",
-                 opacity: 0.22,
-               }}
-             />
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0"
-              style={{
-                background:
-                   "radial-gradient(ellipse 90% 80% at 50% 50%, transparent 40%, rgba(7,10,14,0.95) 100%)",
-               }}
-             />
-
-            <p className="relative mb-4 text-left text-[11px] font-semibold uppercase tracking-[0.15em] text-white/65">
-              What we manage
-            </p>
-
-            <div className="relative flex flex-wrap gap-2">
-              {SERVICE_CHIPS.map((chip) => (
-                <span
-                  key={chip}
-                  className="inline-flex items-center rounded-full bg-white/90 text-[13px] font-medium text-[#0f172a] transition-all duration-200 hover:scale-[1.04] hover:bg-white hover:shadow-md"
-                  style={{
-                    border: "1px solid rgba(255,255,255,0.5)",
-                    padding: "6px 14px",
-                    boxShadow: "0 1px 2px rgba(2,6,23,0.24)",
-                    cursor: "default",
-                  }}
-                >
-                  {chip}
-                </span>
-              ))}
-            </div>
-          </div>
         </motion.div>
 
         <motion.div

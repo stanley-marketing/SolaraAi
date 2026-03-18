@@ -42,7 +42,7 @@ const ACTIVITY_ITEMS = [
   { id: "content-schedule", done: false, text: "Content Push — scheduling next week", time: "Now" },
 ] as const;
 
-export function SolaraPlusMockup() {
+export function SolaraGrowMockup() {
   const prefersReduced = useReducedMotion();
   const noMotion = prefersReduced === true;
 

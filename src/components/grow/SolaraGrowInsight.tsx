@@ -3,7 +3,7 @@ import { GROW_CONTENT } from "./content";
 
 const PAIN_POINT_ICONS = [Clock, DollarSign, Wrench] as const;
 
-export function SolaraPlusInsight() {
+export function SolaraGrowInsight() {
   const { headline, painPoints } = GROW_CONTENT.insight;
 
   return (

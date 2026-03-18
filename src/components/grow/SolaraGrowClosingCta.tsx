@@ -7,7 +7,7 @@ import { GROW_CONTENT } from "./content";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-export function SolaraPlusClosingCta() {
+export function SolaraGrowClosingCta() {
   const { headline, sub, cta } = GROW_CONTENT.closingCta;
   const prefersReduced = useReducedMotion();
   const noMotion = prefersReduced === true;

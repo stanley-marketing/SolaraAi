@@ -8,7 +8,7 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const CARD_ICONS = [TrendingDown, TrendingUp, Layers] as const;
 
-export function SolaraPlusProof() {
+export function SolaraGrowProof() {
   const { headline, sub, cards } = GROW_CONTENT.proof;
   const prefersReduced = useReducedMotion();
   const noMotion = prefersReduced === true;

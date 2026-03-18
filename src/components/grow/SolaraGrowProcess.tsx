@@ -5,7 +5,7 @@ import { GROW_CONTENT } from "./content";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-export function SolaraPlusProcess() {
+export function SolaraGrowProcess() {
   const { headline, steps } = GROW_CONTENT.process;
   const prefersReduced = useReducedMotion();
   const noMotion = prefersReduced === true;

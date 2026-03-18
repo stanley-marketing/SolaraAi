@@ -9,7 +9,7 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const STATEMENT_ICONS = [Shield, Cpu, Clock] as const;
 
-export function SolaraPlusTrust() {
+export function SolaraGrowTrust() {
   const { statements } = GROW_CONTENT.trust;
   const prefersReduced = useReducedMotion();
   const noMotion = prefersReduced === true;

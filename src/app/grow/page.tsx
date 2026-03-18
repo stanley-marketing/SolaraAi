@@ -2,15 +2,15 @@ import type { Metadata } from "next";
 
 import { TopNav } from "@/components/LandingSections";
 import { Footer } from "@/components/Footer";
-import { SolaraPlusHero } from "@/components/grow/SolaraPlusHero";
-import { SolaraPlusInsight } from "@/components/grow/SolaraPlusInsight";
-import { SolaraPlusPositioning } from "@/components/grow/SolaraPlusPositioning";
-import { SolaraPlusProcess } from "@/components/grow/SolaraPlusProcess";
-import { SolaraPlusMockup } from "@/components/grow/SolaraPlusMockup";
-import { SolaraPlusProof } from "@/components/grow/SolaraPlusProof";
-import { SolaraPlusComparison } from "@/components/grow/SolaraPlusComparison";
-import { SolaraPlusTrust } from "@/components/grow/SolaraPlusTrust";
-import { SolaraPlusClosingCta } from "@/components/grow/SolaraPlusClosingCta";
+import { SolaraGrowHero } from "@/components/grow/SolaraGrowHero";
+import { SolaraGrowInsight } from "@/components/grow/SolaraGrowInsight";
+import { SolaraGrowPositioning } from "@/components/grow/SolaraGrowPositioning";
+import { SolaraGrowProcess } from "@/components/grow/SolaraGrowProcess";
+import { SolaraGrowMockup } from "@/components/grow/SolaraGrowMockup";
+import { SolaraGrowProof } from "@/components/grow/SolaraGrowProof";
+import { SolaraGrowComparison } from "@/components/grow/SolaraGrowComparison";
+import { SolaraGrowTrust } from "@/components/grow/SolaraGrowTrust";
+import { SolaraGrowClosingCta } from "@/components/grow/SolaraGrowClosingCta";
 
 export const metadata: Metadata = {
   title: "Grow Managed Marketing — Done-For-You AI Marketing Service | Solara AI",
@@ -80,15 +80,15 @@ export default function GrowPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
       />
       <TopNav />
-      <SolaraPlusHero />
-      <SolaraPlusInsight />
-      <SolaraPlusPositioning />
-      <SolaraPlusProcess />
-      <SolaraPlusMockup />
-      <SolaraPlusProof />
-      <SolaraPlusComparison />
-      <SolaraPlusTrust />
-      <SolaraPlusClosingCta />
+      <SolaraGrowHero />
+      <SolaraGrowInsight />
+      <SolaraGrowPositioning />
+      <SolaraGrowProcess />
+      <SolaraGrowMockup />
+      <SolaraGrowProof />
+      <SolaraGrowComparison />
+      <SolaraGrowTrust />
+      <SolaraGrowClosingCta />
       <Footer />
     </main>
   );
