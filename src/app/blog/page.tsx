@@ -204,7 +204,7 @@ export default function ArticlesPage() {
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {rest.map((article) => (
-              <Link
+              <a
                 key={article.id}
                 href={article.href}
                 className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white transition-all duration-150 hover:shadow-md hover:bg-shell"
@@ -249,7 +249,7 @@ export default function ArticlesPage() {
                     <span className="text-[13px] text-[#667085]">{article.date}</span>
                   </div>
                 </div>
-              </Link>
+              </a>
             ))}
           </div>
         </div>
