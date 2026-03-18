@@ -16,14 +16,18 @@ const partnerSubItems: NavLeaf[] = [
   { label: "Referral Program", href: "/partners/referral-program" },
 ];
 
-const navItems: NavItem[] = [
-  { label: "Home", href: "/" },
-  { label: "Pricing", href: "/pricing" },
+const resourceSubItems: NavLeaf[] = [
   { label: "About", href: "/about" },
-  { label: "Partners", children: partnerSubItems },
-  { label: "Solara+", href: "/solara-plus" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
+];
+
+const navItems: NavItem[] = [
+  { label: "Home", href: "/" },
+  { label: "Solara+", href: "/solara-plus" },
+  { label: "Partners", children: partnerSubItems },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Resources", children: resourceSubItems },
 ];
 
 function DesktopDropdown({ item }: { item: NavGroup }) {
