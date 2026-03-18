@@ -14,6 +14,7 @@ const tagColors: Record<string, string> = {
   Guide: "bg-amber-50 text-amber-700",
   Strategy: "bg-rose-50 text-rose-700",
   Trends: "bg-stone-100 text-[#344054]",
+  Knowledge: "bg-sky-50 text-[#0E6BA8]",
 };
 
 function AuthorChip() {

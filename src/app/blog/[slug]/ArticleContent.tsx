@@ -16,6 +16,7 @@ const tagColors: Record<string, string> = {
   Guide: "bg-amber-50 text-amber-700",
   Strategy: "bg-rose-50 text-rose-700",
   Trends: "bg-stone-100 text-[#344054]",
+  Knowledge: "bg-sky-50 text-[#0E6BA8]",
 };
 
 function slugify(text: string) {
@@ -31,6 +32,8 @@ function getSectionKey(section: ArticleSection, index: number) {
       return `${section.type}-${section.text.slice(0, 40)}-${index}`;
     case "list":
       return `${section.type}-${section.items.join("|").slice(0, 60)}-${index}`;
+    case "image":
+      return `${section.type}-${section.src.slice(-30)}-${index}`;
     case "tool":
       return `${section.type}-${section.number}-${section.name}`;
     default:
@@ -97,6 +100,20 @@ function RenderSection({ section, isLead = false }: { section: ArticleSection; i
             {section.text}
           </p>
         </div>
+      );
+
+    case "image":
+      return (
+        <figure className="my-6">
+          <Image
+            src={section.src}
+            alt={section.alt}
+            width={900}
+            height={500}
+            className="h-auto w-full rounded-xl object-cover"
+            unoptimized
+          />
+        </figure>
       );
 
     case "tool":

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { TopNav } from "@/components/LandingSections";
 import { Footer } from "@/components/Footer";
+import { articles as allArticles } from "@/lib/articles";
 
 export const metadata: Metadata = {
   title: "Solara AI Blog | Marketing Guides, Comparisons, and Strategy",
@@ -32,134 +33,23 @@ const AUTHOR = {
   avatar: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/690750f26031dfaacaf32be1_iV_Hy7-_vh6qz7lMknoxU%20(1).jpg",
 };
 
-const articles = [
-  {
-    id: 1,
-    title: "Top 8 UGC Video Editing Apps for Content Creators [2026]",
-    excerpt: "The best mobile and desktop apps for editing raw footage into polished UGC — compared on speed, AI features, and output quality for creators in 2026.",
-    readTime: "9 min read",
-    date: "Jan 2026",
-    tag: "Comparison",
-    href: "/blog/top-ugc-video-editing-apps",
-    thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691f218f40e04cbc0fbb2540_Frame%202131330149.webp",
-  },
-  {
-    id: 2,
-    title: "8 Best Synthesia.io Alternatives for AI Video Making",
-    excerpt: "Looking beyond Synthesia? We tested 8 alternatives on avatar quality, voice realism, language support, and price-to-output ratio.",
-    readTime: "9 min read",
-    date: "Dec 2025",
-    tag: "Comparison",
-    href: "/blog/synthesia-io-alternatives",
-    thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691e1634576c6ab2ae11e221_Frame%202131330148.webp",
-  },
-  {
-    id: 3,
-    title: "How to Add CTAs to AI-Generated UGC Videos [Full Guide]",
-    excerpt: "A step-by-step guide on layering effective calls-to-action into AI-generated user content — without killing the authentic feel that makes UGC convert.",
-    readTime: "7 min read",
-    date: "Dec 2025",
-    tag: "Guide",
-    href: "/blog/how-to-add-ctas-to-ai-generated-ugc-videos",
-    thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691e1383b5c545966f6f2901_How%20to%20Add%20CTAs%20to%20AI-Generated%20UGC%20Videos.webp",
-  },
-  {
-    id: 4,
-    title: "9 Best Influencer Marketing Tools for Brands [Comparison]",
-    excerpt: "Discovery, outreach, contract management, and analytics — we ranked the platforms that actually help brands run influencer programs at scale.",
-    readTime: "10 min read",
-    date: "Nov 2025",
-    tag: "Comparison",
-    href: "/blog/best-influencer-marketing-tools",
-    thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691e0e926c7b03dfb10d2fb6_Frame%202131330150.webp",
-  },
-  {
-    id: 5,
-    title: "8 Best AI Marketing Tools for Smarter Campaigns [Comparison]",
-    excerpt: "A deep comparison of the best AI-powered marketing platforms helping brands cut costs, automate execution, and improve campaign performance.",
-    readTime: "9 min read",
-    date: "Nov 2025",
-    tag: "Comparison",
-    href: "/blog/best-ai-marketing-tools",
-    thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691b7ae2e5cf906b3c6e7571_Frame%202131330147.webp",
-  },
-  {
-    id: 6,
-    title: "How to Become a UGC Creator: A Complete Step-by-Step Guide",
-    excerpt: "From niche selection to pitching brands — everything you need to build a consistent UGC income stream as a solo creator.",
-    readTime: "8 min read",
-    date: "Oct 2025",
-    tag: "Guide",
-    href: "/blog/how-to-become-a-ugc-creator",
-    thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/6913ae55826650a54ae6f03e_Frame%202131330144.webp",
-  },
-  {
-    id: 7,
-    title: "Top 8 Higgsfield AI Alternatives for Video Creation [Compared]",
-    excerpt: "Higgsfield set a new bar for cinematic AI video — here are 8 tools that match or surpass it for specific creative and marketing use cases.",
-    readTime: "9 min read",
-    date: "Oct 2025",
-    tag: "Comparison",
-    href: "/blog/higgsfield-ai-alternatives",
-    thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/6913ab47b4444dc208657f9d_Frame%202131330143.webp",
-  },
-  {
-    id: 8,
-    title: "Top 8 AI Marketing Automation Trends to Watch in 2025",
-    excerpt: "From autonomous content pipelines to AI voice agents — the eight shifts reshaping how brands run marketing end-to-end without growing headcount.",
-    readTime: "10 min read",
-    date: "Sep 2025",
-    tag: "Trends",
-    href: "/blog/ai-marketing-automation-trends",
-    thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/6913a90358981f4d43ad38ff_Frame%202131330142.png",
-  },
-  {
-    id: 9,
-    title: "8 Strategies to Make Your E-Commerce Ads Sell [+Pro Tips]",
-    excerpt: "Practical frameworks for writing ad copy, structuring offers, and matching creative to intent — so your paid campaigns stop bleeding budget.",
-    readTime: "9 min read",
-    date: "Sep 2025",
-    tag: "Strategy",
-    href: "/blog/ecommerce-advertising-strategies",
-    thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/690a2a93b4380403a8542603_Frame%202131330141.webp",
-  },
-  {
-    id: 10,
-    title: "8 Best AI Ad Generators for High-Converting Campaigns in 2025",
-    excerpt: "We tested the top AI ad creation tools for copy, creative, and targeting. Here's what actually moves the needle on conversion rates.",
-    readTime: "9 min read",
-    date: "Aug 2025",
-    tag: "Comparison",
-    href: "/blog/best-ai-ad-generators",
-    thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/6900a9e906c8dbf86e98a7c7_Frame%202131330140.webp",
-  },
-  {
-    id: 11,
-    title: "9 Creative Product Advertisement Ideas for 2025 [Examples]",
-    excerpt: "Real examples and frameworks for ads that stop the scroll — from lifestyle storytelling to problem-first hooks and social proof formats.",
-    readTime: "9 min read",
-    date: "Aug 2025",
-    tag: "Strategy",
-    href: "/blog/creative-product-advertisement",
-    thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68ff570d0941b30df9bf03e4_Frame%202131330135.webp",
-  },
-  {
-    id: 12,
-    title: "8 Ocoya Alternatives Marketers Should Try [2025 Comparison]",
-    excerpt: "If Ocoya isn't cutting it for your social scheduling and AI content needs, here are 8 tools that handle planning, creation, and publishing better.",
-    readTime: "10 min read",
-    date: "Jul 2025",
-    tag: "Comparison",
-    href: "/blog/ocoya-alternatives",
-    thumbnail: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68ff54b37e98595191251e1f_Frame%202131330137.webp",
-  },
-];
+const articles = allArticles.map((a, i) => ({
+  id: i + 1,
+  title: a.title,
+  excerpt: a.excerpt,
+  readTime: a.readTime,
+  date: a.date,
+  tag: a.tag,
+  href: `/blog/${a.slug}`,
+  thumbnail: a.thumbnail,
+}));
 
 const tagColors: Record<string, string> = {
   Comparison: "bg-fog text-[#344054]",
   Guide: "bg-amber/10 text-[#B54708]",
   Strategy: "bg-rose/10 text-[#B42318]",
   Trends: "bg-gold/10 text-[#7A5C00]",
+  Knowledge: "bg-sky-50 text-[#0E6BA8]",
 };
 
 const [featured, ...rest] = articles;

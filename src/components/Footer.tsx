@@ -25,11 +25,18 @@ const PARTNERS = [
   { label: "For Marketers", href: "/partners/marketers" },
 ];
 
+const LEGAL = [
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms of Service", href: "/terms-of-service" },
+  { label: "Cookies", href: "/cookies" },
+];
+
 const COLUMNS = [
   { heading: "Product", links: PRODUCT },
   { heading: "Resources", links: RESOURCES },
   { heading: "Company", links: COMPANY },
   { heading: "Partners", links: PARTNERS },
+  { heading: "Legal", links: LEGAL },
 ];
 
 const SOCIALS = [
