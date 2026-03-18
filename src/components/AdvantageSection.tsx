@@ -116,7 +116,7 @@ function StatTabs({
   onSelect: (i: number) => void;
 }) {
   return (
-    <div className="mt-16 grid grid-cols-2 gap-y-4 sm:grid-cols-4 sm:gap-y-0">
+    <div className="mx-auto mt-16 grid max-w-xl grid-cols-2 gap-y-4">
       {STATS.map((s, i) => (
         <button
           key={s.label}
