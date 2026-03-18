@@ -5,6 +5,7 @@ import Image from "next/image";
 
 const PRODUCT = [
   { label: "Pricing", href: "/pricing" },
+  { label: "Solara+", href: "/solara-plus" },
 ];
 
 const RESOURCES = [

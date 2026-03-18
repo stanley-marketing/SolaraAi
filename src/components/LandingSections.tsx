@@ -21,6 +21,7 @@ const navItems: NavItem[] = [
   { label: "Pricing", href: "/pricing" },
   { label: "About", href: "/about" },
   { label: "Partners", children: partnerSubItems },
+  { label: "Solara+", href: "/solara-plus" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
