@@ -155,7 +155,7 @@ export default function PreviewPage() {
           <div style={{ display: "inline-flex", position: "relative", background: "#f1f1f1", borderRadius: 999, padding: 4, gap: 4 }}>
             {([
               { key: "self" as const, label: "Self-managed" },
-              { key: "expert" as const, label: "Solara Expert" },
+              { key: "expert" as const, label: "Solara Grow" },
             ]).map(({ key, label }) => {
               const active = tab === key;
               return (

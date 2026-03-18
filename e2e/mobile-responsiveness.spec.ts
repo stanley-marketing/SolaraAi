@@ -12,7 +12,7 @@ const ROUTES = [
   "/blog",
   "/contact",
   "/pricing",
-  "/solara-plus",
+  "/grow",
   "/partners/agencies",
   "/partners/marketers",
   "/partners/referral-program",

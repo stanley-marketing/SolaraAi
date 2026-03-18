@@ -2,14 +2,14 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { Layers, TrendingDown, TrendingUp } from "lucide-react";
-import { SOLARA_PLUS_CONTENT } from "./content";
+import { GROW_CONTENT } from "./content";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const CARD_ICONS = [TrendingDown, TrendingUp, Layers] as const;
 
 export function SolaraPlusProof() {
-  const { headline, sub, cards } = SOLARA_PLUS_CONTENT.proof;
+  const { headline, sub, cards } = GROW_CONTENT.proof;
   const prefersReduced = useReducedMotion();
   const noMotion = prefersReduced === true;
 

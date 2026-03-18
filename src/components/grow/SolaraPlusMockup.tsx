@@ -193,7 +193,7 @@ export function SolaraPlusMockup() {
                       letterSpacing: "-0.02em",
                     }}
                   >
-                    Solara+
+                    Grow
                   </span>
                 </div>
 

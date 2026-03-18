@@ -1,5 +1,5 @@
 import { Check, X } from "lucide-react";
-import { SOLARA_PLUS_CONTENT } from "./content";
+import { GROW_CONTENT } from "./content";
 import type { ComparisonValue } from "./content";
 
 function renderValue(value: ComparisonValue) {
@@ -30,7 +30,7 @@ function renderValue(value: ComparisonValue) {
 }
 
 export function SolaraPlusComparison() {
-  const { headline, columns, rows } = SOLARA_PLUS_CONTENT.comparison;
+  const { headline, columns, rows } = GROW_CONTENT.comparison;
 
   return (
     <section
@@ -222,9 +222,9 @@ export function SolaraPlusComparison() {
                 <span style={{ color: "#667085" }}>
                   DIY: {renderValue(row.diy)}
                 </span>
-                <span className="font-medium" style={{ color: "#040404" }}>
-                  Solara+: {renderValue(row.solara)}
-                </span>
+               <span className="font-medium" style={{ color: "#040404" }}>
+                   Grow: {renderValue(row.solara)}
+                 </span>
               </div>
             </div>
           ))}

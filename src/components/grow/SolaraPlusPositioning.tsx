@@ -3,12 +3,12 @@
 import { Sparkles, TimerReset, Wrench } from "lucide-react";
 import { useReducedMotion } from "framer-motion";
 
-import { SOLARA_PLUS_CONTENT } from "./content";
+import { GROW_CONTENT } from "./content";
 
 const RAINBOW_COLORS = "#f97316, #eab308, #22c55e, #06b6d4, #8b5cf6, #ec4899, #f97316";
 
 export function SolaraPlusPositioning() {
-  const { headline, columns } = SOLARA_PLUS_CONTENT.positioning;
+  const { headline, columns } = GROW_CONTENT.positioning;
   const prefersReduced = useReducedMotion();
   const noMotion = prefersReduced === true;
 

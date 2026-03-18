@@ -24,7 +24,7 @@ const resourceSubItems: NavLeaf[] = [
 
 const navItems: NavItem[] = [
   { label: "Home", href: "/" },
-  { label: "Solara+", href: "/solara-plus" },
+  { label: "Grow", href: "/grow" },
   { label: "Partners", children: partnerSubItems },
   { label: "Pricing", href: "/pricing" },
   { label: "Resources", children: resourceSubItems },

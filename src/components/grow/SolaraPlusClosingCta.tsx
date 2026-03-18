@@ -3,12 +3,12 @@
 import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 
-import { SOLARA_PLUS_CONTENT } from "./content";
+import { GROW_CONTENT } from "./content";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export function SolaraPlusClosingCta() {
-  const { headline, sub, cta } = SOLARA_PLUS_CONTENT.closingCta;
+  const { headline, sub, cta } = GROW_CONTENT.closingCta;
   const prefersReduced = useReducedMotion();
   const noMotion = prefersReduced === true;
 
@@ -18,7 +18,7 @@ export function SolaraPlusClosingCta() {
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
-          backgroundImage: "url('/solara-plus/cta-orbit.png')",
+          backgroundImage: "url('/grow/cta-orbit.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           opacity: 0.45,

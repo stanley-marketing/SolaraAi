@@ -2,34 +2,34 @@ import type { Metadata } from "next";
 
 import { TopNav } from "@/components/LandingSections";
 import { Footer } from "@/components/Footer";
-import { SolaraPlusHero } from "@/components/solara-plus/SolaraPlusHero";
-import { SolaraPlusInsight } from "@/components/solara-plus/SolaraPlusInsight";
-import { SolaraPlusPositioning } from "@/components/solara-plus/SolaraPlusPositioning";
-import { SolaraPlusProcess } from "@/components/solara-plus/SolaraPlusProcess";
-import { SolaraPlusMockup } from "@/components/solara-plus/SolaraPlusMockup";
-import { SolaraPlusProof } from "@/components/solara-plus/SolaraPlusProof";
-import { SolaraPlusComparison } from "@/components/solara-plus/SolaraPlusComparison";
-import { SolaraPlusTrust } from "@/components/solara-plus/SolaraPlusTrust";
-import { SolaraPlusClosingCta } from "@/components/solara-plus/SolaraPlusClosingCta";
+import { SolaraPlusHero } from "@/components/grow/SolaraPlusHero";
+import { SolaraPlusInsight } from "@/components/grow/SolaraPlusInsight";
+import { SolaraPlusPositioning } from "@/components/grow/SolaraPlusPositioning";
+import { SolaraPlusProcess } from "@/components/grow/SolaraPlusProcess";
+import { SolaraPlusMockup } from "@/components/grow/SolaraPlusMockup";
+import { SolaraPlusProof } from "@/components/grow/SolaraPlusProof";
+import { SolaraPlusComparison } from "@/components/grow/SolaraPlusComparison";
+import { SolaraPlusTrust } from "@/components/grow/SolaraPlusTrust";
+import { SolaraPlusClosingCta } from "@/components/grow/SolaraPlusClosingCta";
 
 export const metadata: Metadata = {
-  title: "Solara+ Managed Marketing — Done-For-You AI Marketing Service | Solara AI",
+  title: "Grow Managed Marketing — Done-For-You AI Marketing Service | Solara AI",
   description:
-    "Solara+ is the done-for-you AI marketing service. Our team manages your paid ads, content, and campaigns end-to-end — so you can focus on growing your business.",
+    "Grow is the done-for-you AI marketing service. Our team manages your paid ads, content, and campaigns end-to-end — so you can focus on growing your business.",
   alternates: {
-    canonical: "https://solaraai.com/solara-plus",
+    canonical: "https://solaraai.com/grow",
   },
   openGraph: {
-    title: "Solara+ Managed Marketing",
+    title: "Grow Managed Marketing",
     description:
       "Done-for-you AI marketing service. We manage your paid ads, content, and campaigns end-to-end.",
-    url: "https://solaraai.com/solara-plus",
+    url: "https://solaraai.com/grow",
     siteName: "Solara AI",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Solara+ Managed Marketing",
+    title: "Grow Managed Marketing",
     description:
       "Done-for-you AI marketing service. We manage your paid ads, content, and campaigns end-to-end.",
   },
@@ -40,10 +40,10 @@ const SITE_URL = "https://solaraai.com";
 const webPageJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  name: "Solara+ Managed Marketing",
-  url: `${SITE_URL}/solara-plus`,
+  name: "Grow Managed Marketing",
+  url: `${SITE_URL}/grow`,
   description:
-    "Solara+ is the done-for-you AI marketing service. Our team manages your paid ads, content, and campaigns end-to-end.",
+    "Grow is the done-for-you AI marketing service. Our team manages your paid ads, content, and campaigns end-to-end.",
   breadcrumb: {
     "@type": "BreadcrumbList",
     itemListElement: [
@@ -51,14 +51,14 @@ const webPageJsonLd = {
       {
         "@type": "ListItem",
         position: 2,
-        name: "Solara+",
-        item: `${SITE_URL}/solara-plus`,
+        name: "Grow",
+        item: `${SITE_URL}/grow`,
       },
     ],
   },
 };
 
-export default function SolaraPlusPage() {
+export default function GrowPage() {
   return (
     <main className="relative min-h-screen bg-white text-ink-900">
       {/* Force nav pill to always show white background on this dark-hero page */}

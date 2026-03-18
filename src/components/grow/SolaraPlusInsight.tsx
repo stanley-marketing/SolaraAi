@@ -1,10 +1,10 @@
 import { Clock, DollarSign, Wrench } from "lucide-react";
-import { SOLARA_PLUS_CONTENT } from "./content";
+import { GROW_CONTENT } from "./content";
 
 const PAIN_POINT_ICONS = [Clock, DollarSign, Wrench] as const;
 
 export function SolaraPlusInsight() {
-  const { headline, painPoints } = SOLARA_PLUS_CONTENT.insight;
+  const { headline, painPoints } = GROW_CONTENT.insight;
 
   return (
     <section className="relative overflow-hidden bg-white px-6 py-28 sm:px-10">

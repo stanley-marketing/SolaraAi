@@ -2,9 +2,9 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
-import { SOLARA_PLUS_CONTENT } from "./content";
+import { GROW_CONTENT } from "./content";
 
-const { hero } = SOLARA_PLUS_CONTENT;
+const { hero } = GROW_CONTENT;
 
 const SERVICE_CHIPS = [
   "Paid Ads",
@@ -31,7 +31,7 @@ export function SolaraPlusHero() {
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
-          backgroundImage: "url('/solara-plus/hero-constellation.png')",
+          backgroundImage: "url('/grow/hero-constellation.png')",
           backgroundPosition: "center",
           backgroundSize: "cover",
           opacity: 0.4,

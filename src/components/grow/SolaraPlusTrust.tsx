@@ -3,14 +3,14 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Clock, Cpu, Shield } from "lucide-react";
 
-import { SOLARA_PLUS_CONTENT } from "./content";
+import { GROW_CONTENT } from "./content";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const STATEMENT_ICONS = [Shield, Cpu, Clock] as const;
 
 export function SolaraPlusTrust() {
-  const { statements } = SOLARA_PLUS_CONTENT.trust;
+  const { statements } = GROW_CONTENT.trust;
   const prefersReduced = useReducedMotion();
   const noMotion = prefersReduced === true;
 
@@ -26,7 +26,7 @@ export function SolaraPlusTrust() {
           <p
             className="text-[11px] font-semibold uppercase tracking-[0.28em] text-ink-900/40"
           >
-            Why teams choose Solara+
+            Why teams choose Grow
           </p>
         </motion.div>
 

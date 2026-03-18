@@ -140,7 +140,7 @@ const EXPERT_PLANS: Plan[] = [
 ];
 
 export function PricingSection() {
-  const [tab, setTab] = useState<"self" | "expert">("self");
+  const [tab, setTab] = useState<"self" | "expert">("expert");
   const [yearly, setYearly] = useState(true);
   const activePlans = tab === "self" ? PLANS : EXPERT_PLANS;
 
@@ -157,9 +157,9 @@ export function PricingSection() {
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 32 }}>
           <div style={{ display: "inline-flex", position: "relative", background: "#f1f1f1", borderRadius: 999, padding: 4, gap: 4 }}>
             {[
-              { key: "self" as const, label: "Self-managed" },
-              { key: "expert" as const, label: "Solara Expert" },
-            ].map(({ key, label }) => {
+              { key: "expert" as const, label: "Solara Grow" },
+              { key: "self" as const, label: "Self-managed", badge: "Coming Soon" },
+            ].map(({ key, label, badge }: { key: "self" | "expert"; label: string; badge?: string }) => {
               const active = tab === key;
               return (
                 <button
@@ -188,7 +188,14 @@ export function PricingSection() {
                       transition={{ type: "spring", duration: 0.45, bounce: 0.15 }}
                     />
                   )}
-                  <span style={{ position: "relative", zIndex: 2 }}>{label}</span>
+                  <span style={{ position: "relative", zIndex: 2, display: "inline-flex", alignItems: "center", gap: 6 }}>
+                    {label}
+                    {badge && (
+                      <span style={{ fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", background: active ? "rgba(255,255,255,0.2)" : "#e0e0e0", color: active ? "#ffffff" : "#888888", borderRadius: 999, padding: "2px 7px", lineHeight: 1.4 }}>
+                        {badge}
+                      </span>
+                    )}
+                  </span>
                 </button>
               );
             })}

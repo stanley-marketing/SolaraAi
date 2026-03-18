@@ -1,5 +1,5 @@
 /**
- * content.ts — Single source of truth for all Solara+ managed-service landing page copy.
+ * content.ts — Single source of truth for all Grow managed-service landing page copy.
  *
  * Rules:
  * - No invented metrics, client names, testimonial quotes, or percentage improvements.
@@ -106,7 +106,7 @@ export type ClosingCtaContent = {
   cta: Cta;
 };
 
-export type SolaraPlusContent = {
+export type GrowContent = {
   hero: HeroContent;
   insight: InsightContent;
   positioning: PositioningContent;
@@ -126,14 +126,14 @@ const CTA: Cta = {
   href: "/contact",
 };
 
-export const SOLARA_PLUS_CONTENT: SolaraPlusContent = {
+export const GROW_CONTENT: GrowContent = {
   // -------------------------------------------------------------------------
   // Hero
   // -------------------------------------------------------------------------
   hero: {
     headline: "Your Entire Marketing, Managed by AI + Our Experts",
     subheadline:
-      "Solara+ is the done-for-you service where our team handles your paid ads, content strategy, and campaigns — powered by AI, delivered by experts.",
+      "Grow is the done-for-you service where our team handles your paid ads, content strategy, and campaigns — powered by AI, delivered by experts.",
     cta: CTA,
     proofTags: ["Expert-managed", "AI-powered", "Always-on"],
   },
@@ -154,7 +154,7 @@ export const SOLARA_PLUS_CONTENT: SolaraPlusContent = {
   // 3-Way Positioning
   // -------------------------------------------------------------------------
   positioning: {
-    headline: "Why Solara+ is different",
+    headline: "Why Grow is different",
     columns: [
       {
         label: "DIY Tools",
@@ -169,7 +169,7 @@ export const SOLARA_PLUS_CONTENT: SolaraPlusContent = {
           "High retainers, slow turnarounds, and limited AI leverage. Results take months to materialize.",
       },
       {
-        label: "Solara+",
+        label: "Grow",
         highlighted: true,
         description:
           "Expert team + AI systems handling everything. Fast launches, continuous optimization, measurable results.",
@@ -241,15 +241,15 @@ export const SOLARA_PLUS_CONTENT: SolaraPlusContent = {
 
   // -------------------------------------------------------------------------
   // Comparison table
-  // Columns: DIY Tools | Traditional Agency | Solara+
+  // Columns: DIY Tools | Traditional Agency | Grow
   // Values: "check" | "cross" | descriptive string
   // -------------------------------------------------------------------------
   comparison: {
-    headline: "See how Solara+ stacks up",
+    headline: "See how Grow stacks up",
     columns: {
       diy: "DIY Tools",
       agency: "Traditional Agency",
-      solara: "Solara+",
+      solara: "Grow",
     },
     rows: [
       {
@@ -315,7 +315,7 @@ export const SOLARA_PLUS_CONTENT: SolaraPlusContent = {
   // -------------------------------------------------------------------------
   closingCta: {
     headline: "Ready to Hand Off Your Marketing?",
-    sub: "Book a call with our team. We'll walk you through exactly how Solara+ works for your business.",
+    sub: "Book a call with our team. We'll walk you through exactly how Grow works for your business.",
     cta: CTA,
   },
 };

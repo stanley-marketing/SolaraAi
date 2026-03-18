@@ -47,7 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${SITE_URL}/solara-plus`,
+      url: `${SITE_URL}/grow`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,

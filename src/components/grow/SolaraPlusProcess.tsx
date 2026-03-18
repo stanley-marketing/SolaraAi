@@ -1,12 +1,12 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { SOLARA_PLUS_CONTENT } from "./content";
+import { GROW_CONTENT } from "./content";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export function SolaraPlusProcess() {
-  const { headline, steps } = SOLARA_PLUS_CONTENT.process;
+  const { headline, steps } = GROW_CONTENT.process;
   const prefersReduced = useReducedMotion();
   const noMotion = prefersReduced === true;
 
