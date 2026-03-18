@@ -61,6 +61,20 @@ const webPageJsonLd = {
 export default function SolaraPlusPage() {
   return (
     <main className="relative min-h-screen bg-white text-ink-900">
+      {/* Force nav pill to always show white background on this dark-hero page */}
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            header.fixed > div {
+              border-color: rgba(232,232,232,0.45) !important;
+              background: rgba(255,255,255,0.82) !important;
+              backdrop-filter: blur(16px) !important;
+              -webkit-backdrop-filter: blur(16px) !important;
+              box-shadow: 0 12px 35px -28px rgba(23,19,14,0.45) !important;
+            }
+          `,
+        }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
