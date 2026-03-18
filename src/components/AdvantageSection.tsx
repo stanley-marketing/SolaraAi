@@ -26,8 +26,6 @@ const PhotonBeam = dynamic(() => import("@/components/ui/photon-beam"), {
 /* ─── Shared data ─── */
 const STATS = [
   { val: 90, suffix: "%", label: "Handled by AI", desc: "Scheduling, optimization, reporting — automated.", color: "#7c5cfc" },
-  { val: 6, suffix: "", label: "AI agents", desc: "Each specialized. Ads, SEO, social, creative, website, leads.", color: "#3b82f6" },
-  { val: 24, suffix: "/7", label: "Always running", desc: "Campaigns adjust in real time. Never stops.", color: "#06b6d4" },
   { val: 10, suffix: "%", label: "Human expertise", desc: "Strategy, creativity, judgment — things AI can't replace.", color: "#a855f7" },
 ];
 
@@ -85,46 +83,7 @@ const BEAM_CONFIGS = [
     curvePower: 2,
     caption: "Tasks flowing through your AI marketing engine",
   },
-  {
-    // 6 Agents — fewer lines, wide spread, distinct streams
-    colorLine: "#0a1a35",
-    colorSignal: "#3b82f6",
-    colorSignal2: "#06b6d4",
-    colorSignal3: "#10b981",
-    useColor2: true,
-    useColor3: true,
-    lineCount: 60,
-    spreadHeight: 55,
-    signalCount: 100,
-    speedGlobal: 0.38,
-    trailLength: 5,
-    bloomStrength: 3.2,
-    bloomRadius: 0.3,
-    waveHeight: 0.5,
-    waveSpeed: 0.5,
-    curvePower: 3,
-    caption: "Six specialized agents, each mastering their domain",
-  },
-  {
-    // 24/7 — fast, tight, long trails, energetic
-    colorLine: "#0a2030",
-    colorSignal: "#06b6d4",
-    colorSignal2: "#3b82f6",
-    colorSignal3: "#22d3ee",
-    useColor2: true,
-    useColor3: true,
-    lineCount: 60,
-    spreadHeight: 25,
-    signalCount: 120,
-    speedGlobal: 0.7,
-    trailLength: 7,
-    bloomStrength: 2.8,
-    bloomRadius: 0.4,
-    waveHeight: 2,
-    waveSpeed: 2,
-    curvePower: 1.5,
-    caption: "Round-the-clock optimization, even while you sleep",
-  },
+
   {
     // 10% Human — sparse, calm, narrow, subtle glow
     colorLine: "#150a30",
@@ -221,7 +180,7 @@ export function AdvantageSection() {
   /* Auto-rotate stats */
   /* Auto-rotate stats — resets when user clicks a tab */
   useEffect(() => {
-    const t = setInterval(() => setActive((p) => (p + 1) % 4), 30000);
+    const t = setInterval(() => setActive((p) => (p + 1) % STATS.length), 30000);
     return () => clearInterval(t);
   }, [resetKey]);
 
