@@ -9,7 +9,7 @@ const article: Article = {
   date: "Oct 22, 2025",
   tag: "Knowledge",
   thumbnail:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e13adaea8675c1307aed_2KSramsdSRmgSyFF7nYbTCEtG2s.webp",
+    "/blog/images/68f8e13adaea8675c1307aed_2KSramsdSRmgSyFF7nYbTCEtG2s.webp",
   content: [
     {
       type: "paragraph",
@@ -41,6 +41,11 @@ const article: Article = {
       ],
     },
     {
+      type: "image",
+      src: "/blog/images/68f8e13adaea8675c13076cc_cg6RO3TcZ6cFgoXHY9MfZnYjO0.webp",
+      alt: "amazon-example",
+    },
+    {
       type: "heading",
       text: "2. Starbucks - Predictive Analytics with Deep Brew",
     },
@@ -56,6 +61,11 @@ const article: Article = {
         "30% reduction in food waste",
         "Launch cycles reduced from 18 months to 6 months",
       ],
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e13adaea8675c13076c6_jwRnCAmvFkPLrhI5QZQ8ModOJ1g.webp",
+      alt: "starbucks-example",
     },
     {
       type: "heading",
@@ -74,6 +84,11 @@ const article: Article = {
       ],
     },
     {
+      type: "image",
+      src: "/blog/images/68f8e13adaea8675c13076dd_KQgt0iDsj0YPUEYitbLakSBA8o.webp",
+      alt: "netflix-example",
+    },
+    {
       type: "heading",
       text: "4. Coca-Cola - Interactive Co-Creation at Scale",
     },
@@ -88,6 +103,11 @@ const article: Article = {
         "Average session time over 7 minutes",
         "Global campaign expansion across multiple formats",
       ],
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e13adaea8675c13076c3_ufRjG1Z3UuiuInbUduJRcgcsnwA.webp",
+      alt: "coca-cola-example",
     },
     {
       type: "heading",
@@ -145,6 +165,11 @@ const article: Article = {
       ],
     },
     {
+      type: "image",
+      src: "/blog/images/68f8e13adaea8675c13076c9_6bjmlFb9GY7pQLtfZSOMHNJFiM.webp",
+      alt: "hm-example",
+    },
+    {
       type: "heading",
       text: "9. Spotify - Contextual Advertising Through Listening Signals",
     },
@@ -190,6 +215,11 @@ const article: Article = {
         "50% of featured dogs adopted within two weeks",
         "6x increase in shelter traffic",
       ],
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e13adaea8675c13076da_8UOyVA9uK0av3CIgg3dcdIRUNM.webp",
+      alt: "pedigree-example",
     },
     {
       type: "heading",
@@ -246,6 +276,11 @@ const article: Article = {
     {
       type: "paragraph",
       text: "e.l.f. uses continuous AI creative generation and testing loops to maintain relevance and engagement on youth-focused social channels.",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e13adaea8675c13076c0_m7jkJcf3rwBhd8bdZEivclsrI.webp",
+      alt: "elf-beauty-example",
     },
     {
       type: "heading",

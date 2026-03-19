@@ -9,7 +9,7 @@ const article: Article = {
   date: "Nov 19, 2025",
   tag: "Guide",
   thumbnail:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691e1383b5c545966f6f2901_How%20to%20Add%20CTAs%20to%20AI-Generated%20UGC%20Videos.webp",
+    "/blog/images/691e1383b5c545966f6f2901_How-to-Add-CTAs-to-AI-Generated-UGC-Videos.webp",
   content: [
     {
       type: "paragraph",

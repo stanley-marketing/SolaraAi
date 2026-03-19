@@ -9,7 +9,7 @@ const article: Article = {
   date: "Oct 22, 2025",
   tag: "Knowledge",
   thumbnail:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e1419ab42f11def9a5d0_q3STaYfDJ3WeGsYOWP1bzWb4PAU.webp",
+    "/blog/images/68f8e1419ab42f11def9a5d0_q3STaYfDJ3WeGsYOWP1bzWb4PAU.webp",
   content: [
     {
       type: "paragraph",
@@ -18,6 +18,21 @@ const article: Article = {
     {
       type: "paragraph",
       text: "This list covers ten Hootsuite alternatives better aligned with modern AI-assisted social operations.",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e13f9ab42f11def9a37b_Vh0eqRMBaJQi4CvCGBqdBjCUnOM.webp",
+      alt: "hootsuite-homepage",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e13e9ab42f11def9a332_IYvFh7rb9a0V2IEBjN4lg8yvdM.webp",
+      alt: "hootsuite-pricing",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e13f9ab42f11def9a378_xQoVfC4GVKM0KfGcwXhcmTAVgZk.webp",
+      alt: "comparison-table",
     },
     {
       type: "heading",
@@ -64,7 +79,12 @@ const article: Article = {
       ],
       pricing: "From $69/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/69027462bd57e34a72b918f2_frame.webp",
+        "/blog/images/69027462bd57e34a72b918f2_frame.webp",
+    },
+    {
+      type: "image",
+      src: "/blog/images/690274da2aa2e3c40cb796f4_Screenshot-2025-10-29-at-16.43.21.webp",
+      alt: "solara-ai-pricing",
     },
     {
       type: "tool",
@@ -81,7 +101,12 @@ const article: Article = {
       ],
       pricing: "Free plan; paid plans from $59/user/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e13e9ab42f11def9a2fd_F9ioAh3XYTP4zFadko07K5Oc.webp",
+        "/blog/images/68f8e13e9ab42f11def9a2fd_F9ioAh3XYTP4zFadko07K5Oc.webp",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e13e9ab42f11def9a2f2_3pMjVB1F7jggY9WeMPUXaxr6xQ.webp",
+      alt: "storychief-pricing",
     },
     {
       type: "tool",
@@ -98,7 +123,12 @@ const article: Article = {
       ],
       pricing: "From $79/user/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e13e9ab42f11def9a300_XB0LURObENdU0bhsGMWaENndk.webp",
+        "/blog/images/68f8e13e9ab42f11def9a300_XB0LURObENdU0bhsGMWaENndk.webp",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e13cb6a91b31f636b5e5_oNJHlLSl9MY6oB7f5JibjrmOMZs.webp",
+      alt: "agorapulse-pricing",
     },
     {
       type: "tool",
@@ -115,7 +145,12 @@ const article: Article = {
       ],
       pricing: "From $19/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e13e9ab42f11def9a2fa_I7RRAwLwgC5Ycgqi0VzeRykqqw.webp",
+        "/blog/images/68f8e13e9ab42f11def9a2fa_I7RRAwLwgC5Ycgqi0VzeRykqqw.webp",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e13e9ab42f11def9a33a_eJUC933wEauSYW2ODECIJ5UwN4.webp",
+      alt: "contentstudio-pricing",
     },
     {
       type: "tool",
@@ -132,7 +167,12 @@ const article: Article = {
       ],
       pricing: "From $24/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e13e9ab42f11def9a33d_6qLc6ArVTE5H9EvUTghgzgQp0s.webp",
+        "/blog/images/68f8e13e9ab42f11def9a33d_6qLc6ArVTE5H9EvUTghgzgQp0s.webp",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e13cb6a91b31f636b5bb_xt1oP15Mht9AkVImWGUQ8dQR5w.webp",
+      alt: "socialbee-pricing",
     },
     {
       type: "tool",
@@ -149,7 +189,7 @@ const article: Article = {
       ],
       pricing: "Custom pricing",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e13e9ab42f11def9a30c_bGGRi8D2blhze1hD6N9uy1byzAc.webp",
+        "/blog/images/68f8e13e9ab42f11def9a30c_bGGRi8D2blhze1hD6N9uy1byzAc.webp",
     },
     {
       type: "tool",
@@ -166,7 +206,7 @@ const article: Article = {
       ],
       pricing: "Custom pricing",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e13e9ab42f11def9a30f_Msg2WCyELZqTXPl967X9srS9xvg.webp",
+        "/blog/images/68f8e13e9ab42f11def9a30f_Msg2WCyELZqTXPl967X9srS9xvg.webp",
     },
     {
       type: "tool",
@@ -183,7 +223,12 @@ const article: Article = {
       ],
       pricing: "Free tier; paid plans from $19/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e13e9ab42f11def9a31c_hbxD1RTOsbW1zt7R8eZVh1MDDDc.webp",
+        "/blog/images/68f8e13e9ab42f11def9a31c_hbxD1RTOsbW1zt7R8eZVh1MDDDc.webp",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e13509f70b766e66e911_6ZFW0gfB9HsaKoJyrZzeI4lyRhk.webp",
+      alt: "cratify-pricing",
     },
     {
       type: "tool",
@@ -200,7 +245,12 @@ const article: Article = {
       ],
       pricing: "From $39/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e13e9ab42f11def9a31f_lmJQrCO7FDU6clK5mO6fGMNfbUo.webp",
+        "/blog/images/68f8e13e9ab42f11def9a31f_lmJQrCO7FDU6clK5mO6fGMNfbUo.webp",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e13e9ab42f11def9a32c_s2zhoHZdntyCLbatrWCGqG7W7Xs.webp",
+      alt: "writesconic-pricing",
     },
     {
       type: "tool",
@@ -217,7 +267,12 @@ const article: Article = {
       ],
       pricing: "From EUR19/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e13e9ab42f11def9a32f_X14i9BFsGo5A1GbhXRLrYjZoLz4.webp",
+        "/blog/images/68f8e13e9ab42f11def9a32f_X14i9BFsGo5A1GbhXRLrYjZoLz4.webp",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e1409ab42f11def9a461_LFHmJuZs5n16ar2aAgDJWfdglQ.webp",
+      alt: "feedhive-pricing",
     },
     {
       type: "heading",

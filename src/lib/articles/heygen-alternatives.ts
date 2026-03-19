@@ -9,7 +9,7 @@ const article: Article = {
   date: "Oct 22, 2025",
   tag: "Knowledge",
   thumbnail:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e12f3507d22c1e5ae478_xQVA6ZGvupwgd1HGmKEoxjOQz64.webp",
+    "/blog/images/68f8e12f3507d22c1e5ae478_xQVA6ZGvupwgd1HGmKEoxjOQz64.webp",
   content: [
     {
       type: "paragraph",
@@ -18,6 +18,16 @@ const article: Article = {
     {
       type: "paragraph",
       text: "This comparison covers eight alternatives and where each platform is strongest.",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e12e3507d22c1e5ae39f_B6w6YtMm7Go04LYNOzrazPIVWw.webp",
+      alt: "heygen-homepage",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e12e3507d22c1e5ae325_2DvkIiq9Tl92RgF65wrIsRc.webp",
+      alt: "comparison-table",
     },
     {
       type: "heading",
@@ -56,7 +66,7 @@ const article: Article = {
       ],
       pricing: "From $69/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/69027462bd57e34a72b918f2_frame.webp",
+        "/blog/images/69027462bd57e34a72b918f2_frame.webp",
     },
     {
       type: "tool",
@@ -73,7 +83,7 @@ const article: Article = {
       ],
       pricing: "From $29/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e12e3507d22c1e5ae335_5PbwXJ5AayQOIL3rhaMqQWjHCA.webp",
+        "/blog/images/68f8e12e3507d22c1e5ae335_5PbwXJ5AayQOIL3rhaMqQWjHCA.webp",
     },
     {
       type: "tool",
@@ -90,7 +100,7 @@ const article: Article = {
       ],
       pricing: "From $27/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e12e3507d22c1e5ae338_KQkxYglmh2HM7MpbvcLFs5fko8.webp",
+        "/blog/images/68f8e12e3507d22c1e5ae338_KQkxYglmh2HM7MpbvcLFs5fko8.webp",
     },
     {
       type: "tool",
@@ -107,7 +117,7 @@ const article: Article = {
       ],
       pricing: "From $29/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e12e3507d22c1e5ae33e_5IIrekTX8QEvanMUOaN5hDkIBjk.webp",
+        "/blog/images/68f8e12e3507d22c1e5ae33e_5IIrekTX8QEvanMUOaN5hDkIBjk.webp",
     },
     {
       type: "tool",
@@ -124,7 +134,7 @@ const article: Article = {
       ],
       pricing: "From $25/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e12e3507d22c1e5ae329_I1rB5Ul77Be4sXDc6ttQz1xbD9E.webp",
+        "/blog/images/68f8e12e3507d22c1e5ae329_I1rB5Ul77Be4sXDc6ttQz1xbD9E.webp",
     },
     {
       type: "tool",
@@ -141,7 +151,7 @@ const article: Article = {
       ],
       pricing: "From $29/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e12e3507d22c1e5ae32f_H0s5HYF633w5ZzCAXHWRBDOmekU.webp",
+        "/blog/images/68f8e12e3507d22c1e5ae32f_H0s5HYF633w5ZzCAXHWRBDOmekU.webp",
     },
     {
       type: "tool",
@@ -158,7 +168,7 @@ const article: Article = {
       ],
       pricing: "From $19/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e12e3507d22c1e5ae33b_KldBz4dHZ4k2TGdk12rhIDtt2k.webp",
+        "/blog/images/68f8e12e3507d22c1e5ae33b_KldBz4dHZ4k2TGdk12rhIDtt2k.webp",
     },
     {
       type: "tool",
@@ -175,7 +185,7 @@ const article: Article = {
       ],
       pricing: "From $29/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e12e3507d22c1e5ae332_xo03bE04zo57s16jOF3Uq9FeNE.webp",
+        "/blog/images/68f8e12e3507d22c1e5ae332_xo03bE04zo57s16jOF3Uq9FeNE.webp",
     },
     {
       type: "heading",

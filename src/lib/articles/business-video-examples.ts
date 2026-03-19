@@ -9,7 +9,7 @@ const article: Article = {
   date: "Oct 22, 2025",
   tag: "Knowledge",
   thumbnail:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68ff52b55d56c47cba16bcf2_Frame%202131330134.webp",
+    "/blog/images/68ff52b55d56c47cba16bcf2_Frame-2131330134.webp",
   content: [
     {
       type: "paragraph",
@@ -26,6 +26,11 @@ const article: Article = {
     {
       type: "heading",
       text: "The Main Types of Business Videos",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e12cf0781c49b3cfacd5_COAPjcY447EsqmJEm2Xcvvarkss.webp",
+      alt: "main-types-of-business-videos",
     },
     {
       type: "paragraph",

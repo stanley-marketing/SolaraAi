@@ -9,7 +9,7 @@ const article: Article = {
   date: "Oct 22, 2025",
   tag: "Knowledge",
   thumbnail:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e137d00d2c94ba6ee5e7_04rRSlQd5ZRNckevuwxotDPa7Y.webp",
+    "/blog/images/68f8e137d00d2c94ba6ee5e7_04rRSlQd5ZRNckevuwxotDPa7Y.webp",
   content: [
     {
       type: "paragraph",
@@ -18,6 +18,16 @@ const article: Article = {
     {
       type: "paragraph",
       text: "This list compares 10 alternatives that help brands launch and scale AI-driven campaigns with less manual work.",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e135d00d2c94ba6ee47e_Me4EyiCmZhbwRqwhaYvUc6luSCQ.webp",
+      alt: "creatify-homepage",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e135d00d2c94ba6ee45f_gq23YzLFTbEr6zaR5v1CsYKeBc0.webp",
+      alt: "comparison-table",
     },
     {
       type: "heading",
@@ -50,7 +60,12 @@ const article: Article = {
       ],
       pricing: "From $69/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/69027462bd57e34a72b918f2_frame.webp",
+        "/blog/images/69027462bd57e34a72b918f2_frame.webp",
+    },
+    {
+      type: "image",
+      src: "/blog/images/690274da2aa2e3c40cb796f4_Screenshot-2025-10-29-at-16.43.21.webp",
+      alt: "solara-ai-pricing",
     },
     {
       type: "tool",
@@ -67,7 +82,12 @@ const article: Article = {
       ],
       pricing: "Free plan; paid plans from $23/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e135d00d2c94ba6ee481_pX377ux1srRTkXYhDPr9ItPHuj8.webp",
+        "/blog/images/68f8e135d00d2c94ba6ee481_pX377ux1srRTkXYhDPr9ItPHuj8.webp",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e135d00d2c94ba6ee462_sIQH9zOiv41ZwWk2Nn8xBB7DrU.webp",
+      alt: "predis-ai-pricing",
     },
     {
       type: "tool",
@@ -84,7 +104,12 @@ const article: Article = {
       ],
       pricing: "Free plan; paid plans from $29/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e135d00d2c94ba6ee49c_g6SIfywpSCDzgJLtQlz2pcRULM.webp",
+        "/blog/images/68f8e135d00d2c94ba6ee49c_g6SIfywpSCDzgJLtQlz2pcRULM.webp",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e134d00d2c94ba6ee44d_izUooKyDqCIRnYEBSlUfjHHLs4.webp",
+      alt: "synthesia-pricing",
     },
     {
       type: "tool",
@@ -101,7 +126,12 @@ const article: Article = {
       ],
       pricing: "Free plan; paid plans from $23/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e133d00d2c94ba6ee3fe_yCCKqXbYaQMBcfsUANDFPSVIcls.webp",
+        "/blog/images/68f8e133d00d2c94ba6ee3fe_yCCKqXbYaQMBcfsUANDFPSVIcls.webp",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e135d00d2c94ba6ee459_lAdZGlqUgdYCIawCXMT9rCc.webp",
+      alt: "tagshop-pricing",
     },
     {
       type: "tool",
@@ -118,7 +148,12 @@ const article: Article = {
       ],
       pricing: "Free plan; paid plans from $29/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e133d00d2c94ba6ee3f7_ySyiy5c8uwl7nTYhI7kYlHNXJo.webp",
+        "/blog/images/68f8e133d00d2c94ba6ee3f7_ySyiy5c8uwl7nTYhI7kYlHNXJo.webp",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e132d00d2c94ba6ee3e5_86ddNPhtevcKWbpsCw8k2mNBIQ.webp",
+      alt: "heygen-pricing",
     },
     {
       type: "tool",
@@ -135,7 +170,12 @@ const article: Article = {
       ],
       pricing: "Free plan; paid plans from $39/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e135d00d2c94ba6ee484_j8OasNBAimGwc1hBHvienXuBTbA.webp",
+        "/blog/images/68f8e135d00d2c94ba6ee484_j8OasNBAimGwc1hBHvienXuBTbA.webp",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e132d00d2c94ba6ee3e8_4vms38tnAIoF0J17kqFzsQ7BqpE.webp",
+      alt: "creatorkit-pricing",
     },
     {
       type: "tool",
@@ -152,7 +192,12 @@ const article: Article = {
       ],
       pricing: "Plans start from $39/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e135d00d2c94ba6ee47b_aLlZlGmPgwGZ38Tr1J2IbjCpO2U.webp",
+        "/blog/images/68f8e135d00d2c94ba6ee47b_aLlZlGmPgwGZ38Tr1J2IbjCpO2U.webp",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e133d00d2c94ba6ee3f0_lUfZ3KMZna1aLis9FLdKhoTPfa8.webp",
+      alt: "adcreative-pricing",
     },
     {
       type: "tool",
@@ -169,7 +214,12 @@ const article: Article = {
       ],
       pricing: "Free plan; paid plans from $24/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e133d00d2c94ba6ee41c_zeHK9TKR5pNmA3sTRWF33ArOIDw.webp",
+        "/blog/images/68f8e133d00d2c94ba6ee41c_zeHK9TKR5pNmA3sTRWF33ArOIDw.webp",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e135d00d2c94ba6ee4c1_E6VntJiRvnVrezaxNawuvHo4.webp",
+      alt: "jogg-pricing",
     },
     {
       type: "tool",
@@ -186,7 +236,12 @@ const article: Article = {
       ],
       pricing: "Free plan; paid plans from $23/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e133d00d2c94ba6ee41f_bhwF7DpV7qv05do4wf5mwovMTeQ.webp",
+        "/blog/images/68f8e133d00d2c94ba6ee41f_bhwF7DpV7qv05do4wf5mwovMTeQ.webp",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e135d00d2c94ba6ee4b9_6A5gfFw8RVBA1UipUB8VIMlQU.webp",
+      alt: "winclo-pricing",
     },
     {
       type: "tool",
@@ -203,7 +258,7 @@ const article: Article = {
       ],
       pricing: "Custom pricing",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e136d00d2c94ba6ee5b8_5MypnS4uGDky7LLYBR9AimCcbWI.webp",
+        "/blog/images/68f8e136d00d2c94ba6ee5b8_5MypnS4uGDky7LLYBR9AimCcbWI.webp",
     },
     {
       type: "heading",

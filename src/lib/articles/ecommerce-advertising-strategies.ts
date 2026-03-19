@@ -9,7 +9,7 @@ const article: Article = {
   date: "Nov 4, 2025",
   tag: "Strategy",
   thumbnail:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/690a2a93b4380403a8542603_Frame%202131330141.webp",
+    "/blog/images/690a2a93b4380403a8542603_Frame-2131330141.webp",
   content: [
     {
       type: "paragraph",
@@ -26,6 +26,11 @@ const article: Article = {
     {
       type: "heading",
       text: "Strategy 1: Lead With Storytelling, Not Discounts",
+    },
+    {
+      type: "image",
+      src: "/blog/images/690a322c931914ca31965ff4_image7.webp",
+      alt: "chamberlain-coffee-example",
     },
     {
       type: "paragraph",
@@ -49,6 +54,11 @@ const article: Article = {
       text: "Strategy 2: Build Trust With Real People",
     },
     {
+      type: "image",
+      src: "/blog/images/690a32ac0057f73b773d3a79_image1.webp",
+      alt: "olaplex-example",
+    },
+    {
       type: "paragraph",
       text: "Glossier and Olaplex built billion-dollar brands largely on community content. 92% of consumers say they trust recommendations from real people over brand advertising. UGC-style content doesn't just look authentic — it is authentic, and audiences can tell the difference.",
     },
@@ -68,6 +78,11 @@ const article: Article = {
     {
       type: "heading",
       text: "Strategy 3: Let Data Inform Creative Decisions",
+    },
+    {
+      type: "image",
+      src: "/blog/images/690a32d3941631b99ddcd365_image6.webp",
+      alt: "gymshark-example",
     },
     {
       type: "paragraph",
@@ -91,6 +106,11 @@ const article: Article = {
       text: "Strategy 4: Personalize Every Ad Experience",
     },
     {
+      type: "image",
+      src: "/blog/images/690a32e90c9a1dfac05a4292_image4.webp",
+      alt: "nike-example",
+    },
+    {
       type: "paragraph",
       text: "Nike's personalized product recommendations and targeted campaign messaging deliver 80% higher conversion rates than generic ads. Personalization at scale is now possible without a large engineering team — modern ad platforms support dynamic content insertion, and AI tools handle segmentation automatically.",
     },
@@ -106,6 +126,11 @@ const article: Article = {
     {
       type: "heading",
       text: "Strategy 5: Make Video Your Primary Format",
+    },
+    {
+      type: "image",
+      src: "/blog/images/690a33227b7633db973af461_image3.webp",
+      alt: "tala-example",
     },
     {
       type: "paragraph",
@@ -125,6 +150,11 @@ const article: Article = {
       text: "Strategy 6: Turn Customers Into Creators",
     },
     {
+      type: "image",
+      src: "/blog/images/690a33466de9c060d5250d6c_image8.webp",
+      alt: "olipop-example",
+    },
+    {
       type: "paragraph",
       text: "Olipop built one of the most effective DTC content engines by turning real customers into content creators. The brand actively encourages sharing, reposts genuine content, and uses real customer stories in paid campaigns. This flywheel generates authentic content at near-zero cost — and it performs because it's genuinely real.",
     },
@@ -142,6 +172,11 @@ const article: Article = {
       text: "Strategy 7: Optimize Every Touchpoint for Mobile",
     },
     {
+      type: "image",
+      src: "/blog/images/690a335a57583a56ba2e3f1a_image5.webp",
+      alt: "warby-parker-example",
+    },
+    {
       type: "paragraph",
       text: "73% of e-commerce traffic now comes from mobile devices. Warby Parker's mobile experience is optimized at every stage — from ad creative to landing page to checkout. If a single step in the funnel isn't mobile-native, you're losing conversions.",
     },
@@ -157,6 +192,11 @@ const article: Article = {
     {
       type: "heading",
       text: "Strategy 8: Win Back Clicks That Got Away",
+    },
+    {
+      type: "image",
+      src: "/blog/images/690a3372d7832cb33b4fb891_image2.webp",
+      alt: "temu-example",
     },
     {
       type: "paragraph",

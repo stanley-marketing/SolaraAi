@@ -9,7 +9,7 @@ const article: Article = {
   date: "Oct 22, 2025",
   tag: "Knowledge",
   thumbnail:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e13644f1c38ac87145e9_Zc09zDJsElx5z4xJmkrPbYrJI.webp",
+    "/blog/images/68f8e13644f1c38ac87145e9_Zc09zDJsElx5z4xJmkrPbYrJI.webp",
   content: [
     {
       type: "paragraph",
@@ -88,12 +88,22 @@ const article: Article = {
       text: "TikTok Symphony Creative Studio enables text-to-native-ad generation, image-to-video transformation, and scalable product showcases aligned with platform style conventions.",
     },
     {
+      type: "image",
+      src: "/blog/images/68f8e13544f1c38ac87144f1_UadmRm44QTg0AZHp5AGyKYMSG3Q.webp",
+      alt: "tiktok-example",
+    },
+    {
       type: "subheading",
       text: "Meta",
     },
     {
       type: "paragraph",
       text: "Meta’s AI stack automates ad variations, reallocates spend in real time, and introduces disclosure labeling across generated assets.",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e13544f1c38ac87144f4_0JI8gNwftVFZ2OoSIsCTqkm15I.webp",
+      alt: "youtube-example",
     },
     {
       type: "subheading",
@@ -110,6 +120,11 @@ const article: Article = {
     {
       type: "paragraph",
       text: "Sponsored AI lenses and prompt-driven AR creation lower production barriers for immersive branded campaigns.",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e13544f1c38ac8714504_U0wZOhW7L9i1yIIMN1s9tpYrqk.webp",
+      alt: "snap-example",
     },
     {
       type: "subheading",
@@ -148,12 +163,27 @@ const article: Article = {
       text: "Auto-resizing, prompt-based scene generation, and brand-aligned visual templating let small teams ship multi-channel assets at enterprise speed.",
     },
     {
+      type: "image",
+      src: "/blog/images/68f8e13544f1c38ac87144df_ew7L5ZDLAjIzDYtYYyidMS3qLYM.webp",
+      alt: "design-tools",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e13544f1c38ac87144eb_yY2URXpGhvtlprtHyhZwXbUgCo.webp",
+      alt: "tool-table",
+    },
+    {
       type: "subheading",
       text: "Video Creation",
     },
     {
       type: "paragraph",
       text: "Text-to-video and multilingual localization workflows compress short-form production timelines from weeks to hours.",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e13544f1c38ac87144ff_BZyGpPFZodCjivD1rejMKLars.webp",
+      alt: "tool-table-two",
     },
     {
       type: "subheading",
@@ -164,12 +194,22 @@ const article: Article = {
       text: "AI listening systems now identify emerging narratives and reputation risks early enough for strategic message adjustment before trend peaks.",
     },
     {
+      type: "image",
+      src: "/blog/images/68f8e13544f1c38ac87144e2_i0BEbgpSXWIlJYSTqj3MjshOV74.webp",
+      alt: "tool-table-three",
+    },
+    {
       type: "subheading",
       text: "Ad Automation",
     },
     {
       type: "paragraph",
       text: "Creative generation, audience targeting, and budget optimization can now run continuously with human review focused on strategy and guardrails.",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e13544f1c38ac87144ee_rabKmIeHzGOyk0OFxvVCxAJFiO0.webp",
+      alt: "tool-table-four",
     },
     {
       type: "heading",
@@ -197,6 +237,16 @@ const article: Article = {
       text: "Ad budgets continue shifting from traditional channels to social, with AI-native formats accelerating this movement. Upside scenarios favor teams that combine speed, provenance, and relevance; downside scenarios center on policy shocks and trust erosion.",
     },
     {
+      type: "image",
+      src: "/blog/images/68f8e13544f1c38ac87144f8_hNovBkImjAVDWV7y77GRnRWfWs.webp",
+      alt: "year-table",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e13544f1c38ac87144e8_XOcaf2KTUKWKBM7XToJnw2znKig.webp",
+      alt: "scenario-table",
+    },
+    {
       type: "heading",
       text: "Key Takeaways for Brands",
     },
@@ -209,6 +259,11 @@ const article: Article = {
         "Reallocate budget toward short-form and AI-optimized formats.",
         "Differentiate through strategy and brand signal, not tool access alone.",
       ],
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e13544f1c38ac87144e5_EB3rBirYm0Mr98MiNkna5ZY9XA.webp",
+      alt: "priority-table",
     },
     {
       type: "heading",

@@ -9,7 +9,7 @@ const article: Article = {
   date: "Oct 22, 2025",
   tag: "Knowledge",
   thumbnail:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e12c36690f49271d74ee_XWSfkcjKDYh2e7ELa57LybDJ2Io.webp",
+    "/blog/images/68f8e12c36690f49271d74ee_XWSfkcjKDYh2e7ELa57LybDJ2Io.webp",
   content: [
     {
       type: "paragraph",
@@ -122,7 +122,7 @@ const article: Article = {
     },
     {
       type: "image",
-      src: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e12b36690f49271d74c3_Lus1BPkF7Vu0K3L4nClnhgQ5QYA.webp",
+      src: "/blog/images/68f8e12b36690f49271d74c3_Lus1BPkF7Vu0K3L4nClnhgQ5QYA.webp",
       alt: "Inline article image",
     },
     {

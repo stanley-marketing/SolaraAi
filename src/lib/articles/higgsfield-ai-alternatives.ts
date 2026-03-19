@@ -9,7 +9,7 @@ const article: Article = {
   date: "Nov 11, 2025",
   tag: "Comparison",
   thumbnail:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/6913ab47b4444dc208657f9d_Frame%202131330143.webp",
+    "/blog/images/6913ab47b4444dc208657f9d_Frame-2131330143.webp",
   content: [
     {
       type: "paragraph",
@@ -22,6 +22,11 @@ const article: Article = {
     {
       type: "callout",
       text: "What to look for: output duration, avatar quality, voice options, template flexibility, and whether the tool integrates with your distribution workflow.",
+    },
+    {
+      type: "image",
+      src: "/blog/images/6913abe9a33f0dee1793c2d9_Tabela.webp",
+      alt: "comparison-table",
     },
     {
       type: "heading",
@@ -42,7 +47,12 @@ const article: Article = {
       ],
       pricing: "From $39/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/6913abf9b2d00e86efa0dd94_frame.webp",
+        "/blog/images/6913abf9b2d00e86efa0dd94_frame.webp",
+    },
+    {
+      type: "image",
+      src: "/blog/images/6913ac106b543409e8aa4875_image11.webp",
+      alt: "solara-ai-pricing",
     },
     {
       type: "tool",
@@ -59,7 +69,12 @@ const article: Article = {
       ],
       pricing: "From $29/mo ($18/yr billed annually)",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/6913ac2b68a537e60c00e5d8_frame-5.webp",
+        "/blog/images/6913ac2b68a537e60c00e5d8_frame-5.webp",
+    },
+    {
+      type: "image",
+      src: "/blog/images/6913ac40db391abad7265336_image15.webp",
+      alt: "synthesia-pricing",
     },
     {
       type: "tool",
@@ -76,7 +91,12 @@ const article: Article = {
       ],
       pricing: "Free · From $6.25/mo (first 2 months), then $12.25/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/6913ac530bf4fa1424ab5bdf_frame-1.webp",
+        "/blog/images/6913ac530bf4fa1424ab5bdf_frame-1.webp",
+    },
+    {
+      type: "image",
+      src: "/blog/images/6913ac6502969d686c9b8b0b_image10.webp",
+      alt: "nim-pricing",
     },
     {
       type: "tool",
@@ -93,7 +113,12 @@ const article: Article = {
       ],
       pricing: "Free · From $12/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/6913ac746b2077be358eab2f_frame-2.webp",
+        "/blog/images/6913ac746b2077be358eab2f_frame-2.webp",
+    },
+    {
+      type: "image",
+      src: "/blog/images/6913ac88a59ad7466b841f50_image16.webp",
+      alt: "runway-ml-pricing",
     },
     {
       type: "tool",
@@ -110,7 +135,12 @@ const article: Article = {
       ],
       pricing: "Free trial · From $29/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/6913ac9d24b9f5d5326ba157_frame-7.webp",
+        "/blog/images/6913ac9d24b9f5d5326ba157_frame-7.webp",
+    },
+    {
+      type: "image",
+      src: "/blog/images/6913acada04a6093ae47f59d_image4.webp",
+      alt: "heygen-pricing",
     },
     {
       type: "tool",
@@ -127,7 +157,12 @@ const article: Article = {
       ],
       pricing: "From ~$30/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/6913acbdff1eaff98b0f3b55_frame-4.webp",
+        "/blog/images/6913acbdff1eaff98b0f3b55_frame-4.webp",
+    },
+    {
+      type: "image",
+      src: "/blog/images/6913acd3e9a1675d8e645773_image8.webp",
+      alt: "ai-studios-pricing",
     },
     {
       type: "tool",
@@ -144,7 +179,12 @@ const article: Article = {
       ],
       pricing: "Free trial · From $25/mo ($19/yr billed annually)",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/6913ace20e6a99ad8453f3da_frame-3.webp",
+        "/blog/images/6913ace20e6a99ad8453f3da_frame-3.webp",
+    },
+    {
+      type: "image",
+      src: "/blog/images/6913acf446e238643401f9a1_image1.webp",
+      alt: "pictory-pricing",
     },
     {
       type: "tool",
@@ -161,7 +201,12 @@ const article: Article = {
       ],
       pricing: "Free trial · From $19/mo (annual)",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/6913ad053342f85385be1341_frame-6.webp",
+        "/blog/images/6913ad053342f85385be1341_frame-6.webp",
+    },
+    {
+      type: "image",
+      src: "/blog/images/6913ad1b133dc3a952c9c177_image12.webp",
+      alt: "colossyan-pricing",
     },
     {
       type: "heading",
