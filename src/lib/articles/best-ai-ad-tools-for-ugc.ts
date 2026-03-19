@@ -9,7 +9,7 @@ const article: Article = {
   date: "October 22, 2025",
   tag: "Knowledge",
   thumbnail:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e12f68f2fb925033f01c_aWPIzz3FiolkHAriuolY8xRdlE.webp",
+    "/blog/images/68f8e12f68f2fb925033f01c_aWPIzz3FiolkHAriuolY8xRdlE.webp",
   content: [
     {
       type: "paragraph",
@@ -39,7 +39,7 @@ const article: Article = {
     },
     {
       type: "image",
-      src: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e12d68f2fb925033ee09_Y9p0JuA9TOzqt1HbTSrytgO1W0.webp",
+      src: "/blog/images/68f8e12d68f2fb925033ee09_Y9p0JuA9TOzqt1HbTSrytgO1W0.webp",
       alt: "Comparison table image",
     },
     {
@@ -59,7 +59,7 @@ const article: Article = {
       ],
       pricing: "Plans start at $69/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/69027462bd57e34a72b918f2_frame.webp",
+        "/blog/images/69027462bd57e34a72b918f2_frame.webp",
     },
     {
       type: "tool",
@@ -76,7 +76,7 @@ const article: Article = {
       ],
       pricing: "From $99 per video",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e12e68f2fb925033ee60_tCQXfbudCvzU7jQXLlrwihBDL8.webp",
+        "/blog/images/68f8e12e68f2fb925033ee60_tCQXfbudCvzU7jQXLlrwihBDL8.webp",
     },
     {
       type: "tool",
@@ -93,7 +93,7 @@ const article: Article = {
       ],
       pricing: "Free plan; paid from $19/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e12e68f2fb925033ee6d_33cGZbAsSHTQguX0GPQjeTpT2g.webp",
+        "/blog/images/68f8e12e68f2fb925033ee6d_33cGZbAsSHTQguX0GPQjeTpT2g.webp",
     },
     {
       type: "tool",
@@ -110,7 +110,7 @@ const article: Article = {
       ],
       pricing: "From $550 package",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e12e68f2fb925033ee76_zDpGQWbIqXXysad4qOVog7eY.webp",
+        "/blog/images/68f8e12e68f2fb925033ee76_zDpGQWbIqXXysad4qOVog7eY.webp",
     },
     {
       type: "tool",
@@ -127,7 +127,7 @@ const article: Article = {
       ],
       pricing: "Free plan; paid from $19/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e12e68f2fb925033ee7f_XvocYhhnHDMPrQLuO6trjEqEY.webp",
+        "/blog/images/68f8e12e68f2fb925033ee7f_XvocYhhnHDMPrQLuO6trjEqEY.webp",
     },
     {
       type: "tool",
@@ -143,7 +143,7 @@ const article: Article = {
       ],
       pricing: "From $14/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e12e68f2fb925033ee5d_dLZLHynWFm5NErxlM6we9i81ZQM.webp",
+        "/blog/images/68f8e12e68f2fb925033ee5d_dLZLHynWFm5NErxlM6we9i81ZQM.webp",
     },
     {
       type: "tool",
@@ -159,7 +159,7 @@ const article: Article = {
       ],
       pricing: "From $89/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e12e68f2fb925033ee73_4yqb6q6FKEIdKxVxLg6PBmxNQsY.webp",
+        "/blog/images/68f8e12e68f2fb925033ee73_4yqb6q6FKEIdKxVxLg6PBmxNQsY.webp",
     },
     {
       type: "tool",
@@ -175,7 +175,7 @@ const article: Article = {
       ],
       pricing: "Usage-based pricing",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e12e68f2fb925033ee70_lH2gLM8oOtOrSdvpugzVtIz8Hs.webp",
+        "/blog/images/68f8e12e68f2fb925033ee70_lH2gLM8oOtOrSdvpugzVtIz8Hs.webp",
     },
     {
       type: "heading",

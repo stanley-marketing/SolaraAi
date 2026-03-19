@@ -9,7 +9,7 @@ const article: Article = {
   date: "October 27, 2025",
   tag: "Knowledge",
   thumbnail:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68ff500425ab7595b5fc5b72_Frame%202131330138.webp",
+    "/blog/images/68ff500425ab7595b5fc5b72_Frame-2131330138.webp",
   content: [
     {
       type: "paragraph",
@@ -25,7 +25,7 @@ const article: Article = {
     },
     {
       type: "image",
-      src: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68ff512d435fbeb9f7612185_frame-1.webp",
+      src: "/blog/images/68ff512d435fbeb9f7612185_frame-1.webp",
       alt: "Inline article image",
     },
     {
@@ -43,7 +43,7 @@ const article: Article = {
     },
     {
       type: "image",
-      src: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68ff514114ca7c0a94c31b17_Tabela.webp",
+      src: "/blog/images/68ff514114ca7c0a94c31b17_Tabela.webp",
       alt: "Inline article image",
     },
     {
@@ -51,7 +51,7 @@ const article: Article = {
       number: 1,
       name: "Solara AI",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/69027462bd57e34a72b918f2_frame.webp",
+        "/blog/images/69027462bd57e34a72b918f2_frame.webp",
       description:
         "Solara AI goes beyond creative generation and runs complete ad workflows. It learns your brand tone, creates authentic UGC-style assets, publishes across channels, and continuously optimizes based on performance.",
       features: [
@@ -69,7 +69,7 @@ const article: Article = {
       number: 2,
       name: "Creatify",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68ff5165893105d44ada1ceb_frame-4.webp",
+        "/blog/images/68ff5165893105d44ada1ceb_frame-4.webp",
       description:
         "Creatify converts product pages into short video ads quickly, with AI avatars, voiceovers, and multiple creative variants for fast A/B testing.",
       features: [
@@ -86,7 +86,7 @@ const article: Article = {
       number: 3,
       name: "Lumen5",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68ff517d613a557f2a6bebfc_frame-3.webp",
+        "/blog/images/68ff517d613a557f2a6bebfc_frame-3.webp",
       description:
         "Lumen5 turns scripts and long-form text into ad-ready videos with AI scene suggestions, drag-and-drop editing, and strong brand consistency controls.",
       features: [
@@ -103,7 +103,7 @@ const article: Article = {
       number: 4,
       name: "Adzooma",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68ff5190dd988d87d75cc108_frame-2.webp",
+        "/blog/images/68ff5190dd988d87d75cc108_frame-2.webp",
       description:
         "Adzooma focuses on optimization after launch, helping teams manage and improve paid performance across Google, Meta, and Microsoft from one dashboard.",
       features: [
@@ -120,7 +120,7 @@ const article: Article = {
       number: 5,
       name: "Predis.ai",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68ff51a6a967a788f2bdc65a_frame-5.webp",
+        "/blog/images/68ff51a6a967a788f2bdc65a_frame-5.webp",
       description:
         "Predis.ai helps teams generate social-ready ad images, captions, and campaign ideas from simple prompts or product links.",
       features: [
@@ -137,7 +137,7 @@ const article: Article = {
       number: 6,
       name: "Pencil",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68ff51b8c2bed2aa33b11b95_frame-8.webp",
+        "/blog/images/68ff51b8c2bed2aa33b11b95_frame-8.webp",
       description:
         "Pencil uses campaign history and predictive scoring to generate, test, and prioritize ad concepts likely to convert.",
       features: [
@@ -154,7 +154,7 @@ const article: Article = {
       number: 7,
       name: "Madgicx",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68ff51cb3ee3628e27cb45ca_frame-7.webp",
+        "/blog/images/68ff51cb3ee3628e27cb45ca_frame-7.webp",
       description:
         "Madgicx blends optimization and creative intelligence to help paid teams scale winning patterns and reduce wasted spend.",
       features: [
@@ -171,7 +171,7 @@ const article: Article = {
       number: 8,
       name: "Simplified",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68ff51df004eef69aa72f666_frame-6.webp",
+        "/blog/images/68ff51df004eef69aa72f666_frame-6.webp",
       description:
         "Simplified combines design, copy, and video tools in one workspace, making it a strong fit for lean teams shipping campaigns quickly.",
       features: [

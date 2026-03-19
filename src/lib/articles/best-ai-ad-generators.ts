@@ -9,7 +9,7 @@ const article: Article = {
   date: "Oct 28, 2025",
   tag: "Comparison",
   thumbnail:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/6900a9e906c8dbf86e98a7c7_Frame%202131330140.webp",
+    "/blog/images/6900a9e906c8dbf86e98a7c7_Frame-2131330140.webp",
   content: [
     {
       type: "paragraph",
@@ -38,9 +38,16 @@ const article: Article = {
       text: "The 8 Best AI Ad Generators",
     },
     {
+      type: "image",
+      src: "/blog/images/6900ae7a77b6f7a5b07ab77a_Tabela.webp",
+      alt: "comparison-table",
+    },
+    {
       type: "tool",
       number: 1,
       name: "Solara AI",
+      image:
+        "/blog/images/69027462bd57e34a72b918f2_frame.webp",
       description:
         "Solara handles the full campaign lifecycle \u2014 from creative production to performance optimization. It doesn\u2019t just generate ads; it manages the entire system: creating videos, launching campaigns, shifting budget toward winners, and handling inbound leads through an AI Voice Secretary.",
       features: [
@@ -57,6 +64,8 @@ const article: Article = {
       type: "tool",
       number: 2,
       name: "Bestever",
+      image:
+        "/blog/images/6900ae9dfa627ed0ea34585a_frame-7.webp",
       description:
         "Bestever connects directly to your Meta and LinkedIn ad accounts, analyzes your past campaign performance, and scores your creatives before you launch. It\u2019s especially useful for teams that want to improve existing campaigns rather than start from scratch.",
       features: [
@@ -71,6 +80,8 @@ const article: Article = {
       type: "tool",
       number: 3,
       name: "AdCreative.ai",
+      image:
+        "/blog/images/6900aeaf1041e0b25d3e18fd_frame-5.webp",
       description:
         "AdCreative.ai takes a URL and generates a full set of ad creatives with headlines, body copy, and imagery \u2014 ready for export. Its batch creation mode makes it fast for teams that need volume.",
       features: [
@@ -86,6 +97,8 @@ const article: Article = {
       type: "tool",
       number: 4,
       name: "Creatify",
+      image:
+        "/blog/images/6900aebf9bb119ab22511665_frame-2.webp",
       description:
         "Creatify is purpose-built for video ad creation. It uses 700+ AI avatars to produce UGC-style videos at scale \u2014 and its batch mode can generate 50 variations simultaneously, making it powerful for high-velocity testing.",
       features: [
@@ -101,6 +114,8 @@ const article: Article = {
       type: "tool",
       number: 5,
       name: "Copy.ai",
+      image:
+        "/blog/images/6900aedd1291a3f7725d1beb_frame-1.webp",
       description:
         "Copy.ai specializes in ad copywriting using proven frameworks like PAS (Problem-Agitate-Solution) and AIDA. It\u2019s the fastest tool for generating high-quality copy across 25+ languages and 90+ templates.",
       features: [
@@ -116,6 +131,8 @@ const article: Article = {
       type: "tool",
       number: 6,
       name: "Omneky",
+      image:
+        "/blog/images/6900aef08435eda1c715b8e2_frame-4.webp",
       description:
         "Omneky uses ML-based creative generation combined with computer vision to analyze what\u2019s working across your ad library \u2014 then generates new variations based on winning patterns. Built for multi-platform at scale.",
       features: [
@@ -131,6 +148,8 @@ const article: Article = {
       type: "tool",
       number: 7,
       name: "Quickads",
+      image:
+        "/blog/images/6900af0b96b077c9dc7eb12b_frame-6.webp",
       description:
         "Quickads gives you access to a library of 5 million real ads for inspiration, combined with URL-to-ad generation and virtual product photography. Good for e-commerce brands that need polished product imagery fast.",
       features: [
@@ -146,6 +165,8 @@ const article: Article = {
       type: "tool",
       number: 8,
       name: "Veed.io AI Suite",
+      image:
+        "/blog/images/6900af1c3d702995daa533c5_frame-3.webp",
       description:
         "Veed is primarily a video editor that has built strong AI features on top \u2014 text-to-video, automatic resizing for every platform, and one-click subtitle generation. Great for teams already doing video who want to speed up production.",
       features: [

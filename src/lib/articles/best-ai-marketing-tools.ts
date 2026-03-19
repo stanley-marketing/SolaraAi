@@ -9,7 +9,7 @@ const article: Article = {
   date: "Nov 17, 2025",
   tag: "Comparison",
   thumbnail:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691b7ae2e5cf906b3c6e7571_Frame%202131330147.webp",
+    "/blog/images/691b7ae2e5cf906b3c6e7571_Frame-2131330147.webp",
   content: [
     {
       type: "paragraph",
@@ -28,6 +28,11 @@ const article: Article = {
       text: "The 8 Best AI Marketing Tools",
     },
     {
+      type: "image",
+      src: "/blog/images/691b7ba99a9880cdbdc00d03_Tabela.webp",
+      alt: "comparison-list",
+    },
+    {
       type: "tool",
       number: 1,
       name: "Solara AI",
@@ -42,6 +47,8 @@ const article: Article = {
         "Performance loop \u2014 tracks and improves continuously",
       ],
       pricing: "Plans from $29/mo",
+      image:
+        "/blog/images/69027462bd57e34a72b918f2_frame.webp",
     },
     {
       type: "tool",
@@ -57,6 +64,8 @@ const article: Article = {
         "Deep CRM and sales integrations",
       ],
       pricing: "Custom pricing",
+      image:
+        "/blog/images/691b7bf25afa640918591250_frame-7.webp",
     },
     {
       type: "tool",
@@ -72,6 +81,8 @@ const article: Article = {
         "Campaign reporting and attribution",
       ],
       pricing: "From $800/mo for 3 seats",
+      image:
+        "/blog/images/691b7c26d0cf7ae668c87e37_frame-5.webp",
     },
     {
       type: "tool",
@@ -87,6 +98,8 @@ const article: Article = {
         "CRM and deal tracking",
       ],
       pricing: "From $15/mo for 1,000 contacts",
+      image:
+        "/blog/images/691b7c5cace867a66546c45c_frame-1.webp",
     },
     {
       type: "tool",
@@ -102,6 +115,8 @@ const article: Article = {
         "Real-time behavioral data",
       ],
       pricing: "From $100/mo",
+      image:
+        "/blog/images/691b7c900f4954877b7da2d4_frame-3.webp",
     },
     {
       type: "tool",
@@ -117,6 +132,8 @@ const article: Article = {
         "Real-time campaign analytics",
       ],
       pricing: "Custom pricing",
+      image:
+        "/blog/images/691b7cbd620cddf70c7edb9e_frame-4.webp",
     },
     {
       type: "tool",
@@ -132,6 +149,8 @@ const article: Article = {
         "Course and membership platform",
       ],
       pricing: "Free plan; paid from $17/mo",
+      image:
+        "/blog/images/691b7cd7a346ea135478bed0_frame-6.webp",
     },
     {
       type: "tool",
@@ -147,6 +166,8 @@ const article: Article = {
         "Shopify and e-commerce integrations",
       ],
       pricing: "Free plan; paid per conversations",
+      image:
+        "/blog/images/691b7d05f52f17278d5c13ce_frame-2.webp",
     },
     {
       type: "heading",

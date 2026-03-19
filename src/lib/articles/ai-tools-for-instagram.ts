@@ -9,7 +9,7 @@ const article: Article = {
   date: "October 22, 2025",
   tag: "Knowledge",
   thumbnail:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e1356b98607f16ad6dcf_7sAGI5sZTwhatr5xW4AwYoweuF4.webp",
+    "/blog/images/68f8e1356b98607f16ad6dcf_7sAGI5sZTwhatr5xW4AwYoweuF4.webp",
   content: [
     {
       type: "paragraph",
@@ -34,7 +34,7 @@ const article: Article = {
     },
     {
       type: "image",
-      src: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e1336b98607f16ad6cfe_GiDnab16A4l7I1OWeHV38xOUrE.webp",
+      src: "/blog/images/68f8e1336b98607f16ad6cfe_GiDnab16A4l7I1OWeHV38xOUrE.webp",
       alt: "Inline article image",
     },
     {
@@ -42,7 +42,7 @@ const article: Article = {
       number: 1,
       name: "Solara AI",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/69027462bd57e34a72b918f2_frame.webp",
+        "/blog/images/69027462bd57e34a72b918f2_frame.webp",
       description:
         "Solara combines content creation, posting, ad optimization, and engagement handling in one platform, including website growth tooling and voice-led lead workflows.",
       features: [
@@ -59,7 +59,7 @@ const article: Article = {
       number: 2,
       name: "Predis.ai",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e1346b98607f16ad6d2b_6OzUDD4ykmpPqnejAdMmUdINgs.webp",
+        "/blog/images/68f8e1346b98607f16ad6d2b_6OzUDD4ykmpPqnejAdMmUdINgs.webp",
       description:
         "Predis.ai turns short prompts into carousels, reels, and captions for teams focused on rapid publishing cadence.",
       features: [
@@ -76,7 +76,7 @@ const article: Article = {
       number: 3,
       name: "Metricool",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e1346b98607f16ad6d31_LE99NdlSNdvCJf5iArZ2n3189U.webp",
+        "/blog/images/68f8e1346b98607f16ad6d31_LE99NdlSNdvCJf5iArZ2n3189U.webp",
       description:
         "Metricool emphasizes analytics and scheduling, with strong cross-channel reporting for organic and paid performance.",
       features: [
@@ -93,7 +93,7 @@ const article: Article = {
       number: 4,
       name: "Flick AI",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e1346b98607f16ad6d2e_zTX93Q9vOmwvkidL3uNSbm1j6U.webp",
+        "/blog/images/68f8e1346b98607f16ad6d2e_zTX93Q9vOmwvkidL3uNSbm1j6U.webp",
       description:
         "Flick AI is focused on caption and hashtag optimization with lightweight analytics for growth-focused posting.",
       features: [
@@ -110,7 +110,7 @@ const article: Article = {
       number: 5,
       name: "Heyday by Hootsuite",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e1346b98607f16ad6d25_S26aMvOW5rvKzdC3Anm67ginN00.webp",
+        "/blog/images/68f8e1346b98607f16ad6d25_S26aMvOW5rvKzdC3Anm67ginN00.webp",
       description:
         "Heyday automates high-volume customer conversations across DMs and comments, with handoff flows for complex requests.",
       features: [
@@ -127,7 +127,7 @@ const article: Article = {
       number: 6,
       name: "Lately",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e1346b98607f16ad6d28_TBVTT6Lke8sEKzY7ICyWChNJHGQ.webp",
+        "/blog/images/68f8e1346b98607f16ad6d28_TBVTT6Lke8sEKzY7ICyWChNJHGQ.webp",
       description:
         "Lately repurposes long-form assets into social-ready post streams and learns voice and topic performance over time.",
       features: [
@@ -144,7 +144,7 @@ const article: Article = {
       number: 7,
       name: "Jasper AI",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e1346b98607f16ad6d14_HkXK7vJ149RfTWkz29PVRgK1J44.webp",
+        "/blog/images/68f8e1346b98607f16ad6d14_HkXK7vJ149RfTWkz29PVRgK1J44.webp",
       description:
         "Jasper focuses on short-form marketing copy generation and is useful for teams standardizing voice across many campaigns.",
       features: [
@@ -155,6 +155,11 @@ const article: Article = {
         "Third-party writing integrations",
       ],
       pricing: "From $59/month",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68f8e1346b98607f16ad6d19_DpoqtkGvTy17hcX6W2I6cexYE.webp",
+      alt: "canva-homepage",
     },
     {
       type: "heading",

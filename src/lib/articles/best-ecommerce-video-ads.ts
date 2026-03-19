@@ -9,7 +9,7 @@ const article: Article = {
   date: "October 22, 2025",
   tag: "Knowledge",
   thumbnail:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e133f446c565c37ab7dc_8wifUnI69abyPReAma61E2Oh8.webp",
+    "/blog/images/68f8e133f446c565c37ab7dc_8wifUnI69abyPReAma61E2Oh8.webp",
   content: [
     {
       type: "paragraph",

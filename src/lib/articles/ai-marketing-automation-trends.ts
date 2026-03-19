@@ -9,7 +9,7 @@ const article: Article = {
   date: "Nov 11, 2025",
   tag: "Trends",
   thumbnail:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/6913a90358981f4d43ad38ff_Frame%202131330142.png",
+    "/blog/images/6913a90358981f4d43ad38ff_Frame-2131330142.png",
   content: [
     {
       type: "paragraph",
@@ -108,12 +108,22 @@ const article: Article = {
       ],
     },
     {
+      type: "image",
+      src: "/blog/images/6913aa2fd9a241f0186fdbee_Privacy-First-Marketing-Automation-Is-Rising.png",
+      alt: "privacy-first-marketing-automation-is-rising",
+    },
+    {
       type: "heading",
       text: "8. Smarter SEO and Auto-Publishing",
     },
     {
       type: "paragraph",
       text: "AI now studies your site in real time, identifies content gaps, builds optimized pages, and publishes them automatically. Companies that automate their SEO optimization are seeing rankings improve 65% faster than those doing it manually. The key is targeting by intent and region \u2014 and refreshing old pages before they decay.",
+    },
+    {
+      type: "image",
+      src: "/blog/images/6913aa4b74ee3845290339cf_Smarter-SEO-and-Auto-Publishing-With-AI.png",
+      alt: "traditional-vs-ai-seo",
     },
     {
       type: "callout",

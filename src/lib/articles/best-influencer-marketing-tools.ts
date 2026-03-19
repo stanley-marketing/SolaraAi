@@ -9,7 +9,7 @@ const article: Article = {
   date: "Nov 19, 2025",
   tag: "Comparison",
   thumbnail:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691e0e926c7b03dfb10d2fb6_Frame%202131330150.webp",
+    "/blog/images/691e0e926c7b03dfb10d2fb6_Frame-2131330150.webp",
   content: [
     {
       type: "paragraph",
@@ -28,6 +28,11 @@ const article: Article = {
       text: "The 9 Best Influencer Marketing Tools",
     },
     {
+      type: "image",
+      src: "/blog/images/691e1106c96e347306bc25a1_Tabela.webp",
+      alt: "comparison-table",
+    },
+    {
       type: "tool",
       number: 1,
       name: "Solara AI",
@@ -42,7 +47,7 @@ const article: Article = {
       ],
       pricing: "From $39/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/69027462bd57e34a72b918f2_frame.webp",
+        "/blog/images/69027462bd57e34a72b918f2_frame.webp",
     },
     {
       type: "tool",
@@ -58,6 +63,8 @@ const article: Article = {
         "Integrated payment processing",
       ],
       pricing: "Custom (mid three-figures/mo)",
+      image:
+        "/blog/images/691e1143fad740ce2229c50c_frame-4.webp",
     },
     {
       type: "tool",
@@ -74,7 +81,7 @@ const article: Article = {
       ],
       pricing: "Custom (low four-figures/mo)",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691e11576c7b03dfb10e1f62_frame-3.webp",
+        "/blog/images/691e11576c7b03dfb10e1f62_frame-3.webp",
     },
     {
       type: "tool",
@@ -91,7 +98,7 @@ const article: Article = {
       ],
       pricing: "Custom pricing",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691e117c3046d1c4f12d9fe8_frame-5.webp",
+        "/blog/images/691e117c3046d1c4f12d9fe8_frame-5.webp",
     },
     {
       type: "tool",
@@ -108,7 +115,7 @@ const article: Article = {
       ],
       pricing: "From $199/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691e11a2dc8aba15f32cc1bb_frame-7.webp",
+        "/blog/images/691e11a2dc8aba15f32cc1bb_frame-7.webp",
     },
     {
       type: "tool",
@@ -125,7 +132,7 @@ const article: Article = {
       ],
       pricing: "Custom pricing",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691e11cce3f9d636a04d3bda_frame-8.webp",
+        "/blog/images/691e11cce3f9d636a04d3bda_frame-8.webp",
     },
     {
       type: "tool",
@@ -142,7 +149,7 @@ const article: Article = {
       ],
       pricing: "From $32,500/yr",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691e11f01517ab1025bb7362_frame-2.webp",
+        "/blog/images/691e11f01517ab1025bb7362_frame-2.webp",
     },
     {
       type: "tool",
@@ -159,7 +166,7 @@ const article: Article = {
       ],
       pricing: "Free plan · From $89/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691e12158f0762665365d0ae_frame-6.webp",
+        "/blog/images/691e12158f0762665365d0ae_frame-6.webp",
     },
     {
       type: "tool",
@@ -176,7 +183,7 @@ const article: Article = {
       ],
       pricing: "From $398/mo (20% off annual)",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691e1237127ca659d41e2712_frame-1.webp",
+        "/blog/images/691e1237127ca659d41e2712_frame-1.webp",
     },
     {
       type: "heading",

@@ -9,7 +9,7 @@ const article: Article = {
   date: "October 22, 2025",
   tag: "Knowledge",
   thumbnail:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e138ab01130cf2fe3859_o7bRVcLc9W6cqvfAFpWK5PKYjzM.webp",
+    "/blog/images/68f8e138ab01130cf2fe3859_o7bRVcLc9W6cqvfAFpWK5PKYjzM.webp",
   content: [
     {
       type: "paragraph",
@@ -42,7 +42,7 @@ const article: Article = {
     },
     {
       type: "image",
-      src: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e137ab01130cf2fe3721_dRS4LPQcacaI7KyqD2ji363EA1k.webp",
+      src: "/blog/images/68f8e137ab01130cf2fe3721_dRS4LPQcacaI7KyqD2ji363EA1k.webp",
       alt: "Inline article image",
     },
     {
@@ -64,7 +64,7 @@ const article: Article = {
     },
     {
       type: "image",
-      src: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e137ab01130cf2fe3724_rRDjSEe3QQkUWqj6h8cHvRz5oPc.webp",
+      src: "/blog/images/68f8e137ab01130cf2fe3724_rRDjSEe3QQkUWqj6h8cHvRz5oPc.webp",
       alt: "Inline article image",
     },
     {
@@ -134,7 +134,7 @@ const article: Article = {
     },
     {
       type: "image",
-      src: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e137ab01130cf2fe3732_CziLkRuOTAlw0MMFlGJMiLwnhuE.webp",
+      src: "/blog/images/68f8e137ab01130cf2fe3732_CziLkRuOTAlw0MMFlGJMiLwnhuE.webp",
       alt: "Inline article image",
     },
     {
