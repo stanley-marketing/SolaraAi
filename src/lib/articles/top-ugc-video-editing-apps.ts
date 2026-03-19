@@ -9,7 +9,7 @@ const article: Article = {
   date: "Nov 20, 2025",
   tag: "Comparison",
   thumbnail:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691f218f40e04cbc0fbb2540_Frame%202131330149.webp",
+    "/blog/images/691f218f40e04cbc0fbb2540_Frame-2131330149.webp",
   content: [
     {
       type: "paragraph",
@@ -47,7 +47,7 @@ const article: Article = {
       ],
       pricing: "Free \u00b7 Pro $9.99/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691f2271671f58fe254ecf77_frame-6.webp",
+        "/blog/images/691f2271671f58fe254ecf77_frame-6.webp",
     },
     {
       type: "paragraph",
@@ -68,7 +68,7 @@ const article: Article = {
       ],
       pricing: "Free (watermarked) \u00b7 Paid from $35/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691f228443b736704c69a454_frame.webp",
+        "/blog/images/691f228443b736704c69a454_frame.webp",
     },
     {
       type: "paragraph",
@@ -89,7 +89,7 @@ const article: Article = {
       ],
       pricing: "Free (no watermark) \u00b7 Optional in-app purchases",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691f22955e011bf237412314_frame-1.webp",
+        "/blog/images/691f22955e011bf237412314_frame-1.webp",
     },
     {
       type: "paragraph",
@@ -110,7 +110,7 @@ const article: Article = {
       ],
       pricing: "Free trial \u00b7 Paid from $4.99/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691f22cedc2c33a73c56b7c9_frame-4.webp",
+        "/blog/images/691f22cedc2c33a73c56b7c9_frame-4.webp",
     },
     {
       type: "paragraph",
@@ -131,7 +131,7 @@ const article: Article = {
       ],
       pricing: "Free \u00b7 Pro $15/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691f22dfe9b7ae390aa30a41_frame-5.webp",
+        "/blog/images/691f22dfe9b7ae390aa30a41_frame-5.webp",
     },
     {
       type: "paragraph",
@@ -152,7 +152,7 @@ const article: Article = {
       ],
       pricing: "Free (watermarked) \u00b7 Pro $4.99/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691f22efd03703ce84664b22_frame-3.webp",
+        "/blog/images/691f22efd03703ce84664b22_frame-3.webp",
     },
     {
       type: "paragraph",
@@ -173,7 +173,7 @@ const article: Article = {
       ],
       pricing: "Free (watermarked) \u00b7 Paid from $19/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691f2305413c15bec55444c4_frame-2.webp",
+        "/blog/images/691f2305413c15bec55444c4_frame-2.webp",
     },
     {
       type: "paragraph",
@@ -194,7 +194,7 @@ const article: Article = {
       ],
       pricing: "From $25/mo \u00b7 Watermark-free",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691f231cf3381eb9287b64a3_frame-7.webp",
+        "/blog/images/691f231cf3381eb9287b64a3_frame-7.webp",
     },
     {
       type: "paragraph",

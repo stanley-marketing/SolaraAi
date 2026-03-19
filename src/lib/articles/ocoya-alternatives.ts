@@ -9,7 +9,7 @@ const article: Article = {
   date: "Oct 27, 2025",
   tag: "Comparison",
   thumbnail:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68ff54b37e98595191251e1f_Frame%202131330137.webp",
+    "/blog/images/68ff54b37e98595191251e1f_Frame-2131330137.webp",
   content: [
     {
       type: "paragraph",
@@ -18,6 +18,11 @@ const article: Article = {
     {
       type: "paragraph",
       text: "We compared them on content creation capabilities, AI depth, scheduling features, analytics, and value for money.",
+    },
+    {
+      type: "image",
+      src: "/blog/images/68ff556a676f59046bee6f2b_frame-8.webp",
+      alt: "Ocoya homepage",
     },
     {
       type: "callout",
@@ -42,7 +47,7 @@ const article: Article = {
       ],
       pricing: "From $69/mo ($59/mo billed quarterly)",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/69027462bd57e34a72b918f2_frame.webp",
+        "/blog/images/69027462bd57e34a72b918f2_frame.webp",
     },
     {
       type: "tool",
@@ -59,7 +64,7 @@ const article: Article = {
       ],
       pricing: "Free plan · From $32/mo ($19/yr billed annually)",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68ff55a3e11ca53c0cce1315_frame-3.webp",
+        "/blog/images/68ff55a3e11ca53c0cce1315_frame-3.webp",
     },
     {
       type: "tool",
@@ -76,7 +81,7 @@ const article: Article = {
       ],
       pricing: "Free plan · From $29/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68ff55b76ca40486c1e762ad_frame-6.webp",
+        "/blog/images/68ff55b76ca40486c1e762ad_frame-6.webp",
     },
     {
       type: "tool",
@@ -93,7 +98,7 @@ const article: Article = {
       ],
       pricing: "Custom pricing",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68ff55c9681dfc2ac11a0f2a_frame-7.webp",
+        "/blog/images/68ff55c9681dfc2ac11a0f2a_frame-7.webp",
     },
     {
       type: "tool",
@@ -110,7 +115,7 @@ const article: Article = {
       ],
       pricing: "Free plan · From €19/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68ff55ddf76faf01240806ad_frame-5.webp",
+        "/blog/images/68ff55ddf76faf01240806ad_frame-5.webp",
     },
     {
       type: "tool",
@@ -127,7 +132,7 @@ const article: Article = {
       ],
       pricing: "Free · From $22/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68ff55f262d33e7dbd567c48_frame-4.webp",
+        "/blog/images/68ff55f262d33e7dbd567c48_frame-4.webp",
     },
     {
       type: "tool",
@@ -144,7 +149,7 @@ const article: Article = {
       ],
       pricing: "Free (1 profile/platform) · From $15/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68ff56082b559913c70be35f_frame-1.webp",
+        "/blog/images/68ff56082b559913c70be35f_frame-1.webp",
     },
     {
       type: "tool",
@@ -161,7 +166,7 @@ const article: Article = {
       ],
       pricing: "Free trial · From $29/mo ($19/yr billed annually)",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68ff562754362716086e3de8_frame-2.webp",
+        "/blog/images/68ff562754362716086e3de8_frame-2.webp",
     },
     {
       type: "heading",
@@ -180,6 +185,11 @@ const article: Article = {
         "Test scheduling reliability with your actual platform mix before committing",
         "Check whether analytics covers your paid channels, not just organic",
       ],
+    },
+    {
+      type: "image",
+      src: "/blog/images/68ff5580ab88bfdfe94357fe_Tabela.webp",
+      alt: "Ocoya alternatives comparison table",
     },
     {
       type: "callout",

@@ -9,7 +9,7 @@ const article: Article = {
   date: "Oct 22, 2025",
   tag: "Knowledge",
   thumbnail:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e139fc8c665a776cbce7_bPd3jJZzbR2VFTeAvby4MWid8.webp",
+    "/blog/images/68f8e139fc8c665a776cbce7_bPd3jJZzbR2VFTeAvby4MWid8.webp",
   content: [
     {
       type: "paragraph",
@@ -29,7 +29,7 @@ const article: Article = {
     },
     {
       type: "image",
-      src: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e138fc8c665a776cbbb2_YdkIIuebgXDW5tugdQeYEhBg3Q.webp",
+      src: "/blog/images/68f8e138fc8c665a776cbbb2_YdkIIuebgXDW5tugdQeYEhBg3Q.webp",
       alt: "Inline article image",
     },
     {
@@ -64,7 +64,7 @@ const article: Article = {
     },
     {
       type: "image",
-      src: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e138fc8c665a776cbbac_SrcAuDrfAWD6d87m4zFzddwgJds.webp",
+      src: "/blog/images/68f8e138fc8c665a776cbbac_SrcAuDrfAWD6d87m4zFzddwgJds.webp",
       alt: "Inline article image",
     },
     {
@@ -94,7 +94,7 @@ const article: Article = {
     },
     {
       type: "image",
-      src: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e138fc8c665a776cbbb6_CPyFWWSnxjdgOF9LVUuEd2I4PyU.webp",
+      src: "/blog/images/68f8e138fc8c665a776cbbb6_CPyFWWSnxjdgOF9LVUuEd2I4PyU.webp",
       alt: "Inline article image",
     },
     {
@@ -112,17 +112,17 @@ const article: Article = {
     },
     {
       type: "image",
-      src: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e138fc8c665a776cbbc2_XfF21ikw89KhCnHoRspD4QOJno.webp",
+      src: "/blog/images/68f8e138fc8c665a776cbbc2_XfF21ikw89KhCnHoRspD4QOJno.webp",
       alt: "Top-performing Reel format example",
     },
     {
       type: "image",
-      src: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e138fc8c665a776cbbbf_y2qsGllxFHOoQRefnBZc94nk3E.webp",
+      src: "/blog/images/68f8e138fc8c665a776cbbbf_y2qsGllxFHOoQRefnBZc94nk3E.webp",
       alt: "Top-performing Reel format example",
     },
     {
       type: "image",
-      src: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e138fc8c665a776cbbbc_fAc88akP351lt2vfotDzo6Kzb0.webp",
+      src: "/blog/images/68f8e138fc8c665a776cbbbc_fAc88akP351lt2vfotDzo6Kzb0.webp",
       alt: "Top-performing Reel format example",
     },
     {
@@ -187,7 +187,7 @@ const article: Article = {
     },
     {
       type: "image",
-      src: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/68f8e138fc8c665a776cbbaf_vBDmDR80A81JkVdHsGEK7EHEtG8.webp",
+      src: "/blog/images/68f8e138fc8c665a776cbbaf_vBDmDR80A81JkVdHsGEK7EHEtG8.webp",
       alt: "Inline article image",
     },
     {

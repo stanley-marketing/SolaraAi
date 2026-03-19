@@ -9,7 +9,7 @@ const article: Article = {
   date: "Nov 19, 2025",
   tag: "Comparison",
   thumbnail:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691e1634576c6ab2ae11e221_Frame%202131330148.webp",
+    "/blog/images/691e1634576c6ab2ae11e221_Frame-2131330148.webp",
   content: [
     {
       type: "paragraph",
@@ -28,6 +28,11 @@ const article: Article = {
       text: "The 8 Best Synthesia Alternatives",
     },
     {
+      type: "image",
+      src: "/blog/images/691e180d16a9bea9673a2663_Tabela.webp",
+      alt: "comparison-table",
+    },
+    {
       type: "tool",
       number: 1,
       name: "Solara AI",
@@ -42,7 +47,7 @@ const article: Article = {
       ],
       pricing: "From $39/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/69027462bd57e34a72b918f2_frame.webp",
+        "/blog/images/69027462bd57e34a72b918f2_frame.webp",
     },
     {
       type: "tool",
@@ -59,7 +64,7 @@ const article: Article = {
       ],
       pricing: "Free trial \u00b7 From $29/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691e1842f6125b40bc097a2c_frame-7.webp",
+        "/blog/images/691e1842f6125b40bc097a2c_frame-7.webp",
     },
     {
       type: "tool",
@@ -76,7 +81,7 @@ const article: Article = {
       ],
       pricing: "Free plan \u00b7 From $29/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691e187dd64958d3880bc92d_frame-2.webp",
+        "/blog/images/691e187dd64958d3880bc92d_frame-2.webp",
     },
     {
       type: "tool",
@@ -93,7 +98,7 @@ const article: Article = {
       ],
       pricing: "Free trial \u00b7 From $27/mo ($19/yr billed annually)",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691e18a434013b0c7bba40d7_frame-4.webp",
+        "/blog/images/691e18a434013b0c7bba40d7_frame-4.webp",
     },
     {
       type: "tool",
@@ -110,7 +115,7 @@ const article: Article = {
       ],
       pricing: "Free plan \u00b7 Varies by usage",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691e18db045258fd177565ed_frame-5.webp",
+        "/blog/images/691e18db045258fd177565ed_frame-5.webp",
     },
     {
       type: "tool",
@@ -127,7 +132,7 @@ const article: Article = {
       ],
       pricing: "Free (with watermark) \u00b7 From $16/mo billed annually",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691e1902d76ffc3882b01d3d_frame-1.webp",
+        "/blog/images/691e1902d76ffc3882b01d3d_frame-1.webp",
     },
     {
       type: "tool",
@@ -144,7 +149,7 @@ const article: Article = {
       ],
       pricing: "Free trial \u00b7 From ~$5.90/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691e192cf33a1ecb59f1c7c0_frame-3.webp",
+        "/blog/images/691e192cf33a1ecb59f1c7c0_frame-3.webp",
     },
     {
       type: "tool",
@@ -161,7 +166,7 @@ const article: Article = {
       ],
       pricing: "Free (with watermark) \u00b7 From $29/mo",
       image:
-        "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/691e1951f6c162eb9770a87d_frame-6.webp",
+        "/blog/images/691e1951f6c162eb9770a87d_frame-6.webp",
     },
     {
       type: "heading",
