@@ -88,53 +88,59 @@ const PLANS: Plan[] = [
 
 const EXPERT_PLANS: Plan[] = [
   {
-    id: "expert-essential",
-    name: "Essential",
-    tagline: "Expert-led strategy with AI-powered execution across core channels.",
-    monthly: 499,
-    yearly: 399,
+    id: "expert-complete",
+    name: "Complete",
+    tagline: "Full social media management, SEO, ads, and website — without commercials.",
+    monthly: 599,
+    yearly: 599,
     popular: false,
     cta: "Talk to us",
     features: [
-      "Dedicated marketing expert",
-      "Up to 3 managed channels",
-      "SEO strategy + execution",
-      "Monthly performance review",
-      "AI-powered content creation",
+      "Full social media management (all platforms)",
+      "Strategy, content creation & community monitoring",
+      "Presentor video, carousels, AI videos, image posts",
+      "AI Video editor access",
+      "SEO, GEO & AI search optimization",
+      "Backlink building & Google Business Profile",
+      "Website building & maintenance",
+      "Ads management across Google, TikTok & Meta",
+      "Creative ad design & landing page optimization",
+      "Ad spend management up to $10K",
+      "Monthly performance reports",
     ],
   },
   {
-    id: "expert-growth",
-    name: "Growth",
-    tagline: "Full-stack managed marketing across all channels with hands-on optimization.",
+    id: "expert-complete-plus",
+    name: "Complete+",
+    tagline: "Everything in Complete with premium commercials and dedicated support.",
     monthly: 999,
-    yearly: 799,
+    yearly: 999,
     popular: true,
     cta: "Talk to us",
     features: [
-      "Everything in Essential, plus:",
-      "Unlimited managed channels",
-      "Ads management — Meta, Google, TikTok",
-      "AI Search & visibility optimization",
-      "Weekly strategy calls",
-      "Custom website design",
+      "Everything in Complete, plus:",
+      "5 premium commercials per month (up to 1 min each)",
+      "Professional-grade video production",
+      "Ad spend management up to $30K",
+      "Priority support",
+      "Dedicated account manager",
     ],
   },
   {
-    id: "expert-scale",
-    name: "Scale",
-    tagline: "Enterprise-grade marketing operations with dedicated team and custom integrations.",
+    id: "expert-custom",
+    name: "Custom",
+    tagline: "Bespoke marketing solutions tailored to your business needs.",
     monthly: null,
     yearly: null,
     popular: false,
-    cta: "Talk to us",
+    cta: "Let's talk",
     features: [
-      "Everything in Growth, plus:",
-      "Dedicated marketing team",
-      "Custom integrations & reporting",
-      "Multi-brand management",
-      "Commercial-grade AI models",
-      "Priority support & SLA",
+      "Everything in Complete+, plus:",
+      "Email marketing campaigns",
+      "Loyalty program management",
+      "Custom ad spend limits",
+      "Bespoke marketing solutions",
+      "White-glove onboarding",
     ],
   },
 ];
@@ -182,11 +188,11 @@ export function PricingSection() {
                   }}
                 >
                   {active && (
-                    <motion.div
-                      layoutId="pricing-tab-pill"
-                      style={{ position: "absolute", inset: 0, background: "#111111", borderRadius: 999 }}
-                      transition={{ type: "spring", duration: 0.45, bounce: 0.15 }}
-                    />
+                      <motion.div
+                        layoutId="homepage-pricing-tab-pill"
+                        style={{ position: "absolute", inset: 0, background: "#111111", borderRadius: 999 }}
+                        transition={{ type: "spring", duration: 0.45, bounce: 0.15 }}
+                      />
                   )}
                   <span style={{ position: "relative", zIndex: 2, display: "inline-flex", alignItems: "center", gap: 6 }}>
                     {label}
@@ -226,11 +232,25 @@ export function PricingSection() {
         </div>
 
         {tab === "self" && (
-          <div style={{ textAlign: "center", marginTop: 40 }}>
-            <Link href="/pricing" className="compare-link" style={{ fontSize: "0.84rem", color: "#9a9a9a", textDecoration: "none", transition: "color 0.15s" }}>
-              See full feature comparison &rarr;
-            </Link>
-          </div>
+          <>
+            <p
+              style={{
+                textAlign: "center",
+                margin: "18px auto 0",
+                maxWidth: 440,
+                fontSize: "0.82rem",
+                color: "#8a8a8a",
+                lineHeight: 1.6,
+              }}
+            >
+              Self-managed is still in preview. Prices and plan details may change before launch.
+            </p>
+            <div style={{ textAlign: "center", marginTop: 18 }}>
+              <Link href="/pricing" className="compare-link" style={{ fontSize: "0.84rem", color: "#9a9a9a", textDecoration: "none", transition: "color 0.15s" }}>
+                See full feature comparison &rarr;
+              </Link>
+            </div>
+          </>
         )}
 
         <style>{`

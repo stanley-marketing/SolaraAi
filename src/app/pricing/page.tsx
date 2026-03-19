@@ -91,53 +91,59 @@ const PLANS: Plan[] = [
 
 const EXPERT_PLANS: Plan[] = [
   {
-    id: "expert-essential",
-    name: "Essential",
-    tagline: "Expert-led strategy with AI-powered execution across core channels.",
-    monthly: 499,
-    yearly: 399,
+    id: "expert-complete",
+    name: "Complete",
+    tagline: "Full social media management, SEO, ads, and website — without commercials.",
+    monthly: 599,
+    yearly: 599,
     popular: false,
     cta: "Talk to us",
     features: [
-      "Dedicated marketing expert",
-      "Up to 3 managed channels",
-      "SEO strategy + execution",
-      "Monthly performance review",
-      "AI-powered content creation",
+      "Full social media management (all platforms)",
+      "Strategy, content creation & community monitoring",
+      "Presentor video, carousels, AI videos, image posts",
+      "AI Video editor access",
+      "SEO, GEO & AI search optimization",
+      "Backlink building & Google Business Profile",
+      "Website building & maintenance",
+      "Ads management across Google, TikTok & Meta",
+      "Creative ad design & landing page optimization",
+      "Ad spend management up to $10K",
+      "Monthly performance reports",
     ],
   },
   {
-    id: "expert-growth",
-    name: "Growth",
-    tagline: "Full-stack managed marketing across all channels with hands-on optimization.",
+    id: "expert-complete-plus",
+    name: "Complete+",
+    tagline: "Everything in Complete with premium commercials and dedicated support.",
     monthly: 999,
-    yearly: 799,
+    yearly: 999,
     popular: true,
     cta: "Talk to us",
     features: [
-      "Everything in Essential, plus:",
-      "Unlimited managed channels",
-      "Ads management - Meta, Google, TikTok",
-      "AI Search & visibility optimization",
-      "Weekly strategy calls",
-      "Custom website design",
+      "Everything in Complete, plus:",
+      "5 premium commercials per month (up to 1 min each)",
+      "Professional-grade video production",
+      "Ad spend management up to $30K",
+      "Priority support",
+      "Dedicated account manager",
     ],
   },
   {
-    id: "expert-scale",
-    name: "Scale",
-    tagline: "Enterprise-grade marketing operations with dedicated team and custom integrations.",
+    id: "expert-custom",
+    name: "Custom",
+    tagline: "Bespoke marketing solutions tailored to your business needs.",
     monthly: null,
     yearly: null,
     popular: false,
-    cta: "Talk to us",
+    cta: "Let's talk",
     features: [
-      "Everything in Growth, plus:",
-      "Dedicated marketing team",
-      "Custom integrations & reporting",
-      "Multi-brand management",
-      "Commercial-grade AI models",
-      "Priority support & SLA",
+      "Everything in Complete+, plus:",
+      "Email marketing campaigns",
+      "Loyalty program management",
+      "Custom ad spend limits",
+      "Bespoke marketing solutions",
+      "White-glove onboarding",
     ],
   },
 ];
@@ -167,15 +173,15 @@ const faqs = [
   },
   {
     q: "How do strategy calls work?",
-    a: "Growth and Advanced include quarterly calls. Pro includes monthly consulting calls. Solara Grow Growth includes weekly calls. All are 30-minute sessions with a Solara marketing expert.",
+    a: "Complete+ includes priority support with a dedicated account manager. Custom plans include white-glove onboarding. All managed plans include monthly performance reports.",
   },
   {
     q: "How do I cancel?",
     a: "Go to Settings -> Billing -> Cancel Subscription. Your account remains active until the end of your current billing period.",
   },
   {
-    q: "What does custom pricing mean for Scale?",
-    a: "The Scale plan is tailored to your organization's needs - channels, integrations, team size. Contact us to discuss.",
+    q: "What does custom pricing include?",
+    a: "The Custom plan is tailored to your organization's needs — email marketing, loyalty programs, custom ad spend limits, and bespoke solutions. Contact us to discuss.",
   },
 ];
 
@@ -310,7 +316,7 @@ export default function PricingPage() {
                     >
                       {active && (
                         <motion.div
-                          layoutId="pricing-tab-pill"
+                          layoutId="pricing-page-tab-pill"
                           style={{ position: "absolute", inset: 0, background: "#111111", borderRadius: 999 }}
                           transition={{ type: "spring", duration: 0.45, bounce: 0.15 }}
                         />
@@ -407,6 +413,18 @@ export default function PricingPage() {
 
             {tab === "self" && (
               <>
+                <p
+                  style={{
+                    textAlign: "center",
+                    margin: "18px auto 0",
+                    maxWidth: 460,
+                    fontSize: "0.84rem",
+                    color: "#8a8a8a",
+                    lineHeight: 1.6,
+                  }}
+                >
+                  Self-managed is still in preview. Prices and plan details may change before launch.
+                </p>
                 <div className="compare-table" style={{ marginTop: 72 }}>
                   <CompareTable yearly={yearly} />
                 </div>
