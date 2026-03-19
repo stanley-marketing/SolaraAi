@@ -6,7 +6,7 @@ import type { Article } from "@/lib/articles";
 const AUTHOR = {
   name: "Yuval Strutti",
   avatar:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/690750f26031dfaacaf32be1_iV_Hy7-_vh6qz7lMknoxU%20(1).jpg",
+    "/blog/images/690750f26031dfaacaf32be1_iV_Hy7-_vh6qz7lMknoxU-(1).jpg",
 };
 
 const tagColors: Record<string, string> = {

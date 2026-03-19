@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 
 const AUTHOR = {
   name: "Yuval Strutti",
-  avatar: "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/690750f26031dfaacaf32be1_iV_Hy7-_vh6qz7lMknoxU%20(1).jpg",
+  avatar: "/blog/images/690750f26031dfaacaf32be1_iV_Hy7-_vh6qz7lMknoxU-(1).jpg",
 };
 
 const articles = allArticles.map((a, i) => ({

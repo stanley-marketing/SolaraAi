@@ -8,7 +8,7 @@ import { type Article, type ArticleSection } from "@/lib/articles";
 const AUTHOR = {
   name: "Yuval Strutti",
   avatar:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/690750f26031dfaacaf32be1_iV_Hy7-_vh6qz7lMknoxU%20(1).jpg",
+    "/blog/images/690750f26031dfaacaf32be1_iV_Hy7-_vh6qz7lMknoxU-(1).jpg",
 };
 
 const tagColors: Record<string, string> = {
@@ -291,12 +291,18 @@ function ReadingProgress() {
 
   useEffect(() => {
     const onScroll = () => {
-      const el = document.documentElement;
-      const scrolled = el.scrollTop;
-      const total = el.scrollHeight - el.clientHeight;
+      const article = document.querySelector("article");
+      if (!article) return;
+      const rect = article.getBoundingClientRect();
+      const articleTop = rect.top + window.scrollY;
+      const articleBottom = articleTop + rect.height;
+      const viewportBottom = window.scrollY + window.innerHeight;
+      const total = articleBottom - articleTop;
+      const scrolled = Math.max(0, viewportBottom - articleTop);
       setProgress(total > 0 ? Math.min((scrolled / total) * 100, 100) : 0);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 

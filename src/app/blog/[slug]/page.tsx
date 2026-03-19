@@ -11,7 +11,7 @@ import Link from "next/link";
 const AUTHOR = {
   name: "Yuval Strutti",
   avatar:
-    "https://cdn.prod.website-files.com/68e66fb12d1f1e9f896f220b/690750f26031dfaacaf32be1_iV_Hy7-_vh6qz7lMknoxU%20(1).jpg",
+    "/blog/images/690750f26031dfaacaf32be1_iV_Hy7-_vh6qz7lMknoxU-(1).jpg",
 };
 
 const SITE_URL = "https://solaraai.com";
@@ -225,27 +225,31 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           <h2
             className="mx-auto max-w-xl leading-tight tracking-[-0.015em]"
             style={{
-              fontFamily: "var(--font-blog)",
+              fontFamily: "var(--font-display)",
               fontSize: "clamp(1.8rem, 3.5vw, 3rem)",
+              fontWeight: 300,
             }}
           >
             Turn your marketing engine on.
           </h2>
-          <p className="mx-auto mt-4 max-w-sm text-[0.88rem] text-ink-700/60">
+          <p
+            className="mx-auto mt-4 max-w-sm text-ink-700/70"
+            style={{ fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)", lineHeight: 1.6 }}
+          >
             Start free. No credit card required.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <a
               href="/contact"
-              className="inline-flex items-center rounded-xl bg-ink-900 px-7 py-3.5 text-[0.82rem] font-semibold uppercase tracking-[0.16em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90"
+              className="inline-flex items-center rounded-[999px] bg-black px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-white transition-colors duration-200 hover:bg-gray-700"
             >
-              Start free trial
+              Sign Up
             </a>
             <a
               href="/contact"
-              className="inline-flex items-center rounded-xl border border-line bg-white px-7 py-3.5 text-[0.82rem] font-medium tracking-[0.08em] text-ink-900 transition-all duration-200 hover:-translate-y-0.5 hover:border-ink-900/30"
+              className="inline-flex items-center rounded-[999px] border border-line bg-white/60 px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-ink-900 backdrop-blur-sm transition-colors duration-200 hover:bg-gray-100"
             >
-              Book a call
+              Contact Sales
             </a>
           </div>
         </section>
