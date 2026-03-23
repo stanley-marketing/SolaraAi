@@ -28,7 +28,7 @@ const PLANS: Plan[] = [
     name: "Starter",
     tagline: "Launch your marketing with AI-powered tools and guidance.",
     monthly: 49,
-    yearly: 29,
+    yearly: 34,
     popular: false,
     cta: "Get started",
     features: [
@@ -45,7 +45,7 @@ const PLANS: Plan[] = [
     name: "Growth",
     tagline: "Scale your reach across channels with expert strategy support.",
     monthly: 99,
-    yearly: 59,
+    yearly: 69,
     popular: false,
     cta: "Get started",
     features: [
@@ -60,7 +60,7 @@ const PLANS: Plan[] = [
     name: "Pro",
     tagline: "Full-stack marketing with SEO, content strategy, and unlimited ads.",
     monthly: 199,
-    yearly: 119,
+    yearly: 139,
     popular: true,
     cta: "Get started",
     features: [
@@ -76,7 +76,7 @@ const PLANS: Plan[] = [
     name: "Advanced",
     tagline: "Enhanced AI models, full recommendations, and expert rhythm.",
     monthly: 319,
-    yearly: 191,
+    yearly: 223,
     popular: false,
     cta: "Get started",
     features: [
@@ -90,60 +90,153 @@ const PLANS: Plan[] = [
 ];
 
 const EXPERT_PLANS: Plan[] = [
+  // ── Social Media Management ──
   {
-    id: "expert-complete",
-    name: "Complete",
-    tagline: "Full social media management, SEO, ads, and website — without commercials.",
-    monthly: 599,
-    yearly: 599,
+    id: "expert-social",
+    name: "Social",
+    tagline: "Full social media management across all major platforms.",
+    monthly: 149,
+    yearly: 104,
     popular: false,
     cta: "Talk to us",
     features: [
-      "Full social media management (all platforms)",
-      "Strategy, content creation & community monitoring",
-      "Presentor video, carousels, AI videos, image posts",
-      "AI Video editor access",
-      "SEO, GEO & AI search optimization",
-      "Backlink building & Google Business Profile",
-      "Website building & maintenance",
-      "Ads management across Google, TikTok & Meta",
-      "Creative ad design & landing page optimization",
-      "Ad spend management up to $10K",
-      "Monthly performance reports",
+      "Full social media management",
+      "Content creation",
+      "Real story carousels",
+      "Engaging videos",
+      "Presentation videos",
+      "Platforms: LinkedIn, Instagram, TikTok, Facebook, Twitter",
     ],
   },
   {
-    id: "expert-complete-plus",
-    name: "Complete+",
-    tagline: "Everything in Complete with premium commercials and dedicated support.",
-    monthly: 999,
-    yearly: 999,
+    id: "expert-social-commercial",
+    name: "Social + Commercial",
+    tagline: "Everything in Social with higher quality TV-grade commercials.",
+    monthly: 449,
+    yearly: 314,
+    popular: false,
+    cta: "Talk to us",
+    features: [
+      "Everything in Social, plus:",
+      "Higher quality commercial production",
+      "TV commercial-level grade",
+    ],
+  },
+  // ── Ads Management ──
+  {
+    id: "expert-ads-3k",
+    name: "Ads Manager",
+    tagline: "Full ads management across Google, Meta & TikTok with up to $3K ad spend.",
+    monthly: 249,
+    yearly: 174,
     popular: true,
     cta: "Talk to us",
     features: [
-      "Everything in Complete, plus:",
-      "5 premium commercials per month (up to 1 min each)",
-      "Professional-grade video production",
-      "Ad spend management up to $30K",
-      "Priority support",
-      "Dedicated account manager",
+      "Google Search, Meta & TikTok ads management",
+      "Landing page creation",
+      "Continuous optimization",
+      "A/B testing",
+      "Creative visual creations",
+      "Tracking setup",
+      "Ad spend management up to $3K",
     ],
   },
   {
-    id: "expert-custom",
-    name: "Custom",
-    tagline: "Bespoke marketing solutions tailored to your business needs.",
+    id: "expert-ads-15k",
+    name: "Ads Manager Pro",
+    tagline: "Same ads management for larger budgets up to $15K ad spend.",
+    monthly: 399,
+    yearly: 279,
+    popular: false,
+    cta: "Talk to us",
+    features: [
+      "Everything in Ads Manager, plus:",
+      "Ad spend management $3K–$15K",
+    ],
+  },
+  {
+    id: "expert-ads-15k-plus",
+    name: "Ads Manager Scale",
+    tagline: "Enterprise ads management for budgets above $15K.",
+    monthly: 599,
+    yearly: 419,
+    popular: false,
+    cta: "Talk to us",
+    features: [
+      "Everything in Ads Manager, plus:",
+      "Ad spend management above $15K",
+    ],
+  },
+  // ── Add-ons ──
+  {
+    id: "expert-addon-website",
+    name: "Website",
+    tagline: "Custom website creation and ongoing management.",
+    monthly: 49,
+    yearly: 34,
+    popular: false,
+    cta: "Add on",
+    features: [
+      "Custom website design",
+      "Website creation & management",
+    ],
+  },
+  {
+    id: "expert-addon-seo",
+    name: "SEO & AI Search",
+    tagline: "Search engine and AI search optimization.",
+    monthly: 119,
+    yearly: 83,
+    popular: false,
+    cta: "Add on",
+    features: [
+      "SEO optimization",
+      "AI search optimization",
+    ],
+  },
+  {
+    id: "expert-addon-custom",
+    name: "Custom Solutions",
+    tagline: "Email, SMS marketing, loyalty programs, and more.",
     monthly: null,
     yearly: null,
     popular: false,
-    cta: "Let's talk",
+    cta: "Talk to us",
     features: [
-      "Everything in Complete+, plus:",
-      "Email marketing campaigns",
+      "Email marketing",
+      "SMS marketing",
       "Loyalty program management",
-      "Custom ad spend limits",
-      "Bespoke marketing solutions",
-      "White-glove onboarding",
+    ],
+  },
+  // ── Full Custom Packages ──
+  {
+    id: "expert-full-custom",
+    name: "Full Custom",
+    tagline: "Complete managed marketing with regular commercials and up to $3K ad spend.",
+    monthly: 599,
+    yearly: 419,
+    popular: false,
+    cta: "Talk to us",
+    features: [
+      "Full social media management",
+      "Regular commercial production",
+      "Ads management up to $3K",
+      "All add-ons included",
+    ],
+  },
+  {
+    id: "expert-full-custom-premium",
+    name: "Full Custom Premium",
+    tagline: "Premium commercials, larger budgets, and full marketing operations.",
+    monthly: 999,
+    yearly: 699,
+    popular: false,
+    cta: "Talk to us",
+    features: [
+      "Full social media management",
+      "Premium commercial production",
+      "Ads management up to $15K",
+      "All add-ons included",
     ],
   },
 ];
@@ -160,8 +253,8 @@ const TABLE_FEATURES = [
 
 const faqs = [
   {
-    q: "What's the difference between Self-managed and Solara Grow?",
-    a: "Self-managed gives you AI tools with expert guidance - you run it. Solara Grow is fully managed by a dedicated marketing expert plus AI infrastructure.",
+    q: "What plans does Solara Grow offer?",
+    a: "Solara Grow offers Social media management starting at $149/mo, Ads management starting at $249/mo, and add-ons like website creation ($49/mo) and SEO optimization ($119/mo). Full custom packages start at $599/mo.",
   },
   {
     q: "What's included in every plan?",
@@ -345,11 +438,11 @@ export default function PricingPage() {
                     transition: "color 0.2s",
                   }}
                 >
-                  Monthly
+                  3 month
                 </span>
                 <button
                   type="button"
-                  aria-label={yearly ? "Switch to monthly billing" : "Switch to yearly billing"}
+                  aria-label={yearly ? "Switch to 3 month billing" : "Switch to yearly billing"}
                   onClick={() => setYearly(!yearly)}
                   className="billing-toggle"
                   style={{
@@ -400,7 +493,7 @@ export default function PricingPage() {
                     transition: "all 0.2s",
                   }}
                 >
-                  Save 40%
+                  Save 30%
                 </span>
               </div>
             </div>
@@ -448,13 +541,19 @@ export default function PricingPage() {
           }
           .pricing-grid-expert {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 14px;
             align-items: stretch;
-            max-width: 1000px;
+            max-width: 1320px;
             margin: 0 auto;
           }
-          @media (max-width: 768px) {
+          @media (max-width: 1200px) {
+            .pricing-grid-expert { grid-template-columns: repeat(3, 1fr); }
+          }
+          @media (max-width: 900px) {
+            .pricing-grid-expert { grid-template-columns: repeat(2, 1fr); }
+          }
+          @media (max-width: 600px) {
             .pricing-grid-expert { grid-template-columns: 1fr; }
           }
           .plan-card:hover { border-color: #c8c8c8 !important; }
@@ -622,7 +721,7 @@ function PlanCard({ plan, yearly }: { plan: Plan; yearly: boolean }) {
               <span style={{ fontFamily: "var(--font-display)", fontSize: "2.4rem", color: "#ffffff", lineHeight: 1 }}>${price}</span>
               <span style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.38)", marginBottom: 3 }}>/mo</span>
             </div>
-            <div style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.3)", marginBottom: 24 }}>{yearly ? "billed annually" : "billed monthly"}</div>
+            <div style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.3)", marginBottom: 24 }}>{yearly ? "billed annually" : "billed every 3 months"}</div>
             <Link
               href="/contact"
               className="cta-filled"
@@ -696,7 +795,7 @@ function PlanCard({ plan, yearly }: { plan: Plan; yearly: boolean }) {
           <span style={{ fontFamily: "var(--font-display)", fontSize: "2rem", color: "#111111", lineHeight: 1 }}>Custom</span>
         )}
       </div>
-      <div style={{ fontSize: "0.7rem", color: "#999999", marginBottom: 24 }}>{isExpert ? "custom pricing" : yearly ? "billed annually" : "billed monthly"}</div>
+      <div style={{ fontSize: "0.7rem", color: "#999999", marginBottom: 24 }}>{isExpert ? "custom pricing" : yearly ? "billed annually" : "billed every 3 months"}</div>
       <Link
         href="/contact"
         className="cta-outlined"
