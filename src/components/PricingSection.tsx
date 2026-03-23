@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Check } from "lucide-react";
 
@@ -327,6 +327,81 @@ const PLANS_BY_TAB: Record<TabKey, Plan[]> = {
   ),
 };
 
+type LogoItem = { name: string; icon: React.ReactNode };
+
+const SOCIAL_LOGOS: LogoItem[] = [
+  { name: "Facebook",  icon: <img src="/icons/facebook-svgrepo-com.svg" alt="Facebook" style={{ height: 34, width: "auto", objectFit: "contain" }} /> },
+  { name: "Instagram", icon: <img src="/icons/ig-instagram-icon.svg" alt="Instagram" style={{ height: 34, width: "auto", objectFit: "contain" }} /> },
+  { name: "LinkedIn",  icon: <img src="/icons/linkedin-svgrepo-com.svg" alt="LinkedIn" style={{ height: 34, width: "auto", objectFit: "contain" }} /> },
+  { name: "TikTok",    icon: <img src="/icons/tiktok-svgrepo-com.svg" alt="TikTok" style={{ height: 34, width: "auto", objectFit: "contain" }} /> },
+  { name: "YouTube",   icon: <img src="/icons/youtube.svg" alt="YouTube" style={{ height: 26, width: "auto", objectFit: "contain" }} /> },
+  { name: "X",         icon: <img src="/icons/x-2.svg" alt="X" style={{ height: 28, width: "auto", objectFit: "contain" }} /> },
+];
+
+const ADS_LOGOS: LogoItem[] = [
+  { name: "Meta",       icon: <img src="/icons/meta-3.svg" alt="Meta" style={{ height: 28, width: "auto", objectFit: "contain" }} /> },
+  { name: "Google Ads", icon: <img src="/icons/google-ads-svgrepo-com.svg" alt="Google Ads" style={{ height: 34, width: "auto", objectFit: "contain" }} /> },
+  { name: "TikTok Ads", icon: <img src="/icons/tiktok-svgrepo-com.svg" alt="TikTok Ads" style={{ height: 34, width: "auto", objectFit: "contain" }} /> },
+];
+
+const SEO_LOGOS: LogoItem[] = [
+  { name: "OpenAI",     icon: <img src="/icons/OpenAI-black-monoblossom.svg" alt="OpenAI" style={{ height: 44, width: "auto", objectFit: "contain" }} /> },
+  { name: "Perplexity", icon: <img src="/icons/perplexity-color.svg" alt="Perplexity" style={{ height: 34, width: "auto", objectFit: "contain" }} /> },
+  { name: "Claude",     icon: <img src="/icons/claude-color.svg" alt="Claude" style={{ height: 34, width: "auto", objectFit: "contain" }} /> },
+  { name: "Gemini",     icon: <img src="/icons/gemini-color.svg" alt="Gemini" style={{ height: 34, width: "auto", objectFit: "contain" }} /> },
+  { name: "Grok",       icon: <img src="/icons/grok.svg" alt="Grok" style={{ height: 34, width: "auto", objectFit: "contain" }} /> },
+  { name: "Google AI",  icon: <img src="/icons/google-ai-overview.svg" alt="Google AI" style={{ height: 34, width: "auto", objectFit: "contain" }} /> },
+];
+
+const FULL_LOGOS: LogoItem[] = [
+  ...SOCIAL_LOGOS,
+  { name: "Meta",       icon: <img src="/icons/meta-3.svg" alt="Meta" style={{ height: 28, width: "auto", objectFit: "contain" }} /> },
+  { name: "Google Ads", icon: <img src="/icons/google-ads-svgrepo-com.svg" alt="Google Ads" style={{ height: 34, width: "auto", objectFit: "contain" }} /> },
+  ...SEO_LOGOS,
+];
+
+const TAB_LOGOS: Record<TabKey, LogoItem[]> = {
+  social: SOCIAL_LOGOS,
+  ads:    ADS_LOGOS,
+  seo:    SEO_LOGOS,
+  full:   FULL_LOGOS,
+};
+
+function LogoStrip({ tab }: { tab: TabKey }) {
+  const logos = TAB_LOGOS[tab];
+  if (!logos.length) return null;
+
+  return (
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={tab}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 32,
+          flexWrap: "wrap",
+          padding: "8px 0 28px",
+        }}
+      >
+        {logos.map((logo) => (
+          <span
+            key={logo.name}
+            title={logo.name}
+            className="logo-strip-icon"
+          >
+            {logo.icon}
+          </span>
+        ))}
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
 export function PricingSection() {
   const [tab, setTab] = useState<TabKey>("social");
   const [yearly, setYearly] = useState(true);
@@ -400,6 +475,8 @@ export function PricingSection() {
           </div>
         </div>
 
+        <LogoStrip tab={tab} />
+
         <div className="pricing-grid-expert">
           {activePlans.map((plan) => (
             <PlanCard key={plan.id} plan={plan} yearly={yearly} />
@@ -431,6 +508,7 @@ export function PricingSection() {
           @media (max-width: 600px) {
             .pricing-grid-expert { grid-template-columns: minmax(0, 1fr); }
           }
+          .logo-strip-icon { display: inline-flex; cursor: default; }
           .plan-card:hover { border-color: #c8c8c8 !important; }
           .plan-card-popular:hover { }
           .cta-outlined:hover { border-color: #111 !important; background: #f8fafc !important; }
