@@ -99,7 +99,7 @@ export function SolaraGrowHero() {
           transition={{ duration: 0.7, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(2.4rem, 5.5vw, 4rem)",
+            fontSize: "clamp(2.4rem, 7vw, 100px)",
             fontWeight: 400,
             letterSpacing: "-0.03em",
             lineHeight: 1.07,
