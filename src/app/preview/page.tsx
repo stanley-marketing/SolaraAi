@@ -674,6 +674,7 @@ function PlanCard({
   isExpert: boolean;
 }) {
   const price = yearly ? plan.yearly : plan.monthly;
+  const showDiscount = yearly && plan.monthly !== null && price !== null && plan.monthly !== price;
 
   return (
     <div
@@ -713,7 +714,7 @@ function PlanCard({
 
       <span
         style={{
-          fontSize: "1rem",
+          fontSize: "20px",
           fontWeight: 700,
           color: "#111111",
           letterSpacing: "-0.01em",
@@ -739,13 +740,29 @@ function PlanCard({
         style={{
           display: "flex",
           alignItems: "flex-end",
-          gap: 4,
+          gap: 6,
           marginBottom: 4,
           minHeight: 44,
+          flexWrap: "wrap",
         }}
       >
         {price !== null ? (
           <>
+            {showDiscount && (
+              <span
+                style={{
+                  fontSize: "1.45rem",
+                  color: "#a3a3a3",
+                  textDecoration: "line-through",
+                  textDecorationThickness: "2px",
+                  textDecorationColor: "#a3a3a3",
+                  lineHeight: 1,
+                  marginBottom: 4,
+                }}
+              >
+                ${plan.monthly}
+              </span>
+            )}
             <span
               style={{
                 fontFamily: "var(--font-display)",

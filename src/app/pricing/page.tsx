@@ -669,6 +669,7 @@ export default function PricingPage() {
 function PlanCard({ plan, yearly }: { plan: Plan; yearly: boolean }) {
   const isExpert = plan.monthly === null;
   const price = yearly ? plan.yearly : plan.monthly;
+  const showDiscount = yearly && plan.monthly !== null && price !== null && plan.monthly !== price;
 
   if (plan.popular) {
     return (
@@ -715,9 +716,24 @@ function PlanCard({ plan, yearly }: { plan: Plan; yearly: boolean }) {
             >
               Popular
             </span>
-            <span style={{ fontSize: "0.72rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: 4 }}>{plan.name}</span>
+            <span style={{ fontSize: "20px", fontWeight: 700, color: "#ffffff", letterSpacing: "-0.01em", marginBottom: 4 }}>{plan.name}</span>
             <p style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.5, margin: "0 0 24px", minHeight: 60 }}>{plan.tagline}</p>
-            <div style={{ display: "flex", alignItems: "end", gap: 4, marginBottom: 4 }}>
+            <div style={{ display: "flex", alignItems: "end", gap: 6, marginBottom: 4, flexWrap: "wrap" }}>
+              {showDiscount && (
+                <span
+                  style={{
+                    fontSize: "1.4rem",
+                    color: "rgba(255,255,255,0.38)",
+                    textDecoration: "line-through",
+                    textDecorationThickness: "2px",
+                    textDecorationColor: "rgba(255,255,255,0.38)",
+                    lineHeight: 1,
+                    marginBottom: 3,
+                  }}
+                >
+                  ${plan.monthly}
+                </span>
+              )}
               <span style={{ fontFamily: "var(--font-display)", fontSize: "2.4rem", color: "#ffffff", lineHeight: 1 }}>${price}</span>
               <span style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.38)", marginBottom: 3 }}>/mo</span>
             </div>
@@ -783,11 +799,26 @@ function PlanCard({ plan, yearly }: { plan: Plan; yearly: boolean }) {
         height: "100%",
       }}
     >
-      <span style={{ fontSize: "0.72rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#666666", marginBottom: 4 }}>{plan.name}</span>
+      <span style={{ fontSize: "20px", fontWeight: 700, color: "#111111", letterSpacing: "-0.01em", marginBottom: 4 }}>{plan.name}</span>
       <p style={{ fontSize: "0.85rem", color: "#555555", lineHeight: 1.5, margin: "0 0 24px", minHeight: 60 }}>{plan.tagline}</p>
-      <div style={{ display: "flex", alignItems: "end", gap: 4, marginBottom: 4, minHeight: 38 }}>
+      <div style={{ display: "flex", alignItems: "end", gap: 6, marginBottom: 4, minHeight: 38, flexWrap: "wrap" }}>
         {price !== null ? (
           <>
+            {showDiscount && (
+              <span
+                style={{
+                  fontSize: "1.4rem",
+                  color: "#a3a3a3",
+                  textDecoration: "line-through",
+                  textDecorationThickness: "2px",
+                  textDecorationColor: "#a3a3a3",
+                  lineHeight: 1,
+                  marginBottom: 3,
+                }}
+              >
+                ${plan.monthly}
+              </span>
+            )}
             <span style={{ fontFamily: "var(--font-display)", fontSize: "2.4rem", color: "#111111", lineHeight: 1 }}>${price}</span>
             <span style={{ fontSize: "0.78rem", color: "#888888", marginBottom: 3 }}>/mo</span>
           </>
