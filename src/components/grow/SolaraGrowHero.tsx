@@ -9,7 +9,8 @@ const { hero } = GROW_CONTENT;
 const HERO_STATS = [
   { value: "Expert-managed", label: "Dedicated operators" },
   { value: "AI-powered", label: "Continuous optimization" },
-  { value: "Always-on", label: "Ongoing execution" },
+  { value: "Custom plan", label: "Strategy & execution" },
+  { value: "10% of the cost", label: "Vs. traditional agency" },
 ] as const;
 
 export function SolaraGrowHero() {
@@ -62,7 +63,7 @@ export function SolaraGrowHero() {
         </>
       )}
 
-      <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
+      <div className="relative mx-auto flex max-w-5xl flex-1 flex-col items-center justify-center text-center">
         <motion.div
           initial={noMotion ? false : { opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -165,7 +166,7 @@ export function SolaraGrowHero() {
           initial={noMotion ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="grid w-full grid-cols-1 gap-4 sm:grid-cols-3"
+          className="mt-14 grid w-full grid-cols-2 gap-3 sm:grid-cols-4"
         >
           {HERO_STATS.map((item) => (
             <div

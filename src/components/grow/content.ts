@@ -185,27 +185,27 @@ export const GROW_CONTENT: GrowContent = {
     steps: [
       {
         number: 1,
-        title: "Strategy & Onboarding",
+        title: "Foundation Inspection & Analysis",
         description:
-          "We learn your business, goals, and audience in a deep-dive session.",
+          "Full inspection and analysis of your current marketing state \u2014 what\u2019s working, what\u2019s not, and where the gaps are.",
       },
       {
         number: 2,
-        title: "Campaign Setup & Launch",
+        title: "Custom Strategy & Execution Plan",
         description:
-          "Our team builds and launches your campaigns across the right channels.",
+          "A made-to-measure strategy with custom channel selection \u2014 SMS/email marketing, loyalty programs, plus Solara core (social, SEO, ads, AI search).",
       },
       {
         number: 3,
-        title: "AI-Powered Optimization",
+        title: "Strategy Review & Approval",
         description:
-          "Continuous AI analysis and expert adjustments to maximize performance.",
+          "Up to 7 days for you to review, refine, and approve the strategy before we launch.",
       },
       {
         number: 4,
-        title: "Monthly Reporting & Iteration",
+        title: "Weekly Content Approvals",
         description:
-          "Transparent reports and strategic pivots based on real data.",
+          "Ongoing weekly approvals for all content \u2014 you stay in control while we handle execution.",
       },
     ],
   },
