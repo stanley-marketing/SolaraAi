@@ -1215,7 +1215,7 @@ export default function PrivacyPolicyPage() {
           Please contact us:
         </p>
         <p style={{ fontSize: "0.95rem", lineHeight: 1.75, color: "#344054", marginBottom: "16px" }}>
-          <strong>Support:</strong> <a href="mailto:contact@solara-ai.com" style={{ color: "#0066cc", textDecoration: "underline" }}>contact@solara-ai.com</a>
+          <strong>Support:</strong> <a href="mailto:contact@solaraai.com" style={{ color: "#0066cc", textDecoration: "underline" }}>contact@solaraai.com</a>
         </p>
 
         <h2

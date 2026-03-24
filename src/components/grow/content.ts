@@ -133,7 +133,7 @@ export const GROW_CONTENT: GrowContent = {
   hero: {
     headline: "Your Entire Marketing, Managed by AI + Our Experts",
     subheadline:
-      "Grow is the done-for-you service where our team handles your paid ads, content strategy, and campaigns — powered by AI, delivered by experts.",
+      "Our team handles your paid ads, content strategy, and campaigns end-to-end — powered by AI, delivered by marketing experts.",
     cta: CTA,
     proofTags: ["Expert-managed", "AI-powered", "Always-on"],
   },
@@ -144,9 +144,9 @@ export const GROW_CONTENT: GrowContent = {
   insight: {
     headline: "Marketing is a full-time job. You shouldn't have to do it alone.",
     painPoints: [
-      { text: "Managing multiple channels is a full-time job" },
-      { text: "Agencies are expensive and slow to iterate" },
-      { text: "DIY tools require expertise you may not have" },
+      { text: "Keeping up with every channel drains your time and focus" },
+      { text: "Agencies charge high retainers and take weeks to move" },
+      { text: "DIY tools still need someone who knows how to use them" },
     ],
   },
 
@@ -185,9 +185,9 @@ export const GROW_CONTENT: GrowContent = {
     steps: [
       {
         number: 1,
-        title: "Foundation Inspection & Analysis",
+        title: "Marketing Audit & Analysis",
         description:
-          "Full inspection and analysis of your current marketing state \u2014 what\u2019s working, what\u2019s not, and where the gaps are.",
+          "Full audit of your current marketing state \u2014 what\u2019s working, what\u2019s not, and where the gaps are.",
       },
       {
         number: 2,
@@ -225,9 +225,9 @@ export const GROW_CONTENT: GrowContent = {
         approved: true,
       },
       {
-        title: "Increased ad ROAS",
+        title: "Stronger return on ad spend",
         description:
-          "Expert campaign structure combined with AI bidding drives stronger return on ad spend.",
+          "Expert campaign structure combined with AI bidding means more revenue per dollar spent on ads.",
         approved: true,
       },
       {
@@ -253,7 +253,7 @@ export const GROW_CONTENT: GrowContent = {
     },
     rows: [
       {
-        feature: "Solara AI team manages campaigns",
+        feature: "Dedicated team manages your campaigns",
         diy: "cross",
         agency: "Partial",
         solara: "check",
@@ -304,9 +304,9 @@ export const GROW_CONTENT: GrowContent = {
   trust: {
     trustLogos: [],
     statements: [
-      "Real team, real results",
-      "AI-augmented, human-verified",
-      "Your marketing, always on",
+      "Real people running your marketing",
+      "AI does the heavy lifting, experts make the decisions",
+      "Your campaigns run 24/7, even while you sleep",
     ],
   },
 
