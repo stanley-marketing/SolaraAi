@@ -221,36 +221,57 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         <RelatedArticles currentSlug={slug} />
 
         {/* CTA */}
-        <section className="border-t border-line bg-shell px-6 py-20 text-center sm:px-10">
-          <h2
-            className="mx-auto max-w-xl leading-tight tracking-[-0.015em]"
+        <section
+          className="border-t border-line px-6 py-20 text-center sm:px-10"
+          style={{
+            position: "relative",
+            overflow: "hidden",
+            backgroundImage:
+              "linear-gradient(180deg, rgba(4,4,4,0.35) 0%, rgba(4,4,4,0.72) 100%), url('/blog-cta-bg.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div
+            aria-hidden
             style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(1.8rem, 3.5vw, 3rem)",
-              fontWeight: 300,
+              position: "absolute",
+              inset: 0,
+              background:
+                "radial-gradient(circle at top, rgba(255,255,255,0.10), transparent 38%), linear-gradient(90deg, rgba(0,0,0,0.14), rgba(0,0,0,0.06), rgba(0,0,0,0.14))",
             }}
-          >
-            Turn your marketing engine on.
-          </h2>
-          <p
-            className="mx-auto mt-4 max-w-sm text-ink-700/70"
-            style={{ fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)", lineHeight: 1.6 }}
-          >
-            Start free. No credit card required.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <a
-              href="/contact"
-              className="inline-flex items-center rounded-[999px] bg-black px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-white transition-colors duration-200 hover:bg-gray-700"
+          />
+          <div className="relative z-10">
+            <h2
+              className="mx-auto max-w-xl leading-tight tracking-[-0.015em] text-white"
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(1.8rem, 3.5vw, 3rem)",
+                fontWeight: 300,
+              }}
             >
-              Sign Up
-            </a>
-            <a
-              href="/contact"
-              className="inline-flex items-center rounded-[999px] border border-line bg-white/60 px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-ink-900 backdrop-blur-sm transition-colors duration-200 hover:bg-gray-100"
+              Turn your marketing engine on.
+            </h2>
+            <p
+              className="mx-auto mt-4 max-w-sm text-white/78"
+              style={{ fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)", lineHeight: 1.6 }}
             >
-              Contact Sales
-            </a>
+              Start free. No credit card required.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <a
+                href="/contact"
+                className="inline-flex items-center rounded-[999px] bg-white px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-black transition-colors duration-200 hover:bg-gray-100"
+              >
+                Sign Up
+              </a>
+              <a
+                href="/contact"
+                className="inline-flex items-center rounded-[999px] border border-white/20 bg-white/10 px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-white backdrop-blur-sm transition-colors duration-200 hover:bg-white/16"
+              >
+                Contact Sales
+              </a>
+            </div>
           </div>
         </section>
         </div>

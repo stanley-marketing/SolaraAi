@@ -127,7 +127,7 @@ const EXPERT_PLANS: Plan[] = [
     tagline: "Everything in Social with higher quality TV-grade commercials.",
     monthly: 449,
     yearly: 314,
-    popular: false,
+    popular: true,
     cta: "Talk to us",
     features: [
       "Full social media management",
@@ -202,7 +202,7 @@ const EXPERT_PLANS: Plan[] = [
     tagline: "Full SEO, AI search visibility, and custom website — all in one.",
     monthly: 168,
     yearly: 118,
-    popular: false,
+    popular: true,
     cta: "Talk to us",
     features: [
       "SEO strategy and execution",
@@ -542,7 +542,7 @@ function PlanCard({ plan, yearly }: { plan: Plan; yearly: boolean }) {
         <div style={{ background: RAINBOW, borderRadius: 16, padding: "2px", height: "100%" }}>
           <div className="plan-card-popular" style={{ background: "#040404", borderRadius: 14, padding: "28px 22px", display: "flex", flexDirection: "column", position: "relative", transition: "box-shadow 0.22s ease", height: "100%" }}>
             <div className="pointer-events-none" style={{ position: "absolute", inset: 0, borderRadius: 14, opacity: 0.045, backgroundImage: NOISE_BG, backgroundRepeat: "repeat" }} />
-            <span style={{ position: "absolute", top: 16, right: 16, background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.7)", fontSize: "0.63rem", fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase", borderRadius: 999, padding: "4px 12px" }}>Popular</span>
+            <span style={{ alignSelf: "flex-end", background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.7)", fontSize: "0.63rem", fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase", borderRadius: 999, padding: "4px 12px", marginBottom: 2, position: "relative", zIndex: 1 }}>Popular</span>
             <span style={{ fontSize: "20px", fontWeight: 700, color: "#ffffff", letterSpacing: "-0.01em", marginBottom: 4 }}>{plan.name}</span>
             <p style={{ fontSize: "16px", color: "rgba(255,255,255,0.55)", lineHeight: 1.5, margin: "0 0 24px", minHeight: 60 }}>{plan.tagline}</p>
             <div style={{ display: "flex", alignItems: "end", gap: 6, marginBottom: 4, flexWrap: "wrap" }}>
@@ -596,6 +596,7 @@ function PlanCard({ plan, yearly }: { plan: Plan; yearly: boolean }) {
 
   return (
     <div className="plan-card" style={{ background: "#ffffff", borderRadius: 16, padding: "28px 22px", border: "1px solid #e3e3e3", display: "flex", flexDirection: "column", transition: "box-shadow 0.22s ease, border-color 0.22s ease" }}>
+      <div style={{ height: 30, flexShrink: 0 }} />
       <span style={{ fontSize: "20px", fontWeight: 700, color: "#111111", letterSpacing: "-0.01em", marginBottom: 4 }}>{plan.name}</span>
       <p style={{ fontSize: "16px", color: "#555555", lineHeight: 1.5, margin: "0 0 24px", minHeight: 60 }}>{plan.tagline}</p>
       <div style={{ display: "flex", alignItems: "end", gap: 6, marginBottom: 4, minHeight: 38, flexWrap: "wrap" }}>
