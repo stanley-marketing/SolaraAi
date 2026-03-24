@@ -21,6 +21,7 @@ export const metadata: Metadata = {
   title: "SolaraAI — AI That Runs Your Marketing",
   description:
     "Solara is a full marketing department in software — one always-on system that plans, creates, executes, and improves end-to-end.",
+
 };
 
 export default function RootLayout({

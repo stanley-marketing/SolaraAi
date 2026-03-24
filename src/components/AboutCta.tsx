@@ -19,7 +19,16 @@ const CTA_HREF = "/contact";
 
 export function AboutCta() {
   return (
-    <section className="relative overflow-hidden bg-white px-6 py-24 sm:px-10 sm:py-28">
+    <section
+      className="relative overflow-hidden px-6 py-24 sm:px-10 sm:py-28"
+      style={{
+        backgroundImage:
+          "linear-gradient(180deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.84) 100%), url('/about-cta-bg.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       {/* Soft top divider — barely-there rule to close the section above */}
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-px"
@@ -29,11 +38,10 @@ export function AboutCta() {
         }}
       />
 
-      {/* Atmospheric: fine dot-grid texture (matches hero) */}
       <svg
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 h-full w-full"
-        style={{ opacity: 0.042 }}
+        style={{ opacity: 0.02 }}
       >
         <defs>
           <pattern
@@ -53,13 +61,22 @@ export function AboutCta() {
 
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-xl text-center">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-8 -inset-y-8 rounded-[32px]"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(255,255,255,0.48), rgba(255,255,255,0.24))",
+            filter: "blur(18px)",
+          }}
+        />
         {/* Logomark */}
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-6 flex justify-center"
+          className="relative mb-6 flex justify-center"
         >
           <Image
             src="/solara-icon.svg"
@@ -74,7 +91,7 @@ export function AboutCta() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="font-[family-name:var(--font-display-playfair)] text-4xl font-medium leading-tight tracking-tight text-ink-900 md:text-5xl"
+          className="relative font-[family-name:var(--font-display-playfair)] text-4xl font-medium leading-tight tracking-tight text-ink-900 md:text-5xl"
         >
           {HEADING}
         </motion.h2>
@@ -84,7 +101,7 @@ export function AboutCta() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto mt-6 max-w-md text-base leading-relaxed"
+          className="relative mx-auto mt-6 max-w-md text-base leading-relaxed"
           style={{ color: "#6b7280" }}
         >
           {BODY}
@@ -95,7 +112,7 @@ export function AboutCta() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.45, delay: 0.26, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-10"
+          className="relative mt-10"
         >
           <a
             href={CTA_HREF}

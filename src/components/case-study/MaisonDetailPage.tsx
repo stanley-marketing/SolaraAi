@@ -364,16 +364,22 @@ export function MaisonDetailPage({ caseStudy }: { caseStudy: CaseStudy }) {
       {/* ── 7. CTA ── */}
       <section
         className="px-6 py-16 sm:px-10 sm:py-20"
-        style={{ background: "#F9F8F6" }}
+        style={{
+          backgroundImage:
+            "linear-gradient(135deg, rgba(6, 12, 24, 0.82), rgba(6, 12, 24, 0.7)), url('/homepage-cta-bg.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
       >
         <div className="mx-auto max-w-3xl text-center">
           <h2
-            className="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl"
+            className="text-2xl font-semibold tracking-tight text-white sm:text-3xl"
             style={{ fontFamily: "var(--font-display)" }}
           >
             {caseStudy.cta.headline}
           </h2>
-          <p className="mt-4 text-lg leading-relaxed text-gray-500">
+          <p className="mt-4 text-lg leading-relaxed text-white/75">
             See what Solara AI can build for your business. No pressure, no
             pitch deck — just a direct conversation about your goals.
           </p>
@@ -382,13 +388,13 @@ export function MaisonDetailPage({ caseStudy }: { caseStudy: CaseStudy }) {
               href={caseStudy.cta.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center rounded-[999px] bg-black px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-white transition-colors duration-200 hover:bg-gray-700"
+              className="inline-flex items-center rounded-[999px] bg-white px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-ink-900 transition-colors duration-200 hover:bg-white/90"
             >
               Book a strategy call
             </a>
             <Link
               href="/"
-              className="inline-flex items-center rounded-[999px] border border-line bg-white/60 px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-ink-900 backdrop-blur-sm transition-colors duration-200 hover:bg-gray-100"
+              className="inline-flex items-center rounded-[999px] border border-white/20 bg-white/10 px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-white backdrop-blur-sm transition-colors duration-200 hover:bg-white/16"
             >
               Learn about Solara AI
             </Link>
