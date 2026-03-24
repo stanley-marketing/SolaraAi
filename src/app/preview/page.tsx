@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Check, Users, Megaphone, Search, Globe, Building2 } from "lucide-react";
+import { Check, Users, Megaphone, Search, Globe, Building2, Clipboard, Compass, Wrench, Rocket, RefreshCw, BarChart2, Palette, FileText, TrendingDown, TrendingUp, Target, Award, DollarSign } from "lucide-react";
 
 const RAINBOW = "linear-gradient(135deg, #f97316, #eab308, #22c55e, #06b6d4, #8b5cf6, #ec4899, #f97316)";
 
@@ -335,6 +335,191 @@ function LogoStrip({ tab }: { tab: SolutionTabKey }) {
         ))}
       </motion.div>
     </AnimatePresence>
+  );
+}
+
+const TIMELINE_STEPS: { Icon: React.ElementType; title: string; desc: string }[] = [
+  { Icon: Clipboard,  title: "Audit",    desc: "We analyze your current state" },
+  { Icon: Compass,   title: "Strategy", desc: "Custom plan for your goals" },
+  { Icon: Wrench,    title: "Build",    desc: "Set up campaigns & content" },
+  { Icon: Rocket,    title: "Launch",   desc: "Go live across channels" },
+  { Icon: RefreshCw, title: "Optimize", desc: "AI-powered improvements" },
+  { Icon: BarChart2, title: "Report",   desc: "Monthly performance insights" },
+];
+
+const FAN_ROTATIONS = [-15, -9, -3, 3, 9, 15];
+const FAN_X_OFFSETS = [-240, -144, -48, 48, 144, 240];
+const FAN_Y_OFFSETS = [30, 10, -5, -5, 10, 30];
+
+const STACKED_CARDS_DATA: { Icon: React.ElementType; title: string; desc: string }[] = [
+  { Icon: Search,    title: "SEO Optimization",     desc: "Keyword research, on-page SEO, technical audits" },
+  { Icon: Megaphone, title: "Paid Advertising",     desc: "Google, Meta, TikTok campaign management" },
+  { Icon: Users,     title: "Social Media",         desc: "Content creation, scheduling, community management" },
+  { Icon: FileText,  title: "Content Strategy",     desc: "Blog posts, articles, landing pages" },
+  { Icon: Palette,   title: "Creative Production",  desc: "Video, graphics, carousel design" },
+  { Icon: BarChart2, title: "Analytics & Reporting",desc: "Monthly reports, KPI tracking, insights" },
+];
+
+const MARQUEE_TOP_CARDS: { label: string; Icon: React.ElementType; color: string }[] = [
+  { label: "Paid Ads",         Icon: Megaphone, color: "#e44d26" },
+  { label: "SEO",              Icon: Search,    color: "#0ea5e9" },
+  { label: "Content Creation", Icon: FileText,  color: "#8b5cf6" },
+  { label: "Social Media",     Icon: Users,     color: "#ec4899" },
+  { label: "Analytics",        Icon: BarChart2, color: "#f59e0b" },
+  { label: "Website",          Icon: Globe,     color: "#10b981" },
+];
+
+const MARQUEE_BOTTOM_CARDS: { label: string; Icon: React.ElementType; color: string }[] = [
+  { label: "Lower CPA",          Icon: TrendingDown, color: "#10b981" },
+  { label: "Higher ROAS",        Icon: TrendingUp,   color: "#0ea5e9" },
+  { label: "More Leads",         Icon: Target,       color: "#e44d26" },
+  { label: "Better Rankings",    Icon: Award,        color: "#f59e0b" },
+  { label: "Time Saved",         Icon: RefreshCw,    color: "#8b5cf6" },
+  { label: "Consistent Content", Icon: FileText,     color: "#ec4899" },
+];
+
+function BeamDiagram() {
+  const H = 420;
+  const W = 900;
+  const CARD_H = 52;
+  const CARD_W = 140;
+  const CX = 450;
+  const CY = H / 2;
+  const R = 50;
+
+  const leftGap = (H - 6 * CARD_H) / 5;
+  const leftTops = Array.from({ length: 6 }, (_, i) => i * (CARD_H + leftGap));
+  const rightGap = (H - 3 * CARD_H) / 2;
+  const rightTops = Array.from({ length: 3 }, (_, i) => i * (CARD_H + rightGap));
+
+  const leftBeams = leftTops.map((top) => {
+    const x1 = CARD_W, y1 = top + CARD_H / 2;
+    const x2 = CX - R, y2 = CY;
+    const dx = x2 - x1, dy = y2 - y1;
+    const len = Math.sqrt(dx * dx + dy * dy);
+    const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
+    return { x1, y1, len, angle };
+  });
+
+  const rightBeams = rightTops.map((top) => {
+    const x1 = CX + R, y1 = CY;
+    const x2 = W - CARD_W, y2 = top + CARD_H / 2;
+    const dx = x2 - x1, dy = y2 - y1;
+    const len = Math.sqrt(dx * dx + dy * dy);
+    const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
+    return { x1, y1, len, angle };
+  });
+
+  const leftCards: { Icon: React.ElementType; label: string }[] = [
+    { Icon: Search,    label: "SEO" },
+    { Icon: Megaphone, label: "Ads" },
+    { Icon: Users,     label: "Social" },
+    { Icon: FileText,  label: "Content" },
+    { Icon: BarChart2, label: "Analytics" },
+    { Icon: Globe,     label: "Website" },
+  ];
+
+  const rightCards: { Icon: React.ElementType; label: string }[] = [
+    { Icon: TrendingUp,  label: "Growth" },
+    { Icon: Target,      label: "Leads" },
+    { Icon: DollarSign,  label: "Revenue" },
+  ];
+
+  const baseCard: React.CSSProperties = {
+    position: "absolute",
+    width: CARD_W,
+    height: CARD_H,
+    background: "#111111",
+    borderRadius: 10,
+    border: "1px solid #222222",
+    display: "flex",
+    alignItems: "center",
+    gap: 10,
+    padding: "0 14px",
+    boxSizing: "border-box",
+  };
+
+  return (
+    <div
+      className="beam-diagram-desktop"
+      style={{ position: "relative", height: H, maxWidth: W, margin: "0 auto" }}
+    >
+      {leftCards.map(({ Icon, label }, i) => (
+        <div key={label} style={{ ...baseCard, left: 0, top: leftTops[i] }}>
+          <Icon size={16} style={{ color: "#3b82f6", flexShrink: 0 }} />
+          <span style={{ fontSize: "0.78rem", color: "#cccccc", fontWeight: 500 }}>{label}</span>
+        </div>
+      ))}
+
+      {rightCards.map(({ Icon, label }, i) => (
+        <div key={label} style={{ ...baseCard, right: 0, top: rightTops[i] }}>
+          <Icon size={16} style={{ color: "#22c55e", flexShrink: 0 }} />
+          <span style={{ fontSize: "0.78rem", color: "#cccccc", fontWeight: 500 }}>{label}</span>
+        </div>
+      ))}
+
+      <div
+        style={{
+          position: "absolute",
+          left: CX - R,
+          top: CY - R,
+          width: R * 2,
+          height: R * 2,
+          borderRadius: "50%",
+          background: "radial-gradient(circle at center, #1a1a3e 0%, #0a0a1a 100%)",
+          border: "2px solid #3b82f6",
+          boxShadow: "0 0 24px rgba(59,130,246,0.4), 0 0 48px rgba(59,130,246,0.15)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          zIndex: 1,
+        }}
+      >
+        <span style={{ fontSize: "0.58rem", color: "#ffffff", fontWeight: 700, textAlign: "center", letterSpacing: "0.05em", lineHeight: 1.4 }}>
+          Solara<br />AI
+        </span>
+      </div>
+
+      {leftBeams.map(({ x1, y1, len, angle }, idx) => (
+        <div
+          key={`lb-${x1.toFixed(0)}-${y1.toFixed(0)}`}
+          style={{
+            position: "absolute",
+            left: x1,
+            top: y1 - 1,
+            width: len,
+            height: 2,
+            background: "linear-gradient(90deg, transparent 0%, #3b82f6 50%, transparent 100%)",
+            backgroundSize: "200% 100%",
+            transformOrigin: "0 50%",
+            transform: `rotate(${angle}deg)`,
+            animation: "beam-flow 2.5s linear infinite",
+            animationDelay: `${idx * 0.3}s`,
+            opacity: 0.75,
+          }}
+        />
+      ))}
+
+      {rightBeams.map(({ x1, y1, len, angle }, idx) => (
+        <div
+          key={`rb-${x1.toFixed(0)}-${y1.toFixed(0)}`}
+          style={{
+            position: "absolute",
+            left: x1,
+            top: y1 - 1,
+            width: len,
+            height: 2,
+            background: "linear-gradient(90deg, transparent 0%, #3b82f6 50%, transparent 100%)",
+            backgroundSize: "200% 100%",
+            transformOrigin: "0 50%",
+            transform: `rotate(${angle}deg)`,
+            animation: "beam-flow 2.5s linear infinite",
+            animationDelay: `${(idx + 6) * 0.3}s`,
+            opacity: 0.75,
+          }}
+        />
+      ))}
+    </div>
   );
 }
 
@@ -761,7 +946,107 @@ export default function PreviewPage() {
           line-height: 1;
           user-select: none;
         }
+
+        /* ── Bento Grid (Option 2) ── */
+        .bento-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 16px;
+          max-width: 900px;
+          margin: 0 auto;
+        }
+        .bento-card {
+          border-radius: 16px;
+          padding: 28px;
+          min-height: 180px;
+          box-sizing: border-box;
+        }
+        .bento-dark {
+          background: #111111;
+          color: #ffffff;
+        }
+        .bento-light {
+          background: #ffffff;
+          border: 1px solid #e3e3e3;
+          color: #111111;
+        }
+        .bento-span-2 {
+          grid-column: span 2;
+        }
+        .bento-center {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+        .bento-label {
+          font-size: 0.7rem;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          color: rgba(255,255,255,0.45);
+          text-transform: uppercase;
+          margin: 0;
+        }
+        .bento-label-dark {
+          font-size: 0.7rem;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          color: #999999;
+          text-transform: uppercase;
+          margin: 0;
+        }
+        .bento-pulse-ring {
+          width: 68px;
+          height: 68px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #7c3aed, #06b6d4, #22c55e);
+          animation: bento-pulse 2.4s ease-in-out infinite;
+        }
+        @keyframes bento-pulse {
+          0%, 100% { transform: scale(1); opacity: 0.9; box-shadow: 0 0 0 0 rgba(124,58,237,0.3); }
+          50% { transform: scale(1.1); opacity: 0.75; box-shadow: 0 0 0 14px rgba(124,58,237,0); }
+        }
+        .bento-ticker-wrap {
+          overflow: hidden;
+          width: 100%;
+        }
+        .bento-ticker {
+          display: flex;
+          animation: bento-marquee 22s linear infinite;
+          width: max-content;
+        }
+        .bento-ticker-item {
+          font-size: 0.8rem;
+          font-weight: 600;
+          color: rgba(255,255,255,0.7);
+          white-space: nowrap;
+          padding: 7px 18px;
+          border: 1px solid rgba(255,255,255,0.12);
+          border-radius: 999px;
+          margin-right: 10px;
+          flex-shrink: 0;
+        }
+        @keyframes bento-marquee {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+        @media (max-width: 700px) {
+          .bento-grid { grid-template-columns: 1fr; }
+          .bento-span-2 { grid-column: span 1; }
+        }
+
+        @keyframes beam-flow {
+          0%   { background-position: 100% 0; }
+          100% { background-position: -100% 0; }
+        }
+        .beam-diagram-desktop { display: block; }
+        .beam-mobile-list { display: none; text-align: center; }
+        @media (max-width: 640px) {
+          .beam-diagram-desktop { display: none; }
+          .beam-mobile-list { display: block; padding-top: 12px; }
+        }
       `}</style>
+
     </main>
   );
 }
@@ -962,6 +1247,44 @@ function PlanCard({
         })}
       </div>
     </div>
+  );
+}
+
+function StackedCard({
+  card,
+  index,
+}: {
+  card: { Icon: React.ElementType; title: string; desc: string };
+  index: number;
+}) {
+  const rotate = FAN_ROTATIONS[index];
+  const xOffset = FAN_X_OFFSETS[index];
+  const yOffset = FAN_Y_OFFSETS[index];
+  const { Icon } = card;
+
+  return (
+    <motion.div
+      initial={{ rotate: 0, x: 0, y: 80, opacity: 0 }}
+      animate={{ rotate, x: xOffset, y: yOffset, opacity: 1 }}
+      transition={{ duration: 0.7, delay: 0.1 + index * 0.1, ease: [0.23, 1, 0.32, 1] }}
+      style={{
+        position: "absolute",
+        width: 220,
+        background: "#ffffff",
+        borderRadius: 16,
+        padding: 28,
+        boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+        transformOrigin: "bottom center",
+      }}
+    >
+      <Icon size={32} style={{ color: "#3b82f6", marginBottom: 16, display: "block" }} />
+      <div style={{ fontWeight: 700, fontSize: "1rem", color: "#111111", marginBottom: 8 }}>
+        {card.title}
+      </div>
+      <div style={{ fontSize: "0.85rem", color: "#667777", lineHeight: 1.5 }}>
+        {card.desc}
+      </div>
+    </motion.div>
   );
 }
 

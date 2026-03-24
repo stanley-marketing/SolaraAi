@@ -1,518 +1,121 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import {
-  LayoutDashboard,
-  Megaphone,
-  BarChart2,
-  FileText,
-  ClipboardList,
-} from "lucide-react";
+const ROW_1 = [
+  { name: "Facebook",   src: "/icons/facebook-svgrepo-com.svg", h: 28 },
+  { name: "Instagram",  src: "/icons/ig-instagram-icon.svg",    h: 28 },
+  { name: "LinkedIn",   src: "/icons/linkedin-svgrepo-com.svg", h: 28 },
+  { name: "TikTok",     src: "/icons/tiktok-svgrepo-com.svg",   h: 28 },
+  { name: "YouTube",    src: "/icons/youtube.svg",              h: 22 },
+  { name: "X",          src: "/icons/x-2.svg",                  h: 22 },
+  { name: "Meta",       src: "/icons/meta-3.svg",               h: 22 },
+  { name: "Google Ads", src: "/icons/google-ads-svgrepo-com.svg", h: 28 },
+];
 
-const NAV_ITEMS = [
-  { icon: LayoutDashboard, label: "Dashboard", active: false },
-  { icon: Megaphone, label: "Campaigns", active: true },
-  { icon: BarChart2, label: "Analytics", active: false },
-  { icon: FileText, label: "Content", active: false },
-  { icon: ClipboardList, label: "Reports", active: false },
-] as const;
-
-const STATUS_CHIPS = [
-  { label: "Active", count: 2, dot: "#10b981" },
-  { label: "Paused", count: 1, dot: "#f59e0b" },
-  { label: "Draft", count: 1, dot: "#9ca3af" },
-] as const;
-
-const BAR_DATA = [
-  { day: "Mon", initial: "M", value: 42 },
-  { day: "Tue", initial: "T", value: 58 },
-  { day: "Wed", initial: "W", value: 65 },
-  { day: "Thu", initial: "T", value: 53 },
-  { day: "Fri", initial: "F", value: 78 },
-  { day: "Sat", initial: "S", value: 71 },
-  { day: "Sun", initial: "S", value: 84 },
-] as const;
-
-const BAR_MAX_PX = 64;
-const BAR_COLOR = "#3b82f6";
-
-const ACTIVITY_ITEMS = [
-  { id: "q1-budget", done: true, text: "Q1 Campaign — budget optimised", time: "8m ago" },
-  { id: "social-creative", done: true, text: "Social Ads — new creative launched", time: "1h ago" },
-  { id: "content-schedule", done: false, text: "Content Push — scheduling next week", time: "Now" },
-] as const;
+const ROW_2 = [
+  { name: "OpenAI",              src: "/icons/OpenAI-black-monoblossom.svg", h: 36 },
+  { name: "Perplexity",          src: "/icons/perplexity-color.svg",         h: 28 },
+  { name: "Claude",              src: "/icons/claude-color.svg",             h: 28 },
+  { name: "Google",              src: "/icons/google.svg",                   h: 28 },
+  { name: "Gemini",              src: "/icons/gemini-color.svg",             h: 28 },
+  { name: "Grok",                src: "/icons/grok.svg",                     h: 28 },
+  { name: "Google AI Overviews", src: "/icons/google-ai-overview.svg",       h: 28 },
+  { name: "Analytics",           src: "/icons/google-analytics-svgrepo-com.svg", h: 28 },
+];
 
 export function SolaraGrowMockup() {
-  const prefersReduced = useReducedMotion();
-  const noMotion = prefersReduced === true;
-
   return (
-    <section className="relative overflow-hidden bg-[#f8fafc] px-6 py-28 sm:px-10">
-      {!noMotion && (
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-              @keyframes sp-border-beam {
-                0% { transform: translateX(-120%); }
-                100% { transform: translateX(240%); }
-              }
-              .sp-border-beam {
-                animation: sp-border-beam 4.6s linear infinite;
-              }
-            `,
-          }}
-        />
-      )}
+    <section
+      style={{
+        background: "#ffffff",
+        padding: "56px 0",
+        overflow: "hidden",
+        position: "relative",
+      }}
+    >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0"
         style={{
-          background:
-            "radial-gradient(ellipse 60% 42% at 0% 40%, rgba(16,185,129,0.08) 0%, transparent 70%), radial-gradient(ellipse 60% 50% at 100% 60%, rgba(59,130,246,0.09) 0%, transparent 78%)",
+          position: "absolute",
+          inset: 0,
+          opacity: 0.02,
+          backgroundImage:
+            'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E")',
+          backgroundRepeat: "repeat",
         }}
       />
-      <div className="mx-auto max-w-6xl">
-        <div className="mb-14 text-center">
-          <motion.h2
-            initial={noMotion ? false : { opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
-              fontWeight: 400,
-              letterSpacing: "-0.025em",
-              lineHeight: 1.1,
-              color: "#040404",
-              marginBottom: "1rem",
-            }}
-          >
-            Your marketing, always visible
-          </motion.h2>
 
-          <motion.p
-            initial={noMotion ? false : { opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            style={{
-              fontSize: "clamp(0.9375rem, 1.4vw, 1.0625rem)",
-              lineHeight: 1.72,
-              color: "#6b7280",
-              maxWidth: "52ch",
-              margin: "0 auto",
-            }}
-          >
-            Track performance, review content, and stay in the loop &mdash;
-            without doing the work yourself.
-          </motion.p>
-        </div>
-
-        <div
-          style={{
-            transform: noMotion
-              ? undefined
-              : "perspective(1200px) rotateX(2deg) rotateY(-1deg)",
-            transformOrigin: "center top",
-          }}
-        >
-          <motion.div
-            initial={noMotion ? false : { opacity: 0, y: 32, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative overflow-hidden rounded-2xl"
-            style={{
-              border: "1px solid #eaecf0",
-              boxShadow:
-                "0 36px 90px -22px rgba(2,6,23,0.34), 0 8px 24px -4px rgba(2,6,23,0.12), 0 0 0 1px rgba(16,185,129,0.1)",
-            }}
-          >
-            {!noMotion && (
-              <div className="pointer-events-none absolute inset-0 z-10 overflow-hidden rounded-2xl" aria-hidden>
-                <span
-                  className="sp-border-beam absolute -top-6 left-0 h-12 w-40"
-                  style={{
-                    background:
-                      "linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(125,211,252,0.05) 25%, rgba(16,185,129,0.65) 50%, rgba(125,211,252,0.05) 75%, rgba(255,255,255,0) 100%)",
-                    filter: "blur(6px)",
-                    transform: "rotate(1deg)",
-                  }}
-                />
-              </div>
-            )}
-            <div
-              className="flex items-center gap-3 px-4 py-3"
-              style={{ background: "#f5f5f5", borderBottom: "1px solid #e5e7eb" }}
-            >
-              <div className="flex items-center gap-1.5" aria-hidden>
-                <div className="h-3 w-3 rounded-full" style={{ background: "#ff5f57" }} />
-                <div className="h-3 w-3 rounded-full" style={{ background: "#ffbd2e" }} />
-                <div className="h-3 w-3 rounded-full" style={{ background: "#28ca41" }} />
-              </div>
-
-              <div className="flex flex-1 justify-center">
-                <div
-                  className="rounded-md px-5 py-1 text-xs text-gray-400"
-                  style={{
-                    background: "white",
-                    border: "1px solid #e5e7eb",
-                    minWidth: "200px",
-                    textAlign: "center",
-                  }}
-                >
-                  app.solaraai.com/campaigns
-                </div>
-              </div>
-
-              <div className="w-[54px]" aria-hidden />
+      <div style={{ overflow: "hidden", width: "100%", position: "relative" }}>
+        <div className="grow-marquee-left">
+          {[...ROW_1, ...ROW_1, ...ROW_1, ...ROW_1].map((item, i) => (
+            <div key={`r1-${item.name}-${i}`} className="grow-logo-pill">
+              <img
+                src={item.src}
+                alt={item.name}
+                style={{ height: item.h, width: "auto", objectFit: "contain" }}
+              />
+              <span>{item.name}</span>
             </div>
-
-            <div className="flex" style={{ background: "white", minHeight: "440px" }}>
-              <div
-                className="hidden flex-col sm:flex"
-                style={{
-                  width: "196px",
-                  flexShrink: 0,
-                  background: "#040404",
-                  borderRight: "1px solid #181818",
-                  padding: "20px 0",
-                }}
-              >
-                <div
-                  style={{
-                    padding: "0 18px 18px",
-                    marginBottom: "6px",
-                    borderBottom: "1px solid #1c1c1c",
-                  }}
-                >
-                  <span
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      fontSize: "15px",
-                      fontWeight: 500,
-                      color: "white",
-                      letterSpacing: "-0.02em",
-                    }}
-                  >
-                    Grow
-                  </span>
-                </div>
-
-                <nav aria-label="Dashboard navigation">
-                  {NAV_ITEMS.map(({ icon: Icon, label, active }) => (
-                    <div
-                      key={label}
-                      className="flex items-center gap-2.5"
-                      style={{
-                        padding: "9px 18px",
-                        margin: "1px 8px",
-                        borderRadius: "7px",
-                        background: active ? "rgba(255,255,255,0.09)" : "transparent",
-                        color: active ? "white" : "rgba(255,255,255,0.42)",
-                        fontSize: "13px",
-                        fontWeight: active ? 500 : 400,
-                        cursor: "default",
-                        userSelect: "none",
-                      }}
-                      aria-current={active ? "page" : undefined}
-                    >
-                      <Icon size={14} strokeWidth={active ? 2 : 1.5} aria-hidden />
-                      {label}
-                    </div>
-                  ))}
-                </nav>
-              </div>
-
-              <div className="min-w-0 flex-1" style={{ padding: "24px 28px" }}>
-                <div
-                  className="flex items-center justify-between"
-                  style={{ marginBottom: "20px" }}
-                >
-                  <h3
-                    style={{
-                      fontSize: "15px",
-                      fontWeight: 600,
-                      color: "#111827",
-                      margin: 0,
-                    }}
-                  >
-                    Campaign Overview
-                  </h3>
-                  <div
-                    style={{
-                      fontSize: "11px",
-                      color: "#6b7280",
-                      background: "#f9fafb",
-                      border: "1px solid #e5e7eb",
-                      borderRadius: "6px",
-                      padding: "4px 10px",
-                    }}
-                  >
-                    Last 7 days
-                  </div>
-                </div>
-
-                <div className="flex gap-3" style={{ marginBottom: "20px" }}>
-                  {STATUS_CHIPS.map(({ label, count, dot }, chipIdx) => (
-                    <motion.div
-                      key={label}
-                      initial={noMotion ? false : { opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{
-                        duration: 0.45,
-                        delay: 0.6 + chipIdx * 0.08,
-                        ease: [0.16, 1, 0.3, 1],
-                      }}
-                      style={{
-                        flex: 1,
-                        background: "#f9fafb",
-                        border: "1px solid #eaecf0",
-                        borderRadius: "10px",
-                        padding: "12px 14px",
-                      }}
-                    >
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "5px",
-                          marginBottom: "6px",
-                        }}
-                      >
-                        <div
-                          aria-hidden
-                          style={{
-                            width: "6px",
-                            height: "6px",
-                            borderRadius: "50%",
-                            background: dot,
-                            flexShrink: 0,
-                          }}
-                        />
-                        <span
-                          style={{
-                            fontSize: "10px",
-                            fontWeight: 500,
-                            color: "#9ca3af",
-                            textTransform: "uppercase",
-                            letterSpacing: "0.07em",
-                          }}
-                        >
-                          {label}
-                        </span>
-                      </div>
-                      <span
-                        style={{
-                          fontSize: "24px",
-                          fontWeight: 600,
-                          color: "#111827",
-                          lineHeight: 1,
-                        }}
-                      >
-                        {count}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
-
-                <div className="flex gap-4">
-                  <div
-                    style={{
-                      flex: "1 1 0%",
-                      background: "#f9fafb",
-                      border: "1px solid #eaecf0",
-                      borderRadius: "10px",
-                      padding: "14px 16px",
-                    }}
-                  >
-                    <div
-                      style={{
-                        fontSize: "10px",
-                        fontWeight: 600,
-                        color: "#9ca3af",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.1em",
-                        marginBottom: "14px",
-                      }}
-                    >
-                      Weekly Performance
-                    </div>
-
-                    <div
-                      className="flex items-end gap-1"
-                      style={{ height: `${BAR_MAX_PX}px` }}
-                      role="img"
-                      aria-label="Bar chart showing weekly campaign performance"
-                    >
-                      {BAR_DATA.map(({ day, value }, idx) => (
-                        <motion.div
-                          key={day}
-                          initial={noMotion ? false : { scaleY: 0 }}
-                          animate={{ scaleY: 1 }}
-                          transition={{
-                            duration: 0.6,
-                            delay: 0.8 + idx * 0.07,
-                            ease: [0.16, 1, 0.3, 1],
-                          }}
-                          style={{
-                            flex: 1,
-                            height: `${(value / 100) * BAR_MAX_PX}px`,
-                            backgroundColor: BAR_COLOR,
-                            borderRadius: "3px 3px 0 0",
-                            opacity: 0.55 + (idx / (BAR_DATA.length - 1)) * 0.45,
-                            transformOrigin: "bottom",
-                          }}
-                        />
-                      ))}
-                    </div>
-
-                    <div className="mt-2 flex gap-1" aria-hidden>
-                      {BAR_DATA.map(({ day, initial }) => (
-                        <div
-                          key={day}
-                          style={{
-                            flex: 1,
-                            textAlign: "center",
-                            fontSize: "9px",
-                            color: "#d1d5db",
-                          }}
-                        >
-                          {initial}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div
-                    style={{
-                      flex: "1 1 0%",
-                      background: "#f9fafb",
-                      border: "1px solid #eaecf0",
-                      borderRadius: "10px",
-                      padding: "14px 16px",
-                    }}
-                  >
-                    <div
-                      style={{
-                        fontSize: "10px",
-                        fontWeight: 600,
-                        color: "#9ca3af",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.1em",
-                        marginBottom: "14px",
-                      }}
-                    >
-                      Recent Activity
-                    </div>
-
-                    <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                      {ACTIVITY_ITEMS.map(({ id, done, text, time }, actIdx) => (
-                        <motion.div
-                          key={id}
-                          initial={noMotion ? false : { opacity: 0, x: -8 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{
-                            duration: 0.45,
-                            delay: 1.0 + actIdx * 0.12,
-                            ease: [0.16, 1, 0.3, 1],
-                          }}
-                          style={{ display: "flex", alignItems: "flex-start", gap: "9px" }}
-                        >
-                          {done ? (
-                            <span
-                              role="img"
-                              aria-label="Completed"
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                width: "15px",
-                                height: "15px",
-                                borderRadius: "50%",
-                                background: "#ecfdf5",
-                                flexShrink: 0,
-                                marginTop: "1px",
-                              }}
-                            >
-                              <svg
-                                width="9"
-                                height="9"
-                                viewBox="0 0 9 9"
-                                fill="none"
-                                aria-hidden="true"
-                              >
-                                <title>Completed</title>
-                                <path
-                                  d="M1.5 4.5L3.5 6.5L7.5 2.5"
-                                  stroke="#10b981"
-                                  strokeWidth="1.5"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                />
-                              </svg>
-                            </span>
-                          ) : (
-                            <span
-                              role="img"
-                              aria-label="In progress"
-                              className={noMotion ? "" : "animate-pulse"}
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                width: "15px",
-                                height: "15px",
-                                borderRadius: "50%",
-                                border: "1.5px solid #93c5fd",
-                                flexShrink: 0,
-                                marginTop: "1px",
-                                animationDuration: noMotion ? undefined : "2s",
-                              }}
-                            >
-                              <span
-                                aria-hidden
-                                style={{
-                                  width: "5px",
-                                  height: "5px",
-                                  borderRadius: "50%",
-                                  background: "#3b82f6",
-                                }}
-                              />
-                            </span>
-                          )}
-
-                          <span
-                            style={{
-                              flex: 1,
-                              fontSize: "12px",
-                              color: done ? "#374151" : "#9ca3af",
-                              lineHeight: 1.45,
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                              whiteSpace: "nowrap",
-                            }}
-                          >
-                            {text}
-                          </span>
-
-                          <span
-                            style={{
-                              fontSize: "10px",
-                              color: "#d1d5db",
-                              flexShrink: 0,
-                            }}
-                          >
-                            {time}
-                          </span>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+          ))}
         </div>
       </div>
+
+      <div style={{ height: 16 }} />
+
+      <div style={{ overflow: "hidden", width: "100%", position: "relative" }}>
+        <div className="grow-marquee-right">
+          {[...ROW_2, ...ROW_2, ...ROW_2, ...ROW_2].map((item, i) => (
+            <div key={`r2-${item.name}-${i}`} className="grow-logo-pill">
+              <img
+                src={item.src}
+                alt={item.name}
+                style={{ height: item.h, width: "auto", objectFit: "contain" }}
+              />
+              <span>{item.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <style>{`
+        @keyframes grow-scroll-left {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-50%); }
+        }
+        @keyframes grow-scroll-right {
+          from { transform: translateX(-50%); }
+          to   { transform: translateX(0); }
+        }
+        .grow-marquee-left {
+          display: flex;
+          gap: 14px;
+          width: max-content;
+          animation: grow-scroll-left 40s linear infinite;
+        }
+        .grow-marquee-right {
+          display: flex;
+          gap: 14px;
+          width: max-content;
+          animation: grow-scroll-right 40s linear infinite;
+        }
+        .grow-logo-pill {
+          border: 1px solid #eaeaea;
+          border-radius: 12px;
+          padding: 14px 24px;
+          display: inline-flex;
+          align-items: center;
+          gap: 12px;
+          background: #fafafa;
+          white-space: nowrap;
+          font-size: 0.85rem;
+          font-weight: 500;
+          color: #666666;
+          font-family: inherit;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .grow-marquee-left,
+          .grow-marquee-right { animation: none; }
+        }
+      `}</style>
     </section>
   );
 }

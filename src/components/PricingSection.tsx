@@ -418,7 +418,7 @@ export function PricingSection() {
         </p>
 
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 32 }}>
-          <div style={{ display: "inline-flex", flexWrap: "wrap", justifyContent: "center", position: "relative", background: "#f1f1f1", borderRadius: 999, padding: 4, gap: 4 }}>
+          <div className="pricing-tabs-container" style={{ display: "inline-flex", flexWrap: "wrap", justifyContent: "center", position: "relative", background: "#f1f1f1", borderRadius: 16, padding: 4, gap: 4 }}>
             {TABS.map(({ key, label }) => {
               const active = tab === key;
               return (
@@ -507,6 +507,11 @@ export function PricingSection() {
           }
           @media (max-width: 600px) {
             .pricing-grid-expert { grid-template-columns: minmax(0, 1fr); }
+          }
+          .pricing-tabs-container { border-radius: 999px !important; }
+          @media (max-width: 600px) {
+            .pricing-tabs-container { border-radius: 16px !important; max-width: 320px; }
+            .pricing-tabs-container button { flex: 1 1 45%; min-width: 0; }
           }
           .logo-strip-icon { display: inline-flex; cursor: default; }
           .plan-card:hover { border-color: #c8c8c8 !important; }
