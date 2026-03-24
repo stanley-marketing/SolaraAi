@@ -60,7 +60,6 @@ const EXPERT_PLANS: Plan[] = [
       "Real story carousels",
       "Engaging videos",
       "Presentation videos",
-      "Platforms: LinkedIn, Instagram, TikTok, Facebook, Twitter",
     ],
   },
   {
@@ -77,7 +76,6 @@ const EXPERT_PLANS: Plan[] = [
       "Real story carousels",
       "Engaging videos",
       "Presentation videos",
-      "Platforms: LinkedIn, Instagram, TikTok, Facebook, Twitter",
       "Higher quality commercial production",
       "TV commercial-level grade",
     ],

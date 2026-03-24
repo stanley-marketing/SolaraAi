@@ -25,6 +25,14 @@ export const metadata: Metadata = {
       "Done-for-you AI marketing service. We manage your paid ads, content, and campaigns end-to-end.",
     url: "https://solaraai.com/grow",
     siteName: "Solara AI",
+    images: [
+      {
+        url: "/opengraph-image.svg",
+        width: 1200,
+        height: 630,
+        alt: "SolaraAI — The AI Era In Marketing",
+      },
+    ],
     type: "website",
   },
   twitter: {
@@ -32,6 +40,7 @@ export const metadata: Metadata = {
     title: "Grow Managed Marketing",
     description:
       "Done-for-you AI marketing service. We manage your paid ads, content, and campaigns end-to-end.",
+    images: ["/opengraph-image.svg"],
   },
 };
 

@@ -49,10 +49,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       type: "article",
       images: [
         {
-          url: article.thumbnail,
+          url: "/opengraph-image.svg",
           width: 1200,
           height: 630,
-          alt: article.title,
+          alt: "SolaraAI — The AI Era In Marketing",
         },
       ],
     },
@@ -60,7 +60,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       card: "summary_large_image",
       title: article.title,
       description: article.excerpt,
-      images: [article.thumbnail],
+      images: ["/opengraph-image.svg"],
     },
   };
 }

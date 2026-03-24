@@ -13,6 +13,14 @@ export const metadata: Metadata = {
       "AI-powered marketing plans from $29/mo (billed annually). Ads, social, SEO, and content \u2014 all managed by Solara.",
     url: `${SITE_URL}/pricing`,
     siteName: "Solara AI",
+    images: [
+      {
+        url: "/opengraph-image.svg",
+        width: 1200,
+        height: 630,
+        alt: "SolaraAI — The AI Era In Marketing",
+      },
+    ],
     type: "website",
   },
   twitter: {
@@ -20,6 +28,7 @@ export const metadata: Metadata = {
     title: "Pricing — Solara AI",
     description:
       "AI-powered marketing plans from $29/mo (billed annually). Ads, social, SEO, and content \u2014 all managed by Solara.",
+    images: ["/opengraph-image.svg"],
   },
 };
 

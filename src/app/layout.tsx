@@ -18,10 +18,34 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://solaraai.com"),
   title: "SolaraAI — AI That Runs Your Marketing",
   description:
     "Solara is a full marketing department in software — one always-on system that plans, creates, executes, and improves end-to-end.",
-
+  openGraph: {
+    title: "SolaraAI — AI That Runs Your Marketing",
+    description:
+      "Solara is a full marketing department in software — one always-on system that plans, creates, executes, and improves end-to-end.",
+    url: "https://solaraai.com",
+    siteName: "SolaraAI",
+    images: [
+      {
+        url: "/opengraph-image.svg",
+        width: 1200,
+        height: 630,
+        alt: "SolaraAI — The AI Era In Marketing",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SolaraAI — AI That Runs Your Marketing",
+    description:
+      "Solara is a full marketing department in software — one always-on system that plans, creates, executes, and improves end-to-end.",
+    images: ["/opengraph-image.svg"],
+  },
 };
 
 export default function RootLayout({

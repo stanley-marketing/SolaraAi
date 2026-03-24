@@ -21,6 +21,14 @@ export const metadata: Metadata = {
       "AI-powered marketing service founded in 2024. Backed by $1.2M pre-seed. We help growing businesses run smarter campaigns.",
     url: "https://solaraai.com/about",
     siteName: "Solara AI",
+    images: [
+      {
+        url: "/opengraph-image.svg",
+        width: 1200,
+        height: 630,
+        alt: "SolaraAI — The AI Era In Marketing",
+      },
+    ],
     type: "website",
   },
   twitter: {
@@ -28,6 +36,7 @@ export const metadata: Metadata = {
     title: "About Solara AI",
     description:
       "AI-powered marketing service founded in 2024. Backed by $1.2M pre-seed.",
+    images: ["/opengraph-image.svg"],
   },
 };
 

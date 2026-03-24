@@ -16,6 +16,14 @@ export const metadata: Metadata = {
       "Book a free 45-minute strategy call. AI-powered marketing for growing businesses.",
     url: "https://solaraai.com/contact",
     siteName: "Solara AI",
+    images: [
+      {
+        url: "/opengraph-image.svg",
+        width: 1200,
+        height: 630,
+        alt: "SolaraAI — The AI Era In Marketing",
+      },
+    ],
     type: "website",
   },
   twitter: {
@@ -23,6 +31,7 @@ export const metadata: Metadata = {
     title: "Contact Solara AI",
     description:
       "Book a free strategy call. AI-powered marketing for growing businesses.",
+    images: ["/opengraph-image.svg"],
   },
 };
 

@@ -29,6 +29,14 @@ export const metadata: Metadata = {
       "Full-stack AI marketing: ads, social, SEO, content \u2014 all managed by AI. More growth. Less cost.",
     url: SITE_URL,
     siteName: "Solara AI",
+    images: [
+      {
+        url: "/opengraph-image.svg",
+        width: 1200,
+        height: 630,
+        alt: "SolaraAI — The AI Era In Marketing",
+      },
+    ],
     type: "website",
   },
   twitter: {
@@ -36,6 +44,7 @@ export const metadata: Metadata = {
     title: "Solara AI \u2014 AI That Runs Your Marketing",
     description:
       "Full-stack AI marketing: ads, social, SEO, content \u2014 all managed by AI. More growth. Less cost.",
+    images: ["/opengraph-image.svg"],
   },
 };
 
