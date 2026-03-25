@@ -57,7 +57,6 @@ function FaqItem({
           className="pr-6 text-ink-900"
           style={{
             fontSize: "clamp(0.95rem, 1.5vw, 1.05rem)",
-            fontFamily: "var(--font-body)",
             fontWeight: 500,
             lineHeight: 1.4,
           }}
@@ -92,7 +91,6 @@ function FaqItem({
               style={{
                 fontSize: "0.9375rem",
                 lineHeight: 1.65,
-                fontFamily: "var(--font-body)",
               }}
             >
               {a}
@@ -114,7 +112,7 @@ export function ContactFaq() {
   const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
 
   return (
-    <section className="bg-white px-6 py-24 sm:px-10 sm:py-28">
+    <section className="bg-white px-6 py-24 sm:px-10 sm:py-28" style={{ fontFamily: "var(--font-blog)" }}>
       <div className="mx-auto max-w-5xl">
 
         {/* Heading */}
@@ -126,7 +124,7 @@ export function ContactFaq() {
           className="text-ink-900"
           style={{
             fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
-            fontFamily: "var(--font-display-playfair)",
+            fontFamily: "var(--font-blog)",
             fontWeight: 400,
             letterSpacing: "-0.02em",
             lineHeight: 1.1,

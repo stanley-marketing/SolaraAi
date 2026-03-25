@@ -34,7 +34,7 @@ const STEPS = [
 
 export function ContactProcess() {
   return (
-    <section className="border-t border-gray-100 bg-white px-6 py-24 sm:px-10 sm:py-28">
+    <section className="border-t border-gray-100 bg-white px-6 py-24 sm:px-10 sm:py-28" style={{ fontFamily: "var(--font-blog)" }}>
       <div className="mx-auto max-w-5xl">
 
         {/* Heading */}
@@ -46,7 +46,7 @@ export function ContactProcess() {
           className="text-ink-900"
           style={{
             fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
-            fontFamily: "var(--font-display-playfair)",
+            fontFamily: "var(--font-blog)",
             fontWeight: 400,
             letterSpacing: "-0.02em",
             lineHeight: 1.1,
@@ -87,10 +87,9 @@ export function ContactProcess() {
                   <span
                     style={{
                       fontSize: "0.75rem",
-                      fontFamily: "var(--font-body)",
-                      color: "#6b7280",
-                      letterSpacing: "0.1em",
-                      fontWeight: 500,
+                    color: "#6b7280",
+                    letterSpacing: "0.1em",
+                    fontWeight: 500,
                     }}
                   >
                     {step.number}
@@ -107,7 +106,6 @@ export function ContactProcess() {
                   className="text-ink-900"
                   style={{
                     fontSize: "1rem",
-                    fontFamily: "var(--font-body)",
                     fontWeight: 600,
                     marginBottom: "10px",
                     letterSpacing: "-0.01em",
@@ -122,7 +120,6 @@ export function ContactProcess() {
                   style={{
                     fontSize: "0.9rem",
                     lineHeight: 1.65,
-                    fontFamily: "var(--font-body)",
                   }}
                 >
                   {step.body}
