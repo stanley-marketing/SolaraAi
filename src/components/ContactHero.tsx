@@ -1,5 +1,11 @@
 "use client";
 
+declare global {
+  interface Window {
+    fbq?: (...args: unknown[]) => void;
+  }
+}
+
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -186,6 +192,13 @@ export function ContactHero() {
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
         throw new Error(data.error || "Something went wrong");
+      }
+
+      if (typeof window !== "undefined" && typeof window.fbq === "function") {
+        window.fbq("track", "Lead", {
+          content_name: "Contact Form",
+          content_category: "lead",
+        });
       }
 
       setSubmitted(true);

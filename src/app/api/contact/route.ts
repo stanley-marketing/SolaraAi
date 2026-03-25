@@ -1,9 +1,13 @@
 import { NextResponse } from "next/server";
+import { createHash } from "crypto";
 
 const SENDGRID_API_URL = "https://api.sendgrid.com/v3/mail/send";
 const TO_EMAIL = "ilay.mor@solaraai.com";
 const FROM_EMAIL = "contact@solaraai.com";
 const FROM_NAME = "Solara AI Website";
+
+const META_PIXEL_ID = "1793843038203358";
+const META_CAPI_URL = `https://graph.facebook.com/v21.0/${META_PIXEL_ID}/events`;
 
 interface ContactPayload {
   fullName: string;
@@ -98,6 +102,48 @@ export async function POST(request: Request) {
       { error: "Failed to send message" },
       { status: 502 }
     );
+  }
+
+  const capiToken = process.env.META_CAPI_TOKEN;
+  if (capiToken) {
+    const hashedEmail = createHash("sha256")
+      .update(data.email.trim().toLowerCase())
+      .digest("hex");
+
+    const eventData = {
+      data: [
+        {
+          event_name: "Lead",
+          event_time: Math.floor(Date.now() / 1000),
+          action_source: "website",
+          event_source_url: "https://solaraai.com/contact",
+          user_data: {
+            em: [hashedEmail],
+            ...(data.phone && {
+              ph: [
+                createHash("sha256")
+                  .update(data.phone.replace(/\D/g, ""))
+                  .digest("hex"),
+              ],
+            }),
+            client_user_agent: request.headers.get("user-agent") || "",
+          },
+          custom_data: {
+            content_name: "Contact Form",
+            content_category: "lead",
+            budget: data.budget || "",
+            location: data.location || "",
+          },
+        },
+      ],
+      access_token: capiToken,
+    };
+
+    fetch(META_CAPI_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(eventData),
+    }).catch((err) => console.error("Meta CAPI error:", err));
   }
 
   return NextResponse.json({ success: true });
