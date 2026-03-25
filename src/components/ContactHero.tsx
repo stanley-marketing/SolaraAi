@@ -206,7 +206,7 @@ export function ContactHero() {
       <div className="mx-auto max-w-6xl">
         <div className="grid grid-cols-1 items-start gap-16 lg:grid-cols-2 lg:gap-20">
           {/* ── LEFT COLUMN ── */}
-          <div>
+          <div className="order-2 lg:order-1">
             <FadeUp delay={0}>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gray-400">
                 Get Started
@@ -297,7 +297,7 @@ export function ContactHero() {
           </div>
 
           {/* ── RIGHT COLUMN — FORM CARD ── */}
-          <FadeUp delay={0.1}>
+          <FadeUp delay={0.1} className="order-1 lg:order-2">
             <div className="rounded-2xl border border-gray-200 bg-white p-8 sm:p-10">
               {submitted ? (
                 <motion.div
