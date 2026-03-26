@@ -60,12 +60,23 @@ export async function POST(request: Request) {
     );
   }
 
-  let data: ContactPayload;
+  let body: ContactPayload & { _hp?: string; _t?: number };
   try {
-    data = await request.json();
+    body = await request.json();
   } catch {
     return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
   }
+
+  if (body._hp) {
+    return NextResponse.json({ success: true });
+  }
+
+  const MIN_SUBMIT_MS = 3000;
+  if (body._t && Date.now() - body._t < MIN_SUBMIT_MS) {
+    return NextResponse.json({ success: true });
+  }
+
+  const { _hp, _t, ...data } = body;
 
   if (!data.fullName?.trim() || !data.email?.trim() || !data.message?.trim()) {
     return NextResponse.json(

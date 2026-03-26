@@ -131,6 +131,8 @@ export function ContactHero() {
   const [form, setForm] = useState<FormData>(INITIAL_FORM);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
+  const [loadedAt] = useState(() => Date.now());
 
   function handleChange(
     e: React.ChangeEvent<
@@ -186,7 +188,11 @@ export function ContactHero() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          ...form,
+          _hp: honeypot,
+          _t: loadedAt,
+        }),
       });
 
       if (!res.ok) {
@@ -344,11 +350,21 @@ export function ContactHero() {
                     Tell us about yourself.
                   </h2>
 
-                  <form
+                   <form
                     onSubmit={handleSubmit}
                     noValidate
                     className="space-y-5"
                   >
+                    <div aria-hidden="true" className="absolute -left-[9999px] -top-[9999px]">
+                      <input
+                        type="text"
+                        name="company_url"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        value={honeypot}
+                        onChange={(e) => setHoneypot(e.target.value)}
+                      />
+                    </div>
                     <div>
                       <label htmlFor="fullName" className={labelBase}>
                         Full Name
