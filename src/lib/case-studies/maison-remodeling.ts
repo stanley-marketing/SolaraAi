@@ -235,7 +235,7 @@ const maisonRemodelingCaseStudy: CaseStudy = {
   ],
   cta: {
     headline: "Book a strategy call with Solara AI",
-    link: "https://calendly.com/ilay-mor-solaraai/30min",
+    link: "https://calendly.com/ilay-mor-solaraai/30min?utm_source=solaraai.com&utm_medium=website&utm_campaign=case-study&utm_content=maison-remodeling",
   },
   seoMeta: {
     title: "Maison Remodeling Group Case Study | 131 Leads in 27 Days | Solara AI",
