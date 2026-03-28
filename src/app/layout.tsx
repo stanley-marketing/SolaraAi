@@ -66,16 +66,7 @@ export default function RootLayout({
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','GTM-TJ5RTQ9Z');
         `}</Script>
-        <Script
-          id="mixpanel-sdk"
-          strategy="afterInteractive"
-          src="https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"
-        />
-        <Script id="mixpanel-init" strategy="afterInteractive">{`
-          window.mixpanel=window.mixpanel||[];
-          mixpanel.init('4d4a15b923b6da7abebabea6fb749588',{autocapture:true,record_sessions_percent:100,cookie_domain:".solaraai.com",cross_subdomain_cookie:true,persistence:"localStorage",record_mask_text_selector:'',record_block_selector:''});
-          mixpanel.track("Marketing Page Viewed",{page:window.location.pathname,title:document.title,referrer:document.referrer});
-        `}</Script>
+        <Script id="mixpanel" strategy="afterInteractive" src="/scripts/mixpanel.js" />
         <Script id="meta-pixel" strategy="afterInteractive">{`
           !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
           n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;

@@ -117,6 +117,48 @@ export async function POST(request: Request) {
     );
   }
 
+  const firstName = data.fullName.split(" ")[0];
+  const calendlyLink = `${CALENDLY_BASE}?name=${encodeURIComponent(data.fullName)}&email=${encodeURIComponent(data.email)}`;
+
+  const leadEmailHtml = `
+    <div style="font-family:Inter,Arial,sans-serif;max-width:520px;margin:0 auto;padding:40px 0">
+      <h1 style="font-size:22px;font-weight:600;color:#111;margin:0 0 16px">Hi ${firstName},</h1>
+      <p style="font-size:15px;color:#374151;line-height:1.7;margin:0 0 24px">
+        Thanks for reaching out to Solara AI! We'd love to learn more about your business and show you what AI-powered marketing can do.
+      </p>
+      <p style="font-size:15px;color:#374151;line-height:1.7;margin:0 0 32px">
+        Book your free 45-minute strategy call at a time that works for you:
+      </p>
+      <div style="text-align:center;margin:0 0 32px">
+        <a href="${calendlyLink}" style="display:inline-block;background:#000;color:#fff;padding:14px 32px;border-radius:999px;font-size:14px;font-weight:600;text-decoration:none;letter-spacing:0.5px">Book Your Free Call</a>
+      </div>
+      <p style="font-size:13px;color:#9ca3af;line-height:1.6;margin:0">
+        Or copy this link: <a href="${calendlyLink}" style="color:#6b7280;text-decoration:underline">${CALENDLY_BASE}</a>
+      </p>
+      <hr style="border:none;border-top:1px solid #e5e7eb;margin:32px 0" />
+      <p style="font-size:13px;color:#9ca3af;margin:0">Solara AI — The AI Era In Marketing</p>
+    </div>
+  `;
+
+  fetch(SENDGRID_API_URL, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      personalizations: [
+        {
+          to: [{ email: data.email, name: data.fullName }],
+          subject: `${firstName}, book your free strategy call with Solara AI`,
+        },
+      ],
+      from: { email: FROM_EMAIL, name: FROM_NAME },
+      reply_to: { email: "ilay.mor@solaraai.com", name: "Ilay Mor" },
+      content: [{ type: "text/html", value: leadEmailHtml }],
+    }),
+  }).catch((err) => console.error("Lead email error:", err));
+
   const capiToken = process.env.META_CAPI_TOKEN;
   if (capiToken) {
     const hashedEmail = createHash("sha256")
@@ -166,14 +208,16 @@ export async function POST(request: Request) {
   if (twilioSid && twilioToken && twilioFrom && data.phone) {
     const phone = data.phone.replace(/[^\d+]/g, "");
     if (phone.length >= 10) {
-      const firstName = data.fullName.split(" ")[0];
-      const calendlyLink = `${CALENDLY_BASE}?name=${encodeURIComponent(data.fullName)}&email=${encodeURIComponent(data.email)}`;
-      const smsBody = `Hi ${firstName}! Thanks for reaching out to Solara AI. Book your free strategy call here: ${calendlyLink} — Team Solara`;
+      const smsBody = `Hi ${firstName}! Thanks for reaching out to Solara AI. Book your free strategy call here: ${calendlyLink} — Team Solara AI`;
+
+      const toNumber = phone.startsWith("+") ? phone : `+${phone}`;
+      const isUS = toNumber.startsWith("+1");
+      const sender = isUS ? twilioFrom : "Solara AI";
 
       const twilioUrl = `https://api.twilio.com/2010-04-01/Accounts/${twilioSid}/Messages.json`;
       const params = new URLSearchParams({
-        To: phone.startsWith("+") ? phone : `+${phone}`,
-        From: twilioFrom,
+        To: toNumber,
+        From: sender,
         Body: smsBody,
       });
 

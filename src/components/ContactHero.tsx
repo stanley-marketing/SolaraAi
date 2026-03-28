@@ -6,10 +6,13 @@ declare global {
   }
 }
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import PhoneInput, { isValidPhoneNumber, type Country } from "react-phone-number-input";
+import "react-phone-number-input/style.css";
+import { PhoneCountrySelect } from "@/components/PhoneCountrySelect";
 import { Check, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -133,6 +136,18 @@ export function ContactHero() {
   const [submitted, setSubmitted] = useState(false);
   const [honeypot, setHoneypot] = useState("");
   const [loadedAt] = useState(() => Date.now());
+  const [detectedCountry, setDetectedCountry] = useState<Country>("US");
+
+  useEffect(() => {
+    fetch("https://ipapi.co/json/")
+      .then((r) => r.json())
+      .then((data) => {
+        if (data?.country_code) {
+          setDetectedCountry(data.country_code as Country);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   function handleChange(
     e: React.ChangeEvent<
@@ -174,6 +189,9 @@ export function ContactHero() {
     }
     if (form.website && !validateWebsite(form.website)) {
       errors.website = "Please enter a valid URL (e.g. https://company.com)";
+    }
+    if (!form.phone || !isValidPhoneNumber(form.phone)) {
+      errors.phone = "Please enter a valid phone number with country code";
     }
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors);
@@ -435,18 +453,33 @@ export function ContactHero() {
                           Phone Number
                           <RequiredDot />
                         </label>
-                        <input
+                        <PhoneInput
                           id="phone"
-                          name="phone"
-                          type="tel"
-                          required
-                          aria-required="true"
-                          autoComplete="tel"
-                          placeholder="+1 (555) 000-0000"
+                          international
+                          countryCallingCodeEditable={false}
+                          defaultCountry={detectedCountry}
+                          countrySelectComponent={PhoneCountrySelect}
+                          placeholder="Enter phone number"
                           value={form.phone}
-                          onChange={handleChange}
-                          className={inputBase}
+                          onChange={(val) => {
+                            setForm((prev) => ({ ...prev, phone: val || "" }));
+                            if (fieldErrors.phone && val && isValidPhoneNumber(val)) {
+                              setFieldErrors((prev) => ({ ...prev, phone: undefined }));
+                            }
+                          }}
+                          onBlur={() => {
+                            if (form.phone && !isValidPhoneNumber(form.phone)) {
+                              setFieldErrors((prev) => ({ ...prev, phone: "Please enter a valid phone number" }));
+                            }
+                          }}
+                          className={cn(
+                            "phone-input-container",
+                            fieldErrors.phone && "phone-input-error"
+                          )}
                         />
+                        {fieldErrors.phone && (
+                          <p className="mt-1.5 text-xs text-red-500">{fieldErrors.phone}</p>
+                        )}
                       </div>
                     </div>
 

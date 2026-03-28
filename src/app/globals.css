@@ -220,3 +220,49 @@ body {
     background-position: 350% 50%, 350% 50%;
   }
 }
+
+.phone-input-container {
+  --PhoneInputCountryFlag-height: 1.25em;
+  --PhoneInputCountryFlag-borderColor: transparent;
+  --PhoneInputCountrySelectArrow-color: #9ca3af;
+  --PhoneInputCountrySelectArrow-opacity: 1;
+  display: flex;
+  align-items: center;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 0 1rem;
+  transition: border-color 0.15s;
+}
+
+.phone-input-container:focus-within {
+  border-color: #9ca3af;
+}
+
+.phone-input-container .PhoneInputCountry {
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.phone-input-container .PhoneInputCountrySelectArrow {
+  margin-left: 0.35rem;
+}
+
+.phone-input-container .PhoneInputInput {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 0.75rem 0;
+  font-size: 0.875rem;
+  color: #111827;
+  outline: none;
+}
+
+.phone-input-container .PhoneInputInput::placeholder {
+  color: #9ca3af;
+}
+
+.phone-input-error {
+  border-color: #fca5a5 !important;
+  background: #fef2f2 !important;
+}
