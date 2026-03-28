@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     siteName: "Solara AI",
     images: [
       {
-        url: "/opengraph-image.png",
+        url: "/opengraph-image.jpg",
         width: 1200,
         height: 630,
         alt: "SolaraAI — The AI Era In Marketing",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     title: "Pricing — Solara AI",
     description:
       "AI-powered marketing plans from $29/mo (billed annually). Ads, social, SEO, and content \u2014 all managed by Solara.",
-    images: ["/opengraph-image.png"],
+    images: ["/opengraph-image.jpg"],
   },
 };
 

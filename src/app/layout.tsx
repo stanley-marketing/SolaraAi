@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     siteName: "SolaraAI",
     images: [
       {
-        url: "/opengraph-image.png",
+        url: "/opengraph-image.jpg",
         width: 1200,
         height: 630,
         alt: "SolaraAI — The AI Era In Marketing",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     title: "SolaraAI — AI That Runs Your Marketing",
     description:
       "Solara is a full marketing department in software — one always-on system that plans, creates, executes, and improves end-to-end.",
-    images: ["/opengraph-image.png"],
+    images: ["/opengraph-image.jpg"],
   },
 };
 
@@ -59,6 +59,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${playfair.variable} ${GeistSans.variable} ${inter.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://connect.facebook.net" />
+        <link rel="preconnect" href="https://cdn.mxpnl.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://api-js.mixpanel.com" />
+      </head>
       <body className="bg-white text-ink-900">
         <Script id="gtm" strategy="afterInteractive">{`
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
