@@ -9,6 +9,8 @@ const FROM_NAME = "Solara AI Website";
 const META_PIXEL_ID = "1793843038203358";
 const META_CAPI_URL = `https://graph.facebook.com/v21.0/${META_PIXEL_ID}/events`;
 
+const CALENDLY_BASE = "https://calendly.com/ilay-mor-solaraai/45-minute-meeting-full-stack-marketing-manageme-clone";
+
 interface ContactPayload {
   fullName: string;
   email: string;
@@ -155,6 +157,35 @@ export async function POST(request: Request) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(eventData),
     }).catch((err) => console.error("Meta CAPI error:", err));
+  }
+
+  const twilioSid = process.env.TWILIO_ACCOUNT_SID;
+  const twilioToken = process.env.TWILIO_AUTH_TOKEN;
+  const twilioFrom = process.env.TWILIO_PHONE_NUMBER;
+
+  if (twilioSid && twilioToken && twilioFrom && data.phone) {
+    const phone = data.phone.replace(/[^\d+]/g, "");
+    if (phone.length >= 10) {
+      const firstName = data.fullName.split(" ")[0];
+      const calendlyLink = `${CALENDLY_BASE}?name=${encodeURIComponent(data.fullName)}&email=${encodeURIComponent(data.email)}`;
+      const smsBody = `Hi ${firstName}! Thanks for reaching out to Solara AI. Book your free strategy call here: ${calendlyLink} — Team Solara`;
+
+      const twilioUrl = `https://api.twilio.com/2010-04-01/Accounts/${twilioSid}/Messages.json`;
+      const params = new URLSearchParams({
+        To: phone.startsWith("+") ? phone : `+${phone}`,
+        From: twilioFrom,
+        Body: smsBody,
+      });
+
+      fetch(twilioUrl, {
+        method: "POST",
+        headers: {
+          Authorization: `Basic ${Buffer.from(`${twilioSid}:${twilioToken}`).toString("base64")}`,
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: params.toString(),
+      }).catch((err) => console.error("Twilio SMS error:", err));
+    }
   }
 
   return NextResponse.json({ success: true });
