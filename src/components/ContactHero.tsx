@@ -432,15 +432,15 @@ export function ContactHero() {
                       </div>
                       <div>
                         <label htmlFor="phone" className={labelBase}>
-                          Phone Number{" "}
-                          <span className="font-normal text-gray-400">
-                            (optional)
-                          </span>
+                          Phone Number
+                          <RequiredDot />
                         </label>
                         <input
                           id="phone"
                           name="phone"
                           type="tel"
+                          required
+                          aria-required="true"
                           autoComplete="tel"
                           placeholder="+1 (555) 000-0000"
                           value={form.phone}
