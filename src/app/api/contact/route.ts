@@ -74,7 +74,7 @@ export async function POST(request: Request) {
   }
 
   const MIN_SUBMIT_MS = 3000;
-  if (body._t && Date.now() - body._t < MIN_SUBMIT_MS) {
+  if (!body._t || Date.now() - body._t < MIN_SUBMIT_MS) {
     return NextResponse.json({ success: true });
   }
 
