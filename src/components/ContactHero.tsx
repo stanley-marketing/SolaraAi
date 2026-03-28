@@ -136,17 +136,15 @@ export function ContactHero() {
   const [submitted, setSubmitted] = useState(false);
   const [honeypot, setHoneypot] = useState("");
   const [loadedAt] = useState(() => Date.now());
-  const [detectedCountry, setDetectedCountry] = useState<Country>("US");
+  const [detectedCountry, setDetectedCountry] = useState<Country | undefined>(undefined);
 
   useEffect(() => {
     fetch("https://ipapi.co/json/")
       .then((r) => r.json())
       .then((data) => {
-        if (data?.country_code) {
-          setDetectedCountry(data.country_code as Country);
-        }
+        setDetectedCountry((data?.country_code as Country) || "US");
       })
-      .catch(() => {});
+      .catch(() => setDetectedCountry("US"));
   }, []);
 
   function handleChange(
@@ -453,30 +451,37 @@ export function ContactHero() {
                           Phone Number
                           <RequiredDot />
                         </label>
-                        <PhoneInput
-                          id="phone"
-                          international
-                          countryCallingCodeEditable={false}
-                          defaultCountry={detectedCountry}
-                          countrySelectComponent={PhoneCountrySelect}
-                          placeholder="Enter phone number"
-                          value={form.phone}
-                          onChange={(val) => {
-                            setForm((prev) => ({ ...prev, phone: val || "" }));
-                            if (fieldErrors.phone && val && isValidPhoneNumber(val)) {
-                              setFieldErrors((prev) => ({ ...prev, phone: undefined }));
-                            }
-                          }}
-                          onBlur={() => {
-                            if (form.phone && !isValidPhoneNumber(form.phone)) {
-                              setFieldErrors((prev) => ({ ...prev, phone: "Please enter a valid phone number" }));
-                            }
-                          }}
-                          className={cn(
-                            "phone-input-container",
-                            fieldErrors.phone && "phone-input-error"
-                          )}
-                        />
+                        {detectedCountry ? (
+                          <PhoneInput
+                            id="phone"
+                            international
+                            countryCallingCodeEditable={false}
+                            defaultCountry={detectedCountry}
+                            countrySelectComponent={PhoneCountrySelect}
+                            placeholder="Enter phone number"
+                            value={form.phone}
+                            onChange={(val) => {
+                              setForm((prev) => ({ ...prev, phone: val || "" }));
+                              if (fieldErrors.phone && val && isValidPhoneNumber(val)) {
+                                setFieldErrors((prev) => ({ ...prev, phone: undefined }));
+                              }
+                            }}
+                            onBlur={() => {
+                              if (form.phone && !isValidPhoneNumber(form.phone)) {
+                                setFieldErrors((prev) => ({ ...prev, phone: "Please enter a valid phone number" }));
+                              }
+                            }}
+                            className={cn(
+                              "phone-input-container",
+                              fieldErrors.phone && "phone-input-error"
+                            )}
+                          />
+                        ) : (
+                          <div className={cn(inputBase, "flex items-center gap-2")}>
+                            <Loader2 size={14} className="animate-spin text-gray-400" />
+                            <span className="text-sm text-gray-400">Detecting location…</span>
+                          </div>
+                        )}
                         {fieldErrors.phone && (
                           <p className="mt-1.5 text-xs text-red-500">{fieldErrors.phone}</p>
                         )}

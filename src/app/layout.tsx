@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Playfair_Display, Inter } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
+import { MixpanelInit } from "@/components/MixpanelInit";
 import "./globals.css";
 
 const META_PIXEL_ID = "1793843038203358";
@@ -66,7 +67,7 @@ export default function RootLayout({
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','GTM-TJ5RTQ9Z');
         `}</Script>
-        <Script id="mixpanel" strategy="afterInteractive" src="/scripts/mixpanel.js" />
+        <MixpanelInit />
         <Script id="meta-pixel" strategy="afterInteractive">{`
           !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
           n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
