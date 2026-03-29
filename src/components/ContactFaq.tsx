@@ -15,7 +15,7 @@ const FAQS = [
   },
   {
     q: "How much does it cost?",
-    a: "Pricing depends on scope. Most clients start between $2,000–5,000/month. We'll discuss specifics on the call based on your goals and channels.",
+    a: "Every engagement is tailored to your goals, channels, and scale. We'll walk through pricing on the call so you get a clear picture before committing to anything.",
   },
   {
     q: "How quickly will I see results?",
