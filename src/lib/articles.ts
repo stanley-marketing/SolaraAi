@@ -42,6 +42,7 @@ import aiAgentsForMarketing from "./articles/ai-agents-for-marketing";
 import aiMarketingAutomationTools from "./articles/ai-marketing-automation-tools";
 import aiToolsForInstagram from "./articles/ai-tools-for-instagram";
 import aiToolsForMarketing from "./articles/ai-tools-for-marketing";
+import aiMarketingForSmallBusiness from "./articles/ai-marketing-for-small-business";
 import businessVideoExamples from "./articles/business-video-examples";
 import creatifyAlternatives from "./articles/creatify-alternatives";
 import examplesOfAiInMarketingAutomation from "./articles/examples-of-ai-in-marketing-automation";
@@ -59,6 +60,8 @@ import howToCreateAiAvatarVideo from "./articles/how-to-create-ai-avatar-video";
 import howToCreateAiVersionOfYourself from "./articles/how-to-create-an-ai-version-of-yourself";
 import howToLearnShortFormVideosOnInstagram from "./articles/how-to-learn-to-make-short-form-videos-on-instagram";
 import madgicxAlternatives from "./articles/madgicx-alternatives";
+import copyAiAlternative from "./articles/copy-ai-alternative";
+import jasperAiAlternative from "./articles/jasper-ai-alternative";
 
 export const articles: Article[] = [
   bestAiMarketingTools,
@@ -85,6 +88,7 @@ export const articles: Article[] = [
   aiMarketingAutomationTools,
   aiToolsForInstagram,
   aiToolsForMarketing,
+  aiMarketingForSmallBusiness,
   businessVideoExamples,
   creatifyAlternatives,
   examplesOfAiInMarketingAutomation,
@@ -102,6 +106,8 @@ export const articles: Article[] = [
   howToCreateAiVersionOfYourself,
   howToLearnShortFormVideosOnInstagram,
   madgicxAlternatives,
+  copyAiAlternative,
+  jasperAiAlternative,
 ];
 
 export function getArticle(slug: string): Article | undefined {
