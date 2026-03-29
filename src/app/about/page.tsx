@@ -1,12 +1,24 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 
 import { TopNav } from "@/components/LandingSections";
 import { AboutHero } from "@/components/AboutHero";
-import { AboutFunding } from "@/components/AboutFunding";
-import { AboutMethodology } from "@/components/AboutMethodology";
-import { AboutValues } from "@/components/AboutValues";
-import { AboutCta } from "@/components/AboutCta";
 import { Footer } from "@/components/Footer";
+
+const AboutFunding = dynamic(() =>
+  import("@/components/AboutFunding").then((m) => ({ default: m.AboutFunding }))
+);
+const AboutMethodology = dynamic(() =>
+  import("@/components/AboutMethodology").then((m) => ({
+    default: m.AboutMethodology,
+  }))
+);
+const AboutValues = dynamic(() =>
+  import("@/components/AboutValues").then((m) => ({ default: m.AboutValues }))
+);
+const AboutCta = dynamic(() =>
+  import("@/components/AboutCta").then((m) => ({ default: m.AboutCta }))
+);
 
 export const metadata: Metadata = {
   title: "About Solara AI — AI-Powered Marketing for Growing Businesses",

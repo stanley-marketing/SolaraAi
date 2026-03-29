@@ -1,8 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
-
 /* ──────────────────────────────────────────────
    COPY
    ────────────────────────────────────────────── */
@@ -23,38 +18,28 @@ const TRUST_ITEMS = [
 ];
 
 /* ──────────────────────────────────────────────
-   ANIMATION HELPERS
-   ────────────────────────────────────────────── */
-
-function FadeUp({
-  children,
-  delay = 0,
-  className,
-}: {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-}) {
-  return (
-    <motion.div
-      className={cn(className)}
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.65, delay, ease: [0.16, 1, 0.3, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-/* ──────────────────────────────────────────────
    ABOUT HERO
    ────────────────────────────────────────────── */
 
 export function AboutHero() {
   return (
     <section className="relative overflow-hidden bg-white px-6 sm:px-10 pt-28 pb-20 sm:pt-36 sm:pb-28">
+      <style>{`
+        @keyframes about-hero-fade-up {
+          from {
+            opacity: 0;
+            transform: translateY(18px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .about-hero-item {
+          opacity: 0;
+          animation: about-hero-fade-up 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+      `}</style>
 
       {/* Atmospheric: fine dot-grid texture */}
       <svg
@@ -77,22 +62,21 @@ export function AboutHero() {
         <rect width="100%" height="100%" fill="url(#about-hero-dots)" />
       </svg>
 
-
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-6xl">
 
         {/* Small eyebrow label */}
-        <FadeUp delay={0}>
+        <div className="about-hero-item" style={{ animationDelay: "0s" }}>
           <p
             className="text-xs font-semibold uppercase tracking-[0.28em]"
             style={{ color: "#9ca3af" }}
           >
             About Solara AI
           </p>
-        </FadeUp>
+        </div>
 
         {/* H1 */}
-        <FadeUp delay={0.08}>
+        <div className="about-hero-item" style={{ animationDelay: "0.08s" }}>
           <h1
             className="mt-5 max-w-[860px] leading-[1.05] tracking-[-0.02em] text-ink-900"
             style={{
@@ -103,10 +87,10 @@ export function AboutHero() {
           >
             Why Solara AI exists
           </h1>
-        </FadeUp>
+        </div>
 
         {/* Brand accent line */}
-        <FadeUp delay={0.16}>
+        <div className="about-hero-item" style={{ animationDelay: "0.16s" }}>
           <div
             className="mt-8"
             style={{
@@ -117,10 +101,10 @@ export function AboutHero() {
               borderRadius: "2px",
             }}
           />
-        </FadeUp>
+        </div>
 
         {/* Supporting copy */}
-        <FadeUp delay={0.25}>
+        <div className="about-hero-item" style={{ animationDelay: "0.25s" }}>
           <p
             className="mt-8 max-w-2xl text-ink-700/70"
             style={{
@@ -133,10 +117,10 @@ export function AboutHero() {
             client gets a system built from AI-native execution and human strategic
             oversight working in tandem. We run the marketing. You run the business.
           </p>
-        </FadeUp>
+        </div>
 
         {/* Trust-intro: three restrained editorial items */}
-        <FadeUp delay={0.33}>
+        <div className="about-hero-item" style={{ animationDelay: "0.33s" }}>
           <div className="mt-14 grid grid-cols-1 gap-y-8 sm:grid-cols-3 sm:gap-x-12 sm:gap-y-0">
             {TRUST_ITEMS.map((item) => (
               <div key={item.label} className="flex flex-col">
@@ -169,7 +153,7 @@ export function AboutHero() {
               </div>
             ))}
           </div>
-        </FadeUp>
+        </div>
 
       </div>
     </section>

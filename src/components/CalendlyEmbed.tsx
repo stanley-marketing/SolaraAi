@@ -5,9 +5,30 @@ import { useEffect, useRef, useState } from "react";
 
 export function CalendlyEmbed() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!shouldLoad) return;
+
     const onCalendlyReady = (e: MessageEvent) => {
       if (
         typeof e.data === "object" &&
@@ -24,7 +45,7 @@ export function CalendlyEmbed() {
       window.removeEventListener("message", onCalendlyReady);
       clearTimeout(timeout);
     };
-  }, []);
+  }, [shouldLoad]);
 
   return (
     <div ref={containerRef} className="relative">
@@ -102,10 +123,12 @@ export function CalendlyEmbed() {
         data-url="https://calendly.com/ilay-mor-solaraai/45-minute-meeting-full-stack-marketing-manageme-clone"
         style={{ minWidth: "320px", width: "100%", height: "700px" }}
       />
-      <Script
-        src="https://assets.calendly.com/assets/external/widget.js"
-        strategy="lazyOnload"
-      />
+      {shouldLoad && (
+        <Script
+          src="https://assets.calendly.com/assets/external/widget.js"
+          strategy="lazyOnload"
+        />
+      )}
     </div>
   );
 }

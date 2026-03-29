@@ -113,7 +113,11 @@ const faqJsonLd = {
 
 export default function ContactPage() {
   return (
-    <main className="relative min-h-screen bg-white text-ink-900">
+    <>
+      <link rel="preconnect" href="https://assets.calendly.com" crossOrigin="anonymous" />
+      <link rel="preconnect" href="https://calendly.com" crossOrigin="anonymous" />
+      <link rel="dns-prefetch" href="https://assets.calendly.com" />
+      <main className="relative min-h-screen bg-white text-ink-900">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
@@ -128,5 +132,6 @@ export default function ContactPage() {
       <ContactFaq />
       <Footer />
     </main>
+    </>
   );
 }

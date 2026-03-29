@@ -34,35 +34,25 @@ export function ContactHero() {
     >
       <div className="relative z-10 mx-auto max-w-5xl">
         <div className="mb-10 text-center">
-          <FadeUp delay={0}>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gray-400">
-              Get in touch
-            </p>
-          </FadeUp>
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gray-400">
+            Get in touch
+          </p>
 
-          <FadeUp delay={0.08}>
-            <h1
-              className="mt-5 leading-[1.05] tracking-[-0.02em] text-gray-900"
-              style={{
-                fontSize: "clamp(2.2rem, 4.5vw, 3.6rem)",
-                fontFamily: "var(--font-blog)",
-                fontWeight: 400,
-              }}
-            >
-              Book a free strategy call
-            </h1>
-          </FadeUp>
+          <h1
+            className="mt-5 leading-[1.05] tracking-[-0.02em] text-gray-900"
+            style={{
+              fontSize: "clamp(2.2rem, 4.5vw, 3.6rem)",
+              fontFamily: "var(--font-blog)",
+              fontWeight: 400,
+            }}
+          >
+            Book a free strategy call
+          </h1>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full overflow-hidden rounded-2xl border border-gray-200"
-        >
+        <div className="w-full overflow-hidden rounded-2xl border border-gray-200">
           <CalendlyEmbed />
-        </motion.div>
+        </div>
 
         <div className="mt-10 text-center">
           <FadeUp delay={0.25}>
