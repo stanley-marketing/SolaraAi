@@ -3,10 +3,16 @@
 import Script from "next/script";
 import { useEffect, useRef, useState } from "react";
 
+function getCalendlyMonth(): string {
+  const now = new Date();
+  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
+}
+
 export function CalendlyEmbed() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const month = getCalendlyMonth();
 
   useEffect(() => {
     const el = containerRef.current;
@@ -120,7 +126,7 @@ export function CalendlyEmbed() {
 
       <div
         className="calendly-inline-widget"
-        data-url="https://calendly.com/ilay-mor-solaraai/45-minute-meeting-full-stack-marketing-manageme-clone"
+        data-url={`https://calendly.com/ilay-mor-solaraai/45-minute-meeting-full-stack-marketing-manageme-clone?month=${month}`}
         style={{ minWidth: "320px", width: "100%", height: "700px" }}
       />
       {shouldLoad && (
