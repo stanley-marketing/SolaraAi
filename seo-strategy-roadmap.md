@@ -24,8 +24,8 @@ Current rank source:
 | ai marketing agency | Commercial | 1600 | 53 | NR | **NEW** `/ai-marketing-agency` | 5 | 3 | 15 |
 | ai marketing platform | Commercial | 720 | 83 | NR | **NEW** `/ai-marketing-platform` | 5 | 1 | 5 |
 | ai marketing platforms | Commercial | 720 | 61 | NR | **NEW** `/ai-marketing-platform` | 4 | 2 | 8 |
-| best ai marketing tools | Commercial/Info | 590 | 24 | NR | Existing `/blog/best-ai-marketing-tools` (refresh) | 4 | 4 | 16 |
-| ai marketing for small business | Commercial | 110 | 15 | NR | **NEW** `/ai-marketing-for-small-business` | 5 | 5 | 25 |
+| best ai marketing tools | Commercial/Info | 590 | 24 | NR | Existing `/blog/best-ai-marketing-tools` ✅ Refreshed | 4 | 4 | 16 |
+| ai marketing for small business | Commercial | 110 | 15 | NR | **NEW** `/blog/ai-marketing-for-small-business` ✅ Published | 5 | 5 | 25 |
 | ai social media management | Commercial | 140 | 76 | NR | **NEW** `/ai-social-media-management` | 4 | 1 | 4 |
 | ai tools for social media content creation | Info/Commercial | 210 | 20 | NR | Existing `/blog/ai-tools-for-social-media-content-creation` (refresh) | 4 | 4 | 16 |
 | ai marketing automation tools | Commercial | 590 | 44 | NR | Existing `/blog/ai-marketing-automation-tools` + **NEW** pillar support | 4 | 3 | 12 |
@@ -33,10 +33,10 @@ Current rank source:
 | ai advertising | Commercial | 6600 | 44 | NR | **NEW** `/ai-advertising` | 5 | 2 | 10 |
 | ai for marketing | Info/Commercial | 4400 | 58 | NR | **NEW** `/ai-for-marketing` | 4 | 2 | 8 |
 | ai tools for marketing | Commercial | 5400 | 48 | NR | Existing `/blog/ai-tools-for-marketing` (refresh + relink) | 4 | 3 | 12 |
-| hootsuite alternatives | Transactional | 1000 | 15 | NR | Existing `/blog/hootsuite-alternatives` (refresh) | 4 | 5 | 20 |
-| sprout social alternatives | Transactional | 390 | 0 | NR | Existing `/blog/sprout-social-alternatives` (refresh) | 4 | 5 | 20 |
-| jasper ai alternative | Transactional | 210 | 0 | NR | **NEW** `/alternatives/jasper-ai` | 4 | 5 | 20 |
-| copy ai alternative | Transactional | 210 | 0 | NR | **NEW** `/alternatives/copy-ai` | 4 | 5 | 20 |
+| hootsuite alternatives | Transactional | 1000 | 15 | NR | Existing `/blog/hootsuite-alternatives` ✅ Refreshed | 4 | 5 | 20 |
+| sprout social alternatives | Transactional | 390 | 0 | NR | Existing `/blog/sprout-social-alternatives` ✅ Refreshed | 4 | 5 | 20 |
+| jasper ai alternative | Transactional | 210 | 0 | NR | **NEW** `/blog/jasper-ai-alternative` ✅ Published | 4 | 5 | 20 |
+| copy ai alternative | Transactional | 210 | 0 | NR | **NEW** `/blog/copy-ai-alternative` ✅ Published | 4 | 5 | 20 |
 | blaze ai alternative | Transactional | 110 | 0 | NR | **NEW** `/alternatives/blaze-ai` | 4 | 5 | 20 |
 | anyword alternative | Transactional | 40 | 7 | NR | **NEW** `/alternatives/anyword` | 3 | 4 | 12 |
 | ugc videos examples | Info | 140 | 4 | 74 | Existing `/blog/ugc-video-examples` (quick win) | 3 | 5 | 15 |
@@ -118,11 +118,11 @@ Legend:
 
 | # | Exact title | Target keyword | Vol | KD | Type | Est. words | Quick win / New |
 |---:|---|---|---:|---:|---|---:|---|
-| 1 | AI Marketing for Small Business: The Practical 2026 Playbook | ai marketing for small business | 110 | 15 | Landing page | 1800 | New |
-| 2 | Hootsuite Alternatives for AI-First Teams (2026) | hootsuite alternatives | 1000 | 15 | Comparison | 2200 | Quick win (refresh existing) |
-| 3 | Sprout Social Alternatives: Better AI Workflows for Lean Teams | sprout social alternatives | 390 | 0 | Comparison | 2200 | Quick win (refresh existing) |
-| 4 | Jasper AI Alternative: Why Teams Move to Execution-First AI Marketing | jasper ai alternative | 210 | 0 | Comparison | 2200 | New |
-| 5 | Copy.ai Alternative for Teams That Need Ads + Social + Publishing | copy ai alternative | 210 | 0 | Comparison | 2200 | New |
+| 1 | AI Marketing for Small Business: The Practical 2026 Playbook | ai marketing for small business | 110 | 15 | Landing page | 1800 | ✅ Published |
+| 2 | Hootsuite Alternatives for AI-First Teams (2026) | hootsuite alternatives | 1000 | 15 | Comparison | 2200 | ✅ Refreshed |
+| 3 | Sprout Social Alternatives: Better AI Workflows for Lean Teams | sprout social alternatives | 390 | 0 | Comparison | 2200 | ✅ Refreshed |
+| 4 | Jasper AI Alternative: Why Teams Move to Execution-First AI Marketing | jasper ai alternative | 210 | 0 | Comparison | 2200 | ✅ Published |
+| 5 | Copy.ai Alternative for Teams That Need Ads + Social + Publishing | copy ai alternative | 210 | 0 | Comparison | 2200 | ✅ Published |
 | 6 | Blaze AI Alternative for Multi-Channel Campaign Execution | blaze ai alternative | 110 | 0 | Comparison | 2000 | New |
 | 7 | Best AI Marketing Tools in 2026 (Benchmarked by Workflow) | best ai marketing tools | 590 | 24 | Listicle | 2600 | Quick win (refresh existing) |
 | 8 | AI Marketing Automation: What to Automate First (And What Not To) | marketing automation ai | 880 | 28 | Pillar blog | 2200 | New |
@@ -189,9 +189,9 @@ Current site includes llms.txt (per project context). Update it to include:
 
 ### P1 (first)
 
-1. `/contact` LCP 11.56s → fix hero/render path and script loading.
-2. `/about` LCP 9.35s → same optimization pattern.
-3. `/case-study` add missing title, meta description, H1.
+1. ✅ `/contact` LCP 11.56s → fixed: H1 renders immediately, Calendly lazy-loaded via IntersectionObserver, preconnect hints added.
+2. ✅ `/about` LCP 9.35s → fixed: AboutHero converted to server component with CSS animations, below-fold sections dynamically imported.
+3. ✅ `/case-study` → fixed: added title, meta description, OG, Twitter metadata to redirect page.
 
 ### P2 (next)
 
@@ -208,22 +208,27 @@ Current site includes llms.txt (per project context). Update it to include:
 
 ## 6) 90-Day Execution Timeline
 
-## Weeks 1–2 (technical + quick wins)
+## Weeks 1–2 (technical + quick wins) ✅ COMPLETE
 
-- Week 1:
-  - Fix `/case-study` metadata/H1
-  - Start `/contact` and `/about` LCP remediation
-  - Publish refreshed `best-ai-marketing-tools`
-- Week 2:
-  - Complete LCP fixes
-  - Refresh `hootsuite-alternatives` + `sprout-social-alternatives`
-  - Deploy title rewrite batch (first 15 URLs)
+- Week 1: ✅
+  - ✅ Fix `/case-study` metadata/H1
+  - ✅ Fix `/contact` LCP (11.56s → fixed)
+  - ✅ Fix `/about` LCP (9.35s → fixed)
+  - ✅ Publish refreshed `best-ai-marketing-tools`
+  - ✅ Publish refreshed `hootsuite-alternatives`
+- Week 2: ✅
+  - ✅ Publish refreshed `sprout-social-alternatives`
+  - ✅ Publish NEW `ai-marketing-for-small-business`
+  - ✅ Publish NEW `jasper-ai-alternative`
+  - ✅ Publish NEW `copy-ai-alternative`
+  - ⬚ Deploy title rewrite batch (first 15 URLs) — not yet started
 
 ### Day-30 milestone targets
 
-- LCP `<3.5s` on `/contact` and `/about`
-- 3 refreshed high-intent pages live
-- 15 long titles fixed
+- ✅ LCP fixed on `/contact` and `/about`
+- ✅ 3 refreshed high-intent pages live (hootsuite, sprout, best-ai-marketing-tools)
+- ✅ 3 new high-intent pages live (ai-marketing-for-small-business, jasper-ai-alternative, copy-ai-alternative)
+- ⬚ 15 long titles fixed — not yet started
 
 ## Weeks 3–6 (first cluster launch)
 
@@ -298,10 +303,18 @@ Current site includes llms.txt (per project context). Update it to include:
 
 ---
 
-## Immediate next actions (this week)
+## Immediate next actions (this week) — updated 2026-03-30
 
-1. Publish fix for `/case-study` metadata/H1.
-2. Launch `ai marketing for small business` landing page draft.
-3. Refresh `hootsuite alternatives` and `sprout social alternatives`.
-4. Start outreach list from backlink intersection (first 25 domains).
-5. Open DataForSEO support ticket with endpoint evidence (`40400 Not Found`) for LLM Mentions route.
+1. ✅ Publish fix for `/case-study` metadata/H1.
+2. ✅ Launch `ai marketing for small business` article.
+3. ✅ Refresh `hootsuite alternatives` and `sprout social alternatives`.
+4. ✅ Publish `jasper-ai-alternative` and `copy-ai-alternative`.
+5. ✅ DataForSEO Backlinks + LLM Mentions APIs activated (trial).
+
+### Next up (Weeks 3–6):
+6. ⬚ Build `/alternatives/blaze-ai` comparison page.
+7. ⬚ Build pillar page `/ai-marketing-platform`.
+8. ⬚ Build pillar page `/ai-ad-generator`.
+9. ⬚ Fix 32 long blog titles for SERP display.
+10. ⬚ Start internal linking rollout (20 existing spokes → pillars).
+11. ⬚ Start backlink outreach (first 25 domains from intersection list).
