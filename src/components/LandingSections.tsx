@@ -25,6 +25,7 @@ const resourceSubItems: NavLeaf[] = [
 const navItems: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "Grow", href: "/grow" },
+  { label: "Case Studies", href: "/case-study" },
   { label: "Partners", children: partnerSubItems },
   { label: "Pricing", href: "/pricing" },
   { label: "Resources", children: resourceSubItems },

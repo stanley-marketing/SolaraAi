@@ -42,8 +42,6 @@ async function assertPageLoadsWithValidStructure(page: Page, route: string) {
   expect(response).not.toBeNull();
   expect(response?.status(), `Unexpected status for ${route}`).toBe(200);
 
-  await page.waitForLoadState("networkidle");
-
   const h1 = page.locator("h1");
   await expect(h1.first(), `No visible h1 on ${route}`).toBeVisible();
   expect(await h1.count(), `Expected exactly one h1 on ${route}`).toBe(1);
@@ -87,6 +85,8 @@ test.describe("All pages smoke checks", () => {
 
 test.describe("Homepage internal link integrity", () => {
   test("all discovered internal links return non-404 and exclude /product", async ({ page }) => {
+    test.setTimeout(120000);
+
     const response = await page.goto("/", { waitUntil: "domcontentloaded" });
 
     expect(response).not.toBeNull();

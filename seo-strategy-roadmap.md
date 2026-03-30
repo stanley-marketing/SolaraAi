@@ -299,14 +299,45 @@ Current site includes llms.txt (per project context). Update it to include:
 
 ---
 
-## Next session actions — updated 2026-03-30
+## Next session actions — updated 2026-04-03
 
-1. ⬚ Build `blaze-ai-alternative` comparison page
-2. ⬚ Build pillar page `/ai-marketing-platform`
-3. ⬚ Build pillar page `/ai-ad-generator`
-4. ⬚ Build pillar page `/ai-marketing-agency`
-5. ⬚ Build `/alternatives` hub page
-6. ⬚ Fix 32 long blog titles for SERP display
-7. ⬚ Internal linking rollout (20 spokes → pillars)
-8. ⬚ Publish `ai-marketing-automation` pillar blog
+1. ✅ Build `blaze-ai-alternative` comparison page
+2. ✅ Build pillar page `/ai-marketing-platform`
+3. ✅ Build pillar page `/ai-ad-generator`
+4. ✅ Build pillar page `/ai-marketing-agency`
+5. ✅ Build `/alternatives` hub page
+6. ✅ Fix long blog titles for SERP display (all under 60 chars, all 2026)
+7. ✅ Internal linking rollout (23 links across 20 articles → pillars)
+8. ✅ Publish `ai-marketing-automation` pillar blog
 9. ⬚ Start backlink outreach (first 25 domains)
+10. ⬚ Publish remaining content pipeline items 9-20
+11. ⬚ Build `/ai-social-media-management` pillar page
+12. ⬚ Refresh `ugc-video-examples` (currently #74, KD 4 — quick win)
+
+---
+
+## Future optimization: Alternatives page restructure (low priority)
+
+**What:** Move alternative articles from `/blog/jasper-ai-alternative` to dedicated `/alternatives/jasper-ai` pages. Restructure from listicle format (10 best alternatives) to 1v1 "Why Solara is the best [Competitor] alternative" format with comparison table, pain points, and conversion-focused CTA.
+
+**Why:** Every high-ranking SaaS (Dynamic Mockups, AuthoredUp, monday.com, ClickUp) uses a dedicated `/alternatives/` subfolder — not `/blog/`. The subfolder creates a topical cluster signal for Google. The 1v1 format converts better than listicles (it's a landing page, not an article).
+
+**Evidence:**
+- Dynamic Mockups, AuthoredUp, monday.com, hansdekker.ai, ideaplan.io all use `/alternatives/` subfolder
+- Only ClickUp (DA 90+) gets away with `/blog/` — they rank for anything
+- gkogan.co case study: single `/splunk-alternative` page drove 11% of all search traffic
+- 1v1 format template: Hero → Pain points → Comparison table → Differentiators → Social proof → FAQ → CTA
+- Hub page should be a card grid (navigation layer), not a content page
+- Internal linking should be a mesh: hub ↔ individual pages ↔ each other
+
+**What it involves:**
+- Move jasper-ai-alternative, copy-ai-alternative, blaze-ai-alternative from article system to standalone Next.js pages under `/alternatives/`
+- Rewrite content from listicle → 1v1 format
+- Set up 301 redirects from old `/blog/` URLs
+- Rebuild hub as card grid
+- Keep existing blog listicles (hootsuite-alternatives, sprout-social-alternatives) in `/blog/` — they target different queries
+- Add cross-links between all individual `/alternatives/` pages
+
+**Impact:** Modest SEO improvement (cleaner topical clustering). No GEO impact. Do this when higher-priority items (backlinks, content pipeline, pillar pages) are done.
+
+**Priority:** Low — nice-to-have, not a needle-mover at current scale (6 keywords). Revisit when we have 50+ ranked keywords.

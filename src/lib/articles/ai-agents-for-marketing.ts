@@ -2,7 +2,7 @@ import type { Article } from "../articles";
 
 const article: Article = {
   slug: "ai-agents-for-marketing",
-  title: "How AI Agents Are Revolutionizing Marketing: Use Cases & Tools",
+  title: "How AI Agents Are Revolutionizing Marketing",
   excerpt:
     "How AI marketing agents work, where they drive measurable impact, and which tools to evaluate for personalization, ad optimization, analytics, and automation.",
   readTime: "10 min read",
@@ -186,6 +186,10 @@ const article: Article = {
         "SocialBee",
         "AdCreative.ai",
       ],
+    },
+    {
+      type: "paragraph",
+      text: "To map these agent capabilities into an executable operating model, use [the automation implementation guide](/blog/ai-marketing-automation) for workflow sequencing. For platform-level requirements and evaluation criteria, [the platform setup guide](/ai-marketing-platform) provides a practical decision framework.",
     },
     {
       type: "callout",

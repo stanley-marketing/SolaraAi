@@ -41,6 +41,31 @@ function getSectionKey(section: ArticleSection, index: number) {
   }
 }
 
+function InlineLinks({ text }: { text: string }) {
+  const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g);
+  return (
+    <>
+      {parts.map((part, i) => {
+        const match = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+        if (match) {
+          const isExternal = match[2].startsWith("http");
+          return (
+            <Link
+              key={i}
+              href={match[2]}
+              {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              className="text-ink-900 underline underline-offset-2 hover:text-ink-600 transition-colors"
+            >
+              {match[1]}
+            </Link>
+          );
+        }
+        return <span key={i}>{part}</span>;
+      })}
+    </>
+  );
+}
+
 function RenderSection({ section, isLead = false }: { section: ArticleSection; isLead?: boolean }) {
   switch (section.type) {
     case "paragraph":
@@ -52,7 +77,7 @@ function RenderSection({ section, isLead = false }: { section: ArticleSection; i
               : "mb-[14px] text-[16px] leading-[1.6]"
           }`}
         >
-          {section.text}
+          <InlineLinks text={section.text} />
         </p>
       );
 
@@ -129,7 +154,14 @@ function RenderSection({ section, isLead = false }: { section: ArticleSection; i
               fontWeight: 700,
             }}
           >
-            {section.number}. {section.name}
+            {section.number}.{" "}
+            {section.url ? (
+              <Link href={section.url} target="_blank" rel="noopener noreferrer" className="hover:text-ink-600 transition-colors">
+                {section.name}
+              </Link>
+            ) : (
+              section.name
+            )}
           </h2>
           {section.image && (
             <Image

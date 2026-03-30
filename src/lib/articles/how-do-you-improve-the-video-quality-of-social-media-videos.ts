@@ -2,7 +2,7 @@ import type { Article } from "../articles";
 
 const article: Article = {
   slug: "how-do-you-improve-the-video-quality-of-social-media-videos",
-  title: "How to Improve Social Media Video Quality: Pro Tips & AI Tools [2025]",
+  title: "Improve Social Media Video Quality: 2026",
   excerpt:
     "A practical 2025 guide to improve social media video quality with platform specs, export settings, workflow fixes, and AI tools.",
   readTime: "10 min read",

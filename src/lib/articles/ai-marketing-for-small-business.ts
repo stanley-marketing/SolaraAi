@@ -291,7 +291,11 @@ const article: Article = {
     },
     {
       type: "paragraph",
-      text: "If you are evaluating platform options, review Solara's approach in /ai-marketing-platform. If your priority is operational scale, see /ai-marketing-automation for workflow-level guidance.",
+      text: "If you are evaluating platform options, review Solara's approach in [our platform comparison](/ai-marketing-platform). If your priority is operational scale, see [the automation framework](/blog/ai-marketing-automation) for workflow-level guidance.",
+    },
+    {
+      type: "paragraph",
+      text: "For a deeper automation blueprint built specifically around sequencing and governance, read [our workflow sequencing guide](/blog/ai-marketing-automation). Pair it with [the platform architecture guide](/ai-marketing-platform) to compare the capabilities SMB teams need before committing to a long-term stack.",
     },
     {
       type: "callout",

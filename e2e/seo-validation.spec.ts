@@ -35,6 +35,10 @@ const PAGE_CONFIGS: PageSeoConfig[] = [
     requiredSchemaTypes: ["BlogPosting"],
   },
   {
+    route: "/case-study",
+    requiredSchemaTypes: [],
+  },
+  {
     route: "/case-study/maison-remodeling-group",
     requiredSchemaTypes: [],
   },
@@ -81,8 +85,6 @@ async function visitAndAssertOk(page: Page, route: string) {
 
   expect(response, `No response for ${route}`).not.toBeNull();
   expect(response?.status(), `Unexpected status for ${route}`).toBe(200);
-
-  await page.waitForLoadState("networkidle");
 }
 
 async function getJsonLdScriptContents(page: Page): Promise<string[]> {

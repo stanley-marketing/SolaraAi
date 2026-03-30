@@ -2,7 +2,7 @@ import type { Article } from "../articles";
 
 const article: Article = {
   slug: "future-of-ai-in-social-media",
-  title: "The Future of AI in Social Media: 2025 Trends & Tools",
+  title: "The Future of AI in Social Media: 2026 Trends & Tools",
   excerpt:
     "A practical breakdown of the biggest AI-in-social trends, platform shifts, compliance requirements, and workflow changes shaping 2025.",
   readTime: "11 min read",

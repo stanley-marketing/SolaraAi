@@ -2,7 +2,7 @@ import type { Article } from "../articles";
 
 const article: Article = {
   slug: "best-ai-ad-tools-for-ugc",
-  title: "8 Best AI Ad Tools for UGC in 2025 [Comparison List]",
+  title: "8 Best AI Ad Tools for UGC in 2026 [Comparison List]",
   excerpt:
     "A side-by-side guide to the top AI UGC ad tools for faster creative production, campaign scale, and stronger conversion performance.",
   readTime: "8 min read",
@@ -42,11 +42,12 @@ const article: Article = {
       src: "/blog/images/68f8e12d68f2fb925033ee09_Y9p0JuA9TOzqt1HbTSrytgO1W0.webp",
       alt: "Comparison table image",
     },
-    {
-      type: "tool",
-      number: 1,
-      name: "Solara AI",
-      description:
+     {
+       type: "tool",
+       number: 1,
+       name: "Solara AI",
+       url: "https://solaraai.com",
+       description:
         "Solara AI combines UGC-style video generation with full campaign automation. It creates creative assets, launches ads, optimizes spend, and tracks outcomes in one platform.",
       features: [
         "Authentic UGC-style video generation",
@@ -61,11 +62,12 @@ const article: Article = {
       image:
         "/blog/images/69027462bd57e34a72b918f2_frame.webp",
     },
-    {
-      type: "tool",
-      number: 2,
-      name: "Billo",
-      description:
+     {
+       type: "tool",
+       number: 2,
+       name: "Billo",
+       url: "https://www.billo.io",
+       description:
         "Billo is a creator marketplace that helps brands source real UGC videos quickly through brief-based creator matching.",
       features: [
         "Verified creator marketplace",
@@ -78,11 +80,12 @@ const article: Article = {
       image:
         "/blog/images/68f8e12e68f2fb925033ee60_tCQXfbudCvzU7jQXLlrwihBDL8.webp",
     },
-    {
-      type: "tool",
-      number: 3,
-      name: "Creatify AI",
-      description:
+     {
+       type: "tool",
+       number: 3,
+       name: "Creatify AI",
+       url: "https://www.creatify.ai",
+       description:
         "Creatify AI converts product links into ad-ready videos with scripts, avatars, voiceovers, and batch variation testing.",
       features: [
         "Product URL to finished ad generation",
@@ -95,11 +98,12 @@ const article: Article = {
       image:
         "/blog/images/68f8e12e68f2fb925033ee6d_33cGZbAsSHTQguX0GPQjeTpT2g.webp",
     },
-    {
-      type: "tool",
-      number: 4,
-      name: "Trend.io",
-      description:
+     {
+       type: "tool",
+       number: 4,
+       name: "Trend.io",
+       url: "https://www.trend.io",
+       description:
         "Trend.io connects brands with vetted creators for high-quality UGC video production tailored to paid social performance.",
       features: [
         "Vetted performance-oriented creator network",
@@ -112,11 +116,12 @@ const article: Article = {
       image:
         "/blog/images/68f8e12e68f2fb925033ee76_zDpGQWbIqXXysad4qOVog7eY.webp",
     },
-    {
-      type: "tool",
-      number: 5,
-      name: "Veed.io",
-      description:
+     {
+       type: "tool",
+       number: 5,
+       name: "Veed.io",
+       url: "https://www.veed.io",
+       description:
         "Veed.io is a fast editing suite for transforming raw UGC clips into polished ad creatives with captions and social formatting.",
       features: [
         "Drag-and-drop editing",
@@ -129,11 +134,12 @@ const article: Article = {
       image:
         "/blog/images/68f8e12e68f2fb925033ee7f_XvocYhhnHDMPrQLuO6trjEqEY.webp",
     },
-    {
-      type: "tool",
-      number: 6,
-      name: "Pencil AI",
-      description:
+     {
+       type: "tool",
+       number: 6,
+       name: "Pencil AI",
+       url: "https://www.pencil.ai",
+       description:
         "Pencil AI helps teams generate and score ad variations, using historical campaign data to predict stronger performers.",
       features: [
         "Creative variation generator",
@@ -145,11 +151,12 @@ const article: Article = {
       image:
         "/blog/images/68f8e12e68f2fb925033ee5d_dLZLHynWFm5NErxlM6we9i81ZQM.webp",
     },
-    {
-      type: "tool",
-      number: 7,
-      name: "MakeUGC",
-      description:
+     {
+       type: "tool",
+       number: 7,
+       name: "MakeUGC",
+       url: "https://www.makeugc.com",
+       description:
         "MakeUGC focuses on speed and accessibility for creating creator-style ads with template workflows and multi-language output.",
       features: [
         "Avatar and voice libraries",
@@ -161,11 +168,12 @@ const article: Article = {
       image:
         "/blog/images/68f8e12e68f2fb925033ee73_4yqb6q6FKEIdKxVxLg6PBmxNQsY.webp",
     },
-    {
-      type: "tool",
-      number: 8,
-      name: "Arcads AI",
-      description:
+     {
+       type: "tool",
+       number: 8,
+       name: "Arcads AI",
+       url: "https://www.arcads.ai",
+       description:
         "Arcads AI turns scripts into short creator-style ads with expressive avatars and built-in variation testing for performance optimization.",
       features: [
         "Script-to-video generation",

@@ -32,11 +32,12 @@ const article: Article = {
         "Export smoothly \u2014 right aspect ratio, right compression, first try",
       ],
     },
-    {
-      type: "tool",
-      number: 1,
-      name: "CapCut",
-      description:
+     {
+       type: "tool",
+       number: 1,
+       name: "CapCut",
+       url: "https://www.capcut.com",
+       description:
         "Built by the TikTok team, CapCut is the go-to for short-form UGC. AI-powered auto-trim, beat sync, and auto-captions make it fast. Trending templates keep your content format-native. The TikTok music library is built in \u2014 no licensing headaches.",
       features: [
         "AI auto-trim and beat sync",
@@ -53,11 +54,12 @@ const article: Article = {
       type: "paragraph",
       text: "Where it\u2019s limited: CapCut leans heavily on templates, so if your brand needs a distinct look that isn\u2019t trend-driven, you\u2019ll hit a ceiling. Advanced cinematic control is minimal.",
     },
-    {
-      type: "tool",
-      number: 2,
-      name: "InVideo",
-      description:
+     {
+       type: "tool",
+       number: 2,
+       name: "InVideo",
+       url: "https://invideo.io",
+       description:
         "InVideo bridges the gap between content creation and marketing production. Smart templates, AI voiceovers, text-to-video, and brand presets let you spin up polished content fast. Built-in collaboration tools make it useful for teams.",
       features: [
         "Text-to-video generation",
@@ -74,11 +76,12 @@ const article: Article = {
       type: "paragraph",
       text: "Where it\u2019s limited: InVideo trades creative depth for speed. If you want highly custom UGC that feels genuinely personal, templates can feel constraining. AI voiceovers on longer cuts can sound slightly robotic.",
     },
-    {
-      type: "tool",
-      number: 3,
-      name: "VN Editor",
-      description:
+     {
+       type: "tool",
+       number: 3,
+       name: "VN Editor",
+       url: "https://www.vn.video",
+       description:
         "VN gives creators a pro-level mobile timeline without a pro-level price. Multi-layer editing, preset filters, speed ramping, and text animations cover most UGC needs. The free version has no watermark \u2014 rare and valuable.",
       features: [
         "Multi-layer timeline",
@@ -95,11 +98,12 @@ const article: Article = {
       type: "paragraph",
       text: "Where it\u2019s limited: VN hasn\u2019t kept pace with newer AI automation features. Cross-device sync is limited \u2014 if you start on mobile you mostly finish on mobile.",
     },
-    {
-      type: "tool",
-      number: 4,
-      name: "Splice",
-      description:
+     {
+       type: "tool",
+       number: 4,
+       name: "Splice",
+       url: "https://www.splice.video",
+       description:
         "Splice punches above its mobile weight class. The precision timeline, AI audio sync, and detailed transition controls give UGC creators studio-style results on their phone. Cloud backup keeps projects safe.",
       features: [
         "Precision frame-level timeline",
@@ -116,11 +120,12 @@ const article: Article = {
       type: "paragraph",
       text: "Where it\u2019s limited: No advanced AI automation. Manual color grading is functional but basic. Best for creators who want control over every cut rather than speed.",
     },
-    {
-      type: "tool",
-      number: 5,
-      name: "Canva Video Editor",
-      description:
+     {
+       type: "tool",
+       number: 5,
+       name: "Canva Video Editor",
+       url: "https://www.canva.com",
+       description:
         "Canva\u2019s video editor works best when your content lives in a broader brand system. Brand kits, drag-and-drop timelines, AI voiceovers, and a massive stock media library make it fast for social-ready branded UGC. Desktop and mobile sync seamlessly.",
       features: [
         "Drag-and-drop timeline",
@@ -137,11 +142,12 @@ const article: Article = {
       type: "paragraph",
       text: "Where it\u2019s limited: Frame-level editing is minimal. If your UGC requires tight pacing or complex transitions, Canva hits its ceiling fast. It\u2019s designed for speed and polish, not precision.",
     },
-    {
-      type: "tool",
-      number: 6,
-      name: "InShot",
-      description:
+     {
+       type: "tool",
+       number: 6,
+       name: "InShot",
+       url: "https://www.inshot.com",
+       description:
         "InShot is optimized for vertical video \u2014 which means it\u2019s optimized for most UGC. Canvas ratio presets for every platform, clean trim/merge tools, and a large royalty-free audio library make it one of the fastest mobile workflows for ads and organic posts.",
       features: [
         "Aspect ratio presets for all platforms",
@@ -158,11 +164,12 @@ const article: Article = {
       type: "paragraph",
       text: "Where it\u2019s limited: The free version has a watermark. No color grading or multi-layer compositing \u2014 what you see is what you get.",
     },
-    {
-      type: "tool",
-      number: 7,
-      name: "VEED.io",
-      description:
+     {
+       type: "tool",
+       number: 7,
+       name: "VEED.io",
+       url: "https://www.veed.io",
+       description:
         "VEED runs in the browser, which makes it the most accessible option for creators who switch between devices. Auto-subtitles, translation, background noise removal, and client-shareable review links make it a strong pick for UGC workflows that involve approvals.",
       features: [
         "Auto-subtitles with translation",
@@ -179,11 +186,12 @@ const article: Article = {
       type: "paragraph",
       text: "Where it\u2019s limited: Large projects can run slow in browser. The free plan has meaningful feature limits \u2014 auto-subtitles are capped and exports are watermarked.",
     },
-    {
-      type: "tool",
-      number: 8,
-      name: "Descript",
-      description:
+     {
+       type: "tool",
+       number: 8,
+       name: "Descript",
+       url: "https://www.descript.com",
+       description:
         "Descript takes a different approach: edit video by editing the transcript. Delete a sentence from the script, the clip disappears. Remove filler words in one click. This workflow is fastest for talking-head UGC, testimonials, and interview-style content.",
       features: [
         "Text-based video editing",

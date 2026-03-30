@@ -2,7 +2,7 @@ import type { Article } from "../articles";
 
 const article: Article = {
   slug: "ai-tools-for-social-media-content-creation",
-  title: "Top 10 AI Tools for Social Media Content Creation in 2025",
+  title: "Top 10 AI Tools for Social Media Content Creation in 2026",
   excerpt:
     "A complete breakdown of 10 AI tools helping brands and creators produce social media content faster, stay consistent, and improve engagement.",
   readTime: "10 min read",
@@ -42,11 +42,12 @@ const article: Article = {
       src: "/blog/images/68f8e12dee80a47946dfca67_HOUNKzqKOtXT2tSwHxG1Mm6kuM.webp",
       alt: "Comparison table image",
     },
-    {
-      type: "tool",
-      number: 1,
-      name: "Solara AI",
-      description:
+     {
+       type: "tool",
+       number: 1,
+       name: "Solara AI",
+       url: "https://solaraai.com",
+       description:
         "Solara AI works as a full autonomous marketing system. It creates and schedules on-brand posts, launches ads, engages followers, and continuously adapts strategy using performance data.",
       features: [
         "Quick brand onboarding with audience and competitor analysis",
@@ -68,11 +69,12 @@ const article: Article = {
       src: "/blog/images/690274da2aa2e3c40cb796f4_Screenshot-2025-10-29-at-16.43.21.webp",
       alt: "solara-ai-pricing",
     },
-    {
-      type: "tool",
-      number: 2,
-      name: "Brandwatch",
-      description:
+     {
+       type: "tool",
+       number: 2,
+       name: "Brandwatch",
+       url: "https://www.brandwatch.com",
+       description:
         "Brandwatch is a social media intelligence suite for publishing, listening, influencer workflows, and analytics.",
       features: [
         "Multi-platform publishing and scheduling",
@@ -83,11 +85,12 @@ const article: Article = {
       image:
         "/blog/images/68f8e12eee80a47946dfcaaa_e49qTLoFB4SvJZkaSq16D9h44.webp",
     },
-    {
-      type: "tool",
-      number: 3,
-      name: "Sprinklr",
-      description:
+     {
+       type: "tool",
+       number: 3,
+       name: "Sprinklr",
+       url: "https://www.sprinklr.com",
+       description:
         "Sprinklr combines social management, customer experience, and AI-driven insights in an enterprise-grade platform.",
       features: [
         "Unified channel management",
@@ -98,11 +101,12 @@ const article: Article = {
       image:
         "/blog/images/68f8e12eee80a47946dfcaad_uBxNF80y7kg3K696cMCp7s4ib44.webp",
     },
-    {
-      type: "tool",
-      number: 4,
-      name: "SocialBee",
-      description:
+     {
+       type: "tool",
+       number: 4,
+       name: "SocialBee",
+       url: "https://socialbee.com",
+       description:
         "SocialBee helps teams plan, create, and schedule social content with AI captioning and structured calendar workflows.",
       features: [
         "AI post ideas and caption generation",
@@ -118,11 +122,12 @@ const article: Article = {
       src: "/blog/images/68f8e12dee80a47946dfca64_msYFpei0cepx6Xp7xKJCApIkGM.webp",
       alt: "socialbee-pricing",
     },
-    {
-      type: "tool",
-      number: 5,
-      name: "Buffer",
-      description:
+     {
+       type: "tool",
+       number: 5,
+       name: "Buffer",
+       url: "https://buffer.com",
+       description:
         "Buffer is a lightweight social management platform with AI writing support, queue-based scheduling, and collaboration tools.",
       features: [
         "Scheduling and auto-publishing",
@@ -138,11 +143,12 @@ const article: Article = {
       src: "/blog/images/68f8e12dee80a47946dfca6a_UkUjy2E50t5XcV4df1X4oBcyuQ.webp",
       alt: "buffer-pricing",
     },
-    {
-      type: "tool",
-      number: 6,
-      name: "Predis",
-      description:
+     {
+       type: "tool",
+       number: 6,
+       name: "Predis",
+       url: "https://predis.ai",
+       description:
         "Predis focuses on AI ad creatives, UGC-style videos, social posts, captions, and publishing workflows from simple prompts.",
       features: [
         "AI ads, videos, captions, and hashtags",
@@ -158,11 +164,12 @@ const article: Article = {
       src: "/blog/images/68f8e12eee80a47946dfca7c_elHm3idDXgIxRjRpiQYlSThIUY.webp",
       alt: "predis-pricing",
     },
-    {
-      type: "tool",
-      number: 7,
-      name: "Flick",
-      description:
+     {
+       type: "tool",
+       number: 7,
+       name: "Flick",
+       url: "https://flick.tech",
+       description:
         "Flick provides AI-assisted hashtag research, caption creation, scheduling, and analytics with a strong Instagram focus.",
       features: [
         "Hashtag and caption generation",
@@ -178,11 +185,12 @@ const article: Article = {
       src: "/blog/images/68f8e12eee80a47946dfca7f_79yKDEtPFlMuzGwF4qYAOfHbG4.webp",
       alt: "flick-pricing",
     },
-    {
-      type: "tool",
-      number: 8,
-      name: "SocialPilot",
-      description:
+     {
+       type: "tool",
+       number: 8,
+       name: "SocialPilot",
+       url: "https://www.socialpilot.co",
+       description:
         "SocialPilot is built for agencies and SMBs needing multi-account scheduling, approvals, reporting, and inbox management.",
       features: [
         "Bulk scheduling and content calendar",
@@ -198,11 +206,12 @@ const article: Article = {
       src: "/blog/images/68f8e12eee80a47946dfca85_FS1GE7I8fpm5E6QBMn4tk75syc.webp",
       alt: "socialpilot-pricing",
     },
-    {
-      type: "tool",
-      number: 9,
-      name: "Hootsuite",
-      description:
+     {
+       type: "tool",
+       number: 9,
+       name: "Hootsuite",
+       url: "https://hootsuite.com",
+       description:
         "Hootsuite combines scheduling, listening, inbox management, and AI content support through OwlyGPT.",
       features: [
         "Cross-platform scheduling and publishing",
@@ -218,11 +227,12 @@ const article: Article = {
       src: "/blog/images/68f8e12eee80a47946dfca82_A1OMstQzy1SnQibdeM64DTkO7I.webp",
       alt: "hootsuite-pricing",
     },
-    {
-      type: "tool",
-      number: 10,
-      name: "FeedHive",
-      description:
+     {
+       type: "tool",
+       number: 10,
+       name: "FeedHive",
+       url: "https://www.feedhive.io",
+       description:
         "FeedHive helps creators and teams automate posting, optimize content with AI writing support, and manage engagement from one dashboard.",
       features: [
         "AI writing assistant",

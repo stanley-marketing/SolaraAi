@@ -42,11 +42,12 @@ const article: Article = {
       src: "/blog/images/68f8e13309f70b766e66e7af_7C1faoMRTXvVfVYTORKcORVxhgE.webp",
       alt: "Comparison table image",
     },
-    {
-      type: "tool",
-      number: 1,
-      name: "Solara AI",
-      description:
+     {
+       type: "tool",
+       number: 1,
+       name: "Solara AI",
+       url: "https://solaraai.com",
+       description:
         "Solara goes beyond editing by combining reel creation with campaign distribution, budget optimization, and audience engagement automation.",
       features: [
         "Fast brand onboarding and audience analysis",
@@ -62,11 +63,12 @@ const article: Article = {
       image:
         "/blog/images/69027462bd57e34a72b918f2_frame.webp",
     },
-    {
-      type: "tool",
-      number: 2,
-      name: "Tagshop AI",
-      description:
+     {
+       type: "tool",
+       number: 2,
+       name: "Tagshop AI",
+       url: "https://www.tagshop.ai",
+       description:
         "Tagshop AI converts product URLs into UGC-style ad videos using avatars, scripts, lip sync, and bulk variation workflows.",
       features: [
         "URL-to-video generation",
@@ -79,11 +81,12 @@ const article: Article = {
       image:
         "/blog/images/68f8e13309f70b766e66e7a6_zZeRUpyI2KJF73XSG35TyJ2PASw.webp",
     },
-    {
-      type: "tool",
-      number: 3,
-      name: "Captions",
-      description:
+     {
+       type: "tool",
+       number: 3,
+       name: "Captions",
+       url: "https://www.captions.ai",
+       description:
         "Captions is an AI creative studio for talking-head content, subtitles, translation, and avatar-driven production.",
       features: [
         "AI creator avatar workflows",
@@ -95,11 +98,12 @@ const article: Article = {
       image:
         "/blog/images/68f8e13309f70b766e66e78f_9pB1Mm2e2Beec5DJZriaTJvwHw.webp",
     },
-    {
-      type: "tool",
-      number: 4,
-      name: "InVideo",
-      description:
+     {
+       type: "tool",
+       number: 4,
+       name: "InVideo",
+       url: "https://invideo.io",
+       description:
         "InVideo provides template-based and AI-assisted reel creation from scripts, prompts, and long-form assets.",
       features: [
         "Large template library",
@@ -111,11 +115,12 @@ const article: Article = {
       image:
         "/blog/images/68f8e13309f70b766e66e79d_h2sbYGS50rOiTzuIM5OGrqJrl5A.webp",
     },
-    {
-      type: "tool",
-      number: 5,
-      name: "Kapwing",
-      description:
+     {
+       type: "tool",
+       number: 5,
+       name: "Kapwing",
+       url: "https://www.kapwing.com",
+       description:
         "Kapwing is a collaborative online editor with AI tools for smart trimming, subtitles, text-to-video, and social repurposing.",
       features: [
         "Real-time collaborative editing",
@@ -127,11 +132,12 @@ const article: Article = {
       image:
         "/blog/images/68f8e13309f70b766e66e78c_GDtsQC6tmkO9W3RAiJLeJi1wA.webp",
     },
-    {
-      type: "tool",
-      number: 6,
-      name: "Vizard",
-      description:
+     {
+       type: "tool",
+       number: 6,
+       name: "Vizard",
+       url: "https://www.vizard.ai",
+       description:
         "Vizard specializes in converting long videos into short clips by identifying key moments and automatically reframing and captioning.",
       features: [
         "AI highlight clipping",
@@ -143,11 +149,12 @@ const article: Article = {
       image:
         "/blog/images/68f8e13309f70b766e66e7ac_qaBdxoFopKVwjGLuPcypwmRow.webp",
     },
-    {
-      type: "tool",
-      number: 7,
-      name: "Fliki",
-      description:
+     {
+       type: "tool",
+       number: 7,
+       name: "Fliki",
+       url: "https://fliki.ai",
+       description:
         "Fliki turns text, blogs, and scripts into short videos with realistic voices, avatars, subtitles, and multi-language options.",
       features: [
         "Text-to-video scene generation",
@@ -159,11 +166,12 @@ const article: Article = {
       image:
         "/blog/images/68f8e13309f70b766e66e79a_8HMaW0w46SfSsAQmfFhjyP32c.webp",
     },
-    {
-      type: "tool",
-      number: 8,
-      name: "Predis",
-      description:
+     {
+       type: "tool",
+       number: 8,
+       name: "Predis",
+       url: "https://predis.ai",
+       description:
         "Predis combines AI video generation with social scheduling, publishing, and asset customization for ongoing short-form campaigns.",
       features: [
         "AI ad and reel generation",
@@ -175,11 +183,12 @@ const article: Article = {
       image:
         "/blog/images/68f8e13309f70b766e66e77c_ubKxPShqwu6Jspcb8Zr89ccABw.webp",
     },
-    {
-      type: "tool",
-      number: 9,
-      name: "Quso.ai",
-      description:
+     {
+       type: "tool",
+       number: 9,
+       name: "Quso.ai",
+       url: "https://quso.ai",
+       description:
         "Quso.ai blends short-clip generation with scheduling and social strategy features, including subtitle automation and content planning.",
       features: [
         "AI video and podcast editing",
@@ -191,11 +200,12 @@ const article: Article = {
       image:
         "/blog/images/68f8e13309f70b766e66e7a9_JzLsXCpeekG3NKTkhsWHoRMM.webp",
     },
-    {
-      type: "tool",
-      number: 10,
-      name: "Creatify",
-      description:
+     {
+       type: "tool",
+       number: 10,
+       name: "Creatify",
+       url: "https://www.creatify.ai",
+       description:
         "Creatify turns product URLs into short ad videos using avatars, script generation, voiceovers, and batch variation for testing.",
       features: [
         "Product URL to video ad generation",

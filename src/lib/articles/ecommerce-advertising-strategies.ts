@@ -230,6 +230,10 @@ const article: Article = {
       ],
     },
     {
+      type: "paragraph",
+      text: "If your priority is ad creative system design, [the ad generation system guide](/ai-ad-generator) covers the full execution model in detail. For broader orchestration and optimization loops beyond ads, read [our marketing automation guide](/blog/ai-marketing-automation).",
+    },
+    {
       type: "callout",
       text: "The brands winning on paid channels in 2025 are doing more than running ads — they're building systems. Systems that learn, adapt, and improve automatically while the team focuses on strategy and growth.",
     },

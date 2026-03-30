@@ -32,12 +32,13 @@ const article: Article = {
       src: "/blog/images/691b7ba99a9880cdbdc00d03_Tabela.webp",
       alt: "comparison-list",
     },
-    {
-      type: "tool",
-      number: 1,
-      name: "Solara AI",
-      description:
-        "Solara AI is the strongest all-in-one choice for teams that want strategy plus execution in one loop. It is one of the few ai marketing platforms that can move from brief to multichannel publishing and optimization without stitching together multiple point tools.",
+     {
+       type: "tool",
+       number: 1,
+       name: "Solara AI",
+       url: "https://solaraai.com",
+       description:
+         "Solara AI is the strongest all-in-one choice for teams that want strategy plus execution in one loop. It is one of the few ai marketing platforms that can move from brief to multichannel publishing and optimization without stitching together multiple point tools.",
       features: [
         "Autonomous campaign planning and execution",
         "AI content engine for posts, scripts, and blogs",
@@ -51,12 +52,13 @@ const article: Article = {
       image:
         "/blog/images/69027462bd57e34a72b918f2_frame.webp",
     },
-    {
-      type: "tool",
-      number: 2,
-      name: "Adobe Marketo Engage",
-      description:
-        "Adobe Marketo Engage remains a top enterprise option for complex lifecycle automation, ABM, and large database orchestration. It is best suited for teams with dedicated marketing operations resources.",
+     {
+       type: "tool",
+       number: 2,
+       name: "Adobe Marketo Engage",
+       url: "https://business.adobe.com/products/marketo/adobe-marketo.html",
+       description:
+         "Adobe Marketo Engage remains a top enterprise option for complex lifecycle automation, ABM, and large database orchestration. It is best suited for teams with dedicated marketing operations resources.",
       features: [
         "Multi-channel campaign automation",
         "Lead scoring and nurturing",
@@ -68,12 +70,13 @@ const article: Article = {
       image:
         "/blog/images/691b7bf25afa640918591250_frame-7.webp",
     },
-    {
-      type: "tool",
-      number: 3,
-      name: "HubSpot Marketing Hub",
-      description:
-        "HubSpot Marketing Hub is still one of the most practical ai tools for marketing teams that want CRM-native automation, campaign analytics, and content workflows in a unified stack.",
+     {
+       type: "tool",
+       number: 3,
+       name: "HubSpot Marketing Hub",
+       url: "https://www.hubspot.com",
+       description:
+         "HubSpot Marketing Hub is still one of the most practical ai tools for marketing teams that want CRM-native automation, campaign analytics, and content workflows in a unified stack.",
       features: [
         "AI writing and content optimization",
         "Automated email and social workflows",
@@ -86,12 +89,13 @@ const article: Article = {
       image:
         "/blog/images/691b7c26d0cf7ae668c87e37_frame-5.webp",
     },
-    {
-      type: "tool",
-      number: 4,
-      name: "ActiveCampaign",
-      description:
-        "ActiveCampaign is a strong fit for SMB and mid-market lifecycle marketing. Its AI-oriented automation features and segmentation depth are useful for teams optimizing email and retention journeys.",
+     {
+       type: "tool",
+       number: 4,
+       name: "ActiveCampaign",
+       url: "https://www.activecampaign.com",
+       description:
+         "ActiveCampaign is a strong fit for SMB and mid-market lifecycle marketing. Its AI-oriented automation features and segmentation depth are useful for teams optimizing email and retention journeys.",
       features: [
         "Behavior-triggered email sequences",
         "AI content and subject line generation",
@@ -103,12 +107,13 @@ const article: Article = {
       image:
         "/blog/images/691b7c5cace867a66546c45c_frame-1.webp",
     },
-    {
-      type: "tool",
-      number: 5,
-      name: "Customer.io",
-      description:
-        "Customer.io is ideal for product-led growth teams that rely on event-driven messaging and high-precision segmentation. It is especially strong when product telemetry drives campaign logic.",
+     {
+       type: "tool",
+       number: 5,
+       name: "Customer.io",
+       url: "https://customer.io",
+       description:
+         "Customer.io is ideal for product-led growth teams that rely on event-driven messaging and high-precision segmentation. It is especially strong when product telemetry drives campaign logic.",
       features: [
         "Event-triggered workflows",
         "AI content generation",
@@ -120,12 +125,13 @@ const article: Article = {
       image:
         "/blog/images/691b7c900f4954877b7da2d4_frame-3.webp",
     },
-    {
-      type: "tool",
-      number: 6,
-      name: "Smartly.io",
-      description:
-        "Smartly.io is focused on enterprise paid media execution, helping teams automate creative production, audience operations, and performance optimization across major ad channels.",
+     {
+       type: "tool",
+       number: 6,
+       name: "Smartly.io",
+       url: "https://www.smartly.io",
+       description:
+         "Smartly.io is focused on enterprise paid media execution, helping teams automate creative production, audience operations, and performance optimization across major ad channels.",
       features: [
         "Creative automation and versioning",
         "Cross-platform ad management (Meta, TikTok, YouTube)",
@@ -137,12 +143,13 @@ const article: Article = {
       image:
         "/blog/images/691b7cbd620cddf70c7edb9e_frame-4.webp",
     },
-    {
-      type: "tool",
-      number: 7,
-      name: "Systeme.io",
-      description:
-        "Systeme.io combines funnels, email automation, and lightweight AI content support in one low-complexity stack. It is best for creators, consultants, and early-stage teams.",
+     {
+       type: "tool",
+       number: 7,
+       name: "Systeme.io",
+       url: "https://systeme.io",
+       description:
+         "Systeme.io combines funnels, email automation, and lightweight AI content support in one low-complexity stack. It is best for creators, consultants, and early-stage teams.",
       features: [
         "Email automation and sequences",
         "Funnel and landing page builder",
@@ -154,12 +161,13 @@ const article: Article = {
       image:
         "/blog/images/691b7cd7a346ea135478bed0_frame-6.webp",
     },
-    {
-      type: "tool",
-      number: 8,
-      name: "Tidio",
-      description:
-        "Tidio blends live support and AI automation for lead qualification, customer support deflection, and conversion-focused chat flows. It is a practical option for ecommerce and service sites.",
+     {
+       type: "tool",
+       number: 8,
+       name: "Tidio",
+       url: "https://www.tidio.com",
+       description:
+         "Tidio blends live support and AI automation for lead qualification, customer support deflection, and conversion-focused chat flows. It is a practical option for ecommerce and service sites.",
       features: [
         "AI chatbot with custom flows",
         "Live chat and helpdesk",
@@ -201,6 +209,10 @@ const article: Article = {
     {
       type: "paragraph",
       text: "For deeper comparisons, watch for our upcoming pillar pages on ai marketing platforms, ai tools for marketing teams, and channel-specific AI automation playbooks.",
+    },
+    {
+      type: "paragraph",
+      text: "If you are deciding between integrated systems and point solutions, use [our AI marketing platform guide](/ai-marketing-platform) to compare platform capabilities side by side. For teams focused on workflow design and execution sequencing, [our marketing automation guide](/blog/ai-marketing-automation) breaks down how to automate without losing quality control.",
     },
     {
       type: "callout",

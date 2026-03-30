@@ -90,11 +90,12 @@ const article: Article = {
       type: "heading",
       text: "10 Hootsuite Alternatives to Evaluate Now",
     },
-    {
-      type: "tool",
-      number: 1,
-      name: "Solara AI",
-      description:
+     {
+       type: "tool",
+       number: 1,
+       name: "Solara AI",
+       url: "https://solaraai.com",
+       description:
         "Solara AI is built for teams that want to move from manual scheduling to autonomous social growth operations. Instead of only queueing posts, it helps plan campaigns, generate creative variants, orchestrate paid + organic execution, and continuously optimize based on performance signals.",
       features: [
         "Autopilot + co-pilot modes for campaign strategy and daily execution",
@@ -112,11 +113,12 @@ const article: Article = {
       src: "/blog/images/690274da2aa2e3c40cb796f4_Screenshot-2025-10-29-at-16.43.21.webp",
       alt: "solara-ai-pricing",
     },
-    {
-      type: "tool",
-      number: 2,
-      name: "StoryChief",
-      description:
+     {
+       type: "tool",
+       number: 2,
+       name: "StoryChief",
+       url: "https://www.storychief.io",
+       description:
         "StoryChief combines social scheduling with editorial planning and SEO workflows, making it a strong fit for content-led teams that publish across blogs, newsletters, and social channels from one workspace.",
       features: [
         "Cross-channel publishing from one interface",
@@ -134,11 +136,12 @@ const article: Article = {
       src: "/blog/images/68f8e13e9ab42f11def9a2f2_3pMjVB1F7jggY9WeMPUXaxr6xQ.webp",
       alt: "storychief-pricing",
     },
-    {
-      type: "tool",
-      number: 3,
-      name: "Agorapulse",
-      description:
+     {
+       type: "tool",
+       number: 3,
+       name: "Agorapulse",
+       url: "https://www.agorapulse.com",
+       description:
         "Agorapulse is one of the most mature hootsuite competitors for teams that prioritize inbox operations and reporting, with strong moderation workflows and collaboration controls.",
       features: [
         "Unified social inbox",
@@ -156,11 +159,12 @@ const article: Article = {
       src: "/blog/images/68f8e13cb6a91b31f636b5e5_oNJHlLSl9MY6oB7f5JibjrmOMZs.webp",
       alt: "agorapulse-pricing",
     },
-    {
-      type: "tool",
-      number: 4,
-      name: "ContentStudio",
-      description:
+     {
+       type: "tool",
+       number: 4,
+       name: "ContentStudio",
+       url: "https://contentstudio.io",
+       description:
         "ContentStudio is a practical choice for agencies and SMB teams that want affordable scheduling, curation, and AI-assisted creation with clear workspace controls.",
       features: [
         "Multi-channel scheduling and drip-feed publishing",
@@ -178,11 +182,12 @@ const article: Article = {
       src: "/blog/images/68f8e13e9ab42f11def9a33a_eJUC933wEauSYW2ODECIJ5UwN4.webp",
       alt: "contentstudio-pricing",
     },
-    {
-      type: "tool",
-      number: 5,
-      name: "SocialBee",
-      description:
+     {
+       type: "tool",
+       number: 5,
+       name: "SocialBee",
+       url: "https://socialbee.com",
+       description:
         "SocialBee is a strong fit for teams that depend on category-based publishing, evergreen recycling, and straightforward social workflow automation.",
       features: [
         "Visual planning calendar",
@@ -200,11 +205,12 @@ const article: Article = {
       src: "/blog/images/68f8e13cb6a91b31f636b5bb_xt1oP15Mht9AkVImWGUQ8dQR5w.webp",
       alt: "socialbee-pricing",
     },
-    {
-      type: "tool",
-      number: 6,
-      name: "Oktopost",
-      description:
+     {
+       type: "tool",
+       number: 6,
+       name: "Oktopost",
+       url: "https://www.oktopost.com",
+       description:
         "Oktopost is designed for B2B organizations that need stronger revenue attribution and employee advocacy workflows, especially for LinkedIn-led demand generation.",
       features: [
         "LinkedIn-first publishing and engagement workflows",
@@ -217,11 +223,12 @@ const article: Article = {
       image:
         "/blog/images/68f8e13e9ab42f11def9a30c_bGGRi8D2blhze1hD6N9uy1byzAc.webp",
     },
-    {
-      type: "tool",
-      number: 7,
-      name: "Copy.ai",
-      description:
+     {
+       type: "tool",
+       number: 7,
+       name: "Copy.ai",
+       url: "https://www.copy.ai",
+       description:
         "Copy.ai is not a full social scheduler, but it is a strong AI workflow layer for teams that need repeatable copy operations across campaigns, outreach, and content production.",
       features: [
         "High-volume AI content generation",
@@ -234,11 +241,12 @@ const article: Article = {
       image:
         "/blog/images/68f8e13e9ab42f11def9a30f_Msg2WCyELZqTXPl967X9srS9xvg.webp",
     },
-    {
-      type: "tool",
-      number: 8,
-      name: "Creatify.ai",
-      description:
+     {
+       type: "tool",
+       number: 8,
+       name: "Creatify.ai",
+       url: "https://www.creatify.ai",
+       description:
         "Creatify.ai helps performance teams turn product pages and scripts into fast ad-ready videos, useful when creative throughput is your bottleneck.",
       features: [
         "Product URL to video ad conversion",
@@ -256,11 +264,12 @@ const article: Article = {
       src: "/blog/images/68f8e13509f70b766e66e911_6ZFW0gfB9HsaKoJyrZzeI4lyRhk.webp",
       alt: "cratify-pricing",
     },
-    {
-      type: "tool",
-      number: 9,
-      name: "Writesonic",
-      description:
+     {
+       type: "tool",
+       number: 9,
+       name: "Writesonic",
+       url: "https://writesonic.com",
+       description:
         "Writesonic is best for content and SEO-heavy teams that want integrated writing, optimization, and AI search visibility workflows in one platform.",
       features: [
         "Long-form SEO article generation and content optimization",
@@ -278,11 +287,12 @@ const article: Article = {
       src: "/blog/images/68f8e13e9ab42f11def9a32c_s2zhoHZdntyCLbatrWCGqG7W7Xs.webp",
       alt: "writesconic-pricing",
     },
-    {
-      type: "tool",
-      number: 10,
-      name: "FeedHive",
-      description:
+     {
+       type: "tool",
+       number: 10,
+       name: "FeedHive",
+       url: "https://www.feedhive.io",
+       description:
         "FeedHive is a lightweight but capable option for creator brands and smaller teams that want AI assistance, automations, and a clean planning experience.",
       features: [
         "AI content and hashtag suggestions",
@@ -379,13 +389,17 @@ const article: Article = {
       type: "paragraph",
       text: "During that pilot, track four KPIs only: time from brief to publish, percentage of posts approved on first pass, engagement or conversion lift on optimized content, and total weekly hours spent inside the tool by your team. This gives you a grounded benchmark to compare hootsuite alternatives without getting distracted by feature marketing.",
     },
-    {
-      type: "paragraph",
-      text: "For your long-term stack, plan around an AI-social operating model instead of disconnected point tools. We are publishing a deeper pillar resource on /ai-social-media-management soon, and it will map how to combine strategy, content, and optimization loops end to end.",
-    },
+     {
+       type: "paragraph",
+       text: "For your long-term stack, plan around an AI-social operating model instead of disconnected point tools. We are publishing a deeper pillar resource on [our AI marketing platform](/ai-marketing-platform) soon, and it will map how to combine strategy, content, and optimization loops end to end.",
+     },
     {
       type: "paragraph",
       text: "If you are building your strategy now, pair this guide with our related deep dives on AI tools for social media content creation, AI marketing automation tools, and AI agents for marketing to shape a more resilient workflow roadmap.",
+    },
+    {
+      type: "paragraph",
+      text: "If you are comparing switching options across multiple social and content tools, use [our alternatives hub](/alternatives) as the central hub for side-by-side evaluations and migration-oriented breakdowns.",
     },
     {
       type: "callout",

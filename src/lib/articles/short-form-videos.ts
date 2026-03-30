@@ -2,7 +2,7 @@ import type { Article } from "../articles";
 
 const article: Article = {
   slug: "short-form-videos",
-  title: "Why Short Form Videos Get 2.5x More Engagement [And How to Make Them Without Skills]",
+  title: "Short Form Videos: 2.5x More Engagement (2026)",
   excerpt:
     "Short-form videos dominate social in 2025. Learn the core stats, formats, and AI workflows that help brands create high-performing clips faster.",
   readTime: "8 min read",

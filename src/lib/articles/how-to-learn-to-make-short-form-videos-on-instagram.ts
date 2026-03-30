@@ -2,7 +2,7 @@ import type { Article } from "../articles";
 
 const article: Article = {
   slug: "how-to-learn-to-make-short-form-videos-on-instagram",
-  title: "How to Learn Short-Form Video Creation for Instagram in 2025: A Step-by-Step Guide",
+  title: "Short-Form Video Creation for Instagram: 2026",
   excerpt:
     "A practical 2025 Instagram Reels playbook covering algorithm signals, format specs, workflow, and a 30-day mastery plan.",
   readTime: "8 min read",

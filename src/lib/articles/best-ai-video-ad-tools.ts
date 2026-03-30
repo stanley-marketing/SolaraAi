@@ -2,7 +2,7 @@ import type { Article } from "../articles";
 
 const article: Article = {
   slug: "best-ai-video-ad-tools",
-  title: "8 Best AI Video Ad Tools for E-commerce in 2025",
+  title: "8 Best AI Video Ad Tools for E-commerce in 2026",
   excerpt:
     "The top AI video ad platforms for e-commerce teams that need faster production, lower creative costs, and stronger campaign performance.",
   readTime: "8 min read",
@@ -41,11 +41,12 @@ const article: Article = {
       src: "/blog/images/68f8e1314500bba84dbf92b0_ZUrxLWRMRXR20v5pTLZ5iUCaxkk.webp",
       alt: "Comparison table image",
     },
-    {
-      type: "tool",
-      number: 1,
-      name: "Solara AI",
-      description:
+     {
+       type: "tool",
+       number: 1,
+       name: "Solara AI",
+       url: "https://solaraai.com",
+       description:
         "Solara AI acts as a full marketing operating system for e-commerce. It creates short-form ads from store data, launches campaigns, tracks conversion performance, and reallocates budget automatically.",
       features: [
         "Automated product video and carousel generation",
@@ -59,11 +60,12 @@ const article: Article = {
       image:
         "/blog/images/69027462bd57e34a72b918f2_frame.webp",
     },
-    {
-      type: "tool",
-      number: 2,
-      name: "Pencil AI",
-      description:
+     {
+       type: "tool",
+       number: 2,
+       name: "Pencil AI",
+       url: "https://www.pencil.ai",
+       description:
         "Pencil AI generates and scores ad creative variations based on historical performance data from existing ad accounts.",
       features: [
         "Creative variation generation",
@@ -75,11 +77,12 @@ const article: Article = {
       image:
         "/blog/images/68f8e1314500bba84dbf92c4_tLPPZiHdsPAYVCQtnK9kGJsENtQ.webp",
     },
-    {
-      type: "tool",
-      number: 3,
-      name: "AdCreative.ai",
-      description:
+     {
+       type: "tool",
+       number: 3,
+       name: "AdCreative.ai",
+       url: "https://www.adcreative.ai",
+       description:
         "AdCreative.ai creates short video and visual ad assets from product inputs and ranks likely top performers using AI scoring.",
       features: [
         "Automatic ad creative generation",
@@ -91,11 +94,12 @@ const article: Article = {
       image:
         "/blog/images/68f8e1314500bba84dbf92be_SGUNZCIdSGYNCtG5AJIwSewrs.webp",
     },
-    {
-      type: "tool",
-      number: 4,
-      name: "HeyGen",
-      description:
+     {
+       type: "tool",
+       number: 4,
+       name: "HeyGen",
+       url: "https://www.heygen.com",
+       description:
         "HeyGen produces presenter-style video ads with AI avatars and script workflows, reducing dependence on on-camera production.",
       features: [
         "AI presenter video generation",
@@ -107,11 +111,12 @@ const article: Article = {
       image:
         "/blog/images/68f8e1314500bba84dbf9310_WtZs9vE7oAtNe6ZqpKIPDREDlE.webp",
     },
-    {
-      type: "tool",
-      number: 5,
-      name: "Synthesia",
-      description:
+     {
+       type: "tool",
+       number: 5,
+       name: "Synthesia",
+       url: "https://www.synthesia.io",
+       description:
         "Synthesia is a mature avatar-video platform for explainers and presenter-led product storytelling in multiple languages.",
       features: [
         "Large avatar library",
@@ -123,11 +128,12 @@ const article: Article = {
       image:
         "/blog/images/68f8e1314500bba84dbf92b8_lB8lzp5ziln668ds79SMLADVWI4.webp",
     },
-    {
-      type: "tool",
-      number: 6,
-      name: "Veed.io AI Suite",
-      description:
+     {
+       type: "tool",
+       number: 6,
+       name: "Veed.io AI Suite",
+       url: "https://www.veed.io",
+       description:
         "Veed.io combines editing automation with social formatting and captioning, making it useful for teams repurposing existing footage.",
       features: [
         "AI trimming and captioning",
@@ -139,11 +145,12 @@ const article: Article = {
       image:
         "/blog/images/68f8e1314500bba84dbf92b5_v64aXPGukGlGSouqevmqLA.webp",
     },
-    {
-      type: "tool",
-      number: 7,
-      name: "InVideo AI",
-      description:
+     {
+       type: "tool",
+       number: 7,
+       name: "InVideo AI",
+       url: "https://invideo.io",
+       description:
         "InVideo AI turns scripts, prompts, and product links into completed ad videos with fast template-based customization.",
       features: [
         "Prompt/URL-based video generation",
@@ -155,11 +162,12 @@ const article: Article = {
       image:
         "/blog/images/68f8e1314500bba84dbf92c1_MiuoXApJ3ro7zjxhqbuWuAWHDGk.webp",
     },
-    {
-      type: "tool",
-      number: 8,
-      name: "Designs.ai",
-      description:
+     {
+       type: "tool",
+       number: 8,
+       name: "Designs.ai",
+       url: "https://designs.ai",
+       description:
         "Designs.ai targets small teams with lightweight video generation, stock assets, and brand customization for fast ad iteration.",
       features: [
         "Text-to-video generation",
@@ -183,6 +191,10 @@ const article: Article = {
         "Compare pricing by real usage volume, not entry-tier features",
         "Validate fit through trial campaigns before long commitments",
       ],
+    },
+    {
+      type: "paragraph",
+      text: "For a dedicated breakdown of ad generation workflows, platform fit, and launch sequencing, continue with [our ad generation guide](/ai-ad-generator).",
     },
     {
       type: "callout",

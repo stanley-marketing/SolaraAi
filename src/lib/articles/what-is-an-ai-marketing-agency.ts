@@ -2,7 +2,7 @@ import type { Article } from "../articles";
 
 const article: Article = {
   slug: "what-is-an-ai-marketing-agency",
-  title: "AI Marketing Agency: What It Is and How It Helps Small Businesses",
+  title: "AI Marketing Agency: What It Is & Benefits",
   excerpt:
     "A practical guide to AI marketing agencies: what they do, how they differ from traditional agencies, and how AI automates strategy, content, ads, and engagement.",
   readTime: "10 min read",
@@ -304,6 +304,10 @@ const article: Article = {
     {
       type: "paragraph",
       text: "After account connection, Solara executes strategy, content, distribution, optimization, and engagement loops continuously.",
+    },
+    {
+      type: "paragraph",
+      text: "If you want a full breakdown of managed-service models, capabilities, and fit criteria, visit [our managed-service framework](/ai-marketing-agency). For a wider platform comparison across strategy, execution, and reporting, use [the full-service model guide](/ai-marketing-platform).",
     },
     {
       type: "callout",

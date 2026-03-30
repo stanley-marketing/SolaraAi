@@ -2,7 +2,7 @@ import type { Article } from "../articles";
 
 const article: Article = {
   slug: "social-media-content-creation-strategies",
-  title: "Top 9 Social Media Content Creation Strategies for Engagement and Growth",
+  title: "9 Social Media Content Strategies for Growth",
   excerpt:
     "Nine practical social content strategies to increase reach, engagement, and consistency, including AI-assisted planning, automation, and optimization.",
   readTime: "9 min read",

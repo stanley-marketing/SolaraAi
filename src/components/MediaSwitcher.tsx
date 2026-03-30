@@ -191,7 +191,7 @@ export default function MediaSwitcher() {
             {i === 2 && (
               <img
                 src="/creatives/carousel-ad.webp"
-                alt="Fashion brand carousel ad"
+                alt="Carousel ad creative"
                 loading="lazy"
                 style={{
                   position: "absolute",

@@ -308,6 +308,10 @@ const article: Article = {
       ],
     },
     {
+      type: "paragraph",
+      text: "For a step-by-step framework that turns these examples into a working system, read [our automation framework](/blog/ai-marketing-automation). You can pair that with [the platform setup guide](/ai-marketing-platform) to evaluate which platform setup can support continuous execution.",
+    },
+    {
       type: "heading",
       text: "FAQs",
     },

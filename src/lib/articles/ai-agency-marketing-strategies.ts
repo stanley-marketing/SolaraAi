@@ -2,7 +2,7 @@ import type { Article } from "../articles";
 
 const article: Article = {
   slug: "ai-agency-marketing-strategies",
-  title: "Top 10 AI Agency Marketing Strategies to Grow Your Brand in 2025",
+  title: "Top 10 AI Agency Marketing Strategies (2026)",
   excerpt:
     "A 2025 playbook for agencies using AI across short-form video, AI search, UGC systems, measurement, privacy, and compliance to deliver stronger growth outcomes.",
   readTime: "11 min read",
@@ -149,6 +149,10 @@ const article: Article = {
     {
       type: "heading",
       text: "FAQs",
+    },
+    {
+      type: "paragraph",
+      text: "For teams deciding between agency models and execution systems, compare the full service framework at [our agency model guide](/ai-marketing-agency), then use [the platform capabilities guide](/ai-marketing-platform) to evaluate platform capabilities and long-term operating fit.",
     },
     {
       type: "subheading",

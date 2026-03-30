@@ -2,7 +2,7 @@ import type { Article } from "../articles";
 
 const article: Article = {
   slug: "ai-marketing-automation-trends",
-  title: "Top 8 AI Marketing Automation Trends to Watch in 2025",
+  title: "Top 8 AI Marketing Automation Trends to Watch in 2026",
   excerpt:
     "From autonomous content pipelines to AI voice agents \u2014 the eight shifts reshaping how brands run marketing end-to-end without growing headcount.",
   readTime: "10 min read",
@@ -124,6 +124,10 @@ const article: Article = {
       type: "image",
       src: "/blog/images/6913aa4b74ee3845290339cf_Smarter-SEO-and-Auto-Publishing-With-AI.png",
       alt: "traditional-vs-ai-seo",
+    },
+    {
+      type: "paragraph",
+      text: "For a practical implementation playbook, continue with [our step-by-step framework](/blog/ai-marketing-automation). If you are evaluating which platform architecture can support these trends long term, [the platform architecture guide](/ai-marketing-platform) provides the core criteria.",
     },
     {
       type: "callout",

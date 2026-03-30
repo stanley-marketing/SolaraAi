@@ -6,11 +6,28 @@ import Image from "next/image";
 const PRODUCT = [
   { label: "Pricing", href: "/pricing" },
   { label: "Grow", href: "/grow" },
+  { label: "AI Marketing Platform", href: "/ai-marketing-platform" },
+  { label: "AI Ad Generator", href: "/ai-ad-generator" },
+  { label: "AI Marketing Agency", href: "/ai-marketing-agency" },
 ];
 
 const RESOURCES = [
   { label: "Blog", href: "/blog" },
   { label: "Case Studies", href: "/case-study" },
+];
+
+const ALTERNATIVES = [
+  { label: "All Alternatives", href: "/alternatives" },
+  { label: "Jasper AI Alternative", href: "/blog/jasper-ai-alternative" },
+  { label: "Copy.ai Alternative", href: "/blog/copy-ai-alternative" },
+  { label: "Blaze AI Alternative", href: "/blog/blaze-ai-alternative" },
+  { label: "Hootsuite Alternatives", href: "/blog/hootsuite-alternatives" },
+  { label: "Sprout Social Alternatives", href: "/blog/sprout-social-alternatives" },
+  { label: "Madgicx Alternatives", href: "/blog/madgicx-alternatives" },
+  { label: "HeyGen Alternatives", href: "/blog/heygen-alternatives" },
+  { label: "Creatify Alternatives", href: "/blog/creatify-alternatives" },
+  { label: "Synthesia Alternatives", href: "/blog/synthesia-io-alternatives" },
+  { label: "Ocoya Alternatives", href: "/blog/ocoya-alternatives" },
 ];
 
 const COMPANY = [
@@ -36,6 +53,7 @@ const COLUMNS = [
   { heading: "Resources", links: RESOURCES },
   { heading: "Company", links: COMPANY },
   { heading: "Partners", links: PARTNERS },
+  { heading: "Alternatives", links: ALTERNATIVES },
   { heading: "Legal", links: LEGAL },
 ];
 
@@ -76,7 +94,7 @@ export function Footer() {
     <footer className="border-t border-[#E5E7EB] bg-white" style={{ fontFamily: "var(--font-blog), sans-serif" }}>
       <div className="mx-auto max-w-[1200px] px-6 pt-16 pb-0 sm:px-10">
         {/* ── Main grid ── */}
-        <div className="grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-[240px_1fr_1fr_1fr_1fr] lg:gap-x-12">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 lg:grid-cols-[200px_1fr_1fr_1fr_1fr_1fr_1fr] lg:gap-x-6">
           {/* Brand column */}
           <div className="col-span-2 lg:col-span-1">
             <Image src="/Logo.svg" alt="Solara AI" width={126} height={27} className="h-auto w-[126px]" />

@@ -32,11 +32,12 @@ const article: Article = {
       src: "/blog/images/691e180d16a9bea9673a2663_Tabela.webp",
       alt: "comparison-table",
     },
-    {
-      type: "tool",
-      number: 1,
-      name: "Solara AI",
-      description:
+     {
+       type: "tool",
+       number: 1,
+       name: "Solara AI",
+       url: "https://solaraai.com",
+       description:
         "Solara goes beyond avatar video creation. It\u2019s an autonomous marketing platform that uses AI video as one part of a larger campaign engine \u2014 planning, producing, publishing, and optimizing content across channels. If you want more than just video output, Solara is the only tool that runs the full cycle.",
       features: [
         "AI avatar videos with brand presets",
@@ -49,11 +50,12 @@ const article: Article = {
       image:
         "/blog/images/69027462bd57e34a72b918f2_frame.webp",
     },
-    {
-      type: "tool",
-      number: 2,
-      name: "HeyGen",
-      description:
+     {
+       type: "tool",
+       number: 2,
+       name: "HeyGen",
+       url: "https://www.heygen.com",
+       description:
         "HeyGen is the closest direct competitor to Synthesia in terms of avatar quality. 100+ customizable avatars, solid voice cloning, and a scene editor that makes multi-part videos manageable. It\u2019s a strong pick for teams that want Synthesia-style video at a lower price.",
       features: [
         "100+ customizable AI avatars",
@@ -66,11 +68,12 @@ const article: Article = {
       image:
         "/blog/images/691e1842f6125b40bc097a2c_frame-7.webp",
     },
-    {
-      type: "tool",
-      number: 3,
-      name: "DeepBrain AI Studios",
-      description:
+     {
+       type: "tool",
+       number: 3,
+       name: "DeepBrain AI Studios",
+       url: "https://www.deepbrain.io",
+       description:
         "DeepBrain AI Studios focuses on high-fidelity human avatars with one of the widest language libraries available \u2014 150+ languages. Its text-to-video workflow is fast, and custom avatar creation is available for enterprise users who need a branded presenter.",
       features: [
         "High-fidelity AI avatars",
@@ -83,11 +86,12 @@ const article: Article = {
       image:
         "/blog/images/691e187dd64958d3880bc92d_frame-2.webp",
     },
-    {
-      type: "tool",
-      number: 4,
-      name: "Colossyan",
-      description:
+     {
+       type: "tool",
+       number: 4,
+       name: "Colossyan",
+       url: "https://www.colossyan.com",
+       description:
         "Colossyan is built for teams creating training and educational video content. Its AI avatars support real-time language translation, which makes it particularly valuable for companies with multilingual audiences. The collaboration features are strong for team-based workflows.",
       features: [
         "AI avatars with real-time language translation",
@@ -100,11 +104,12 @@ const article: Article = {
       image:
         "/blog/images/691e18a434013b0c7bba40d7_frame-4.webp",
     },
-    {
-      type: "tool",
-      number: 5,
-      name: "Kreado AI",
-      description:
+     {
+       type: "tool",
+       number: 5,
+       name: "Kreado AI",
+       url: "https://kreado.ai",
+       description:
         "Kreado AI offers a multilingual text-to-video system focused on product and e-commerce content. Its avatar library is smaller than HeyGen\u2019s but still solid, and the multilingual voice engine handles nuanced pronunciation better than many alternatives.",
       features: [
         "AI avatars with multilingual voice engine",
@@ -117,11 +122,12 @@ const article: Article = {
       image:
         "/blog/images/691e18db045258fd177565ed_frame-5.webp",
     },
-    {
-      type: "tool",
-      number: 6,
-      name: "Kapwing",
-      description:
+     {
+       type: "tool",
+       number: 6,
+       name: "Kapwing",
+       url: "https://www.kapwing.com",
+       description:
         "Kapwing is a video editing suite with strong AI features layered on top \u2014 auto subtitles, smart resizing, and a template library optimized for social. It\u2019s not a direct Synthesia alternative for avatar content, but for teams that need fast, polished social video without a presenter, Kapwing is one of the best options.",
       features: [
         "Automatic subtitle generation",
@@ -134,11 +140,12 @@ const article: Article = {
       image:
         "/blog/images/691e1902d76ffc3882b01d3d_frame-1.webp",
     },
-    {
-      type: "tool",
-      number: 7,
-      name: "D-ID",
-      description:
+     {
+       type: "tool",
+       number: 7,
+       name: "D-ID",
+       url: "https://www.d-id.com",
+       description:
         "D-ID specializes in bringing still images to life \u2014 animate a photo, apply a voice, and get a talking presenter in minutes. It\u2019s one of the fastest options for personalized video at scale, with an API that makes it integrable into broader marketing systems.",
       features: [
         "Photo-to-video and text-to-video",
@@ -151,11 +158,12 @@ const article: Article = {
       image:
         "/blog/images/691e192cf33a1ecb59f1c7c0_frame-3.webp",
     },
-    {
-      type: "tool",
-      number: 8,
-      name: "Lumen5",
-      description:
+     {
+       type: "tool",
+       number: 8,
+       name: "Lumen5",
+       url: "https://lumen5.com",
+       description:
         "Lumen5 is purpose-built for turning written content into video. Paste in a blog post, article, or script \u2014 and it generates a scene-by-scene video automatically. For content marketers who produce a lot of written content and want to repurpose it into video quickly, Lumen5 is the most efficient workflow.",
       features: [
         "Blog and article-to-video conversion",

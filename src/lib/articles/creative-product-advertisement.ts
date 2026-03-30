@@ -2,7 +2,7 @@ import type { Article } from "../articles";
 
 const article: Article = {
   slug: "creative-product-advertisement",
-  title: "9 Creative Product Advertisement Ideas for 2025 [Examples]",
+  title: "9 Creative Product Advertisement Ideas for 2026 [Examples]",
   excerpt:
     "Nine of the best creative ad formats working in 2025 — with real brand examples, the strategy behind each, and what you can steal for your own campaigns.",
   readTime: "9 min read",

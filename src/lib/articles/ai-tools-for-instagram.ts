@@ -2,7 +2,7 @@ import type { Article } from "../articles";
 
 const article: Article = {
   slug: "ai-tools-for-instagram",
-  title: "7 AI Tools For Instagram to Grow Faster [2025 Comparison]",
+  title: "7 AI Tools For Instagram to Grow Faster [2026 Comparison]",
   excerpt:
     "A comparison of seven AI tools for Instagram content, scheduling, analytics, and engagement with guidance on selecting the right stack.",
   readTime: "9 min read",
@@ -37,11 +37,12 @@ const article: Article = {
       src: "/blog/images/68f8e1336b98607f16ad6cfe_GiDnab16A4l7I1OWeHV38xOUrE.webp",
       alt: "Inline article image",
     },
-    {
-      type: "tool",
-      number: 1,
-      name: "Solara AI",
-      image:
+     {
+       type: "tool",
+       number: 1,
+       name: "Solara AI",
+       url: "https://solaraai.com",
+       image:
         "/blog/images/69027462bd57e34a72b918f2_frame.webp",
       description:
         "Solara combines content creation, posting, ad optimization, and engagement handling in one platform, including website growth tooling and voice-led lead workflows.",
@@ -54,11 +55,12 @@ const article: Article = {
       ],
       pricing: "Basic $69/month, Standard $99/month, Enterprise $149/month",
     },
-    {
-      type: "tool",
-      number: 2,
-      name: "Predis.ai",
-      image:
+     {
+       type: "tool",
+       number: 2,
+       name: "Predis.ai",
+       url: "https://predis.ai",
+       image:
         "/blog/images/68f8e1346b98607f16ad6d2b_6OzUDD4ykmpPqnejAdMmUdINgs.webp",
       description:
         "Predis.ai turns short prompts into carousels, reels, and captions for teams focused on rapid publishing cadence.",
@@ -71,11 +73,12 @@ const article: Article = {
       ],
       pricing: "From $19/month",
     },
-    {
-      type: "tool",
-      number: 3,
-      name: "Metricool",
-      image:
+     {
+       type: "tool",
+       number: 3,
+       name: "Metricool",
+       url: "https://metricool.com",
+       image:
         "/blog/images/68f8e1346b98607f16ad6d31_LE99NdlSNdvCJf5iArZ2n3189U.webp",
       description:
         "Metricool emphasizes analytics and scheduling, with strong cross-channel reporting for organic and paid performance.",
@@ -88,11 +91,12 @@ const article: Article = {
       ],
       pricing: "Free plan; paid from $22/month",
     },
-    {
-      type: "tool",
-      number: 4,
-      name: "Flick AI",
-      image:
+     {
+       type: "tool",
+       number: 4,
+       name: "Flick AI",
+       url: "https://flick.tech",
+       image:
         "/blog/images/68f8e1346b98607f16ad6d2e_zTX93Q9vOmwvkidL3uNSbm1j6U.webp",
       description:
         "Flick AI is focused on caption and hashtag optimization with lightweight analytics for growth-focused posting.",
@@ -105,11 +109,12 @@ const article: Article = {
       ],
       pricing: "From $11/month",
     },
-    {
-      type: "tool",
-      number: 5,
-      name: "Heyday by Hootsuite",
-      image:
+     {
+       type: "tool",
+       number: 5,
+       name: "Heyday by Hootsuite",
+       url: "https://heyday.ai",
+       image:
         "/blog/images/68f8e1346b98607f16ad6d25_S26aMvOW5rvKzdC3Anm67ginN00.webp",
       description:
         "Heyday automates high-volume customer conversations across DMs and comments, with handoff flows for complex requests.",
@@ -122,11 +127,12 @@ const article: Article = {
       ],
       pricing: "Custom pricing",
     },
-    {
-      type: "tool",
-      number: 6,
-      name: "Lately",
-      image:
+     {
+       type: "tool",
+       number: 6,
+       name: "Lately",
+       url: "https://www.lately.ai",
+       image:
         "/blog/images/68f8e1346b98607f16ad6d28_TBVTT6Lke8sEKzY7ICyWChNJHGQ.webp",
       description:
         "Lately repurposes long-form assets into social-ready post streams and learns voice and topic performance over time.",
@@ -139,11 +145,12 @@ const article: Article = {
       ],
       pricing: "Custom plans",
     },
-    {
-      type: "tool",
-      number: 7,
-      name: "Jasper AI",
-      image:
+     {
+       type: "tool",
+       number: 7,
+       name: "Jasper AI",
+       url: "https://www.jasper.ai",
+       image:
         "/blog/images/68f8e1346b98607f16ad6d14_HkXK7vJ149RfTWkz29PVRgK1J44.webp",
       description:
         "Jasper focuses on short-form marketing copy generation and is useful for teams standardizing voice across many campaigns.",

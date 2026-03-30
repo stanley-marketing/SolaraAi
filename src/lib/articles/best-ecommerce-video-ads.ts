@@ -2,7 +2,7 @@ import type { Article } from "../articles";
 
 const article: Article = {
   slug: "best-ecommerce-video-ads",
-  title: "5 Best AI Video Ads: Ecommerce Examples & Ideas 2025",
+  title: "5 Best AI Video Ads: Ecommerce Examples & Ideas 2026",
   excerpt:
     "Five standout AI-powered e-commerce video ad examples, why they work, and practical ideas to improve conversions with modern creative formats.",
   readTime: "8 min read",

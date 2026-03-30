@@ -5,7 +5,7 @@ export type ArticleSection =
   | { type: "list"; items: string[] }
   | { type: "callout"; text: string }
   | { type: "image"; src: string; alt: string }
-  | { type: "tool"; number: number; name: string; description: string; features: string[]; pricing: string; image?: string };
+  | { type: "tool"; number: number; name: string; url?: string; description: string; features: string[]; pricing: string; image?: string };
 
 export interface Article {
   slug: string;
@@ -40,6 +40,7 @@ import adCreativeAiAlternatives from "./articles/ad-creative-ai-alternatives";
 import aiAgencyMarketingStrategies from "./articles/ai-agency-marketing-strategies";
 import aiAgentsForMarketing from "./articles/ai-agents-for-marketing";
 import aiMarketingAutomationTools from "./articles/ai-marketing-automation-tools";
+import aiMarketingAutomation from "./articles/ai-marketing-automation";
 import aiToolsForInstagram from "./articles/ai-tools-for-instagram";
 import aiToolsForMarketing from "./articles/ai-tools-for-marketing";
 import aiMarketingForSmallBusiness from "./articles/ai-marketing-for-small-business";
@@ -62,9 +63,17 @@ import howToLearnShortFormVideosOnInstagram from "./articles/how-to-learn-to-mak
 import madgicxAlternatives from "./articles/madgicx-alternatives";
 import copyAiAlternative from "./articles/copy-ai-alternative";
 import jasperAiAlternative from "./articles/jasper-ai-alternative";
+import blazeAiAlternative from "./articles/blaze-ai-alternative";
 
 export const articles: Article[] = [
+  blazeAiAlternative,
+  aiMarketingAutomation,
+  aiMarketingForSmallBusiness,
+  jasperAiAlternative,
+  copyAiAlternative,
   bestAiMarketingTools,
+  sproutSocialAlternatives,
+  hootsuiteAlternatives,
   aiMarketingAutomationTrends,
   bestAiAdGenerators,
   topUgcVideoEditingApps,
@@ -88,16 +97,13 @@ export const articles: Article[] = [
   aiMarketingAutomationTools,
   aiToolsForInstagram,
   aiToolsForMarketing,
-  aiMarketingForSmallBusiness,
   businessVideoExamples,
   creatifyAlternatives,
   examplesOfAiInMarketingAutomation,
   futureOfAiInSocialMedia,
   heygenAlternatives,
-  hootsuiteAlternatives,
   shortFormVideos,
   socialMediaContentCreationStrategies,
-  sproutSocialAlternatives,
   ugcVideoExamples,
   whatIsAnAiMarketingAgency,
   howDoYouImproveVideoQuality,
@@ -106,8 +112,6 @@ export const articles: Article[] = [
   howToCreateAiVersionOfYourself,
   howToLearnShortFormVideosOnInstagram,
   madgicxAlternatives,
-  copyAiAlternative,
-  jasperAiAlternative,
 ];
 
 export function getArticle(slug: string): Article | undefined {

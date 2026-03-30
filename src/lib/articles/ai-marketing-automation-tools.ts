@@ -2,7 +2,7 @@ import type { Article } from "../articles";
 
 const article: Article = {
   slug: "ai-marketing-automation-tools",
-  title: "Top 10 AI Marketing Automation Platforms to Scale Your Strategy in 2025",
+  title: "Top 10 AI Marketing Automation Tools (2026)",
   excerpt:
     "A side-by-side look at ten AI automation platforms for content, ads, analytics, and campaign orchestration in 2025.",
   readTime: "10 min read",
@@ -28,6 +28,7 @@ const article: Article = {
       type: "tool",
       number: 1,
       name: "Solara AI",
+      url: "https://solaraai.com",
       image:
         "/blog/images/69027462bd57e34a72b918f2_frame.webp",
       description:
@@ -50,6 +51,7 @@ const article: Article = {
       type: "tool",
       number: 2,
       name: "Ideogram",
+      url: "https://ideogram.ai",
       image:
         "/blog/images/68f8e141daa5e8b3acf8e7c5_OSBDMuro48RQ9bgUxx9bFl3w.webp",
       description:
@@ -72,6 +74,7 @@ const article: Article = {
       type: "tool",
       number: 3,
       name: "Predis.ai",
+      url: "https://predis.ai",
       image:
         "/blog/images/68f8e141daa5e8b3acf8e7bc_22y5vbrCsQT5mJ1yW93z6zq9No.webp",
       description:
@@ -94,6 +97,7 @@ const article: Article = {
       type: "tool",
       number: 4,
       name: "Krea.ai",
+      url: "https://www.krea.ai",
       image:
         "/blog/images/68f8e141daa5e8b3acf8e7bf_SpOmDnQqGd9JTX1Lv2ZeCAMg.webp",
       description:
@@ -116,6 +120,7 @@ const article: Article = {
       type: "tool",
       number: 5,
       name: "Creatify.ai",
+      url: "https://www.creatify.ai",
       image:
         "/blog/images/68f8e141daa5e8b3acf8e7c8_zBNR61qvenRe0l1ygDhMNn2BAnI.webp",
       description:
@@ -138,6 +143,7 @@ const article: Article = {
       type: "tool",
       number: 6,
       name: "Fibr AI",
+      url: "https://www.fibr.ai",
       image:
         "/blog/images/68f8e141daa5e8b3acf8e799_trbG8pR7Zcs6J9H7BLbE11uJhAc.webp",
       description:
@@ -155,6 +161,7 @@ const article: Article = {
       type: "tool",
       number: 7,
       name: "Amanda AI",
+      url: "https://amanda.ai",
       image:
         "/blog/images/68f8e141daa5e8b3acf8e793_fk7TpsEqH98znbtzzsnngaY0.webp",
       description:
@@ -177,6 +184,7 @@ const article: Article = {
       type: "tool",
       number: 8,
       name: "SocialBee",
+      url: "https://socialbee.com",
       image:
         "/blog/images/68f8e141daa5e8b3acf8e78d_ZCwcNp41PsyXcmfMoCV17mcvw.webp",
       description:
@@ -199,6 +207,7 @@ const article: Article = {
       type: "tool",
       number: 9,
       name: "StoryChief",
+      url: "https://www.storychief.io",
       image:
         "/blog/images/68f8e141daa5e8b3acf8e790_xLvP6cJsxhU9o2Q23VNvLKCibI.webp",
       description:
@@ -221,6 +230,7 @@ const article: Article = {
       type: "tool",
       number: 10,
       name: "AdCreative.ai",
+      url: "https://www.adcreative.ai",
       image:
         "/blog/images/68f8e141daa5e8b3acf8e7a2_4cjXrNtTuPAc8mpDOf1pgOt6KFk.webp",
       description:
@@ -246,6 +256,10 @@ const article: Article = {
     {
       type: "paragraph",
       text: "Choose based on your primary bottleneck. Use specialized tools for individual workflows, or select an all-in-one system if you need strategy, creative, paid execution, and optimization in one place.",
+    },
+    {
+      type: "paragraph",
+      text: "If you want a deeper framework for rollout sequencing, governance, and KPIs, read [our automation playbook](/blog/ai-marketing-automation). To compare broader platform architecture choices, use [the platform comparison guide](/ai-marketing-platform) as a companion decision page.",
     },
     {
       type: "callout",

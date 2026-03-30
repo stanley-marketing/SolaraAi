@@ -2,7 +2,7 @@ import type { Article } from "../articles";
 
 const article: Article = {
   slug: "higgsfield-ai-alternatives",
-  title: "Top 8 Higgsfield AI Alternatives for Video Creation [Compared]",
+  title: "Top 8 Higgsfield AI Alternatives",
   excerpt:
     "Higgsfield caps videos at 10 seconds. We found 8 alternatives with more creative range, longer durations, and stronger marketing integrations.",
   readTime: "9 min read",
@@ -32,11 +32,12 @@ const article: Article = {
       type: "heading",
       text: "The 8 Best Higgsfield AI Alternatives",
     },
-    {
-      type: "tool",
-      number: 1,
-      name: "Solara AI",
-      description:
+     {
+       type: "tool",
+       number: 1,
+       name: "Solara AI",
+       url: "https://solaraai.com",
+       description:
         "Solara is the only tool in this list that pairs AI video generation with a full marketing execution engine. It doesn't just create videos — it builds campaign workflows around them: scheduling, publishing, tracking, and optimizing across channels automatically.",
       features: [
         "AI video generation with branded avatars",
@@ -54,11 +55,12 @@ const article: Article = {
       src: "/blog/images/6913ac106b543409e8aa4875_image11.webp",
       alt: "solara-ai-pricing",
     },
-    {
-      type: "tool",
-      number: 2,
-      name: "Synthesia",
-      description:
+     {
+       type: "tool",
+       number: 2,
+       name: "Synthesia",
+       url: "https://www.synthesia.io",
+       description:
         "Synthesia is the most widely adopted AI avatar video platform for business content. 160+ pre-built avatars, 130+ languages, and a clean scene editor make it reliable for training content, product demos, and corporate communications. The quality-to-speed ratio is consistently strong.",
       features: [
         "160+ AI avatars",
@@ -76,11 +78,12 @@ const article: Article = {
       src: "/blog/images/6913ac40db391abad7265336_image15.webp",
       alt: "synthesia-pricing",
     },
-    {
-      type: "tool",
-      number: 3,
-      name: "Nim",
-      description:
+     {
+       type: "tool",
+       number: 3,
+       name: "Nim",
+       url: "https://nim.ai",
+       description:
         "Nim (formerly Nimvideo) focuses on cinematic-quality AI video generation with strong style control. For creators who want the visual quality of Higgsfield but with longer durations and more editing tools, Nim is the closest match.",
       features: [
         "Text-to-video and image-to-video",
@@ -98,11 +101,12 @@ const article: Article = {
       src: "/blog/images/6913ac6502969d686c9b8b0b_image10.webp",
       alt: "nim-pricing",
     },
-    {
-      type: "tool",
-      number: 4,
-      name: "Runway ML",
-      description:
+     {
+       type: "tool",
+       number: 4,
+       name: "Runway ML",
+       url: "https://runwayml.com",
+       description:
         "Runway is a full creative studio built around AI video generation. Its Gen-2 and Gen-3 models produce high-quality footage from text prompts, and tools like Motion Brush and Inpainting give creators fine-grained control over the output. It's the most powerful option for creative professionals.",
       features: [
         "Text-to-video generation (Gen-3)",
@@ -120,11 +124,12 @@ const article: Article = {
       src: "/blog/images/6913ac88a59ad7466b841f50_image16.webp",
       alt: "runway-ml-pricing",
     },
-    {
-      type: "tool",
-      number: 5,
-      name: "HeyGen",
-      description:
+     {
+       type: "tool",
+       number: 5,
+       name: "HeyGen",
+       url: "https://www.heygen.com",
+       description:
         "HeyGen is the strongest alternative when your primary need is avatar-driven video. With 100+ avatars, voice cloning, and multilingual support, it covers a wider use case range than Higgsfield at a similar or lower price point.",
       features: [
         "100+ AI avatars",
@@ -142,11 +147,12 @@ const article: Article = {
       src: "/blog/images/6913acada04a6093ae47f59d_image4.webp",
       alt: "heygen-pricing",
     },
-    {
-      type: "tool",
-      number: 6,
-      name: "AI Studios by DeepBrain",
-      description:
+     {
+       type: "tool",
+       number: 6,
+       name: "AI Studios by DeepBrain",
+       url: "https://www.deepbrain.io",
+       description:
         "DeepBrain AI Studios focuses on high-quality digital human avatars with one of the widest language libraries available. Its enterprise offering supports custom avatar creation — meaning brands can build a branded AI presenter that looks like a real person.",
       features: [
         "AI human avatars in 80+ languages",
@@ -164,11 +170,12 @@ const article: Article = {
       src: "/blog/images/6913acd3e9a1675d8e645773_image8.webp",
       alt: "ai-studios-pricing",
     },
-    {
-      type: "tool",
-      number: 7,
-      name: "Pictory",
-      description:
+     {
+       type: "tool",
+       number: 7,
+       name: "Pictory",
+       url: "https://pictory.ai",
+       description:
         "Pictory is purpose-built for content repurposing. Paste in a script, article, or long-form video, and Pictory converts it into short, shareable clips with captions and stock footage automatically. Ideal for content marketers who want to extend the reach of existing assets.",
       features: [
         "Text-to-video generation",
@@ -186,11 +193,12 @@ const article: Article = {
       src: "/blog/images/6913acf446e238643401f9a1_image1.webp",
       alt: "pictory-pricing",
     },
-    {
-      type: "tool",
-      number: 8,
-      name: "Colossyan",
-      description:
+     {
+       type: "tool",
+       number: 8,
+       name: "Colossyan",
+       url: "https://www.colossyan.com",
+       description:
         "Colossyan targets teams creating training, learning, and instructional video content. Its real-time translation feature allows one video to be published in 70+ languages without re-recording — making it particularly valuable for global organizations.",
       features: [
         "AI avatars with scripted delivery",

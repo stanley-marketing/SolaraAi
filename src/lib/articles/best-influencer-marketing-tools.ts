@@ -32,11 +32,12 @@ const article: Article = {
       src: "/blog/images/691e1106c96e347306bc25a1_Tabela.webp",
       alt: "comparison-table",
     },
-    {
-      type: "tool",
-      number: 1,
-      name: "Solara AI",
-      description:
+     {
+       type: "tool",
+       number: 1,
+       name: "Solara AI",
+       url: "https://solaraai.com",
+       description:
         "Solara isn't a traditional influencer platform — it's an autonomous marketing system that generates UGC-style video content, manages campaigns, and handles the full creative + distribution workflow. For brands that want the impact of influencer-style content without depending on individual creators, Solara automates the entire process.",
       features: [
         "UGC and AI avatar video creation at scale",
@@ -49,11 +50,12 @@ const article: Article = {
       image:
         "/blog/images/69027462bd57e34a72b918f2_frame.webp",
     },
-    {
-      type: "tool",
-      number: 2,
-      name: "Aspire",
-      description:
+     {
+       type: "tool",
+       number: 2,
+       name: "Aspire",
+       url: "https://www.aspire.io",
+       description:
         "Aspire is one of the most complete influencer platforms for mid-market brands. Discovery, CRM-style relationship management, content approval workflows, and performance tracking are all integrated — making it easier to run multiple influencer campaigns simultaneously.",
       features: [
         "Influencer discovery with search filters",
@@ -66,11 +68,12 @@ const article: Article = {
       image:
         "/blog/images/691e1143fad740ce2229c50c_frame-4.webp",
     },
-    {
-      type: "tool",
-      number: 3,
-      name: "GRIN",
-      description:
+     {
+       type: "tool",
+       number: 3,
+       name: "GRIN",
+       url: "https://grin.co",
+       description:
         "GRIN is built for e-commerce brands running creator programs at scale. Its creator CRM handles the full relationship lifecycle — from outreach to product seeding to sales attribution. Deep Shopify and WooCommerce integrations make it the strongest option for direct-to-consumer brands.",
       features: [
         "Creator CRM and relationship tracking",
@@ -83,11 +86,12 @@ const article: Article = {
       image:
         "/blog/images/691e11576c7b03dfb10e1f62_frame-3.webp",
     },
-    {
-      type: "tool",
-      number: 4,
-      name: "Upfluence",
-      description:
+     {
+       type: "tool",
+       number: 4,
+       name: "Upfluence",
+       url: "https://www.upfluence.com",
+       description:
         "Upfluence combines a creator database with campaign management and payment tools. Its audience analytics go deep — you can analyze follower demographics, brand affinity, and engagement authenticity before you reach out. E-commerce integrations allow brands to track creator-driven revenue directly.",
       features: [
         "Creator discovery with audience analytics",
@@ -100,11 +104,12 @@ const article: Article = {
       image:
         "/blog/images/691e117c3046d1c4f12d9fe8_frame-5.webp",
     },
-    {
-      type: "tool",
-      number: 5,
-      name: "Sprout Social",
-      description:
+     {
+       type: "tool",
+       number: 5,
+       name: "Sprout Social",
+       url: "https://sproutsocial.com",
+       description:
         "Sprout Social added influencer tools on top of its existing social media management platform, giving brands a unified view of organic, paid, and influencer performance. Its AI-powered discovery includes brand fit scoring and safety checks — useful for brands that need to vet creators carefully.",
       features: [
         "AI-powered influencer discovery",
@@ -117,11 +122,12 @@ const article: Article = {
       image:
         "/blog/images/691e11a2dc8aba15f32cc1bb_frame-7.webp",
     },
-    {
-      type: "tool",
-      number: 6,
-      name: "CreatorIQ",
-      description:
+     {
+       type: "tool",
+       number: 6,
+       name: "CreatorIQ",
+       url: "https://creatoriq.com",
+       description:
         "CreatorIQ is an enterprise-grade platform used by major consumer brands running global influencer programs. It has some of the strongest fraud detection and audience authenticity scoring in the market, making it reliable for high-spend campaigns.",
       features: [
         "AI-powered influencer identification",
@@ -134,11 +140,12 @@ const article: Article = {
       image:
         "/blog/images/691e11cce3f9d636a04d3bda_frame-8.webp",
     },
-    {
-      type: "tool",
-      number: 7,
-      name: "Traackr",
-      description:
+     {
+       type: "tool",
+       number: 7,
+       name: "Traackr",
+       url: "https://www.traackr.com",
+       description:
         "Traackr focuses on data quality and spend efficiency. Its budget tracking and ROI measurement tools are among the most detailed available — particularly useful for brands that need to justify influencer spend to finance teams or boards.",
       features: [
         "Influencer discovery and vetting",
@@ -151,11 +158,12 @@ const article: Article = {
       image:
         "/blog/images/691e11f01517ab1025bb7362_frame-2.webp",
     },
-    {
-      type: "tool",
-      number: 8,
-      name: "Heepsy",
-      description:
+     {
+       type: "tool",
+       number: 8,
+       name: "Heepsy",
+       url: "https://www.heepsy.com",
+       description:
         "Heepsy is one of the most affordable options for smaller brands or agencies starting their influencer programs. Search filters, audience analytics, and fake follower detection are all present — just with fewer bells and whistles than enterprise tools.",
       features: [
         "Advanced search filters (niche, location, engagement rate)",
@@ -168,11 +176,12 @@ const article: Article = {
       image:
         "/blog/images/691e12158f0762665365d0ae_frame-6.webp",
     },
-    {
-      type: "tool",
-      number: 9,
-      name: "Influencity",
-      description:
+     {
+       type: "tool",
+       number: 9,
+       name: "Influencity",
+       url: "https://www.influencity.com",
+       description:
         "Influencity is a data-heavy platform with one of the largest creator databases — over 200 million profiles. Its audience overlap analysis prevents you from paying for the same audience twice when working with multiple creators simultaneously.",
       features: [
         "200M+ creator database",

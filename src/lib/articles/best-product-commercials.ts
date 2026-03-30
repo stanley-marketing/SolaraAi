@@ -2,7 +2,7 @@ import type { Article } from "../articles";
 
 const article: Article = {
   slug: "best-product-commercials",
-  title: "8 Best Product Commercials & Creative Examples [2025 List]",
+  title: "8 Best Product Commercials & Creative Examples [2026 List]",
   excerpt:
     "Eight standout product commercials and the creative principles behind them, from emotional storytelling to humor, cultural relevance, and AI-powered production.",
   readTime: "8 min read",

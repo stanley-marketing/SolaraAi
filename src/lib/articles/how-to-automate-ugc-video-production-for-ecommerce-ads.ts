@@ -2,7 +2,7 @@ import type { Article } from "../articles";
 
 const article: Article = {
   slug: "how-to-automate-ugc-video-production-for-ecommerce-ads",
-  title: "How to Automate UGC Video Production for E-commerce Ads [Comprehensive Guide]",
+  title: "How to Automate UGC Video Production for Ads",
   excerpt:
     "How ecommerce teams can automate UGC collection, editing, publishing, and optimization to scale authentic ad performance.",
   readTime: "6 min read",
