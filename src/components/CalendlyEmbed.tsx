@@ -5,6 +5,14 @@ import { useEffect, useRef, useState } from "react";
 
 function getCalendlyMonth(): string {
   const now = new Date();
+  const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+  const daysLeft = lastDay - now.getDate();
+  // If 3 or fewer days left in the month, show next month
+  // (matches the 4-day scheduling window — slots will be in the next month)
+  if (daysLeft <= 3) {
+    const next = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+    return `${next.getFullYear()}-${String(next.getMonth() + 1).padStart(2, "0")}`;
+  }
   return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
 }
 
