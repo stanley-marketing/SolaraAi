@@ -206,57 +206,53 @@ Current site includes llms.txt (per project context). Update it to include:
 
 ---
 
-## 6) 90-Day Execution Timeline
+## 6) Compressed Execution Timeline
 
-## Weeks 1–2 (technical + quick wins) ✅ COMPLETE
+> Original plan assumed human-speed execution (90 days). Actual pace: Weeks 1-2 completed in one session (Mar 29-30). Timeline compressed to match AI-assisted velocity.
 
-- Week 1: ✅
-  - ✅ Fix `/case-study` metadata/H1
-  - ✅ Fix `/contact` LCP (11.56s → fixed)
-  - ✅ Fix `/about` LCP (9.35s → fixed)
-  - ✅ Publish refreshed `best-ai-marketing-tools`
-  - ✅ Publish refreshed `hootsuite-alternatives`
-- Week 2: ✅
-  - ✅ Publish refreshed `sprout-social-alternatives`
-  - ✅ Publish NEW `ai-marketing-for-small-business`
-  - ✅ Publish NEW `jasper-ai-alternative`
-  - ✅ Publish NEW `copy-ai-alternative`
-  - ⬚ Deploy title rewrite batch (first 15 URLs) — not yet started
+## Session 1 (Mar 29-30) ✅ COMPLETE — originally "Weeks 1-2"
 
-### Day-30 milestone targets
+- ✅ SEO audit + strategy roadmap created (DataForSEO-backed)
+- ✅ Fix `/case-study` metadata/H1
+- ✅ Fix `/contact` LCP (11.56s → fixed)
+- ✅ Fix `/about` LCP (9.35s → fixed)
+- ✅ Refresh 3 articles (hootsuite-alternatives, sprout-social-alternatives, best-ai-marketing-tools)
+- ✅ Publish 3 new articles (ai-marketing-for-small-business, jasper-ai-alternative, copy-ai-alternative)
+- ✅ E2E tests written and passing
+- ✅ Content plan created (SEO blog batches, social calendar, video pipeline)
+- ✅ Week 1-2 social content generated (TTS audio, carousel slides, B-roll, captions)
+- ✅ Client folder created in ads-ops
 
-- ✅ LCP fixed on `/contact` and `/about`
-- ✅ 3 refreshed high-intent pages live (hootsuite, sprout, best-ai-marketing-tools)
-- ✅ 3 new high-intent pages live (ai-marketing-for-small-business, jasper-ai-alternative, copy-ai-alternative)
-- ⬚ 15 long titles fixed — not yet started
+## Session 2 — originally "Weeks 3-6"
 
-## Weeks 3–6 (first cluster launch)
+- ⬚ Build `blaze-ai-alternative` comparison page
+- ⬚ Build pillar page `/ai-marketing-platform` (KD 83, 720 vol)
+- ⬚ Build pillar page `/ai-ad-generator` (KD 68, 2,400 vol)
+- ⬚ Build pillar page `/ai-marketing-agency` (KD 53, 1,600 vol)
+- ⬚ Build `/alternatives` hub page
+- ⬚ Fix 32 long blog titles for SERP display
+- ⬚ Roll out internal links from 20 existing spokes → pillars
+- ⬚ Publish `ai-marketing-automation` pillar blog (KD 28, 880 vol)
 
-- Build + publish pillar pages:
-  - `/ai-marketing-for-small-business`
-  - `/ai-marketing-agency`
-  - `/ai-ad-generator`
-- Publish comparison pages:
-  - `/alternatives/jasper-ai`
-  - `/alternatives/copy-ai`
-  - `/alternatives/blaze-ai`
-- Roll out internal links from 20 existing spokes to pillars.
+### Milestone targets (after Session 2)
 
-### Day-60 milestone targets
+- 6+ new commercial/comparison pages indexed
+- Internal linking structure live across all 44+ articles
+- All P1 technical fixes complete
 
-- 6 new commercial/comparison pages indexed
-- +20 net new referring domains
-- At least 5 target keywords entering top 50
+## Session 3 — originally "Weeks 7-12"
 
-## Weeks 7–12 (scale + authority)
+- ⬚ Publish remaining pipeline items 8-20 (12 pieces)
+- ⬚ Build pillar pages `/ai-social-media-management` and `/ai-marketing-automation`
+- ⬚ Run backlink outreach (442 opportunities; first 100 targeted)
+- ⬚ Ship one data asset for citation/PR
+- ⬚ Expand schema coverage and llms.txt route prioritization
+- ⬚ Refresh `ugc-video-examples` (currently #74, KD 4 — quick win)
 
-- Publish remaining pipeline items (12+ pieces)
-- Run outreach on backlink overlap list (442 opportunities; first 100 targeted)
-- Ship one data asset for citation/PR
-- Expand schema coverage and llms.txt route prioritization
+### Milestone targets (after Session 3)
 
-### Day-90 milestone targets
-
+- All 20 pipeline items published
+- 5 pillar pages live with spoke linking complete
 - +100 net new referring domains (from 77 baseline)
 - 15+ non-branded keywords in top 50
 - 5+ keywords in top 20
@@ -303,18 +299,14 @@ Current site includes llms.txt (per project context). Update it to include:
 
 ---
 
-## Immediate next actions (this week) — updated 2026-03-30
+## Next session actions — updated 2026-03-30
 
-1. ✅ Publish fix for `/case-study` metadata/H1.
-2. ✅ Launch `ai marketing for small business` article.
-3. ✅ Refresh `hootsuite alternatives` and `sprout social alternatives`.
-4. ✅ Publish `jasper-ai-alternative` and `copy-ai-alternative`.
-5. ✅ DataForSEO Backlinks + LLM Mentions APIs activated (trial).
-
-### Next up (Weeks 3–6):
-6. ⬚ Build `/alternatives/blaze-ai` comparison page.
-7. ⬚ Build pillar page `/ai-marketing-platform`.
-8. ⬚ Build pillar page `/ai-ad-generator`.
-9. ⬚ Fix 32 long blog titles for SERP display.
-10. ⬚ Start internal linking rollout (20 existing spokes → pillars).
-11. ⬚ Start backlink outreach (first 25 domains from intersection list).
+1. ⬚ Build `blaze-ai-alternative` comparison page
+2. ⬚ Build pillar page `/ai-marketing-platform`
+3. ⬚ Build pillar page `/ai-ad-generator`
+4. ⬚ Build pillar page `/ai-marketing-agency`
+5. ⬚ Build `/alternatives` hub page
+6. ⬚ Fix 32 long blog titles for SERP display
+7. ⬚ Internal linking rollout (20 spokes → pillars)
+8. ⬚ Publish `ai-marketing-automation` pillar blog
+9. ⬚ Start backlink outreach (first 25 domains)
