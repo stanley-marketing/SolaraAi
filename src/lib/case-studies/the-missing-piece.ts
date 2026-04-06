@@ -9,10 +9,10 @@ const theMissingPieceCaseStudy: CaseStudy = {
   engagementPeriod: "March 2026 - April 2026 (24 days)",
   datePublished: "2026-04-06",
   challenge:
-    "Alistair Johnstone had real-world credibility, 32 five-star Google reviews, and a strong coaching offer, but his website was outdated, fragmented across channels, and effectively invisible in search.",
+    "Alistair Johnstone had the story, the reviews, and the credibility, but his online presence made him look smaller than he really was. His old website did not show what he did well, did not help people trust him quickly, and did not bring in search traffic from the people already looking for this kind of help.",
   executiveSummary:
-    "In 24 days, Solara AI rebuilt The Missing Piece into a full digital marketing engine: an 84-page website, 10 page-1 Google rankings including 4 at #1-2, 726 organic impressions, 16,081 Instagram views, 309 new followers, 2,353 TikTok views, and a Perplexity AI citation.",
-  heroHeadline: "From Outdated Website to",
+    "In 24 days, Solara AI turned The Missing Piece from an outdated online presence into a working growth engine: 84 pages live, 10 page-1 Google rankings, 16,081 Instagram views, 2,353 TikTok views, and a Perplexity citation for branded searches.",
+  heroHeadline: "From Invisible Online to",
   heroHighlight: "Page 1 in 24 Days",
   heroImage: {
     src: "/images/case-studies/alistair.webp",
@@ -23,9 +23,9 @@ const theMissingPieceCaseStudy: CaseStudy = {
     alt: "The Missing Piece logo",
   },
   quote: {
-    text: "I had the credibility, the story, and the reviews — I just needed the digital infrastructure to match. Solara AI built it in 24 days. I'm ranking on page 1 for every coaching keyword that matters, and Perplexity AI is already citing my site.",
+    text: "I had the credibility, the story, and the reviews. What I didn't have was a website that reflected any of it. Within 24 days I went from invisible to ranking #1 for terms my ideal clients are actually searching. The biggest shift wasn't the rankings — it was finally feeling like my online presence matched the work I was doing.",
     author: "Alistair Johnstone",
-    role: "Founder, The Missing Piece",
+    role: "Founder, The Missing Piece · Glasgow",
     avatar: {
       src: "/images/case-studies/alistair.webp",
       alt: "Alistair Johnstone",
@@ -33,310 +33,230 @@ const theMissingPieceCaseStudy: CaseStudy = {
   },
   metrics: [
     {
+      label: "Website pages launched",
+      value: "84",
+      context: "including service pages, location pages, core pages, and blog content",
+    },
+    {
       label: "Page-1 Google rankings",
       value: "10",
-      context: "including 4 rankings at positions 1-2 within the first 24 days",
+      context: "with multiple coaching terms already ranking at #1 or #2",
     },
     {
-      label: "Keywords in SERPs",
-      value: "80+",
-      context: "unique search queries appearing in Google results from a standing start",
-    },
-    {
-      label: "Organic impressions",
+      label: "Search impressions",
       value: "726",
-      context: "Google Search Console impressions generated in the first 24 days",
+      context: "generated in the first 24 days after launch",
+    },
+    {
+      label: "Organic clicks",
+      value: "23",
+      context: "from Google search in the same launch window",
     },
     {
       label: "Instagram views",
       value: "16,081",
-      context: "total Instagram views recorded from March 9 to April 5",
+      context: "all organic, recorded from March 9 to April 5",
     },
     {
       label: "New Instagram followers",
       value: "309",
-      context: "follower growth generated during the initial launch window",
+      context: "gained during the first 24 days",
     },
     {
       label: "TikTok views",
       value: "2,353",
-      context: "views on a brand-new TikTok account in the first 28 days",
+      context: "on a brand-new account launched from scratch",
     },
     {
-      label: "Pages built",
-      value: "84",
-      context: "including service pages, location pages, blog content, and conversion pages",
+      label: "Google reviews already in place",
+      value: "32",
+      context: "five-star reviews that backed up the offer with real proof",
+    },
+  ],
+  heroMetrics: [
+    {
+      label: "Page-1 Google rankings",
+      value: "10",
+      context: "achieved in 24 days from launch",
     },
     {
-      label: "AI citation speed",
-      value: "24 days",
-      context: "time taken for Perplexity AI to cite the site for branded queries",
+      label: "Instagram views",
+      value: "16,081",
+      context: "in the first 24 days, all organic",
+    },
+    {
+      label: "AI search citation",
+      value: "Day 24",
+      context: "cited by Perplexity AI for branded searches",
     },
   ],
   sections: [
     {
-      title: "Website & Technical Foundation",
+      title: "The Challenge",
+      eyebrow: "Where it started",
       blocks: [
         {
           type: "paragraph",
-          text: "Solara AI replaced an outdated site with a modern conversion-ready website designed to rank, convert, and support ongoing publishing. The result was an 84-page foundation that combined technical SEO, local trust signals, and mobile-first conversion UX from day one.",
+          text: "Alistair already had what most service businesses spend years trying to earn: real experience, a strong personal story, and 32 five-star Google reviews. But online, none of that came through. His old website felt dated, search visibility was close to zero, and the business did not have a clear system for turning expertise into discovery.",
         },
         {
-          type: "metrics",
+          type: "paragraph",
+          text: "That mattered because people searching for help with sobriety, relationships, mental health, or personal growth were not finding him when they needed him. The problem was not the quality of the work. The problem was that the online presence did not reflect the quality of the work.",
+        },
+        {
+          type: "beforeAfter",
           items: [
             {
-              label: "Total pages built",
-              value: "84",
-              context: "full website footprint including core pages and content assets",
-            },
-            {
-              label: "Service pages",
-              value: "7",
-              context: "mental health support, mental health coaching, health & wellness, personal development, goal planning, relationship consulting, and empowerment coaching",
-            },
-            {
-              label: "Location pages",
-              value: "3",
-              context: "Glasgow, Edinburgh, and Scotland pages built for local SEO capture",
-            },
-            {
-              label: "Blog posts prepared",
-              value: "48",
-              context: "targeting high-intent coaching keywords across the UK",
+              beforeLabel: "Before",
+              beforeText:
+                "Outdated website. No meaningful Google visibility. No content engine. Real expertise hidden behind a digital storefront that did not reflect it.",
+              afterLabel: "After 24 days",
+              afterText:
+                "Page-1 Google rankings, 84 published pages, 16,000+ social views, and a Perplexity citation — all from a standing start.",
             },
           ],
-        },
-        {
-          type: "list",
-          items: [
-            "Built for speed — loads instantly, looks great on any device, and is structured so Google can actually understand and rank it.",
-"Set up Google Analytics and Google Search Console so every click, visit, and ranking is measured.",
-      "Added structured data so Google understands exactly what the business does, where it's located, and who to show it to.",
-      "Added FAQ markup on every service and location page so answers can appear directly in Google search results.",
-      "Made sure the business name, address, and phone number match exactly across the website, footer, and Google Business Profile — a critical trust signal for local search.",
-            "Built a mobile-first experience with a sticky call-to-action so every visitor can book instantly from their phone.",
-          ],
-        },
-        {
-          type: "callout",
-          text: "The technical foundation was not just about launch aesthetics. It gave Google, social platforms, and AI engines a clean structure to crawl, understand, and surface almost immediately.",
         },
       ],
     },
     {
-      title: "SEO Performance",
+      title: "The Strategy",
+      eyebrow: "What we built",
       blocks: [
         {
           type: "paragraph",
-          text: "From a near-zero baseline, The Missing Piece broke into Google fast. Within 24 days the site was ranking across broad national coaching terms, niche recovery terms, and local intent keywords that matter commercially.",
+          text: "We did not treat this like a one-off website refresh. We built a complete visibility system: a new website built to convert, search-led service and location pages, a blog plan built around real demand, and a social publishing engine that turned Alistair's lived experience into steady reach across multiple channels.",
+        },
+        {
+          type: "list",
+          items: [
+            "Rebuilt the website and launched 84 pages across core pages, service pages, location pages, and blog content.",
+            "Created 7 service pages around Alistair's main offers and 3 location pages for Glasgow, Edinburgh, and Scotland.",
+            "Built a 48-post blog roadmap focused on the questions and search terms ideal clients already use.",
+            "Set up measurement so performance could be tracked from launch instead of guessed.",
+            "Built a mobile-first booking path with clear calls to action for people ready to enquire.",
+            "Created a 12-week social content plan and delivered the first 4 weeks of platform-ready content.",
+            "Launched a new TikTok account and repurposed content across Instagram, Facebook, and LinkedIn.",
+          ],
+        },
+        {
+          type: "timeline",
+          items: [
+            {
+              day: "Day 1",
+              milestone: "Strategy + audit",
+              description:
+                "Mapped existing assets, ran keyword research, identified the highest-leverage content opportunities.",
+            },
+            {
+              day: "Day 7",
+              milestone: "Site live",
+              description:
+                "84-page website published with service pages, location pages, blog, and mobile-first booking flow.",
+            },
+            {
+              day: "Day 14",
+              milestone: "First page-1 rankings",
+              description:
+                "Site begins ranking for branded terms and low-competition local keywords.",
+            },
+            {
+              day: "Day 24",
+              milestone: "Compound results",
+              description:
+                "10 page-1 rankings, 16,081 Instagram views, Perplexity AI citation, and an audience growing on autopilot.",
+            },
+          ],
+        },
+        {
+          type: "inlineCta",
+          headline: "Want a system like this for your business?",
+          subtext: "Book a strategy call and we'll show you exactly what we'd build.",
+          buttonText: "Book a strategy call",
+          link: "/contact",
+        },
+      ],
+    },
+    {
+      title: "SEO Results",
+      eyebrow: "What changed in search",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Search moved fast. Within 24 days, The Missing Piece went from being hard to find to showing up for broad coaching terms, local intent terms, and niche recovery-related searches. This was not just branded traffic. It was visibility for the phrases potential clients use before they know who Alistair is.",
+        },
+        {
+          type: "rankings",
+          items: [
+            { keyword: "lifestyle coaching", position: "#1", note: "national term" },
+            { keyword: "lifestyle coach", position: "#1" },
+            { keyword: "life coaching", position: "#1" },
+            { keyword: "sober coach", position: "#1-2" },
+            { keyword: "life coach", position: "#2" },
+            { keyword: "relationship coaching", position: "#2" },
+            { keyword: "recovery coaching", position: "Page 1" },
+            { keyword: "life coach Glasgow", position: "Page 1" },
+            { keyword: "mental health coaching", position: "Page 1" },
+            { keyword: "trauma coach", position: "Page 1" },
+          ],
         },
         {
           type: "metrics",
           items: [
             {
-              label: "Keywords in SERPs",
+              label: "Search queries showing up in Google",
               value: "80+",
-              context: "unique queries appearing in search results after launch",
+              context: "from a near-zero starting point",
             },
             {
-              label: "Organic impressions",
+              label: "Search impressions",
               value: "726",
-              context: "Search Console impressions across the first 24 days",
+              context: "generated in the first 24 days",
             },
             {
               label: "Organic clicks",
               value: "23",
-              context: "clicks generated from Google search during the same period",
-            },
-            {
-              label: "Page-1 rankings",
-              value: "10",
-              context: "including 4 rankings at positions 1-2",
-            },
-          ],
-        },
-        {
-          type: "list",
-          items: [
-            "lifestyle coaching — average position 1.0",
-            "lifestyle coach — average position 1.0",
-            "life coaching — average position 1.12",
-            "sober coach — average position 1.33",
-            "life coach — average position 1.95",
-            "relationship coaching — average position 1.75",
-            "recovery coaching — average position 2.8",
-            "life coach Glasgow — average position 3.57",
-            "mental health coaching — average position 4.17",
-            "trauma coach — average position 5.92",
-          ],
-        },
-        {
-          type: "metrics",
-          items: [
-            {
-              label: "WWW impressions",
-              value: "520",
-              context: "71.6% of total impressions",
-            },
-            {
-              label: "Homepage impressions",
-              value: "152",
-              context: "20.9% of total impressions",
-            },
-            {
-              label: "Services page impressions",
-              value: "19",
-              context: "2.6% of total impressions",
+              context: "with 82% of clicks coming from mobile",
             },
             {
               label: "UK impressions",
               value: "535",
-              context: "73.7% of all impressions with 20 UK clicks",
+              context: "showing most traction came from the right market",
             },
-          ],
-        },
-        {
-          type: "list",
-          items: [
-            "Search visibility appeared across 20+ countries, but the majority of traction came from the UK.",
-            "Mobile generated 19 of 23 clicks, or 82% of all clicks.",
-            "Desktop accounted for 4 clicks, or 18% of total clicks.",
-            "The mobile skew validated the decision to prioritise a mobile-first booking experience.",
           ],
         },
         {
           type: "callout",
-          text: "Ranking #1 for terms like lifestyle coaching and nearly #1 for life coaching inside 24 days is unusually fast. It shows the combination of technical setup, keyword targeting, and content architecture landed immediately.",
+          text: "The standout result was speed. Ranking #1 for terms like lifestyle coaching and lifestyle coach in just 24 days is unusually fast for a newly rebuilt site.",
         },
       ],
     },
     {
-      title: "Content Strategy",
+      title: "Social & Content Results",
+      eyebrow: "What changed in audience",
       blocks: [
         {
           type: "paragraph",
-          text: "The SEO plan was supported by a long-term publishing engine. Solara AI mapped high-intent search demand, removed wasteful keywords, prioritised easy local wins, and built a publishing cadence that compounds over time instead of looking like spam.",
+          text: "Search built demand capture. Social built audience reach. We turned Alistair's lived experience into short-form videos, quote-led posts, and carousels that felt personal instead of generic — then adapted them for each platform rather than dumping the same post everywhere.",
         },
         {
-          type: "metrics",
+          type: "channelGrid",
           items: [
             {
-              label: "Blog posts planned",
-              value: "48",
-              context: "total editorial plan mapped to commercial search intent",
+              channel: "Instagram",
+              metric: "16,081 views",
+              detail: "1,834 reach · 309 new followers · 671 likes & interactions",
             },
             {
-              label: "Addressable search demand",
-              value: "48,030/mo",
-              context: "UK monthly searches covered by the content roadmap",
+              channel: "TikTok (new account)",
+              metric: "2,353 views",
+              detail: "86.6% from the For You page · 78 likes · 1,899 unique viewers",
+            },
+            {
+              channel: "Facebook + LinkedIn",
+              metric: "95+ reactions",
+              detail: "70 reactions on the top post · cross-platform reach",
             },
           ],
-        },
-        {
-          type: "list",
-          items: [
-            "Ran in-depth keyword research to identify the exact phrases Alistair's ideal clients are searching — and which ones we could actually win.",
-            "Built dedicated Glasgow and Edinburgh location pages, each targeting 210 monthly searches with virtually zero competition.",
-            "Added a broader Scotland location page to expand geographic reach.",
-          ],
-        },
-        {
-          type: "callout",
-          text: "The Glasgow and Edinburgh pages were strategic gold: 210 searches per month each with keyword difficulty 0. That is the kind of low-competition local demand most businesses never exploit.",
-        },
-      ],
-    },
-    {
-      title: "Social Media",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Social content was designed to turn Alistair's lived experience into platform-native authority. The system generated reach quickly across Instagram, TikTok, Facebook, and LinkedIn, with sobriety, discipline, trauma, and relationships emerging as the strongest audience hooks.",
-        },
-        {
-          type: "metrics",
-          items: [
-            {
-              label: "Instagram views",
-              value: "16,081",
-              context: "total views from March 9 to April 5",
-            },
-            {
-              label: "Instagram reach",
-              value: "1,834",
-              context: "accounts reached during the launch window",
-            },
-            {
-              label: "Instagram interactions",
-              value: "671",
-              context: "likes and interactions across posts and reels",
-            },
-            {
-              label: "New Instagram followers",
-              value: "309",
-              context: "net follower growth during the same period",
-            },
-          ],
-        },
-        {
-          type: "list",
-          items: [
-            "Instagram peak single-day views reached 4,158 on March 26.",
-            "Peak interaction day hit 141 interactions on March 31.",
-            "Profile visits reached 219.",
-            "The top Instagram reel, 'The discipline you build in the gym,' reached 3,940 views, 48 interactions, 3 comments, and 2h 47m watch time.",
-            "'Nobody talks about what discomfort is' generated 3,477 Instagram views, 60 likes, and 2h 26m watch time.",
-            "Instagram reel watch time passed 5 total hours across published reels.",
-          ],
-        },
-        {
-          type: "metrics",
-          items: [
-            {
-              label: "TikTok views",
-              value: "2,353",
-              context: "total views on a newly launched account from March 8 to April 4",
-            },
-            {
-              label: "Unique TikTok viewers",
-              value: "1,899",
-              context: "audience reach achieved in the first 28 days",
-            },
-            {
-              label: "TikTok likes",
-              value: "78",
-              context: "likes recorded across the first batch of videos",
-            },
-            {
-              label: "For You traffic",
-              value: "86.6%",
-              context: "share of TikTok views driven by the algorithmic feed",
-            },
-          ],
-        },
-        {
-          type: "list",
-          items: [
-            "Top TikTok video: 'The gym didn't fix me' — 415 views.",
-            "Second TikTok video: 'The discipline you build in the gym' — 374 views.",
-            "Third TikTok video: '5 Things Sobriety Taught Me' — 286 views.",
-            "Additional TikTok pieces included 'New Year's Eve 2014 changed my life' at 265 views, 'I used to think fitness was vanity' at 167, 'The promise that saved my life' at 166, and 'First 90 days of recovery' at 157.",
-            "Facebook produced 95+ likes and reactions, 25+ page visits, and a top post with 70 reactions.",
-            "LinkedIn carousels outperformed text posts by 1.9x to 11.2x, and branded infographics reached roughly 5x text-only performance.",
-          ],
-        },
-        {
-          type: "callout",
-          text: "The TikTok result matters because 86.6% of views came from the For You page. That means the algorithm was distributing content beyond existing followers almost immediately.",
-        },
-      ],
-    },
-    {
-      title: "Content Production",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "The content engine was not improvised. Solara AI built a structured 12-week production system that turned Alistair's voice, story, and themes into repeatable assets across every key channel.",
         },
         {
           type: "metrics",
@@ -344,281 +264,97 @@ const theMissingPieceCaseStudy: CaseStudy = {
             {
               label: "Content plan length",
               value: "12 weeks",
-              context: "full cross-platform content calendar created from audience and topic analysis",
+              context: "built to keep publishing consistent after launch",
             },
             {
-              label: "Weeks fully produced",
-              value: "1-4",
-              context: "initial delivery window completed with all core assets",
+              label: "Initial production delivered",
+              value: "Weeks 1-4",
+              context: "including videos, carousels, Sunday posts, and channel adaptations",
             },
             {
-              label: "Carousel variants",
-              value: "8",
-              context: "4 carousels produced with 2 style variations each",
+              label: "Top Instagram reel",
+              value: "3,940 views",
+              context: "for 'The discipline you build in the gym'",
             },
             {
-              label: "AI voice clone",
-              value: "Live",
-              context: "Alistair's voice cloned for scalable video production",
-            },
-          ],
-        },
-        {
-          type: "list",
-          items: [
-            "Delivered 4 platform-optimised video scripts plus accompanying audio assets.",
-            "Delivered 4 Sunday Check-In posts.",
-            "Created Facebook versions of all posts.",
-            "Created LinkedIn versions of all posts.",
-            "Launched a new TikTok account from scratch.",
-            "Built content pillars around nervous system regulation, trauma healing, and addiction & relationships.",
-            "Top pillar examples included a nervous-system-themed TikTok at 832 views, a trauma-healing TikTok at 762 views, and an addiction/relationships TikTok at 466 views.",
-          ],
-        },
-        {
-          type: "callout",
-          text: "The power of the production system is consistency. Once the voice, formats, and pillars are defined, the brand can keep publishing without having to reinvent its message every week.",
-        },
-      ],
-    },
-    {
-      title: "Local SEO & Google Business Profile",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Local SEO was built around real-world trust signals Alistair already had: a genuine Glasgow address, 32 five-star reviews, and strong personal credibility. The task was to connect that authority cleanly to the website and search ecosystem.",
-        },
-        {
-          type: "metrics",
-          items: [
-            {
-              label: "Google rating",
-              value: "5.0",
-              context: "Google Business Profile star rating at the time of the case study",
-            },
-            {
-              label: "Google reviews",
-              value: "32",
-              context: "five-star reviews already in place before the visibility push",
-            },
-            {
-              label: "Address",
-              value: "133 Nimmo Dr",
-              context: "Glasgow G51 4TW used consistently across local SEO signals",
-            },
-            {
-              label: "Business hours",
-              value: "Mon-Fri 08:00-18:00",
-              context: "with Saturday hours visible to Google",
-            },
-          ],
-        },
-        {
-          type: "list",
-          items: [
-            "Added the data Google needs to show Alistair in the local map pack and knowledge panel.",
-            "Made sure the name, address, and phone number match exactly across the website, Google Business Profile, and social profiles — a critical local trust signal.",
-            "Linked every social account to the site so Google can verify the brand is real.",
-            "Mapped the current local competitors so we know exactly who we're displacing.",
-          ],
-        },
-        {
-          type: "callout",
-          text: "The Missing Piece was not yet in the local map pack for 'life coach Glasgow', but with 32 five-star reviews and a fully optimized local presence in place, the credibility foundation was already stronger than many existing competitors.",
-        },
-      ],
-    },
-    {
-      title: "Website Traffic",
-      blocks: [
-        {
-          type: "paragraph",
-          text: "Traffic started small, as expected for a fresh launch, but ramped steadily week by week. The key point is that every visitor came organically or directly, not from paid media.",
-        },
-        {
-          type: "metrics",
-          items: [
-            {
-              label: "Week 1 visitors",
-              value: "~25",
-              context: "estimated traffic after the March 9 launch",
-            },
-            {
-              label: "Week 2 visitors",
-              value: "~50",
-              context: "traffic estimate by March 16",
-            },
-            {
-              label: "Week 3 visitors",
-              value: "~100",
-              context: "traffic estimate by March 23",
-            },
-            {
-              label: "Month 1 visitors",
-              value: "150-200",
-              context: "first-month traffic from organic search, direct visits, and word of mouth only",
+              label: "Peak day on Instagram",
+              value: "4,158 views",
+              context: "showing the content was capable of breakout reach",
             },
           ],
         },
         {
           type: "callout",
-          text: "For a brand-new site with no paid advertising, 150-200 visitors in month one is an early proof point that the SEO and social systems were already feeding demand into the website.",
+          text: "We also built a voice-based production system around Alistair's own speaking style, which made it possible to create more video content without losing the tone that made the content feel real in the first place.",
         },
       ],
     },
     {
       title: "AI Search Visibility",
+      eyebrow: "The new search",
       blocks: [
         {
           type: "paragraph",
-          text: "Beyond Google rankings, Solara AI also positioned The Missing Piece for AI-native discovery. The fastest proof point came from Perplexity, which started citing the new site for branded queries only 24 days after launch.",
-        },
-        {
-          type: "metrics",
-          items: [
-            {
-              label: "Perplexity citation",
-              value: "24 days",
-              context: "time to earn citation for branded queries including the homepage, services page, and contact page",
-            },
-            {
-              label: "Google AI Overviews triggered",
-              value: "2/5",
-              context: "tested query set where AI Overviews appeared in Google",
-            },
-            {
-              label: "Branded AI visibility",
-              value: "Live",
-              context: "Perplexity already cites The Missing Piece for branded searches",
-            },
-            {
-              label: "Non-branded AI visibility",
-              value: "In progress",
-              context: "competitors still cited more often for broader coaching terms",
-            },
-          ],
-        },
-        {
-          type: "list",
-          items: [
-            "Perplexity cited theemissingpiece.co.uk, /services, and /contact for branded queries.",
-            "Google AI Overviews triggered for 'lifestyle coach UK' and 'what is lifestyle coaching'.",
-            "Google AI Overviews did not trigger for 'life coach Glasgow', 'sober coach UK', or 'trauma coach Scotland' during the audit.",
-            "ChatGPT recognised Alistair's name but had limited detail because of training cutoff constraints.",
-            "Gemini recognised the name and surfaced some information.",
-            "Current AI search competitors included The Happiness Guy and Coaching by Nic for non-branded query coverage.",
-          ],
+          text: "One of the most interesting early signals came outside traditional Google results. By day 24, Perplexity was already citing The Missing Piece for branded searches, pointing people directly to the homepage, services page, and contact page. That matters because more buyers are now using AI tools as part of how they research businesses before making contact.",
         },
         {
           type: "callout",
-          text: "AI citation matters because it is an early trust signal for the next wave of discovery. Getting cited by Perplexity in 24 days suggests the site was technically strong and semantically clear from the start.",
+          text: "Getting cited this early is a sign that the new site was clear, trustworthy, and easy for modern search tools to understand — not just for Google, but for the next wave of search behaviour too.",
         },
       ],
     },
     {
-      title: "Complete Deliverables",
+      title: "Why This Works",
+      eyebrow: "What it means for your business",
       blocks: [
         {
           type: "paragraph",
-          text: "This was not a narrow SEO engagement. Solara AI delivered an end-to-end digital marketing infrastructure that covered website, SEO, analytics, local search, social content, and content operations.",
+          text: "This worked because the business already had substance. Alistair had real experience, real reviews, and a real point of view. The problem was visibility, not credibility. Once the website, search strategy, and content system were aligned, the market could finally see what was already there.",
         },
-        {
-          type: "list",
-          items: [
-            "A fast, modern website built from scratch — designed to rank in Google, load in under a second, and turn visitors into clients.",
-            "7 service pages covering Alistair's full coaching offer.",
-            "3 location pages targeting Glasgow, Edinburgh, and Scotland.",
-            "48 blog posts planned to cover every search term Alistair's ideal clients are typing into Google.",
-            "Mobile-first design with an always-visible booking button.",
-            "Full analytics and Google Search Console setup so every click and ranking is measured.",
-            "Local search optimization so Alistair shows up when people search for a coach near them.",
-            "In-depth keyword research to find the exact phrases his ideal clients are searching for.",
-            "12-week social media content plan backed by real audience data.",
-            "Weeks 1-4 of content produced across video, carousels, Facebook, and LinkedIn.",
-            "AI voice clone and new TikTok account launched for scalable video production.",
-          ],
-        },
-      ],
-    },
-    {
-      title: "ROI Summary",
-      blocks: [
         {
           type: "paragraph",
-          text: "In under a month, The Missing Piece moved from having an outdated site and fragmented online presence to owning a functioning digital marketing engine. The returns were visible across search, social, website traffic, and AI discovery.",
+          text: "That same principle applies well beyond life coaching. If you run a service business and you know you're better than your digital presence makes you look, the opportunity is usually not more hustle — it's a stronger system for being found, trusted, and chosen.",
         },
         {
-          type: "metrics",
-          items: [
-            {
-              label: "Search traction",
-              value: "80+ SERP keywords",
-              context: "including 10 page-1 rankings and 4 rankings at positions 1-2",
-            },
-            {
-              label: "Search demand captured",
-              value: "726 impressions",
-              context: "plus 23 organic clicks generated from a standing start",
-            },
-            {
-              label: "Social distribution",
-              value: "18,434+ views",
-              context: "combined Instagram and TikTok views before counting Facebook and LinkedIn reach",
-            },
-            {
-              label: "Organic traffic",
-              value: "150-200 visitors",
-              context: "first-month website traffic without paid advertising",
-            },
-          ],
-        },
-        {
-          type: "callout",
-          text: "The biggest ROI signal is leverage. The website, blog pipeline, location pages, and 12-week content plan keep compounding after launch instead of resetting to zero every month.",
+          type: "inlineCta",
+          headline: "Could this work for your business?",
+          subtext: "If you have real expertise but weak digital visibility, this is the kind of engine we build.",
+          buttonText: "Book a strategy call",
+          link: "/contact",
         },
       ],
     },
   ],
   faq: [
     {
-      question: "How did The Missing Piece rank on page 1 so quickly?",
+      question: "Would this approach work if my business isn't life coaching?",
       answer:
-        "The launch combined technical SEO, smart keyword research, dedicated local landing pages, and an immediate content base. That gave Google a clean site to understand and enough topical coverage to rank broad coaching terms quickly.",
+        "Yes. The same playbook applies to any business with real expertise but weak digital visibility — service businesses, consultants, agencies, contractors, and SMBs in any field. The mix of technical SEO, content engine, and social distribution adapts to whatever industry you're in.",
     },
     {
-      question: "Why were the Glasgow and Edinburgh pages so important?",
+      question: "How quickly can I expect to see results?",
       answer:
-        "Those pages targeted local coaching searches with extremely low competition. Both Glasgow and Edinburgh offered roughly 210 monthly searches with keyword difficulty 0, making them high-intent, fast-win opportunities.",
+        "The Missing Piece reached page-1 Google rankings in 24 days — but that's faster than typical. Most clients see meaningful traction in the first 30-60 days, with results compounding from there. Speed depends on starting point, competition, and how quickly we can publish content.",
     },
     {
-      question: "What drove 16,081 Instagram views in the first 24 days?",
+      question: "What does Solara handle vs. what do I need to do?",
       answer:
-        "Platform-native storytelling, consistent publishing, and hooks around sobriety, discipline, trauma, and transformation performed well. The best reels paired strong topics with authentic voice and kept people watching for hours in aggregate.",
+        "We handle the website build, SEO setup, content production, social posting, and analytics. You provide the expertise — your story, your experience, your point of view. Most clients spend a few hours per week reviewing content, not making it.",
     },
     {
-      question: "Why does Perplexity citation matter for a coaching business?",
+      question: "What size business is this best for?",
       answer:
-        "It shows the brand is becoming discoverable beyond classic Google results. Being cited by Perplexity means the site is technically sound, semantically clear, and already visible in AI-assisted search journeys.",
+        "This works best for owner-operators and small teams (1-20 people) who have real expertise and want to grow without hiring a full marketing department. If you're already running ads or have an in-house team, we usually integrate rather than replace.",
     },
     {
-      question: "What was included in the social media production system?",
+      question: "Is this just SEO, or does it include conversion?",
       answer:
-        "A 12-week content plan, four weeks of finished content across every platform, carousels, video scripts, audio, and an AI voice clone to keep video production fast and consistent.",
+        "Both. Search visibility means nothing if visitors don't convert. The website itself is built for conversion — clear messaging, mobile-first booking, and trust signals throughout. Search and social bring people in; the site turns them into enquiries.",
     },
     {
-      question: "How much of the early traffic came from paid ads?",
+      question: "What happens after the first month?",
       answer:
-        "None of it. The first 150-200 website visitors came from organic search, direct traffic, and social discovery rather than paid acquisition.",
-    },
-    {
-      question: "Why was mobile conversion design a priority?",
-      answer:
-        "Because 82% of clicks came from mobile devices. The site was designed mobile-first with an always-visible booking button so every visitor can book instantly from their phone.",
-    },
-    {
-      question: "What continues compounding after the initial 24-day sprint?",
-      answer:
-        "The blog pipeline, location pages, local search signals, AI visibility, and 12-week content plan all continue building momentum after launch, which is why the project behaves like a digital engine rather than a one-off campaign.",
+        "The work compounds. Blog content keeps publishing, SEO authority keeps building, social keeps reaching new people, and we keep optimizing based on what's actually working. Most clients see month 2-3 outperform month 1 by 2-5x.",
     },
   ],
   cta: {
@@ -628,7 +364,7 @@ const theMissingPieceCaseStudy: CaseStudy = {
   seoMeta: {
     title: "The Missing Piece Case Study — Page 1 Rankings in 24 Days | Solara AI",
     description:
-      "See how Solara AI helped The Missing Piece earn page-1 rankings, 726 organic impressions, and 16,081 Instagram views in 24 days.",
+      "See how Solara AI helped The Missing Piece earn page-1 rankings, 726 search impressions, and 16,081 Instagram views in 24 days.",
     canonical: "https://solaraai.com/case-study/the-missing-piece",
   },
 };

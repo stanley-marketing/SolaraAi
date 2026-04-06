@@ -4,14 +4,45 @@ export interface CaseStudyMetric {
   context: string;
 }
 
+export interface CaseStudyTimelineItem {
+  day: string;
+  milestone: string;
+  description: string;
+}
+
+export interface CaseStudyRanking {
+  keyword: string;
+  position: string;
+  note?: string;
+}
+
+export interface CaseStudyBeforeAfter {
+  beforeLabel: string;
+  beforeText: string;
+  afterLabel: string;
+  afterText: string;
+}
+
+export interface CaseStudyChannelResult {
+  channel: string;
+  metric: string;
+  detail: string;
+}
+
 export type CaseStudySectionBlock =
   | { type: "paragraph"; text: string }
   | { type: "list"; items: string[] }
   | { type: "metrics"; items: CaseStudyMetric[] }
-  | { type: "callout"; text: string };
+  | { type: "callout"; text: string }
+  | { type: "timeline"; items: CaseStudyTimelineItem[] }
+  | { type: "rankings"; items: CaseStudyRanking[] }
+  | { type: "beforeAfter"; items: CaseStudyBeforeAfter[] }
+  | { type: "channelGrid"; items: CaseStudyChannelResult[] }
+  | { type: "inlineCta"; headline: string; subtext: string; buttonText: string; link: string };
 
 export interface CaseStudySection {
   title: string;
+  eyebrow?: string;
   blocks: CaseStudySectionBlock[];
 }
 
@@ -59,6 +90,7 @@ export interface CaseStudy {
   clientLogo: CaseStudyHeroImage;
   quote: CaseStudyQuote;
   metrics: CaseStudyMetric[];
+  heroMetrics: CaseStudyMetric[];
   sections: CaseStudySection[];
   faq: CaseStudyFaqItem[];
   cta: CaseStudyCta;

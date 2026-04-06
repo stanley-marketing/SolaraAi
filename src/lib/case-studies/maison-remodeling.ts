@@ -31,6 +31,23 @@ const maisonRemodelingCaseStudy: CaseStudy = {
       alt: "Omer",
     },
   },
+  heroMetrics: [
+    {
+      label: "Pipeline value",
+      value: "$800K+",
+      context: "in proposals generated during the first 90 days",
+    },
+    {
+      label: "Leads generated",
+      value: "131",
+      context: "tracked leads from Feb 10 to Mar 8, 2026 (27 days)",
+    },
+    {
+      label: "Signed contracts",
+      value: "5",
+      context: "closed from the first 27 tracked days of inbound demand",
+    },
+  ],
   metrics: [
     {
       label: "Leads Generated",
