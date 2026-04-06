@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getAllCaseSlugs, getCaseStudy } from "@/lib/case-studies";
 import { getCaseStudyJsonLd, getCaseStudyMetadata } from "@/lib/case-studies/seo";
 import { MaisonDetailPage } from "@/components/case-study/MaisonDetailPage";
+import { TheMissingPieceDetailPage } from "@/components/case-study/TheMissingPieceDetailPage";
 import { TopNav } from "@/components/LandingSections";
 import { Footer } from "@/components/Footer";
 
@@ -50,7 +51,11 @@ export default async function CaseStudyPage({
           />
         );
       })}
-      <MaisonDetailPage caseStudy={caseStudy} />
+      {caseStudy.slug === "the-missing-piece" ? (
+        <TheMissingPieceDetailPage caseStudy={caseStudy} />
+      ) : (
+        <MaisonDetailPage caseStudy={caseStudy} />
+      )}
       <Footer />
     </main>
   );

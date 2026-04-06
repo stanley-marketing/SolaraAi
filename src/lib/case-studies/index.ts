@@ -1,4 +1,5 @@
 import maisonRemodelingCaseStudy from "./maison-remodeling";
+import theMissingPieceCaseStudy from "./the-missing-piece";
 import type { CaseStudy } from "./types";
 
 export type {
@@ -11,7 +12,10 @@ export type {
   CaseStudySeoMeta,
 } from "./types";
 
-export const caseStudies: CaseStudy[] = [maisonRemodelingCaseStudy];
+export const caseStudies: CaseStudy[] = [
+  maisonRemodelingCaseStudy,
+  theMissingPieceCaseStudy,
+];
 
 export function getCaseStudy(slug: string): CaseStudy | undefined {
   return caseStudies.find((caseStudy) => caseStudy.slug === slug);

@@ -39,6 +39,11 @@ const CASE_STUDY_METADATA: Record<
     description:
       "See how Solara AI helped Maison Remodeling Group in Santa Clara and San Jose generate 131 tracked leads in 27 tracked days, sign 5 contracts, and build an $800k+ proposal pipeline from zero digital presence.",
   },
+  "the-missing-piece": {
+    title: "The Missing Piece Case Study — Page 1 Rankings in 24 Days | Solara AI",
+    description:
+      "See how Solara AI helped The Missing Piece earn page-1 rankings, 726 organic impressions, and 16,081 Instagram views in 24 days.",
+  },
 };
 
 function getCanonicalPath(slug: string): string {

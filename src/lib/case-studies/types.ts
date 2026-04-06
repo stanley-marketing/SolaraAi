@@ -25,6 +25,18 @@ export interface CaseStudyCta {
   link: string;
 }
 
+export interface CaseStudyHeroImage {
+  src: string;
+  alt: string;
+}
+
+export interface CaseStudyQuote {
+  text: string;
+  author: string;
+  role: string;
+  avatar: CaseStudyHeroImage;
+}
+
 export interface CaseStudySeoMeta {
   title: string;
   description: string;
@@ -41,6 +53,11 @@ export interface CaseStudy {
   datePublished: string;
   challenge: string;
   executiveSummary: string;
+  heroHeadline: string;
+  heroHighlight: string;
+  heroImage: CaseStudyHeroImage;
+  clientLogo: CaseStudyHeroImage;
+  quote: CaseStudyQuote;
   metrics: CaseStudyMetric[];
   sections: CaseStudySection[];
   faq: CaseStudyFaqItem[];

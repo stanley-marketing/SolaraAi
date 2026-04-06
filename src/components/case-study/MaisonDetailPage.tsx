@@ -145,7 +145,7 @@ export function MaisonDetailPage({ caseStudy }: { caseStudy: CaseStudy }) {
               Case Studies
             </Link>
             <span>/</span>
-            <span className="text-gray-500">Maison Remodeling Group</span>
+            <span className="text-gray-500">{caseStudy.clientName}</span>
           </nav>
 
           {/* Split layout */}
@@ -154,8 +154,8 @@ export function MaisonDetailPage({ caseStudy }: { caseStudy: CaseStudy }) {
             <div>
               <div className="mb-6 flex items-center gap-3">
                 <Image
-                  src="/images/maison-logo.jpeg"
-                  alt="Maison Remodeling Group logo"
+                  src={caseStudy.clientLogo.src}
+                  alt={caseStudy.clientLogo.alt}
                   width={36}
                   height={36}
                   className="rounded-lg object-cover"
@@ -169,8 +169,8 @@ export function MaisonDetailPage({ caseStudy }: { caseStudy: CaseStudy }) {
                 className="text-[44px] font-semibold leading-[1.1] tracking-tight text-gray-900 sm:text-5xl sm:leading-[1.08]"
                 style={{ fontFamily: "var(--font-display)" }}
               >
-                From Zero Digital Presence to{" "}
-                <span style={{ color: "#7c3aed" }}>$800K+</span> in Pipeline
+                {caseStudy.heroHeadline}{" "}
+                <span style={{ color: "#7c3aed" }}>{caseStudy.heroHighlight}</span>
               </h1>
 
               <p className="mt-6 text-lg leading-relaxed text-gray-500">
@@ -189,8 +189,8 @@ export function MaisonDetailPage({ caseStudy }: { caseStudy: CaseStudy }) {
             {/* Right: portrait */}
             <div className="flex justify-center lg:justify-end">
               <Image
-                src="/images/omer.webp"
-                alt="Omer, Founder of Maison Remodeling Group"
+                src={caseStudy.heroImage.src}
+                alt={caseStudy.heroImage.alt}
                 width={300}
                 height={360}
                 className="rounded-2xl object-cover shadow-md"
@@ -278,24 +278,22 @@ export function MaisonDetailPage({ caseStudy }: { caseStudy: CaseStudy }) {
                 className="text-2xl font-medium leading-relaxed text-gray-800 italic sm:text-[28px]"
                 style={{ fontFamily: "var(--font-display)" }}
               >
-                &ldquo;We started with nothing — no website, no leads, no
-                digital footprint. Solara AI built our entire online presence
-                from scratch. Within 90 days we had over 130 inbound leads, 5
-                signed contracts, and a proposal pipeline exceeding
-                $800,000.&rdquo;
+                &ldquo;{caseStudy.quote.text}&rdquo;
               </p>
               <div className="mt-8 flex items-center gap-4">
                 <Image
-                  src="/images/omer.webp"
-                  alt="Omer"
+                  src={caseStudy.quote.avatar.src}
+                  alt={caseStudy.quote.avatar.alt}
                   width={56}
                   height={56}
                   className="rounded-full object-cover"
                 />
                 <div>
-                  <p className="text-sm font-semibold text-gray-900">Omer</p>
+                  <p className="text-sm font-semibold text-gray-900">
+                    {caseStudy.quote.author}
+                  </p>
                   <p className="text-sm text-gray-500">
-                    Founder, Maison Remodeling Group
+                    {caseStudy.quote.role}
                   </p>
                 </div>
               </div>

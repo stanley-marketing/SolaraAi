@@ -12,6 +12,25 @@ const maisonRemodelingCaseStudy: CaseStudy = {
     "Maison Remodeling Group had years of Bay Area remodeling experience and a strong referral reputation, but it started with no website, no SEO footprint, no content strategy, minimal social traction, and no reliable digital lead generation system.",
   executiveSummary:
     "In 90 days, Solara AI built Maison Remodeling Group's first digital growth engine from scratch, launching a 60+ page website, local SEO and content program, and social distribution system that produced 131 tracked leads in 27 days, 5 signed contracts, and more than $800,000 in proposal pipeline.",
+  heroHeadline: "From Zero Digital Presence to",
+  heroHighlight: "$800K+ in Pipeline",
+  heroImage: {
+    src: "/images/omer.webp",
+    alt: "Omer, Founder of Maison Remodeling Group",
+  },
+  clientLogo: {
+    src: "/images/maison-logo.jpeg",
+    alt: "Maison Remodeling Group logo",
+  },
+  quote: {
+    text: "We started with nothing — no website, no leads, no digital footprint. Solara AI built our entire online presence from scratch. Within 90 days we had over 130 inbound leads, 5 signed contracts, and a proposal pipeline exceeding $800,000.",
+    author: "Omer",
+    role: "Founder, Maison Remodeling Group",
+    avatar: {
+      src: "/images/omer.webp",
+      alt: "Omer",
+    },
+  },
   metrics: [
     {
       label: "Leads Generated",
