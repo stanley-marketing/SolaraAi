@@ -6,6 +6,8 @@ import { MaisonDetailPage } from "@/components/case-study/MaisonDetailPage";
 import { TopNav } from "@/components/LandingSections";
 import { Footer } from "@/components/Footer";
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return getAllCaseSlugs().map((slug) => ({ slug }));
 }
