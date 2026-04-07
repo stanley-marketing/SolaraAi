@@ -8,29 +8,6 @@ import type { CaseStudy } from "@/lib/case-studies/types";
 
 const playfair = "var(--font-display-playfair), Georgia, serif";
 
-const STATS = [
-  {
-    value: "$800K+",
-    label: "Pipeline value generated",
-    context: "Across signed client engagements",
-  },
-  {
-    value: "10",
-    label: "Page-1 Google rankings",
-    context: "Achieved in under 24 days",
-  },
-  {
-    value: "131",
-    label: "Inbound leads",
-    context: "Tracked in 27 days",
-  },
-  {
-    value: "16K+",
-    label: "Social media views",
-    context: "From a single client launch",
-  },
-];
-
 const containerVariants: Variants = {
   hidden: {},
   visible: {
@@ -48,19 +25,6 @@ const itemVariants: Variants = {
       ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
     },
   },
-};
-
-const statVariants: Variants = {
-  hidden: { opacity: 0, y: 14 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.08,
-      duration: 0.5,
-      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
-    },
-  }),
 };
 
 function CaseStudyCard({
@@ -115,7 +79,7 @@ function CaseStudyCard({
             style={{ fontFamily: playfair, color: "#0a0a0a" }}
           >
             {caseStudy.heroHeadline}{" "}
-            <span style={{ color: "#0f766e" }}>{caseStudy.heroHighlight}</span>
+              <span style={{ color: "#111111", fontStyle: "italic" }}>{caseStudy.heroHighlight}</span>
           </h2>
 
           <p
@@ -214,15 +178,11 @@ export function CaseStudyIndexPage({ caseStudies }: { caseStudies: CaseStudy[] }
             style={{
               fontFamily: playfair,
               animationDelay: "80ms",
+              color: "#111111",
             }}
           >
             Real businesses.{" "}
-            <span
-              className="block"
-              style={{ color: "#0f766e" }}
-            >
-              Real results.
-            </span>
+            <span className="block italic">Real results.</span>
           </h1>
 
           <p
@@ -243,55 +203,16 @@ export function CaseStudyIndexPage({ caseStudies }: { caseStudies: CaseStudy[] }
           >
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-lg bg-[#0a0a0a] px-6 py-3 text-sm font-medium text-white transition-all duration-200 hover:bg-[#1a1a1a] hover:shadow-lg"
-              style={{ fontFamily: "var(--font-display)" }}
+              className="inline-flex items-center rounded-[999px] bg-black px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-white transition-colors duration-200 hover:bg-gray-700"
             >
               Book a strategy call
             </Link>
             <Link
               href="/pricing"
-              className="inline-flex items-center gap-2 rounded-lg border border-[#e5e7eb] bg-white px-6 py-3 text-sm font-medium transition-all duration-200 hover:border-[#d1d5db] hover:bg-[#f9fafb]"
-              style={{ color: "#374151", fontFamily: "var(--font-display)" }}
+              className="inline-flex items-center rounded-[999px] border border-line bg-white/60 px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-ink-900 backdrop-blur-sm transition-colors duration-200 hover:bg-gray-100"
             >
               See pricing
             </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-[#f3f4f6] bg-[#fafafa]">
-        <div className="mx-auto max-w-5xl px-6 sm:px-10">
-          <div className="grid grid-cols-2 divide-x divide-y divide-[#f3f4f6] sm:grid-cols-4 sm:divide-y-0">
-            {STATS.map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                variants={statVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                custom={i}
-                className="px-6 py-10 sm:px-8"
-              >
-                <p
-                  className="mb-1.5 text-3xl font-semibold tracking-tight sm:text-4xl"
-                  style={{ color: "#0f766e", fontFamily: playfair }}
-                >
-                  {stat.value}
-                </p>
-                <p
-                  className="mb-1 text-sm font-medium"
-                  style={{ color: "#0a0a0a", fontFamily: "var(--font-display)" }}
-                >
-                  {stat.label}
-                </p>
-                <p
-                  className="text-xs leading-relaxed"
-                  style={{ color: "#9ca3af", fontFamily: "var(--font-display)" }}
-                >
-                  {stat.context}
-                </p>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>
@@ -337,15 +258,13 @@ export function CaseStudyIndexPage({ caseStudies }: { caseStudies: CaseStudy[] }
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-lg bg-white px-7 py-3.5 text-sm font-semibold text-[#0a0a0a] transition-all duration-200 hover:bg-[#f9fafb] hover:shadow-lg"
-              style={{ fontFamily: "var(--font-display)" }}
+              className="inline-flex items-center rounded-[999px] bg-white px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-ink-900 transition-colors duration-200 hover:bg-white/90"
             >
               Book a strategy call
             </Link>
             <Link
               href="/pricing"
-              className="inline-flex items-center gap-2 rounded-lg border border-[#374151] px-7 py-3.5 text-sm font-medium text-white transition-all duration-200 hover:border-[#6b7280] hover:bg-white/5"
-              style={{ fontFamily: "var(--font-display)" }}
+              className="inline-flex items-center rounded-[999px] border border-white/20 bg-white/10 px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-white backdrop-blur-sm transition-colors duration-200 hover:bg-white/16"
             >
               See pricing
             </Link>
