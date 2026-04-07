@@ -1,30 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 import { CalendlyEmbed } from "@/components/CalendlyEmbed";
-
-function FadeUp({
-  children,
-  delay = 0,
-  className,
-}: {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-}) {
-  return (
-    <motion.div
-      className={cn(className)}
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.65, delay, ease: [0.16, 1, 0.3, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
-}
 
 export function ContactHero() {
   return (
@@ -55,25 +29,24 @@ export function ContactHero() {
         </div>
 
         <div className="mt-10 text-center">
-          <FadeUp delay={0.25}>
-            <p className="mx-auto max-w-lg text-gray-500" style={{ fontSize: "clamp(1rem, 1.8vw, 1.15rem)", lineHeight: 1.65 }}>
-              Tell us where your marketing stands today. In 45 minutes,
-              we&apos;ll map out what Solara can do for your business — no
-              pitch, no pressure.
-            </p>
-          </FadeUp>
+          <p
+            className="mx-auto max-w-lg text-gray-500"
+            style={{ fontSize: "clamp(1rem, 1.8vw, 1.15rem)", lineHeight: 1.65 }}
+          >
+            Tell us where your marketing stands today. In 45 minutes, we&apos;ll
+            map out what Solara can do for your business — no pitch, no
+            pressure.
+          </p>
 
-          <FadeUp delay={0.33}>
-            <p className="mt-6 text-sm text-gray-400">
-              Prefer email?{" "}
-              <a
-                href="mailto:contact@solaraai.com"
-                className="text-gray-600 underline underline-offset-2 transition-colors duration-150 hover:text-gray-900"
-              >
-                contact@solaraai.com
-              </a>
-            </p>
-          </FadeUp>
+          <p className="mt-6 text-sm text-gray-400">
+            Prefer email?{" "}
+            <a
+              href="mailto:contact@solaraai.com"
+              className="text-gray-600 underline underline-offset-2 transition-colors duration-150 hover:text-gray-900"
+            >
+              contact@solaraai.com
+            </a>
+          </p>
         </div>
       </div>
     </section>

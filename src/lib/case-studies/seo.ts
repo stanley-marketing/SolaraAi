@@ -3,6 +3,7 @@ import type { CaseStudy } from "./types";
 
 const SITE_URL = "https://solaraai.com";
 const CASE_STUDIES_PATH = "/case-study";
+const OG_IMAGE = `${SITE_URL}/opengraph-image.jpg`;
 const FORBIDDEN_SCHEMA_TYPES = new Set([
   "LocalBusiness",
   "GeneralContractor",
@@ -40,9 +41,9 @@ const CASE_STUDY_METADATA: Record<
       "See how Solara AI helped Maison Remodeling Group in Santa Clara and San Jose generate 131 tracked leads in 27 tracked days, sign 5 contracts, and build an $800k+ proposal pipeline from zero digital presence.",
   },
   "the-missing-piece": {
-    title: "The Missing Piece Case Study — Page 1 Rankings in 24 Days | Solara AI",
+    title: "The Missing Piece — Page 1 in 24 Days | Solara AI",
     description:
-      "See how Solara AI helped The Missing Piece earn page-1 rankings, 726 organic impressions, and 16,081 Instagram views in 24 days.",
+      "See how Solara AI helped The Missing Piece earn page-1 Google rankings, 16,081 Instagram views, and a Perplexity AI citation in 24 days.",
   },
 };
 
@@ -137,6 +138,20 @@ export function getCaseStudyMetadata(slug: string): Metadata {
       type: "article",
       url: canonical,
       siteName: "Solara AI",
+      images: [
+        {
+          url: OG_IMAGE,
+          width: 1200,
+          height: 630,
+          alt: metadataEntry.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: metadataEntry.title,
+      description: metadataEntry.description,
+      images: [OG_IMAGE],
     },
   };
 }
@@ -148,6 +163,16 @@ export function getCaseStudyJsonLd(caseStudy: CaseStudyJsonLdInput): JsonLdNode[
   const url = getCanonicalUrl(caseStudy.slug);
   const breadcrumbLabel = getCaseStudyLabel(caseStudy);
 
+  const publisher = {
+    "@type": "Organization",
+    name: "Solara AI",
+    url: SITE_URL,
+    logo: {
+      "@type": "ImageObject",
+      url: `${SITE_URL}/images/solara-logo-black.png`,
+    },
+  };
+
   const jsonLd: JsonLdNode[] = [
     {
       "@context": "https://schema.org",
@@ -156,8 +181,16 @@ export function getCaseStudyJsonLd(caseStudy: CaseStudyJsonLdInput): JsonLdNode[
       headline: title,
       description,
       url,
+      image: OG_IMAGE,
       datePublished: caseStudy.datePublished,
+      dateModified: caseStudy.datePublished,
+      author: publisher,
+      publisher,
       mainEntityOfPage: url,
+      about: {
+        "@type": "Thing",
+        name: caseStudy.clientName,
+      },
     },
     {
       "@context": "https://schema.org",

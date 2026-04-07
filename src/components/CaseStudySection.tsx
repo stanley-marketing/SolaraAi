@@ -1,29 +1,9 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import { motion, type Variants } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { caseStudies } from "@/lib/case-studies";
 
 const playfair = "var(--font-display-playfair), Georgia, serif";
-
-const containerVariants: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 18 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.55,
-      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
-    },
-  },
-};
 
 export function CaseStudySection() {
   return (
@@ -54,17 +34,10 @@ export function CaseStudySection() {
           </p>
         </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          className="-mx-6 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-px-6 px-6 pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:grid lg:snap-none lg:grid-cols-2 lg:gap-8 lg:overflow-visible lg:px-0 lg:pb-0"
-        >
+        <div className="-mx-6 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-px-6 px-6 pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:grid lg:snap-none lg:grid-cols-2 lg:gap-8 lg:overflow-visible lg:px-0 lg:pb-0">
           {caseStudies.map((cs) => (
-            <motion.div
+            <div
               key={cs.slug}
-              variants={itemVariants}
               className="w-[85%] shrink-0 snap-center first:ml-0 sm:w-[70%] lg:w-auto"
             >
               <Link
@@ -134,9 +107,9 @@ export function CaseStudySection() {
                   />
                 </div>
               </Link>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         <div className="mt-14 text-center">
           <Link
