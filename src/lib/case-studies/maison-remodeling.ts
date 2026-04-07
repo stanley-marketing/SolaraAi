@@ -274,9 +274,9 @@ const maisonRemodelingCaseStudy: CaseStudy = {
     link: "https://calendly.com/ilay-mor-solaraai/30min?utm_source=solaraai.com&utm_medium=website&utm_campaign=case-study&utm_content=maison-remodeling",
   },
   seoMeta: {
-    title: "Maison Remodeling Group Case Study | 131 Leads in 27 Days | Solara AI",
+    title: "Maison Remodeling — 131 Leads in 27 Days | Solara AI",
     description:
-      "See how Solara AI took Maison Remodeling Group from zero digital presence to a 60+ page website, 462+ ranking queries, 131 tracked leads in 27 days, 5 signed contracts, and $800,000+ in pipeline in 90 days.",
+      "How Solara AI helped Maison Remodeling Group go from zero digital presence to 131 tracked leads, 5 signed contracts, and $800K+ in pipeline in 90 days.",
     canonical: "https://solaraai.com/case-study/maison-remodeling-group",
   },
 };

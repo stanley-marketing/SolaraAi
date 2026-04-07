@@ -36,9 +36,9 @@ const CASE_STUDY_METADATA: Record<
   }
 > = {
   "maison-remodeling-group": {
-    title: "Maison Remodeling Group Case Study | Solara AI",
+    title: "Maison Remodeling — 131 Leads in 27 Days | Solara AI",
     description:
-      "See how Solara AI helped Maison Remodeling Group in Santa Clara and San Jose generate 131 tracked leads in 27 tracked days, sign 5 contracts, and build an $800k+ proposal pipeline from zero digital presence.",
+      "How Solara AI helped Maison Remodeling Group go from zero digital presence to 131 tracked leads, 5 signed contracts, and $800K+ in pipeline in 90 days.",
   },
   "the-missing-piece": {
     title: "The Missing Piece — Page 1 in 24 Days | Solara AI",
@@ -96,7 +96,8 @@ function getPrimarySchemaType(caseStudy: CaseStudyJsonLdInput): AllowedPrimarySc
 }
 
 function getCaseStudyTitle(caseStudy: CaseStudyJsonLdInput): string {
-  return caseStudy.title ?? `${caseStudy.clientName} Case Study`;
+  const seoTitle = CASE_STUDY_METADATA[caseStudy.slug]?.title;
+  return seoTitle ?? caseStudy.title ?? `${caseStudy.clientName} Case Study`;
 }
 
 function getCaseStudyDescription(caseStudy: CaseStudyJsonLdInput): string {

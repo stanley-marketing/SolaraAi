@@ -362,9 +362,9 @@ const theMissingPieceCaseStudy: CaseStudy = {
     link: "/contact",
   },
   seoMeta: {
-    title: "The Missing Piece Case Study — Page 1 Rankings in 24 Days | Solara AI",
+    title: "The Missing Piece — Page 1 in 24 Days | Solara AI",
     description:
-      "See how Solara AI helped The Missing Piece earn page-1 rankings, 726 search impressions, and 16,081 Instagram views in 24 days.",
+      "See how Solara AI helped The Missing Piece earn page-1 Google rankings, 16,081 Instagram views, and a Perplexity AI citation in 24 days.",
     canonical: "https://solaraai.com/case-study/the-missing-piece",
   },
 };
