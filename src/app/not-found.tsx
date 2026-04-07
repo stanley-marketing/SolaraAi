@@ -44,10 +44,10 @@ export default function NotFound() {
               Back to home
             </Link>
             <Link
-              href="/case-study"
+              href="/contact"
               className="inline-flex items-center rounded-[999px] border border-line bg-white/60 px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-ink-900 backdrop-blur-sm transition-colors duration-200 hover:bg-gray-100"
             >
-              See case studies
+              Book a call
             </Link>
           </div>
         </div>
