@@ -1,512 +1,143 @@
 "use client";
 
-import { useState } from "react";
-import { Check, Target, Share2, BarChart3, Palette } from "lucide-react";
-import { OrbitingCircles } from "@/components/ui/orbiting-circles";
-import { NumberTicker } from "@/components/ui/number-ticker";
-import { AnimatedList, AnimatedListItem } from "@/components/ui/animated-list";
-import { CardStack, CardItem } from "@/components/ui/card-stack";
-import MediaSwitcher from "@/components/MediaSwitcher";
+import { Check, X, User, Bot, Building2 } from "lucide-react";
+import Image from "next/image";
+import { BlurFade } from "@/components/ui/blur-fade";
 
-
-/* ═══════════════════════════════════════════════════════════
-   AGENTS SECTION — SHARED DATA + CONSTANTS
-   ═══════════════════════════════════════════════════════════ */
-
-interface AgentItem {
-  id: string;
-  headline: string;
-  sub: string | null;
-  intro: string;
-  bullets: string[];
-  closer: string;
-}
-
-const AGENTS_LIST: AgentItem[] = [
-  {
-    id: "ads",
-    headline: "Ads Agent",
-    sub: "Google. Meta. TikTok.",
-    intro:
-      "You don't need to guess where budget should go \u2014 or lose sleep wondering if the platform is eating your money.",
-    bullets: [
-      "Allocates budget where performance proves it belongs",
-      "Tests and iterates creatives without chaos",
-      "Kills underperformers and scales winners",
-      "Runs QA checks so campaigns don't drift silently",
-    ],
-    closer: "You approve the direction and guardrails. It executes the loop.",
-  },
-  {
-    id: "social",
-    headline: "Social Agent",
-    sub: null,
-    intro: "Not another prompt box that spits out off-brand captions.",
-    bullets: [
-      "Researches what your audience is actually talking about (real trends, real conversations)",
-      "Builds briefs and posts in the exact format each platform rewards",
-      "Keeps your brand voice consistent everywhere",
-      "Publishes on schedule, every time",
-    ],
-    closer: 'You don\u2019t \u201ctry to be active.\u201d You just are.',
-  },
-  {
-    id: "creative",
-    headline: "Creative Agent",
-    sub: null,
-    intro: "Every brand needs output \u2014 but output without quality is just noise.",
-    bullets: [
-      "Creates ads, posts, carousels, reels, and landing assets",
-      "Enforces your visual identity and tone",
-      "Checks quality before anything goes live",
-      "Keeps the brand looking sharp across every surface",
-    ],
-    closer: "Everything ships like your best day \u2014 consistently.",
-  },
-  {
-    id: "analytics",
-    headline: "Analytics Agent",
-    sub: null,
-    intro: "No more dashboards you stare at and don't trust.",
-    bullets: [
-      "Tells you what's working and why (plain language)",
-      "Flags what's quietly bleeding",
-      "Explains which channel is actually driving growth",
-      "Recommends the next moves with clear reasoning",
-    ],
-    closer: "One brain, one story, one direction \u2014 across all channels.",
-  },
+const FEATURES = [
+  "Builds content strategy weekly",
+  "Writes scripts in your voice",
+  "Directs what to film, scene by scene",
+  "Edits videos with B-roll and captions",
+  "Publishes at optimal times",
+  "Learns and improves every month",
+  "Works via WhatsApp",
 ];
 
-const AGENT_ICONS: Record<string, typeof Target> = {
-  ads: Target,
-  social: Share2,
-  creative: Palette,
-  analytics: BarChart3,
-};
-
-function AgentIcon({ id, ...props }: { id: string; size?: number; strokeWidth?: number; style?: React.CSSProperties; className?: string }) {
-  const Icon = AGENT_ICONS[id];
-  return Icon ? <Icon {...props} /> : null;
-}
-
-const PROACTIVE_AGENT: AgentItem = {
-  id: "proactive",
-  headline: "Proactive by design",
-  sub: null,
-  intro:
-    "Solara doesn\u2019t wait for instructions. It monitors performance signals, catches problems early, and recommends actions \u2014 with guardrails like:",
-  bullets: [
-    "Budget caps",
-    "Approval thresholds",
-    "Brand rules",
-    '\u201cDo not touch\u201d zones',
-  ],
-  closer: "So it feels powerful \u2014 not risky.",
-};
-
-
-/* \u2500\u2500 Proactive card particles \u2014 golden-ratio spread (brand colors for white bg) \u2500\u2500 */
-const AG_PARTICLES = Array.from({ length: 50 }, (_, i) => {
-  const duration = 14 + ((i * 7 + i % 4) % 12);
-  const colors = [
-    "rgba(168,85,247,0.15)",
-    "rgba(236,72,153,0.12)",
-    "rgba(251,146,60,0.12)",
-    "rgba(168,85,247,0.10)",
-    "rgba(236,72,153,0.08)",
-  ];
-  return {
-    id: i,
-    left: Math.round((i * 61.8) % 100 * 100) / 100,
-    size: 2 + (i % 3) * 1.2,
-    opacity: 0.18 + (i % 5) * 0.06,
-    duration,
-    delay: -Math.round((i / 50) * duration * 100) / 100,
-    color: colors[i % colors.length],
-  };
-});
-
-/* ── Platform icons for agent card illustrations ── */
-
-const PLATFORM_ICONS: Record<string, string> = {
-  google: "/images/icons/google.svg",
-  "google-ads": "/images/icons/google-ads.svg",
-  "google-analytics": "/images/icons/google-analytics.svg",
-  meta: "/images/icons/meta.svg",
-  tiktok: "/images/icons/tiktok.svg",
-  instagram: "/images/icons/instagram.svg",
-  linkedin: "/images/icons/linkedin.svg",
-  facebook: "/images/icons/facebook.svg",
-  x: "/images/icons/x.svg",
-};
-
-function PlatformIcon({ platform, size = 18 }: { platform: string; size?: number }) {
-  const src = PLATFORM_ICONS[platform];
-  if (!src) return null;
-  return <img src={src} alt={platform} width={size} height={size} style={{ display: "block" }} />;
-}
-
-function PlatformBubble({ children }: { children: React.ReactNode }) {
-  return (
-    <div style={{ width: 36, height: 36, borderRadius: "50%", background: "#fff", border: "1px solid #e5e7eb", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 1px 3px rgba(0,0,0,0.06)" }}>
-      {children}
-    </div>
-  );
-}
-
-const CREATIVE_CARDS: CardItem[] = [
-  { id: 0, name: <span style={{ display: "flex", alignItems: "center", gap: 6, fontSize: "0.8rem", fontWeight: 600, color: "#0f0f0f" }}><img src="/images/icons/facebook.svg" alt="" width={16} height={16} />Facebook Ad</span>,    designation: "1200 \u00d7 628 \u00b7 Static",     content: <span style={{ fontSize: "0.82rem", color: "#4b5563" }}>High-converting copy, strong hook, single CTA. Brand colors enforced.</span> },
-  { id: 1, name: <span style={{ display: "flex", alignItems: "center", gap: 6, fontSize: "0.8rem", fontWeight: 600, color: "#0f0f0f" }}><img src="/images/icons/instagram.svg" alt="" width={16} height={16} />Instagram Reel</span>, designation: "1080 \u00d7 1920 \u00b7 Video",    content: <span style={{ fontSize: "0.82rem", color: "#4b5563" }}>Hook in first 3 seconds. Visual story arc. Subtitles added automatically.</span> },
-  { id: 2, name: <span style={{ display: "flex", alignItems: "center", gap: 6, fontSize: "0.8rem", fontWeight: 600, color: "#0f0f0f" }}><img src="/images/icons/linkedin.svg" alt="" width={16} height={16} />LinkedIn Post</span>,  designation: "1200 \u00d7 627 \u00b7 Carousel",  content: <span style={{ fontSize: "0.82rem", color: "#4b5563" }}>Authority-building format. Data-backed insights. Professional tone matched.</span> },
-  { id: 3, name: <span style={{ display: "flex", alignItems: "center", gap: 6, fontSize: "0.8rem", fontWeight: 600, color: "#0f0f0f" }}><img src="/images/icons/tiktok.svg" alt="" width={16} height={16} />TikTok Video</span>,   designation: "1080 \u00d7 1920 \u00b7 UGC-style", content: <span style={{ fontSize: "0.82rem", color: "#4b5563" }}>Native-feel content. Pattern-interrupt opener tested across 3 variants.</span> },
+const COLUMNS = [
+  { name: "Solara", highlight: true, icon: null },
+  { name: "Freelancer", highlight: false, icon: User },
+  { name: "AI Tool", highlight: false, icon: Bot },
+  { name: "Agency", highlight: false, icon: Building2 },
 ];
 
-const ANALYTICS_FEED = [
-  { key: "1", platform: "google-ads",       text: "ROAS increased to 4.2x this week",          sub: "Up from 3.1x \u00b7 Google Search leading" },
-  { key: "2", platform: "meta",             text: "Meta CTR up 41% this month",                sub: "Best performing month since launch" },
-  { key: "3", platform: "instagram",        text: "Instagram reach up 2.8x this week",         sub: "Reels driving 74% of new followers" },
-  { key: "4", platform: "google",           text: "Google Search driving 62% of conversions",  sub: "Highest conversion share on record" },
-  { key: "5", platform: "google-analytics", text: "Weekly report ready",                       sub: "Spend: $1,240 \u00b7 127 conversions \u00b7 ROAS 4.2x" },
+const GRID: boolean[][] = [
+  [true, false, false, false],
+  [true, false, false, false],
+  [true, false, false, false],
+  [true, true, false, true],
+  [true, false, false, true],
+  [true, false, false, false],
+  [true, false, false, false],
 ];
-
-function AgentViz({ id }: { id: string }) {
-  switch (id) {
-    case "ads":
-      return (
-        <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", height: "100%", width: "100%" }}>
-          <div style={{ width: 40, height: 40, borderRadius: "50%", background: "#f9fafb", border: "1px solid #e5e7eb", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2 }}>
-            <Target size={18} style={{ color: "#6b7280" }} />
-          </div>
-          <OrbitingCircles radius={55} iconSize={36} speed={0.8}>
-            <PlatformBubble><PlatformIcon platform="google-ads" size={18} /></PlatformBubble>
-            <PlatformBubble><PlatformIcon platform="meta" size={18} /></PlatformBubble>
-            <PlatformBubble><PlatformIcon platform="tiktok" size={18} /></PlatformBubble>
-          </OrbitingCircles>
-        </div>
-      );
-    case "social":
-      return (
-        <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", height: "100%", width: "100%" }}>
-          <div style={{ width: 40, height: 40, borderRadius: "50%", background: "#f9fafb", border: "1px solid #e5e7eb", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2 }}>
-            <Share2 size={18} style={{ color: "#6b7280" }} />
-          </div>
-          <OrbitingCircles radius={55} iconSize={36} speed={0.7} reverse>
-            <PlatformBubble><PlatformIcon platform="instagram" size={18} /></PlatformBubble>
-            <PlatformBubble><PlatformIcon platform="linkedin" size={18} /></PlatformBubble>
-            <PlatformBubble><PlatformIcon platform="facebook" size={18} /></PlatformBubble>
-            <PlatformBubble><PlatformIcon platform="tiktok" size={18} /></PlatformBubble>
-          </OrbitingCircles>
-        </div>
-      );
-    case "creative":
-      return <MediaSwitcher />;
-    case "analytics":
-      return (
-        <div style={{ width: "100%", alignSelf: "stretch", overflow: "hidden", padding: "10px 16px" }}>
-          <AnimatedList delay={1400} loop>
-            {ANALYTICS_FEED.map((item) => (
-              <AnimatedListItem key={item.key}>
-                <div style={{ display: "flex", alignItems: "flex-start", gap: 10, background: "#f9fafb", border: "1px solid #f0f0f0", borderRadius: 8, padding: "8px 12px", width: "100%" }}>
-                  <div style={{ width: 20, height: 20, borderRadius: "50%", background: "#f9fafb", border: "1px solid #e5e7eb", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 1 }}>
-                    <PlatformIcon platform={item.platform} size={12} />
-                  </div>
-                  <div>
-                    <p style={{ margin: 0, fontSize: "0.75rem", fontWeight: 600, color: "#0f0f0f", lineHeight: 1.4 }}>{item.text}</p>
-                    <p style={{ margin: 0, fontSize: "0.75rem", color: "#6b7280", lineHeight: 1.4 }}>{item.sub}</p>
-                  </div>
-                </div>
-              </AnimatedListItem>
-            ))}
-          </AnimatedList>
-        </div>
-      );
-    default:
-      return null;
-  }
-}
-
-const AGENTS_RESPONSIVE_CSS = `
-@media (max-width: 768px) {
-  .ag-2col { grid-template-columns: 1fr !important; }
-  .ag-3col { grid-template-columns: 1fr !important; }
-  .ag-12col { grid-template-columns: 1fr !important; }
-  .ag-bento-card { grid-column: span 1 !important; }
-  .ag-pad-lg { padding: 28px 20px !important; }
-  .ag-sticky { position: relative !important; top: auto !important; }
-  .ag-hide-sm { display: none !important; }
-  .ag-scroll-zone { height: auto !important; min-height: 100px !important; }
-  .ag-acc-body { padding: 8px 20px 28px 20px !important; grid-template-columns: 1fr !important; }
-  .ag-proactive-pad { padding: 32px 24px !important; }
-}
-`;
-
-const AGENTS_EXTRA_CSS = `
-@keyframes ag-pulse {
-  0%   { transform: scale(1);    opacity: 0.5; }
-  70%  { transform: scale(1.75); opacity: 0;   }
-  100% { transform: scale(1.75); opacity: 0;   }
-}
-.ag-pulse-ring {
-  position: absolute;
-  inset: -8px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(15, 15, 15, 0.2);
-  animation: ag-pulse 2s ease-out infinite;
-  pointer-events: none;
-}
-.ag-light-spotlight {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(320px circle at var(--mx, -200%) var(--my, -200%), rgba(0, 0, 0, 0.04), transparent 65%);
-  pointer-events: none;
-  z-index: 1;
-}
-.ag-hover-card {
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-.ag-hover-card:hover {
-  border-color: #d1d5db !important;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-}
-.ag-dark-spotlight {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(400px circle at var(--mx, -200%) var(--my, -200%), rgba(255,255,255,0.06), transparent 60%);
-  pointer-events: none;
-  z-index: 1;
-}
-@keyframes ag-particle-rise {
-  from { transform: translateY(0); opacity: 1; }
-  50%  { opacity: 0.6; }
-  to   { transform: translateY(-600px); opacity: 0; }
-}
-.ag-hover-card-dark {
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-.ag-hover-card-dark:hover {
-  border-color: rgba(255,255,255,0.15) !important;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.4);
-}
-`;
-
-/* \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
-   AGENTS SECTION \u2014 Sticky Scroll Reveal + Proactive + Coming Next
-   \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
 
 export function AgentsSection() {
-  const [activeC, setActiveC] = useState(0);
-  const agent = AGENTS_LIST[activeC] ?? AGENTS_LIST[0];
-
-  const handleSpotlightMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const el = e.currentTarget as HTMLDivElement;
-    const rect = el.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    el.style.setProperty("--mx", `${x}%`);
-    el.style.setProperty("--my", `${y}%`);
-  };
-
-  const handleSpotlightLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    const el = e.currentTarget as HTMLDivElement;
-    el.style.setProperty("--mx", "-200%");
-    el.style.setProperty("--my", "-200%");
-  };
-
   return (
-    <section style={{ background: "#fafafa", paddingTop: 96 }}>
-      <style>{AGENTS_RESPONSIVE_CSS}</style>
-      <style>{AGENTS_EXTRA_CSS}</style>
-
-      {/* ── Part 1: Mixpanel-style sticky intro + scrolling agents ── */}
-      <div
-        className="ag-2col"
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "1fr 1.4fr",
-          gap: 80,
-          alignItems: "start",
-          paddingBottom: 96,
-          paddingLeft: 24,
-          paddingRight: 24,
-        }}
-      >
-        {/* LEFT — sticky intro */}
-        <div className="ag-sticky" style={{ position: "sticky", top: 140 }}>
-          <div
+    <section className="px-6 py-28 sm:px-10" style={{ background: "#fafafa" }}>
+      <div className="mx-auto max-w-4xl text-center">
+        <BlurFade delay={0.1}>
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">
+            Comparison
+          </span>
+          <h2
+            className="mt-4 text-3xl leading-snug tracking-tight text-gray-900 sm:text-4xl md:text-[44px] md:leading-[1.15]"
+            style={{ fontFamily: "var(--font-display)" }}
           >
-            <p
-              style={{
-                fontSize: "0.7rem",
-                fontWeight: 700,
-                letterSpacing: "0.22em",
-                textTransform: "uppercase",
-                color: "#9ca3af",
-                marginBottom: 18,
-              }}
-            >
-              The Agents
-            </p>
-            <h2
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
-                fontWeight: 600,
-                color: "#0f0f0f",
-                letterSpacing: "-0.025em",
-                lineHeight: 1.15,
-                marginBottom: 24,
-              }}
-            >
-              Your AI marketing department &mdash; at every stage
-            </h2>
-            <p
-              style={{
-                fontSize: "1.0625rem",
-                lineHeight: 1.72,
-                color: "#6b7280",
-                marginBottom: 36,
-                maxWidth: 380,
-              }}
-            >
-              Four specialized agents that run your ads, content, creative, and analytics &mdash; so you can focus on growing.
-            </p>
+            Not all solutions are created equal.
+          </h2>
+          <p className="mx-auto mt-5 max-w-xl text-lg text-gray-500">
+            They create individual pieces and call it a presence.
+            Solara actually manages your social media.
+          </p>
+        </BlurFade>
+
+        <BlurFade delay={0.25}>
+          <div className="mt-14 overflow-x-auto">
+            <table className="w-full border-collapse text-left">
+              <thead>
+                <tr>
+                  <th className="pb-4 pr-4 text-sm font-normal text-gray-400" />
+                  {COLUMNS.map((col) => {
+                    const Icon = col.icon;
+                    return (
+                      <th key={col.name} className="pb-4 align-bottom text-center" style={{ minWidth: 100 }}>
+                        {col.highlight && (
+                          <span className="mb-3 inline-block rounded-full bg-ink-900 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white">
+                            Best for Business
+                          </span>
+                        )}
+                        <div className="flex h-7 items-center justify-center">
+                          {col.highlight ? (
+                            <Image src="/solara-icon.svg" alt="Solara" width={26} height={26} className="rounded-full" />
+                          ) : (
+                            Icon && <Icon size={22} className="text-gray-400" />
+                          )}
+                        </div>
+                        <div className={`mt-1.5 text-sm font-semibold ${col.highlight ? "text-gray-900" : "text-gray-500"}`}>
+                          {col.name}
+                        </div>
+                      </th>
+                    );
+                  })}
+                </tr>
+              </thead>
+              <tbody>
+                {FEATURES.map((feature, rowIdx) => (
+                  <tr key={feature} className="border-t border-gray-200">
+                    <td className="py-4 pr-4 text-left text-[15px] text-gray-700">{feature}</td>
+                    {GRID[rowIdx].map((has, colIdx) => {
+                      const isHighlight = COLUMNS[colIdx].highlight;
+                      const isFirst = rowIdx === 0;
+                      const isLast = rowIdx === FEATURES.length - 1;
+                      return (
+                        <td
+                          key={COLUMNS[colIdx].name}
+                          className="py-4 text-center"
+                          style={{
+                            background: isHighlight ? "#ffffff" : undefined,
+                            borderLeft: isHighlight ? "1px solid #e3e3e3" : undefined,
+                            borderRight: isHighlight ? "1px solid #e3e3e3" : undefined,
+                            borderTop: isHighlight && isFirst ? "1px solid #e3e3e3" : undefined,
+                            borderBottom: isHighlight && isLast ? "1px solid #e3e3e3" : undefined,
+                            borderTopLeftRadius: isHighlight && isFirst ? "12px" : undefined,
+                            borderTopRightRadius: isHighlight && isFirst ? "12px" : undefined,
+                            borderBottomLeftRadius: isHighlight && isLast ? "12px" : undefined,
+                            borderBottomRightRadius: isHighlight && isLast ? "12px" : undefined,
+                          }}
+                        >
+                          {has ? (
+                            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-50">
+                              <Check size={14} className="text-emerald-500" />
+                            </span>
+                          ) : (
+                            <X size={14} className="mx-auto text-gray-300" />
+                          )}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </BlurFade>
+
+        <BlurFade delay={0.4}>
+          <p className="mx-auto mt-10 max-w-2xl text-lg font-medium leading-relaxed text-gray-900">
+            What makes brands grow is not one good post. It&apos;s the brain
+            behind a consistent, strategic, on-brand social presence &mdash;
+            running week after week without falling apart.
+          </p>
+          <div className="mt-10">
             <a
               href="/contact"
-              className="inline-flex items-center rounded-[999px] bg-black px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-white transition-colors duration-200 hover:bg-gray-700"
-              style={{ textDecoration: "none" }}
+              className="inline-flex items-center rounded-[999px] bg-black px-8 py-3.5 text-[14px] font-medium tracking-[1px] text-white transition-colors duration-200 hover:bg-gray-700"
             >
-              Get started
+              Start free trial
             </a>
           </div>
-        </div>
-
-        {/* RIGHT — scrolling agent panels */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
-          {AGENTS_LIST.map((a, ti) => (
-            <div
-              key={a.id}
-              className="ag-hover-card"
-              onMouseMove={handleSpotlightMove}
-              onMouseLeave={handleSpotlightLeave}
-              style={{
-                background: "#ffffff",
-                border: "1px solid #eaecf0",
-                borderRadius: 20,
-                padding: 0,
-                position: "relative",
-                overflow: "hidden",
-              }}
-            >
-              <div className="ag-light-spotlight" />
-              <div style={{ position: "relative", zIndex: 2 }}>
-                {/* Illustration */}
-                <div style={{ height: a.id === "creative" ? "auto" : 180, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", borderBottom: a.id === "creative" ? "none" : "1px solid #f0f0f0", overflow: "hidden" }}>
-                  <AgentViz id={a.id} />
-                </div>
-                {/* Content */}
-                <div style={{ padding: "32px 48px 40px" }}>
-                {/* Number badge */}
-                <span
-                  style={{
-                    display: "inline-block",
-                    fontSize: "0.8rem",
-                    fontWeight: 600,
-                    color: "#6b7280",
-                    border: "1px solid #e5e7eb",
-                    borderRadius: 8,
-                    padding: "4px 12px",
-                    marginBottom: 24,
-                    fontVariantNumeric: "tabular-nums",
-                  }}
-                >
-                  {String(ti + 1).padStart(2, "0")}
-                </span>
-
-                {/* Headline */}
-                <h3
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: "clamp(1.25rem, 2vw, 1.625rem)",
-                    fontWeight: 600,
-                    color: "#0f0f0f",
-                    letterSpacing: "-0.02em",
-                    marginBottom: a.sub ? 6 : 14,
-                    lineHeight: 1.25,
-                  }}
-                >
-                  {a.headline}
-                </h3>
-
-                {/* Sub */}
-                {a.sub && (
-                  <p
-                    style={{
-                      fontSize: "0.72rem",
-                      color: "#9ca3af",
-                      fontWeight: 700,
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
-                      marginBottom: 14,
-                    }}
-                  >
-                    {a.sub}
-                  </p>
-                )}
-
-                {/* Intro */}
-                <p
-                  style={{
-                    fontSize: "1rem",
-                    lineHeight: 1.7,
-                    color: "#6b7280",
-                    marginBottom: 24,
-                    maxWidth: 480,
-                  }}
-                >
-                  {a.intro}
-                </p>
-
-                {/* Bullets */}
-                <ul
-                  style={{
-                    listStyle: "none",
-                    padding: 0,
-                    margin: "0 0 24px 0",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: 10,
-                  }}
-                >
-                  {a.bullets.map((b) => (
-                    <li key={b} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
-                      <Check size={14} strokeWidth={2.5} style={{ color: "#374151", marginTop: 3, flexShrink: 0 }} />
-                      <span style={{ fontSize: "0.9rem", color: "#374151", lineHeight: 1.6 }}>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Closer */}
-                <p
-                  style={{
-                    fontSize: "0.9rem",
-                    fontStyle: "italic",
-                    color: "#9ca3af",
-                    margin: 0,
-                  }}
-                >
-                  {a.closer}
-                </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        </BlurFade>
       </div>
-
-      {/* Part 2: Proactive card — hidden */}
     </section>
   );
 }

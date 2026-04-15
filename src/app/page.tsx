@@ -19,14 +19,14 @@ import { Footer } from "@/components/Footer";
 const SITE_URL = "https://solaraai.com";
 
 export const metadata: Metadata = {
-  title: "Solara AI \u2014 AI That Runs Your Marketing",
+  title: "Solara AI \u2014 Your AI Social Media Manager",
   description:
-    "Solara AI is a full-stack AI marketing platform that manages ads, social media, SEO, and content \u2014 so growing businesses get an entire marketing department without the overhead.",
+    "Solara is the autonomous social media manager that builds your strategy, writes your scripts, edits your videos, and publishes every week \u2014 $69/month.",
   alternates: { canonical: SITE_URL },
   openGraph: {
-    title: "Solara AI \u2014 AI That Runs Your Marketing",
+    title: "Solara AI \u2014 Your AI Social Media Manager",
     description:
-      "Full-stack AI marketing: ads, social, SEO, content \u2014 all managed by AI. More growth. Less cost.",
+      "Strategy, scripts, production, publishing \u2014 managed every week by AI. Your social media manager for $69/month.",
     url: SITE_URL,
     siteName: "Solara AI",
     images: [
@@ -34,16 +34,16 @@ export const metadata: Metadata = {
         url: "/opengraph-image.jpg",
         width: 1200,
         height: 630,
-        alt: "SolaraAI — The AI Era In Marketing",
+        alt: "Solara AI \u2014 Your AI Social Media Manager",
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Solara AI \u2014 AI That Runs Your Marketing",
+    title: "Solara AI \u2014 Your AI Social Media Manager",
     description:
-      "Full-stack AI marketing: ads, social, SEO, content \u2014 all managed by AI. More growth. Less cost.",
+      "Strategy, scripts, production, publishing \u2014 managed every week by AI. Your social media manager for $69/month.",
     images: ["/opengraph-image.jpg"],
   },
 };
@@ -66,7 +66,7 @@ export default function Home() {
             logo: { "@type": "ImageObject", url: `${SITE_URL}/Logo.svg` },
             foundingDate: "2024",
             description:
-              "AI-powered marketing platform that manages ads, social media, SEO, and content for growing businesses.",
+              "Autonomous social media manager that builds strategy, writes scripts, edits videos, and publishes every week for businesses.",
             sameAs: [
               "https://www.instagram.com/solara.ai.official/",
               "https://www.facebook.com/profile.php?id=61577711271834",
@@ -81,10 +81,10 @@ export default function Home() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "Solara AI \u2014 AI That Runs Your Marketing",
+            name: "Solara AI \u2014 Your AI Social Media Manager",
             url: SITE_URL,
             description:
-              "Full-stack AI marketing platform: ads, social media, SEO, and content \u2014 all managed by AI.",
+              "Autonomous social media manager: strategy, scripts, production, publishing \u2014 managed every week by AI.",
             isPartOf: {
               "@type": "WebSite",
               name: "Solara AI",
@@ -129,24 +129,25 @@ export default function Home() {
             fontFamily: "var(--font-display)", fontWeight: 300,
           }}
         >
-          Looking for marketing & growth?
+          Meet your AI
           <br className="hidden sm:block" />
-          You&apos;re in the right place.
+          social media manager.
         </h1>
 
         <p
           className="relative z-10 mx-auto mt-8 max-w-2xl text-ink-700/70"
           style={{ fontSize: "clamp(1rem, 2vw, 1.25rem)", lineHeight: 1.6 }}
         >
-          We are leading the new era of AI marketing. More marketing. More growth.
-          Less cost. That&apos;s not a pitch. That&apos;s the model.
+          Strategy. Scripts. Production. Publishing.
+          Every week, automatically — so your brand stays alive
+          while you run your business.
         </p>
 
         <div className="relative z-10 mt-10 flex flex-wrap items-center justify-center gap-3">
           <a
             href="/contact"
             className="inline-flex items-center rounded-[999px] bg-black px-6 py-3 font-[family-name:var(--font-body)] text-[14px] font-medium tracking-[1px] text-white transition-colors duration-200 hover:bg-gray-700"
-          >
+            >
             Sign Up
           </a>
           <a
@@ -157,7 +158,6 @@ export default function Home() {
           </a>
         </div>
 
-        {/* Social proof */}
         <div className="relative z-10 mt-8 mb-2 flex items-center justify-center gap-3">
           <div className="flex -space-x-2">
             {[
