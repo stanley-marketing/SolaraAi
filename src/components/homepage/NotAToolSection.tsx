@@ -1,9 +1,37 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { CalendarClock, Palette, Sparkles, UserRound } from "lucide-react";
 import { WhatsAppMockup } from "@/components/homepage/WhatsAppMockup";
 import type { Message } from "@/components/homepage/WhatsAppMockup";
 import { WebAppMockup } from "@/components/homepage/WebAppMockup";
+
+function useInView(threshold = 0.15) {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry && entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [threshold]);
+  return { ref, visible };
+}
+
+const REVEAL_BASE =
+  "transition-[transform,opacity] duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:!transition-none motion-reduce:!opacity-100 motion-reduce:!translate-y-0 motion-reduce:!translate-x-0";
+
+const HIDDEN_Y = "opacity-0 translate-y-5";
+const VISIBLE = "opacity-100 translate-y-0 translate-x-0";
 
 const BRIDGE_WA_SCRIPT: Message[] = [
   {
@@ -50,6 +78,34 @@ function ToolCard({
   );
 }
 
+const TOOLS = [
+  { icon: Palette, name: "Canva", description: "Hours on every template. Still looks generic." },
+  { icon: CalendarClock, name: "Buffer", description: "Only schedules what you already made." },
+  { icon: Sparkles, name: "ChatGPT", description: "Generic captions. You still write every post." },
+  { icon: UserRound, name: "Fiverr", description: "Expensive. Unreliable. You still explain everything." },
+] as const;
+
+function ToolCardsGrid() {
+  const { ref, visible } = useInView(0.2);
+  return (
+    <div ref={ref} className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {TOOLS.map((tool, i) => (
+        <div
+          key={tool.name}
+          className={`${REVEAL_BASE} ${visible ? VISIBLE : HIDDEN_Y}`}
+          style={{ transitionDelay: visible ? `${i * 100}ms` : "0ms" }}
+        >
+          <ToolCard
+            icon={<tool.icon size={20} className="text-ink-900" />}
+            name={tool.name}
+            description={tool.description}
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function AbandonedToolsRow() {
   return (
     <div className="flex w-full flex-col">
@@ -66,28 +122,7 @@ function AbandonedToolsRow() {
         Tools you&apos;ve tried
       </p>
 
-      <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <ToolCard
-          icon={<Palette size={20} className="text-ink-900" />}
-          name="Canva"
-          description="Hours on every template. Still looks generic."
-        />
-        <ToolCard
-          icon={<CalendarClock size={20} className="text-ink-900" />}
-          name="Buffer"
-          description="Only schedules what you already made."
-        />
-        <ToolCard
-          icon={<Sparkles size={20} className="text-ink-900" />}
-          name="ChatGPT"
-          description="Generic captions. Still a prompt per post."
-        />
-        <ToolCard
-          icon={<UserRound size={20} className="text-ink-900" />}
-          name="Fiverr"
-          description="Expensive. Flaky. Still needs briefing."
-        />
-      </div>
+      <ToolCardsGrid />
 
       <p
         className="mt-7 text-center italic sm:text-left"
@@ -192,6 +227,31 @@ function BridgeConnector() {
   );
 }
 
+function RuptureReveal() {
+  const { ref, visible } = useInView(0.3);
+  return (
+    <div
+      ref={ref}
+      className={`mt-24 flex flex-col items-center text-center sm:mt-28 lg:mt-32 ${REVEAL_BASE} ${visible ? VISIBLE : HIDDEN_Y}`}
+      style={{ transitionDuration: "800ms" }}
+    >
+      <div className="h-px w-12 bg-line" />
+      <p
+        className="mt-5 max-w-md text-ink-900"
+        style={{
+          fontFamily: "var(--font-display)",
+          fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
+          fontWeight: 600,
+          lineHeight: 1.18,
+          letterSpacing: "-0.015em",
+        }}
+      >
+        Solara is nothing like that.
+      </p>
+    </div>
+  );
+}
+
 function MagicLinkBridge() {
   return (
     <div className="flex flex-col items-center gap-6 lg:flex-row lg:items-center lg:justify-center lg:gap-4">
@@ -230,7 +290,7 @@ export function NotAToolSection() {
               color: "rgba(98,98,98,0.5)",
             }}
           >
-            01 &middot; THE REFRAME
+            01 &middot; THE DIFFERENCE
           </p>
 
           <h2
@@ -250,22 +310,7 @@ export function NotAToolSection() {
           </div>
         </div>
 
-        <div className="mt-24 flex flex-col items-center text-center sm:mt-28 lg:mt-32">
-          <div className="h-px w-12 bg-line" />
-
-          <p
-            className="mt-5 max-w-md text-ink-900"
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
-              fontWeight: 600,
-              lineHeight: 1.18,
-              letterSpacing: "-0.015em",
-            }}
-          >
-            Solara is nothing like that.
-          </p>
-        </div>
+        <RuptureReveal />
 
         <div className="mt-10 sm:mt-14">
           <MagicLinkBridge />
