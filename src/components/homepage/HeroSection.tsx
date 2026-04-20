@@ -1,4 +1,10 @@
-import Link from "next/link";
+"use client";
+
+import { type ChangeEvent, useState } from "react";
+import { useRouter } from "next/navigation";
+import { ArrowRight } from "lucide-react";
+import { AuroraBackground } from "@/components/ui/aurora-background";
+import { WhatsAppScriptedHeroMockup } from "@/components/homepage/WhatsAppMockupScripted";
 
 const AVATAR_SRCS = [
   "/avatars/avatar-1.jpg",
@@ -8,199 +14,170 @@ const AVATAR_SRCS = [
   "/avatars/avatar-5.jpg",
 ];
 
-export default function HeroSection() {
+function PreSeedPill() {
   return (
-    <section
-      className="relative flex min-h-[90vh] w-full flex-col items-center justify-center overflow-hidden bg-[#0a0a0a] px-6 pt-32 pb-20 text-center sm:px-10 sm:pt-36 sm:pb-28"
-      aria-label="Hero"
-    >
+    <div className="mb-5">
       <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
+        className="shimmer-pill"
         style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
-          backgroundSize: "72px 72px",
-        }}
-      />
-
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 40% at 50% -10%, rgba(255,255,255,0.06) 0%, transparent 70%)",
-        }}
-      />
-
-      <div
-        className="relative z-10"
-        style={{
-          animation: "fadeInDown 0.6s ease both",
-          animationDelay: "0s",
+          position: "relative",
+          overflow: "hidden",
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 6,
+          fontSize: "14px",
+          fontWeight: 500,
+          color: "#374151",
+          borderRadius: 999,
+          padding: "7px 16px",
+          background: "rgba(255,255,255,0.65)",
+          backdropFilter: "blur(8px)",
+          border: "1px solid #e5e7eb",
         }}
       >
-        <span
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 8,
-            fontSize: "11px",
-            fontWeight: 500,
-            letterSpacing: "0.22em",
-            textTransform: "uppercase",
-            color: "rgba(255,255,255,0.38)",
-            borderRadius: 999,
-            padding: "7px 18px",
-            border: "1px solid rgba(255,255,255,0.1)",
-            background: "rgba(255,255,255,0.04)",
-            marginBottom: 28,
-          }}
-        >
-          Autonomous Social Media Manager
-        </span>
+        Backed by $1.2M in pre-seed funding
+        <ArrowRight size={13} color="#9ca3af" />
       </div>
+    </div>
+  );
+}
 
-      <h1
-        className="relative z-10 mx-auto max-w-[960px] text-white"
-        style={{
-          fontFamily: "var(--font-display)",
-          fontSize: "clamp(2.4rem, 5.5vw, 4.5rem)",
-          fontWeight: 300,
-          lineHeight: 1.08,
-          letterSpacing: "-0.025em",
-          animation: "fadeInDown 0.65s ease both",
-          animationDelay: "0.1s",
-        }}
-      >
-        Your business is losing because your social media looks dead.
-      </h1>
-
-      <p
-        className="relative z-10 mx-auto mt-8 max-w-2xl"
-        style={{
-          fontFamily: "var(--font-body)",
-          fontSize: "clamp(0.95rem, 1.8vw, 1.125rem)",
-          fontWeight: 300,
-          lineHeight: 1.7,
-          color: "rgba(255,255,255,0.5)",
-          animation: "fadeInDown 0.65s ease both",
-          animationDelay: "0.2s",
-        }}
-      >
-        Solara is the autonomous social media manager that builds your strategy,
-        writes your scripts, directs your content, edits your videos, and
-        publishes every week — so your brand stays alive while you run your
-        business.
-      </p>
-
-      <div
-        className="relative z-10 mt-10 flex flex-wrap items-center justify-center gap-3"
-        style={{
-          animation: "fadeInDown 0.65s ease both",
-          animationDelay: "0.3s",
-        }}
-      >
-        <Link
-          href="/contact"
-          className="inline-flex items-center rounded-[999px] bg-white px-7 py-3.5 text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-black transition-opacity duration-200 hover:opacity-85"
-        >
-          Start free — $69/month after 7 days
-        </Link>
-        <a
-          href="#how-it-works"
-          className="inline-flex items-center rounded-[999px] border border-white/20 bg-transparent px-7 py-3.5 text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-white/70 transition-colors duration-200 hover:border-white/40 hover:text-white"
-        >
-          See how it works
-        </a>
+function AvatarPile() {
+  return (
+    <div className="mt-7 flex items-center gap-3">
+      <div className="flex -space-x-2">
+        {AVATAR_SRCS.map((src) => (
+          <img
+            key={src}
+            src={src}
+            alt=""
+            className="h-9 w-9 rounded-full border-2 border-white object-cover"
+          />
+        ))}
       </div>
-
-      <p
-        className="relative z-10 mt-7"
-        style={{
-          fontSize: "0.75rem",
-          color: "rgba(255,255,255,0.25)",
-          letterSpacing: "0.04em",
-          animation: "fadeInDown 0.65s ease both",
-          animationDelay: "0.38s",
-        }}
-      >
-        No marketing knowledge required. No agency. No hiring. Works via
-        WhatsApp.
+      <p className="text-sm">
+        <span className="font-semibold text-ink-900">2,000+</span>
+        <span className="text-ink-700/60"> businesses already growing</span>
       </p>
+    </div>
+  );
+}
 
-      <div
-        className="relative z-10 my-10 h-px w-24"
-        style={{
-          background: "rgba(255,255,255,0.1)",
-          animation: "fadeInDown 0.65s ease both",
-          animationDelay: "0.42s",
-        }}
-        aria-hidden="true"
-      />
+function ScanUrlForm() {
+  const router = useRouter();
+  const [url, setUrl] = useState("");
+  const [error, setError] = useState<string | null>(null);
 
-      <div
-        className="relative z-10 flex flex-col items-center gap-4 sm:flex-row sm:gap-5"
-        style={{
-          animation: "fadeInDown 0.65s ease both",
-          animationDelay: "0.46s",
-        }}
+  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const trimmed = url.trim();
+    if (!trimmed || !trimmed.includes(".")) {
+      setError("Please enter a website URL.");
+      return;
+    }
+    router.push(`/contact?url=${encodeURIComponent(trimmed)}&source=scan`);
+  };
+
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    setUrl(e.target.value);
+    if (error) setError(null);
+  }
+
+  return (
+    <div className="mt-9 w-full max-w-[520px]">
+      <p className="mb-3 text-[0.65rem] uppercase tracking-[0.26em] text-ink-700/50">
+        Start free
+      </p>
+      <label htmlFor="hero-url" className="sr-only">
+        Your website URL
+      </label>
+      <form
+        onSubmit={handleSubmit}
+        noValidate
+        className="flex items-center rounded-full border border-line bg-white p-1.5 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.12)]"
       >
-        <div className="flex -space-x-2.5">
-          {AVATAR_SRCS.map((src) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              key={src}
-              src={src}
-              alt=""
-              className="h-9 w-9 rounded-full border-2 object-cover"
-              style={{ borderColor: "#0a0a0a" }}
-            />
-          ))}
-        </div>
-        <p
-          style={{
-            fontSize: "0.82rem",
-            color: "rgba(255,255,255,0.38)",
-            lineHeight: 1.4,
-          }}
+        <input
+          id="hero-url"
+          type="url"
+          value={url}
+          onChange={handleChange}
+          placeholder="your-business.com"
+          autoComplete="url"
+          inputMode="url"
+          aria-label="Your website URL"
+          aria-describedby={error ? "hero-url-error" : undefined}
+          aria-invalid={error ? true : undefined}
+          className="min-w-0 flex-1 bg-transparent px-4 py-2 text-sm text-ink-900 outline-none placeholder:text-ink-700/40"
+          style={{ fontFamily: "var(--font-body)" }}
+        />
+        <button
+          type="submit"
+          className="inline-flex shrink-0 items-center gap-2 rounded-full bg-ink-900 px-5 py-3 text-sm font-medium tracking-[0.02em] text-white transition-colors hover:bg-gray-700"
         >
-          <span style={{ color: "rgba(255,255,255,0.7)", fontWeight: 500 }}>
-            2,000+
-          </span>{" "}
-          businesses already growing
+          <span className="hidden sm:inline">Scan my website</span>
+          <span className="sm:hidden">Scan</span>
+          <ArrowRight size={16} />
+        </button>
+      </form>
+      {error && (
+        <p id="hero-url-error" role="alert" className="mt-2 text-xs text-red-600">
+          {error}
         </p>
+      )}
+    </div>
+  );
+}
+
+export function HeroSection() {
+  return (
+    <AuroraBackground
+      className="w-full lg:min-h-[88vh] pt-28 pb-16 sm:py-28 lg:py-32 px-6 sm:px-10"
+      showRadialGradient={true}
+    >
+      <div className="relative z-10 w-full max-w-7xl">
+        <div className="grid lg:grid-cols-[55fr_45fr] lg:gap-12 xl:gap-16 lg:items-center">
+          <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+            <PreSeedPill />
+
+            <h1
+              className="max-w-[650px] leading-[1.05] tracking-[-0.02em] text-ink-900"
+              style={{
+                fontSize: "clamp(2.5rem, 5.5vw, 4.5rem)",
+                fontFamily: "var(--font-display)",
+                fontWeight: 300,
+              }}
+            >
+              You didn&apos;t build this business to be a secret.
+            </h1>
+
+            <p
+              className="mt-6 max-w-[540px] text-ink-700/70"
+              style={{
+                fontSize: "clamp(1rem, 1.4vw, 1.15rem)",
+                lineHeight: 1.6,
+              }}
+            >
+              Solara is the first autonomous social media team. Strategy,
+              scripts, editing, publishing — all through WhatsApp. 5 minutes a
+              day replaces a $2,000/month team.
+            </p>
+
+            <ScanUrlForm />
+
+            <p className="mt-3 text-xs text-ink-700/50">
+              No credit card. No dashboard to learn. Just your URL.
+            </p>
+
+            <AvatarPile />
+          </div>
+
+          <div className="mt-14 flex items-center justify-center lg:mt-0">
+            <div className="origin-center scale-[0.84] md:scale-100 lg:-rotate-2">
+              <WhatsAppScriptedHeroMockup phoneWidth={320} />
+            </div>
+          </div>
+        </div>
       </div>
-
-      <p
-        className="relative z-10 mt-8"
-        style={{
-          fontSize: "0.72rem",
-          letterSpacing: "0.28em",
-          textTransform: "uppercase",
-          color: "rgba(255,255,255,0.18)",
-          animation: "fadeInDown 0.65s ease both",
-          animationDelay: "0.5s",
-        }}
-      >
-        Instagram · TikTok · LinkedIn · Facebook
-      </p>
-
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-24"
-        style={{
-          background:
-            "linear-gradient(to bottom, transparent, rgba(10,10,10,0.6))",
-        }}
-      />
-
-      <style>{`
-        @keyframes fadeInDown {
-          from { opacity: 0; transform: translateY(-14px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
-    </section>
+    </AuroraBackground>
   );
 }
