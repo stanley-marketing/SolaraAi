@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { TopNav } from "@/components/LandingSections";
 
 import { HeroSection } from "@/components/homepage/HeroSection";
+import { NotAToolSection } from "@/components/homepage/NotAToolSection";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { BeamHubSection } from "@/components/BeamHubSection";
 import { ServicesSection } from "@/components/ServicesSection";
@@ -93,6 +94,8 @@ export default function Home() {
         />
 
         <HeroSection />
+
+        <NotAToolSection />
 
         <BeamHubSection />
 

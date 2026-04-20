@@ -6,8 +6,8 @@ import { WhatsAppMockup } from "@/components/homepage/WhatsAppMockup";
 import type { Message } from "@/components/homepage/WhatsAppMockup";
 import { WebAppMockup } from "@/components/homepage/WebAppMockup";
 
-function useInView(threshold = 0.15) {
-  const ref = useRef<HTMLDivElement | null>(null);
+function useInView<T extends Element = HTMLDivElement>(threshold = 0.15) {
+  const ref = useRef<T | null>(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const el = ref.current;
@@ -33,6 +33,13 @@ const REVEAL_BASE =
 const HIDDEN_Y = "opacity-0 translate-y-5";
 const VISIBLE = "opacity-100 translate-y-0 translate-x-0";
 
+const MUTED_LABEL = "#626262";
+const MUTED_LABEL_SOFT = "rgba(98,98,98,0.85)";
+const MUTED_BODY = "#4a4a4a";
+const MUTED_WHISPER = "rgba(98,98,98,0.75)";
+const LINE_COLOR = "#e3e3e3";
+const LINE_COLOR_SOFT = "#bcbcbc";
+
 const BRIDGE_WA_SCRIPT: Message[] = [
   {
     id: "b1",
@@ -48,61 +55,51 @@ const BRIDGE_WA_SCRIPT: Message[] = [
   },
 ];
 
-function ToolCard({
-  icon,
-  name,
-  description,
-}: {
-  icon: React.ReactNode;
-  name: string;
-  description: string;
-}) {
-  return (
-    <div className="flex flex-col gap-3 rounded-2xl border border-line bg-white p-5 text-left">
-      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-fog">
-        {icon}
-      </div>
-      <span
-        className="text-ink-900"
-        style={{ fontSize: "0.95rem", fontWeight: 600, lineHeight: 1.2 }}
-      >
-        {name}
-      </span>
-      <p
-        className="text-ink-700/70"
-        style={{ fontSize: "0.82rem", lineHeight: 1.5, margin: 0 }}
-      >
-        {description}
-      </p>
-    </div>
-  );
-}
-
 const TOOLS = [
-  { icon: Palette, name: "Canva", description: "Hours on every template. Still looks generic." },
-  { icon: CalendarClock, name: "Buffer", description: "Only schedules what you already made." },
-  { icon: Sparkles, name: "ChatGPT", description: "Generic captions. You still write every post." },
-  { icon: UserRound, name: "Fiverr", description: "Expensive. Unreliable. You still explain everything." },
+  { icon: Palette, name: "Design apps", description: "Hours on every template. Still looks generic." },
+  { icon: CalendarClock, name: "Schedulers", description: "They only post what you already made." },
+  { icon: Sparkles, name: "AI writers", description: "Generic captions. You still come up with the ideas." },
+  { icon: UserRound, name: "Freelancers", description: "Expensive. Unreliable. You still explain everything." },
 ] as const;
 
-function ToolCardsGrid() {
-  const { ref, visible } = useInView(0.2);
+function ToolsList() {
+  const { ref, visible } = useInView<HTMLUListElement>(0.2);
   return (
-    <div ref={ref} className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {TOOLS.map((tool, i) => (
-        <div
-          key={tool.name}
-          className={`${REVEAL_BASE} ${visible ? VISIBLE : HIDDEN_Y}`}
-          style={{ transitionDelay: visible ? `${i * 100}ms` : "0ms" }}
-        >
-          <ToolCard
-            icon={<tool.icon size={20} className="text-ink-900" />}
-            name={tool.name}
-            description={tool.description}
-          />
-        </div>
-      ))}
-    </div>
+    <ul ref={ref} className="flex w-full flex-col divide-y divide-line border-y border-line">
+      {TOOLS.map((tool, i) => {
+        const Icon = tool.icon;
+        return (
+          <li
+            key={tool.name}
+            className={`flex items-start gap-4 py-4 sm:items-center sm:gap-6 sm:py-5 ${REVEAL_BASE} ${visible ? VISIBLE : HIDDEN_Y}`}
+            style={{ transitionDelay: visible ? `${i * 80}ms` : "0ms" }}
+          >
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-fog">
+              <Icon size={18} className="text-ink-900" />
+            </span>
+            <div className="flex min-w-0 flex-1 flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-4">
+              <span
+                className="shrink-0 text-ink-900"
+                style={{
+                  fontSize: "0.95rem",
+                  fontWeight: 600,
+                  lineHeight: 1.3,
+                  minWidth: "120px",
+                }}
+              >
+                {tool.name}
+              </span>
+              <span
+                className="text-ink-700"
+                style={{ fontSize: "0.88rem", lineHeight: 1.5 }}
+              >
+                {tool.description}
+              </span>
+            </div>
+          </li>
+        );
+      })}
+    </ul>
   );
 }
 
@@ -115,18 +112,18 @@ function AbandonedToolsRow() {
           fontSize: "0.65rem",
           letterSpacing: "0.26em",
           textTransform: "uppercase" as const,
-          color: "rgba(98,98,98,0.5)",
+          color: MUTED_LABEL,
           marginBottom: 20,
         }}
       >
         Tools you&apos;ve tried
       </p>
 
-      <ToolCardsGrid />
+      <ToolsList />
 
       <p
         className="mt-7 text-center italic sm:text-left"
-        style={{ fontSize: "0.82rem", color: "rgba(98,98,98,0.45)" }}
+        style={{ fontSize: "0.82rem", color: MUTED_WHISPER }}
       >
         &hellip;none of it stuck.
       </p>
@@ -140,7 +137,7 @@ function BridgeConnector() {
       <div className="flex flex-col items-center gap-1 lg:hidden">
         <div
           className="relative flex h-10 w-px items-center justify-center"
-          style={{ background: "linear-gradient(to bottom, transparent, #e3e3e3)" }}
+          style={{ background: `linear-gradient(to bottom, transparent, ${LINE_COLOR})` }}
         >
           <span
             className="absolute rounded-full border border-line bg-white px-2 py-0.5"
@@ -148,7 +145,7 @@ function BridgeConnector() {
               fontSize: "0.58rem",
               letterSpacing: "0.18em",
               textTransform: "uppercase" as const,
-              color: "rgba(98,98,98,0.55)",
+              color: MUTED_LABEL,
             }}
           >
             TAP
@@ -157,7 +154,7 @@ function BridgeConnector() {
         <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden>
           <path
             d="M4 1v5M1.5 4l2.5 2.5 2.5-2.5"
-            stroke="#c8c8c8"
+            stroke={LINE_COLOR_SOFT}
             strokeWidth="1.5"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -169,7 +166,7 @@ function BridgeConnector() {
             fontSize: "0.58rem",
             letterSpacing: "0.18em",
             textTransform: "uppercase" as const,
-            color: "rgba(98,98,98,0.4)",
+            color: MUTED_LABEL_SOFT,
           }}
         >
           ONE TAP &middot; NO PASSWORD
@@ -185,8 +182,7 @@ function BridgeConnector() {
             <div
               className="absolute h-px w-full"
               style={{
-                background:
-                  "linear-gradient(to right, transparent, #e3e3e3 30%, #e3e3e3 70%, transparent)",
+                background: `linear-gradient(to right, transparent, ${LINE_COLOR} 30%, ${LINE_COLOR} 70%, transparent)`,
               }}
             />
             <span
@@ -195,7 +191,7 @@ function BridgeConnector() {
                 fontSize: "0.58rem",
                 letterSpacing: "0.18em",
                 textTransform: "uppercase" as const,
-                color: "rgba(98,98,98,0.55)",
+                color: MUTED_LABEL,
               }}
             >
               TAP
@@ -204,7 +200,7 @@ function BridgeConnector() {
           <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden>
             <path
               d="M1 4h5M4 1.5l2.5 2.5L4 6.5"
-              stroke="#c8c8c8"
+              stroke={LINE_COLOR_SOFT}
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -216,7 +212,7 @@ function BridgeConnector() {
             fontSize: "0.58rem",
             letterSpacing: "0.18em",
             textTransform: "uppercase" as const,
-            color: "rgba(98,98,98,0.4)",
+            color: MUTED_LABEL_SOFT,
             whiteSpace: "nowrap",
           }}
         >
@@ -254,17 +250,17 @@ function RuptureReveal() {
 
 function MagicLinkBridge() {
   return (
-    <div className="flex flex-col items-center gap-6 lg:flex-row lg:items-center lg:justify-center lg:gap-4">
-      <div className="lg:rotate-[-2deg]">
+    <div className="flex flex-col items-center gap-4 sm:gap-6 lg:flex-row lg:items-center lg:justify-center lg:gap-6">
+      <div className="origin-center scale-[0.82] sm:scale-90 lg:scale-100 lg:rotate-[-2deg]">
         <WhatsAppMockup
-          phoneWidth={240}
+          phoneWidth={300}
           script={BRIDGE_WA_SCRIPT}
           animateOnMount={false}
         />
       </div>
       <BridgeConnector />
-      <div className="lg:rotate-[2deg]">
-        <WebAppMockup phoneWidth={320} />
+      <div className="origin-center scale-[0.82] sm:scale-90 lg:scale-100 lg:rotate-[2deg]">
+        <WebAppMockup phoneWidth={300} />
       </div>
     </div>
   );
@@ -274,7 +270,7 @@ export function NotAToolSection() {
   return (
     <section
       className="relative overflow-x-hidden bg-white px-6 py-20 sm:px-10 sm:py-28 lg:py-32"
-      aria-label="The reframe — Solara is not a tool"
+      aria-label="The difference — what makes Solara different from other tools"
     >
       <div className="mx-auto max-w-5xl">
 
@@ -287,7 +283,7 @@ export function NotAToolSection() {
               fontSize: "0.65rem",
               letterSpacing: "0.26em",
               textTransform: "uppercase" as const,
-              color: "rgba(98,98,98,0.5)",
+              color: MUTED_LABEL,
             }}
           >
             01 &middot; THE DIFFERENCE
@@ -320,10 +316,10 @@ export function NotAToolSection() {
             style={{
               fontSize: "0.82rem",
               lineHeight: 1.55,
-              color: "rgba(98,98,98,0.7)",
+              color: MUTED_BODY,
             }}
           >
-            A message. A tap. The app opens.
+            A message. A tap. Solara opens.
           </p>
         </div>
 
