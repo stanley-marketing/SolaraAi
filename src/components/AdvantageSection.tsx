@@ -10,61 +10,54 @@ import {
   Bot,
   BrainCircuit,
   Clock3,
-  Gauge,
   Sparkles,
   UserRound,
-  WandSparkles,
 } from "lucide-react";
 
-
-/* Lazy-load PhotonBeam — code-split Three.js out of main bundle */
 const PhotonBeam = dynamic(() => import("@/components/ui/photon-beam"), {
   ssr: false,
   loading: () => <div className="h-full w-full bg-white" />,
 });
 
-/* ─── Shared data ─── */
 const STATS = [
-  { val: 90, suffix: "%", label: "Handled by AI", desc: "Scheduling, optimization, reporting — automated.", color: "#7c5cfc" },
-  { val: 10, suffix: "%", label: "Human expertise", desc: "Strategy, creativity, judgment — things AI can't replace.", color: "#a855f7" },
+  { val: 95, suffix: "%", label: "Handled by Solara", desc: "Strategy, scripts, editing, publishing — fully autonomous.", color: "#7c5cfc" },
+  { val: 5, suffix: "%", label: "Your input", desc: "A few minutes a week — record a clip, approve a post.", color: "#a855f7" },
 ];
 
-const AGENTS = [
-  { name: "Ads", color: "#7c5cfc" },
-  { name: "SEO", color: "#3b82f6" },
-  { name: "Social", color: "#06b6d4" },
-  { name: "Creative", color: "#ec4899" },
-  { name: "Website", color: "#f59e0b" },
-  { name: "Leads", color: "#10b981" },
+const CHANNELS = [
+  { name: "Strategy", color: "#059669" },
+  { name: "Scripts", color: "#10b981" },
+  { name: "Recording", color: "#06b6d4" },
+  { name: "Editing", color: "#3b82f6" },
+  { name: "Publishing", color: "#8b5cf6" },
+  { name: "Learning", color: "#ec4899" },
 ];
 
 const MOBILE_PANEL_COPY = [
   {
-    eyebrow: "Automation throughput",
-    title: "Tasks stream into one AI core",
+    eyebrow: "Full automation",
+    title: "One engine runs your entire social presence",
     icon: Sparkles,
   },
   {
-    eyebrow: "Parallel specialists",
-    title: "Six agents working at the same time",
+    eyebrow: "Parallel workflows",
+    title: "Strategy, scripts, editing — all at once",
     icon: Bot,
   },
   {
-    eyebrow: "Live optimization",
-    title: "Monitoring and tuning every minute",
+    eyebrow: "Always improving",
+    title: "Learns what works for your audience every month",
     icon: Clock3,
   },
   {
-    eyebrow: "Human in command",
-    title: "You steer strategy while AI executes",
+    eyebrow: "You stay in control",
+    title: "Approve via WhatsApp — one tap, done",
     icon: UserRound,
   },
 ];
 
-/* Per-stat beam configuration */
 const BEAM_CONFIGS = [
   {
-    // 90% AI — dense rainbow flood, wide fan, heavy bloom
     colorLine: "#1a1040",
     colorSignal: "#7c5cfc",
     colorSignal2: "#ec4899",
@@ -81,11 +74,9 @@ const BEAM_CONFIGS = [
     waveHeight: 1.5,
     waveSpeed: 1,
     curvePower: 2,
-    caption: "Tasks flowing through your AI marketing engine",
+    caption: "Your social media engine — running autonomously every week",
   },
-
   {
-    // 10% Human — sparse, calm, narrow, subtle glow
     colorLine: "#150a30",
     colorSignal: "#a855f7",
     colorSignal2: "#7c5cfc",
@@ -102,12 +93,10 @@ const BEAM_CONFIGS = [
     waveHeight: 0.3,
     waveSpeed: 0.3,
     curvePower: 4,
-    caption: "Your strategic decisions guiding the AI",
+    caption: "Your quick approvals keeping everything on-brand",
   },
 ];
 
-
-/* ─── Stat tabs ─── */
 function StatTabs({
   active,
   onSelect,
@@ -119,6 +108,7 @@ function StatTabs({
     <div className="mx-auto mt-16 grid max-w-xl grid-cols-2 gap-y-4">
       {STATS.map((s, i) => (
         <button
+          type="button"
           key={s.label}
           onClick={() => onSelect(i)}
           className={cn(
@@ -148,13 +138,11 @@ function StatTabs({
   );
 }
 
-/* ─── Main section ─── */
 export function AdvantageSection() {
   const [active, setActive] = useState(0);
   const [resetKey, setResetKey] = useState(0);
   const cfg = BEAM_CONFIGS[active];
 
-  /* Viewport detection — only mount WebGL when visible */
   const beamRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -166,7 +154,6 @@ export function AdvantageSection() {
       ([entry]) => {
         if (entry.isIntersecting) {
           observer.disconnect();
-          /* Defer Three.js mount so it doesn't compete with LCP paint */
           timerId = setTimeout(() => setIsVisible(true), 2000);
         }
       },
@@ -176,9 +163,6 @@ export function AdvantageSection() {
     return () => { observer.disconnect(); clearTimeout(timerId); };
   }, []);
 
-
-  /* Auto-rotate stats */
-  /* Auto-rotate stats — resets when user clicks a tab */
   useEffect(() => {
     const t = setInterval(() => setActive((p) => (p + 1) % STATS.length), 30000);
     return () => clearInterval(t);
@@ -187,22 +171,20 @@ export function AdvantageSection() {
   return (
     <section className="px-6 py-24">
       <div className="mx-auto max-w-5xl">
-        {/* Heading */}
         <h2
           className="text-center text-3xl tracking-tight text-gray-900 sm:text-4xl md:text-[44px] md:leading-[1.15]"
           style={{ fontFamily: "var(--font-display)" }}
         >
-          90% of what made great marketing expensive
-          <br className="hidden sm:block" /> was never skill.{" "}
+          95% of running your social media
+          <br className="hidden sm:block" /> was never creativity.{" "}
           <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 bg-clip-text text-transparent">
             It was time.
           </span>
         </h2>
         <p className="mx-auto mt-6 max-w-xl text-center text-lg text-gray-500">
-          AI handles the heavy lifting. Humans steer the ship.
+          Solara handles the heavy lifting. You approve with one tap.
         </p>
 
-        {/* Stat tabs */}
         <StatTabs active={active} onSelect={(i) => { setActive(i); setResetKey((k) => k + 1); }} />
 
         <AnimatePresence mode="wait">
@@ -215,55 +197,22 @@ export function AdvantageSection() {
             className="relative mx-auto mt-10 overflow-hidden rounded-2xl border border-gray-100 sm:hidden"
             style={{ height: 320 }}
           >
-            <style
-              dangerouslySetInnerHTML={{
-                __html: `
-                  @keyframes adv-lane-flow {
-                    0% { left: 0; opacity: 0; }
-                    12% { opacity: 1; }
-                    88% { opacity: 1; }
-                    100% { left: calc(100% - 8px); opacity: 0; }
-                  }
-                  @keyframes adv-tile-rise {
-                    0% { transform: translateY(10px); opacity: 0; }
-                    100% { transform: translateY(0); opacity: 1; }
-                  }
-                  @keyframes adv-monitor-sweep {
-                    0% { left: -22%; }
-                    100% { left: 100%; }
-                  }
-                  @keyframes adv-dot-pulse {
-                    0%, 100% { transform: scale(1); opacity: 0.45; }
-                    50% { transform: scale(1.25); opacity: 1; }
-                  }
-                  @keyframes adv-human-glow {
-                    0%, 100% { box-shadow: 0 0 12px 4px #a855f71f; }
-                    50% { box-shadow: 0 0 24px 10px #a855f738; }
-                  }
-                `,
-              }}
-            />
-
             <div
               className="absolute inset-0 p-4"
               style={{
                 background:
                   active === 0
-                    ? "linear-gradient(135deg, #f7f2ff, #fdf5fb)"
-                    : active === 1
-                      ? "linear-gradient(135deg, #f0f6ff, #f4fbf8)"
-                      : active === 2
-                        ? "linear-gradient(135deg, #ecfeff, #eff6ff)"
-                        : "linear-gradient(135deg, #f8f4ff, #fdf5ff)",
+                    ? "linear-gradient(135deg, #ecfdf5, #f0fdfa)"
+                    : "linear-gradient(135deg, #f9fafb, #f3f4f6)",
               }}
             >
               <div className="mb-3 flex items-start justify-between gap-3">
                 <div>
                   <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-gray-500">
-                    {MOBILE_PANEL_COPY[active].eyebrow}
+                    {MOBILE_PANEL_COPY[active]?.eyebrow ?? MOBILE_PANEL_COPY[0].eyebrow}
                   </p>
                   <p className="mt-1 text-sm font-semibold text-gray-900">
-                    {MOBILE_PANEL_COPY[active].title}
+                    {MOBILE_PANEL_COPY[active]?.title ?? MOBILE_PANEL_COPY[0].title}
                   </p>
                 </div>
                 <div
@@ -271,53 +220,43 @@ export function AdvantageSection() {
                   style={{ border: `1px solid ${STATS[active].color}35` }}
                 >
                   {(() => {
-                    const Icon = MOBILE_PANEL_COPY[active].icon;
+                    const Icon = MOBILE_PANEL_COPY[active]?.icon ?? MOBILE_PANEL_COPY[0].icon;
                     return <Icon size={16} style={{ color: STATS[active].color }} />;
                   })()}
                 </div>
               </div>
 
               {active === 0 && (
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {[
-                    { label: "Ads + SEO", delay: "0s" },
-                    { label: "Social + Creative", delay: "0.35s" },
-                    { label: "Website + Leads", delay: "0.7s" },
-                  ].map((lane) => (
+                    { label: "Strategy + Scripts", color: "#059669" },
+                    { label: "Editing + B-roll", color: "#06b6d4" },
+                    { label: "Publishing + Learning", color: "#8b5cf6" },
+                  ].map((lane, i) => (
                     <div
                       key={lane.label}
-                      className="grid grid-cols-[104px_1fr_68px] items-center gap-2"
+                      className="flex items-center gap-2 rounded-xl bg-white/90 px-3 py-2.5"
+                      style={{ border: `1.5px solid ${lane.color}25` }}
                     >
-                      <div className="rounded-full border border-white/80 bg-white/80 px-2 py-1 text-[10px] font-semibold text-gray-700">
-                        {lane.label}
-                      </div>
-                      <div className="relative h-[2px] overflow-hidden rounded-full bg-violet-200/60">
-                        <div
-                          className="absolute top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-violet-500"
-                          style={{
-                            boxShadow: "0 0 8px 2px #7c5cfc55",
-                            animation: "adv-lane-flow 1.9s ease-in-out infinite",
-                            animationDelay: lane.delay,
-                          }}
-                        />
-                      </div>
-                      <div className="rounded-lg border border-violet-300/60 bg-white px-2 py-1 text-center text-[10px] font-semibold text-violet-600">
-                        Core
+                      <div
+                        className="h-2 w-2 flex-shrink-0 rounded-full"
+                        style={{ backgroundColor: lane.color }}
+                      />
+                      <span className="text-xs font-semibold text-gray-800">{lane.label}</span>
+                      <div className="ml-auto flex items-center gap-1">
+                        <Activity size={10} style={{ color: lane.color }} />
+                        <span className="text-[10px] font-medium" style={{ color: lane.color }}>Active</span>
                       </div>
                     </div>
                   ))}
-
-                  <div className="mt-3 rounded-xl border border-white/80 bg-white/80 p-3">
-                    <div className="flex items-center justify-between">
-                      <p className="text-xs font-medium text-gray-500">Automated workload</p>
-                      <Gauge size={14} className="text-violet-500" />
-                    </div>
-                    <p className="mt-1 text-3xl font-light text-violet-600">90%</p>
-                    <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-violet-100">
+                  <div className="mt-2 rounded-xl border border-white/80 bg-white/80 p-3">
+                    <p className="text-xs font-medium text-gray-500">Autonomous workload</p>
+                    <p className="mt-1 text-3xl font-light text-emerald-600">95%</p>
+                    <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-emerald-100">
                       <motion.div
-                        className="h-full rounded-full bg-violet-500"
+                        className="h-full rounded-full bg-emerald-500"
                         initial={{ width: "0%" }}
-                        animate={{ width: "90%" }}
+                        animate={{ width: "95%" }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                       />
                     </div>
@@ -326,159 +265,25 @@ export function AdvantageSection() {
               )}
 
               {active === 1 && (
-                <div className="space-y-2">
-                  {[
-                    [AGENTS[0], AGENTS[1]],
-                    [AGENTS[2], AGENTS[3]],
-                    [AGENTS[4], AGENTS[5]],
-                  ].map((pair, rowIdx) => (
-                    <div key={rowIdx} className="grid grid-cols-2 gap-2">
-                      {pair.map((agent, colIdx) => {
-                        const idx = rowIdx * 2 + colIdx;
-                        return (
-                          <motion.div
-                            key={agent.name}
-                            initial={{ opacity: 0, scale: 0.85 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: idx * 0.08, duration: 0.35 }}
-                            className="flex items-center gap-2.5 rounded-xl bg-white/90 px-3 py-2.5"
-                            style={{ border: `1.5px solid ${agent.color}25` }}
-                          >
-                            <div className="relative flex-shrink-0">
-                              <div
-                                className="h-8 w-8 rounded-full"
-                                style={{
-                                  backgroundColor: `${agent.color}12`,
-                                  border: `2px solid ${agent.color}`,
-                                }}
-                              />
-                              <div
-                                className="absolute left-1/2 top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full"
-                                style={{
-                                  backgroundColor: agent.color,
-                                  animation: `adv-dot-pulse 2s ease-in-out ${idx * 0.3}s infinite`,
-                                }}
-                              />
-                            </div>
-                            <div className="min-w-0">
-                              <p className="text-xs font-semibold text-gray-800">{agent.name}</p>
-                              <div className="mt-1 h-1 w-full overflow-hidden rounded-full bg-gray-100">
-                                <motion.div
-                                  className="h-full rounded-full"
-                                  style={{ backgroundColor: agent.color }}
-                                  initial={{ width: "0%" }}
-                                  animate={{ width: "100%" }}
-                                  transition={{
-                                    duration: 1.8 + idx * 0.3,
-                                    repeat: Infinity,
-                                    repeatType: "reverse",
-                                    ease: "easeInOut",
-                                    delay: idx * 0.15,
-                                  }}
-                                />
-                              </div>
-                            </div>
-                          </motion.div>
-                        );
-                      })}
+                <div className="space-y-3">
+                  <div className="rounded-xl border border-white/80 bg-white/80 p-3">
+                    <p className="text-xs font-medium text-gray-500">Your weekly involvement</p>
+                    <p className="mt-1 text-3xl font-light text-gray-900">~5 min</p>
+                    <p className="mt-1 text-xs text-gray-400">Record a clip, approve a post — done</p>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="rounded-xl bg-white/90 p-3 text-center">
+                      <p className="text-2xl font-light text-gray-700">1 tap</p>
+                      <p className="mt-1 text-[10px] font-medium text-gray-500">to approve</p>
                     </div>
-                  ))}
-                  <div className="flex items-center justify-center gap-2 pt-1 text-xs text-blue-600">
+                    <div className="rounded-xl bg-white/90 p-3 text-center">
+                      <p className="text-2xl font-light text-gray-700">3 min</p>
+                      <p className="mt-1 text-[10px] font-medium text-gray-500">to record</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-center gap-2 pt-1 text-xs text-gray-500">
                     <BrainCircuit size={13} />
-                    <span className="font-medium">All running in parallel</span>
-                  </div>
-                </div>
-              )}
-
-              {active === 2 && (
-                <div className="rounded-xl border border-white/80 bg-white/82 p-3">
-                  <div className="mb-2 flex items-center justify-between text-[11px] font-semibold text-cyan-700">
-                    <span className="inline-flex items-center gap-1">
-                      <Activity size={12} />
-                      Live cycle
-                    </span>
-                    <span>24/7</span>
-                  </div>
-
-                  <div className="relative overflow-hidden rounded-lg border border-cyan-100 bg-white p-2">
-                    <div className="grid grid-cols-12 items-end gap-1">
-                      {[18, 40, 26, 58, 34, 44, 22, 62, 31, 54, 37, 48].map(
-                        (h, i) => (
-                          <div
-                            key={i}
-                            className="rounded-sm bg-cyan-200"
-                            style={{
-                              height: `${h}%`,
-                              minHeight: 8,
-                              animation: "adv-dot-pulse 1.8s ease-in-out infinite",
-                              animationDelay: `${i * 0.08}s`,
-                            }}
-                          />
-                        ),
-                      )}
-                    </div>
-                    <div
-                      className="pointer-events-none absolute inset-y-0 w-1/5"
-                      style={{
-                        background:
-                          "linear-gradient(90deg, transparent 0%, #06b6d435 50%, transparent 100%)",
-                        animation: "adv-monitor-sweep 2.8s linear infinite",
-                      }}
-                    />
-                  </div>
-
-                  <div className="mt-3 flex items-center gap-2 text-[11px]">
-                    {["Monitoring", "Optimizing", "Adjusting"].map((label, i) => (
-                      <div
-                        key={label}
-                        className="inline-flex items-center gap-1 rounded-full border border-cyan-100 bg-white px-2.5 py-1 text-cyan-700"
-                      >
-                        <span
-                          className="h-1.5 w-1.5 rounded-full bg-cyan-500"
-                          style={{
-                            animation: "adv-dot-pulse 1.2s ease-in-out infinite",
-                            animationDelay: `${i * 0.2}s`,
-                          }}
-                        />
-                        {label}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {active === 3 && (
-                <div>
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="rounded-xl border border-white/80 bg-white/80 p-3">
-                      <Bot size={14} className="text-gray-500" />
-                      <p className="mt-2 text-xs font-medium text-gray-500">AI execution</p>
-                      <p className="mt-1 text-2xl font-light text-gray-700">90%</p>
-                    </div>
-                    <div
-                      className="rounded-xl border border-purple-200/80 bg-white p-3"
-                      style={{ animation: "adv-human-glow 2.4s ease-in-out infinite" }}
-                    >
-                      <WandSparkles size={14} className="text-purple-500" />
-                      <p className="mt-2 text-xs font-medium text-purple-500">Human strategy</p>
-                      <p className="mt-1 text-2xl font-light text-purple-600">10%</p>
-                    </div>
-                  </div>
-
-                  <div className="mt-3 rounded-xl border border-white/80 bg-white/80 p-3">
-                    <div className="mb-2 flex items-center justify-between text-[11px] font-semibold">
-                      <span className="text-gray-500">Execution balance</span>
-                      <span className="text-purple-500">Human-guided</span>
-                    </div>
-                    <div className="relative h-2 rounded-full bg-gray-200">
-                      <div className="absolute inset-y-0 left-0 rounded-full bg-gray-500/60" style={{ width: "90%" }} />
-                      <motion.div
-                        className="absolute top-1/2 h-4 w-4 -translate-y-1/2 rounded-full border border-purple-300 bg-white"
-                        style={{ left: "calc(90% - 8px)", boxShadow: "0 0 10px 1px #a855f744" }}
-                        animate={{ x: [0, 2, 0, -2, 0] }}
-                        transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-                      />
-                    </div>
+                    <span className="font-medium">Solara handles everything else</span>
                   </div>
                 </div>
               )}
@@ -490,46 +295,31 @@ export function AdvantageSection() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Desktop: PhotonBeam (Three.js WebGL) */}
         <div
           ref={beamRef}
           className="relative mx-auto mt-10 hidden overflow-hidden rounded-2xl border border-gray-100 sm:block"
           style={{ height: 420, background: "#ffffff" }}
         >
-          {/* Skeleton placeholder — shows instantly, fades out when beam loads */}
           <div
             className="absolute inset-0 transition-opacity duration-500"
             style={{ opacity: isVisible ? 0 : 1, pointerEvents: "none" }}
           >
-            <style dangerouslySetInnerHTML={{ __html: `
-              @keyframes adv-skel-pulse { 0%,100%{opacity:.15} 50%{opacity:.35} }
-              @keyframes adv-skel-flow { 0%{transform:translateX(-100%)} 100%{transform:translateX(200%)} }
-            `}} />
-            {/* Mimic beam lines */}
             {[0.18, 0.32, 0.44, 0.56, 0.68, 0.82].map((y, i) => (
               <div
-                key={i}
+                key={`skel-${y}`}
                 className="absolute overflow-hidden"
                 style={{ left: "12%", right: "12%", top: `${y * 100}%`, height: 2 }}
               >
                 <div
-                  className="absolute inset-0 rounded-full bg-gray-200"
-                  style={{ animation: `adv-skel-pulse 2s ease-in-out ${i * 0.2}s infinite` }}
-                />
-                <div
-                  className="absolute inset-y-0 w-1/3 rounded-full bg-gray-300/40"
-                  style={{ animation: `adv-skel-flow 2.5s ease-in-out ${i * 0.3}s infinite` }}
+                  className="absolute inset-0 rounded-full bg-gray-200 animate-pulse"
                 />
               </div>
             ))}
-            {/* Center convergence glow */}
             <div
-              className="absolute right-[5%] top-1/2 h-12 w-12 -translate-y-1/2 rounded-full bg-gray-100"
-              style={{ animation: "adv-skel-pulse 2s ease-in-out infinite" }}
+              className="absolute right-[5%] top-1/2 h-12 w-12 -translate-y-1/2 rounded-full bg-gray-100 animate-pulse"
             />
           </div>
 
-          {/* Real PhotonBeam — fades in when loaded */}
           {isVisible && (
             <motion.div
               key={active}
@@ -561,31 +351,29 @@ export function AdvantageSection() {
             </motion.div>
           )}
 
-          {/* Agent labels — left side (fan-out) */}
           <div className="pointer-events-none absolute left-6 top-1/2 z-10 flex -translate-y-1/2 flex-col gap-4">
-            {AGENTS.map((agent, i) => (
+            {CHANNELS.map((channel, i) => (
               <motion.div
-                key={agent.name}
+                key={channel.name}
                 initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: active === 1 ? 0.9 : 0.5 }}
+                animate={{ opacity: active === 0 ? 0.9 : 0.5 }}
                 transition={{ delay: i * 0.08, duration: 0.4 }}
                 className="flex items-center gap-2"
               >
                 <div
                   className="h-2 w-2 rounded-full"
                   style={{
-                    backgroundColor: agent.color,
-                    boxShadow: `0 0 4px ${agent.color}60`,
+                    backgroundColor: channel.color,
+                    boxShadow: `0 0 4px ${channel.color}60`,
                   }}
                 />
                 <span className="text-xs font-medium text-gray-500">
-                  {agent.name}
+                  {channel.name}
                 </span>
               </motion.div>
             ))}
           </div>
 
-          {/* Solara icon — right side (convergence) */}
           <div className="pointer-events-none absolute top-1/2 z-10 -translate-y-1/2" style={{ right: "5%" }}>
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100">
               <Image
@@ -598,7 +386,6 @@ export function AdvantageSection() {
             </div>
           </div>
 
-          {/* Caption — bottom gradient overlay */}
           <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-white via-white/80 to-transparent px-6 pt-12 pb-5">
             <AnimatePresence mode="wait">
               <motion.p

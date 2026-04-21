@@ -106,18 +106,21 @@ const EXPERT_PLANS: Plan[] = [
   // ── Social Media Management ──
   {
     id: "expert-social",
-    name: "Social",
-    tagline: "Full social media management across all major platforms.",
-    monthly: 149,
-    yearly: 104,
+    name: "Solara",
+    tagline: "Your autonomous social media manager.",
+    monthly: 99,
+    yearly: 69,
     popular: false,
-    cta: "Talk to us",
+    cta: "Start free trial",
     features: [
-      "Full social media management",
-      "Content creation",
-      "Real story carousels",
-      "Engaging videos",
-      "Presentation videos",
+      "Weekly content strategy",
+      "Scripts in your voice",
+      "Scene-by-scene recording direction",
+      "AI video editing with B-roll & captions",
+      "Publishing across all platforms",
+      "Growth loop — learns every month",
+      "Works via WhatsApp",
+      "7-day free trial included",
     ],
   },
   {
@@ -401,60 +404,18 @@ function LogoStrip({ tab }: { tab: TabKey }) {
 }
 
 export function PricingSection() {
-  const [tab, setTab] = useState<TabKey>("social");
   const [yearly, setYearly] = useState(true);
-  const activePlans = PLANS_BY_TAB[tab];
+  const plan = EXPERT_PLANS.find((p) => p.id === "expert-social")!;
 
   return (
     <section className="py-24 px-6" style={{ background: "#ffffff" }}>
       <div className="mx-auto" style={{ maxWidth: 1320, fontFamily: "Inter, system-ui, -apple-system, sans-serif" }}>
         <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.1rem, 5vw, 3.6rem)", color: "#111111", textAlign: "center", letterSpacing: "-0.028em", margin: "0 0 12px", lineHeight: 1.08 }}>
-          Simple pricing. Serious results.
+          Simple pricing. One plan.
         </h2>
         <p style={{ textAlign: "center", fontSize: "1rem", color: "#6b6b6b", maxWidth: 420, margin: "0 auto 32px", lineHeight: 1.6 }}>
-          Every plan includes AI-powered marketing that runs 24/7. Pick the scale that fits.
+          Everything a social media manager does — strategy, scripts, production, publishing — for $69/month.
         </p>
-
-        <div style={{ display: "flex", justifyContent: "center", marginBottom: 32 }}>
-          <div className="pricing-tabs-container" style={{ display: "inline-flex", flexWrap: "wrap", justifyContent: "center", position: "relative", background: "#f1f1f1", borderRadius: 16, padding: 4, gap: 4 }}>
-            {TABS.map(({ key, label }) => {
-              const active = tab === key;
-              return (
-                <button
-                  key={key}
-                  type="button"
-                  onClick={() => setTab(key)}
-                  style={{
-                    position: "relative",
-                    border: "none",
-                    padding: "10px 20px",
-                    fontSize: "0.82rem",
-                    fontWeight: 600,
-                    cursor: "pointer",
-                    lineHeight: 1,
-                    background: "transparent",
-                    color: active ? "#ffffff" : "#666666",
-                    borderRadius: 999,
-                    zIndex: 1,
-                    transition: "color 0.25s ease",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {active && (
-                    <motion.div
-                      layoutId="homepage-pricing-tab-pill"
-                      style={{ position: "absolute", inset: 0, background: "#111111", borderRadius: 999 }}
-                      transition={{ type: "spring", duration: 0.45, bounce: 0.15 }}
-                    />
-                  )}
-                  <span style={{ position: "relative", zIndex: 2 }}>
-                    {label}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
 
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 48 }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 12 }}>
@@ -473,12 +434,8 @@ export function PricingSection() {
           </div>
         </div>
 
-        <LogoStrip tab={tab} />
-
-        <div className="pricing-grid-expert">
-          {activePlans.map((plan) => (
-            <PlanCard key={plan.id} plan={plan} yearly={yearly} />
-          ))}
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <PlanCard plan={plan} yearly={yearly} />
         </div>
 
         <style>{`
