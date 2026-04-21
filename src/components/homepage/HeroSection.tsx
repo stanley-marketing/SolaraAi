@@ -1,6 +1,6 @@
 "use client";
 
-import { type ChangeEvent, type FormEvent, useState } from "react";
+import { type ChangeEvent, type FormEvent, type ReactNode, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { AuroraBackground } from "@/components/ui/aurora-background";
@@ -114,7 +114,18 @@ function ScanUrlForm() {
   );
 }
 
-export function HeroSection() {
+type HeroSectionProps = {
+  mockup?: ReactNode;
+  whisperLine?: ReactNode;
+};
+
+export function HeroSection({ mockup, whisperLine }: HeroSectionProps = {}) {
+  const phoneVisual = mockup ?? (
+    <div className="origin-center scale-[0.84] md:scale-100 lg:-rotate-2">
+      <WhatsAppScriptedHeroMockup phoneWidth={320} />
+    </div>
+  );
+
   return (
     <AuroraBackground
       className="w-full lg:min-h-[88vh] pt-28 pb-16 sm:py-28 lg:py-32 px-6 sm:px-10"
@@ -143,9 +154,9 @@ export function HeroSection() {
                 lineHeight: 1.6,
               }}
             >
-              Solara is the first autonomous social media team. Strategy,
-              scripts, editing, publishing — all through WhatsApp. 5 minutes a
-              day replaces a $2,000/month team.
+              Solara AI &mdash; the first autonomous social media team.
+              Strategy, scripts, editing, publishing &mdash; all from your
+              phone. 5 minutes a day replaces a $2,000/month team.
             </p>
 
             <ScanUrlForm />
@@ -157,10 +168,13 @@ export function HeroSection() {
             <AvatarPile />
           </div>
 
-          <div className="mt-14 flex items-center justify-center lg:mt-0">
-            <div className="origin-center scale-[0.84] md:scale-100 lg:-rotate-2">
-              <WhatsAppScriptedHeroMockup phoneWidth={320} />
-            </div>
+          <div className="mt-14 flex flex-col items-center justify-center lg:mt-0">
+            {phoneVisual}
+            {whisperLine ? (
+              <div className="mt-5 flex items-center justify-center">
+                {whisperLine}
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
