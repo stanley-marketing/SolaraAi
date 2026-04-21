@@ -1,10 +1,19 @@
 "use client";
 
-import { type ChangeEvent, useState } from "react";
+import { type ChangeEvent, type FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { WhatsAppScriptedHeroMockup } from "@/components/homepage/WhatsAppMockupScripted";
+import { PlaceholdersAndVanishInput } from "@/components/ui/placeholders-and-vanish-input";
+
+const URL_PLACEHOLDERS = [
+  "your-business.com",
+  "mariasbakery.com",
+  "peakformfitness.com",
+  "jdwardlaw.com",
+  "northlanerenovations.com",
+];
 
 const AVATAR_SRCS = [
   "/avatars/avatar-1.jpg",
@@ -68,59 +77,36 @@ function ScanUrlForm() {
   const [url, setUrl] = useState("");
   const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setUrl(e.target.value);
+    if (error) setError(null);
+  };
+
+  const handleSubmit = (_e: FormEvent<HTMLFormElement>) => {
     const trimmed = url.trim();
     if (!trimmed || !trimmed.includes(".")) {
       setError("Please enter a website URL.");
       return;
     }
-    router.push(`/contact?url=${encodeURIComponent(trimmed)}&source=scan`);
+    // Small delay lets the vanish animation play before we navigate away.
+    window.setTimeout(() => {
+      router.push(`/contact?url=${encodeURIComponent(trimmed)}&source=scan`);
+    }, 550);
   };
-
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    setUrl(e.target.value);
-    if (error) setError(null);
-  }
 
   return (
     <div className="mt-9 w-full max-w-[520px]">
       <p className="mb-3 text-[0.65rem] uppercase tracking-[0.26em] text-ink-700/50">
         Start free
       </p>
-      <label htmlFor="hero-url" className="sr-only">
-        Your website URL
-      </label>
-      <form
+      <PlaceholdersAndVanishInput
+        placeholders={URL_PLACEHOLDERS}
+        onChange={handleChange}
         onSubmit={handleSubmit}
-        noValidate
-        className="flex items-center rounded-full border border-line bg-white p-1.5 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.12)]"
-      >
-        <input
-          id="hero-url"
-          type="url"
-          value={url}
-          onChange={handleChange}
-          placeholder="your-business.com"
-          autoComplete="url"
-          inputMode="url"
-          aria-label="Your website URL"
-          aria-describedby={error ? "hero-url-error" : undefined}
-          aria-invalid={error ? true : undefined}
-          className="min-w-0 flex-1 bg-transparent px-4 py-2 text-sm text-ink-900 outline-none placeholder:text-ink-700/40"
-          style={{ fontFamily: "var(--font-body)" }}
-        />
-        <button
-          type="submit"
-          className="inline-flex shrink-0 items-center gap-2 rounded-full bg-ink-900 px-5 py-3 text-sm font-medium tracking-[0.02em] text-white transition-colors hover:bg-gray-700"
-        >
-          <span className="hidden sm:inline">Scan my website</span>
-          <span className="sm:hidden">Scan</span>
-          <ArrowRight size={16} />
-        </button>
-      </form>
+        ariaLabel="Your website URL"
+      />
       {error && (
-        <p id="hero-url-error" role="alert" className="mt-2 text-xs text-red-600">
+        <p role="alert" className="mt-2 text-xs text-red-600">
           {error}
         </p>
       )}
