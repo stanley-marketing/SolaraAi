@@ -275,22 +275,8 @@ export function NotAToolSection() {
       <div className="mx-auto max-w-5xl">
 
         <div>
-          <div className="h-px bg-line" />
-
-          <p
-            className="mt-6"
-            style={{
-              fontSize: "0.65rem",
-              letterSpacing: "0.26em",
-              textTransform: "uppercase" as const,
-              color: MUTED_LABEL,
-            }}
-          >
-            01 &middot; THE DIFFERENCE
-          </p>
-
           <h2
-            className="mt-4 max-w-[760px] leading-[1.08] tracking-[-0.02em] text-ink-900"
+            className="max-w-[760px] leading-[1.08] tracking-[-0.02em] text-ink-900"
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
