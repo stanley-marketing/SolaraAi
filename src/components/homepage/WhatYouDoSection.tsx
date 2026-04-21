@@ -357,7 +357,11 @@ export function WhatYouDoSection() {
                 letterSpacing: "-0.01em",
               }}
             >
-              That&rsquo;s what{" "}
+              A{" "}
+              <span style={{ color: "#1c1c1e", fontWeight: 600 }}>
+                $2,000/month
+              </span>{" "}
+              social media manager would text you the exact same things.{" "}
               <span
                 style={{
                   background: "#111111",
@@ -367,10 +371,9 @@ export function WhatYouDoSection() {
                   fontWeight: 600,
                 }}
               >
-                $2,000/month
-              </span>{" "}
-              of social media management looks like. Just&hellip; answering
-              WhatsApp.
+                Solara does it for $69
+              </span>
+              .
             </p>
           </div>
 
