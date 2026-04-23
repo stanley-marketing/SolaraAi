@@ -33,6 +33,7 @@ const SPRING_STIFFNESS = 0.16;
 type Capability = {
   icon: LucideIcon;
   label: string;
+  comingSoon?: boolean;
 };
 
 const CAPABILITIES: Capability[] = [
@@ -46,7 +47,7 @@ const CAPABILITIES: Capability[] = [
   { icon: Hash, label: "Captions & hashtags" },
   { icon: Share2, label: "Multi-platform" },
   { icon: Clock, label: "Optimal timing" },
-  { icon: BarChart3, label: "Analytics" },
+  { icon: BarChart3, label: "Analytics", comingSoon: true },
   { icon: RefreshCw, label: "Weekly strategy" },
   { icon: Video, label: "Camera coaching" },
   { icon: Mic, label: "Brand voice" },
@@ -104,6 +105,21 @@ function TileCard({
         }}
       >
         {capability.label}
+        {capability.comingSoon && (
+          <span
+            style={{
+              display: "block",
+              fontSize: "0.6rem",
+              fontWeight: 400,
+              fontStyle: "italic",
+              color: "#a0a0a5",
+              letterSpacing: "0.01em",
+              marginTop: "2px",
+            }}
+          >
+            (soon)
+          </span>
+        )}
       </span>
     </div>
   );
