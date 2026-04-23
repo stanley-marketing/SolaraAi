@@ -31,6 +31,7 @@ export function BeamHubSection() {
   const scriptsRef = useRef<HTMLDivElement>(null);
   const productionRef = useRef<HTMLDivElement>(null);
   const publishingRef = useRef<HTMLDivElement>(null);
+  const smsRef = useRef<HTMLDivElement>(null);
   const whatsappRef = useRef<HTMLDivElement>(null);
   const growthRef = useRef<HTMLDivElement>(null);
 
@@ -131,10 +132,14 @@ export function BeamHubSection() {
                   <span className="text-xs font-medium text-gray-500">Publishing</span>
                 </div>
                 <div className="flex flex-col items-center gap-1.5">
+                  <Circle nodeRef={smsRef}>
+                    <img src="/icons/sms-logo.svg" alt="" className="h-7 w-7" aria-hidden="true" />
+                  </Circle>
+                  <span className="text-xs font-medium text-gray-500">Text</span>
+                </div>
+                <div className="flex flex-col items-center gap-1.5">
                   <Circle nodeRef={whatsappRef}>
-                    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                      <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
+                    <img src="/icons/whatsapp-icon.svg" alt="" className="h-7 w-7" aria-hidden="true" />
                   </Circle>
                   <span className="text-xs font-medium text-gray-500">WhatsApp</span>
                 </div>
@@ -155,9 +160,10 @@ export function BeamHubSection() {
             <AnimatedBeam containerRef={containerRef} fromRef={scriptsRef} toRef={centerRef} gradientStartColor="#c084fc" gradientStopColor="#f472b6" />
             <AnimatedBeam containerRef={containerRef} fromRef={productionRef} toRef={centerRef} curvature={75} gradientStartColor="#c084fc" gradientStopColor="#f472b6" />
 
-            <AnimatedBeam containerRef={containerRef} fromRef={publishingRef} toRef={centerRef} curvature={-75} gradientStartColor="#c084fc" gradientStopColor="#f472b6" reverse />
-            <AnimatedBeam containerRef={containerRef} fromRef={whatsappRef} toRef={centerRef} gradientStartColor="#c084fc" gradientStopColor="#f472b6" reverse />
-            <AnimatedBeam containerRef={containerRef} fromRef={growthRef} toRef={centerRef} curvature={75} gradientStartColor="#c084fc" gradientStopColor="#f472b6" reverse />
+            <AnimatedBeam containerRef={containerRef} fromRef={publishingRef} toRef={centerRef} curvature={-90} gradientStartColor="#c084fc" gradientStopColor="#f472b6" reverse />
+            <AnimatedBeam containerRef={containerRef} fromRef={smsRef} toRef={centerRef} curvature={-30} gradientStartColor="#c084fc" gradientStopColor="#f472b6" reverse />
+            <AnimatedBeam containerRef={containerRef} fromRef={whatsappRef} toRef={centerRef} curvature={30} gradientStartColor="#c084fc" gradientStopColor="#f472b6" reverse />
+            <AnimatedBeam containerRef={containerRef} fromRef={growthRef} toRef={centerRef} curvature={90} gradientStartColor="#c084fc" gradientStopColor="#f472b6" reverse />
           </div>
         </BlurFade>
 
@@ -183,7 +189,7 @@ export function BeamHubSection() {
               <p>
                 Every week it decides what to create, writes the scripts,
                 tells you what to film, handles the editing, and publishes.
-                You approve with one tap via WhatsApp.
+                You approve with one tap via text or WhatsApp.
               </p>
             </BlurFade>
             <BlurFade delay={0.5}>
