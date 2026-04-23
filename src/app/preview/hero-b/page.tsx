@@ -13,9 +13,9 @@ export default function HeroBPreview() {
               intervalMs={6500}
               channels={[
                 {
-                  key: "imessage",
-                  label: "Messages",
-                  accent: "#007AFF",
+                  key: "sms",
+                  label: "Text",
+                  accent: "#34C759",
                   mockup: (
                     <div className="lg:-rotate-2">
                       <MessagesScriptedHeroMockup phoneWidth={320} />

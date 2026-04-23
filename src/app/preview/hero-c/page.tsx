@@ -11,8 +11,8 @@ export default function HeroCPreview() {
           <div className="origin-center scale-[0.65] md:scale-[0.78] lg:scale-[0.86]">
             <SideBySidePhones
               primary={{
-                label: "Messages",
-                accent: "#007AFF",
+                label: "Text",
+                accent: "#34C759",
                 mockup: <MessagesScriptedHeroMockup phoneWidth={260} />,
               }}
               secondary={{

@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 
 import { TopNav } from "@/components/LandingSections";
 
+import { ChannelWhisper } from "@/components/homepage/ChannelWhisper";
 import { HeroSection } from "@/components/homepage/HeroSection";
+import { MessagesScriptedHeroMockup } from "@/components/homepage/MessagesMockup";
 import { NotAToolSection } from "@/components/homepage/NotAToolSection";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { BeamHubSection } from "@/components/BeamHubSection";
@@ -93,7 +95,14 @@ export default function Home() {
           }}
         />
 
-        <HeroSection />
+        <HeroSection
+          mockup={
+            <div className="origin-center scale-[0.84] md:scale-100 lg:-rotate-2">
+              <MessagesScriptedHeroMockup phoneWidth={320} />
+            </div>
+          }
+          whisperLine={<ChannelWhisper />}
+        />
 
         <NotAToolSection />
 
