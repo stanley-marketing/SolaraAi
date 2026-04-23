@@ -278,8 +278,8 @@ export default function Section2V1Preview() {
         .tile-glow-fill {
           background: radial-gradient(
             circle 220px at var(--glow-x) var(--glow-y),
-            rgba(251, 191, 36, 0.22),
-            rgba(251, 191, 36, 0) 70%
+            rgba(236, 72, 153, 0.26),
+            rgba(236, 72, 153, 0) 70%
           );
           opacity: var(--glow);
           transition: opacity 180ms ease-out;
@@ -289,8 +289,8 @@ export default function Section2V1Preview() {
           padding: 1px;
           background: radial-gradient(
             circle 260px at var(--glow-x) var(--glow-y),
-            rgba(245, 158, 11, 0.9),
-            rgba(245, 158, 11, 0) 65%
+            rgba(219, 39, 119, 0.95),
+            rgba(219, 39, 119, 0) 65%
           );
           -webkit-mask:
             linear-gradient(#000 0 0) content-box,
@@ -383,10 +383,11 @@ export default function Section2V1Preview() {
         </p>
         <p className="mt-3 text-sm text-ink-700/70">
           Move your cursor across the grid. Each tile reacts to proximity:
-          subtle lift, 3D tilt toward the cursor, warm radial glow from the
-          point of pointer contact, and a faint amber border light on the
-          edge facing the cursor. Spring-lerp tracking at 60fps. Falls back
-          to a gentle hover-lift for reduced-motion and touch users.
+          subtle lift, 3D tilt toward the cursor, rose-pink radial glow
+          from the point of pointer contact, and a faint pink border light
+          on the edge facing the cursor. Spring-lerp tracking at 60fps.
+          Falls back to a gentle hover-lift for reduced-motion and touch
+          users.
         </p>
       </div>
     </main>
