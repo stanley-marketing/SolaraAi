@@ -7,7 +7,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { Camera, Check, Sparkles } from "lucide-react";
-import { useRef, useState } from "react";
+import { memo, useRef, useState } from "react";
 import {
   BODY,
   DISPLAY,
@@ -573,7 +573,17 @@ function PhoneStep4() {
   );
 }
 
-const STEP_COMPONENTS = [PhoneStep1, PhoneStep2, PhoneStep3, PhoneStep4];
+const MemoPhoneStep1 = memo(PhoneStep1);
+const MemoPhoneStep2 = memo(PhoneStep2);
+const MemoPhoneStep3 = memo(PhoneStep3);
+const MemoPhoneStep4 = memo(PhoneStep4);
+
+const STEP_COMPONENTS = [
+  MemoPhoneStep1,
+  MemoPhoneStep2,
+  MemoPhoneStep3,
+  MemoPhoneStep4,
+];
 
 function StickyStoryboard() {
   const ref = useRef<HTMLDivElement>(null);
@@ -644,7 +654,11 @@ function StickyStoryboard() {
               <div
                 key={step.number}
                 className="flex items-center"
-                style={{ minHeight: "80vh" }}
+                style={{
+                  minHeight: "80vh",
+                  contentVisibility: "auto",
+                  containIntrinsicSize: "auto 80vh",
+                }}
               >
                 <div
                   className={cn(
@@ -708,15 +722,27 @@ export default function SectionFourStoryboardPreview() {
   return (
     <main style={{ background: SHELL, color: INK }}>
       <section className="relative">
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <FlickeringGrid />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 -z-10"
+          style={{ height: "100%" }}
+        >
           <div
-            className="absolute inset-0"
+            className="sticky top-0"
             style={{
-              background:
-                "radial-gradient(ellipse at 50% 30%, transparent 15%, rgba(248,247,244,0.92) 75%)",
+              height: "100vh",
+              width: "100%",
             }}
-          />
+          >
+            <FlickeringGrid />
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(ellipse at 50% 35%, transparent 15%, rgba(248,247,244,0.92) 75%)",
+              }}
+            />
+          </div>
         </div>
 
         <div className="mx-auto max-w-6xl px-6 pt-20 pb-10 sm:pt-24">

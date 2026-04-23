@@ -35,6 +35,9 @@ export const HAIRLINE_HEAVY = "rgba(10,10,10,0.18)";
 export const DISPLAY = "var(--font-display)";
 export const BODY = "var(--font-body)";
 
+const ALPHA_BUCKETS = 24;
+const FRAME_INTERVAL_MS = 33;
+
 export function FlickeringGrid({
   squareSize = 4,
   gridGap = 6,
@@ -58,11 +61,21 @@ export function FlickeringGrid({
     const canvas = canvasRef.current;
     const container = containerRef.current;
     if (!canvas || !container) return;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
+    const rgbMatch = color.match(/rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/);
+    const r = rgbMatch ? rgbMatch[1] : "10";
+    const g = rgbMatch ? rgbMatch[2] : "10";
+    const b = rgbMatch ? rgbMatch[3] : "10";
+    const alphaStrings: string[] = new Array(ALPHA_BUCKETS + 1);
+    for (let i = 0; i <= ALPHA_BUCKETS; i++) {
+      const a = ((i / ALPHA_BUCKETS) * maxOpacity).toFixed(3);
+      alphaStrings[i] = `rgba(${r},${g},${b},${a})`;
+    }
+
     let raf = 0;
-    let squares: Float32Array;
+    let squares: Uint8Array = new Uint8Array(0);
     let cols = 0;
     let rows = 0;
 
@@ -78,56 +91,61 @@ export function FlickeringGrid({
       ctx.scale(dpr, dpr);
       cols = Math.floor(w / (squareSize + gridGap));
       rows = Math.floor(h / (squareSize + gridGap));
-      squares = new Float32Array(cols * rows);
+      squares = new Uint8Array(cols * rows);
       for (let i = 0; i < squares.length; i++) {
-        squares[i] = Math.random() * maxOpacity;
+        squares[i] = (Math.random() * ALPHA_BUCKETS) | 0;
       }
     };
 
-    const draw = (delta: number) => {
+    const draw = (chance: number) => {
       const w = container.clientWidth;
       const h = container.clientHeight;
       ctx.clearRect(0, 0, w, h);
+      const cell = squareSize + gridGap;
       for (let i = 0; i < cols; i++) {
+        const x = i * cell;
+        const base = i * rows;
         for (let j = 0; j < rows; j++) {
-          const idx = i * rows + j;
-          if (Math.random() < flickerChance * delta) {
-            squares[idx] = Math.random() * maxOpacity;
+          const idx = base + j;
+          if (Math.random() < chance) {
+            squares[idx] = (Math.random() * ALPHA_BUCKETS) | 0;
           }
-          ctx.fillStyle = color
-            .replace("rgb(", "rgba(")
-            .replace(")", `,${squares[idx]})`);
-          ctx.fillRect(
-            i * (squareSize + gridGap),
-            j * (squareSize + gridGap),
-            squareSize,
-            squareSize,
-          );
+          const bucket = squares[idx];
+          if (bucket === 0) continue;
+          ctx.fillStyle = alphaStrings[bucket];
+          ctx.fillRect(x, j * cell, squareSize, squareSize);
         }
       }
     };
 
-    let last = performance.now();
+    let lastFrame = 0;
     const loop = (now: number) => {
-      const delta = (now - last) / 1000;
-      last = now;
-      if (visible) draw(Math.min(delta, 0.1));
+      if (visible && now - lastFrame >= FRAME_INTERVAL_MS) {
+        const delta = Math.min((now - lastFrame) / 1000, 0.1);
+        draw(flickerChance * delta);
+        lastFrame = now;
+      }
       raf = requestAnimationFrame(loop);
     };
 
     const observer = new IntersectionObserver(
       ([entry]) => setVisible(entry.isIntersecting),
-      { threshold: 0 },
+      { threshold: 0, rootMargin: "100px" },
     );
     observer.observe(container);
 
     setup();
-    const resize = () => setup();
+    let resizeTimeout = 0;
+    const resize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = window.setTimeout(setup, 120);
+    };
     window.addEventListener("resize", resize);
     raf = requestAnimationFrame(loop);
 
     return () => {
       cancelAnimationFrame(raf);
+      clearTimeout(resizeTimeout);
       window.removeEventListener("resize", resize);
       observer.disconnect();
     };
