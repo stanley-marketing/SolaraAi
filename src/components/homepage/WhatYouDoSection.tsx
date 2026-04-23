@@ -37,12 +37,14 @@ function useInView<T extends Element = HTMLDivElement>(threshold = 0.2) {
 }
 
 type AskType = "video" | "photo" | "voice" | "text";
+type Channel = "sms" | "whatsapp";
 
 type Ask = {
   id: string;
   body: string;
   time: string;
   type: AskType;
+  channel: Channel;
 };
 
 const ASKS: Ask[] = [
@@ -51,30 +53,35 @@ const ASKS: Ask[] = [
     body: "Quick 5-sec clip — espresso pulling. Just the shot, no talking.",
     time: "Just now",
     type: "video",
+    channel: "sms",
   },
   {
     id: "menu",
     body: "Voice note: 30 seconds, tell me what's on the menu today. Your own words.",
     time: "12m ago",
     type: "voice",
+    channel: "whatsapp",
   },
   {
     id: "lunch",
     body: "Send a photo of today's lunch special. Just the plate on the counter.",
     time: "1h ago",
     type: "photo",
+    channel: "sms",
   },
   {
     id: "greeting",
     body: "Film yourself greeting the next walk-in. \u201cHey, welcome in.\u201d That's it.",
     time: "3h ago",
     type: "video",
+    channel: "whatsapp",
   },
   {
     id: "sourdough",
     body: "Quick reply: how do you describe your sourdough crust? One sentence.",
     time: "Yesterday",
     type: "text",
+    channel: "sms",
   },
 ];
 
@@ -137,9 +144,45 @@ function WhatsAppIcon({ size = 38 }: { size?: number }) {
   );
 }
 
+function MessagesIcon({ size = 38 }: { size?: number }) {
+  return (
+    <div
+      aria-hidden="true"
+      className="flex shrink-0 items-center justify-center"
+      style={{
+        width: size,
+        height: size,
+        borderRadius: size * 0.28,
+        background: "linear-gradient(180deg, #5BF675 0%, #0CBD2A 100%)",
+        boxShadow: "0 1px 2px rgba(0,0,0,0.10), 0 6px 12px -4px rgba(12, 189, 42, 0.45)",
+      }}
+    >
+      <svg
+        width={size * 0.64}
+        height={size * 0.64}
+        viewBox="0 0 64 64"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M32 14 C 18.5 14, 8.5 22.5, 8.5 32 C 8.5 37.5, 11.5 42.3, 16 45.5 C 15 48.5, 12.8 51.5, 10.5 53 C 14.5 53, 20.5 51.3, 25 48.5 C 27.3 49.3, 29.6 49.5, 32 49.5 C 45.5 49.5, 55.5 41, 55.5 32 C 55.5 22.5, 45.5 14, 32 14 Z"
+          fill="#FFFFFF"
+        />
+      </svg>
+    </div>
+  );
+}
+
+const CHANNEL_META: Record<Channel, { label: string; Icon: (props: { size?: number }) => React.ReactElement }> = {
+  sms: { label: "Messages", Icon: MessagesIcon },
+  whatsapp: { label: "WhatsApp", Icon: WhatsAppIcon },
+};
+
 function NotificationCard({ ask }: { ask: Ask }) {
   const meta = TYPE_META[ask.type];
   const Icon = meta.icon;
+  const channel = CHANNEL_META[ask.channel];
+  const ChannelIcon = channel.Icon;
 
   return (
     <figure
@@ -151,7 +194,7 @@ function NotificationCard({ ask }: { ask: Ask }) {
       }}
     >
       <div className="flex items-start gap-3">
-        <WhatsAppIcon size={40} />
+        <ChannelIcon size={40} />
 
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-1.5">
@@ -180,7 +223,7 @@ function NotificationCard({ ask }: { ask: Ask }) {
                 fontWeight: 500,
               }}
             >
-              WhatsApp
+              {channel.label}
             </span>
             <span className="ml-auto shrink-0 tabular-nums"
               style={{
