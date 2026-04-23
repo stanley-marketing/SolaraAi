@@ -51,26 +51,27 @@ type Capability = {
   icon: LucideIcon;
   label: string;
   tone: "amber" | "cream" | "coffee" | "rose" | "neutral";
+  featured?: boolean;
 };
 
 const CAPABILITIES: Capability[] = [
-  { icon: Target, label: "Content strategy", tone: "amber" },
+  { icon: Target, label: "Content strategy", tone: "amber", featured: true },
   { icon: FileText, label: "Scripts", tone: "cream" },
-  { icon: Film, label: "Video editing", tone: "coffee" },
+  { icon: Film, label: "Video editing", tone: "coffee", featured: true },
   { icon: Palette, label: "Color grading", tone: "rose" },
   { icon: Music, label: "Sound design", tone: "neutral" },
   { icon: Zap, label: "Viral hooks", tone: "amber" },
   { icon: ImageIcon, label: "Thumbnails", tone: "cream" },
   { icon: Hash, label: "Captions & hashtags", tone: "coffee" },
-  { icon: Share2, label: "Multi-platform", tone: "rose" },
+  { icon: Share2, label: "Multi-platform", tone: "rose", featured: true },
   { icon: Clock, label: "Optimal timing", tone: "neutral" },
   { icon: BarChart3, label: "Analytics", tone: "amber" },
   { icon: RefreshCw, label: "Weekly strategy", tone: "cream" },
   { icon: Video, label: "Camera coaching", tone: "coffee" },
-  { icon: Mic, label: "Brand voice", tone: "rose" },
+  { icon: Mic, label: "Brand voice", tone: "rose", featured: true },
   { icon: Award, label: "Authority", tone: "neutral" },
   { icon: Search, label: "Social SEO", tone: "amber" },
-  { icon: Layers, label: "Repurposing", tone: "cream" },
+  { icon: Layers, label: "Repurposing", tone: "cream", featured: true },
 ];
 
 const TONE_BG: Record<Capability["tone"], string> = {
@@ -101,23 +102,104 @@ const MARQUEE_CSS = `
 }
 `;
 
-function CapabilityCell({ capability }: { capability: Capability }) {
+type MarqueeVariant = "rainbow" | "monochrome" | "cream" | "static";
+
+const CREAM_BG = "#fbf6ea";
+const FEATURED_BG = "#e0f2fe";
+
+function StaticCapabilityCell({
+  capability,
+  featured,
+}: {
+  capability: Capability;
+  featured: boolean;
+}) {
   const Icon = capability.icon;
   return (
     <div
-      className="relative flex shrink-0 flex-col items-center justify-center gap-2 overflow-hidden border border-line bg-white"
-      style={{ width: 144, height: 128 }}
+      className="flex flex-col items-center justify-center gap-2.5 px-4 py-6 transition-transform duration-200 ease-out"
+      style={{
+        borderRadius: 14,
+        background: featured ? FEATURED_BG : "transparent",
+        boxShadow: featured
+          ? "0 1px 2px rgba(0,0,0,0.04), 0 10px 24px -12px rgba(59, 130, 246, 0.18)"
+          : "none",
+      }}
     >
-      <div
-        aria-hidden="true"
-        className="absolute inset-0"
-        style={{ background: TONE_BG[capability.tone] }}
+      <Icon
+        size={26}
+        strokeWidth={1.75}
+        style={{ color: featured ? "#1c1c1e" : "#b0b0b5" }}
       />
-      <div
-        aria-hidden="true"
-        className="absolute inset-0"
-        style={{ background: STRIPE_OVERLAY }}
-      />
+      <span
+        className="text-center"
+        style={{
+          fontSize: "0.78rem",
+          fontWeight: featured ? 600 : 500,
+          letterSpacing: "-0.005em",
+          color: featured ? "#1c1c1e" : "#8a8a8e",
+          lineHeight: 1.25,
+        }}
+      >
+        {capability.label}
+      </span>
+    </div>
+  );
+}
+
+function CapabilitiesGrid({
+  featuredLabels,
+}: {
+  featuredLabels?: string[];
+}) {
+  const override = featuredLabels ? new Set(featuredLabels) : null;
+  return (
+    <div className="mx-auto grid w-full max-w-4xl grid-cols-3 gap-2 sm:gap-3 md:grid-cols-5 lg:grid-cols-6">
+      {CAPABILITIES.map((cap) => {
+        const featured = override
+          ? override.has(cap.label)
+          : (cap.featured ?? false);
+        return (
+          <StaticCapabilityCell
+            key={cap.label}
+            capability={cap}
+            featured={featured}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
+function CapabilityCell({
+  capability,
+  variant,
+}: {
+  capability: Capability;
+  variant: MarqueeVariant;
+}) {
+  const Icon = capability.icon;
+  const cellBackground =
+    variant === "cream" ? CREAM_BG : "#ffffff";
+  return (
+    <div
+      className="relative flex shrink-0 flex-col items-center justify-center gap-2 overflow-hidden border border-line"
+      style={{ width: 144, height: 128, background: cellBackground }}
+    >
+      {variant === "rainbow" && (
+        <>
+          <div
+            aria-hidden="true"
+            className="absolute inset-0"
+            style={{ background: TONE_BG[capability.tone] }}
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0"
+            style={{ background: STRIPE_OVERLAY }}
+          />
+        </>
+      )}
       <div className="relative flex flex-col items-center gap-2">
         <Icon size={26} className="text-ink-900" />
         <span
@@ -143,11 +225,13 @@ function MarqueeRow({
   direction,
   durationSec,
   offsetPct,
+  variant,
 }: {
   items: Capability[];
   direction: "left" | "right";
   durationSec: number;
   offsetPct: number;
+  variant: MarqueeVariant;
 }) {
   const animClass =
     direction === "left" ? "capability-row-left" : "capability-row-right";
@@ -161,14 +245,18 @@ function MarqueeRow({
         style={{ ["--dur" as string]: `${durationSec}s` }}
       >
         {[...items, ...items].map((cap, i) => (
-          <CapabilityCell key={`${cap.label}-${i}`} capability={cap} />
+          <CapabilityCell
+            key={`${cap.label}-${i}`}
+            capability={cap}
+            variant={variant}
+          />
         ))}
       </div>
     </div>
   );
 }
 
-function CapabilitiesMarquee() {
+function CapabilitiesMarquee({ variant }: { variant: MarqueeVariant }) {
   const row1 = CAPABILITIES.slice(0, 6);
   const row2 = CAPABILITIES.slice(6, 12);
   const row3 = CAPABILITIES.slice(12, 17);
@@ -191,18 +279,21 @@ function CapabilitiesMarquee() {
           direction="left"
           durationSec={75}
           offsetPct={0}
+          variant={variant}
         />
         <MarqueeRow
           items={row2}
           direction="right"
           durationSec={90}
           offsetPct={-4}
+          variant={variant}
         />
         <MarqueeRow
           items={row3}
           direction="left"
           durationSec={60}
           offsetPct={3}
+          variant={variant}
         />
       </div>
     </div>
@@ -306,7 +397,15 @@ const REVEAL_BASE =
 const HIDDEN_Y = "opacity-0 translate-y-5";
 const VISIBLE = "opacity-100 translate-y-0";
 
-export function WhatYouGetSection() {
+type WhatYouGetSectionProps = {
+  variant?: MarqueeVariant;
+  featuredLabels?: string[];
+};
+
+export function WhatYouGetSection({
+  variant = "rainbow",
+  featuredLabels,
+}: WhatYouGetSectionProps = {}) {
   const headerRef = useInView(0.2);
   const marqueeRef = useInView(0.15);
   const mediaRef = useInView(0.2);
@@ -365,7 +464,11 @@ export function WhatYouGetSection() {
           ref={marqueeRef.ref}
           className={`mt-12 sm:mt-16 ${REVEAL_BASE} ${marqueeRef.visible ? VISIBLE : HIDDEN_Y}`}
         >
-          <CapabilitiesMarquee />
+          {variant === "static" ? (
+            <CapabilitiesGrid featuredLabels={featuredLabels} />
+          ) : (
+            <CapabilitiesMarquee variant={variant} />
+          )}
 
           <p
             className="mt-8 text-center italic sm:mt-10"
