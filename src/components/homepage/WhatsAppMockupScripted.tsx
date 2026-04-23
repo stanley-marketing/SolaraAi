@@ -870,7 +870,6 @@ export function WhatsAppScriptedHeroMockup(
       options={{
         loop: true,
         loopDelayMs: 2400,
-        maxLoops: 3,
         defaultPostDelayMs: 700,
         ...options,
       }}

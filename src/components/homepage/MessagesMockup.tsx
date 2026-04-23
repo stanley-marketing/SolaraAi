@@ -8,23 +8,27 @@ import {
   useScriptedChat,
 } from "./WhatsAppMockupScripted";
 
-const IM_BG = "#FFFFFF";
-const IM_BAR_BG = "rgba(247, 247, 247, 0.85)";
-const IM_BAR_BORDER = "rgba(0, 0, 0, 0.08)";
-const IM_BLUE = "#007AFF";
-const IM_BLUE_DARK = "#0A6FE0";
-const IM_INCOMING_BG = "#E9E9EB";
-const IM_TEXT_DARK = "#000000";
-const IM_TEXT_WHITE = "#FFFFFF";
-const IM_META = "#8E8E93";
-const IM_PLACEHOLDER = "#9A9A9F";
+const SMS_BG = "#FFFFFF";
+const SMS_GREEN = "#34C759";
+const SMS_INCOMING_BG = "#E9E9EB";
+const SMS_TEXT_DARK = "#000000";
+const SMS_TEXT_WHITE = "#FFFFFF";
+const SMS_META = "#8E8E93";
+const SMS_PLACEHOLDER = "#A1A1A6";
+const SMS_PILL_BG = "#FFFFFF";
+const SMS_PILL_BORDER = "rgba(0,0,0,0.06)";
+const SMS_BADGE_BG = "#1C1C1E";
+const SMS_KEY_DARK = "#1C1C1E";
 
 const IOS_FONT =
   '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif';
 
+const PILL_SHADOW =
+  "0 1px 2px rgba(0,0,0,0.04), 0 4px 12px -2px rgba(0,0,0,0.08)";
+
 type IconProps = { size: number; color?: string };
 
-function IconChevronLeft({ size, color = IM_BLUE }: IconProps) {
+function IconChevronLeft({ size, color = SMS_KEY_DARK }: IconProps) {
   return (
     <svg
       width={size}
@@ -42,7 +46,7 @@ function IconChevronLeft({ size, color = IM_BLUE }: IconProps) {
   );
 }
 
-function IconVideoCall({ size, color = IM_BLUE }: IconProps) {
+function IconCaretRight({ size, color = SMS_KEY_DARK }: IconProps) {
   return (
     <svg
       width={size}
@@ -50,13 +54,52 @@ function IconVideoCall({ size, color = IM_BLUE }: IconProps) {
       viewBox="0 0 24 24"
       fill="none"
       stroke={color}
-      strokeWidth="1.8"
+      strokeWidth={2.4}
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden
     >
-      <rect x="2" y="6" width="14" height="12" rx="2" />
-      <path d="M22 7l-6 5 6 5V7z" />
+      <polyline points="9 6 15 12 9 18" />
+    </svg>
+  );
+}
+
+function IconPlus({ size, color = SMS_KEY_DARK }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      strokeWidth={2.2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <line x1="12" y1="5" x2="12" y2="19" />
+      <line x1="5" y1="12" x2="19" y2="12" />
+    </svg>
+  );
+}
+
+function IconMic({ size, color = SMS_META }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <rect x="9" y="2" width="6" height="12" rx="3" />
+      <path d="M5 11a7 7 0 0 0 14 0" />
+      <line x1="12" y1="18" x2="12" y2="22" />
+      <line x1="9" y1="22" x2="15" y2="22" />
     </svg>
   );
 }
@@ -64,12 +107,12 @@ function IconVideoCall({ size, color = IM_BLUE }: IconProps) {
 function IconArrowUp({ size }: { size: number }) {
   return (
     <svg
-      width={size * 1.35}
-      height={size * 1.35}
+      width={size * 1.45}
+      height={size * 1.45}
       viewBox="0 0 28 28"
       aria-hidden
     >
-      <circle cx="14" cy="14" r="14" fill={IM_BLUE} />
+      <circle cx="14" cy="14" r="14" fill={SMS_GREEN} />
       <path
         d="M14 8 L14 20 M9 13 L14 8 L19 13"
         fill="none"
@@ -82,26 +125,7 @@ function IconArrowUp({ size }: { size: number }) {
   );
 }
 
-function IconAppStore({ size, color = IM_BLUE }: IconProps) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={color}
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <circle cx="12" cy="12" r="10" />
-      <path d="M9 16l3-8 3 8M10.5 13h3" />
-    </svg>
-  );
-}
-
-function SignalBars({ size, color = IM_TEXT_DARK }: IconProps) {
+function SignalBars({ size, color = SMS_TEXT_DARK }: IconProps) {
   return (
     <svg
       width={size * 1.5}
@@ -118,7 +142,7 @@ function SignalBars({ size, color = IM_TEXT_DARK }: IconProps) {
   );
 }
 
-function WifiIcon({ size, color = IM_TEXT_DARK }: IconProps) {
+function WifiIcon({ size, color = SMS_TEXT_DARK }: IconProps) {
   return (
     <svg
       width={size * 1.4}
@@ -137,7 +161,7 @@ function WifiIcon({ size, color = IM_TEXT_DARK }: IconProps) {
 function BatteryIcon({
   percent,
   size,
-  color = IM_TEXT_DARK,
+  color = SMS_TEXT_DARK,
 }: {
   percent: number;
   size: number;
@@ -228,7 +252,7 @@ function StatusBar({
         height: barHeight,
         paddingLeft: sidePadding,
         paddingRight: sidePadding,
-        color: IM_TEXT_DARK,
+        color: SMS_TEXT_DARK,
       }}
     >
       <div
@@ -320,7 +344,7 @@ function PhoneFrame({
 
       <div
         className="relative h-full w-full overflow-hidden"
-        style={{ borderRadius: screenRadius, backgroundColor: IM_BG }}
+        style={{ borderRadius: screenRadius, backgroundColor: SMS_BG }}
       >
         {children}
         <div
@@ -348,91 +372,178 @@ function PhoneFrame({
   );
 }
 
-function MessagesHeader({ phoneWidth }: { phoneWidth: number }) {
+function MessagesHeader({
+  phoneWidth,
+  unreadBadge,
+}: {
+  phoneWidth: number;
+  unreadBadge?: string;
+}) {
   const scale = phoneWidth / 240;
-  const height = 52 * scale;
-  const paddingH = 10 * scale;
-  const avatarSize = 30 * scale;
-  const iconSize = 17 * scale;
-  const chevronSize = 22 * scale;
-  const nameSize = 10.5 * scale;
-  const caretSize = 8 * scale;
+  const height = 66 * scale;
+  const paddingH = 12 * scale;
+  const avatarSize = 38 * scale;
+  const chevronSize = 18 * scale;
+  const namePillFontSize = 11 * scale;
+  const badgeFontSize = 9.5 * scale;
+  const namePillPadX = 8 * scale;
+  const namePillPadY = 3 * scale;
+  const caretSize = 9 * scale;
 
   return (
     <div
-      className="relative flex shrink-0 items-center justify-between"
+      className="relative flex shrink-0 items-start"
       style={{
         height,
         paddingLeft: paddingH,
         paddingRight: paddingH,
-        borderBottom: `0.5px solid ${IM_BAR_BORDER}`,
+        paddingTop: 4 * scale,
       }}
     >
-      <div className="flex shrink-0 items-center" style={{ gap: 2 * scale }}>
+      <div
+        className="flex shrink-0 items-center"
+        style={{
+          gap: 4 * scale,
+          padding: `${4 * scale}px ${6 * scale}px`,
+          background: SMS_PILL_BG,
+          borderRadius: 999,
+          boxShadow: PILL_SHADOW,
+        }}
+      >
         <IconChevronLeft size={chevronSize} />
-        <span
-          style={{
-            fontSize: 11 * scale,
-            color: IM_BLUE,
-            fontFamily: IOS_FONT,
-            fontWeight: 400,
-            marginLeft: -2 * scale,
-          }}
-        >
-          12
-        </span>
+        {unreadBadge ? (
+          <span
+            className="flex items-center justify-center font-semibold tabular-nums"
+            style={{
+              minWidth: 20 * scale,
+              height: 16 * scale,
+              padding: `0 ${5 * scale}px`,
+              borderRadius: 999,
+              backgroundColor: SMS_BADGE_BG,
+              color: "#FFFFFF",
+              fontSize: badgeFontSize,
+              fontFamily: IOS_FONT,
+            }}
+          >
+            {unreadBadge}
+          </span>
+        ) : null}
       </div>
 
       <div
-        className="absolute left-1/2 flex -translate-x-1/2 flex-col items-center"
-        style={{ gap: 2 * scale }}
+        className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center"
+        style={{ gap: 4 * scale, top: 4 * scale }}
       >
         <div
           className="overflow-hidden rounded-full"
-          style={{ width: avatarSize, height: avatarSize }}
+          style={{
+            width: avatarSize,
+            height: avatarSize,
+            boxShadow: "0 1px 2px rgba(0,0,0,0.08)",
+          }}
         >
           <SolaraAvatar size={avatarSize} />
         </div>
         <div
           className="flex items-center"
-          style={{ gap: 2 * scale, marginTop: 1 * scale }}
+          style={{
+            gap: 3 * scale,
+            padding: `${namePillPadY}px ${namePillPadX}px`,
+            background: SMS_PILL_BG,
+            borderRadius: 999,
+            boxShadow: PILL_SHADOW,
+          }}
         >
           <span
-            className="font-medium"
+            className="font-semibold"
             style={{
-              fontSize: nameSize,
-              color: IM_TEXT_DARK,
+              fontSize: namePillFontSize,
+              color: SMS_TEXT_DARK,
               fontFamily: IOS_FONT,
               lineHeight: 1,
+              letterSpacing: "-0.005em",
             }}
           >
             Solara
           </span>
-          <svg
-            width={caretSize}
-            height={caretSize}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke={IM_META}
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden
-          >
-            <polyline points="9 6 15 12 9 18" />
-          </svg>
+          <IconCaretRight size={caretSize} color={SMS_META} />
         </div>
       </div>
+    </div>
+  );
+}
 
-      <div className="flex shrink-0 items-center" style={{ gap: 8 * scale }}>
-        <IconVideoCall size={iconSize} />
+function ConversationLabel({
+  phoneWidth,
+  dateLabel,
+}: {
+  phoneWidth: number;
+  dateLabel: string;
+}) {
+  const scale = phoneWidth / 240;
+  const datePieces = dateLabel.split(" ");
+  const dateLeading = datePieces[0] ?? "";
+  const dateTrailing = datePieces.slice(1).join(" ");
+
+  return (
+    <div
+      className="flex w-full flex-col items-center"
+      style={{
+        paddingTop: 0,
+        paddingBottom: 8 * scale,
+        gap: 1 * scale,
+        fontFamily: IOS_FONT,
+      }}
+    >
+      <div
+        className="flex items-center"
+        style={{ gap: 5 * scale }}
+      >
+        <span
+          style={{
+            fontSize: 8 * scale,
+            color: SMS_META,
+            letterSpacing: "-0.005em",
+          }}
+        >
+          Text Message
+        </span>
+        <span
+          aria-hidden
+          style={{
+            color: SMS_META,
+            fontSize: 8 * scale,
+            lineHeight: 1,
+          }}
+        >
+          &middot;
+        </span>
+        <span
+          style={{
+            fontSize: 8 * scale,
+            color: SMS_META,
+            letterSpacing: "-0.005em",
+          }}
+        >
+          SMS
+        </span>
+      </div>
+      <div
+        style={{
+          fontSize: 7 * scale,
+          color: SMS_META,
+          letterSpacing: "0.01em",
+        }}
+      >
+        <span style={{ color: SMS_META }}>{dateLeading}</span>
+        {dateTrailing ? <span> {dateTrailing}</span> : null}
       </div>
     </div>
   );
 }
 
 const TYPING_DOTS_CSS = `
-@keyframes im-typing-dot {
+@keyframes sms-typing-dot {
   0%, 60%, 100% { transform: translateY(0); opacity: 0.35; }
   30% { transform: translateY(-3px); opacity: 1; }
 }
@@ -452,7 +563,7 @@ function TypingBubble({ phoneWidth }: { phoneWidth: number }) {
       <div
         className="relative flex items-center"
         style={{
-          backgroundColor: IM_INCOMING_BG,
+          backgroundColor: SMS_INCOMING_BG,
           borderRadius: radius,
           paddingLeft: paddingX,
           paddingRight: paddingX,
@@ -469,9 +580,9 @@ function TypingBubble({ phoneWidth }: { phoneWidth: number }) {
               width: dotSize,
               height: dotSize,
               borderRadius: "50%",
-              backgroundColor: "#8E8E93",
+              backgroundColor: SMS_META,
               display: "inline-block",
-              animation: "im-typing-dot 1.2s infinite ease-in-out",
+              animation: "sms-typing-dot 1.2s infinite ease-in-out",
               animationDelay: `${i * 0.18}s`,
             }}
           />
@@ -481,107 +592,117 @@ function TypingBubble({ phoneWidth }: { phoneWidth: number }) {
   );
 }
 
+function BubbleTail({
+  isUser,
+  bubbleColor,
+  pageColor,
+  scale,
+}: {
+  isUser: boolean;
+  bubbleColor: string;
+  pageColor: string;
+  scale: number;
+}) {
+  const sideKey = isUser ? "right" : "left";
+  const borderSideKey = isUser ? "borderRight" : "borderLeft";
+  const innerRadiusKey = isUser
+    ? "borderBottomLeftRadius"
+    : "borderBottomRightRadius";
+
+  return (
+    <>
+      <span
+        aria-hidden
+        style={{
+          position: "absolute",
+          bottom: 0,
+          [sideKey]: -5.6 * scale,
+          height: 16 * scale,
+          [innerRadiusKey]: `${12.8 * scale}px ${11.2 * scale}px`,
+          [borderSideKey]: `${16 * scale}px solid ${bubbleColor}`,
+          transform: `translate(0, ${-1.6 * scale}px)`,
+          zIndex: 1,
+        }}
+      />
+      <span
+        aria-hidden
+        style={{
+          position: "absolute",
+          bottom: 0,
+          [sideKey]: -40 * scale,
+          width: 10 * scale,
+          height: 16 * scale,
+          background: pageColor,
+          [innerRadiusKey]: `${8 * scale}px`,
+          transform: `translate(${(isUser ? -30 : 30) * scale}px, ${-2 * scale}px)`,
+          zIndex: 2,
+        }}
+      />
+    </>
+  );
+}
+
 function MessageBubble({
   phoneWidth,
   direction,
   children,
-  isLast,
-  showDelivered,
+  showTail,
 }: {
   phoneWidth: number;
   direction: ChatDirection;
   children: ReactNode;
-  isLast: boolean;
-  showDelivered: boolean;
+  showTail: boolean;
 }) {
   const scale = phoneWidth / 240;
   const isUser = direction === "outgoing";
   const maxWidth = phoneWidth * 0.74;
   const textSize = 12 * scale;
-  const paddingX = 11 * scale;
+  const paddingX = 12 * scale;
   const paddingY = 7 * scale;
-  const radius = 18 * scale;
-  const tightCorner = 5 * scale;
+  const radius = 19 * scale;
+  const bubbleColor = isUser ? SMS_GREEN : SMS_INCOMING_BG;
 
-  return (
-    <div className="flex w-full flex-col" style={{ gap: 2 * scale }}>
-      <div
-        className="relative flex w-full"
-        style={{ justifyContent: isUser ? "flex-end" : "flex-start" }}
-      >
-        <div
-          className="relative"
-          style={{
-            maxWidth,
-            background: isUser
-              ? `linear-gradient(180deg, ${IM_BLUE} 0%, ${IM_BLUE_DARK} 100%)`
-              : IM_INCOMING_BG,
-            color: isUser ? IM_TEXT_WHITE : IM_TEXT_DARK,
-            borderTopLeftRadius: radius,
-            borderTopRightRadius: radius,
-            borderBottomLeftRadius: !isUser && isLast ? tightCorner : radius,
-            borderBottomRightRadius: isUser && isLast ? tightCorner : radius,
-            paddingLeft: paddingX,
-            paddingRight: paddingX,
-            paddingTop: paddingY,
-            paddingBottom: paddingY,
-          }}
-        >
-          <div
-            style={{
-              fontSize: textSize,
-              lineHeight: 1.35,
-              whiteSpace: "pre-wrap",
-              wordBreak: "break-word",
-              fontFamily: IOS_FONT,
-            }}
-          >
-            {children}
-          </div>
-        </div>
-      </div>
-      {isUser && isLast && showDelivered && (
-        <div className="flex w-full justify-end" style={{ paddingRight: 2 * scale }}>
-          <span
-            style={{
-              fontSize: 8 * scale,
-              color: IM_META,
-              fontFamily: IOS_FONT,
-              letterSpacing: "0.01em",
-            }}
-          >
-            Delivered
-          </span>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function DateSeparator({
-  phoneWidth,
-  label,
-}: {
-  phoneWidth: number;
-  label: string;
-}) {
-  const scale = phoneWidth / 240;
   return (
     <div
-      className="flex w-full items-center justify-center"
-      style={{ paddingTop: 6 * scale, paddingBottom: 6 * scale }}
+      className="relative flex w-full"
+      style={{ justifyContent: isUser ? "flex-end" : "flex-start" }}
     >
-      <span
+      <div
+        className="relative"
         style={{
-          fontSize: 8.5 * scale,
-          color: IM_META,
-          fontFamily: IOS_FONT,
-          fontWeight: 500,
+          maxWidth,
+          background: bubbleColor,
+          color: isUser ? SMS_TEXT_WHITE : SMS_TEXT_DARK,
+          borderRadius: radius,
+          paddingLeft: paddingX,
+          paddingRight: paddingX,
+          paddingTop: paddingY,
+          paddingBottom: paddingY,
+          isolation: "isolate",
         }}
       >
-        <span style={{ fontWeight: 700 }}>{label.split(" ")[0]}</span>
-        {label.includes(" ") && ` ${label.split(" ").slice(1).join(" ")}`}
-      </span>
+        <div
+          style={{
+            fontSize: textSize,
+            lineHeight: 1.35,
+            whiteSpace: "pre-wrap",
+            wordBreak: "break-word",
+            fontFamily: IOS_FONT,
+            position: "relative",
+            zIndex: 3,
+          }}
+        >
+          {children}
+        </div>
+        {showTail && (
+          <BubbleTail
+            isUser={isUser}
+            bubbleColor={bubbleColor}
+            pageColor={SMS_BG}
+            scale={scale}
+          />
+        )}
+      </div>
     </div>
   );
 }
@@ -605,8 +726,8 @@ function ScriptedThread({
 }) {
   const scale = phoneWidth / 240;
   const gap = 3 * scale;
-  const paddingX = 10 * scale;
-  const paddingY = 8 * scale;
+  const paddingX = 14 * scale;
+  const paddingY = 4 * scale;
   const scrollerRef = useRef<HTMLDivElement | null>(null);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: scroll triggers
@@ -629,7 +750,7 @@ function ScriptedThread({
         scrollbarWidth: "none",
       }}
     >
-      <DateSeparator phoneWidth={phoneWidth} label={dateLabel} />
+      <ConversationLabel phoneWidth={phoneWidth} dateLabel={dateLabel} />
       {messages.map((m, i) => {
         const next = messages[i + 1];
         const isLastInGroup = !next || next.direction !== m.direction;
@@ -638,8 +759,7 @@ function ScriptedThread({
             key={m.key}
             phoneWidth={phoneWidth}
             direction={m.direction}
-            isLast={isLastInGroup}
-            showDelivered={i === messages.length - 1 && !isIncomingTyping}
+            showTail={isLastInGroup}
           >
             {m.content}
           </MessageBubble>
@@ -660,13 +780,16 @@ function MessagesInputBar({
   inputValue: string;
 }) {
   const scale = phoneWidth / 240;
-  const height = 44 * scale;
+  const height = 52 * scale;
   const paddingH = 10 * scale;
   const gap = 8 * scale;
-  const iconSize = 22 * scale;
+  const plusButtonSize = 32 * scale;
+  const plusIconSize = 16 * scale;
   const fontSize = 12 * scale;
-  const inputHeight = 30 * scale;
-  const inputPaddingX = 12 * scale;
+  const inputHeight = 32 * scale;
+  const inputPaddingX = 14 * scale;
+  const sendSize = 22 * scale;
+  const micSize = 17 * scale;
   const hasValue = inputValue.length > 0;
 
   return (
@@ -677,53 +800,63 @@ function MessagesInputBar({
         paddingLeft: paddingH,
         paddingRight: paddingH,
         gap,
-        borderTop: `0.5px solid ${IM_BAR_BORDER}`,
-        backgroundColor: IM_BAR_BG,
-        backdropFilter: "blur(20px)",
+        backgroundColor: SMS_BG,
       }}
     >
-      <div className="shrink-0">
-        <IconAppStore size={iconSize} />
+      <div
+        className="flex shrink-0 items-center justify-center"
+        style={{
+          width: plusButtonSize,
+          height: plusButtonSize,
+          borderRadius: "50%",
+          backgroundColor: SMS_PILL_BG,
+          boxShadow: PILL_SHADOW,
+        }}
+      >
+        <IconPlus size={plusIconSize} />
       </div>
+
       <div
         className="flex min-w-0 flex-1 items-center justify-between"
         style={{
           height: inputHeight,
           borderRadius: inputHeight / 2,
-          backgroundColor: "#FFFFFF",
-          border: `0.5px solid ${IM_BAR_BORDER}`,
+          backgroundColor: SMS_PILL_BG,
+          border: `0.5px solid ${SMS_PILL_BORDER}`,
           paddingLeft: inputPaddingX,
           paddingRight: 4 * scale,
+          boxShadow: PILL_SHADOW,
         }}
       >
         <span
           className="flex min-w-0 flex-1 items-center overflow-hidden"
           style={{
             fontSize,
-            color: hasValue ? IM_TEXT_DARK : IM_PLACEHOLDER,
+            color: hasValue ? SMS_TEXT_DARK : SMS_PLACEHOLDER,
             lineHeight: 1,
             whiteSpace: "nowrap",
             fontFamily: IOS_FONT,
           }}
         >
-          {hasValue ? inputValue : "iMessage"}
+          {hasValue ? (
+            inputValue
+          ) : (
+            <span className="flex items-center" style={{ gap: 5 * scale }}>
+              <span>Text Message</span>
+              <span aria-hidden style={{ color: SMS_META }}>
+                &middot;
+              </span>
+              <span>SMS</span>
+            </span>
+          )}
         </span>
-        {hasValue ? (
-          <IconArrowUp size={iconSize * 0.8} />
-        ) : (
-          <span
-            style={{
-              fontSize: 9 * scale,
-              color: IM_BLUE,
-              fontWeight: 600,
-              fontFamily: IOS_FONT,
-              letterSpacing: "0.04em",
-              paddingRight: 6 * scale,
-            }}
-          >
-            audio
-          </span>
-        )}
+        <div className="shrink-0" style={{ paddingRight: hasValue ? 0 : 6 * scale }}>
+          {hasValue ? (
+            <IconArrowUp size={sendSize} />
+          ) : (
+            <IconMic size={micSize} />
+          )}
+        </div>
       </div>
     </div>
   );
@@ -736,6 +869,7 @@ type MessagesScriptedMockupProps = {
   statusTime?: string;
   batteryPercent?: number;
   dateLabel?: string;
+  unreadBadge?: string;
   className?: string;
 };
 
@@ -745,24 +879,22 @@ export function MessagesScriptedMockup({
   options,
   statusTime = "9:41",
   batteryPercent = 87,
-  dateLabel = "Today 9:00 AM",
+  dateLabel = "Today 9:02",
+  unreadBadge = "12",
   className,
 }: MessagesScriptedMockupProps) {
   const scale = phoneWidth / 240;
   const statusBarPad = Math.round(phoneWidth * 0.09) + Math.round(20 * scale);
   const homeIndicatorPad = Math.round(22 * scale);
-  const renderedMessages: RenderedMessage[] = [];
   const { messages, isIncomingTyping, inputValue } = useScriptedChat(
     script,
     options,
   );
-  for (const m of messages) {
-    renderedMessages.push({
-      key: m.key,
-      direction: m.direction,
-      content: m.content,
-    });
-  }
+  const renderedMessages: RenderedMessage[] = messages.map((m) => ({
+    key: m.key,
+    direction: m.direction,
+    content: m.content,
+  }));
 
   return (
     <div className={className}>
@@ -776,16 +908,18 @@ export function MessagesScriptedMockup({
           <div
             className="shrink-0"
             style={{
-              backgroundColor: IM_BAR_BG,
-              backdropFilter: "blur(20px)",
+              backgroundColor: SMS_BG,
               paddingTop: statusBarPad,
             }}
           >
-            <MessagesHeader phoneWidth={phoneWidth} />
+            <MessagesHeader
+              phoneWidth={phoneWidth}
+              unreadBadge={unreadBadge}
+            />
           </div>
           <div
             className="min-h-0 flex-1 overflow-hidden"
-            style={{ backgroundColor: IM_BG }}
+            style={{ backgroundColor: SMS_BG }}
           >
             <ScriptedThread
               phoneWidth={phoneWidth}
@@ -849,7 +983,6 @@ export function MessagesScriptedHeroMockup(
       options={{
         loop: true,
         loopDelayMs: 2400,
-        maxLoops: 3,
         defaultPostDelayMs: 700,
         ...options,
       }}
