@@ -140,20 +140,23 @@ function BeforeAfterPlaceholder() {
         >
           Before
         </span>
-        <div
-          className="relative aspect-video w-full overflow-hidden rounded-2xl border border-line"
-          style={{
-            background:
-              "linear-gradient(135deg, #e5e7eb 0%, #9ca3af 100%), repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 3px)",
-            backgroundBlendMode: "multiply",
-          }}
-        >
-          <div className="absolute inset-0 flex items-center justify-center">
+        <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-line bg-ink-900">
+          <video
+            className="absolute inset-0 h-full w-full object-cover"
+            src="/videos/transformation-before.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            aria-label="Raw phone clip before Solara processing"
+          />
+          <div className="pointer-events-none absolute left-4 top-4">
             <span
-              className="rounded-full border border-white/60 bg-black/30 px-3 py-1 text-white backdrop-blur-sm"
-              style={{ fontSize: "0.72rem", letterSpacing: "0.08em" }}
+              className="rounded-full border border-white/60 bg-black/40 px-3 py-1 text-white backdrop-blur-sm"
+              style={{ fontSize: "0.62rem", letterSpacing: "0.2em" }}
             >
-              Raw phone clip
+              RAW PHONE CLIP
             </span>
           </div>
         </div>
@@ -170,52 +173,24 @@ function BeforeAfterPlaceholder() {
         >
           After
         </span>
-        <div
-          className="relative aspect-video w-full overflow-hidden rounded-2xl border border-line"
-          style={{
-            background:
-              "linear-gradient(135deg, #fde68a 0%, #fb923c 50%, #9a3412 100%)",
-          }}
-        >
-          <div
-            aria-hidden="true"
-            className="absolute inset-0"
-            style={{
-              background:
-                "radial-gradient(ellipse at 70% 30%, rgba(255,255,255,0.4) 0%, transparent 50%)",
-            }}
+        <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-line bg-ink-900">
+          <video
+            className="absolute inset-0 h-full w-full object-cover"
+            src="/videos/transformation-after.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            aria-label="Polished Solara output"
           />
-          <div className="absolute left-4 top-4">
+          <div className="pointer-events-none absolute left-4 top-4">
             <span
               className="rounded-full bg-ink-900/70 px-2.5 py-1 text-white backdrop-blur-sm"
               style={{ fontSize: "0.62rem", letterSpacing: "0.2em" }}
             >
               HOOK
             </span>
-          </div>
-          <div className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/95">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              className="h-4 w-4"
-              aria-hidden="true"
-            >
-              <path
-                d="M8 5v14l11-7z"
-                fill="#111111"
-                stroke="#111111"
-                strokeWidth="1"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </div>
-          <div className="absolute bottom-4 left-4 right-4">
-            <div
-              className="rounded-lg bg-black/40 px-3 py-2 text-white backdrop-blur-sm"
-              style={{ fontSize: "0.82rem", fontWeight: 500, lineHeight: 1.35 }}
-            >
-              How we pull every espresso
-            </div>
           </div>
         </div>
       </div>
