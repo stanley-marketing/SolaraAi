@@ -4,11 +4,11 @@ import {
   BODY,
   Bridge,
   DISPLAY,
-  Eyebrow,
   FlickeringGrid,
   HAIRLINE,
   HAIRLINE_HEAVY,
   INK,
+  INK_FAINT,
   INK_MUTED,
   INK_SOFT,
   InvoiceCard,
@@ -17,39 +17,102 @@ import {
   ROSE,
   ROSE_DEEP,
   SHELL,
-  ScrollReveal,
-  SectionHeadline,
-  ToolsGrid,
-  ToolsMarquee,
   Verdict,
 } from "@/components/homepage/teardown-parts";
-import { BorderBeam } from "@/components/magicui/border-beam";
+
+const FAILURES = [
+  "Schedulers with no plan",
+  "AI junk on your feed",
+  "Hours burned every week",
+  "0 engagement",
+  "Still invisible",
+];
+
+function FailureItem({ label, index }: { label: string; index: number }) {
+  return (
+    <div
+      className="flex items-center gap-4 py-3"
+      style={{
+        borderBottom:
+          index < FAILURES.length - 1 ? `1px dashed ${HAIRLINE}` : "none",
+      }}
+    >
+      <span
+        className="flex shrink-0 items-center justify-center rounded-full"
+        style={{
+          width: 28,
+          height: 28,
+          background: ROSE,
+          color: "#fff",
+          fontFamily: BODY,
+          fontSize: "1.05rem",
+          fontWeight: 700,
+          lineHeight: 1,
+          boxShadow: "0 1px 2px rgba(236,72,153,0.3)",
+        }}
+        aria-hidden
+      >
+        &times;
+      </span>
+      <span
+        style={{
+          fontFamily: DISPLAY,
+          fontSize: "1.2rem",
+          fontWeight: 500,
+          color: INK,
+          letterSpacing: "-0.015em",
+        }}
+      >
+        {label}
+      </span>
+    </div>
+  );
+}
+
+function FailureList() {
+  return (
+    <div className="flex flex-col">
+      {FAILURES.map((f, i) => (
+        <FailureItem key={f} label={f} index={i} />
+      ))}
+    </div>
+  );
+}
 
 function LedgerColumn({
-  side,
   label,
   title,
   cost,
   children,
 }: {
-  side: "A" | "B";
   label: string;
   title: string;
   cost: string;
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex flex-col p-6 sm:p-8">
+    <div className="relative flex flex-col p-7 sm:p-9">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <Eyebrow color={ROSE_DEEP}>{label}</Eyebrow>
+          <span
+            style={{
+              fontFamily: BODY,
+              fontSize: "0.74rem",
+              letterSpacing: "0.3em",
+              textTransform: "uppercase",
+              color: ROSE_DEEP,
+              fontWeight: 600,
+            }}
+          >
+            {label}
+          </span>
           <h3
-            className="mt-2"
+            className="mt-3"
             style={{
               fontFamily: DISPLAY,
-              fontSize: "clamp(1.2rem, 2vw, 1.55rem)",
+              fontSize: "clamp(1.5rem, 2.4vw, 1.95rem)",
               fontWeight: 600,
-              letterSpacing: "-0.02em",
+              letterSpacing: "-0.025em",
               lineHeight: 1.12,
               color: INK,
             }}
@@ -58,12 +121,12 @@ function LedgerColumn({
           </h3>
         </div>
         <div
-          className="shrink-0 rounded-full px-3 py-1"
+          className="shrink-0 rounded-full px-4 py-1.5"
           style={{
             background: "#fff",
             border: `1px solid ${HAIRLINE_HEAVY}`,
             fontFamily: BODY,
-            fontSize: "0.62rem",
+            fontSize: "0.76rem",
             letterSpacing: "0.16em",
             textTransform: "uppercase",
             color: INK_SOFT,
@@ -75,7 +138,7 @@ function LedgerColumn({
       </div>
 
       <div
-        className="mt-4 mb-4 h-px w-full"
+        className="mt-5 mb-5 h-px w-full"
         style={{ background: HAIRLINE_HEAVY }}
       />
 
@@ -96,131 +159,148 @@ export default function SectionTwoLedgerPreview() {
             className="absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse at 50% 50%, transparent 10%, rgba(248,247,244,0.9) 75%)",
+                "radial-gradient(ellipse at 50% 40%, transparent 15%, rgba(248,247,244,0.9) 75%)",
             }}
           />
         </div>
 
-        <div className="mx-auto max-w-6xl px-6 pt-20 pb-10 sm:pt-24 sm:pb-14">
-          <SectionHeadline
-            eyebrow="02 · The Teardown"
-            rotatingWords={["options.", "paths.", "dead ends.", "traps."]}
-            subcopy="Both alternatives, inside one case file."
-            compact
-          />
-        </div>
-
-        <div className="mx-auto max-w-6xl px-6 pb-16">
-          <ScrollReveal margin="-10%">
+        <div className="mx-auto max-w-6xl px-6 pt-20 pb-14 sm:pt-24 sm:pb-20">
+          <div className="mb-8 sm:mb-10">
             <div
-              className="relative overflow-hidden rounded-2xl"
+              className="inline-flex items-center gap-3"
               style={{
-                background: "rgba(255,255,255,0.85)",
-                backdropFilter: "blur(6px)",
-                border: `1px solid ${HAIRLINE_HEAVY}`,
-                boxShadow:
-                  "0 2px 4px rgba(0,0,0,0.03), 0 20px 50px -18px rgba(0,0,0,0.14)",
+                fontFamily: BODY,
+                fontSize: "0.66rem",
+                letterSpacing: "0.32em",
+                textTransform: "uppercase",
+                color: INK_SOFT,
+                fontWeight: 600,
               }}
             >
-              <BorderBeam
-                size={140}
-                duration={12}
-                colorFrom={ROSE}
-                colorTo="#f97316"
-                delay={0.5}
-              />
+              <span className="h-px w-6 bg-current opacity-60" />
+              02 &middot; The Teardown
+              <span className="relative flex h-2 w-2">
+                <span
+                  className="absolute inset-0 animate-ping rounded-full"
+                  style={{ background: ROSE, opacity: 0.6 }}
+                />
+                <span
+                  className="relative h-2 w-2 rounded-full"
+                  style={{ background: ROSE }}
+                />
+              </span>
+            </div>
+
+            <h1
+              className="mt-5 leading-[1.02] tracking-[-0.04em] text-[clamp(2.4rem,5.6vw,4rem)]"
+              style={{
+                fontFamily: DISPLAY,
+                fontWeight: 600,
+                color: INK,
+                maxWidth: "820px",
+              }}
+            >
+              There are only two ways. Neither one works.
+            </h1>
+
+            <p
+              className="mt-4"
+              style={{
+                fontFamily: BODY,
+                fontSize: "1.05rem",
+                lineHeight: 1.55,
+                color: INK_MUTED,
+                maxWidth: "560px",
+              }}
+            >
+              And AI hasn&rsquo;t changed a thing.
+            </p>
+          </div>
+
+          <div
+            className="relative overflow-hidden rounded-2xl"
+            style={{
+              background: "rgba(255,255,255,0.88)",
+              backdropFilter: "blur(6px)",
+              border: `1px solid ${HAIRLINE_HEAVY}`,
+              boxShadow:
+                "0 2px 4px rgba(0,0,0,0.03), 0 20px 50px -18px rgba(0,0,0,0.14)",
+            }}
+          >
+            <div className="grid lg:grid-cols-[1fr_1px_1fr]">
+              <LedgerColumn
+                label="Exhibit A"
+                title="The $2,000/mo manager."
+                cost="$2K / month"
+              >
+                <p
+                  className="mb-5"
+                  style={{
+                    fontFamily: BODY,
+                    fontSize: "1.02rem",
+                    lineHeight: 1.65,
+                    color: INK_MUTED,
+                  }}
+                >
+                  They show up with the same iPhone in your pocket. You pay
+                  them to stand next to you. The thinking happens later, on
+                  a laptop, without you.
+                </p>
+                <InvoiceCard large noBeam staticLines />
+              </LedgerColumn>
 
               <div
-                className="flex items-center justify-between px-6 py-3 sm:px-8"
+                className="hidden lg:block"
+                style={{ background: HAIRLINE_HEAVY }}
+              />
+              <div
+                className="lg:hidden"
                 style={{
-                  background: INK,
-                  color: "#fff",
-                  fontFamily: BODY,
-                  fontSize: "0.58rem",
-                  letterSpacing: "0.3em",
-                  textTransform: "uppercase",
-                  fontWeight: 600,
+                  height: 1,
+                  background: HAIRLINE_HEAVY,
+                  margin: "0 24px",
                 }}
+              />
+
+              <LedgerColumn
+                label="Exhibit B"
+                title="The $150/mo tool stack."
+                cost="$150–600 / month"
               >
-                <span>Case file &sect; 0002</span>
-                <span className="flex items-center gap-2">
-                  <span
-                    className="inline-block h-1.5 w-1.5 rounded-full"
-                    style={{ background: ROSE }}
-                  />
-                  Under examination
-                </span>
-              </div>
-
-              <div className="grid lg:grid-cols-[1fr_1px_1fr]">
-                <LedgerColumn
-                  side="A"
-                  label="Exhibit A · Option 1"
-                  title="The $2,000/mo manager."
-                  cost="$2K / month"
-                >
-                  <p
-                    className="mb-4"
-                    style={{
-                      fontFamily: BODY,
-                      fontSize: "0.88rem",
-                      lineHeight: 1.6,
-                      color: INK_MUTED,
-                    }}
-                  >
-                    They show up with the same iPhone in your pocket. You pay
-                    them to stand next to you. The thinking happens later,
-                    without you.
-                  </p>
-                  <InvoiceCard compact />
-                </LedgerColumn>
-
-                <div
-                  className="hidden lg:block"
-                  style={{ background: HAIRLINE_HEAVY }}
-                />
-                <div
-                  className="lg:hidden"
+                <p
+                  className="mb-6"
                   style={{
-                    height: 1,
-                    background: HAIRLINE_HEAVY,
-                    margin: "0 24px",
+                    fontFamily: BODY,
+                    fontSize: "1.02rem",
+                    lineHeight: 1.65,
+                    color: INK_MUTED,
                   }}
-                />
+                >
+                  None of this is marketing. Here&rsquo;s what $150&ndash;600/month
+                  actually delivers:
+                </p>
 
-                <LedgerColumn
-                  side="B"
-                  label="Exhibit B · Option 2"
-                  title="The tool stack."
-                  cost="$30–150 / month"
+                <FailureList />
+
+                <div
+                  className="mt-6 pt-5"
+                  style={{ borderTop: `1px solid ${HAIRLINE_HEAVY}` }}
                 >
                   <p
-                    className="mb-4"
+                    className="text-right"
                     style={{
                       fontFamily: BODY,
                       fontSize: "0.88rem",
-                      lineHeight: 1.6,
+                      fontStyle: "italic",
                       color: INK_MUTED,
                     }}
                   >
-                    None of this is marketing. A scheduler can&rsquo;t decide
-                    what to schedule. A caption tool doesn&rsquo;t know your
-                    audience.{" "}
-                    <strong style={{ color: INK, fontWeight: 600 }}>
-                      Hover for the reality.
-                    </strong>
+                    &mdash; and nobody walks in.
                   </p>
-                  <ToolsGrid compact columns={2} />
-                </LedgerColumn>
-              </div>
+                </div>
+              </LedgerColumn>
             </div>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.2} margin="-10%">
-            <div className="mt-10">
-              <ToolsMarquee />
-            </div>
-          </ScrollReveal>
+          </div>
         </div>
 
         <div className="border-t" style={{ borderColor: HAIRLINE }}>
@@ -237,8 +317,8 @@ export default function SectionTwoLedgerPreview() {
       </section>
 
       <PreviewFooter
-        label="Variant 3 · Ledger (one case file, two exhibits)"
-        description="Single bordered container with BorderBeam, black 'CASE FILE' header strip, and two halves (A / B) separated by a vertical hairline. Both exhibits live inside one artifact — maximum 'both being examined together' clarity."
+        label="Variant 3 · Ledger (one container, two exhibits)"
+        description="Headline sits directly above the card. Both exhibits live inside one artifact. Exhibit A shows the $2,000/mo invoice, Exhibit B lists the symptoms of the tool stack with red-X markers. No scroll reveals — content visible immediately."
       />
     </main>
   );

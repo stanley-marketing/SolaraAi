@@ -27,8 +27,8 @@ export const INK_MUTED = "rgba(10,10,10,0.72)";
 export const INK_SOFT = "rgba(10,10,10,0.55)";
 export const INK_FAINT = "rgba(10,10,10,0.34)";
 export const SHELL = "#f8f7f4";
-export const ROSE = "#ec4899";
-export const ROSE_DEEP = "#db2777";
+export const ROSE = "#1e3a8a";
+export const ROSE_DEEP = "#172554";
 export const HAIRLINE = "rgba(10,10,10,0.1)";
 export const HAIRLINE_HEAVY = "rgba(10,10,10,0.18)";
 
@@ -363,6 +363,8 @@ function InvoiceLineScroll({
   triggerStart,
   triggerEnd,
   emphasis = false,
+  large = false,
+  staticLine = false,
 }: {
   label: string;
   amount: string;
@@ -370,6 +372,8 @@ function InvoiceLineScroll({
   triggerStart: number;
   triggerEnd: number;
   emphasis?: boolean;
+  large?: boolean;
+  staticLine?: boolean;
 }) {
   const opacity = useTransform(
     progress,
@@ -378,15 +382,32 @@ function InvoiceLineScroll({
   );
   const x = useTransform(progress, [triggerStart, triggerEnd], [-12, 0]);
 
+  const labelSize = large
+    ? emphasis
+      ? "1.05rem"
+      : "0.98rem"
+    : emphasis
+      ? "0.92rem"
+      : "0.84rem";
+  const amountSize = large
+    ? emphasis
+      ? "1.08rem"
+      : "1rem"
+    : emphasis
+      ? "0.95rem"
+      : "0.86rem";
+
+  const motionStyle = staticLine ? undefined : { opacity, x };
+
   return (
     <motion.div
-      style={{ opacity, x }}
-      className="flex items-baseline justify-between gap-4 py-2"
+      style={motionStyle}
+      className="flex items-baseline justify-between gap-4 py-2.5"
     >
       <span
         style={{
           fontFamily: BODY,
-          fontSize: emphasis ? "0.92rem" : "0.84rem",
+          fontSize: labelSize,
           color: emphasis ? INK : INK_MUTED,
           fontWeight: emphasis ? 600 : 400,
           borderBottom: emphasis ? "none" : `1px dashed ${HAIRLINE}`,
@@ -400,7 +421,7 @@ function InvoiceLineScroll({
         className="tabular-nums"
         style={{
           fontFamily: BODY,
-          fontSize: emphasis ? "0.95rem" : "0.86rem",
+          fontSize: amountSize,
           color: emphasis ? INK : INK_MUTED,
           fontWeight: emphasis ? 600 : 500,
           fontFeatureSettings: '"tnum" 1, "lnum" 1',
@@ -414,15 +435,37 @@ function InvoiceLineScroll({
   );
 }
 
-export function InvoiceCard({ compact = false }: { compact?: boolean }) {
+export function InvoiceCard({
+  compact = false,
+  noBeam = false,
+  large = false,
+  staticLines = false,
+}: {
+  compact?: boolean;
+  noBeam?: boolean;
+  large?: boolean;
+  staticLines?: boolean;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start 90%", "end 30%"],
   });
 
-  const totalOpacity = useTransform(scrollYProgress, [0.55, 0.75], [0, 1]);
-  const totalY = useTransform(scrollYProgress, [0.55, 0.75], [8, 0]);
+  const scrollOpacity = useTransform(scrollYProgress, [0.55, 0.75], [0, 1]);
+  const scrollY = useTransform(scrollYProgress, [0.55, 0.75], [8, 0]);
+  const totalOpacity = staticLines ? 1 : scrollOpacity;
+  const totalY = staticLines ? 0 : scrollY;
+
+  const titleSize = large
+    ? "1.55rem"
+    : compact
+      ? "1.15rem"
+      : "1.25rem";
+  const subtitleSize = large ? "0.92rem" : "0.75rem";
+  const topStripSize = large ? "0.66rem" : "0.56rem";
+  const padX = large ? "px-6" : "px-5";
+  const mx = large ? "mx-6" : "mx-5";
 
   return (
     <div
@@ -435,19 +478,21 @@ export function InvoiceCard({ compact = false }: { compact?: boolean }) {
           "0 1px 2px rgba(0,0,0,0.04), 0 14px 40px -12px rgba(0,0,0,0.12)",
       }}
     >
-      <BorderBeam
-        size={90}
-        duration={8}
-        colorFrom={ROSE}
-        colorTo="#f97316"
-        delay={0.4}
-      />
+      {!noBeam && (
+        <BorderBeam
+          size={90}
+          duration={8}
+          colorFrom={ROSE}
+          colorTo="#f97316"
+          delay={0.4}
+        />
+      )}
 
       <div
-        className="flex items-center justify-between px-5 pt-5"
+        className={cn("flex items-center justify-between pt-5", padX)}
         style={{
           fontFamily: BODY,
-          fontSize: "0.56rem",
+          fontSize: topStripSize,
           letterSpacing: "0.28em",
           textTransform: "uppercase",
           color: INK_SOFT,
@@ -458,11 +503,11 @@ export function InvoiceCard({ compact = false }: { compact?: boolean }) {
         <span>Monthly retainer</span>
       </div>
 
-      <div className="px-5 pb-2 pt-3">
+      <div className={cn("pb-2 pt-3", padX)}>
         <p
           style={{
             fontFamily: DISPLAY,
-            fontSize: compact ? "1.15rem" : "1.25rem",
+            fontSize: titleSize,
             lineHeight: 1.2,
             letterSpacing: "-0.02em",
             color: INK,
@@ -475,27 +520,29 @@ export function InvoiceCard({ compact = false }: { compact?: boolean }) {
           className="mt-1"
           style={{
             fontFamily: BODY,
-            fontSize: "0.75rem",
+            fontSize: subtitleSize,
             color: INK_SOFT,
             lineHeight: 1.45,
           }}
         >
-          On-site visits. Handheld phone. Signed 12-month contract.
+          On-site visits. Handheld phone. One iPhone.
         </p>
       </div>
 
       <div
-        className="mx-5 mt-2"
+        className={cn("mt-2", mx)}
         style={{ borderTop: `1px solid ${HAIRLINE_HEAVY}` }}
       />
 
-      <div className="px-5 pb-2 pt-3">
+      <div className={cn("pb-2 pt-3", padX)}>
         <InvoiceLineScroll
           label="Stand next to you"
           amount="$500"
           progress={scrollYProgress}
           triggerStart={0.1}
           triggerEnd={0.2}
+          large={large}
+          staticLine={staticLines}
         />
         <InvoiceLineScroll
           label={'Say "a little to the left"'}
@@ -503,6 +550,8 @@ export function InvoiceCard({ compact = false }: { compact?: boolean }) {
           progress={scrollYProgress}
           triggerStart={0.18}
           triggerEnd={0.28}
+          large={large}
+          staticLine={staticLines}
         />
         <InvoiceLineScroll
           label="Press record. Press stop."
@@ -510,6 +559,8 @@ export function InvoiceCard({ compact = false }: { compact?: boolean }) {
           progress={scrollYProgress}
           triggerStart={0.26}
           triggerEnd={0.36}
+          large={large}
+          staticLine={staticLines}
         />
         <InvoiceLineScroll
           label="Pack clips, drive home"
@@ -517,6 +568,8 @@ export function InvoiceCard({ compact = false }: { compact?: boolean }) {
           progress={scrollYProgress}
           triggerStart={0.34}
           triggerEnd={0.44}
+          large={large}
+          staticLine={staticLines}
         />
         <InvoiceLineScroll
           label="Monthly subtotal"
@@ -525,90 +578,106 @@ export function InvoiceCard({ compact = false }: { compact?: boolean }) {
           triggerStart={0.44}
           triggerEnd={0.55}
           emphasis
+          large={large}
+          staticLine={staticLines}
         />
       </div>
 
-      <div
-        className="mx-5 mt-1"
-        style={{ borderTop: `1px solid ${HAIRLINE_HEAVY}` }}
-      />
+      {(() => {
+        const annualLabelSize = large ? "0.7rem" : "0.58rem";
+        const monthsSize = large ? "0.82rem" : "0.68rem";
+        const tickerSize = large
+          ? "clamp(2.8rem, 5.5vw, 4rem)"
+          : compact
+            ? "clamp(2rem, 4vw, 2.6rem)"
+            : "clamp(2.3rem, 4.5vw, 3rem)";
+        const dollarOffset = large ? -38 : compact ? -18 : -22;
 
-      <motion.div
-        style={{ opacity: totalOpacity, y: totalY }}
-        className="flex items-end justify-between px-5 pt-4"
-      >
-        <div className="flex flex-col">
-          <span
-            style={{
-              fontFamily: BODY,
-              fontSize: "0.58rem",
-              letterSpacing: "0.3em",
-              textTransform: "uppercase",
-              color: INK_SOFT,
-              fontWeight: 600,
-            }}
-          >
-            Annual total
-          </span>
-          <span
-            style={{
-              fontFamily: BODY,
-              fontSize: "0.68rem",
-              color: INK_FAINT,
-              marginTop: 2,
-            }}
-          >
-            2,000 &times; 12 months
-          </span>
-        </div>
+        return (
+          <>
+            <div
+              className={cn("mt-1", mx)}
+              style={{ borderTop: `1px solid ${HAIRLINE_HEAVY}` }}
+            />
 
-        <div className="relative">
-          <NumberTicker
-            value={24000}
-            startValue={2000}
-            delay={0.2}
-            className="tabular-nums"
-            style={{
-              fontFamily: DISPLAY,
-              fontSize: compact
-                ? "clamp(2rem, 4vw, 2.6rem)"
-                : "clamp(2.3rem, 4.5vw, 3rem)",
-              fontWeight: 600,
-              letterSpacing: "-0.04em",
-              color: INK,
-              fontFeatureSettings: '"tnum" 1, "lnum" 1',
-              display: "inline-block",
-            }}
-          />
-          <span
-            aria-hidden
-            style={{
-              position: "absolute",
-              left: -15,
-              top: 0,
-              fontFamily: DISPLAY,
-              fontSize: compact
-                ? "clamp(2rem, 4vw, 2.6rem)"
-                : "clamp(2.3rem, 4.5vw, 3rem)",
-              fontWeight: 500,
-              color: INK_SOFT,
-              letterSpacing: "-0.04em",
-            }}
-          >
-            $
-          </span>
-        </div>
-      </motion.div>
+            <motion.div
+              style={{ opacity: totalOpacity, y: totalY }}
+              className={cn(
+                "flex items-end justify-between pt-4",
+                padX,
+              )}
+            >
+              <div className="flex flex-col">
+                <span
+                  style={{
+                    fontFamily: BODY,
+                    fontSize: annualLabelSize,
+                    letterSpacing: "0.3em",
+                    textTransform: "uppercase",
+                    color: INK_SOFT,
+                    fontWeight: 600,
+                  }}
+                >
+                  Annual total
+                </span>
+                <span
+                  style={{
+                    fontFamily: BODY,
+                    fontSize: monthsSize,
+                    color: INK_FAINT,
+                    marginTop: 2,
+                  }}
+                >
+                  2,000 &times; 12 months
+                </span>
+              </div>
+
+              <div className="relative">
+                <NumberTicker
+                  value={24000}
+                  startValue={2000}
+                  delay={0.2}
+                  className="tabular-nums"
+                  style={{
+                    fontFamily: DISPLAY,
+                    fontSize: tickerSize,
+                    fontWeight: 600,
+                    letterSpacing: "-0.04em",
+                    color: INK,
+                    fontFeatureSettings: '"tnum" 1, "lnum" 1',
+                    display: "inline-block",
+                  }}
+                />
+                <span
+                  aria-hidden
+                  style={{
+                    position: "absolute",
+                    left: dollarOffset,
+                    top: 0,
+                    fontFamily: DISPLAY,
+                    fontSize: tickerSize,
+                    fontWeight: 500,
+                    color: INK_SOFT,
+                    letterSpacing: "-0.04em",
+                  }}
+                >
+                  $
+                </span>
+              </div>
+            </motion.div>
+          </>
+        );
+      })()}
 
       <motion.p
         style={{
           opacity: totalOpacity,
           fontFamily: BODY,
-          fontSize: "0.76rem",
+          fontSize: large ? "0.88rem" : "0.76rem",
           fontStyle: "italic",
           color: INK_MUTED,
         }}
-        className="px-5 pb-5 pt-2 text-right"
+        className={cn("pb-5 pt-2 text-right", padX)}
       >
         &mdash; a year. For a phone-holder.
       </motion.p>
@@ -654,14 +723,28 @@ export function ToolCard({
   tool,
   index,
   compact = false,
+  large = false,
 }: {
   tool: ToolFailure;
   index: number;
   compact?: boolean;
+  large?: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-15%" });
+
+  const minHeight = large
+    ? "min-h-[230px]"
+    : compact
+      ? "min-h-[170px]"
+      : "min-h-[200px]";
+  const padding = large ? "p-6" : "p-5";
+  const logoBox = large ? "h-11 w-11" : "h-9 w-9";
+  const logoSize = large ? "0.68rem" : "0.58rem";
+  const nameSize = large ? "1.4rem" : compact ? "1.08rem" : "1.2rem";
+  const promiseSize = large ? "0.92rem" : "0.8rem";
+  const promiseHeight = large ? "h-[54px]" : "h-[48px]";
 
   return (
     <motion.div
@@ -681,24 +764,28 @@ export function ToolCard({
     >
       <MagicCard
         gradientSize={220}
-        gradientColor={`rgba(236, 72, 153, ${hovered ? 0.18 : 0.09})`}
+        gradientColor={`rgba(30, 58, 138, ${hovered ? 0.14 : 0.07})`}
         gradientOpacity={1}
         className="h-full"
       >
         <div
           className={cn(
-            "relative flex flex-col justify-between p-5",
-            compact ? "min-h-[170px]" : "min-h-[200px]",
+            "relative flex flex-col justify-between",
+            padding,
+            minHeight,
           )}
         >
           <div className="flex items-start justify-between">
             <div
-              className="flex h-9 w-9 items-center justify-center rounded-md"
+              className={cn(
+                "flex items-center justify-center rounded-md",
+                logoBox,
+              )}
               style={{
                 background: INK,
                 color: "#fff",
                 fontFamily: BODY,
-                fontSize: "0.58rem",
+                fontSize: logoSize,
                 fontWeight: 700,
                 letterSpacing: "0.14em",
               }}
@@ -712,12 +799,15 @@ export function ToolCard({
                 scale: hovered ? 1 : 0.7,
               }}
               transition={{ duration: 0.22 }}
-              className="flex h-5 w-5 items-center justify-center rounded-full"
+              className={cn(
+                "flex items-center justify-center rounded-full",
+                large ? "h-6 w-6" : "h-5 w-5",
+              )}
               style={{
                 background: ROSE,
                 color: "#fff",
                 fontFamily: BODY,
-                fontSize: "0.75rem",
+                fontSize: large ? "0.9rem" : "0.75rem",
                 fontWeight: 700,
                 lineHeight: 1,
               }}
@@ -732,7 +822,7 @@ export function ToolCard({
               <span
                 style={{
                   fontFamily: DISPLAY,
-                  fontSize: compact ? "1.08rem" : "1.2rem",
+                  fontSize: nameSize,
                   fontWeight: 600,
                   letterSpacing: "-0.02em",
                   color: INK,
@@ -753,7 +843,12 @@ export function ToolCard({
               />
             </div>
 
-            <div className="relative mt-2 h-[48px] overflow-hidden">
+            <div
+              className={cn(
+                "relative mt-2 overflow-hidden",
+                promiseHeight,
+              )}
+            >
               <AnimatePresence mode="wait" initial={false}>
                 {!hovered ? (
                   <motion.p
@@ -765,7 +860,7 @@ export function ToolCard({
                     className="absolute inset-0"
                     style={{
                       fontFamily: BODY,
-                      fontSize: "0.8rem",
+                      fontSize: promiseSize,
                       lineHeight: 1.45,
                       color: INK_SOFT,
                     }}
@@ -782,7 +877,7 @@ export function ToolCard({
                     className="absolute inset-0"
                     style={{
                       fontFamily: BODY,
-                      fontSize: "0.8rem",
+                      fontSize: promiseSize,
                       lineHeight: 1.45,
                       color: ROSE_DEEP,
                       fontWeight: 500,
@@ -802,9 +897,11 @@ export function ToolCard({
 
 export function ToolsGrid({
   compact = false,
+  large = false,
   columns = 2,
 }: {
   compact?: boolean;
+  large?: boolean;
   columns?: 1 | 2 | 4;
 }) {
   const gridCols =
@@ -817,7 +914,13 @@ export function ToolsGrid({
   return (
     <div className={cn("grid gap-3", gridCols)}>
       {TOOLS.map((tool, i) => (
-        <ToolCard key={tool.name} tool={tool} index={i} compact={compact} />
+        <ToolCard
+          key={tool.name}
+          tool={tool}
+          index={i}
+          compact={compact}
+          large={large}
+        />
       ))}
     </div>
   );
@@ -1067,7 +1170,7 @@ export function Bridge({ compact = false }: { compact?: boolean }) {
         className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-full"
         style={{
           background:
-            "radial-gradient(ellipse 55% 70% at 50% 100%, rgba(236,72,153,0.12), transparent 70%)",
+            "radial-gradient(ellipse 55% 70% at 50% 100%, rgba(30,58,138,0.1), transparent 70%)",
         }}
       />
 

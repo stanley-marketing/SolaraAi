@@ -130,7 +130,7 @@ export default function SectionTwoSplitPreview() {
             <ExhibitColumn
               label="Exhibit B · Option 2"
               title="The tool stack."
-              cost="$30–150/mo"
+              cost="$150–600/mo"
               index={1}
             >
               <p

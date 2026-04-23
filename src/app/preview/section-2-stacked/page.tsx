@@ -154,7 +154,7 @@ export default function SectionTwoStackedPreview() {
             <ExhibitRow
               number="02"
               label="Exhibit B · The tool stack"
-              title="$30–150/month for auto-complete."
+              title="$150–600/month for auto-complete."
               flip
               prose={
                 <>
