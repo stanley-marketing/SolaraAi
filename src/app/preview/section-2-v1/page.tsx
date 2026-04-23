@@ -24,6 +24,7 @@ import { useEffect, useRef } from "react";
 
 const MUTED_LABEL = "#626262";
 const MUTED_BODY = "#4a4a4a";
+const MUTED_WHISPER = "rgba(98,98,98,0.75)";
 
 const MAX_INFLUENCE_DISTANCE = 260;
 const MAX_LIFT = 4;
@@ -121,6 +122,103 @@ function TileCard({
           </span>
         )}
       </span>
+    </div>
+  );
+}
+
+function BeforeAfterPlaceholder() {
+  return (
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
+      <div className="flex flex-col gap-3">
+        <span
+          style={{
+            fontSize: "0.62rem",
+            letterSpacing: "0.26em",
+            textTransform: "uppercase" as const,
+            color: MUTED_LABEL,
+          }}
+        >
+          Before
+        </span>
+        <div
+          className="relative aspect-video w-full overflow-hidden rounded-2xl border border-line"
+          style={{
+            background:
+              "linear-gradient(135deg, #e5e7eb 0%, #9ca3af 100%), repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 3px)",
+            backgroundBlendMode: "multiply",
+          }}
+        >
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span
+              className="rounded-full border border-white/60 bg-black/30 px-3 py-1 text-white backdrop-blur-sm"
+              style={{ fontSize: "0.72rem", letterSpacing: "0.08em" }}
+            >
+              Raw phone clip
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-3">
+        <span
+          style={{
+            fontSize: "0.62rem",
+            letterSpacing: "0.26em",
+            textTransform: "uppercase" as const,
+            color: MUTED_LABEL,
+          }}
+        >
+          After
+        </span>
+        <div
+          className="relative aspect-video w-full overflow-hidden rounded-2xl border border-line"
+          style={{
+            background:
+              "linear-gradient(135deg, #fde68a 0%, #fb923c 50%, #9a3412 100%)",
+          }}
+        >
+          <div
+            aria-hidden="true"
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse at 70% 30%, rgba(255,255,255,0.4) 0%, transparent 50%)",
+            }}
+          />
+          <div className="absolute left-4 top-4">
+            <span
+              className="rounded-full bg-ink-900/70 px-2.5 py-1 text-white backdrop-blur-sm"
+              style={{ fontSize: "0.62rem", letterSpacing: "0.2em" }}
+            >
+              HOOK
+            </span>
+          </div>
+          <div className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/95">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              className="h-4 w-4"
+              aria-hidden="true"
+            >
+              <path
+                d="M8 5v14l11-7z"
+                fill="#111111"
+                stroke="#111111"
+                strokeWidth="1"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+          <div className="absolute bottom-4 left-4 right-4">
+            <div
+              className="rounded-lg bg-black/40 px-3 py-2 text-white backdrop-blur-sm"
+              style={{ fontSize: "0.82rem", fontWeight: 500, lineHeight: 1.35 }}
+            >
+              How we pull every espresso
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -380,13 +478,70 @@ export default function Section2V1Preview() {
             className="mx-auto mt-12 max-w-md text-center italic sm:mt-16"
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "1rem",
-              color: MUTED_BODY,
+              fontSize: "0.95rem",
+              color: MUTED_WHISPER,
               fontWeight: 400,
             }}
           >
             &hellip; and everything else a creative team does.
           </p>
+
+          <div className="mx-auto mt-20 max-w-5xl border-t border-line pt-14 sm:mt-24 sm:pt-16">
+            <p
+              style={{
+                fontSize: "0.65rem",
+                letterSpacing: "0.26em",
+                textTransform: "uppercase" as const,
+                color: MUTED_LABEL,
+                marginBottom: 10,
+              }}
+            >
+              The transformation
+            </p>
+
+            <h3
+              className="max-w-[560px] leading-[1.15] tracking-[-0.015em] text-ink-900"
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(1.5rem, 2.8vw, 2.1rem)",
+                fontWeight: 600,
+              }}
+            >
+              Your phone footage. Cinematic output.
+            </h3>
+
+            <p
+              className="mt-4 max-w-[540px]"
+              style={{
+                fontSize: "0.95rem",
+                lineHeight: 1.6,
+                color: MUTED_BODY,
+              }}
+            >
+              Send a raw 5-second clip. Solara runs it through color grading,
+              sound design, captions, hooks, and thumbnails. Out comes content
+              that looks like a Hollywood crew filmed it.
+            </p>
+
+            <div className="mt-10 sm:mt-12">
+              <BeforeAfterPlaceholder />
+            </div>
+          </div>
+
+          <div className="mx-auto mt-16 max-w-[680px] border-t border-line pt-8 sm:mt-20">
+            <p
+              className="text-ink-900"
+              style={{
+                fontSize: "clamp(1.05rem, 1.4vw, 1.25rem)",
+                lineHeight: 1.55,
+                fontWeight: 500,
+                fontFamily: "var(--font-display)",
+              }}
+            >
+              This is what a $2,000/month creative team delivers. Solara does
+              it for a fraction &mdash; and never takes a day off.
+            </p>
+          </div>
         </div>
       </section>
 
