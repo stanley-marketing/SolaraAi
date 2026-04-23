@@ -50,7 +50,7 @@ const BRIDGE_WA_SCRIPT: Message[] = [
   {
     id: "b2",
     direction: "incoming",
-    text: "Tap here to start: solara.ai/rec/xT4p",
+    text: "Tap here to start: https://app.solaraai.com/rec/xT4p",
     time: "9:02",
   },
 ];

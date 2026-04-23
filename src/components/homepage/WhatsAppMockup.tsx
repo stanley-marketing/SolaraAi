@@ -390,6 +390,30 @@ function WhatsAppInputBar({ phoneWidth }: { phoneWidth: number }) {
 
 type BubbleAuthor = "incoming" | "outgoing";
 
+const URL_REGEX = /(https?:\/\/[^\s]+)/g;
+const WA_LINK_COLOR = "#1F7A4C";
+function renderTextWithLinks(text: string): ReactNode {
+  const parts = text.split(URL_REGEX);
+  return parts.map((part, i) => {
+    if (URL_REGEX.test(part)) {
+      URL_REGEX.lastIndex = 0; // reset stateful regex
+      return (
+        <span
+          key={`${i}-${part}`}
+          style={{
+            color: WA_LINK_COLOR,
+            textDecoration: "underline",
+            textUnderlineOffset: "2px",
+          }}
+        >
+          {part}
+        </span>
+      );
+    }
+    return <span key={`${i}-plain`}>{part}</span>;
+  });
+}
+
 function MessageBubble({
   phoneWidth,
   direction,
@@ -464,7 +488,7 @@ function MessageBubble({
             fontFamily: IOS_FONT,
           }}
         >
-          {text}
+          {renderTextWithLinks(text)}
           <span aria-hidden style={{ display: "inline-block", width: (isUser ? 44 : 28) * scale }} />
         </div>
         <div
