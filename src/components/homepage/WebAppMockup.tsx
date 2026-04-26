@@ -104,7 +104,7 @@ function HomeIndicator({ bottom, width, height }: { bottom: number; width: numbe
   );
 }
 
-function PhoneFrame({ width, children }: { width: number; children: ReactNode }) {
+export function PhoneFrame({ width, children }: { width: number; children: ReactNode }) {
   const height = Math.round(width * 2.05);
   const frameRadius = Math.round(width * 0.13);
   const frameInset = Math.round(width * 0.035);
