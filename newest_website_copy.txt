@@ -1,0 +1,297 @@
+v6 — 9-section lean narrative. Applies the research synthesis from 3 parallel agents (competitor teardown, copywriting frameworks, oracle structural audit). All 3 converged on: shorter page, front-loaded trust, kill repetitive mechanism explanations, add real customer proof, one phone section not four.
+
+DEFAULTS I PICKED WITHOUT YOUR EXPLICIT CONFIRMATION (override any):
+- Architecture: Recommended 9-section lean (not the Proof-Forward alternative — that needs a customer video in hand)
+- Customer proof §7: placeholder structure with [LABELS] for content you need to provide. I did NOT invent a fake customer.
+- Risk reversal: v5-level commitments only (cancel anytime, approval, data). The stronger "remove + credit" guarantee is flagged as an optional upgrade needing your authorization.
+- Order: top-down.
+
+WHAT GOT CUT FROM V5:
+- Standalone banner (gimmick before trust earned)
+- §1 problem (folded into §3 teardown opener)
+- §3 long-form "except hold the phone" (compressed to a diagram in §4)
+- §5 "four-year-old input" standalone (best beats merged into §6 before/after)
+- §7 "on camera" standalone (moved to FAQ)
+- §8 WhatsApp day-in-life (rejected-take beat pulled into §5, rest cut)
+- §10 "what you stop losing" (repetitive loss framing)
+- §12 "what happens if you don't" (repetitive urgency)
+
+WHAT GOT ADDED:
+- Hero micro-proof row (3 trust signals above the fold)
+- §4 role-split diagram (visual variety, compresses 50 lines of v5 prose to one visual)
+- §7 customer proof section (biggest missing piece per all 3 agents)
+- §8 cost-comparison card (Hormozi-style value anchor)
+- Optional brand-risk guarantee in §8 (pending your authorization)
+
+VISUAL VARIETY MAP (phone mockup appears ONCE, not four times):
+§1 hero → short video
+§2 trust bar → data card (industry icons)
+§3 teardown → ledger (existing design)
+§4 role split → two-column diagram
+§5 workflow → phone mockup (THE ONLY ONE)
+§6 proof → before/after (input thumbnails → finished post)
+§7 customer → founder photo + outcome card
+§8 pricing → cost-comparison table
+§9 FAQ + CTA → accordion + calendar view
+
+TRUST PLACEMENT MAP:
+500+ SMBs              → Hero micro-proof + §2
+Human-reviewed         → Hero micro-proof + §4 + §5 + §8
+Nothing posts w/o tap  → Hero micro-proof + §8
+Rejects bad takes      → §5 only
+Named customer         → §7
+Price anchor           → §3 + §8
+Data ownership         → §8 + §9
+Cancel anytime         → §8 + §9
+
+Estimated length: 8–9 viewports. Down from v5's 13 sections + banner + CTA.
+
+---
+
+## §1 — Hero
+
+**Your first autonomous social media manager.**
+
+Not a tool. Not a scheduler. An AI agent that plans, scripts, directs what to film, reviews your takes, edits, and publishes your social media every week. You film short clips. Solara handles everything else.
+
+**[ See your free strategy → ]**
+*No credit card. Your brand profile in 10 minutes.*
+
+**Micro-proof row (directly under CTA):**
+500+ SMBs  ·  Human-reviewed edge cases  ·  Nothing posts without your approval
+
+**Visual:** 15-second looping video, muted. Real SMB owner films a 5-second clip from a phone brief; finished polished post appears on Instagram. Input → output in one cut. No product UI chrome.
+
+---
+
+## §2 — Trust bar
+
+**500+ SMBs growing with Solara.** Restaurants. Fitness coaches. Ecommerce brands. SaaS founders. Clinics. Salons. Studios.
+
+**Visual:** Data card. Industry-icon strip (fork / dumbbell / package / laptop / stethoscope / scissors) + SMB count. No company logos — SMB brands don't signal credibility.
+
+---
+
+## §3 — Why the two options fail
+
+You already know you need to post. You've probably looked. There are only two ways to do this today. Neither works.
+
+### Exhibit A — Hire a social media manager or agency. $1,500–$2,500/month.
+
+What they actually show up with: instructions.
+
+On-site or on Zoom, they arrive with one thing — a list of things to film this week. The scripting, the editing, the captions, the scheduling, the reporting — all happens later, on a laptop, without you.
+
+[INVOICE CARD]
+*Briefs you. Takes your clips. Cuts on a laptop later.*
+— Tell you what to film — $500
+— Say "hold it vertical" — $500
+— Take your clips, edit later — $500
+— Caption, schedule, report back — $500
+**Monthly subtotal: $2,000**
+
+= $24,000 a year to brief you.
+
+Then: managing them eats an hour a day. Approvals. Revisions. "What did you think of Tuesday's post?" You're a part-time content producer paying $24k for the privilege.
+
+### Exhibit B — The AI tool stack. $150–$600/month.
+
+Schedulers. Caption generators. Image generators. AI video makers.
+
+None of it is marketing. A scheduler doesn't decide what to schedule. A caption tool doesn't know your brand. An AI image maker makes the same plastic-looking slop everyone else is making — and your audience scrolls past it in 0.3 seconds.
+
+Tools don't strategize. Tools don't direct you. Tools don't learn.
+
+— and nothing moves.
+
+**Option A costs too much for a job that's mostly telling you what to do.**
+**Option B doesn't do the job at all.**
+
+That's the gap Solara was built for.
+
+**Visual:** Ledger layout (existing design at /preview/section-2-ledger — keep as-is, already aligned with v5/v6 copy).
+
+---
+
+## §4 — The honest division of labor
+
+| YOU | SOLARA |
+|---|---|
+| Be in your own business | Plan your content calendar |
+| Film the short clips Solara asks for | Write every script |
+| Approve posts before they go live | Direct what to film, how, how long |
+| | Review your takes |
+| | Ask for re-shoots when something's off |
+| | Edit, caption, score music |
+| | Publish on your schedule |
+| | Report on what worked |
+
+Only you can film your actual product, your actual face, your actual space. That's the one thing that can't be faked remotely — and it's the only thing Solara asks of you.
+
+A human on our team watches every account. Not every post — but every edge case the AI is unsure about. You're not alone with a black box.
+
+**Visual:** Two-column diagram. Vertical bar between "YOU" and "SOLARA." Simple typography. No device chrome. No phone mockup.
+
+---
+
+## §5 — How the workflow actually works
+
+The reason most SMB owners can't make content themselves isn't time. It's the hundred micro-decisions per shot: what angle, how far back, vertical or horizontal, what to say, how long, how to start, how to end.
+
+That's the directing. That's what you were paying a manager for.
+
+Solara does it through your phone.
+
+**Step 01 — Solara sends the ask.**
+One short message. What to film today. No long brief, no creative brainstorm.
+
+**Step 02 — It shows you the shot.**
+A shot brief opens: reference frame, framing rules, a teleprompter line if you're speaking. No guesswork. No deciding angles.
+
+**Step 03 — You film what it asks.**
+Short clip, straightforward action. The reference stays on screen the whole time. Film it, submit it, move on.
+
+**Step 04 — Solara reviews the take.**
+If it's clean, it's in the edit queue. If something's off — wrong thing in frame, someone walking behind you, the audio bad — it asks for one more. When the AI isn't sure, a human on our team steps in.
+
+**You bring: short clips of your actual brand. Solara brings: everything else.**
+
+**Visual:** Sticky iPhone storyboard (existing /preview/section-4-storyboard, already built with the shot brief card + pizza image + human-in-loop copy). **This is the ONLY phone section on the page.**
+
+---
+
+## §6 — What one finished piece is actually made from
+
+Tiny inputs become a polished multi-scene post.
+
+Here's one piece, published Thursday morning. Filmed across three short sessions totaling eight minutes. On the left: what you did. On the right: what Solara produced.
+
+**WHAT YOU DID (8 minutes total across the week):**
+— Uploaded one photo of the pizza out of the oven
+— Filmed 8 seconds of dough stretching under your hands
+— Read two sentences into a teleprompter (12 seconds)
+— Tapped "approve" on the draft
+
+**WHAT SOLARA PRODUCED:**
+A 6-scene, 25-second post. Music matched to energy. Captions burned in using the format winning in your category this week. Cut to the beat. Scheduled Thursday 8 AM across Instagram and TikTok.
+
+Same structure for a fitness coach: form breakdown + client moment + founder cue. Same for an ecommerce brand: unboxing + product detail + founder speaking. Same for a SaaS founder: problem frame + screen capture + one-line insight.
+
+One finished piece. Tiny inputs. Every week.
+
+**Visual:** Before/after side-by-side. Left column: raw input thumbnails (the photo, the 8-sec clip thumb, the teleprompter line) with labels and timestamps. Right column: finished post mockup shaped like an Instagram Reel card with captions overlay and a "scheduled" timestamp. No device chrome.
+
+---
+
+## §7 — One customer's week
+
+[CUSTOMER HEADSHOT OR 15-SEC FOUNDER CLIP]
+
+**[CUSTOMER NAME] · [BUSINESS TYPE] · [CITY]**
+
+> *"[2-SENTENCE QUOTE — WHAT CHANGED IN THEIR WORDS]"*
+
+[OUTCOME CARD]
+— Posts/week: [BEFORE] → [AFTER]
+— Followers: [BEFORE] → [AFTER]
+— Time invested: [HOURS/WEEK]
+— First measurable win: [DAYS/WEEKS]
+
+[@HANDLE OR LINK]
+
+> **[NOTE FOR OMER — §7 content decisions required before launch]**
+> This section holds the biggest trust lever on the page per all 3 research agents. It needs:
+> 1. Real customer we can name (with their permission)
+> 2. Headshot or 15-second founder-filmed clip
+> 3. 1–2 sentence pull quote
+> 4. 2–3 concrete outcome numbers
+> 5. Their handle or URL so visitors can verify
+>
+> **Do not ship this page with a fabricated customer.** If none is ready by launch, the entire §7 block is cut and §6 flows into §8 directly. The page still works — just misses the single biggest conversion lever.
+
+**Visual:** Founder photo (or clip) + outcome card + handle. Named human, named business, hard numbers.
+
+---
+
+## §8 — Pricing + risk reversal
+
+**$99/month.** Or **$69/month billed annually** — save $360/year, rate locked for life even when we raise prices.
+
+Less than one customer order at most businesses. Less than one client session. Less than one hour of a freelancer's time.
+
+[COMPARISON CARD]
+|                       | DIY, alone          | Agency / SMM       | Solara           |
+|-----------------------|---------------------|--------------------|------------------|
+| Monthly cost          | $0 + 40 hrs of you  | $1,500–$2,500      | **$99 or $69/yr**|
+| Hours from you        | 40+                 | 5–10 managing them | ~30 min/day      |
+| Strategy              | None                | Yes                | Yes              |
+| Editing               | You                 | Them               | Solara + human   |
+| Publishing            | You                 | Them               | Auto + approval  |
+| Learns your brand     | No                  | Slowly             | Every week       |
+
+**Your protection:**
+🔒 Nothing posts without your approval. Ever.
+🔒 Cancel anytime.
+🔒 Your data stays yours.
+🔒 A human on our team watches every account.
+
+**[ Start — free strategy first → ]**
+
+> **[NOTE FOR OMER — optional upgrade]**
+> If you can commit to *"If you're not happy with any post we publish, we'll remove it and credit the month"* as a 5th protection line, add it here. Research was unanimous that this is one of the highest-leverage conversion upgrades for this product class (Intercom Fin's "Million Dollar Guarantee" pattern). Needs legal/business authorization before shipping. If N, skip — the 4 protections above still close the deal.
+
+**Visual:** Cost-comparison table as a data card. Shaded "Solara" column. No device chrome.
+
+---
+
+## §9 — FAQ + final CTA
+
+**"I'm terrible on camera."**
+Most of your content isn't you on camera — it's your product, your space, your process, your customers. When you do appear, it's one short sentence at a time with a teleprompter. Too nervous to speak? Use gesture mode — stand there, gesture, smile. Solara lip-syncs your voice clone to the script.
+
+**"I don't know how to film."**
+You don't need to. Every ask comes with a short reference — a framing guide, a teleprompter, sometimes an animated preview. Your only job is pressing record on what Solara shows you. If the take is off, Solara asks for one more.
+
+**"What if Solara posts something I hate?"**
+Nothing posts without your tap. Ever.
+
+**"Is a real person watching any of this?"**
+Yes. Our team is in the loop on every account — not touching every post, but catching edge cases the AI might miss.
+
+**"How is this possible for $99?"**
+Solara isn't a tool and isn't a person — it's a workflow. It runs your content through the best AI models on the market, backed by a human team. The expensive part of hiring a human was paying them to think, produce, and edit. Software does that now. You bring the one thing only you can: being in your own business.
+
+---
+
+**Your strategy is ready in 10 minutes. Free.**
+
+Scan your website, your Instagram, or your brand profile. See what Solara builds for you. Decide after.
+
+**[ See your free strategy → ]**
+
+**Visual:** FAQ accordion (collapsed by default, first question open). Next to CTA: a mini calendar-week visual showing 3 scheduled posts — reinforces "ongoing managed output" not one-off tool.
+
+---
+
+## Change log from v5 → v6
+
+**Section count:** 13 sections + banner + CTA → 9 sections + CTA
+**Estimated length:** ~16 vh → ~8–9 vh
+**Phone mockup usage:** 4 sections → 1 section (§5 only)
+**Trust signals above the fold:** 1 (buried in trust strip) → 3 (hero micro-proof row)
+**Dedicated customer proof:** absent → §7 (biggest net-new addition)
+**Redundancy between §4 and §5:** resolved by killing §5 standalone, merging best beats into §6
+
+## Build order recommendation (section-by-section in preview routes, same pattern as v4/v5 work)
+
+1. **§1 Hero** — new preview route `/preview/section-1-hero`. Headline + micro-proof + CTA + video placeholder.
+2. **§2 Trust bar** — small component, probably doesn't need its own route.
+3. **§3 Why the two options fail** — reuse `/preview/section-2-ledger` (already aligned).
+4. **§4 Role split** — new preview route `/preview/section-3-role-split`. Diagram.
+5. **§5 Workflow** — reuse `/preview/section-4-storyboard` (already aligned, shot brief card built).
+6. **§6 What one piece is made from** — new preview route `/preview/section-5-before-after` (replaces the 4 existing section-5-* variants).
+7. **§7 Customer proof** — new preview route `/preview/section-6-customer` with placeholder labels.
+8. **§8 Pricing** — new preview route `/preview/section-7-pricing`.
+9. **§9 FAQ + CTA** — new preview route `/preview/section-8-faq`.
+
+Naming note: preview routes are numbered by section order in v6, not v4/v5. The mapping is in the change log above.

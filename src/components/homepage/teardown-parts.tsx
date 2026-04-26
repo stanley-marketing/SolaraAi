@@ -543,7 +543,7 @@ export function InvoiceCard({
             lineHeight: 1.45,
           }}
         >
-          On-site visits. Handheld phone. One iPhone.
+          Briefs you. Takes your clips. Cuts on a laptop later.
         </p>
       </div>
 
@@ -554,7 +554,7 @@ export function InvoiceCard({
 
       <div className={cn("pb-2 pt-3", padX)}>
         <InvoiceLineScroll
-          label="Stand next to you"
+          label="Tell you what to film"
           amount="$500"
           progress={scrollYProgress}
           triggerStart={0.1}
@@ -563,7 +563,7 @@ export function InvoiceCard({
           staticLine={staticLines}
         />
         <InvoiceLineScroll
-          label={'Say "a little to the left"'}
+          label={'Say "hold it vertical"'}
           amount="$500"
           progress={scrollYProgress}
           triggerStart={0.18}
@@ -572,7 +572,7 @@ export function InvoiceCard({
           staticLine={staticLines}
         />
         <InvoiceLineScroll
-          label="Press record. Press stop."
+          label="Take your clips, edit later"
           amount="$500"
           progress={scrollYProgress}
           triggerStart={0.26}
@@ -581,7 +581,7 @@ export function InvoiceCard({
           staticLine={staticLines}
         />
         <InvoiceLineScroll
-          label="Pack clips, drive home"
+          label="Caption, schedule, report back"
           amount="$500"
           progress={scrollYProgress}
           triggerStart={0.34}

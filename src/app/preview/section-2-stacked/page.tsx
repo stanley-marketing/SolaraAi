@@ -133,13 +133,13 @@ export default function SectionTwoStackedPreview() {
             <ExhibitRow
               number="01"
               label="Exhibit A · The manager"
-              title="$2,000/month for a phone-holder."
+              title="$2,000/month for instructions."
               prose={
                 <>
-                  They arrive with the same iPhone in your pocket. You pay
-                  them to stand there, tell you where to stand, and press
-                  record. Everything that requires thought happens later, on
-                  a laptop, without you.
+                  On-site or on Zoom, they arrive with one thing: a list of
+                  things to film this week. You bring the clips. They process
+                  everything later on a laptop without you &mdash; captions,
+                  edits, schedule, report.
                 </>
               }
             >

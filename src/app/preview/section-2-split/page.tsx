@@ -120,9 +120,9 @@ export default function SectionTwoSplitPreview() {
                   color: INK_MUTED,
                 }}
               >
-                They show up with the same iPhone in your pocket. You pay them
-                to stand there, tell you where to stand, and press record. The
-                thinking happens later, on a laptop, without you.
+                On-site or on Zoom, they arrive with one thing: instructions.
+                You pay them to tell you what to film, take your clips, and
+                process them later on a laptop without you.
               </p>
               <InvoiceCard compact />
             </ExhibitColumn>

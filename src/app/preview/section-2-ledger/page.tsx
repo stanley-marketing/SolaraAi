@@ -295,7 +295,7 @@ export default function SectionTwoLedgerPreview() {
                       color: INK_MUTED,
                     }}
                   >
-                    &mdash; and nobody walks in.
+                    &mdash; and nothing moves.
                   </p>
                 </div>
               </LedgerColumn>
