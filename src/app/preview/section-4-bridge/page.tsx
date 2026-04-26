@@ -3,6 +3,7 @@
 import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
 import {
   ArrowDown,
+  ArrowLeft,
   ArrowRight,
   Camera,
   Check,
@@ -430,6 +431,246 @@ function SceneMiniPhone({ scene }: { scene: Scene }) {
   return <MiniPhoneShell>{inner}</MiniPhoneShell>;
 }
 
+function MobileSceneCard({ scene }: { scene: Scene }) {
+  const typeIcon = (() => {
+    switch (scene.type) {
+      case "speaking":
+        return <Mic size={13} strokeWidth={2.2} />;
+      case "action":
+        return <Camera size={13} strokeWidth={2.2} />;
+      case "image":
+        return <ImageIcon size={13} strokeWidth={2.2} />;
+    }
+  })();
+
+  return (
+    <div
+      className="relative flex flex-col rounded-sm"
+      style={{
+        background: "#fdfcf8",
+        border: `1px solid ${HAIRLINE_HEAVY}`,
+        padding: 22,
+        minHeight: 560,
+      }}
+    >
+      <div
+        className="mb-4 flex items-center gap-2.5"
+        style={{
+          fontFamily: BODY,
+          fontSize: 11,
+          letterSpacing: "0.22em",
+          textTransform: "uppercase",
+          color: ROSE_DEEP,
+          fontWeight: 700,
+        }}
+      >
+        <span
+          className="flex h-5 w-5 items-center justify-center rounded-full"
+          style={{
+            background: ROSE_DEEP,
+            color: "#fff",
+            fontFamily: DISPLAY,
+            fontSize: 11,
+            fontWeight: 700,
+            letterSpacing: 0,
+          }}
+        >
+          {scene.number}
+        </span>
+        Scene {scene.number}
+      </div>
+
+      <div className="mb-5">
+        <p
+          className="mb-1.5"
+          style={{
+            fontFamily: BODY,
+            fontSize: 11,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: INK_FAINT,
+            fontWeight: 700,
+          }}
+        >
+          Solara asked:
+        </p>
+        <p
+          style={{
+            fontFamily: DISPLAY,
+            fontSize: 16,
+            fontWeight: 500,
+            color: INK,
+            letterSpacing: "-0.012em",
+            lineHeight: 1.4,
+          }}
+        >
+          &ldquo;{scene.ask}&rdquo;
+        </p>
+      </div>
+
+      <div className="mb-5 flex flex-1 items-center justify-center">
+        <SceneMiniPhone scene={scene} />
+      </div>
+
+      <div
+        className="flex items-center justify-between gap-2 pt-4"
+        style={{ borderTop: `1px dashed ${HAIRLINE_HEAVY}` }}
+      >
+        <span
+          className="flex items-center gap-1.5"
+          style={{
+            fontFamily: BODY,
+            fontSize: 12,
+            color: INK_MUTED,
+            fontWeight: 600,
+          }}
+        >
+          {typeIcon}
+          {scene.typeLabel}
+        </span>
+        <span
+          className="rounded-full px-2.5 py-1"
+          style={{
+            background: ROSE_DEEP,
+            color: "#fff",
+            fontFamily: BODY,
+            fontSize: 12,
+            fontWeight: 700,
+            letterSpacing: "0.04em",
+          }}
+        >
+          {scene.time}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+const BRIDGE_STEP_DURATION_MS = 6000;
+const BRIDGE_TICK_MS = 50;
+
+function MobileSceneSlideshow() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const totalSteps = SCENES.length;
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setProgress((p) => {
+        const next = p + (BRIDGE_TICK_MS / BRIDGE_STEP_DURATION_MS) * 100;
+        if (next >= 100) {
+          setActiveIndex((curr) => (curr + 1) % totalSteps);
+          return 0;
+        }
+        return next;
+      });
+    }, BRIDGE_TICK_MS);
+    return () => clearInterval(id);
+  }, [totalSteps]);
+
+  const goTo = (i: number) => {
+    const wrapped = ((i % totalSteps) + totalSteps) % totalSteps;
+    setActiveIndex(wrapped);
+    setProgress(0);
+  };
+
+  return (
+    <div className="flex flex-col">
+      <div className="mb-3 flex items-baseline justify-between">
+        <p
+          style={{
+            fontFamily: DISPLAY,
+            fontSize: "1.06rem",
+            fontWeight: 600,
+            color: INK,
+            letterSpacing: "-0.02em",
+          }}
+        >
+          The walkthrough
+        </p>
+        <p
+          style={{
+            fontFamily: BODY,
+            fontSize: "0.78rem",
+            color: INK_FAINT,
+            fontWeight: 600,
+            letterSpacing: "0.04em",
+          }}
+        >
+          {activeIndex + 1}{" "}
+          <span style={{ color: INK_FAINT }}>/ {totalSteps}</span>
+        </p>
+      </div>
+
+      <div
+        className="mb-7 h-px w-full overflow-hidden"
+        style={{ background: HAIRLINE_HEAVY }}
+      >
+        <div
+          key={activeIndex}
+          className="h-full"
+          style={{
+            width: `${progress}%`,
+            background: INK,
+            transition: "width 80ms linear",
+          }}
+        />
+      </div>
+
+      <div className="relative mb-7">
+        <MobileSceneCard scene={SCENES[activeIndex]} />
+      </div>
+
+      <div className="mb-6 flex justify-center gap-2.5">
+        {Array.from({ length: totalSteps }).map((_, i) => {
+          const isActive = i === activeIndex;
+          return (
+            <button
+              key={i}
+              type="button"
+              onClick={() => goTo(i)}
+              aria-label={`Go to scene ${i + 1}`}
+              className="rounded-full transition-colors duration-300"
+              style={{
+                width: 8,
+                height: 8,
+                background: isActive ? "#9c9c9c" : "#dcd8cd",
+              }}
+            />
+          );
+        })}
+      </div>
+
+      <div className="flex justify-center gap-3">
+        <button
+          type="button"
+          onClick={() => goTo(activeIndex - 1)}
+          aria-label="Previous scene"
+          className="flex h-11 w-11 items-center justify-center rounded-full transition-colors"
+          style={{
+            background: "#ebe6d6",
+            color: INK,
+          }}
+        >
+          <ArrowLeft size={17} strokeWidth={2} />
+        </button>
+        <button
+          type="button"
+          onClick={() => goTo(activeIndex + 1)}
+          aria-label="Next scene"
+          className="flex h-11 w-11 items-center justify-center rounded-full transition-colors"
+          style={{
+            background: "#ebe6d6",
+            color: INK,
+          }}
+        >
+          <ArrowRight size={17} strokeWidth={2} />
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function SceneCard({ scene, index }: { scene: Scene; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-15% 0px" });
@@ -629,7 +870,7 @@ function ProductionBand() {
         Solara edits, mixes, and produces
       </p>
 
-      <div className="flex flex-wrap items-center justify-center gap-2">
+      <div className="grid grid-cols-2 justify-items-center gap-2 sm:grid-cols-3 lg:flex lg:flex-wrap lg:items-center lg:justify-center">
         {PRODUCTION_PILLS.map((pill, i) => (
           <motion.span
             key={pill}
@@ -807,9 +1048,17 @@ function FinishedVideoBlock() {
       }}
       className="flex flex-col items-center"
     >
-      <PhoneFrame width={260}>
-        <FinishedReelScreen />
-      </PhoneFrame>
+      <div className="hidden lg:block">
+        <PhoneFrame width={260}>
+          <FinishedReelScreen />
+        </PhoneFrame>
+      </div>
+
+      <div className="lg:hidden">
+        <PhoneFrame width={210}>
+          <FinishedReelScreen />
+        </PhoneFrame>
+      </div>
 
       <p
         className="mt-6 text-center"
@@ -948,17 +1197,14 @@ function TimeTotalsBlock() {
 function FlowArrow({ direction = "down" }: { direction?: "down" | "right" }) {
   const Icon = direction === "down" ? ArrowDown : ArrowRight;
   return (
-    <div className="flex items-center justify-center" style={{ height: 56 }}>
-      <div
-        className="relative flex flex-col items-center"
-        style={{ height: "100%" }}
-      >
+    <div className="flex h-10 items-center justify-center sm:h-14">
+      <div className="relative flex h-full flex-col items-center">
         <div
           className="flex-1"
           style={{
             width: 1,
             background: `linear-gradient(180deg, transparent, ${HAIRLINE_HEAVY})`,
-            minHeight: 16,
+            minHeight: 12,
           }}
         />
         <span
@@ -976,7 +1222,7 @@ function FlowArrow({ direction = "down" }: { direction?: "down" | "right" }) {
           style={{
             width: 1,
             background: `linear-gradient(0deg, transparent, ${HAIRLINE_HEAVY})`,
-            minHeight: 16,
+            minHeight: 12,
           }}
         />
       </div>
@@ -987,7 +1233,7 @@ function FlowArrow({ direction = "down" }: { direction?: "down" | "right" }) {
 function HonestPartCallout() {
   return (
     <div
-      className="mx-auto mt-24 max-w-3xl rounded-sm px-8 py-12 text-center sm:px-12"
+      className="mx-auto mt-16 max-w-3xl rounded-sm px-6 py-9 text-center sm:mt-24 sm:px-12 sm:py-12"
       style={{
         background: "#f8f3e7",
         border: `1px solid #e8dcc0`,
@@ -1090,13 +1336,13 @@ export default function SectionFourBridgePreview() {
   return (
     <main style={{ background: SHELL, color: INK }}>
       <section className="relative">
-        <div className="mx-auto max-w-3xl px-6 pt-24 pb-12 text-center sm:pt-28">
+        <div className="mx-auto max-w-3xl px-5 pt-16 pb-10 text-center sm:px-6 sm:pt-24 sm:pb-12 lg:pt-28">
           <div className="flex justify-center">
             <SectionEyebrow />
           </div>
 
           <h1
-            className="mt-6 leading-[1.02] tracking-[-0.04em] text-[clamp(2.4rem,5.6vw,4rem)]"
+            className="mt-5 leading-[1.05] tracking-[-0.035em] text-[clamp(2rem,7vw,4rem)] sm:mt-6 sm:leading-[1.02] sm:tracking-[-0.04em]"
             style={{
               fontFamily: DISPLAY,
               fontWeight: 600,
@@ -1108,10 +1354,10 @@ export default function SectionFourBridgePreview() {
           </h1>
 
           <p
-            className="mx-auto mt-6"
+            className="mx-auto mt-5 sm:mt-6"
             style={{
               fontFamily: BODY,
-              fontSize: "1.1rem",
+              fontSize: "clamp(0.96rem, 2.4vw, 1.1rem)",
               lineHeight: 1.55,
               color: INK_MUTED,
               maxWidth: 640,
@@ -1123,12 +1369,12 @@ export default function SectionFourBridgePreview() {
           </p>
         </div>
 
-        <div className="mx-auto max-w-3xl px-6 pb-12">
+        <div className="mx-auto max-w-3xl px-5 pb-10 sm:px-6 sm:pb-12">
           <p
-            className="mb-5"
+            className="mb-4 sm:mb-5"
             style={{
               fontFamily: BODY,
-              fontSize: "1.06rem",
+              fontSize: "clamp(0.96rem, 2.4vw, 1.06rem)",
               lineHeight: 1.65,
               color: INK,
             }}
@@ -1140,7 +1386,7 @@ export default function SectionFourBridgePreview() {
           <p
             style={{
               fontFamily: BODY,
-              fontSize: "1.06rem",
+              fontSize: "clamp(0.96rem, 2.4vw, 1.06rem)",
               lineHeight: 1.65,
               color: INK_MUTED,
             }}
@@ -1152,12 +1398,12 @@ export default function SectionFourBridgePreview() {
           </p>
         </div>
 
-        <div className="mx-auto px-6 pb-16" style={{ maxWidth: 1600 }}>
+        <div className="mx-auto px-5 pb-12 sm:px-6 sm:pb-16" style={{ maxWidth: 1600 }}>
           <div
-            className="mb-10 text-center"
+            className="mb-7 text-center sm:mb-10"
             style={{
               fontFamily: DISPLAY,
-              fontSize: "clamp(1.15rem, 2.2vw, 1.55rem)",
+              fontSize: "clamp(1.05rem, 2.2vw, 1.55rem)",
               fontWeight: 600,
               color: INK,
               letterSpacing: "-0.02em",
@@ -1166,10 +1412,14 @@ export default function SectionFourBridgePreview() {
             How Solara built this 25-second post for a pizza shop owner.
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="hidden gap-5 lg:grid lg:grid-cols-5">
             {SCENES.map((scene, i) => (
               <SceneCard key={scene.number} scene={scene} index={i} />
             ))}
+          </div>
+
+          <div className="mx-auto max-w-md lg:hidden">
+            <MobileSceneSlideshow />
           </div>
 
           <div className="mx-auto" style={{ maxWidth: 1200 }}>
@@ -1187,12 +1437,12 @@ export default function SectionFourBridgePreview() {
           <TimeTotalsBlock />
         </div>
 
-        <div className="mx-auto max-w-3xl px-6 pb-12">
+        <div className="mx-auto max-w-3xl px-5 pb-10 sm:px-6 sm:pb-12">
           <p
-            className="mb-5"
+            className="mb-4 sm:mb-5"
             style={{
               fontFamily: BODY,
-              fontSize: "1.06rem",
+              fontSize: "clamp(0.96rem, 2.4vw, 1.06rem)",
               lineHeight: 1.65,
               color: INK_MUTED,
             }}
@@ -1224,7 +1474,7 @@ export default function SectionFourBridgePreview() {
           </p>
         </div>
 
-        <div className="px-6 pb-24">
+        <div className="px-5 pb-20 sm:px-6 sm:pb-24">
           <HonestPartCallout />
         </div>
       </section>
