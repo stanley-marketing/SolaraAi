@@ -6,7 +6,7 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { Camera, Check, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { memo, useRef, useState } from "react";
 import {
   BODY,
@@ -23,567 +23,190 @@ import {
   ROSE_DEEP,
   SHELL,
 } from "@/components/homepage/teardown-parts";
-import { cn } from "@/lib/utils";
 
-type StepDef = {
+type Scene = {
   number: string;
+  numeral: number;
+  label: string;
   title: string;
   body: string;
+  duration: string;
+  instruction: string;
+  image: string;
+  extra?: string;
 };
 
-const STEPS: StepDef[] = [
+const SCENES: Scene[] = [
   {
     number: "01",
-    title: "Solara sends the ask.",
-    body: "One short message — what to film tonight. No long brief, no creative brainstorm. It tells you exactly which shot it needs.",
+    numeral: 1,
+    label: "Opening hook",
+    title: "Speaking next to the oven",
+    body: "The 3-second hook that stops the scroll. One short line, on camera, in your actual space. Solara picks the moment, you press record.",
+    duration: "5s",
+    instruction:
+      "Stand next to the oven, look at the camera, and say your first line.",
+    image: "/storyboard/scenes/scene-1.webp",
   },
   {
     number: "02",
-    title: "It tells you where to stand.",
-    body: "Because onboarding walked through your space. It knows where the oven is, where the light comes from, and which counter makes the dough look best.",
+    numeral: 2,
+    label: "Value proposition",
+    title: "Same location, second sentence",
+    body: "Same spot, same light, second line. Solara stitches both takes back-to-back so it reads like one continuous shot — no editing skill required.",
+    duration: "5s",
+    instruction:
+      "Stay in the same spot and deliver the second line. Use your hands naturally.",
+    image: "/storyboard/scenes/scene-2.webp",
   },
   {
     number: "03",
-    title: "You press record.",
-    body: "Five seconds. One take, usually. A teleprompter or reference visual is right there in case you forget what the shot should look like.",
+    numeral: 3,
+    label: "Photo b-roll",
+    title: "Snap the pizza",
+    body: "Solara doesn't need video for every shot. One still photo becomes a moving cinematic moment — camera drift, depth, color graded.",
+    duration: "Photo",
+    instruction: "Take a photo of the pizza being served. One clean shot.",
+    image: "/storyboard/scenes/scene-3.webp",
+    extra: "Solara turns this into a video",
   },
   {
     number: "04",
-    title: "Solara reviews it.",
-    body: "If the take is clean, it's in the edit queue. If not, it asks for one more. You're out in under a minute. The thinking happens on Solara's side.",
+    numeral: 4,
+    label: "Outro & CTA",
+    title: "Film yourself delivering",
+    body: "The line that earns the tap. Centered, soft eye contact, smiling. Solara picks the take with the most energy and cuts it to the beat.",
+    duration: "7s",
+    instruction:
+      "Center yourself in the middle of the frame for a professional look.",
+    image: "/storyboard/scenes/scene-4.webp",
   },
 ];
 
-function PhoneShell({ children }: { children: React.ReactNode }) {
+function SceneCard({ scene }: { scene: Scene }) {
   return (
-    <div
-      className="relative mx-auto"
-      style={{
-        width: 320,
-        padding: 6,
-        borderRadius: 44,
-        background: "linear-gradient(145deg, #1a1a1a, #0a0a0a)",
-        boxShadow:
-          "0 30px 60px -30px rgba(0,0,0,0.5), 0 1px 0 rgba(255,255,255,0.08) inset, 0 0 0 1px rgba(0,0,0,0.2)",
-      }}
-    >
+    <div className="flex w-full flex-col">
       <div
-        className="relative overflow-hidden"
+        className="relative overflow-hidden rounded-2xl"
         style={{
-          borderRadius: 38,
-          background: "#fff",
-          aspectRatio: "9 / 19.5",
+          aspectRatio: "5 / 3",
+          boxShadow:
+            "0 28px 60px -22px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.06) inset",
         }}
       >
-        <div
+        <img
+          src={scene.image}
+          alt=""
           aria-hidden
-          className="absolute left-1/2 top-2 z-30 -translate-x-1/2"
-          style={{
-            width: 100,
-            height: 26,
-            borderRadius: 18,
-            background: "#0a0a0a",
-          }}
+          className="absolute inset-0 h-full w-full object-cover"
+          draggable={false}
         />
-        {children}
-      </div>
-    </div>
-  );
-}
 
-function PhoneStep1() {
-  return (
-    <div className="relative flex h-full w-full flex-col px-4 pb-4 pt-12">
-      <div
-        className="mb-3 flex items-center gap-2"
-        style={{
-          fontFamily: BODY,
-          fontSize: "0.62rem",
-          letterSpacing: "0.18em",
-          textTransform: "uppercase",
-          color: INK_FAINT,
-          fontWeight: 600,
-        }}
-      >
         <span
-          className="h-1.5 w-1.5 rounded-full"
-          style={{ background: "#22c55e" }}
-        />
-        New ask &middot; Just now
-      </div>
-
-      <div className="flex items-start gap-2">
-        <div
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
+          className="absolute right-4 top-4 z-20 flex h-8 w-8 items-center justify-center rounded-full"
           style={{
-            background: `linear-gradient(145deg, ${ROSE}, ${ROSE_DEEP})`,
-            color: "#fff",
-            fontFamily: DISPLAY,
-            fontSize: "0.82rem",
+            background: "#fff",
+            color: INK,
+            fontFamily: BODY,
+            fontSize: "0.86rem",
             fontWeight: 700,
+            boxShadow:
+              "0 2px 8px rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.06)",
           }}
         >
-          S
-        </div>
+          {scene.numeral}
+        </span>
+
         <div
-          className="max-w-[85%] rounded-2xl rounded-bl-md px-3 py-2.5"
+          className="absolute inset-x-0 bottom-0 z-10 px-5 pb-5 pt-14"
           style={{
-            background: "#f3f2ee",
-            border: `1px solid ${HAIRLINE}`,
+            background:
+              "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 35%, rgba(0,0,0,0.85) 100%)",
           }}
         >
           <p
             style={{
               fontFamily: BODY,
-              fontSize: "0.82rem",
-              color: INK,
-              lineHeight: 1.45,
+              fontSize: "0.62rem",
+              letterSpacing: "0.28em",
+              textTransform: "uppercase",
+              color: "rgba(255,255,255,0.78)",
+              fontWeight: 600,
             }}
           >
-            Quick ask for tonight&rsquo;s pizza. 5-second shot of it coming
-            out of the oven. Tap when you can film.
+            {scene.label}
+          </p>
+          <p
+            className="mt-1.5"
+            style={{
+              fontFamily: DISPLAY,
+              fontSize: "1.32rem",
+              fontWeight: 600,
+              color: "#fff",
+              lineHeight: 1.2,
+              letterSpacing: "-0.02em",
+            }}
+          >
+            {scene.title}
           </p>
         </div>
       </div>
 
-      <div className="mt-auto">
-        <button
-          type="button"
-          className="flex w-full items-center justify-center gap-2 rounded-full py-3"
-          style={{
-            background: INK,
-            color: "#fff",
-            fontFamily: BODY,
-            fontSize: "0.82rem",
-            fontWeight: 600,
-          }}
-        >
-          <Camera size={14} strokeWidth={2} />
-          Tap when ready
-        </button>
-      </div>
-    </div>
-  );
-}
-
-function PhoneStep2() {
-  return (
-    <div className="relative flex h-full w-full flex-col px-4 pb-4 pt-12">
       <div
-        className="mb-3 flex items-center justify-between"
-        style={{
-          fontFamily: BODY,
-          fontSize: "0.62rem",
-          letterSpacing: "0.18em",
-          textTransform: "uppercase",
-          color: INK_FAINT,
-          fontWeight: 600,
-        }}
+        className="mt-4 flex gap-2.5 pl-3"
+        style={{ borderLeft: `2px solid ${HAIRLINE_HEAVY}` }}
       >
-        <span>Your kitchen</span>
-        <span>Top view</span>
-      </div>
-
-      <div
-        className="relative flex-1 overflow-hidden rounded-2xl"
-        style={{
-          background: "#f8f6f0",
-          border: `1px solid ${HAIRLINE_HEAVY}`,
-        }}
-      >
-        <svg
-          viewBox="0 0 200 280"
-          className="absolute inset-0 h-full w-full"
-          preserveAspectRatio="xMidYMid meet"
-          aria-hidden
-        >
-          <title>Kitchen floor plan</title>
-          <defs>
-            <pattern id="dots" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
-              <circle cx="1" cy="1" r="0.5" fill="rgba(10,10,10,0.18)" />
-            </pattern>
-          </defs>
-          <rect
-            x="15"
-            y="15"
-            width="170"
-            height="250"
-            rx="4"
-            fill="url(#dots)"
-            stroke="rgba(10,10,10,0.25)"
-            strokeWidth="0.8"
-          />
-
-          <rect
-            x="30"
-            y="30"
-            width="55"
-            height="50"
-            rx="3"
-            fill="rgba(10,10,10,0.85)"
-          />
-          <text
-            x="57.5"
-            y="58"
-            textAnchor="middle"
-            fontSize="7"
-            fill="#fff"
-            fontFamily="var(--font-body)"
-            fontWeight="600"
-            letterSpacing="0.1em"
-          >
-            OVEN
-          </text>
-
-          <rect
-            x="30"
-            y="190"
-            width="140"
-            height="30"
-            rx="3"
-            fill="rgba(10,10,10,0.1)"
-            stroke="rgba(10,10,10,0.35)"
-            strokeWidth="0.8"
-          />
-          <text
-            x="100"
-            y="208"
-            textAnchor="middle"
-            fontSize="7"
-            fill={INK_SOFT}
-            fontFamily="var(--font-body)"
-            fontWeight="500"
-            letterSpacing="0.1em"
-          >
-            COUNTER
-          </text>
-
-          <line
-            x1="175"
-            y1="25"
-            x2="158"
-            y2="40"
-            stroke={ROSE}
-            strokeWidth="1.2"
-            strokeDasharray="3 2"
-          />
-          <line
-            x1="185"
-            y1="25"
-            x2="168"
-            y2="40"
-            stroke={ROSE}
-            strokeWidth="1.2"
-            strokeDasharray="3 2"
-          />
-          <text
-            x="178"
-            y="20"
-            textAnchor="middle"
-            fontSize="5.6"
-            fill={ROSE}
-            fontFamily="var(--font-body)"
-            fontWeight="600"
-            letterSpacing="0.1em"
-          >
-            LIGHT
-          </text>
-
-          <circle cx="110" cy="110" r="8" fill={ROSE} />
-          <circle cx="110" cy="110" r="14" fill="none" stroke={ROSE} strokeWidth="1" strokeDasharray="2 2" />
-          <text
-            x="110"
-            y="135"
-            textAnchor="middle"
-            fontSize="6.2"
-            fill={ROSE_DEEP}
-            fontFamily="var(--font-body)"
-            fontWeight="700"
-            letterSpacing="0.1em"
-          >
-            YOU
-          </text>
-
-          <path
-            d="M 110 104 L 85 82"
-            stroke={INK}
-            strokeWidth="1.4"
-            fill="none"
-            markerEnd="url(#arrow)"
-          />
-          <defs>
-            <marker
-              id="arrow"
-              markerWidth="6"
-              markerHeight="6"
-              refX="5"
-              refY="3"
-              orient="auto"
-            >
-              <polygon points="0 0, 6 3, 0 6" fill={INK} />
-            </marker>
-          </defs>
-          <text
-            x="95"
-            y="95"
-            fontSize="5.6"
-            fill={INK}
-            fontFamily="var(--font-body)"
-            fontWeight="600"
-            letterSpacing="0.06em"
-          >
-            phone tilts
-          </text>
-          <text
-            x="95"
-            y="102"
-            fontSize="5.6"
-            fill={INK}
-            fontFamily="var(--font-body)"
-            fontWeight="600"
-            letterSpacing="0.06em"
-          >
-            down, 5s
-          </text>
-        </svg>
-      </div>
-
-      <div
-        className="mt-3 rounded-xl px-3 py-2.5"
-        style={{
-          background: "#f3f2ee",
-          border: `1px solid ${HAIRLINE}`,
-        }}
-      >
-        <p
-          style={{
-            fontFamily: BODY,
-            fontSize: "0.76rem",
-            color: INK,
-            lineHeight: 1.5,
-            fontWeight: 500,
-          }}
-        >
-          Right of the oven, 1m back. Phone vertical, chest height.
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function PhoneStep3() {
-  return (
-    <div className="relative flex h-full w-full flex-col">
-      <div
-        aria-hidden
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse at 50% 35%, #fff7cc 0%, #f4c77a 45%, #b86d2a 90%)",
-          opacity: 0.9,
-        }}
-      />
-      <div
-        aria-hidden
-        className="absolute left-1/2 top-[38%] -translate-x-1/2"
-        style={{
-          width: "60%",
-          aspectRatio: "1 / 1",
-          borderRadius: "50%",
-          background:
-            "radial-gradient(circle at 40% 30%, #fff3b5 0%, #e7a85a 30%, #a2542c 60%, #6b3116 100%)",
-          boxShadow: "0 8px 22px -6px rgba(107,49,22,0.5)",
-        }}
-      />
-
-      <div className="relative z-10 flex items-center justify-between px-4 pt-12">
-        <div
-          className="flex items-center gap-1.5 rounded-full bg-black/65 px-2.5 py-1 backdrop-blur-sm"
-          style={{
-            fontFamily: BODY,
-            fontSize: "0.62rem",
-            color: "#fff",
-            fontWeight: 600,
-          }}
-        >
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-red-500" />
-          REC 0:03
-        </div>
         <span
-          className="rounded-full bg-black/65 px-2.5 py-1 backdrop-blur-sm"
+          className="shrink-0"
           style={{
             fontFamily: BODY,
-            fontSize: "0.62rem",
-            color: "#fff",
+            fontSize: "0.84rem",
             fontWeight: 600,
-            letterSpacing: "0.1em",
+            color: INK,
           }}
         >
-          4K · 60
+          {scene.duration}
+        </span>
+        <span
+          style={{
+            fontFamily: BODY,
+            fontSize: "0.84rem",
+            color: INK_MUTED,
+            fontStyle: "italic",
+            lineHeight: 1.5,
+          }}
+        >
+          &ldquo;{scene.instruction}&rdquo;
         </span>
       </div>
 
-      <div className="relative z-10 mt-auto flex flex-col items-center px-4 pb-6">
-        <div
-          className="mb-4 rounded-full bg-black/70 px-3 py-1.5 backdrop-blur-sm"
-          style={{
-            fontFamily: BODY,
-            fontSize: "0.7rem",
-            color: "#fff",
-            fontWeight: 500,
-          }}
-        >
-          Tilt down slowly &middot; 2s left
-        </div>
-        <button
-          type="button"
-          className="flex h-16 w-16 items-center justify-center rounded-full"
-          style={{
-            background: "#fff",
-            border: "4px solid rgba(255,255,255,0.7)",
-            boxShadow: "0 0 0 3px #fff, 0 0 0 6px rgba(255,255,255,0.4)",
-          }}
-          aria-label="Recording"
-        >
+      {scene.extra ? (
+        <div className="mt-3 pl-3">
           <span
-            className="h-6 w-6 rounded-md"
-            style={{ background: "#ef4444" }}
-          />
-        </button>
-      </div>
-    </div>
-  );
-}
-
-function PhoneStep4() {
-  return (
-    <div className="relative flex h-full w-full flex-col px-4 pb-4 pt-12">
-      <div
-        className="mb-3 flex items-center gap-2"
-        style={{
-          fontFamily: BODY,
-          fontSize: "0.62rem",
-          letterSpacing: "0.18em",
-          textTransform: "uppercase",
-          color: INK_FAINT,
-          fontWeight: 600,
-        }}
-      >
-        <Sparkles size={10} strokeWidth={2.4} />
-        Ready in your queue
-      </div>
-
-      <div
-        className="mb-3 flex items-center gap-3 rounded-2xl px-3 py-3"
-        style={{
-          background: "#f3f2ee",
-          border: `1px solid ${HAIRLINE}`,
-        }}
-      >
-        <div
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
-          style={{
-            background: `linear-gradient(145deg, #22c55e, #15803d)`,
-            color: "#fff",
-          }}
-        >
-          <Check size={18} strokeWidth={2.8} />
-        </div>
-        <div className="flex-1">
-          <p
+            className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5"
             style={{
-              fontFamily: DISPLAY,
-              fontSize: "0.88rem",
-              fontWeight: 600,
-              color: INK,
-              letterSpacing: "-0.01em",
-            }}
-          >
-            Take looks clean.
-          </p>
-          <p
-            className="mt-0.5"
-            style={{
+              background: "#fff",
+              border: `1px solid ${HAIRLINE_HEAVY}`,
               fontFamily: BODY,
-              fontSize: "0.72rem",
-              color: INK_SOFT,
-              lineHeight: 1.3,
+              fontSize: "0.78rem",
+              fontWeight: 500,
+              color: INK,
             }}
           >
-            I&rsquo;m cutting it with the oven clip from Monday.
-          </p>
+            <Sparkles
+              size={13}
+              strokeWidth={2}
+              style={{ color: ROSE_DEEP }}
+            />
+            {scene.extra}
+          </span>
         </div>
-      </div>
-
-      <div
-        className="relative aspect-video overflow-hidden rounded-xl"
-        style={{ background: "#0a0a0a" }}
-      >
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse at 50% 40%, #b86d2a 0%, #6b3116 60%, #0a0a0a 100%)",
-            opacity: 0.9,
-          }}
-        />
-        <div
-          className="absolute left-3 top-3 flex items-center gap-1 rounded-full px-2 py-0.5"
-          style={{
-            background: "rgba(10,10,10,0.7)",
-            backdropFilter: "blur(4px)",
-            color: "#fff",
-            fontFamily: BODY,
-            fontSize: "0.58rem",
-            letterSpacing: "0.16em",
-            textTransform: "uppercase",
-            fontWeight: 600,
-          }}
-        >
-          Final cut
-        </div>
-      </div>
-
-      <div className="mt-auto flex items-center justify-between pt-3">
-        <p
-          style={{
-            fontFamily: BODY,
-            fontSize: "0.7rem",
-            color: INK_FAINT,
-          }}
-        >
-          Publishing tonight, 7:42 PM.
-        </p>
-        <button
-          type="button"
-          className="rounded-full px-3 py-1.5"
-          style={{
-            background: INK,
-            color: "#fff",
-            fontFamily: BODY,
-            fontSize: "0.7rem",
-            fontWeight: 600,
-          }}
-        >
-          Review
-        </button>
-      </div>
+      ) : null}
     </div>
   );
 }
 
-const MemoPhoneStep1 = memo(PhoneStep1);
-const MemoPhoneStep2 = memo(PhoneStep2);
-const MemoPhoneStep3 = memo(PhoneStep3);
-const MemoPhoneStep4 = memo(PhoneStep4);
-
-const STEP_COMPONENTS = [
-  MemoPhoneStep1,
-  MemoPhoneStep2,
-  MemoPhoneStep3,
-  MemoPhoneStep4,
-];
+const MemoSceneCard = memo(SceneCard);
 
 function StickyStoryboard() {
   const ref = useRef<HTMLDivElement>(null);
@@ -606,7 +229,10 @@ function StickyStoryboard() {
 
   return (
     <div ref={ref} className="relative" style={{ minHeight: "320vh" }}>
-      <div className="grid lg:grid-cols-[1fr_1fr] lg:gap-16">
+      <div
+        className="grid lg:grid-cols-[1fr_1fr] lg:gap-16"
+        style={{ minHeight: "320vh" }}
+      >
         <div className="relative">
           <div
             className="sticky flex items-center justify-center"
@@ -617,101 +243,124 @@ function StickyStoryboard() {
             }}
           >
             <motion.div
+              className="w-full"
               style={{
                 rotateY,
                 transformStyle: "preserve-3d",
                 willChange: "transform",
+                maxWidth: 540,
               }}
             >
-              <PhoneShell>
-                <div className="absolute inset-0 z-10 overflow-hidden">
-                  {STEP_COMPONENTS.map((StepComp, i) => {
-                    const offset = i - activeStep;
-                    return (
-                      <div
-                        key={i}
-                        className="absolute inset-0"
-                        style={{
-                          transform: `translateY(${offset * 100}%)`,
-                          transition: "transform 620ms cubic-bezier(0.22, 0.61, 0.36, 1)",
-                          willChange: "transform",
-                        }}
-                      >
-                        <StepComp />
-                      </div>
-                    );
-                  })}
-                </div>
-              </PhoneShell>
+              <div
+                className="relative w-full"
+                style={{ height: 470 }}
+              >
+                {SCENES.map((scene, i) => {
+                  const offset = i - activeStep;
+                  return (
+                    <div
+                      key={scene.number}
+                      className="absolute inset-0"
+                      style={{
+                        transform: `translateY(${offset * 100}%)`,
+                        transition:
+                          "transform 620ms cubic-bezier(0.22, 0.61, 0.36, 1)",
+                        willChange: "transform",
+                      }}
+                    >
+                      <MemoSceneCard scene={scene} />
+                    </div>
+                  );
+                })}
+              </div>
             </motion.div>
           </div>
         </div>
 
-        <div className="flex flex-col pt-[15vh]">
-          {STEPS.map((step, i) => {
-            const isActive = i === activeStep;
-            return (
-              <div
-                key={step.number}
-                className="flex items-center"
-                style={{
-                  minHeight: "80vh",
-                  contentVisibility: "auto",
-                  containIntrinsicSize: "auto 80vh",
-                }}
-              >
-                <div
-                  className={cn(
-                    "transition-all duration-500 ease-out",
-                    isActive ? "opacity-100" : "opacity-35",
-                  )}
-                  style={{
-                    transform: isActive ? "translateX(0)" : "translateX(-8px)",
-                  }}
-                >
-                  <div className="flex items-baseline gap-4">
-                    <span
-                      style={{
-                        fontFamily: DISPLAY,
-                        fontSize: "1.35rem",
-                        fontWeight: 500,
-                        color: isActive ? ROSE_DEEP : INK_FAINT,
-                        letterSpacing: "-0.03em",
-                        lineHeight: 1,
-                        transition: "color 400ms ease-out",
-                      }}
-                    >
-                      {step.number}
-                    </span>
-                    <h3
-                      style={{
-                        fontFamily: DISPLAY,
-                        fontSize: "clamp(1.6rem, 3vw, 2.1rem)",
-                        fontWeight: 600,
-                        letterSpacing: "-0.025em",
-                        lineHeight: 1.15,
-                        color: INK,
-                      }}
-                    >
-                      {step.title}
-                    </h3>
-                  </div>
-                  <p
-                    className="mt-4 max-w-[440px]"
+        <div className="relative">
+          <div
+            className="sticky flex items-center"
+            style={{
+              top: "15vh",
+              height: "70vh",
+            }}
+          >
+            <div className="flex w-full flex-col">
+              {SCENES.map((scene, i) => {
+                const isActive = i === activeStep;
+                const isLast = i === SCENES.length - 1;
+                return (
+                  <div
+                    key={scene.number}
+                    className="py-5"
                     style={{
-                      fontFamily: BODY,
-                      fontSize: "1rem",
-                      lineHeight: 1.65,
-                      color: INK_MUTED,
-                      marginLeft: 52,
+                      borderBottom: isLast
+                        ? "none"
+                        : `1px solid ${HAIRLINE}`,
                     }}
                   >
-                    {step.body}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
+                    <div className="flex items-baseline gap-6">
+                      <span
+                        style={{
+                          fontFamily: DISPLAY,
+                          fontSize: "1.2rem",
+                          fontWeight: 500,
+                          color: isActive ? INK : INK_FAINT,
+                          letterSpacing: "-0.03em",
+                          lineHeight: 1,
+                          transition: "color 400ms ease-out",
+                          flexShrink: 0,
+                          width: "1.5rem",
+                          textAlign: "left",
+                        }}
+                      >
+                        {scene.number}
+                      </span>
+                      <h3
+                        style={{
+                          fontFamily: DISPLAY,
+                          fontSize: isActive
+                            ? "clamp(1.5rem, 2.6vw, 1.95rem)"
+                            : "1.1rem",
+                          fontWeight: isActive ? 600 : 500,
+                          letterSpacing: "-0.025em",
+                          lineHeight: 1.25,
+                          color: isActive ? INK : INK_MUTED,
+                          transition:
+                            "font-size 400ms cubic-bezier(0.22, 0.61, 0.36, 1), color 400ms ease-out, font-weight 400ms ease-out",
+                        }}
+                      >
+                        {scene.title}
+                      </h3>
+                    </div>
+                    <div
+                      style={{
+                        maxHeight: isActive ? "260px" : 0,
+                        overflow: "hidden",
+                        opacity: isActive ? 1 : 0,
+                        transition:
+                          "max-height 520ms cubic-bezier(0.22, 0.61, 0.36, 1), opacity 400ms ease-out",
+                      }}
+                    >
+                      <p
+                        className="mt-3"
+                        style={{
+                          fontFamily: BODY,
+                          fontSize: "1rem",
+                          lineHeight: 1.65,
+                          color: INK_MUTED,
+                          paddingLeft: "calc(1.5rem + 1.5rem)",
+                          maxWidth: "440px",
+                        }}
+                      >
+                        {scene.body}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -780,7 +429,7 @@ export default function SectionFourStoryboardPreview() {
               maxWidth: "820px",
             }}
           >
-            Solara directs. You press record.
+            See how one video gets made.
           </h1>
 
           <p
@@ -793,7 +442,8 @@ export default function SectionFourStoryboardPreview() {
               maxWidth: "560px",
             }}
           >
-            Four steps, one per ask. Scroll to watch it.
+            Solara breaks each video into small scenes. You film short clips
+            &mdash; it handles everything else. Scroll to watch it build.
           </p>
         </div>
 
@@ -801,8 +451,10 @@ export default function SectionFourStoryboardPreview() {
           <StickyStoryboard />
         </div>
 
-        <div className="mx-auto max-w-3xl border-t px-6 py-16 text-center"
-          style={{ borderColor: HAIRLINE_HEAVY }}>
+        <div
+          className="mx-auto max-w-3xl border-t px-6 py-16 text-center"
+          style={{ borderColor: HAIRLINE_HEAVY }}
+        >
           <p
             style={{
               fontFamily: DISPLAY,
@@ -813,7 +465,10 @@ export default function SectionFourStoryboardPreview() {
               color: INK,
             }}
           >
-            You bring: <span style={{ color: INK_FAINT }}>pressing a button.</span>
+            You bring:{" "}
+            <span style={{ color: INK_FAINT }}>
+              short clips of your actual brand.
+            </span>
             <br />
             Solara brings:{" "}
             <span
@@ -827,8 +482,8 @@ export default function SectionFourStoryboardPreview() {
       </section>
 
       <PreviewFooter
-        label="Variant 2 · Storyboard (sticky scroll)"
-        description="Phone stays pinned while four numbered steps scroll past on the right. The phone's screen slides through each corresponding UI (ask, position diagram, recording, review). Subtle Y-axis chassis rotation per step. Pattern inspired by the reference screencast. Cream aesthetic, navy accent."
+        label="Section 04 · Storyboard (sticky scroll, image-based scenes)"
+        description="Sticky-scroll left/right pattern. Left column shows one image-based scene card at a time, sliding vertically between 4 scenes (opening hook → value prop → photo b-roll → outro CTA) as you scroll. Subtle Y-axis chassis tilt per scene. Right column is a Sintra-style stacked list — all 4 scene titles always visible with hairline dividers, only the active one expands its body description. No phone mockup chrome — replaced with photographic scene cards using real downloaded images. Animation behavior preserved from previous version."
       />
     </main>
   );
