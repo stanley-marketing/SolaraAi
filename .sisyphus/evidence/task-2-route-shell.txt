@@ -1,0 +1,27 @@
+## Task 2 — Route Shell Evidence
+Generated: 2026-04-27
+
+### Build Output (exit 0)
+Build completed successfully. Key lines:
+  ○  /home-v2    (Static - prerendered as static content)
+
+Full build output captured at: /tmp/build-output.txt
+
+### Route Registration Confirmed
+grep "home-v2" build output:
+  ├ ○ /home-v2
+
+### git diff src/app/page.tsx
+(empty — original homepage untouched, no diff output)
+
+### File Created
+src/app/home-v2/page.tsx — server component, exports metadata with:
+  - title: "SolaraAI — Your business has a director now"
+  - description: "Solara writes the brief. You film 5 scenes in 10 minutes..."
+  - robots: { index: false, follow: false }
+  - alternates.canonical: ROUTE_POLICY.canonical ("https://solaraai.com/home-v2")
+  - openGraph and twitter tags
+  - Two JSON-LD blocks (Organization + WebPage) with URL = ROUTE_POLICY.canonical
+  - <TopNav /> at top of <main>
+  - <h1> placeholder rendering LOCKED_COPY.heroHeadline
+  - <Footer /> at bottom
