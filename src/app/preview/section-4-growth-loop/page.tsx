@@ -18,13 +18,10 @@ import {
   HAIRLINE,
   HAIRLINE_HEAVY,
   INK,
-  INK_FAINT,
   INK_MUTED,
   ROSE_DEEP,
   ScrollReveal,
 } from "@/components/homepage/teardown-parts";
-
-const INTER = "var(--font-blog), system-ui, -apple-system, sans-serif";
 
 const CHART_COLOR = "#3b82f6";
 const CHART_COLOR_SOFT = "rgba(59, 130, 246, 0.5)";
@@ -69,9 +66,6 @@ const MILESTONES: Record<string, Milestone> = {
 const CURVE_DURATION_MS = 1050;
 const CONTINUATION_BEGIN_MS = 950;
 const CONTINUATION_DURATION_MS = 600;
-const COUNTER_DELAY_MS = 1700;
-const COUNTER_INTERVAL_MS = 3000;
-const COUNTER_START = 25;
 
 // ─── Hooks ──────────────────────────────────────────────────────────
 
@@ -158,60 +152,6 @@ function MilestoneDot({ cx, cy, payload, isMobile }: MilestoneDotProps) {
   );
 }
 
-// ─── Live Week Counter ──────────────────────────────────────────────
-
-function LiveWeekCounter({ inView }: { inView: boolean }) {
-  const [weeks, setWeeks] = useState(COUNTER_START);
-
-  useEffect(() => {
-    if (!inView) return;
-    const startTimer = window.setTimeout(() => {
-      const id = window.setInterval(() => {
-        setWeeks((w) => w + 1);
-      }, COUNTER_INTERVAL_MS);
-      return () => window.clearInterval(id);
-    }, COUNTER_DELAY_MS);
-    return () => window.clearTimeout(startTimer);
-  }, [inView]);
-
-  return (
-    <motion.div
-      aria-hidden
-      className="pointer-events-none inline-flex items-baseline gap-1.5"
-      initial={{ opacity: 0, y: -4 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -4 }}
-      transition={{ delay: 1.3, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      style={{
-        fontFamily: INTER,
-        fontSize: "clamp(0.62rem, 0.8vw, 0.72rem)",
-        letterSpacing: "0.18em",
-        textTransform: "uppercase",
-        fontWeight: 600,
-        color: INK_FAINT,
-      }}
-    >
-      <span>Week</span>
-      <span
-        className="tabular-nums"
-        style={{ color: INK, fontWeight: 700 }}
-      >
-        {weeks}
-      </span>
-      <motion.span
-        animate={{ opacity: [1, 0.3, 1] }}
-        transition={{
-          duration: 1.6,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut",
-        }}
-        style={{ marginLeft: 2 }}
-      >
-        →
-      </motion.span>
-    </motion.div>
-  );
-}
-
 // ─── Compounding Chart ──────────────────────────────────────────────
 
 function CompoundingChart() {
@@ -250,21 +190,18 @@ function CompoundingChart() {
       }}
     >
       <header className="mb-5 sm:mb-7">
-        <div className="flex items-start justify-between gap-3">
-          <h3
-            style={{
-              fontFamily: DISPLAY,
-              fontSize: isMobile ? "1.25rem" : "1.4rem",
-              fontWeight: 600,
-              color: INK,
-              letterSpacing: "-0.015em",
-              lineHeight: 1.2,
-            }}
-          >
-            Compounding growth
-          </h3>
-          <LiveWeekCounter inView={inView} />
-        </div>
+        <h3
+          style={{
+            fontFamily: DISPLAY,
+            fontSize: isMobile ? "1.25rem" : "1.4rem",
+            fontWeight: 600,
+            color: INK,
+            letterSpacing: "-0.015em",
+            lineHeight: 1.2,
+          }}
+        >
+          Compounding growth
+        </h3>
         <p
           className="mt-1.5"
           style={{
