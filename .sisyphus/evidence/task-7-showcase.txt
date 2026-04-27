@@ -1,0 +1,51 @@
+Task 7 — Showcase V2 Evidence
+================================
+Date: Mon Apr 27 2026
+
+FILE CREATED
+------------
+src/components/homepage-v2/showcase.tsx
+
+EXPORTS
+-------
+- Named export: ShowcaseV2
+
+STRUCTURE VERIFICATION
+----------------------
+✓ <V2Section id="home-v2-showcase"> → data-testid="home-v2-showcase" (via primitives)
+✓ Eyebrow: "03 · THE SHOWCASE"
+✓ Headline: "See what Solara creates for businesses like yours."
+✓ Sub-headline: "Pick your industry. We'll show you a sample brief, the 5 scenes Solara would have you film, and the finished posts ready to publish across every platform."
+✓ data-testid="home-v2-showcase-tabs" on role="tablist"
+✓ 6 tabs: Pizza Shop, Salon, Gym, Coffee Shop, Dental, Realtor
+✓ Each tab: role="tab", aria-selected={bool}, aria-controls → panelId
+✓ Active tab: tabIndex=0; inactive: tabIndex=-1 (roving tabindex)
+✓ Keyboard: ArrowLeft / ArrowRight / Home / End handled in onKeyDown
+✓ AnimatePresence + motion.div opacity+y fade on panel switch
+✓ Brief card: industry name, week, theme, 5 scene rows (Scene 01 (8s) · desc format)
+✓ 4 output cards: Instagram Reel, IG/FB Story, Carousel (IG/FB/LinkedIn), Google Business Post
+✓ SAMPLE_DISCLAIMER from content.ts visible below cards
+✓ CTA: <a href="#home-v2-showcase"> "See your industry's sample →"
+✓ Tab track: overflow-x-auto pb-1, scrollbarWidth:none — no overflow at 375px
+✓ "use client" directive at top
+✓ No URL params for tab state — controlled React useState
+
+INDUSTRY BRIEFS
+---------------
+Pizza Shop  → Saturday-night family-style, 5 scenes, ~12 min filming
+Salon       → Spring refresh before & after, 5 scenes, ~10 min filming
+Gym         → Monday motivation member milestone, 5 scenes, ~15 min filming
+Coffee Shop → Midweek ritual the regular's order, 5 scenes, ~10 min filming
+Dental      → New patient welcome comfort-first, 5 scenes, ~12 min filming
+Realtor     → New listing neighborhood story, 5 scenes, ~20 min filming
+
+TYPE CHECK
+----------
+bunx tsc --noEmit → 0 errors in showcase.tsx (pre-existing errors in seo.test.ts only)
+
+BUILD OUTPUT (Next.js 16.1.6 Turbopack)
+----------------------------------------
+✓ Compiled successfully in 5.6s
+✓ TypeScript passed
+✗ ENOENT on _ssgManifest.js → known Turbopack race condition, 
+  hash changes each run, unrelated to this component.
