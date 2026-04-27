@@ -6,7 +6,6 @@ import {
   BODY,
   DISPLAY,
   FlickeringGrid,
-  HAIRLINE,
   HAIRLINE_HEAVY,
   INK,
   INK_FAINT,
@@ -26,13 +25,8 @@ const VIEWBOX_H = 440;
 const CURVE_PATH =
   "M 100 380 C 130 365, 170 360, 200 355 C 250 340, 350 320, 460 290 C 510 280, 560 250, 620 220 C 680 195, 770 150, 860 110";
 
-const FILL_PATH = `${CURVE_PATH} L 860 395 L 100 395 Z`;
-
 const CONTINUATION_PATH =
   "M 860 110 C 890 95, 930 78, 970 60";
-
-const GRID_Y = [120, 200, 280, 360];
-const TICK_X = [100, 220, 460, 700, 860];
 
 type Marker = {
   x: number;
@@ -74,8 +68,6 @@ const MARKERS: Marker[] = [
 
 const CURVE_DURATION = 2.0;
 const MARKER_DURATION = 0.5;
-const FILL_DELAY = 1.2;
-const FILL_DURATION = 1.0;
 const CONTINUATION_DELAY = 2.4;
 const CONTINUATION_DURATION = 0.8;
 const EASING = [0.22, 0.61, 0.36, 1] as const;
@@ -110,88 +102,35 @@ function CurveMarkerLabel({
         ease: EASING,
       }}
     >
-      {above && (
-        <>
-          <p
-            className="mb-1.5"
-            style={{
-              fontFamily: INTER,
-              fontSize: "clamp(0.6rem, 0.8vw, 0.7rem)",
-              letterSpacing: "0.22em",
-              textTransform: "uppercase",
-              fontWeight: 600,
-              color: INK_FAINT,
-            }}
-          >
-            {marker.time}
-          </p>
-          <p
-            className="whitespace-nowrap text-center"
-            style={{
-              fontFamily: DISPLAY,
-              fontSize: marker.accent
-                ? "clamp(1.05rem, 1.7vw, 1.35rem)"
-                : "clamp(0.9rem, 1.4vw, 1.1rem)",
-              fontWeight: marker.accent ? 500 : 600,
-              fontStyle: marker.accent ? "italic" : "normal",
-              color: marker.accent ? ROSE_DEEP : INK,
-              letterSpacing: "-0.015em",
-              lineHeight: 1.2,
-            }}
-          >
-            {marker.line}
-          </p>
-          <span
-            aria-hidden
-            style={{
-              width: 1,
-              height: 18,
-              background: HAIRLINE_HEAVY,
-              marginTop: 8,
-            }}
-          />
-        </>
-      )}
-
-      {!above && (
-        <>
-          <span
-            aria-hidden
-            style={{
-              width: 1,
-              height: 18,
-              background: HAIRLINE_HEAVY,
-              marginBottom: 8,
-            }}
-          />
-          <p
-            className="mb-1.5"
-            style={{
-              fontFamily: INTER,
-              fontSize: "clamp(0.6rem, 0.8vw, 0.7rem)",
-              letterSpacing: "0.22em",
-              textTransform: "uppercase",
-              fontWeight: 600,
-              color: INK_FAINT,
-            }}
-          >
-            {marker.time}
-          </p>
-          <p
-            className="whitespace-nowrap text-center"
-            style={{
-              fontFamily: DISPLAY,
-              fontSize: "clamp(0.9rem, 1.4vw, 1.1rem)",
-              fontWeight: 600,
-              color: INK,
-              letterSpacing: "-0.015em",
-              lineHeight: 1.2,
-            }}
-          >
-            {marker.line}
-          </p>
-        </>
-      )}
+      <p
+        className="mb-1.5"
+        style={{
+          fontFamily: INTER,
+          fontSize: "clamp(0.6rem, 0.8vw, 0.7rem)",
+          letterSpacing: "0.22em",
+          textTransform: "uppercase",
+          fontWeight: 600,
+          color: INK_FAINT,
+        }}
+      >
+        {marker.time}
+      </p>
+      <p
+        className="whitespace-nowrap text-center"
+        style={{
+          fontFamily: DISPLAY,
+          fontSize: marker.accent
+            ? "clamp(1.05rem, 1.7vw, 1.35rem)"
+            : "clamp(0.9rem, 1.4vw, 1.1rem)",
+          fontWeight: marker.accent ? 500 : 600,
+          fontStyle: marker.accent ? "italic" : "normal",
+          color: marker.accent ? ROSE_DEEP : INK,
+          letterSpacing: "-0.015em",
+          lineHeight: 1.2,
+        }}
+      >
+        {marker.line}
+      </p>
     </motion.div>
   );
 }
@@ -213,24 +152,6 @@ function CompoundingCurve() {
           <title>Compounding growth curve from Week 1 to Month 6</title>
           <defs>
             <linearGradient
-              id="curveFill"
-              x1="0"
-              x2="0"
-              y1="0"
-              y2="1"
-            >
-              <stop
-                offset="0%"
-                stopColor={ROSE_DEEP}
-                stopOpacity="0.14"
-              />
-              <stop
-                offset="100%"
-                stopColor={ROSE_DEEP}
-                stopOpacity="0"
-              />
-            </linearGradient>
-            <linearGradient
               id="continuationFade"
               x1="0"
               x2="1"
@@ -250,19 +171,14 @@ function CompoundingCurve() {
             </linearGradient>
           </defs>
 
-          {GRID_Y.map((y) => (
-            <line
-              key={y}
-              x1="80"
-              x2="920"
-              y1={y}
-              y2={y}
-              stroke={HAIRLINE}
-              strokeWidth="1"
-              strokeDasharray="2 6"
-            />
-          ))}
-
+          <line
+            x1="80"
+            x2="80"
+            y1="60"
+            y2="395"
+            stroke={HAIRLINE_HEAVY}
+            strokeWidth="1"
+          />
           <line
             x1="80"
             x2="920"
@@ -270,43 +186,6 @@ function CompoundingCurve() {
             y2="395"
             stroke={HAIRLINE_HEAVY}
             strokeWidth="1"
-          />
-
-          {TICK_X.map((x) => (
-            <line
-              key={x}
-              x1={x}
-              x2={x}
-              y1="393"
-              y2="403"
-              stroke={HAIRLINE_HEAVY}
-              strokeWidth="1"
-            />
-          ))}
-
-          <motion.path
-            d={FILL_PATH}
-            fill="url(#curveFill)"
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{
-              duration: FILL_DURATION,
-              delay: FILL_DELAY,
-              ease: "easeOut",
-            }}
-          />
-
-          <motion.path
-            d={CURVE_PATH}
-            fill="none"
-            stroke={ROSE_DEEP}
-            strokeWidth="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            opacity={0.08}
-            initial={{ pathLength: 0 }}
-            animate={inView ? { pathLength: 1 } : { pathLength: 0 }}
-            transition={{ duration: CURVE_DURATION, ease: EASING }}
           />
 
           <motion.path
@@ -411,31 +290,13 @@ export default function SectionFourGrowthLoopPreview() {
             }}
           >
             <span className="block pb-3">Every week sharper.</span>
-            <span className="block pb-3">Every month bigger.</span>
-            <span className="block">That&rsquo;s the loop.</span>
+            <span className="block">Every month bigger.</span>
           </h1>
         </ScrollReveal>
 
         <ScrollReveal delay={0.1}>
           <p
             className="mt-8 max-w-[58ch]"
-            style={{
-              fontFamily: BODY,
-              fontSize: "clamp(1rem, 1.4vw, 1.15rem)",
-              lineHeight: 1.65,
-              color: INK_MUTED,
-            }}
-          >
-            Solara doesn&rsquo;t just post and forget. Solara publishes,
-            reads what hit, adjusts the plan, and tells you Thursday what
-            worked, why, and what&rsquo;s next &mdash; in plain English,
-            in WhatsApp.
-          </p>
-        </ScrollReveal>
-
-        <ScrollReveal delay={0.18}>
-          <p
-            className="mt-6 max-w-[58ch]"
             style={{
               fontFamily: BODY,
               fontSize: "clamp(1rem, 1.4vw, 1.15rem)",
@@ -457,32 +318,8 @@ export default function SectionFourGrowthLoopPreview() {
         </ScrollReveal>
       </div>
 
-      <div className="mx-auto max-w-6xl px-5 pt-12 pb-24 sm:px-8 sm:pt-16 sm:pb-32">
+      <div className="mx-auto max-w-6xl px-5 pt-12 pb-32 sm:px-8 sm:pt-16 sm:pb-40">
         <CompoundingCurve />
-      </div>
-
-      <div
-        className="px-5 py-32 text-center xl:py-40"
-        style={{ borderTop: `1px solid ${HAIRLINE}` }}
-      >
-        <ScrollReveal>
-          <p
-            className="mx-auto max-w-3xl text-2xl sm:text-3xl md:text-4xl xl:text-[2.8rem]"
-            style={{
-              fontFamily: DISPLAY,
-              fontStyle: "italic",
-              fontWeight: 500,
-              color: ROSE_DEEP,
-              lineHeight: 1.35,
-              letterSpacing: "-0.025em",
-            }}
-          >
-            Three months in, your feed stops looking like scattered posts.
-            <br className="hidden sm:block" />
-            {" "}Six months in, your competitors start wondering who you
-            hired.
-          </p>
-        </ScrollReveal>
       </div>
     </main>
   );

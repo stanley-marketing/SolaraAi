@@ -1,28 +1,24 @@
 "use client";
 
-import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import {
-  ArrowDown,
   ArrowLeft,
   ArrowRight,
-  Camera,
   Check,
-  ChevronDown,
   ImageIcon,
   Mic,
-  Sparkles,
   Upload,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import {
   BODY,
   DISPLAY,
+  FlickeringGrid,
   HAIRLINE,
   HAIRLINE_HEAVY,
   INK,
   INK_FAINT,
   INK_MUTED,
-  INK_SOFT,
   PreviewFooter,
   ROSE,
   ROSE_DEEP,
@@ -34,6 +30,9 @@ type SceneType = "speaking" | "action" | "image";
 
 type Scene = {
   number: number;
+  label: string;
+  title: string;
+  image: string;
   ask: string;
   type: SceneType;
   typeLabel: string;
@@ -50,32 +49,40 @@ type Scene = {
 const SCENES: Scene[] = [
   {
     number: 1,
-    ask: "Stand 1m from the oven, eye level. Read this line.",
+    label: "Opening hook",
+    title: "Speaking next to the oven",
+    image: "/storyboard/scenes/scene-1.webp",
+    ask: "Stand 1m from the oven, eye level. Read this line:",
     type: "speaking",
     typeLabel: "Speaking + teleprompter",
     time: "8s",
     miniContent: {
-      teleprompter:
-        "My grandfather taught me this recipe in 1987.",
+      teleprompter: "My grandfather taught me this recipe in 1987.",
     },
   },
   {
     number: 2,
+    label: "Process moment",
+    title: "Hands on the dough",
+    image: "/storyboard/scenes/scene-dough.png",
     ask: "Roll out the dough on your counter. Hands only, 30s.",
     type: "action",
     typeLabel: "Action scene",
     time: "30s",
     miniContent: {
       actionTitle: "Flour on counter",
-      actionImage: "/storyboard/scenes/scene-1.webp",
+      actionImage: "/storyboard/scenes/scene-dough.png",
     },
   },
   {
     number: 3,
+    label: "Hero shot",
+    title: "The pizza, served",
+    image: "/storyboard/scenes/scene-3.webp",
     ask: "Upload your favorite photo of the pizza out of the oven.",
     type: "image",
     typeLabel: "Image-to-video",
-    time: "5s",
+    time: "Photo",
     miniContent: {
       uploadTitle: "Pizza photo",
       uploadImage: "/storyboard/scenes/scene-3.webp",
@@ -83,6 +90,9 @@ const SCENES: Scene[] = [
   },
   {
     number: 4,
+    label: "Brand walk",
+    title: "Through the shop",
+    image: "/storyboard/scenes/scene-4.webp",
     ask: "Walk through your shop with a pizza box. Smile. 30s.",
     type: "action",
     typeLabel: "Action scene",
@@ -94,6 +104,9 @@ const SCENES: Scene[] = [
   },
   {
     number: 5,
+    label: "Outro & CTA",
+    title: "Come taste the difference",
+    image: "/storyboard/scenes/scene-2.webp",
     ask: "From the same spot, say \u201Ccome taste the difference.\u201D",
     type: "speaking",
     typeLabel: "Speaking + teleprompter",
@@ -432,114 +445,94 @@ function SceneMiniPhone({ scene }: { scene: Scene }) {
 }
 
 function MobileSceneCard({ scene }: { scene: Scene }) {
-  const typeIcon = (() => {
-    switch (scene.type) {
-      case "speaking":
-        return <Mic size={13} strokeWidth={2.2} />;
-      case "action":
-        return <Camera size={13} strokeWidth={2.2} />;
-      case "image":
-        return <ImageIcon size={13} strokeWidth={2.2} />;
-    }
-  })();
-
   return (
     <div
-      className="relative flex flex-col rounded-sm"
+      className="relative flex flex-col overflow-hidden rounded-3xl"
       style={{
-        background: "#fdfcf8",
-        border: `1px solid ${HAIRLINE_HEAVY}`,
-        padding: 22,
-        minHeight: 560,
+        background: "#f4eee2",
+        padding: 24,
+        minHeight: 640,
       }}
     >
-      <div
-        className="mb-4 flex items-center gap-2.5"
+      <p
+        className="mb-2.5"
         style={{
           fontFamily: BODY,
-          fontSize: 11,
+          fontSize: "0.7rem",
           letterSpacing: "0.22em",
           textTransform: "uppercase",
-          color: ROSE_DEEP,
-          fontWeight: 700,
+          color: INK_MUTED,
+          fontWeight: 600,
         }}
       >
+        {scene.label}
+      </p>
+
+      <h3
+        className="mb-6"
+        style={{
+          fontFamily: DISPLAY,
+          fontSize: "clamp(1.65rem, 6vw, 2rem)",
+          fontWeight: 700,
+          color: INK,
+          letterSpacing: "-0.025em",
+          lineHeight: 1.2,
+        }}
+      >
+        {scene.title}
+      </h3>
+
+      <div className="relative mx-auto" style={{ width: 180 }}>
+        <PhoneFrame width={180}>
+          <img
+            src={scene.image}
+            alt=""
+            aria-hidden
+            className="absolute inset-0 h-full w-full object-cover"
+            draggable={false}
+          />
+        </PhoneFrame>
         <span
-          className="flex h-5 w-5 items-center justify-center rounded-full"
+          className="absolute -right-2 -top-2 z-30 flex h-9 w-9 items-center justify-center rounded-full"
           style={{
-            background: ROSE_DEEP,
-            color: "#fff",
-            fontFamily: DISPLAY,
-            fontSize: 11,
+            background: "#fff",
+            color: INK,
+            fontFamily: BODY,
+            fontSize: "0.92rem",
             fontWeight: 700,
-            letterSpacing: 0,
+            boxShadow:
+              "0 4px 12px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.06)",
           }}
         >
           {scene.number}
         </span>
-        Scene {scene.number}
-      </div>
-
-      <div className="mb-5">
-        <p
-          className="mb-1.5"
-          style={{
-            fontFamily: BODY,
-            fontSize: 11,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: INK_FAINT,
-            fontWeight: 700,
-          }}
-        >
-          Solara asked:
-        </p>
-        <p
-          style={{
-            fontFamily: DISPLAY,
-            fontSize: 16,
-            fontWeight: 500,
-            color: INK,
-            letterSpacing: "-0.012em",
-            lineHeight: 1.4,
-          }}
-        >
-          &ldquo;{scene.ask}&rdquo;
-        </p>
-      </div>
-
-      <div className="mb-5 flex flex-1 items-center justify-center">
-        <SceneMiniPhone scene={scene} />
       </div>
 
       <div
-        className="flex items-center justify-between gap-2 pt-4"
-        style={{ borderTop: `1px dashed ${HAIRLINE_HEAVY}` }}
+        className="mt-6 flex gap-2.5 pl-3"
+        style={{ borderLeft: "2px solid rgba(0,0,0,0.18)" }}
       >
         <span
-          className="flex items-center gap-1.5"
+          className="shrink-0"
           style={{
             fontFamily: BODY,
-            fontSize: 12,
-            color: INK_MUTED,
-            fontWeight: 600,
-          }}
-        >
-          {typeIcon}
-          {scene.typeLabel}
-        </span>
-        <span
-          className="rounded-full px-2.5 py-1"
-          style={{
-            background: ROSE_DEEP,
-            color: "#fff",
-            fontFamily: BODY,
-            fontSize: 12,
+            fontSize: "0.84rem",
             fontWeight: 700,
-            letterSpacing: "0.04em",
+            color: INK,
           }}
         >
           {scene.time}
+        </span>
+        <span
+          style={{
+            fontFamily: BODY,
+            fontSize: "0.84rem",
+            color: INK_MUTED,
+            fontStyle: "italic",
+            lineHeight: 1.5,
+          }}
+        >
+          &ldquo;{scene.ask}&rdquo;
         </span>
       </div>
     </div>
@@ -671,167 +664,96 @@ function MobileSceneSlideshow() {
   );
 }
 
-function SceneCard({ scene, index }: { scene: Scene; index: number }) {
+function ScreenplayRow({ scene, index }: { scene: Scene; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-15% 0px" });
-
-  const typeIcon = (() => {
-    switch (scene.type) {
-      case "speaking":
-        return <Mic size={13} strokeWidth={2.2} />;
-      case "action":
-        return <Camera size={13} strokeWidth={2.2} />;
-      case "image":
-        return <ImageIcon size={13} strokeWidth={2.2} />;
-    }
-  })();
-
-  const bigTypeIcon = (() => {
-    switch (scene.type) {
-      case "speaking":
-        return <Mic size={32} strokeWidth={1.6} />;
-      case "action":
-        return <Camera size={32} strokeWidth={1.6} />;
-      case "image":
-        return <ImageIcon size={32} strokeWidth={1.6} />;
-    }
-  })();
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, x: 24 }}
-      animate={inView ? { opacity: 1, x: 0 } : {}}
+      initial={{ opacity: 0, y: 16 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{
-        duration: 0.55,
+        duration: 0.5,
         ease: [0.22, 0.61, 0.36, 1],
-        delay: index * 0.15,
+        delay: index * 0.08,
       }}
-      className="group relative flex cursor-pointer flex-col self-start rounded-sm transition-shadow duration-300 hover:shadow-lg"
-      style={{
-        background: "#fdfcf8",
-        border: `1px solid ${HAIRLINE_HEAVY}`,
-        padding: 22,
-      }}
+      className="grid items-start gap-x-10 border-t py-8 lg:grid-cols-12"
+      style={{ borderColor: HAIRLINE }}
     >
-      <div
-        className="mb-4 flex items-center gap-2.5"
-        style={{
-          fontFamily: BODY,
-          fontSize: 11,
-          letterSpacing: "0.22em",
-          textTransform: "uppercase",
-          color: ROSE_DEEP,
-          fontWeight: 700,
-        }}
-      >
-        <span
-          className="flex h-5 w-5 items-center justify-center rounded-full"
+      <div className="lg:col-span-1">
+        <p
           style={{
-            background: ROSE_DEEP,
-            color: "#fff",
             fontFamily: DISPLAY,
-            fontSize: 11,
-            fontWeight: 700,
-            letterSpacing: 0,
+            fontSize: "clamp(2.4rem, 4.4vw, 3.4rem)",
+            fontWeight: 600,
+            color: INK,
+            letterSpacing: "-0.045em",
+            lineHeight: 0.85,
           }}
         >
           {scene.number}
-        </span>
-        Scene {scene.number}
+        </p>
       </div>
 
-      <div className="flex max-h-[180px] flex-col items-center justify-center gap-2.5 overflow-hidden py-6 opacity-100 transition-[max-height,padding,opacity] duration-500 ease-out group-hover:max-h-0 group-hover:py-0 group-hover:opacity-0">
-        <div
-          className="flex h-16 w-16 items-center justify-center rounded-full transition-transform duration-500 ease-out group-hover:scale-90"
-          style={{
-            background: `${ROSE_DEEP}14`,
-            color: ROSE_DEEP,
-          }}
-        >
-          {bigTypeIcon}
-        </div>
-        <span
-          className="inline-flex items-center gap-1"
+      <div className="lg:col-span-7">
+        <p
+          className="mb-3"
           style={{
             fontFamily: BODY,
-            fontSize: 9.5,
+            fontSize: 11,
             letterSpacing: "0.22em",
             textTransform: "uppercase",
             color: INK_FAINT,
-            fontWeight: 600,
-          }}
-        >
-          Hover to open
-          <ChevronDown size={11} strokeWidth={2.2} />
-        </span>
-      </div>
-
-      <div className="max-h-0 overflow-hidden opacity-0 transition-[max-height,opacity] duration-500 ease-out group-hover:max-h-[640px] group-hover:opacity-100">
-        <div className="mb-5">
-          <p
-            className="mb-1.5"
-            style={{
-              fontFamily: BODY,
-              fontSize: 11,
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              color: INK_FAINT,
-              fontWeight: 700,
-            }}
-          >
-            Solara asked:
-          </p>
-          <p
-            style={{
-              fontFamily: DISPLAY,
-              fontSize: 16,
-              fontWeight: 500,
-              color: INK,
-              letterSpacing: "-0.012em",
-              lineHeight: 1.4,
-            }}
-          >
-            &ldquo;{scene.ask}&rdquo;
-          </p>
-        </div>
-
-        <div className="mb-5 flex items-center justify-center">
-          <SceneMiniPhone scene={scene} />
-        </div>
-      </div>
-
-      <div
-        className="flex items-center justify-between gap-2 pt-4"
-        style={{ borderTop: `1px dashed ${HAIRLINE_HEAVY}` }}
-      >
-        <span
-          className="flex items-center gap-1.5"
-          style={{
-            fontFamily: BODY,
-            fontSize: 12,
-            color: INK_MUTED,
-            fontWeight: 600,
-          }}
-        >
-          {typeIcon}
-          {scene.typeLabel}
-        </span>
-        <span
-          className="rounded-full px-2.5 py-1"
-          style={{
-            background: ROSE_DEEP,
-            color: "#fff",
-            fontFamily: BODY,
-            fontSize: 12,
             fontWeight: 700,
-            letterSpacing: "0.04em",
           }}
         >
-          {scene.time}
-        </span>
+          Solara asked
+        </p>
+        <p
+          className="mb-6"
+          style={{
+            fontFamily: DISPLAY,
+            fontSize: "clamp(1.25rem, 2vw, 1.6rem)",
+            fontWeight: 500,
+            color: INK,
+            letterSpacing: "-0.02em",
+            lineHeight: 1.35,
+            maxWidth: "32ch",
+          }}
+        >
+          &ldquo;{scene.ask}&rdquo;
+        </p>
+        <p
+          style={{
+            fontFamily: BODY,
+            fontSize: 13,
+            color: INK_MUTED,
+            fontWeight: 500,
+            letterSpacing: "0.02em",
+          }}
+        >
+          {scene.typeLabel} &middot; {scene.time}
+        </p>
+      </div>
+
+      <div className="flex justify-center lg:col-span-4 lg:justify-end">
+        <SceneMiniPhone scene={scene} />
       </div>
     </motion.div>
+  );
+}
+
+function ScreenplayList() {
+  return (
+    <div
+      className="border-b"
+      style={{ borderColor: HAIRLINE }}
+    >
+      {SCENES.map((scene, i) => (
+        <ScreenplayRow key={scene.number} scene={scene} index={i} />
+      ))}
+    </div>
   );
 }
 
@@ -847,59 +769,94 @@ function ProductionBand() {
       transition={{
         duration: 0.6,
         ease: [0.22, 0.61, 0.36, 1],
-        delay: SCENES.length * 0.15 + 0.2,
-      }}
-      className="relative rounded-sm px-6 py-7 text-center"
-      style={{
-        background: INK,
-        color: "#fff",
+        delay: 0.2,
       }}
     >
-      <p
-        className="mb-3 inline-flex items-center justify-center gap-2"
-        style={{
-          fontFamily: BODY,
-          fontSize: 10,
-          letterSpacing: "0.32em",
-          textTransform: "uppercase",
-          fontWeight: 700,
-          color: "rgba(255,255,255,0.7)",
-        }}
-      >
-        <Sparkles size={12} strokeWidth={2.2} />
-        Solara edits, mixes, and produces
-      </p>
+      <div className="mx-auto max-w-2xl text-center">
+        <p
+          className="mb-6"
+          style={{
+            fontFamily: BODY,
+            fontSize: 11,
+            letterSpacing: "0.32em",
+            textTransform: "uppercase",
+            fontWeight: 700,
+            color: INK_FAINT,
+          }}
+        >
+          Chapter 02 &middot; What Solara does next
+        </p>
+        <h3
+          style={{
+            fontFamily: DISPLAY,
+            fontSize: "clamp(1.85rem, 3.4vw, 2.6rem)",
+            fontWeight: 600,
+            color: INK,
+            lineHeight: 1.15,
+            letterSpacing: "-0.03em",
+          }}
+        >
+          Then Solara takes over &mdash; ten jobs, one workflow.
+        </h3>
+        <p
+          className="mx-auto mt-5"
+          style={{
+            fontFamily: BODY,
+            fontSize: "clamp(0.96rem, 1.2vw, 1.04rem)",
+            lineHeight: 1.6,
+            color: INK_MUTED,
+            maxWidth: "48ch",
+          }}
+        >
+          The expensive part of hiring a creative team, refined across
+          thousands of pieces and run for you on autopilot.
+        </p>
+      </div>
 
-      <div className="grid grid-cols-2 justify-items-center gap-2 sm:grid-cols-3 lg:flex lg:flex-wrap lg:items-center lg:justify-center">
+      <ul
+        className="mx-auto mt-14 grid max-w-4xl grid-cols-1 gap-x-12 sm:grid-cols-2"
+      >
         {PRODUCTION_PILLS.map((pill, i) => (
-          <motion.span
+          <motion.li
             key={pill}
-            initial={{ opacity: 0, scale: 0.94 }}
-            animate={inView ? { opacity: 1, scale: 1 } : {}}
+            initial={{ opacity: 0, x: -4 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{
-              duration: 0.32,
+              duration: 0.4,
               ease: "easeOut",
-              delay: SCENES.length * 0.15 + 0.5 + i * 0.05,
+              delay: 0.4 + i * 0.05,
             }}
-            className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5"
+            className="flex items-baseline gap-5 py-3.5"
             style={{
-              background: "rgba(255,255,255,0.08)",
-              border: "1px solid rgba(255,255,255,0.18)",
+              borderBottom: `1px solid ${HAIRLINE}`,
               fontFamily: BODY,
-              fontSize: 12,
-              fontWeight: 500,
-              color: "rgba(255,255,255,0.94)",
-              letterSpacing: "-0.005em",
             }}
           >
             <span
-              className="h-1 w-1 rounded-full"
-              style={{ background: ROSE }}
-            />
-            {pill}
-          </motion.span>
+              style={{
+                fontSize: 11,
+                fontWeight: 700,
+                color: ROSE_DEEP,
+                letterSpacing: "0.16em",
+                width: 28,
+                display: "inline-block",
+              }}
+            >
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <span
+              style={{
+                fontSize: 15,
+                fontWeight: 500,
+                color: INK,
+                letterSpacing: "-0.005em",
+              }}
+            >
+              {pill}
+            </span>
+          </motion.li>
         ))}
-      </div>
+      </ul>
     </motion.div>
   );
 }
@@ -1039,36 +996,49 @@ function FinishedVideoBlock() {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 18, scale: 0.96 }}
-      animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+      initial={{ opacity: 0, y: 18 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{
         duration: 0.7,
         ease: [0.22, 0.61, 0.36, 1],
-        delay: SCENES.length * 0.15 + 1.0,
+        delay: 0.3,
       }}
       className="flex flex-col items-center"
     >
+      <p
+        className="mb-10 text-center"
+        style={{
+          fontFamily: BODY,
+          fontSize: 11,
+          letterSpacing: "0.32em",
+          textTransform: "uppercase",
+          fontWeight: 700,
+          color: INK_FAINT,
+        }}
+      >
+        The result
+      </p>
+
       <div className="hidden lg:block">
-        <PhoneFrame width={260}>
+        <PhoneFrame width={280}>
           <FinishedReelScreen />
         </PhoneFrame>
       </div>
-
       <div className="lg:hidden">
-        <PhoneFrame width={210}>
+        <PhoneFrame width={220}>
           <FinishedReelScreen />
         </PhoneFrame>
       </div>
 
       <p
-        className="mt-6 text-center"
+        className="mt-12 text-center"
         style={{
           fontFamily: DISPLAY,
-          fontSize: "clamp(1.15rem, 2vw, 1.5rem)",
-          fontWeight: 600,
+          fontSize: "clamp(1.6rem, 3vw, 2.2rem)",
+          fontWeight: 500,
           color: INK,
-          letterSpacing: "-0.02em",
-          lineHeight: 1.25,
+          letterSpacing: "-0.03em",
+          lineHeight: 1.2,
         }}
       >
         Looks like a crew shot it.
@@ -1121,213 +1091,185 @@ function CountUpNumber({
 
 function TimeTotalsBlock() {
   return (
-    <div className="mt-10 flex flex-col items-center gap-3 text-center sm:flex-row sm:justify-center sm:gap-12">
-      <div className="flex flex-col items-center gap-1">
-        <p
-          style={{
-            fontFamily: BODY,
-            fontSize: 11,
-            letterSpacing: "0.28em",
-            textTransform: "uppercase",
-            color: INK_FAINT,
-            fontWeight: 700,
-          }}
-        >
-          Total user time
-        </p>
-        <p
-          style={{
-            fontFamily: DISPLAY,
-            fontSize: "clamp(1.6rem, 3vw, 2.2rem)",
-            fontWeight: 600,
-            color: INK,
-            letterSpacing: "-0.025em",
-            lineHeight: 1,
-          }}
-        >
-          <CountUpNumber target={5} delay={0.0} />
-          <span style={{ color: INK_FAINT }}> min </span>
-          <CountUpNumber target={21} delay={0.4} />
-          <span style={{ color: INK_FAINT }}> sec</span>
-        </p>
-      </div>
-
-      <div
-        className="hidden sm:block"
+    <div className="mt-20 flex flex-col items-center text-center sm:mt-24">
+      <p
+        className="mb-6"
         style={{
-          width: 1,
-          height: 48,
-          background: HAIRLINE_HEAVY,
+          fontFamily: BODY,
+          fontSize: 11,
+          letterSpacing: "0.32em",
+          textTransform: "uppercase",
+          color: INK_FAINT,
+          fontWeight: 700,
         }}
-      />
+      >
+        Your time becomes their time
+      </p>
 
-      <div className="flex flex-col items-center gap-1">
-        <p
-          style={{
-            fontFamily: BODY,
-            fontSize: 11,
-            letterSpacing: "0.28em",
-            textTransform: "uppercase",
-            color: ROSE_DEEP,
-            fontWeight: 700,
-          }}
-        >
-          Total Solara time
-        </p>
-        <p
-          style={{
-            fontFamily: DISPLAY,
-            fontSize: "clamp(1.6rem, 3vw, 2.2rem)",
-            fontWeight: 600,
-            color: ROSE_DEEP,
-            letterSpacing: "-0.025em",
-            lineHeight: 1,
-          }}
-        >
-          ~<CountUpNumber target={3} delay={0.6} /> hours{" "}
-          <span style={{ color: INK_FAINT, fontSize: "0.7em" }}>
-            of agency-grade work
+      <p
+        className="flex flex-wrap items-baseline justify-center gap-x-5 gap-y-2 leading-none"
+        style={{
+          fontFamily: DISPLAY,
+          fontSize: "clamp(2.6rem, 7vw, 5rem)",
+          fontWeight: 700,
+          color: INK,
+          letterSpacing: "-0.045em",
+        }}
+      >
+        <span>
+          <CountUpNumber target={5} delay={0.0} />
+          <span
+            style={{
+              fontSize: "0.4em",
+              fontWeight: 500,
+              color: INK_FAINT,
+              fontStyle: "italic",
+              marginLeft: "0.18em",
+              letterSpacing: "0.01em",
+            }}
+          >
+            min
+          </span>{" "}
+          <CountUpNumber target={21} delay={0.3} />
+          <span
+            style={{
+              fontSize: "0.4em",
+              fontWeight: 500,
+              color: INK_FAINT,
+              fontStyle: "italic",
+              marginLeft: "0.18em",
+              letterSpacing: "0.01em",
+            }}
+          >
+            sec
           </span>
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function FlowArrow({ direction = "down" }: { direction?: "down" | "right" }) {
-  const Icon = direction === "down" ? ArrowDown : ArrowRight;
-  return (
-    <div className="flex h-10 items-center justify-center sm:h-14">
-      <div className="relative flex h-full flex-col items-center">
-        <div
-          className="flex-1"
-          style={{
-            width: 1,
-            background: `linear-gradient(180deg, transparent, ${HAIRLINE_HEAVY})`,
-            minHeight: 12,
-          }}
-        />
+        </span>
         <span
-          className="my-1 flex h-7 w-7 items-center justify-center rounded-full"
+          aria-hidden
           style={{
-            background: "#fff",
-            border: `1px solid ${HAIRLINE_HEAVY}`,
-            color: ROSE_DEEP,
+            fontWeight: 400,
+            color: INK_FAINT,
+            fontSize: "0.7em",
+            letterSpacing: "-0.02em",
           }}
         >
-          <Icon size={13} strokeWidth={2.2} />
+          &rarr;
         </span>
-        <div
-          className="flex-1"
-          style={{
-            width: 1,
-            background: `linear-gradient(0deg, transparent, ${HAIRLINE_HEAVY})`,
-            minHeight: 12,
-          }}
-        />
-      </div>
+        <span style={{ color: ROSE_DEEP }}>
+          ~<CountUpNumber target={3} delay={0.6} />
+          <span
+            style={{
+              fontSize: "0.4em",
+              fontWeight: 500,
+              color: INK_FAINT,
+              fontStyle: "italic",
+              marginLeft: "0.18em",
+              letterSpacing: "0.01em",
+            }}
+          >
+            hours
+          </span>
+        </span>
+      </p>
+
+      <p
+        className="mt-6 max-w-[44ch]"
+        style={{
+          fontFamily: BODY,
+          fontSize: "clamp(0.92rem, 1.2vw, 1rem)",
+          lineHeight: 1.55,
+          color: INK_MUTED,
+        }}
+      >
+        Your filming time, on the left. The agency-grade work Solara does in
+        the background, on the right.
+      </p>
     </div>
   );
 }
 
 function HonestPartCallout() {
   return (
-    <div
-      className="mx-auto mt-16 max-w-3xl rounded-sm px-6 py-9 text-center sm:mt-24 sm:px-12 sm:py-12"
-      style={{
-        background: "#f8f3e7",
-        border: `1px solid #e8dcc0`,
-      }}
-    >
-      <p
-        className="mb-4"
-        style={{
-          fontFamily: BODY,
-          fontSize: 11,
-          letterSpacing: "0.32em",
-          textTransform: "uppercase",
-          fontStyle: "italic",
-          color: "#a67c00",
-          fontWeight: 600,
-        }}
+    <div className="mx-auto max-w-6xl">
+      <div
+        className="border-t pt-12"
+        style={{ borderColor: INK, borderTopWidth: 2 }}
       >
-        The honest part
-      </p>
+        <div className="grid gap-x-12 gap-y-8 lg:grid-cols-12">
+          <p
+            className="lg:col-span-3"
+            style={{
+              fontFamily: BODY,
+              fontSize: 11,
+              letterSpacing: "0.32em",
+              textTransform: "uppercase",
+              fontWeight: 700,
+              color: INK_FAINT,
+            }}
+          >
+            Director&rsquo;s note
+          </p>
 
-      <p
-        className="mb-5"
-        style={{
-          fontFamily: DISPLAY,
-          fontSize: "clamp(1.2rem, 2.4vw, 1.55rem)",
-          fontWeight: 500,
-          color: INK,
-          lineHeight: 1.4,
-          letterSpacing: "-0.015em",
-        }}
-      >
-        The only real difference between a $2,000-a-month social media manager
-        and Solara is that sometimes a human will physically come to your shop
-        and hold the phone for you.
-      </p>
+          <div className="lg:col-span-9 lg:col-start-4">
+            <p
+              className="mb-10"
+              style={{
+                fontFamily: DISPLAY,
+                fontSize: "clamp(1.4rem, 2.8vw, 1.95rem)",
+                fontWeight: 500,
+                color: INK,
+                lineHeight: 1.35,
+                letterSpacing: "-0.022em",
+                maxWidth: "44ch",
+              }}
+            >
+              The only real difference between a $2,000-a-month social media
+              manager and Solara is that sometimes a human will physically
+              come to your shop and hold the phone for you.
+            </p>
 
-      <p
-        className="mb-6"
-        style={{
-          fontFamily: BODY,
-          fontSize: "1rem",
-          color: INK_MUTED,
-          lineHeight: 1.65,
-          maxWidth: 620,
-          marginInline: "auto",
-        }}
-      >
-        The strategy? Solara does it. The script? Solara writes it. The
-        directing? Solara directs you, with a visual, in your own space. The
-        editing, the publishing, the analytics, the weekly adjustment? All
-        Solara.
-      </p>
+            <p
+              className="max-w-[58ch]"
+              style={{
+                fontFamily: BODY,
+                fontSize: "clamp(1rem, 1.3vw, 1.1rem)",
+                lineHeight: 1.65,
+                color: INK_MUTED,
+              }}
+            >
+              The strategy, the script, the directing, the editing, the
+              publishing, the analytics, the weekly adjustment &mdash; all
+              Solara. Every part of the job that used to need a creative team
+              is compressed into one workflow.
+            </p>
+          </div>
+        </div>
+      </div>
 
-      <p
-        style={{
-          fontFamily: DISPLAY,
-          fontSize: "clamp(1.4rem, 2.8vw, 1.85rem)",
-          fontWeight: 700,
-          color: ROSE_DEEP,
-          letterSpacing: "-0.025em",
-          lineHeight: 1.25,
-        }}
-      >
-        You already have everything except the part Solara replaces.
-      </p>
-    </div>
-  );
-}
-
-function SectionEyebrow() {
-  return (
-    <div
-      className="inline-flex items-center gap-3"
-      style={{
-        fontFamily: BODY,
-        fontSize: "0.66rem",
-        letterSpacing: "0.32em",
-        textTransform: "uppercase",
-        color: INK_SOFT,
-        fontWeight: 600,
-      }}
-    >
-      <span className="h-px w-6 bg-current opacity-60" />
-      04 &middot; Feature 2 + 3 combined
-      <span className="relative flex h-2 w-2">
-        <span
-          className="absolute inset-0 animate-ping rounded-full"
-          style={{ background: ROSE, opacity: 0.6 }}
-        />
-        <span
-          className="relative h-2 w-2 rounded-full"
-          style={{ background: ROSE }}
-        />
-      </span>
+      <div className="mt-32 sm:mt-40">
+        <p
+          style={{
+            fontFamily: DISPLAY,
+            fontSize: "clamp(2.4rem, 6.5vw, 4.8rem)",
+            fontWeight: 700,
+            color: INK,
+            letterSpacing: "-0.05em",
+            lineHeight: 0.95,
+            maxWidth: "16ch",
+          }}
+        >
+          You already have everything except the part{" "}
+          <span
+            style={{
+              fontStyle: "italic",
+              fontWeight: 400,
+              color: ROSE_DEEP,
+            }}
+          >
+            Solara replaces.
+          </span>
+        </p>
+      </div>
     </div>
   );
 }
@@ -1336,152 +1278,177 @@ export default function SectionFourBridgePreview() {
   return (
     <main style={{ background: SHELL, color: INK }}>
       <section className="relative">
-        <div className="mx-auto max-w-3xl px-5 pt-16 pb-10 text-center sm:px-6 sm:pt-24 sm:pb-12 lg:pt-28">
-          <div className="flex justify-center">
-            <SectionEyebrow />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 -z-10"
+          style={{ height: "100%" }}
+        >
+          <div
+            className="sticky top-0"
+            style={{
+              height: "100vh",
+              width: "100%",
+            }}
+          >
+            <FlickeringGrid />
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(ellipse at 50% 35%, transparent 15%, rgba(248,247,244,0.92) 75%)",
+              }}
+            />
           </div>
+        </div>
+
+        <div className="mx-auto max-w-6xl px-5 pt-24 pb-12 sm:px-8 sm:pt-36 sm:pb-16">
+          <p
+            className="mb-10"
+            style={{
+              fontFamily: BODY,
+              fontSize: 11,
+              letterSpacing: "0.32em",
+              textTransform: "uppercase",
+              fontWeight: 700,
+              color: INK_FAINT,
+            }}
+          >
+            04 &middot; The Bridge
+          </p>
 
           <h1
-            className="mt-5 leading-[1.05] tracking-[-0.035em] text-[clamp(2rem,7vw,4rem)] sm:mt-6 sm:leading-[1.02] sm:tracking-[-0.04em]"
+            className="leading-[0.95] tracking-[-0.04em]"
             style={{
               fontFamily: DISPLAY,
-              fontWeight: 600,
+              fontSize: "clamp(2.4rem, 8vw, 5.2rem)",
+              fontWeight: 700,
               color: INK,
+              maxWidth: "16ch",
             }}
           >
             The bridge between AI and authentic content.{" "}
-            <span style={{ color: ROSE_DEEP }}>Finally.</span>
+            <span
+              style={{
+                fontStyle: "italic",
+                fontWeight: 400,
+                color: ROSE_DEEP,
+              }}
+            >
+              Finally.
+            </span>
           </h1>
 
-          <p
-            className="mx-auto mt-5 sm:mt-6"
-            style={{
-              fontFamily: BODY,
-              fontSize: "clamp(0.96rem, 2.4vw, 1.1rem)",
-              lineHeight: 1.55,
-              color: INK_MUTED,
-              maxWidth: 640,
-              fontStyle: "italic",
-            }}
-          >
-            AI was fast but fake. Authentic was real but impossible. Solara is
-            the first to bridge the two.
-          </p>
+          <div className="mt-10 grid gap-x-16 gap-y-8 lg:grid-cols-12">
+            <p
+              className="lg:col-span-6"
+              style={{
+                fontFamily: BODY,
+                fontSize: "clamp(1.05rem, 1.6vw, 1.2rem)",
+                lineHeight: 1.5,
+                color: INK,
+                fontWeight: 500,
+              }}
+            >
+              AI was fast but fake. Authentic was real but impossible. Solara
+              is the first to bridge the two.
+            </p>
+
+            <p
+              className="lg:col-span-6 lg:col-start-7"
+              style={{
+                fontFamily: BODY,
+                fontSize: "clamp(0.96rem, 1.2vw, 1.04rem)",
+                lineHeight: 1.65,
+                color: INK_MUTED,
+                maxWidth: "44ch",
+              }}
+            >
+              You bring one thing AI can&rsquo;t fake:{" "}
+              <strong style={{ fontWeight: 600, color: INK }}>
+                you, in your real space.
+              </strong>{" "}
+              Solara directs a multi-scene piece &mdash; telling you what to
+              film, where to stand, what to say &mdash; in plain words a
+              12-year-old could follow.
+            </p>
+          </div>
         </div>
 
-        <div className="mx-auto max-w-3xl px-5 pb-10 sm:px-6 sm:pb-12">
-          <p
-            className="mb-4 sm:mb-5"
-            style={{
-              fontFamily: BODY,
-              fontSize: "clamp(0.96rem, 2.4vw, 1.06rem)",
-              lineHeight: 1.65,
-              color: INK,
-            }}
-          >
-            You bring one thing AI can&rsquo;t fake:{" "}
-            <strong style={{ fontWeight: 600 }}>you, in your real space.</strong>{" "}
-            Solara directs, films, and produces everything around you.
-          </p>
-          <p
-            style={{
-              fontFamily: BODY,
-              fontSize: "clamp(0.96rem, 2.4vw, 1.06rem)",
-              lineHeight: 1.65,
-              color: INK_MUTED,
-            }}
-          >
-            Solara isn&rsquo;t asking you for &ldquo;a video.&rdquo; It&rsquo;s
-            directing a multi-scene piece &mdash; telling you what to film,
-            where to stand, what posture, what to say &mdash; in plain words a
-            12-year-old could follow. (We tested this. They did.)
-          </p>
-        </div>
-
-        <div className="mx-auto px-5 pb-12 sm:px-6 sm:pb-16" style={{ maxWidth: 1600 }}>
+        <div className="mx-auto max-w-6xl px-5 pt-32 pb-12 sm:px-8 sm:pt-40 sm:pb-16">
           <div
-            className="mb-7 text-center sm:mb-10"
-            style={{
-              fontFamily: DISPLAY,
-              fontSize: "clamp(1.05rem, 2.2vw, 1.55rem)",
-              fontWeight: 600,
-              color: INK,
-              letterSpacing: "-0.02em",
-            }}
+            className="grid items-baseline gap-x-12 gap-y-4 border-t pt-10 lg:grid-cols-12"
+            style={{ borderColor: INK, borderTopWidth: 2 }}
           >
-            How Solara built this 25-second post for a pizza shop owner.
+            <div className="lg:col-span-2">
+              <p
+                style={{
+                  fontFamily: BODY,
+                  fontSize: 10,
+                  letterSpacing: "0.32em",
+                  textTransform: "uppercase",
+                  fontWeight: 700,
+                  color: INK_FAINT,
+                }}
+              >
+                Chapter 01
+              </p>
+              <p
+                className="mt-2"
+                style={{
+                  fontFamily: BODY,
+                  fontSize: 11,
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                  fontWeight: 600,
+                  color: ROSE_DEEP,
+                }}
+              >
+                The walkthrough
+              </p>
+            </div>
+            <h2
+              className="lg:col-span-10"
+              style={{
+                fontFamily: DISPLAY,
+                fontSize: "clamp(1.7rem, 3vw, 2.4rem)",
+                fontWeight: 600,
+                color: INK,
+                letterSpacing: "-0.028em",
+                lineHeight: 1.15,
+                maxWidth: "30ch",
+              }}
+            >
+              One 25-second post for a pizza shop. Built from five short
+              takes.
+            </h2>
           </div>
 
-          <div className="hidden gap-5 lg:grid lg:grid-cols-5">
-            {SCENES.map((scene, i) => (
-              <SceneCard key={scene.number} scene={scene} index={i} />
-            ))}
+          <div className="mt-14 hidden lg:block">
+            <ScreenplayList />
           </div>
 
-          <div className="mx-auto max-w-md lg:hidden">
+          <div className="mx-auto mt-12 max-w-md lg:hidden">
             <MobileSceneSlideshow />
           </div>
+        </div>
 
-          <div className="mx-auto" style={{ maxWidth: 1200 }}>
-            <FlowArrow direction="down" />
-          </div>
-
+        <div className="mx-auto max-w-6xl px-5 pt-24 pb-12 sm:px-8 sm:pt-32 sm:pb-16">
           <ProductionBand />
+        </div>
 
-          <div className="mx-auto" style={{ maxWidth: 1200 }}>
-            <FlowArrow direction="down" />
-          </div>
-
+        <div className="mx-auto max-w-6xl px-5 pt-20 pb-20 sm:px-8 sm:pt-28 sm:pb-28">
           <FinishedVideoBlock />
-
           <TimeTotalsBlock />
         </div>
 
-        <div className="mx-auto max-w-3xl px-5 pb-10 sm:px-6 sm:pb-12">
-          <p
-            className="mb-4 sm:mb-5"
-            style={{
-              fontFamily: BODY,
-              fontSize: "clamp(0.96rem, 2.4vw, 1.06rem)",
-              lineHeight: 1.65,
-              color: INK_MUTED,
-            }}
-          >
-            Then Solara produces it like an agency. Relights your shots.
-            Color-grades your space. Cleans the audio. Adds voiceover in your
-            cloned voice. Subtitles. Cuts dead air. Times music to the cuts.
-            Designs transitions. Builds the thumbnail.
-          </p>
-          <p
-            style={{
-              fontFamily: DISPLAY,
-              fontSize: "clamp(1.15rem, 2.1vw, 1.45rem)",
-              fontWeight: 500,
-              color: INK,
-              lineHeight: 1.45,
-              letterSpacing: "-0.02em",
-            }}
-          >
-            Your part:{" "}
-            <span style={{ color: INK_FAINT }}>
-              5&ndash;8 minutes of simple actions a kid could do.
-            </span>
-            <br />
-            Solara&rsquo;s part:{" "}
-            <span style={{ color: ROSE_DEEP, fontWeight: 600 }}>
-              a video that looks like a crew shot it.
-            </span>
-          </p>
-        </div>
-
-        <div className="px-5 pb-20 sm:px-6 sm:pb-24">
+        <div className="px-5 pt-20 pb-20 sm:px-8 sm:pt-28 sm:pb-28">
           <HonestPartCallout />
         </div>
       </section>
 
       <PreviewFooter
-        label="Section 04 (alt) · The bridge between AI and authentic content"
-        description="Full multi-scene walkthrough variant. Eyebrow + headline + tagline + intro body, then a 5-scene horizontal walkthrough showing Solara's ask + a mini phone for each scene type (teleprompter / action / image-upload), arrows flowing into the production band (10 task pills), arrow into the finished video phone showing the polished pizza Reel, and time totals counting up on view (5min 21sec / ~3 hours). After-walkthrough body copy + The Honest Part callout in warm-tinted box. Cards stagger in left-to-right (150ms each), production pills wave in (50ms each), finished video lifts in last. Pure cream + black + navy aesthetic — no phone mockup chrome anywhere except the finished video and the 5 mini phones."
+        label="Section 04 (alt) · The bridge — editorial redesign"
+        description="Editorial walkthrough of how Solara directs a multi-scene piece. Canonical SHELL background with FlickeringGrid + radial mask. Hero opens with '04 · The Bridge' eyebrow, display headline with italic-navy 'Finally.' accent, and a two-column body grid (lede left, plain-words explanation right). Chapter 01 (The Walkthrough) sits below a 2px ink top border with a 2+10 grid header. Desktop renders 5 screenplay rows (large display number / 'Solara asked' eyebrow + ask + type·time / mini-phone preview) separated by hairline dividers. Mobile renders a 6-second auto-advance carousel with progress bar, dots, and matched arrow buttons. Each mini-phone shows a teleprompter, action-record, or upload UI based on scene type. Chapter 02 (What Solara does next) is a centered headline + 10-credit two-column list with navy index numbers. The result is revealed in a poster phone mockup — finished Reel screen with 'Looks like a crew shot it.' caption. Time totals collapse to a single dramatic equation: '5 min 21 sec → ~3 hours' with black filming time / navy Solara work / italic gray units. Director's note is a 3+9 grid under a 2px ink border with a pull quote and supporting body. Closer is isolated on its own line: 'You already have everything except the part Solara replaces.' with the italic-navy accent only on the final two words. Two italic-navy accents total ('Finally.' and 'Solara replaces.'). Pure cream + ink + navy execution."
       />
     </main>
   );

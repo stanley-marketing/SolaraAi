@@ -1,0 +1,74 @@
+TASK 8 EVIDENCE — craft.tsx + comparison.tsx
+=============================================
+Committed: 128642c  feat(home-v2): add craft slider and comparison
+Branch: feat/homepage-redesign-autonomous-agent
+Date: 2026-04-27
+
+FILES CREATED
+─────────────
+src/components/homepage-v2/craft.tsx      (CraftV2)
+src/components/homepage-v2/comparison.tsx (ComparisonV2)
+
+CRAFT.TSX — CHECKLIST
+─────────────────────
+[x] Named export CraftV2
+[x] <V2Section id="home-v2-craft"> → data-testid="home-v2-craft" (via primitives.tsx)
+[x] Eyebrow: "05 · THE CRAFT"
+[x] Headline: "From your phone to looking like you hired an agency."
+[x] Sub-headline: "Drag the slider. Same business. Same footage..."
+[x] data-testid="home-v2-before-after-slider" on container div
+[x] Left panel: dark gradient, RAW CLIP label, "Tuesday 11:47 PM · No captions · Dim lighting · Shaky cut"
+[x] Right panel: bright/white, SOLARA label, "Tuesday 6:00 AM · Color-graded · Animated captions · Music-timed cuts"
+[x] Draggable handle with clipPath split — mouse (mousedown/mousemove/mouseup on window) + touch (touchstart/touchmove)
+[x] role="slider", tabIndex={0}, aria-valuemin=0, aria-valuemax=100, aria-valuenow=Math.round(split)
+[x] ArrowLeft/ArrowRight keys adjust split ±5 via handleKeyDown
+[x] Default split: 50 (useState(50))
+[x] Focus ring: outline 2px solid ROSE_DEEP (#172554) via handleFocused state
+[x] Three anti-fake captions as separate <p> elements:
+    - "We don't fake your face. We don't stage your space."
+    - "We don't generate AI avatars. We don't use stock footage."
+    - "We just direct you, then we do the production work."
+[x] CTA: <a href={CTA_MAP.beforeAfter}> = "#home-v2-showcase" → "See it on your business →"
+[x] "use client" directive at top
+
+COMPARISON.TSX — CHECKLIST
+───────────────────────────
+[x] Named export ComparisonV2
+[x] <V2Section id="home-v2-comparison"> → data-testid="home-v2-comparison"
+[x] Eyebrow: "06 · THE COMPARISON"
+[x] Headline: "The only system that thinks, films, cuts, and publishes."
+[x] Sub-headline: "Tools give you blank pages. Agencies give you shot lists. Solara gives you posts."
+[x] Desktop table: 4-column grid (feature label + THE TOOLKIT + THE AGENCY + SOLARA)
+    hidden sm:block — hides on mobile
+[x] Mobile: 3 stacked cards (sm:hidden), Solara first (highlighted)
+[x] Column headers:
+    - THE TOOLKIT (Buffer, Canva, Jasper, Runway / $150–$600)
+    - THE AGENCY ($2,000/mo social manager)
+    - SOLARA ($99/mo) — highlighted border/background
+[x] 9 rows from v7.txt lines 295-323 (task listed 8, v7.txt has 9 including Reports & adjusts)
+    Values match spec exactly: ✓, ✗, and text values
+[x] Solara column: border-left: 2px solid ROSE_DEEP, background tint in desktop table;
+    border: 2px solid ROSE_DEEP + dark header bg on mobile card
+[x] Paragraph below table (v7.txt:327-330): "Toolkits cost less in dollars..."
+[x] CTA: <a href={CTA_MAP.comparison}> = "/contact" → "Start the 10-minute setup →"
+[x] Mobile: grid-cols-1 cards, no horizontal overflow — each card is full-width
+
+TYPESCRIPT CHECK
+────────────────
+bunx tsc --noEmit 2>&1 | grep -E "craft|comparison" → (no output = zero errors)
+All TS errors in output were pre-existing (seo.test.ts files).
+
+BUILD STATUS
+────────────
+bun run build fails with pre-existing Turbopack ENOENT filesystem error
+(confirmed by: git stash → clean .next → same error without my files).
+Error: ENOENT .next/static/.../_ssgManifest.js — not caused by new code.
+
+INTERACTION DESIGN
+──────────────────
+Slider: CSS clipPath approach (inset(0 0 0 ${split}%)) on right panel.
+No library dependencies — all React state + DOM events.
+Handle: circular knob (44x44px), white with shadow, bidirectional arrow SVG.
+Keyboard step: ±5% per keypress, clamped [5, 95].
+Touch: touchstart + touchmove on container, reads touches[0].clientX.
+Drag: mousedown on container → mousemove/mouseup on window (prevents losing drag on fast movement).

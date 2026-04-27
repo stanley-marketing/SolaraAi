@@ -1,0 +1,525 @@
+SOLARAAI — WEBSITE COPY v7.0
+═══════════════════════════════════════════════════════════════════════════════
+Author:   Strategy + Copy synthesis
+Date:     April 26, 2026
+Status:   CANONICAL — replaces v6 and newest_website_copy_final.txt
+
+LOCKED PARAMETERS (do not drift):
+─────────────────────────────────
+Pricing:          $99/mo monthly · $69/mo billed annually (= $828/yr, 30% off)
+ICP:              SMB owner-operators across all verticals (restaurants, fitness,
+                  ecommerce, salons, clinics, contractors, dentists, gyms, coffee,
+                  realtors, retail). NOT foot-traffic-only. NOT restaurant-only.
+Onboarding:       Solara learns your BRAND (voice, customers, offer, story).
+                  NEVER claims to learn your physical space.
+Filming reality:  Owner films what Solara INSTRUCTS. Multiple short clips per
+                  shoot (typically 5 scenes, ~10 minutes total). Not "press
+                  record once."
+Tool stack range: $150-600/mo (NOT $30-150)
+Risk reversal:    No credit card. Cancel anytime. Setup in 10 minutes.
+Human in loop:    Solara has human support reviewing output, rejecting bad
+                  takes, and asking for re-shoots.
+Auto-publish:     Yes. Solara schedules and publishes across every platform.
+Italic-navy use:  Maximum 2 per page. ROSE_DEEP color. Editorial accent only.
+Hard rules:       No "AI slop" claims. No "spatial onboarding." No fake stats.
+                  Customer names marked [PLACEHOLDER] until real ones land.
+
+ARCHITECTURE: 9 sections, ~150 words each, ~1,350 words total
+═══════════════════════════════════════════════════════════════════════════════
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  SECTION 01 — HERO                                                          ║
+║  Goal: Buyer feels "this is for me" in 5 seconds. CTA in 30.                ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+
+Eyebrow:        SOLARA · THE DIRECTOR FOR SMB SOCIAL
+
+Headline:       Your business has a director now.
+                                       ──────────
+                                       (italic-navy accent on "director now")
+
+Sub-headline:   Solara writes the brief. You film 5 scenes on your phone in
+                10 minutes. We cut, caption, schedule, and publish across
+                Instagram, TikTok, Facebook, and Google Business — every week,
+                automatically.
+
+Above-fold proof tile (single, dense):
+
+  ┌────────────────────────────────────────────────────────┐
+  │  [Sample Reel thumbnail]                               │
+  │  EXAMPLE — PIZZA SHOP                                  │
+  │  5 scenes filmed Saturday morning · finished post      │
+  │  published Tuesday at 5:47 PM                          │
+  │  [▶ Watch the 60-second walkthrough]                   │
+  └────────────────────────────────────────────────────────┘
+
+Primary CTA:    See your first scene  →
+Secondary CTA:  Watch a 60-second demo  ▶
+
+Trust strip:    No credit card  ·  Setup in 10 minutes  ·  Cancel anytime
+
+Live counter:   [PLACEHOLDER — real number]
+                "X businesses directing their content with Solara"
+                (Format: ticking counter when real numbers land. Until then,
+                show "Now in early access" or omit until launch.)
+
+Research moves applied:
+  · Toast: identity-first headline ("director" names the buyer's reality, not
+    the product feature)
+  · Apple: era-declaration sub-headline (specific workflow, not abstract)
+  · Captions: "AI that edits like a professional" — we extend to "AI that
+    DIRECTS like a creative director"
+  · Owner.com: above-fold proof, named outcome
+  · Stripe/Cal.com: trust strip with risk-reversal
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  SECTION 02 — THE TEARDOWN                                                  ║
+║  Goal: Establish the problem. Make the cost of inaction visceral.           ║
+║  Status: BUILT as /preview/section-2-v6 ✓                                   ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+
+Eyebrow:        02 · THE TEARDOWN
+
+Headline:       You've tried both. Both make you the bottleneck.
+                                                ──────────────
+                                                (italic-navy accent)
+
+Sub-headline:   There's the agency that bills you to direct you. And the
+                toolkit that promises autopilot but can't decide what to post.
+                Here's what each one actually is.
+
+EXHIBIT A — THE AGENCY (numbered marker "01")
+
+Title:          $2,000/month for instructions.
+Body:           On-site or on Zoom, they arrive with one thing: a list of
+                things to film this week. You bring the clips. They process
+                everything later on a laptop without you — captions, edits,
+                schedule, report.
+Arithmetic:     $24,000 a year. For someone to hand you a shot list.
+Visual:         InvoiceCard (existing component)
+
+EXHIBIT B — THE TOOLKIT (numbered marker "02")
+
+Title:          $150–600/month for auto-complete.
+Body:           A scheduler doesn't know what to schedule. A caption tool
+                doesn't know your customer. A trend feed doesn't know what
+                works for YOUR business. Auto-complete on a blank page is
+                still a blank page.
+Arithmetic:     5 subscriptions. 3 logins. Still no posts.
+Visual:         ToolsGrid (existing component)
+Below:          ToolsMarquee (Buffer · Hootsuite · Later · SocialBee · Jasper
+                · Copy.ai · Canva · Adobe Express · Runway · Pictory · Synthesia
+                · Typefully · FeedHive · Sprout)
+
+VERDICT (case-file finding):
+  Option A is a phone-holder with a twelve-month contract.
+  Option B is a blank page with auto-complete.
+
+BRIDGE TO 03:
+  That's the gap Solara was built for.
+              ────────
+              (italic-navy accent)
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  SECTION 03 — THE SHOWCASE                                                  ║
+║  Goal: Show output quality and variety without claiming customers we don't  ║
+║  have. Replaceable with real case studies later.                            ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+
+Eyebrow:        03 · THE SHOWCASE
+
+Headline:       See what Solara creates for businesses like yours.
+
+Sub-headline:   Pick your industry. We'll show you a sample brief, the 5
+                scenes Solara would have you film, and the finished posts
+                ready to publish across every platform.
+
+Vertical tabs (horizontal scroll on mobile):
+
+  [ Pizza Shop ] [ Salon ] [ Gym ] [ Coffee Shop ] [ Dental ] [ Realtor ]
+  [ Boutique ] [ Catering ]    ←  add as we ship more
+
+For each tab, show:
+
+  ┌─────────────────────────────────────────────────────────────────┐
+  │  THE BRIEF                                                      │
+  │  ──────────                                                     │
+  │  Pizza Shop · Week of April 27                                  │
+  │                                                                 │
+  │  Theme: Saturday-night family-style                             │
+  │                                                                 │
+  │  Scene 01 (8s)  · Speaking next to oven                         │
+  │                   "My grandfather taught me this in 1987."      │
+  │  Scene 02 (30s) · Hands on the dough                            │
+  │  Scene 03 (Photo) · Pizza out of oven (you upload)              │
+  │  Scene 04 (30s) · Walk through the shop with a box, smile       │
+  │  Scene 05 (8s)  · "Come taste the difference."                  │
+  │                                                                 │
+  │  → Filming time: ~12 minutes                                    │
+  └─────────────────────────────────────────────────────────────────┘
+
+  ┌──────────────────────────┐  ┌──────────────────────────┐
+  │   [Reel mockup]          │  │   [Story mockup]         │
+  │   Instagram Reel         │  │   IG/FB Story            │
+  │   25 seconds             │  │   Vertical · 9:16        │
+  │   Captions burned in     │  │   Tap-through            │
+  └──────────────────────────┘  └──────────────────────────┘
+
+  ┌──────────────────────────┐  ┌──────────────────────────┐
+  │   [Carousel mockup]      │  │   [Google Business post] │
+  │   IG / FB / LinkedIn     │  │   Local SEO              │
+  │   5 slides               │  │   Auto-published         │
+  └──────────────────────────┘  └──────────────────────────┘
+
+  Caption strip below:
+    "Every brief, every scene, every post — generated and published
+     by Solara. Sample shown for illustration. Replaceable with your
+     real campaign in week one."
+
+CTA:            See your industry's sample  →
+
+Research moves applied:
+  · Captions: "taste, not just speed" — show actual creative output, not
+    feature lists
+  · OpenAI: embedded product preview directly on the page
+  · Toast: vertical-specific tabs (Bar / Cafe / Pizzeria / Fast Casual)
+    so each buyer sees their world
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  SECTION 04 — THE WALKTHROUGH                                               ║
+║  Goal: Show the workflow chapter-by-chapter. Make 10 minutes feel doable.   ║
+║  Status: BUILT as /preview/section-4-bridge ✓                               ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+
+Eyebrow:        04 · THE BRIDGE
+
+Headline:       The bridge between AI and authentic content. Finally.
+                                                          ────────
+                                                          (italic-navy)
+
+Body (two columns):
+  Left:   AI was fast but fake. Authentic was real but impossible. Solara
+          is the first to bridge the two.
+  Right:  You bring one thing AI can't fake: you, in your real space.
+          Solara directs a multi-scene piece — telling you what to film,
+          where to stand, what to say — in plain words anyone can follow.
+
+CHAPTER 01 — THE WALKTHROUGH
+Title:    One 25-second post for a pizza shop. Built from five short takes.
+
+5 numbered scene rows (existing build):
+  01 · Speaking next to the oven (8s) — teleprompter
+  02 · Hands on the dough (30s) — action
+  03 · The pizza, served (Photo) — image-to-video
+  04 · Through the shop (30s) — action
+  05 · Come taste the difference (8s) — teleprompter
+
+CHAPTER 02 — WHAT SOLARA DOES NEXT
+Title:    Then Solara takes over — ten jobs, one workflow.
+Body:     The expensive part of hiring a creative team, refined across
+          thousands of pieces and run for you on autopilot.
+
+Production credits (10 jobs):
+  01 Relight       ·  02 Color grade
+  03 Audio cleanup ·  04 Voiceover
+  05 Cuts          ·  06 Transitions
+  07 Subtitles     ·  08 Music timing
+  09 Thumbnail     ·  10 Platform exports
+
+THE RESULT
+Caption:  Looks like a crew shot it.
+
+TIME TOTALS
+  5 min 21 sec  →  ~3 hours
+  Your filming time, on the left.
+  The agency-grade work Solara does in the background, on the right.
+
+DIRECTOR'S NOTE
+  The only real difference between a $2,000-a-month social media manager
+  and Solara is that sometimes a human will physically come to your shop
+  and hold the phone for you. The strategy, the script, the directing,
+  the editing, the publishing, the analytics, the weekly adjustment — all
+  Solara.
+
+CLOSER (italic-navy on "Solara replaces"):
+  You already have everything except the part Solara replaces.
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  SECTION 05 — BEFORE / AFTER                                                ║
+║  Goal: Visual taste proof. Show raw input becoming polished output.         ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+
+Eyebrow:        05 · THE CRAFT
+
+Headline:       From your phone to looking like you hired an agency.
+
+Sub-headline:   Drag the slider. Same business. Same footage. Two outcomes —
+                what most owners post on a tired Tuesday, and what Solara
+                publishes for them every Tuesday.
+
+Visual:         Side-by-side compare slider (drag to reveal)
+                LEFT:   Raw vertical phone clip, no caption, dim lighting,
+                        shaky cut at the end. "Tuesday 11:47 PM."
+                RIGHT:  Same clip, color-graded, animated captions, music
+                        timed to cut, smooth transitions, vertical-optimized,
+                        platform-native. "Solara · Tuesday 6:00 AM."
+
+Three small captions below the slider:
+  · "We don't fake your face. We don't stage your space."
+  · "We don't generate AI avatars. We don't use stock footage."
+  · "We just direct you, then we do the production work."
+
+CTA:            See it on your business  →
+                (links back to Section 03 vertical tabs)
+
+Research moves applied:
+  · HeyGen: "Looks Fake ←→ More Lifelike" slider, but inverted —
+    "Raw ←→ Polished" since we're not selling avatars
+  · Captions: "edits with taste" — show the taste, don't just claim it
+  · Owner.com: anti-AI-slop differentiation through what we DON'T do
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  SECTION 06 — SOLARA vs TOOLS vs AGENCY                                     ║
+║  Goal: Direct competitive positioning. Help bottom-of-funnel decision.      ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+
+Eyebrow:        06 · THE COMPARISON
+
+Headline:       The only system that thinks, films, cuts, and publishes.
+
+Sub-headline:   Tools give you blank pages. Agencies give you shot lists.
+                Solara gives you posts.
+
+Three-column comparison table (mobile: stacks to 3 cards):
+
+┌─────────────────────┬──────────────────┬──────────────────┬──────────────────┐
+│                     │  THE TOOLKIT     │  THE AGENCY      │  SOLARA          │
+│                     │  Buffer, Canva,  │  $2,000/mo       │  $99/mo          │
+│                     │  Jasper, Runway  │  social manager  │                  │
+├─────────────────────┼──────────────────┼──────────────────┼──────────────────┤
+│  Cost / month       │  $150 – $600     │  $2,000          │  $99             │
+├─────────────────────┼──────────────────┼──────────────────┼──────────────────┤
+│  Decides what       │  ✗               │  ✓               │  ✓               │
+│  to post            │                  │                  │                  │
+├─────────────────────┼──────────────────┼──────────────────┼──────────────────┤
+│  Tells you what     │  ✗               │  ✓               │  ✓               │
+│  to film            │                  │                  │                  │
+├─────────────────────┼──────────────────┼──────────────────┼──────────────────┤
+│  Films it           │  ✗               │  ✗               │  You do          │
+│  (you film)         │                  │  (sometimes)     │  (10 min/week)   │
+├─────────────────────┼──────────────────┼──────────────────┼──────────────────┤
+│  Edits & captions   │  ✗               │  ✓               │  ✓               │
+├─────────────────────┼──────────────────┼──────────────────┼──────────────────┤
+│  Schedules &        │  ✓ (separate     │  ✓               │  ✓               │
+│  publishes          │  tool)           │                  │                  │
+├─────────────────────┼──────────────────┼──────────────────┼──────────────────┤
+│  Reports & adjusts  │  ✗               │  ✓ (slow)        │  ✓ (weekly)      │
+├─────────────────────┼──────────────────┼──────────────────┼──────────────────┤
+│  Time you spend     │  4 – 8 hrs/week  │  1 – 2 hrs/week  │  10 min/week     │
+│  per week           │                  │  (filming)       │                  │
+├─────────────────────┼──────────────────┼──────────────────┼──────────────────┤
+│  Year 1 total       │  $1,800 – $7,200 │  $24,000         │  $828 (annual)   │
+│                     │  + 200+ hrs      │  + 75 hrs        │  + 9 hrs         │
+└─────────────────────┴──────────────────┴──────────────────┴──────────────────┘
+
+Below the table:
+
+  Toolkits cost less in dollars and more in your time. Agencies cost less
+  in your time and more in dollars. Solara costs less in both because it
+  isn't building from scratch every week — it's running the same playbook
+  the big brands run, scaled down for your business.
+
+CTA:            Start the 10-minute setup  →
+
+Research moves applied:
+  · Owner.com: direct competitive framing without naming individual companies
+  · Cal.com: clean comparison table with mobile-stacked cards
+  · Toast: time-savings claim with specificity
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  SECTION 07 — PRICING                                                       ║
+║  Goal: Remove price objection. Surface risk-reversal. One CTA.              ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+
+Eyebrow:        07 · PRICING
+
+Headline:       One plan. One price. No surprises.
+
+Sub-headline:   Solara is a complete system, so we don't tier features. You
+                get everything, on day one. Pay monthly. Save 30% on annual.
+
+Two tier cards side-by-side (mobile: stacks):
+
+  ┌─────────────────────────────┐  ┌─────────────────────────────┐
+  │  MONTHLY                    │  │  ANNUAL ★                   │
+  │                             │  │                             │
+  │  $99 /month                 │  │  $69 /month                 │
+  │  Billed monthly             │  │  Billed annually ($828/yr)  │
+  │                             │  │  ──────────                 │
+  │                             │  │  Save 30% — equals 2.5      │
+  │                             │  │  months free.               │
+  │                             │  │                             │
+  │  Same product. Same support.│  │  Same product. Same support.│
+  │                             │  │                             │
+  │  [ Start free trial ]       │  │  [ Start free trial ]       │
+  └─────────────────────────────┘  └─────────────────────────────┘
+
+What's included (single column under cards):
+
+  ✓  Weekly content brief, written by Solara for your business
+  ✓  Scene-by-scene filming guidance (5 scenes, ~10 minutes/week)
+  ✓  Full production: cuts, color, captions, music, thumbnails
+  ✓  Auto-publishing across IG, TikTok, FB, YouTube Shorts, Google Business
+  ✓  Weekly performance report + automatic playbook adjustment
+  ✓  Human review on every piece — bad takes rejected, re-shoots requested
+  ✓  Setup done for you in 10 minutes
+  ✓  No credit card to start. Cancel anytime.
+
+Risk-reversal strip (below):
+
+  · 14-day free trial · No credit card required
+  · Cancel anytime, no questions
+  · Your content, your accounts — you own everything
+
+Bottom line:    The closest thing on the market is $2,000/month and still
+                makes you film it yourself.
+
+Research moves applied:
+  · Stripe: $1/month-style entry offer — but ours is "free trial, no CC"
+  · Cal.com: "No credit card required" trust strip
+  · Booksy: flat-rate pricing visible above fold
+  · Mailchimp: 30% annual discount framed as "2.5 months free"
+  · Owner.com: "Cancel anytime" as moral stance, not just feature
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  SECTION 08 — FAQ                                                           ║
+║  Goal: Handle the 6 objections that block signup.                           ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+
+Eyebrow:        08 · QUESTIONS
+
+Headline:       The 6 questions every owner asks.
+
+Sub-headline:   If you're still unsure, the answer is probably here.
+
+Accordion (expand-on-click, only one open at a time):
+
+  Q1.  How is this different from ChatGPT or Canva?
+  A.   ChatGPT writes captions. Canva designs templates. Neither tells you
+       what to film, neither edits your video, neither publishes for you.
+       Solara is the system that connects all of it — strategy → brief →
+       directing → editing → publishing → reporting → adjusting next week.
+
+  Q2.  Will my posts look "AI-generated"?
+  A.   No, because they're not. Your face is real. Your business is real.
+       Your voice is real. Solara never generates AI avatars, never uses
+       stock footage, never writes generic captions. Solara directs YOUR
+       content; it doesn't fake content for you.
+
+  Q3.  What if I'm camera-shy?
+  A.   Most weeks, fewer than half the scenes need your face. Hands, your
+       product, your shop, your customers (with consent), b-roll of your
+       work — Solara writes briefs around what you're comfortable filming.
+
+  Q4.  How long does setup take?
+  A.   10 minutes. Tell us about your business — what you sell, who buys
+       it, your voice, your offer, your story. Connect your social
+       accounts. Solara writes your first brief that same day. Your first
+       post can go live this week.
+
+  Q5.  What if I miss a week of filming?
+  A.   We pause. No penalties, no missed posts that look fake. When you're
+       ready, we pick up where you left off. You can also batch-film 4
+       weeks of content in one session if you prefer.
+
+  Q6.  Can I cancel?
+  A.   Anytime. No contract, no cancellation fee, no "we'll keep posting
+       for 30 more days." You own your accounts and your content. Solara
+       is a service you use because it works, not because you're locked in.
+
+Bottom CTA strip:
+  Still unsure? Talk to a real human →  (Calendly link)
+
+Research moves applied:
+  · Owner.com: each FAQ ends with reassurance, never a sales push
+  · Cal.com: contact-human option preserved as out
+  · Captions: AI-slop objection handled head-on (Q2)
+  · Toast: "no contract" framed as moral stance (Q6)
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  SECTION 09 — THE CLOSE                                                     ║
+║  Goal: One final CTA. Invitation, not sales push.                           ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+
+Eyebrow:        (none — let the headline carry it)
+
+Headline:       Your first scene starts now.
+                            ─────────────
+                            (no italic-navy here — closer line is plain ink
+                             since we already used 2 italic-navy accents per
+                             page rule on "director now" and "Solara replaces")
+
+Sub-headline:   10-minute setup. Same-day brief. First post live this week.
+                Cancel anytime. No credit card.
+
+Single CTA:     Start the 10-minute setup  →
+
+Trust strip (below CTA):
+  $99/mo · or $69/mo annual (save 30%)
+  14-day free trial · No credit card required · Cancel anytime
+
+Final line (small, italic, centered):
+  "You already have everything except the part Solara replaces."
+  ───────────────────                                ─────────────
+  (small caption ref to bridge close — soft callback, not new statement)
+
+Research moves applied:
+  · Ghost: "Today, it's your turn" invitation close
+  · Apple: poetic short close ("Your first scene starts now.")
+  · Owner.com: trust strip below CTA
+  · No urgency, no scarcity — modern, calm conversion
+
+
+═══════════════════════════════════════════════════════════════════════════════
+APPENDIX — COPY CALIBRATION RULES
+═══════════════════════════════════════════════════════════════════════════════
+
+VOICE & TONE
+  Plain English. Operator-to-operator. No buzzwords. No AI hype.
+  Owner-of-pizza-shop reads it at 11 PM and thinks: "Yes. Exactly."
+
+WORDS WE USE
+  · Director (for Solara)         · Brief (for the weekly plan)
+  · Scenes (for clips)            · Shoot (for filming session)
+  · Publish (for auto-posting)    · Brand (for what onboarding learns)
+
+WORDS WE DON'T USE
+  · "Leverage," "utilize," "synergy," "omnichannel"
+  · "Cutting-edge AI," "revolutionary," "disruptive"
+  · "Seamless," "robust," "scalable" (in customer-facing copy)
+  · "Press record once" (we don't oversimplify the workflow)
+  · "Spatial," "spatial onboarding" (regression — Solara learns brand, not space)
+  · "Foot traffic," "people walking in" (foot-traffic-coded, excludes ecom/SaaS)
+
+ITALIC-NAVY ACCENT BUDGET (max 2 per page)
+  Page 1 budget candidates:  "director now" + "Solara replaces"
+  Page 2 budget candidates:  "the bottleneck" + "the gap Solara was built for"
+  Page 3 budget candidates:  "for businesses like yours" + closer line
+  (Pick 2 per page max. The accent has to feel earned.)
+
+NUMBERS WE COMMIT TO
+  · $99/mo monthly · $69/mo annual ($828/yr)
+  · $2,000/mo for the agency · $24,000/yr arithmetic
+  · $150-600/mo for the toolkit
+  · 10 minutes setup · 10 minutes filming/week
+  · 5 scenes per shoot
+  · Year 1: $828 for Solara · 9 hours of your time
+
+NUMBERS WE FILL IN LATER
+  · Customer count (live counter) — when we have real data
+  · Specific business names + outcomes — when we have real customers
+  · Founder photo + name — when we decide to lean on founder presence
+
+═══════════════════════════════════════════════════════════════════════════════
+END OF v7.0
+═══════════════════════════════════════════════════════════════════════════════
