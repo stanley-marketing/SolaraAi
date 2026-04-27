@@ -1,0 +1,36 @@
+TASK 6 — Bridge Section (bridge.tsx)
+=====================================
+
+FILE CREATED: src/components/homepage-v2/bridge.tsx
+
+BUILD RESULT: PASS
+  - TypeScript compiled successfully
+  - 112 static pages generated
+  - No errors
+
+COMPONENT CHECKLIST:
+[✓] V2Section id="home-v2-bridge" (auto-sets data-testid="home-v2-bridge")
+[✓] Eyebrow: "04 · THE BRIDGE" in ROSE_DEEP
+[✓] Headline: "The bridge between AI and authentic content. Finally." — "Finally." in plain ink (fontWeight: 400, no italic/navy)
+[✓] Two-column intro body (lg:grid-cols-12 left/right, stacked on mobile)
+    - Left: "AI was fast but fake..."
+    - Right: "You bring one thing AI can't fake..."
+[✓] Chapter 01 header: "CHAPTER 01 — THE WALKTHROUGH" / "One 25-second post..."
+[✓] 5 numbered scene rows (01–05) with SceneMiniPhone:
+    01 Opening hook / Speaking next to the oven / MiniTeleprompter / 8s
+    02 Process moment / Hands on the dough / MiniActionScreen / 30s
+    03 Hero shot / The pizza, served / MiniUploadScreen / Photo
+    04 Brand walk / Through the shop / MiniActionScreen / 30s
+    05 Outro & CTA / Come taste the difference / MiniTeleprompter / 8s
+[✓] Chapter 02 header: "CHAPTER 02 — WHAT SOLARA DOES NEXT" / "Then Solara takes over..."
+[✓] 10 production-credit pills in 2-column list with ROSE_DEEP index numbers
+[✓] Time totals: "5 min 21 sec → ~3 hours" with caption copy from v7
+[✓] Director's note: full quote from v7:237-242 (italic, smaller)
+[✓] Closer: "You already have everything except the part Solara replaces."
+    — "Solara replaces." in italic ROSE_DEEP (2nd and final italic-navy accent)
+[✓] ScrollReveal used for all major sections and scene rows
+[✓] Mobile-safe: scene rows use sm:grid-cols-12, production pills use sm:grid-cols-2
+
+ITALIC-NAVY ACCENTS USED:
+  1st: "director now" — in hero.tsx (not this file)
+  2nd: "Solara replaces." — in bridge.tsx closer (FINAL slot consumed here)
