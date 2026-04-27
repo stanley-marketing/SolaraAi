@@ -1,0 +1,15 @@
+=== task-3-primitives-build evidence ===
+Date: Mon Apr 27 08:04:54 AM UTC 2026
+
+=== BUILD RESULT ===
+✓ Compiled successfully
+✓ TypeScript passed
+✓ 112 static pages generated
+
+=== PREVIEW IMPORT CHECK ===
+clean — no preview imports in src/components/
+
+=== FILES CREATED ===
+ 125 src/components/homepage-v2/primitives.tsx
+   1 src/components/homepage-v2/index.ts
+ 126 total
