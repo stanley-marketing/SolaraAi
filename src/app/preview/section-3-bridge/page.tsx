@@ -37,13 +37,13 @@ import {
   INK,
   INK_FAINT,
   INK_SOFT,
-  PreviewFooter,
   ROSE_DEEP,
   ScrollReveal,
   SHELL,
 } from "@/components/homepage/teardown-parts";
-import { PhoneFrame } from "@/components/homepage/WebAppMockup";
+import { FacebookStory } from "@/components/social-previews/facebook-preview";
 import { Highlighter } from "@/components/ui/highlighter";
+import { PhoneMockup } from "@/components/ui/phone-mockup";
 
 const INTER = "var(--font-blog), system-ui, -apple-system, sans-serif";
 
@@ -60,6 +60,7 @@ type Scene = {
   instruction: string;
   miniContent: {
     teleprompter?: string;
+    teleprompterImage?: string;
     actionTitle?: string;
     actionImage?: string;
     uploadTitle?: string;
@@ -79,6 +80,7 @@ const SCENES: Scene[] = [
     instruction: "Stand 1m from the oven, eye level. Read this line.",
     miniContent: {
       teleprompter: "My grandfather taught me this in 1987.",
+      teleprompterImage: "/storyboard/bridge-scenes/scene-1.webp",
     },
   },
   {
@@ -102,7 +104,7 @@ const SCENES: Scene[] = [
     instruction: "Upload your favorite photo of the pizza out of the oven.",
     miniContent: {
       uploadTitle: "Pizza photo",
-      uploadImage: "/storyboard/scenes/scene-3.webp",
+      uploadImage: "/storyboard/bridge-scenes/scene-3.webp",
     },
   },
   {
@@ -114,7 +116,7 @@ const SCENES: Scene[] = [
     instruction: "Walk through your shop with a pizza box. Smile. 10s.",
     miniContent: {
       actionTitle: "Walk through shop",
-      actionImage: "/storyboard/scenes/scene-4.webp",
+      actionImage: "/storyboard/bridge-scenes/scene-4.webp",
     },
   },
   {
@@ -123,9 +125,10 @@ const SCENES: Scene[] = [
     type: "speaking",
     typeLabel: "5-Sec Teleprompter",
     time: "5s",
-    instruction: 'From the same spot, say "come taste the difference."',
+    instruction: "From the same spot, say 'come taste the difference.'",
     miniContent: {
       teleprompter: "Come taste the difference.",
+      teleprompterImage: "/storyboard/bridge-scenes/scene-2.webp",
     },
   },
 ];
@@ -160,125 +163,109 @@ const PRODUCTION_CREDITS_BOTTOM: ProductionCredit[] = [
 ];
 
 // ─── Mini Phone Components ─────────────────────────────────────────────────────
-// Lifted verbatim from section-4-bridge/page.tsx (production primitives)
 
-function MiniPhoneShell({
-  children,
-  scale = 1,
+function MiniTeleprompter({
+  line,
+  backgroundImage,
 }: {
-  children: ReactNode;
-  scale?: number;
+  line: string;
+  backgroundImage?: string;
 }) {
-  const baseWidth = 144;
-  const innerWidth = baseWidth - 10;
-  const innerHeight = innerWidth * (19.5 / 9);
-  const baseHeight = innerHeight + 10;
+  const onImage = Boolean(backgroundImage);
 
   return (
-    <div
-      className="relative mx-auto"
-      style={{
-        width: baseWidth * scale,
-        height: baseHeight * scale,
-      }}
-    >
-      <div
-        style={{
-          width: baseWidth,
-          padding: 5,
-          borderRadius: 22,
-          background: "linear-gradient(145deg, #1a1a1a, #0a0a0a)",
-          boxShadow:
-            "0 14px 28px -10px rgba(0,0,0,0.42), 0 0 0 1px rgba(0,0,0,0.18) inset",
-          transform: scale !== 1 ? `scale(${scale})` : undefined,
-          transformOrigin: "top left",
-        }}
-      >
-        <div
-          className="relative overflow-hidden"
-          style={{
-            borderRadius: 17,
-            background: "#fff",
-            aspectRatio: "9 / 19.5",
-          }}
-        >
+    <div className="relative h-full w-full">
+      {onImage && (
+        <>
+          <img
+            src={backgroundImage}
+            alt=""
+            aria-hidden
+            className="absolute inset-0 h-full w-full object-cover"
+            draggable={false}
+          />
           <div
             aria-hidden
-            className="absolute left-1/2 top-2 z-30 -translate-x-1/2"
+            className="absolute inset-0"
             style={{
-              width: 48,
-              height: 13,
-              borderRadius: 8,
-              background: "#0a0a0a",
+              background:
+                "linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 78%, rgba(0,0,0,0.4) 100%)",
             }}
           />
-          {children}
-        </div>
-      </div>
-    </div>
-  );
-}
+        </>
+      )}
 
-function MiniTeleprompter({ line }: { line: string }) {
-  return (
-    <div className="relative flex h-full w-full flex-col px-3 pt-7 pb-3">
-      <div
-        className="mb-2.5 flex items-center justify-between"
-        style={{
-          fontFamily: INTER,
-          fontSize: 7.5,
-          letterSpacing: "0.05em",
-          textTransform: "uppercase",
-          color: INK_FAINT,
-          fontWeight: 600,
-        }}
-      >
-        <span className="flex items-center gap-1">
-          <Mic size={7.5} strokeWidth={2.4} />
-          Teleprompter
-        </span>
-        <span style={{ color: ROSE_DEEP }}>1/1</span>
-      </div>
-
-      <div
-        className="flex flex-1 items-center justify-center rounded-sm px-2.5 py-2.5"
-        style={{
-          background: "#f3f2ee",
-          border: `1px solid ${HAIRLINE}`,
-        }}
-      >
-        <p
-          className="text-center"
+      <div className="relative z-10 flex h-full w-full flex-col px-3 pt-9 pb-3">
+        <div
+          className="mb-2.5 flex items-center justify-between"
           style={{
-            fontFamily: DISPLAY,
-            fontSize: 10,
+            fontFamily: INTER,
+            fontSize: 7.5,
+            letterSpacing: "0.05em",
+            textTransform: "uppercase",
+            color: onImage ? "rgba(255,255,255,0.92)" : INK_FAINT,
             fontWeight: 600,
-            color: INK,
-            lineHeight: 1.25,
-            letterSpacing: "-0.01em",
+            textShadow: onImage ? "0 1px 2px rgba(0,0,0,0.4)" : undefined,
           }}
         >
-          &ldquo;{line}&rdquo;
-        </p>
-      </div>
+          <span className="flex items-center gap-1">
+            <Mic size={7.5} strokeWidth={2.4} />
+            Teleprompter
+          </span>
+          <span
+            style={{
+              color: onImage ? "rgba(255,255,255,0.92)" : ROSE_DEEP,
+            }}
+          >
+            1/1
+          </span>
+        </div>
 
-      <div
-        className="mt-2.5 flex items-center justify-center"
-        style={{ height: 22 }}
-      >
-        <span
-          className="flex h-4 w-4 items-center justify-center rounded-full"
+        <div
+          className="flex flex-1 items-center justify-center rounded-sm px-2.5 py-2.5"
           style={{
-            background: "#fff",
-            border: "1.5px solid rgba(255,255,255,0.7)",
-            boxShadow: `0 0 0 1.5px ${ROSE_DEEP}`,
+            background: onImage ? "rgba(255,255,255,0.94)" : "#f3f2ee",
+            border: `1px solid ${onImage ? "rgba(255,255,255,0.5)" : HAIRLINE}`,
+            backdropFilter: onImage ? "blur(4px)" : undefined,
+            WebkitBackdropFilter: onImage ? "blur(4px)" : undefined,
+            boxShadow: onImage
+              ? "0 4px 12px rgba(0,0,0,0.18)"
+              : undefined,
           }}
+        >
+          <p
+            className="text-center"
+            style={{
+              fontFamily: DISPLAY,
+              fontSize: 10,
+              fontWeight: 600,
+              color: INK,
+              lineHeight: 1.25,
+              letterSpacing: "-0.01em",
+            }}
+          >
+            &ldquo;{line}&rdquo;
+          </p>
+        </div>
+
+        <div
+          className="mt-2.5 flex items-center justify-center"
+          style={{ height: 22 }}
         >
           <span
-            className="h-2 w-2 rounded-sm"
-            style={{ background: "#ef4444" }}
-          />
-        </span>
+            className="flex h-4 w-4 items-center justify-center rounded-full"
+            style={{
+              background: "#fff",
+              border: "1.5px solid rgba(255,255,255,0.7)",
+              boxShadow: `0 0 0 1.5px ${ROSE_DEEP}`,
+            }}
+          >
+            <span
+              className="h-2 w-2 rounded-sm"
+              style={{ background: "#ef4444" }}
+            />
+          </span>
+        </div>
       </div>
     </div>
   );
@@ -321,7 +308,7 @@ function MiniActionScreen({
       />
 
       <div
-        className="absolute left-2.5 top-6 z-20 flex items-center gap-1 rounded-full px-2 py-0.5"
+        className="absolute left-2.5 top-12 z-20 flex items-center gap-1 rounded-full px-2 py-0.5"
         style={{
           background: "rgba(0,0,0,0.65)",
           backdropFilter: "blur(2px)",
@@ -397,7 +384,7 @@ function MiniUploadScreen({
   return (
     <div className="relative h-full w-full bg-white">
       <div
-        className="flex items-center justify-between px-3 pt-7 pb-2.5"
+        className="flex items-center justify-between px-3 pt-9 pb-2.5"
         style={{
           fontFamily: BODY,
           fontSize: 7.5,
@@ -505,7 +492,7 @@ function SceneSlide({ scene }: { scene: Scene }) {
 
       <div className="relative mx-auto mt-6 flex flex-1 items-center">
         <div className="relative">
-          <SceneMiniPhone scene={scene} scale={280 / 144} />
+          <SceneMiniPhone scene={scene} />
           <span
             className="absolute -right-2 -top-2 z-30 flex h-9 w-9 items-center justify-center rounded-full"
             style={{
@@ -654,18 +641,22 @@ function SceneCarousel() {
 
 // ─── Scene Mini Phone ─────────────────────────────────────────────────────────
 
-function SceneMiniPhone({
-  scene,
-  scale = 1,
-}: {
-  scene: Scene;
-  scale?: number;
-}) {
+const SCENE_PHONE_WIDTH = 280;
+const SCENE_CONTENT_BASE_WIDTH = 134;
+const SCENE_CONTENT_BASE_HEIGHT = 285;
+const SCENE_CONTENT_SCALE =
+  (SCENE_PHONE_WIDTH - 2 * Math.round(SCENE_PHONE_WIDTH * 0.035)) /
+  SCENE_CONTENT_BASE_WIDTH;
+
+function SceneMiniPhone({ scene }: { scene: Scene }) {
   const inner = (() => {
     switch (scene.type) {
       case "speaking":
         return (
-          <MiniTeleprompter line={scene.miniContent.teleprompter ?? ""} />
+          <MiniTeleprompter
+            line={scene.miniContent.teleprompter ?? ""}
+            backgroundImage={scene.miniContent.teleprompterImage}
+          />
         );
       case "action":
         return (
@@ -684,7 +675,20 @@ function SceneMiniPhone({
     }
   })();
 
-  return <MiniPhoneShell scale={scale}>{inner}</MiniPhoneShell>;
+  return (
+    <PhoneMockup width={SCENE_PHONE_WIDTH}>
+      <div
+        style={{
+          width: SCENE_CONTENT_BASE_WIDTH,
+          height: SCENE_CONTENT_BASE_HEIGHT,
+          transform: `scale(${SCENE_CONTENT_SCALE})`,
+          transformOrigin: "top left",
+        }}
+      >
+        {inner}
+      </div>
+    </PhoneMockup>
+  );
 }
 
 // ─── Production Credits Marquee ───────────────────────────────────────────────
@@ -787,142 +791,6 @@ function ProductionMarquee() {
   );
 }
 
-// ─── Finished Reel Screen ─────────────────────────────────────────────────────
-
-function FinishedReelScreen() {
-  return (
-    <div
-      className="relative h-full w-full overflow-hidden"
-      style={{ backgroundColor: "#000" }}
-    >
-      <img
-        src="/storyboard/scenes/scene-3.webp"
-        alt=""
-        aria-hidden
-        className="absolute inset-0 h-full w-full object-cover"
-        draggable={false}
-      />
-      <div
-        aria-hidden
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.85) 100%)",
-        }}
-      />
-
-      {/* Story progress bars */}
-      <div
-        className="absolute z-20 flex gap-1"
-        style={{ left: "8%", right: "8%", top: "9%", height: 2.5 }}
-      >
-        {[0, 1, 2, 3, 4].map((i) => (
-          <span
-            key={i}
-            className="flex-1 rounded-full"
-            style={{
-              background:
-                i <= 2
-                  ? "rgba(255,255,255,0.96)"
-                  : "rgba(255,255,255,0.32)",
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Live indicator */}
-      <div
-        className="absolute z-20 flex items-center gap-1.5"
-        style={{ left: "6%", top: "13%" }}
-      >
-        <span
-          className="flex h-1.5 w-1.5 rounded-full"
-          style={{ background: "#22c55e" }}
-        />
-        <span
-          style={{
-            color: "#fff",
-            fontSize: 9,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            fontWeight: 600,
-            fontFamily: BODY,
-          }}
-        >
-          Live · 25s
-        </span>
-      </div>
-
-      {/* Caption overlay */}
-      <div
-        className="absolute z-20 px-4 pb-5 text-white"
-        style={{ left: 0, right: 0, bottom: "8%" }}
-      >
-        <p
-          style={{
-            fontFamily: BODY,
-            fontSize: 9,
-            letterSpacing: "0.22em",
-            textTransform: "uppercase",
-            fontWeight: 600,
-            opacity: 0.78,
-          }}
-        >
-          @your.pizza.shop
-        </p>
-        <p
-          className="mt-1.5"
-          style={{
-            fontFamily: DISPLAY,
-            fontSize: 14,
-            fontWeight: 600,
-            lineHeight: 1.25,
-            letterSpacing: "-0.015em",
-            textShadow: "0 1px 3px rgba(0,0,0,0.45)",
-          }}
-        >
-          My grandfather taught me this in 1987.
-        </p>
-        <p
-          className="mt-1.5"
-          style={{ fontFamily: BODY, fontSize: 10, opacity: 0.72 }}
-        >
-          #pizza · #familyrecipe
-        </p>
-      </div>
-
-      {/* Social actions */}
-      <div
-        className="absolute z-20 flex flex-col items-center gap-3"
-        style={{ right: "5%", bottom: "30%", color: "#fff" }}
-      >
-        {[
-          { label: "♡", num: "12k" },
-          { label: "💬", num: "284" },
-          { label: "↗", num: "Share" },
-        ].map((item) => (
-          <div
-            key={item.label}
-            className="flex flex-col items-center gap-0.5"
-          >
-            <span style={{ fontSize: 16, lineHeight: 1 }}>{item.label}</span>
-            <span
-              style={{
-                fontFamily: BODY,
-                fontSize: 9,
-                fontWeight: 600,
-                opacity: 0.85,
-              }}
-            >
-              {item.num}
-            </span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 // ─── Finished Video Block ─────────────────────────────────────────────────────
 
 function FinishedVideoBlock() {
@@ -941,9 +809,15 @@ function FinishedVideoBlock() {
       }}
       className="flex flex-col items-center"
     >
-      <PhoneFrame width={280}>
-        <FinishedReelScreen />
-      </PhoneFrame>
+      <PhoneMockup width={280} statusBar={false}>
+        <FacebookStory
+          username="your.pizza.shop"
+          mediaUrl="/storyboard/scenes/scene-dough.png"
+          timestamp="2h"
+          storyCount={5}
+          currentStory={3}
+        />
+      </PhoneMockup>
     </motion.div>
   );
 }
@@ -1062,10 +936,6 @@ export default function SectionThreeBridgePreview() {
         </ScrollReveal>
       </div>
 
-      <PreviewFooter
-        label="Section 03 · The Bridge"
-        description="No eyebrows — content speaks directly. Top: 2-line headline with rough-notation Highlighter (light indigo #c7d2fe marker stroke behind 'the bridge'). Body: SceneCarousel (auto-advance every 6.5s, 5 slides with progress bar + counter + dots + prev/next arrows, pattern lifted from section-3-showcase). Each slide = scene title, centered 280px mini-phone with floating scene number badge, italic filming instruction. Then two-row ProductionMarquee — 18 production credits as icon+label pills (lucide icons in ROSE_DEEP, Inter font), top row scrolls left at 45s, bottom row scrolls right at 50s, both with edge-fade masks; pills float on cream (no card wrapper). Then centered 280px finished video PhoneFrame. Closing: italic ROSE_DEEP statement. Two design accents: Highlighter on 'the bridge' + italic ROSE_DEEP closing. Pure SHELL cream + INK + ROSE_DEEP."
-      />
     </main>
   );
 }

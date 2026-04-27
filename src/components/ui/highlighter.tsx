@@ -51,6 +51,8 @@ export function Highlighter({
     const element = elementRef.current;
     let annotation: RoughAnnotation | null = null;
     let resizeObserver: ResizeObserver | null = null;
+    let showTimer: number | null = null;
+    let settleTimer: number | null = null;
 
     if (shouldShow && element) {
       const annotationConfig = {
@@ -63,20 +65,27 @@ export function Highlighter({
         multiline,
       };
 
-      const currentAnnotation = annotate(element, annotationConfig);
-      annotation = currentAnnotation;
-      currentAnnotation.show();
-
-      resizeObserver = new ResizeObserver(() => {
-        currentAnnotation.hide();
+      showTimer = window.setTimeout(() => {
+        const currentAnnotation = annotate(element, annotationConfig);
+        annotation = currentAnnotation;
         currentAnnotation.show();
-      });
 
-      resizeObserver.observe(element);
-      resizeObserver.observe(document.body);
+        const redraw = () => {
+          currentAnnotation.hide();
+          currentAnnotation.show();
+        };
+
+        resizeObserver = new ResizeObserver(redraw);
+        resizeObserver.observe(element);
+        resizeObserver.observe(document.body);
+
+        settleTimer = window.setTimeout(redraw, 400);
+      }, 600);
     }
 
     return () => {
+      if (showTimer !== null) clearTimeout(showTimer);
+      if (settleTimer !== null) clearTimeout(settleTimer);
       annotation?.remove();
       if (resizeObserver) {
         resizeObserver.disconnect();
