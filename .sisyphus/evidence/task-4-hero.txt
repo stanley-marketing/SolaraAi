@@ -1,0 +1,92 @@
+▲ Next.js 16.1.6 (Turbopack)
+- Environments: .env.local
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 8.1s
+  Running TypeScript ...
+  Collecting page data using 15 workers ...
+  Generating static pages using 15 workers (0/112) ...
+  Generating static pages using 15 workers (28/112) 
+  Generating static pages using 15 workers (56/112) 
+  Generating static pages using 15 workers (84/112) 
+✓ Generating static pages using 15 workers (112/112) in 2.4s
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ○ /ai-ad-generator
+├ ○ /ai-marketing-agency
+├ ○ /ai-marketing-platform
+├ ○ /alternatives
+├ ƒ /api/calendly-webhook
+├ ƒ /api/contact
+├ ○ /blog
+├ ● /blog/[slug]
+│ ├ /blog/blaze-ai-alternative
+│ ├ /blog/ai-marketing-automation
+│ ├ /blog/ai-marketing-for-small-business
+│ └ [+43 more paths]
+├ ○ /case-study
+├ ● /case-study/[slug]
+│ ├ /case-study/maison-remodeling-group
+│ └ /case-study/the-missing-piece
+├ ○ /contact
+├ ○ /cookies
+├ ○ /grow
+├ ○ /home-v2
+├ ○ /icon.svg
+├ ƒ /llms-full.txt
+├ ƒ /llms.txt
+├ ○ /partners/agencies
+├ ○ /partners/marketers
+├ ○ /partners/referral-program
+├ ○ /partners/setup-operators
+├ ○ /preview
+├ ○ /preview/comparison
+├ ○ /preview/hero
+├ ○ /preview/hero-a
+├ ○ /preview/hero-b
+├ ○ /preview/hero-c
+├ ○ /preview/section-1
+├ ○ /preview/section-2
+├ ○ /preview/section-2-cream
+├ ○ /preview/section-2-forensic
+├ ○ /preview/section-2-ledger
+├ ○ /preview/section-2-list
+├ ○ /preview/section-2-mono
+├ ○ /preview/section-2-split
+├ ○ /preview/section-2-stacked
+├ ○ /preview/section-2-static
+├ ○ /preview/section-2-static-flat
+├ ○ /preview/section-2-static-plus
+├ ○ /preview/section-2-static-roles
+├ ○ /preview/section-2-teardown
+├ ○ /preview/section-2-v1
+├ ○ /preview/section-2-v2
+├ ○ /preview/section-2-v3
+├ ○ /preview/section-2-v6
+├ ○ /preview/section-3
+├ ○ /preview/section-4-bridge
+├ ○ /preview/section-4-roles
+├ ○ /preview/section-4-storyboard
+├ ○ /preview/section-5-compare
+├ ○ /preview/section-5-pipeline
+├ ○ /preview/section-5-recipe
+├ ○ /preview/section-5-scenes
+├ ○ /preview/section-6-before-after
+├ ○ /preview/section-8-pricing
+├ ○ /preview/section-9-faq
+├ ○ /preview/whatsapp
+├ ○ /pricing
+├ ○ /privacy-policy
+├ ○ /robots.txt
+├ ○ /sitemap.xml
+└ ○ /terms-of-service
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
