@@ -3,7 +3,17 @@ import type { Metadata } from "next";
 import { TopNav } from "@/components/LandingSections";
 import { Footer } from "@/components/Footer";
 
-import { ROUTE_POLICY, LOCKED_COPY } from "./content";
+import { HeroV2 } from "@/components/homepage-v2/hero";
+import { TeardownV2 } from "@/components/homepage-v2/teardown";
+import { ShowcaseV2 } from "@/components/homepage-v2/showcase";
+import { BridgeV2 } from "@/components/homepage-v2/bridge";
+import { CraftV2 } from "@/components/homepage-v2/craft";
+import { ComparisonV2 } from "@/components/homepage-v2/comparison";
+import { PricingV2 } from "@/components/homepage-v2/pricing";
+import { FaqV2 } from "@/components/homepage-v2/faq";
+import { CloseV2 } from "@/components/homepage-v2/close";
+
+import { ROUTE_POLICY } from "./content";
 
 const PAGE_TITLE = "SolaraAI \u2014 Your business has a director now";
 const PAGE_DESCRIPTION =
@@ -84,11 +94,15 @@ export default function HomeV2() {
           }}
         />
 
-        <div className="flex flex-col items-center justify-center px-6 py-24">
-          <h1 className="text-4xl font-bold tracking-tight text-center">
-            {LOCKED_COPY.heroHeadline}
-          </h1>
-        </div>
+        <HeroV2 />
+        <TeardownV2 />
+        <ShowcaseV2 />
+        <BridgeV2 />
+        <CraftV2 />
+        <ComparisonV2 />
+        <PricingV2 />
+        <FaqV2 />
+        <CloseV2 />
       </main>
       <Footer />
     </>
